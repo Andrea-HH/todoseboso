@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-10-02T12:14:18-06:00",
+  "stage": "family_1_stage_1_sentinel_audit",
+  "inputs": [
+    "data\\original\\01_tablas_maestras\\Conjunto_datos_BASICO_AgroCebada2026.csv",
+    "data\\processed\\01_tablas_maestras\\sentinel.csv",
+    "data\\original\\01_tablas_maestras\\ID_area_rendimiento_70_30_Reto_AgroCebada.csv",
+    "data\\original\\02_conjunto_70_30\\Parcelas_Reto_AGC_CONJUNTO.shp"
+  ],
+  "rows_sentinel": 59040,
+  "parcels_sentinel": 197,
+  "source_files_modified": false,
+  "cloud_threshold_applied": false,
+  "interpolation_applied": false,
+  "target_used_for_analysis": false,
+  "warnings": [
+    "Physical ranges and units require the satellite index dictionary.",
+    "Rare-value flags are descriptive 3-IQR flags, not automatic outliers."
+  ]
+}

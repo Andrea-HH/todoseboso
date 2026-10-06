@@ -1,0 +1,210 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\title{Guía de observación\\EDA 03: cobertura Landsat y rendimiento 2025}
+\author{Proyecto AgroCebada}
+\date{}
+
+\newcommand{\edafigure}[3]{
+  \subsection{#1}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth,height=0.66\textheight,keepaspectratio]{\detokenize{#2}}
+    \caption{#1}
+  \end{figure}
+  \textbf{Preguntas guía}
+  #3
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Propósito y definición de cobertura}
+Este EDA estudia por qué Landsat tiene cobertura desigual entre parcelas y cómo
+representar esa desigualdad antes del modelado. La cobertura histórica se calcula
+respecto a las 392 fechas Landsat presentes entre 2022 y 2025. También se calcula
+la cobertura específica del ciclo objetivo, abril--octubre de 2025, que contiene
+53 fechas disponibles.
+
+El criterio principal de agrupación es la proporción de fechas históricas con
+\texttt{vi6t\_promedio} válido. Los grupos se forman con los cuartiles de esta
+proporción: baja hasta 0.3597, media entre 0.3597 y 0.4158, y alta por encima de
+0.4158. Es una segmentación descriptiva y reproducible, no un resultado de un
+modelo de clustering.
+
+\section{Cobertura por parcela}
+
+\edafigure{Cobertura Landsat utilizable ordenada}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/01_cobertura_relativa_ordenada.png}{
+\begin{itemize}[nosep]
+  \item ¿La cobertura cambia gradualmente o existen grupos separados?
+  \item ¿Cuántas parcelas pertenecen a cada nivel?
+  \item ¿Los umbrales representan calidad agronómica o sólo disponibilidad relativa?
+\end{itemize}}
+
+\edafigure{Distribución de cobertura total y utilizable}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/02_distribucion_cobertura.png}{
+\begin{itemize}[nosep]
+  \item ¿Cuánto disminuye la cobertura al exigir un VI6T válido?
+  \item ¿Hay parcelas con muchas capturas pero pocos valores utilizables?
+  \item ¿Conviene usar número de filas o número de valores válidos como indicador de confianza?
+\end{itemize}}
+
+\edafigure{Cobertura histórica frente al ciclo 2025}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/03_historica_vs_ciclo_2025.png}{
+\begin{itemize}[nosep]
+  \item ¿La cobertura histórica predice la disponibilidad durante abril--octubre de 2025?
+  \item ¿Existen parcelas con buena historia pero mala cobertura en el ciclo objetivo?
+  \item ¿Qué cobertura debe tener prioridad para predecir el rendimiento 2025?
+\end{itemize}}
+
+\edafigure{Cobertura mensual de Landsat}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/04_heatmap_cobertura_mensual.png}{
+\begin{itemize}[nosep]
+  \item ¿La baja cobertura se concentra en meses o parcelas específicas?
+  \item ¿Hay bloques persistentes que indiquen grupos de adquisición distintos?
+  \item ¿Las parcelas con menos datos conservan observaciones dentro del ciclo 2025?
+\end{itemize}}
+
+\edafigure{Huecos temporales por grupo}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/05_huecos_temporales_por_grupo.png}{
+\begin{itemize}[nosep]
+  \item ¿Los grupos con menor cobertura también tienen huecos máximos mayores?
+  \item ¿La diferencia principal es continuidad o cantidad total de observaciones?
+  \item ¿Los huecos son suficientemente grandes para impedir agregaciones mensuales?
+\end{itemize}}
+
+\section{Relación con atributos de parcela y objetivo}
+
+\edafigure{Cobertura utilizable frente al área}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/06_cobertura_vs_area.png}{
+\begin{itemize}[nosep]
+  \item ¿Las parcelas pequeñas reciben sistemáticamente menor cobertura?
+  \item ¿El área explica los grupos observados?
+  \item ¿Debe el área formar parte del control de calidad o del modelo agronómico?
+\end{itemize}}
+
+\edafigure{Cobertura utilizable frente al rendimiento}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/07_cobertura_vs_rendimiento.png}{
+\begin{itemize}[nosep]
+  \item ¿Existe asociación entre cobertura y rendimiento en entrenamiento?
+  \item ¿La asociación puede deberse a geografía, manejo, fenología o calidad de medición?
+  \item ¿Sería seguro usar la cobertura como peso de entrenamiento?
+\end{itemize}}
+
+\edafigure{Distribución espacial de los grupos}
+{../../../outputs/eda/01_tablas_maestras/03_cobertura_landsat/08_mapa_grupos_cobertura.png}{
+\begin{itemize}[nosep]
+  \item ¿Los grupos de cobertura forman conglomerados espaciales?
+  \item ¿La cobertura podría estar actuando como sustituto de municipio, órbita o región?
+  \item ¿Cómo debe diseñarse la validación para evitar aprovechar accidentalmente esa estructura espacial?
+\end{itemize}}
+
+\section{Respuestas y hallazgos}
+
+\subsection{Grupos y disponibilidad}
+\begin{enumerate}
+  \item La distribución no es completamente continua: aparece un grupo superior
+  con cobertura claramente mayor. Hay 51 parcelas en cobertura baja, 97 en media
+  y 49 en alta. Los límites son cuartiles del conjunto actual y no umbrales de
+  calidad agronómica universal.
+
+  \item La mediana de observaciones históricas es 205, 208 y 296 para los grupos
+  bajo, medio y alto. Sin embargo, las medianas de VI6T válido son solamente 136,
+  148 y 184. Por ello, contar filas sobreestima la información utilizable. La
+  proporción de VI6T válido respecto a las 392 fechas disponibles es el indicador
+  de confianza más directo de los evaluados.
+
+  \item En abril--octubre de 2025, la cobertura mediana relativa es 0.491 en los
+  grupos bajo y medio y 0.755 en el alto. La historia ayuda a anticipar la
+  disponibilidad del ciclo objetivo, pero no la sustituye. Para predecir el
+  rendimiento 2025 debe priorizarse la cobertura dentro de abril--octubre; la
+  cobertura 2022--2024 debe considerarse contexto histórico.
+
+  \item El heatmap indica que la diferencia es persistente por parcela y no la
+  ausencia de un único mes global. Incluso los grupos bajos conservan datos en el
+  ciclo objetivo, de modo que pueden producir agregados mensuales, aunque con
+  menor estabilidad y diferente número de observaciones.
+
+  \item Los huecos máximos medianos son muy parecidos: 16 días en los grupos bajo
+  y medio y 15 en el alto. La separación entre grupos se debe principalmente al
+  número total de capturas y valores VI6T válidos, no a interrupciones extremas
+  mucho mayores. Huecos de este tamaño permiten agregación mensual, pero deben
+  registrarse el número de observaciones y los días cubiertos.
+\end{enumerate}
+
+\subsection{Área, rendimiento y espacio}
+\begin{enumerate}[resume]
+  \item El área casi no explica la cobertura utilizable: la correlación de
+  Spearman es $-0.027$. Las medianas de área son 4.13 ha en cobertura baja,
+  6.89 ha en media y 3.79 ha en alta, sin un gradiente consistente. El área puede
+  ser una variable agronómica, pero no debe utilizarse como sustituto de calidad.
+
+  \item Sí existe una asociación descriptiva entre cobertura y rendimiento. La
+  correlación Spearman es 0.290 para cobertura VI6T válida y 0.378 para número de
+  observaciones. El rendimiento medio por grupo es 3.72, 3.76 y 4.55 t/ha; las
+  medianas son 3.50, 3.50 y 4.54. Esto no significa que observar más eleve el
+  rendimiento: la cobertura puede estar capturando región, órbita, condiciones
+  del cultivo o diferencias del proceso de datos.
+
+  \item Los grupos contienen parcelas de ambos conjuntos: baja tiene 33 de
+  entrenamiento y 18 de predicción; media, 69 y 28; alta, 36 y 13. No hay un
+  grupo exclusivo del conjunto oculto. El mapa debe usarse para determinar si el
+  grupo alto se concentra espacialmente; si es así, una partición aleatoria puede
+  producir resultados demasiado optimistas y conviene validar por grupos
+  espaciales o municipios.
+\end{enumerate}
+
+\section{¿Debe darse peso a las parcelas según su cobertura?}
+Es razonable probarlo, pero no asumir que es correcto. El archivo de métricas
+incluye un peso candidato de cobertura, definido como la proporción histórica
+de VI6T válido dividida entre la mayor proporción observada. Este peso expresa
+disponibilidad, no certeza del rendimiento ni importancia agronómica.
+
+Se recomiendan tres experimentos bajo las mismas particiones de validación:
+\begin{enumerate}
+  \item modelo sin peso, incorporando cobertura y número de observaciones como variables;
+  \item modelo con peso candidato durante el entrenamiento;
+  \item agregados temporales acompañados por su conteo, dispersión y cobertura, sin ponderar la pérdida.
+\end{enumerate}
+Debe elegirse la opción por desempeño fuera de muestra en cada grupo de cobertura,
+no sólo por el error global. Ponderar hacia abajo las parcelas de baja cobertura
+podría perjudicar precisamente a las 18 parcelas de predicción de ese grupo.
+
+\section{Qué representa el rendimiento}
+La documentación oficial indica que \texttt{RENDIMIENTO\_T\_HA} es el rendimiento
+de cebada en toneladas por hectárea correspondiente al ciclo productivo
+abril--octubre de 2025. La tabla contiene una fila por parcela, no una serie
+temporal: 138 parcelas de \texttt{ENTRENAMIENTO} tienen rendimiento y las 59 de
+\texttt{PREDICCION} lo mantienen oculto.
+
+No se proporciona una fecha exacta de cosecha por parcela. ``Abril--octubre de
+2025'' es una ventana de ciclo, no evidencia de que todas las parcelas hayan sido
+cosechadas el mismo día. Tampoco hay rendimientos etiquetados para 2022, 2023 o
+2024. Esos años pueden aportar climatología o comportamiento histórico, pero no
+constituyen ejemplos adicionales de entrenamiento supervisado.
+
+Para evitar fuga de información, la construcción de variables debe fijar un
+momento de predicción. Si el objetivo es estimar al final del ciclo, pueden usarse
+capturas hasta octubre de 2025. Si se desea predicción anticipada, deben definirse
+cortes reproducibles, por ejemplo hasta junio, julio, agosto o septiembre, y
+eliminar toda observación posterior a cada corte.
+
+\section{Conclusión operativa}
+Sentinel-2 puede ser la columna vertebral por uniformidad y riqueza de variables.
+Landsat sigue siendo útil como señal complementaria: su cobertura no invalida el
+sensor, pero exige conservar métricas de disponibilidad, agregar dentro de
+ventanas comunes y evaluar desempeño por grupo. El peso por cobertura debe ser
+un experimento de validación, no una corrección automática.
+
+\end{document}

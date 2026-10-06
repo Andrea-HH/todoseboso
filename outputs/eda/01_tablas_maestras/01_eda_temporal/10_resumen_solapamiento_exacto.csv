@@ -1,0 +1,4 @@
+sensor_1,sensor_2,coincidencias_exactas
+Planet,Sentinel-2,10743
+Planet,Landsat,6501
+Sentinel-2,Landsat,10911

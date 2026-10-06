@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-10-02T12:41:48-06:00",
+  "epsilon_cv": 1e-06,
+  "raw_files_modified": false,
+  "target_used": false,
+  "cloud_filter_applied": false,
+  "interpolation_applied": false,
+  "sensors_fused": false,
+  "tables": [
+    {
+      "sensor": "Sentinel-2",
+      "file": "data\\processed\\family_1\\timeseries\\sentinel_timeseries.parquet",
+      "rows": 59040,
+      "columns": 194,
+      "parcels": 197,
+      "date_min": "2022-01-01T00:00:00",
+      "date_max": "2025-12-31T00:00:00",
+      "derived_columns": 88,
+      "quality_columns": 6,
+      "unique_ID_date": true
+    },
+    {
+      "sensor": "Landsat",
+      "file": "data\\processed\\family_1\\timeseries\\landsat_timeseries.parquet",
+      "rows": 48626,
+      "columns": 26,
+      "parcels": 197,
+      "date_min": "2022-01-05T00:00:00",
+      "date_max": "2025-12-31T00:00:00",
+      "derived_columns": 4,
+      "quality_columns": 6,
+      "unique_ID_date": true
+    },
+    {
+      "sensor": "Planet",
+      "file": "data\\processed\\family_1\\timeseries\\planet_timeseries.parquet",
+      "rows": 47804,
+      "columns": 50,
+      "parcels": 197,
+      "date_min": "2025-01-01T00:00:00",
+      "date_max": "2025-12-30T00:00:00",
+      "derived_columns": 16,
+      "quality_columns": 6,
+      "unique_ID_date": true
+    }
+  ]
+}

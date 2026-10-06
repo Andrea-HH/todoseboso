@@ -1,0 +1,8 @@
+check,value
+invalid_dates,0
+exact_duplicate_rows_keep_all,0
+exact_duplicate_groups,0
+rows_in_duplicated_ID_date_keys,0
+duplicated_ID_date_keys,0
+max_records_per_ID_date,1
+within_parcel_backward_date_steps_in_file_order,31089

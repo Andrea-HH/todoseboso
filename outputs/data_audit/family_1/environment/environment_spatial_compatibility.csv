@@ -1,0 +1,4 @@
+variable,parcel_crs,raster_crs,reprojection_required,invalid_geometries,empty_geometries,parcels_intersecting_extent,parcels_outside_extent
+precip,EPSG:4326,EPSG:4326,False,0,0,197,0
+tmax,EPSG:4326,EPSG:4326,False,0,0,197,0
+tmin,EPSG:4326,EPSG:4326,False,0,0,197,0

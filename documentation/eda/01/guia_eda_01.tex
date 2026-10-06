@@ -1,0 +1,324 @@
+﻿\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\title{Guía de observación\\EDA 01: estructura, cobertura y comparabilidad}
+\author{Proyecto AgroCebada}
+\date{}
+
+\newcommand{\edafigure}[3]{
+  \subsection{#1}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth,height=0.68\textheight,keepaspectratio]{\detokenize{#2}}
+    \caption{#1}
+  \end{figure}
+  \textbf{Preguntas guía}
+  #3
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Propósito}
+Esta guía acompaña las salidas del primer EDA. Su objetivo es orientar la lectura
+de la estructura temporal, cobertura, calidad y comparabilidad de Sentinel-2,
+Landsat y Planet. Las gráficas son descriptivas: no implican equivalencia entre
+sensores ni justifican todavía imputación, escalamiento o selección de variables.
+
+\section{Cobertura temporal y por parcela}
+
+\edafigure{Fechas disponibles por sensor}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/01_timeline_sensores.png}{
+\begin{itemize}[nosep]
+  \item ¿Qué sensores cubren todo el periodo y cuál está limitado a 2025?
+  \item ¿Se observan huecos, temporadas densas o cambios de frecuencia?
+  \item ¿Qué periodos permiten comparaciones temporales justas entre sensores?
+\end{itemize}}
+
+\edafigure{Intervalos entre observaciones consecutivas}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/02_intervalos_observaciones.png}{
+\begin{itemize}[nosep]
+  \item ¿Cuál es el intervalo típico de revisita por sensor?
+  \item ¿La distribución tiene colas largas que indiquen interrupciones?
+  \item ¿La frecuencia observada es suficientemente regular para comparar trayectorias?
+\end{itemize}}
+
+\edafigure{Cobertura por parcela}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/03_cobertura_parcelas.png}{
+\begin{itemize}[nosep]
+  \item ¿Cuántas observaciones suele tener una parcela en cada sensor?
+  \item ¿Existen parcelas con cobertura muy inferior o superior al resto?
+  \item ¿Las diferencias entre sensores se explican por su rango temporal?
+\end{itemize}}
+
+\edafigure{Heatmap de cobertura de Sentinel-2}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/04_heatmap_sentinel_2.png}{
+\begin{itemize}[nosep]
+  \item ¿La cobertura mensual es uniforme entre parcelas?
+  \item ¿Qué meses muestran huecos compartidos por muchas parcelas?
+  \item ¿Los patrones ausentes parecen sistemáticos o aislados?
+\end{itemize}}
+
+\edafigure{Heatmap de cobertura de Landsat}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/05_heatmap_landsat.png}{
+\begin{itemize}[nosep]
+  \item ¿Qué tan heterogénea es la cobertura entre parcelas?
+  \item ¿Hay bloques temporales sin observaciones?
+  \item ¿Qué parcelas requieren atención antes de un análisis longitudinal?
+\end{itemize}}
+
+\edafigure{Heatmap de cobertura de Planet}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/06_heatmap_planet.png}{
+\begin{itemize}[nosep]
+  \item ¿La cobertura durante 2025 es continua para las parcelas mostradas?
+  \item ¿Qué meses presentan menor disponibilidad?
+  \item ¿La cobertura de Planet coincide con meses comparables de los otros sensores?
+\end{itemize}}
+
+\section{Calidad y nubosidad}
+
+\edafigure{Distribución de nubosidad}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/07_distribucion_nubosidad.png}{
+\begin{itemize}[nosep]
+  \item ¿La nubosidad se concentra en 0, 100 o valores intermedios?
+  \item ¿Las distribuciones tienen formas comparables entre sensores?
+  \item ¿Los valores extremos pueden corresponder a reglas de procesamiento distintas?
+\end{itemize}}
+
+\edafigure{Nubosidad por mes}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/08_nubosidad_por_mes.png}{
+\begin{itemize}[nosep]
+  \item ¿Existe estacionalidad en la nubosidad?
+  \item ¿Qué meses presentan mayor mediana o dispersión?
+  \item ¿La comparación está afectada por los distintos años disponibles por sensor?
+\end{itemize}}
+
+\edafigure{Cobertura mensual frente a nubosidad}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/09_cobertura_vs_nubosidad.png}{
+\begin{itemize}[nosep]
+  \item ¿Los meses con mayor nubosidad observada tienen menos registros?
+  \item ¿La relación cambia según el sensor?
+  \item ¿Puede hablarse solo de asociación y no de causalidad, dado que no se conoce la nubosidad de capturas ausentes?
+\end{itemize}}
+
+\section{Trayectorias temporales representativas}
+
+\edafigure{Trayectorias de NDVI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/10_trayectoria_ndvi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Se reconocen ciclos de crecimiento y senescencia?
+  \item ¿Los sensores reproducen tendencias similares en periodos coincidentes?
+  \item ¿Hay saltos abruptos que ameriten revisar nubosidad o calidad?
+\end{itemize}}
+
+\edafigure{Trayectorias de LAI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/11_trayectoria_lai_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Los máximos de LAI ocurren en fechas semejantes a los máximos de NDVI?
+  \item ¿Existe un desplazamiento sistemático de escala entre sensores?
+  \item ¿Hay valores o cambios biológicamente poco plausibles?
+\end{itemize}}
+
+\edafigure{Trayectorias de NDWI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/12_trayectoria_ndwi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Cómo cambia la señal de humedad a lo largo del ciclo?
+  \item ¿Los cambios coinciden temporalmente con NDVI y LAI?
+  \item ¿Qué parcelas muestran comportamientos atípicos?
+\end{itemize}}
+
+\edafigure{Trayectorias de ENDWI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/13_trayectoria_endwi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿ENDWI confirma los patrones observados en NDWI?
+  \item ¿Presenta mayor ruido o sensibilidad a valores extremos?
+  \item ¿Hay periodos sin datos que impidan interpretar la trayectoria?
+\end{itemize}}
+
+\edafigure{Trayectorias de MSI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/14_trayectoria_msi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Los aumentos de estrés hídrico coinciden con descensos de NDVI?
+  \item ¿La dirección y magnitud de los cambios son consistentes entre parcelas?
+  \item ¿Hay observaciones aisladas que dominen la interpretación?
+\end{itemize}}
+
+\edafigure{Trayectorias de EMSI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/15_trayectoria_emsi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿EMSI aporta un patrón diferente o redundante respecto a MSI?
+  \item ¿Los picos coinciden con periodos de baja humedad?
+  \item ¿La trayectoria es estable frente a posibles observaciones contaminadas?
+\end{itemize}}
+
+\edafigure{Trayectorias de NDDI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/16_trayectoria_nddi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Los máximos sugieren periodos coherentes de sequedad?
+  \item ¿NDDI se mueve de manera opuesta a los índices de humedad?
+  \item ¿Los cambios abruptos coinciden con alta nubosidad o huecos temporales?
+\end{itemize}}
+
+\edafigure{Trayectorias de ENDDI promedio}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/17_trayectoria_enddi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿ENDDI confirma los periodos secos detectados con NDDI?
+  \item ¿Qué diferencias se observan entre las parcelas seleccionadas?
+  \item ¿La disponibilidad temporal permite comparar ciclos completos?
+\end{itemize}}
+
+\section{Comparación preliminar Planet--Sentinel-2}
+
+\edafigure{Comparación exacta de NDVI}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/18_planet_sentinel_ndvi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Los puntos siguen una relación aproximadamente lineal?
+  \item ¿Existe sesgo sistemático entre Planet y Sentinel-2?
+  \item ¿La dispersión cambia para valores bajos y altos de NDVI?
+\end{itemize}}
+
+\edafigure{Comparación exacta de EVI}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/19_planet_sentinel_evi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿EVI presenta mayor o menor concordancia visual que NDVI?
+  \item ¿Hay grupos, valores extremos o diferencias de escala?
+  \item ¿Cuánto de la dispersión podría relacionarse con resolución o procesamiento?
+\end{itemize}}
+
+\edafigure{Comparación exacta de LAI}
+{../../../outputs/eda/01_tablas_maestras/01_eda_temporal/20_planet_sentinel_lai_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Se observa un desplazamiento consistente entre ambos sensores?
+  \item ¿La relación conserva el orden aun si las escalas son distintas?
+  \item ¿Qué evidencia adicional sería necesaria antes de armonizar LAI?
+\end{itemize}}
+
+\section{Respuestas y hallazgos}
+
+\subsection{Cobertura temporal y por parcela}
+\begin{enumerate}
+  \item \textbf{Timeline.} Sentinel-2 y Landsat cubren de enero de 2022 a
+  diciembre de 2025; Planet sólo cubre 2025. Por ello, la comparación de los
+  tres sensores debe limitarse a 2025. Hay 301 fechas únicas de Sentinel-2, 392
+  de Landsat y 311 de Planet. Visualmente no hay interrupciones anuales grandes,
+  aunque la densidad de fechas es distinta.
+
+  \item \textbf{Intervalos.} La revisita mediana observada es de 5 días para
+  Sentinel-2, 7 días para Landsat y 1 día para Planet. El percentil 99 es de 10,
+  8 y 5 días, respectivamente; los máximos son 10, 16 y 19 días. Planet es el
+  más frecuente, pero presenta algunos huecos aislados más largos. Las series
+  no deben compararse por posición de fila, sino por fecha o mediante ventanas
+  temporales explícitas.
+
+  \item \textbf{Cobertura por parcela.} Sentinel-2 es muy uniforme, con
+  298--301 observaciones por parcela. Planet también es relativamente uniforme,
+  con 233--251. Landsat es heterogéneo: 195--391, mediana de 211 y media de
+  246.8. La diferencia no se explica por el rango temporal, pues todas las
+  parcelas Landsat comparten fechas inicial y final; refleja disponibilidad
+  desigual dentro del periodo.
+
+  \item \textbf{Heatmaps.} Los tres sensores alcanzan las 197 parcelas en cada
+  mes representado. Sentinel-2 muestra bloques mensuales muy regulares y Planet
+  una cobertura densa durante 2025. Landsat presenta la mayor desigualdad en el
+  número de observaciones por celda parcela--mes. No hay meses completos
+  ausentes para todas las parcelas, pero sí diferencias internas que deben
+  conservarse al analizar trayectorias.
+\end{enumerate}
+
+\subsection{Calidad y nubosidad}
+\begin{enumerate}[resume]
+  \item \textbf{Distribución.} La variable está fuertemente concentrada en los
+  extremos. El valor 0 representa 62.24\% de Sentinel-2, 59.42\% de Landsat y
+  63.42\% de Planet; el valor 100 representa 23.99\%, 31.87\% y 25.22\%,
+  respectivamente, entre registros válidos. Las medianas son 0 en los tres
+  sensores. Esta forma sugiere una variable derivada de reglas o máscaras y no
+  una medición continua plenamente comparable.
+
+  \item \textbf{Estacionalidad.} En 2025, junio tiene la mayor nubosidad media
+  en Sentinel-2 (66.0\%) y Landsat (74.4\%); Planet alcanza su máximo en
+  septiembre (56.8\%). Los mínimos ocurren en noviembre para Sentinel-2
+  (1.8\%), abril para Landsat (0.3\%) y marzo para Planet (6.5\%). La gráfica
+  con todos los años mezcla periodos distintos, por lo que la comparación justa
+  entre los tres debe apoyarse en la versión 2025 del EDA 02.
+
+  \item \textbf{Cobertura frente a nubosidad.} No aparece una relación negativa
+  uniforme. La correlación mensual entre cantidad de filas y nubosidad mediana
+  es aproximadamente $-0.05$ en Sentinel-2, $0.15$ en Landsat y $-0.44$ en
+  Planet. Es una asociación descriptiva y no prueba que las nubes causen
+  ausencias: la nubosidad de una captura no registrada no está disponible.
+\end{enumerate}
+
+\subsection{Trayectorias representativas}
+Las parcelas seleccionadas automáticamente son AGC\_099, AGC\_154 y AGC\_012,
+correspondientes aproximadamente a coberturas total baja, mediana y alta.
+\begin{enumerate}[resume]
+  \item \textbf{NDVI.} Las series muestran ciclos de valores bajos y picos de
+  vegetación, pero también descensos y recuperaciones abruptas. En las parcelas
+  elegidas, Sentinel-2 va de $-0.020$ a $0.766$ y Planet de $0.116$ a $0.852$.
+  Durante 2025 las tendencias coinciden en términos generales, aunque Planet
+  suele quedar por encima; los saltos requieren revisar nubosidad y separación
+  entre fechas.
+
+  \item \textbf{LAI.} Los picos acompañan de forma general los periodos de NDVI
+  alto, pero las escalas no coinciden: Sentinel-2 va de $-0.180$ a $1.806$ y
+  Planet de $0.604$ a $3.267$. El LAI negativo de Sentinel-2 es poco plausible
+  físicamente y el desplazamiento entre sensores impide tratarlos como una sola
+  escala sin calibración.
+
+  \item \textbf{NDWI y ENDWI.} Sólo están disponibles en Sentinel-2 dentro de
+  estas tablas. NDWI varía de $-0.295$ a $0.676$ y ENDWI de $-0.255$ a $0.718$
+  en las parcelas elegidas. Ambos describen patrones parecidos de humedad, pero
+  ENDWI no elimina los cambios bruscos ni resuelve los huecos producidos por
+  valores faltantes.
+
+  \item \textbf{MSI y EMSI.} También son exclusivos de Sentinel-2. Sus rangos
+  son 0.193--1.846 y 0.164--1.697. Los niveles altos tienden a aparecer cuando
+  los índices de vegetación/humedad son bajos, como se espera para estrés
+  hídrico; aun así, los picos aislados deben contrastarse con nubosidad.
+
+  \item \textbf{NDDI y ENDDI.} Presentan rangos más estrechos, de
+  $-0.232$ a $0.238$ y de $-0.237$ a $0.264$. Ambos resumen un patrón semejante
+  de sequedad y son en buena medida redundantes visualmente en estas parcelas.
+  Antes de interpretarlos agronómicamente se debe revisar si sus extremos
+  coinciden con capturas nubladas o con discontinuidades temporales.
+
+  \item \textbf{Disponibilidad de índices.} En las tres parcelas hay 227
+  faltantes para cada trayectoria Sentinel-2 mostrada y 182 en las variables
+  Planet. Por ello, las líneas conectan puntos válidos separados y no implican
+  mediciones continuas entre fechas.
+\end{enumerate}
+
+\subsection{Comparación Planet--Sentinel-2}
+Las comparaciones con valores válidos contienen 8,104 pares exactos parcela--fecha.
+\begin{enumerate}[resume]
+  \item \textbf{NDVI.} La asociación es alta ($r=0.974$), pero Planet supera en
+  promedio a Sentinel-2 por 0.083 unidades; el MAE es 0.083. La diferencia es
+  sistemática y no sólo ruido aleatorio.
+
+  \item \textbf{EVI.} Presenta $r=0.958$, diferencia media Planet menos
+  Sentinel-2 de $-0.0013$ y MAE de 0.0357. Es la variable con menor sesgo medio,
+  aunque todavía existe dispersión y no se demuestra equivalencia.
+
+  \item \textbf{LAI.} Es la comparación menos concordante de las tres
+  ($r=0.910$) y muestra el mayor desplazamiento: Planet supera a Sentinel-2 en
+  1.062 unidades en promedio, igual prácticamente al MAE. Esto evidencia un
+  sesgo de escala que exige calibración antes de combinar sensores.
+\end{enumerate}
+
+\section{Cierre sugerido}
+Al terminar la revisión, documentar: periodos comparables, parcelas con cobertura
+insuficiente, meses problemáticos, variables sensibles a nubosidad, diferencias
+sistemáticas entre sensores y anomalías que requieran validación. No concluir que
+dos sensores son intercambiables únicamente por una correlación visual alta.
+
+\end{document}
+

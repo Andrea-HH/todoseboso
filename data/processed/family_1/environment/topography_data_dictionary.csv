@@ -1,0 +1,30 @@
+column,dtype,role,description,units
+ID_POLIGONO,object,IDENTIFIER,Identificador/grupo sin uso del rendimiento,source_or_quality_units
+CONJUNTO,object,IDENTIFIER,Identificador/grupo sin uso del rendimiento,source_or_quality_units
+AREA_HA,float64,OFFICIAL,Área oficial proporcionada por el reto,source_or_quality_units
+elevation_mean,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,meters
+elevation_median,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,meters
+elevation_min,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,meters
+elevation_max,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,meters
+elevation_std,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,meters
+elevation_n_pixels,int64,QUALITY,Soporte y cobertura espacial,source_or_quality_units
+elevation_n_unique_pixels,int64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,source_or_quality_units
+elevation_effective_pixel_count,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,source_or_quality_units
+elevation_effective_intersection_area_m2,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,source_or_quality_units
+elevation_valid_fraction,float64,QUALITY,Soporte y cobertura espacial,source_or_quality_units
+elevation_standard_mean,float64,DIAGNOSTIC,Comparación contra media no ponderada de píxeles tocados,meters
+elevation_weighted_minus_standard_mean,float64,DIAGNOSTIC,Comparación contra media no ponderada de píxeles tocados,meters
+slope_mean,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,degrees
+slope_median,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,degrees
+slope_min,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,degrees
+slope_max,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,degrees
+slope_std,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,degrees
+slope_n_pixels,int64,QUALITY,Soporte y cobertura espacial,source_or_quality_units
+slope_n_unique_pixels,int64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,source_or_quality_units
+slope_effective_pixel_count,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,source_or_quality_units
+slope_effective_intersection_area_m2,float64,ZONAL_STATISTIC,Estadística zonal estática ponderada por fracción de píxel,source_or_quality_units
+slope_valid_fraction,float64,QUALITY,Soporte y cobertura espacial,source_or_quality_units
+slope_standard_mean,float64,DIAGNOSTIC,Comparación contra media no ponderada de píxeles tocados,degrees
+slope_weighted_minus_standard_mean,float64,DIAGNOSTIC,Comparación contra media no ponderada de píxeles tocados,degrees
+elevation_range,float64,DERIVED,Máximo menos mínimo dentro de parcela,meters
+slope_range,float64,DERIVED,Máximo menos mínimo dentro de parcela,degrees

@@ -1,0 +1,4 @@
+cloud_group,n_rows,rows_all_usable_indices_missing,rows_any_usable_index_missing,rows_all_usable_indices_present
+cloud_eq_100,14163,14163,14163,0
+cloud_lt_100,44877,0,4,44873
+cloud_missing,0,0,0,0

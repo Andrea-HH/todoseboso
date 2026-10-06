@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\title{Guía de observación\\EDA 04: parcelas y rendimiento observado}
+\author{Proyecto AgroCebada}
+\date{}
+
+\newcommand{\edafigure}[3]{
+  \subsection{#1}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth,height=0.66\textheight,keepaspectratio]{\detokenize{#2}}
+    \caption{#1}
+  \end{figure}
+  \textbf{Preguntas guía}
+  #3
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Fuentes y propósito}
+La ubicación y forma de las parcelas provienen de
+\texttt{data/original/02\_conjunto\_70\_30/Parcelas\_Reto\_AGC\_CONJUNTO.shp}.
+El shapefile usa el sistema EPSG:4326 y guarda el identificador como
+\texttt{ID\_POLIGON}, nombre truncado por la limitación del formato. El script lo
+renombra a \texttt{ID\_POLIGONO} y lo une uno a uno con
+\texttt{ID\_area\_rendimiento\_70\_30\_Reto\_AgroCebada.csv}.
+
+El rendimiento corresponde al ciclo abril--octubre de 2025. Está observado para
+138 parcelas de entrenamiento y oculto para 59 parcelas de predicción. El gris
+en los mapas significa rendimiento oculto, no rendimiento cero.
+
+\section{Exploración visual}
+
+\edafigure{Rendimiento observado por parcela}
+{../../../outputs/eda/01_tablas_maestras/04_parcelas_rendimiento/01_mapa_rendimiento_parcelas.png}{
+\begin{itemize}[nosep]
+  \item ¿Los rendimientos altos y bajos forman patrones espaciales?
+  \item ¿Las parcelas grises están distribuidas entre las mismas regiones que las observadas?
+  \item ¿Puede la ubicación explicar parte de la variación del rendimiento?
+\end{itemize}}
+
+\edafigure{Disponibilidad espacial del rendimiento}
+{../../../outputs/eda/01_tablas_maestras/04_parcelas_rendimiento/02_mapa_disponibilidad_rendimiento.png}{
+\begin{itemize}[nosep]
+  \item ¿El conjunto de predicción ocupa regiones sin representación en entrenamiento?
+  \item ¿Existe concentración espacial de etiquetas faltantes?
+  \item ¿La proporción 70/30 se conserva aproximadamente por estado?
+\end{itemize}}
+
+\edafigure{Distribución global del rendimiento}
+{../../../outputs/eda/01_tablas_maestras/04_parcelas_rendimiento/03_distribucion_rendimiento.png}{
+\begin{itemize}[nosep]
+  \item ¿Cuál es el centro y rango de los rendimientos observados?
+  \item ¿La distribución es simétrica, multimodal o presenta valores extremos?
+  \item ¿Hay evidencia para transformar la variable objetivo?
+\end{itemize}}
+
+\edafigure{Rendimiento por estado}
+{../../../outputs/eda/01_tablas_maestras/04_parcelas_rendimiento/04_rendimiento_por_estado.png}{
+\begin{itemize}[nosep]
+  \item ¿Las diferencias entre estados son mayores que la variación interna?
+  \item ¿Qué estado tiene mayor rendimiento y cuál menor?
+  \item ¿Cómo afecta esto a la estrategia de validación?
+\end{itemize}}
+
+\edafigure{Rendimiento medio por municipio}
+{../../../outputs/eda/01_tablas_maestras/04_parcelas_rendimiento/05_rendimiento_por_municipio.png}{
+\begin{itemize}[nosep]
+  \item ¿Qué municipios concentran rendimientos altos y bajos?
+  \item ¿Cuáles promedios se apoyan en muy pocas parcelas?
+  \item ¿Municipio debe emplearse como predictor, grupo de validación o ambos?
+\end{itemize}}
+
+\edafigure{Área frente a rendimiento}
+{../../../outputs/eda/01_tablas_maestras/04_parcelas_rendimiento/06_area_vs_rendimiento.png}{
+\begin{itemize}[nosep]
+  \item ¿Las parcelas grandes tienen sistemáticamente mayor rendimiento por hectárea?
+  \item ¿La aparente relación cambia por estado?
+  \item ¿El área puede estar confundida con la ubicación?
+\end{itemize}}
+
+\section{Respuestas y hallazgos}
+
+\subsection{Mapa de rendimiento}
+Los valores altos se concentran principalmente en Puebla y en algunos municipios
+de Hidalgo, mientras que Tlaxcala presenta valores bajos y compactos. Esto muestra
+una estructura espacial clara: ubicación, clima, altitud, suelo o manejo pueden
+explicar una fracción importante del objetivo. Las parcelas grises aparecen en
+los tres estados y dentro de regiones que también contienen entrenamiento; no
+forman una región completamente nueva.
+
+La separación observada/oculta conserva aproximadamente el diseño 70/30 dentro
+de cada estado: Hidalgo tiene 36 observadas y 15 ocultas; Puebla, 71 y 29;
+Tlaxcala, 31 y 15. Por tanto, existe representación geográfica general, aunque
+esto no garantiza cobertura suficiente para cada municipio pequeño.
+
+\subsection{Distribución del objetivo}
+Entre las 138 parcelas observadas, el rendimiento medio es 3.96 t/ha y la mediana
+4.34 t/ha. El rango es 2.00--5.59, con cuartiles 3.20 y 4.55 y desviación estándar
+0.85. La media menor que la mediana refleja una cola hacia rendimientos bajos y
+la combinación de poblaciones regionales. No hay evidencia suficiente para exigir
+una transformación logarítmica; primero debe evaluarse el objetivo en su escala
+original, que además facilita interpretar MAE y RMSE en t/ha.
+
+\subsection{Estado y municipio}
+Puebla tiene el rendimiento medio más alto, 4.48 t/ha, seguido de Hidalgo con
+3.76 y Tlaxcala con 2.98. Las medianas son 4.52, 3.50 y 3.00. Las diferencias
+entre estados son grandes respecto a la dispersión interna, especialmente en
+Tlaxcala, cuya desviación es 0.38.
+
+Por municipio destacan Cuautepec de Hinojosa (4.60), Almoloya (4.52) y
+Chignahuapan (4.48). En el extremo bajo aparecen Nanacamilpa (2.50), Calpulalpan
+(3.00) y Singuilucan (3.08). Sin embargo, Apan, Tepeapulco y Nanacamilpa tienen
+sólo una etiqueta observada; sus medias no son estimaciones estables. Municipio
+puede ser útil como variable y como grupo diagnóstico, pero una codificación
+directa puede sobreajustar categorías pequeñas.
+
+\subsection{Área y rendimiento}
+No se observa que las parcelas grandes tengan sistemáticamente mayor rendimiento
+por hectárea. La correlación de Spearman es aproximadamente $-0.25$, débil a
+moderada y negativa. Parte de esa asociación puede deberse a que el tamaño de las
+parcelas también cambia entre estados. El área debe conservarse como predictor,
+pero su efecto debe evaluarse controlando ubicación y sin interpretarlo como
+causal.
+
+\section{Implicaciones para el modelo}
+\begin{enumerate}
+  \item Incluir estado, municipio, coordenadas del centroide, elevación y pendiente
+  como candidatos, evitando depender únicamente de categorías administrativas.
+  \item Comparar validación aleatoria con validación agrupada por municipio o por
+  bloques espaciales. Una partición aleatoria puede sobreestimar la capacidad de
+  generalizar a otra zona.
+  \item Reportar MAE por estado, municipio y grupo de cobertura Landsat, además
+  del error global.
+  \item No imputar el rendimiento de las 59 parcelas durante entrenamiento. Son
+  el conjunto final de inferencia, no valores faltantes comunes.
+  \item Mantener t/ha como escala inicial y usar abril--octubre de 2025 como ciclo
+  objetivo, cuidando que las variables respeten la fecha de corte de predicción.
+\end{enumerate}
+
+\end{document}

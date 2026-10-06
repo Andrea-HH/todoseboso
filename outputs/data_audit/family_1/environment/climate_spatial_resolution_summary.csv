@@ -1,0 +1,4 @@
+variable,parcels,median_touched_pixels,max_touched_pixels,median_effective_pixel_count,parcels_typically_one_pixel,median_abs_weighted_standard_difference,max_abs_weighted_standard_difference,pct_parcels_typically_one_pixel
+precip,197,1.0,3,0.0018788425950333,166,0.0,43.853544073160265,84.26395939086295
+tmax,197,1.0,3,0.0018788425950333,166,0.0,0.2202032983240762,84.26395939086295
+tmin,197,1.0,3,0.0018788425950333,166,0.0,0.2870051644353779,84.26395939086295

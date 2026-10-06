@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-10-06T12:28:54-06:00",
+  "rows": 197,
+  "columns": 29,
+  "key_unique": true,
+  "area_crs": "EPSG:6372",
+  "raw_modified": false,
+  "target_used": false,
+  "weighted_method": "exactextract fractional pixel coverage"
+}

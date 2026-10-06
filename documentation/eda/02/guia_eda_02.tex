@@ -1,0 +1,209 @@
+﻿\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\title{Guía de observación\\EDA 02: revisión dirigida de hallazgos}
+\author{Proyecto AgroCebada}
+\date{}
+
+\newcommand{\edafigure}[3]{
+  \subsection{#1}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.96\textwidth,height=0.68\textheight,keepaspectratio]{\detokenize{#2}}
+    \caption{#1}
+  \end{figure}
+  \textbf{Preguntas guía}
+  #3
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Propósito}
+Este segundo EDA profundiza en los principales hallazgos del análisis inicial:
+calidad de la variable de nubosidad, heterogeneidad de cobertura Landsat,
+comparación exacta Planet--Sentinel-2 y saltos temporales de NDVI. Para hacer
+comparable la estacionalidad de nubosidad, la revisión mensual se limita a 2025.
+
+\section{Nubosidad en 2025}
+
+\edafigure{Nubosidad mensual por sensor en 2025}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/01_nubosidad_por_mes_2025.png}{
+\begin{itemize}[nosep]
+  \item ¿Qué meses presentan mayor nubosidad mediana y dispersión?
+  \item ¿Los tres sensores muestran el mismo patrón estacional?
+  \item ¿Las diferencias pueden reflejar reglas de enmascaramiento distintas?
+\end{itemize}}
+
+\edafigure{Categorías mensuales de nubosidad: Sentinel-2}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/02_nubosidad_categorias_sentinel_2_2025.png}{
+\begin{itemize}[nosep]
+  \item ¿Qué proporción mensual se concentra exactamente en 0 o 100?
+  \item ¿Los valores intermedios varían con la temporada?
+  \item ¿La concentración en extremos sugiere revisar cómo se calculó la variable?
+\end{itemize}}
+
+\edafigure{Categorías mensuales de nubosidad: Landsat}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/02_nubosidad_categorias_landsat_2025.png}{
+\begin{itemize}[nosep]
+  \item ¿En qué meses aparecen datos faltantes de nubosidad?
+  \item ¿Los valores 0 y 100 dominan de manera similar a Sentinel-2?
+  \item ¿La completitud cambia junto con la temporada de lluvias?
+\end{itemize}}
+
+\edafigure{Categorías mensuales de nubosidad: Planet}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/02_nubosidad_categorias_planet_2025.png}{
+\begin{itemize}[nosep]
+  \item ¿La composición mensual es estable durante 2025?
+  \item ¿Qué meses tienen más observaciones clasificadas con 100 por ciento?
+  \item ¿Las categorías son directamente comparables con los otros sensores?
+\end{itemize}}
+
+\edafigure{Completitud frente a nubosidad mediana}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/03_completitud_vs_nubosidad.png}{
+\begin{itemize}[nosep]
+  \item ¿Los meses más nublados tienen menor porcentaje de datos válidos?
+  \item ¿Landsat se separa de Sentinel-2 y Planet en completitud?
+  \item ¿Hay suficientes meses para sostener una relación consistente?
+\end{itemize}}
+
+\section{Heterogeneidad de cobertura}
+
+\edafigure{Cobertura Landsat ordenada por parcela}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/04_cobertura_landsat_ordenada.png}{
+\begin{itemize}[nosep]
+  \item ¿La cobertura forma grupos claramente diferenciados?
+  \item ¿Cuántas parcelas quedan muy por debajo o por encima de la mediana?
+  \item ¿Debe estratificarse la interpretación posterior según nivel de cobertura?
+\end{itemize}}
+
+\section{Planet frente a Sentinel-2 en misma parcela y fecha}
+
+\edafigure{Comparación de NDVI}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/05_comparacion_planet_sentinel_ndvi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Qué tan cerca están los puntos de la línea de igualdad?
+  \item ¿Se observa un sesgo constante o dependiente del nivel de NDVI?
+  \item ¿Hay valores extremos que deban rastrearse a parcelas y fechas concretas?
+\end{itemize}}
+
+\edafigure{Comparación de EVI}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/05_comparacion_planet_sentinel_evi_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿La concordancia visual es mejor o peor que para NDVI?
+  \item ¿La nube de puntos es simétrica alrededor de la línea de igualdad?
+  \item ¿Existen rangos donde un sensor responde con mayor sensibilidad?
+\end{itemize}}
+
+\edafigure{Comparación de LAI}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/05_comparacion_planet_sentinel_lai_promedio.png}{
+\begin{itemize}[nosep]
+  \item ¿Qué magnitud tiene el desplazamiento respecto a la igualdad?
+  \item ¿El sesgo parece aditivo, proporcional o no lineal?
+  \item ¿Por qué una correlación alta no basta para considerar equivalentes ambos LAI?
+\end{itemize}}
+
+\section{Saltos temporales de NDVI}
+
+\edafigure{Cambios abruptos de NDVI frente a nubosidad en Sentinel-2}
+{../../../outputs/eda/01_tablas_maestras/02_revision_dirigida/06_saltos_ndvi_vs_nubosidad.png}{
+\begin{itemize}[nosep]
+  \item ¿Los cambios absolutos grandes se concentran con nubosidad elevada?
+  \item ¿También existen saltos fuertes con nubosidad registrada como cero?
+  \item ¿Los saltos pueden deberse al intervalo temporal, al ciclo agrícola o a problemas de calidad?
+  \item ¿Qué casos del CSV de extremos deben inspeccionarse individualmente?
+\end{itemize}}
+
+\section{Respuestas y hallazgos}
+
+\subsection{Nubosidad en 2025}
+\begin{enumerate}
+  \item \textbf{Patrón mensual.} Junio es el mes con mayor nubosidad media en
+  Sentinel-2 (66.0\%) y Landsat (74.4\%); Planet alcanza su máximo en septiembre
+  (56.8\%). Los mínimos medios son noviembre para Sentinel-2 (1.8\%), abril para
+  Landsat (0.3\%) y marzo para Planet (6.5\%). Hay estacionalidad, pero no es
+  idéntica entre sensores y puede mezclar clima con diferencias de adquisición
+  y enmascaramiento.
+
+  \item \textbf{Sentinel-2.} En los meses de 2025, la categoría 0 representa
+  entre 23.7\% y 95.4\%, la intermedia entre 3.4\% y 27.3\%, y 100 entre 1.1\%
+  y 60.0\%. Junio tiene mediana de 100. La fuerte variación estacional y la
+  concentración en extremos justifican revisar la definición de nubosidad.
+
+  \item \textbf{Landsat.} El valor 0 fluctúa entre 21.0\% y 93.7\%, los valores
+  intermedios entre 0.6\% y 22.5\%, y 100 entre 0.1\% y 68.1\%. Además, en todos
+  los meses hay faltantes, entre 4.9\% y 10.0\% en 2025. Junio y septiembre
+  tienen mediana de 100. Landsat es el sensor con mayor proporción global de
+  observaciones en 100 y el único con datos faltantes de nubosidad.
+
+  \item \textbf{Planet.} El valor 0 representa entre 31.1\% y 90.5\% mensual,
+  la categoría intermedia entre 3.9\% y 23.0\%, y 100 entre 4.4\% y 46.0\%.
+  Ningún mes de 2025 tiene mediana de 100 ni faltantes en esta variable. Su
+  máximo mensual ocurre más tarde que en Sentinel-2 y Landsat.
+
+  \item \textbf{Completitud.} Sentinel-2 y Planet tienen 100\% de completitud
+  mensual. Landsat varía entre 87.47\% y 97.46\%, con media de 93.53\%. La menor
+  completitud Landsat ocurre en enero de 2023, cuya mediana de nubosidad es 0;
+  por tanto, no hay evidencia de que la falta de nubosidad aumente simplemente
+  cuando la nubosidad mediana es alta.
+\end{enumerate}
+
+\subsection{Cobertura Landsat}
+\begin{enumerate}[resume]
+  \item Las 197 parcelas tienen el mismo rango general, del 5 de enero de 2022
+  al 31 de diciembre de 2025, pero no el mismo número de observaciones. La
+  cobertura va de 195 a 391, con mediana de 211, media de 246.8 y desviación
+  estándar de 64.8. El cuartil superior comienza en 272, mostrando un grupo con
+  cobertura claramente mayor. Conviene reportar resultados por nivel de
+  cobertura y evitar que las parcelas con más registros dominen el análisis.
+\end{enumerate}
+
+\subsection{Planet frente a Sentinel-2}
+Cada comparación utiliza 8,104 pares válidos de la misma parcela y fecha.
+\begin{enumerate}[resume]
+  \item \textbf{NDVI.} La correlación es 0.974, pero Planet es en promedio 0.083
+  unidades mayor y el MAE es 0.083. Los puntos siguen una relación fuerte, aunque
+  desplazada respecto a la igualdad; se requiere calibración antes de fusionar.
+
+  \item \textbf{EVI.} La correlación es 0.958, la diferencia media es $-0.0013$
+  y el MAE 0.0357. Es el índice con menor sesgo promedio, pero la dispersión
+  impide afirmar igualdad observación por observación.
+
+  \item \textbf{LAI.} La correlación baja a 0.910 y Planet excede a Sentinel-2
+  por 1.062 unidades en promedio, con MAE de 1.062. El desplazamiento es
+  sistemático y mucho mayor que en NDVI o EVI; ambos LAI no deben concatenarse
+  directamente ni interpretarse en una escala común sin validación externa.
+\end{enumerate}
+
+\subsection{Saltos de NDVI Sentinel-2}
+\begin{enumerate}[resume]
+  \item El percentil 99 del cambio absoluto es 0.304 y produce 447 casos
+  extremos en 169 parcelas. El salto máximo es 0.705. La nubosidad mediana entre
+  estos casos es 0, pero el promedio es 25.0\% y el cuartil superior 62.1\%:
+  algunas caídas fuertes sí coinciden con nubosidad alta, aunque también hay
+  aumentos grandes con nubosidad cero. Por ejemplo, AGC\_150 sube 0.705 con
+  nubosidad 0, mientras AGC\_154 cae 0.695 con 43.4\% de nubosidad. Por tanto,
+  los saltos pueden combinar dinámica agrícola real, contaminación atmosférica
+  y separación temporal. Deben revisarse individualmente junto con fecha previa,
+  días transcurridos y calidad de ambas capturas; no deben eliminarse de forma
+  automática.
+\end{enumerate}
+
+\section{Conclusiones que debe producir la revisión}
+La lectura conjunta debe responder: si la nubosidad es comparable entre sensores;
+si su ausencia o concentración en extremos compromete análisis posteriores; qué
+parcelas tienen cobertura Landsat atípica; qué variables muestran sesgo entre
+Planet y Sentinel-2; y qué saltos de NDVI requieren una revisión por parcela,
+fecha, nubosidad e intervalo desde la observación anterior.
+
+\end{document}
+

@@ -1,0 +1,652 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.2.25)  28 SEP 2026 15:26
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./guia_eda_01.tex
+(guia_eda_01.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2025/10/22 v25.14 The multilingual framework for LuaLaTeX, pdfLa
+TeX and XeLaTeX
+\babel@savecnt=\count283
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2050.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2052.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2054.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2055.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2056.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2058.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2083.
+\U@D=\dimen149
+\l@unhyphenated=\language79
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count284
+
+
+Package babel Warning: Configuration files are deprecated, as
+(babel)                they can break document portability.
+(babel)                Reported on input line 4172.
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/es\babel
+-spanish.tex)
+Package babel Info: Importing font and identification data for spanish
+(babel)             from babel-es.ini. Reported on input line 4295.
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/babel-spanish\spanish.l
+df
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks19
+\es@quotdepth=\count285
+Package babel Info: Making " an active character on input line 570.
+Package babel Info: Making . an active character on input line 675.
+Package babel Info: Making < an active character on input line 722.
+Package babel Info: Making > an active character on input line 722.
+))
+LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) 
+on input line 5.
+LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1)
+ on input line 5.
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+) (C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count286
+\float@exts=\toks21
+\float@box=\box53
+\@float@everytoks=\toks22
+\@floatcapt=\box54
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count287
+\Gm@cntv=\count288
+\c@Gm@tempcnt=\count289
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks23
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip51
+\enit@outerparindent=\dimen160
+\enit@toks=\toks24
+\enit@inbox=\box55
+\enit@count@id=\count290
+\enitdp@description=\count291
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count292
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count293
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen161
+\Hy@linkcounter=\count294
+\Hy@pagecounter=\count295
+ (C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count296
+ (C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count297
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen162
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count298
+\Field@Width=\dimen163
+\Fld@charsize=\dimen164
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count299
+\c@Item=\count300
+\c@Hfootnote=\count301
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+\Fld@listcount=\count302
+\c@bookmark@seq@number=\count303
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip52
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count304
+) (guia_eda_01.aux
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+Package babel Info: 'spanish' activates 'spanish' shorthands.
+(babel)             Reported on input line 11.
+)
+\openout1 = `guia_eda_01.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Info: Redefining \. on input line 26.
+LaTeX Info: Redefining \% on input line 26.
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count305
+\scratchdimen=\dimen165
+\scratchbox=\box56
+\nofMPsegments=\count306
+\nofMParguments=\count307
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count308
+\MPscratchDim=\dimen166
+\MPnumerator=\count309
+\makeMPintoPDFobject=\count310
+\everyMPtoPDFconversion=\toks26
+)
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\narro\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(62.59596pt, 472.31595pt, 62.59596pt)
+* v-part:(T,H,B)=(62.59596pt, 719.85492pt, 62.59596pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=472.31595pt
+* \textheight=719.85492pt
+* \oddsidemargin=-9.67403pt
+* \evensidemargin=-9.67403pt
+* \topmargin=-46.67403pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package hyperref Info: Link coloring OFF on input line 26.
+(guia_eda_01.out) (guia_eda_01.out)
+\@outlinefile=\write3
+\openout3 = `guia_eda_01.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 28.
+ (guia_eda_01.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 4.
+)
+\tf@toc=\write4
+\openout4 = `guia_eda_01.toc'.
+
+ [1
+
+{C:/Users/narro/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/01_timeline_sensores.p
+ng, id=169, 1011.78pt x 289.08pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/01_timeline_senso
+res.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/01_timeline_sensor
+es.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/01_timeline_sensores.png  used on input line 45.
+(pdftex.def)             Requested size: 453.42873pt x 129.55106pt.
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/02_intervalos_observac
+iones.png, id=171, 794.97pt x 361.35pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/02_intervalos_obs
+ervaciones.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/02_intervalos_obse
+rvaciones.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/02_intervalos_observaciones.png  used on input line 53.
+(pdftex.def)             Requested size: 453.44087pt x 206.10948pt.
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/03_cobertura_parcelas.
+png, id=172, 1156.32pt x 289.08pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/03_cobertura_parc
+elas.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/03_cobertura_parce
+las.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/03_cobertura_parcelas.png  used on input line 61.
+(pdftex.def)             Requested size: 453.41551pt x 113.35387pt.
+ [2 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/01_timeline_sensor
+es.png> <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/02_intervalos_
+observaciones.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/04_heatmap_sentinel_2.
+png, id=182, 1213.7345pt x 722.7pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/04_heatmap_sentin
+el_2.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/04_heatmap_sentine
+l_2.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/04_heatmap_sentinel_2.png  used on input line 69.
+(pdftex.def)             Requested size: 453.42696pt x 269.98627pt.
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/05_heatmap_landsat.png
+, id=183, 1213.7345pt x 722.7pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/05_heatmap_landsa
+t.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/05_heatmap_landsat
+.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/05_heatmap_landsat.png  used on input line 77.
+(pdftex.def)             Requested size: 453.42696pt x 269.98627pt.
+ [3 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/03_cobertura_parce
+las.png> <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/04_heatmap_se
+ntinel_2.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/06_heatmap_planet.png,
+ id=192, 867.24pt x 722.7pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/06_heatmap_planet
+.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/06_heatmap_planet.
+png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/06_heatmap_planet.png  used on input line 85.
+(pdftex.def)             Requested size: 453.42874pt x 377.85727pt.
+
+[4 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/05_heatmap_landsat.
+png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/07_distribucion_nubosi
+dad.png, id=199, 722.7pt x 361.35pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/07_distribucion_n
+ubosidad.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/07_distribucion_nu
+bosidad.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/07_distribucion_nubosidad.png  used on input line 95.
+(pdftex.def)             Requested size: 453.42873pt x 226.71437pt.
+ [5 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/06_heatmap_planet.
+png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/08_nubosidad_por_mes.p
+ng, id=206, 794.97pt x 361.35pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/08_nubosidad_por_
+mes.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/08_nubosidad_por_m
+es.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/08_nubosidad_por_mes.png  used on input line 103.
+(pdftex.def)             Requested size: 453.44087pt x 206.10948pt.
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/09_cobertura_vs_nubosi
+dad.png, id=207, 578.16pt x 361.35pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/09_cobertura_vs_n
+ubosidad.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/09_cobertura_vs_nu
+bosidad.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/09_cobertura_vs_nubosidad.png  used on input line 111.
+(pdftex.def)             Requested size: 453.42432pt x 283.3902pt.
+ [6 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/07_distribucion_nu
+bosidad.png> <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/08_nubosi
+dad_por_mes.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/10_trayectoria_ndvi_pr
+omedio.png, id=216, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/10_trayectoria_nd
+vi_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/10_trayectoria_ndv
+i_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/10_trayectoria_ndvi_promedio.png  used on input line 121.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+ [7 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/09_cobertura_vs_nu
+bosidad.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/11_trayectoria_lai_pro
+medio.png, id=224, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/11_trayectoria_la
+i_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/11_trayectoria_lai
+_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/11_trayectoria_lai_promedio.png  used on input line 129.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+ [8 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/10_trayectoria_ndv
+i_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/12_trayectoria_ndwi_pr
+omedio.png, id=231, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/12_trayectoria_nd
+wi_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/12_trayectoria_ndw
+i_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/12_trayectoria_ndwi_promedio.png  used on input line 137.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+ [9 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/11_trayectoria_lai
+_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/13_trayectoria_endwi_p
+romedio.png, id=238, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/13_trayectoria_en
+dwi_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/13_trayectoria_end
+wi_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/13_trayectoria_endwi_promedio.png  used on input line 145.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+
+[10 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/12_trayectoria_ndw
+i_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/14_trayectoria_msi_pro
+medio.png, id=245, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/14_trayectoria_ms
+i_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/14_trayectoria_msi
+_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/14_trayectoria_msi_promedio.png  used on input line 153.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+ [11 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/13_trayectoria_en
+dwi_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/15_trayectoria_emsi_pr
+omedio.png, id=252, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/15_trayectoria_em
+si_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/15_trayectoria_ems
+i_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/15_trayectoria_emsi_promedio.png  used on input line 161.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+ [12 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/14_trayectoria_ms
+i_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/16_trayectoria_nddi_pr
+omedio.png, id=259, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/16_trayectoria_nd
+di_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/16_trayectoria_ndd
+i_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/16_trayectoria_nddi_promedio.png  used on input line 169.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+ [13 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/15_trayectoria_em
+si_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/17_trayectoria_enddi_p
+romedio.png, id=267, 939.51pt x 758.835pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/17_trayectoria_en
+ddi_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/17_trayectoria_end
+di_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/17_trayectoria_enddi_promedio.png  used on input line 177.
+(pdftex.def)             Requested size: 453.42543pt x 366.22824pt.
+ [14 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/16_trayectoria_nd
+di_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/18_planet_sentinel_ndv
+i_promedio.png, id=274, 433.62pt x 433.62pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/18_planet_sentine
+l_ndvi_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/18_planet_sentinel
+_ndvi_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/18_planet_sentinel_ndvi_promedio.png  used on input line 187.
+(pdftex.def)             Requested size: 453.44858pt x 453.44858pt.
+ [15 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/17_trayectoria_en
+ddi_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/19_planet_sentinel_evi
+_promedio.png, id=281, 433.62pt x 433.62pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/19_planet_sentine
+l_evi_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/19_planet_sentinel
+_evi_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/19_planet_sentinel_evi_promedio.png  used on input line 195.
+(pdftex.def)             Requested size: 453.44858pt x 453.44858pt.
+ [16 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/18_planet_sentine
+l_ndvi_promedio.png>]
+<../../../outputs/eda/01_tablas_maestras/01_eda_temporal/20_planet_sentinel_lai
+_promedio.png, id=288, 433.62pt x 433.62pt>
+File: ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/20_planet_sentine
+l_lai_promedio.png Graphic file (type png)
+<use ../../../outputs/eda/01_tablas_maestras/01_eda_temporal/20_planet_sentinel
+_lai_promedio.png>
+Package pdftex.def Info: ../../../outputs/eda/01_tablas_maestras/01_eda_tempora
+l/20_planet_sentinel_lai_promedio.png  used on input line 203.
+(pdftex.def)             Requested size: 453.44858pt x 453.44858pt.
+ [17 <../../../outputs/eda/01_tablas_maestras/01_eda_temporal/19_planet_sentine
+l_evi_promedio.png>] [18 <../../../outputs/eda/01_tablas_maestras/01_eda_tempor
+al/20_planet_sentinel_lai_promedio.png>] [19] [20] (guia_eda_01.aux
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
+ ***********
+Package rerunfilecheck Info: File `guia_eda_01.out' has not changed.
+(rerunfilecheck)             Checksum: 6CEEA3A35B1846D0FB7CFF9E871A07F7;6254.
+ ) 
+Here is how much of TeX's memory you used:
+ 11248 strings out of 467871
+ 188101 string characters out of 5418376
+ 618494 words of memory out of 5000000
+ 39928 multiletter control sequences out of 15000+600000
+ 636776 words of font info for 59 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,6n,79p,334b,603s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\narro\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx
+1200.pk> <C:\Users\narro\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecrm1095.pk> <C:\Users\narro\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecbx1095.pk> <C:\Users\narro\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecbx1440.pk> <C:\Users\narro\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\narro\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/narro/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/narro/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/narro/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on guia_eda_01.pdf (20 pages, 4292735 bytes).
+PDF statistics:
+ 628 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
+ 349 words of extra memory for PDF output out of 10000 (max. 10000000)
+

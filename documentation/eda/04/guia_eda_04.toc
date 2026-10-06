@@ -1,0 +1,15 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Fuentes y propósito}{2}{section.1}%
+\contentsline {section}{\numberline {2}Exploración visual}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Rendimiento observado por parcela}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Disponibilidad espacial del rendimiento}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Distribución global del rendimiento}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Rendimiento por estado}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Rendimiento medio por municipio}{5}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Área frente a rendimiento}{6}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Respuestas y hallazgos}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Mapa de rendimiento}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Distribución del objetivo}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Estado y municipio}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Área y rendimiento}{7}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Implicaciones para el modelo}{7}{section.4}%
