@@ -1,0 +1,17 @@
+ID_POLIGONO,baseline_top10,isotonic_top10,weighting_top10,calibration_status,weighting_status
+AGC_049,False,True,False,newly worsened,newly worsened
+AGC_171,True,True,True,persistent,persistent
+AGC_055,False,True,False,newly worsened,newly worsened
+AGC_034,True,True,True,persistent,persistent
+AGC_024,True,True,True,persistent,persistent
+AGC_160,True,True,True,persistent,persistent
+AGC_074,True,False,True,rescued,persistent
+AGC_166,True,True,True,persistent,persistent
+AGC_069,True,True,True,persistent,persistent
+AGC_127,True,True,True,persistent,persistent
+AGC_015,True,True,True,persistent,persistent
+AGC_162,True,True,True,persistent,persistent
+AGC_035,True,True,True,persistent,persistent
+AGC_041,True,False,True,rescued,persistent
+AGC_026,True,True,True,persistent,persistent
+AGC_195,True,True,True,persistent,persistent

@@ -1,0 +1,2 @@
+decision,best_predictive,best_interpretable,lowest_aggregate_RMSE,replacement
+NEITHER,BASE_CHAMPION,BASE_CHAMPION,CAL_ISOTONIC,False
