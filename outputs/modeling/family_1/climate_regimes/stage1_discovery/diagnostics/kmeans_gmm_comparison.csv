@@ -1,0 +1,6 @@
+record_type,gmm_regime,kmeans_cluster,n,ARI
+summary,,,197,0.9160167078620166
+contingency,1.0,1.0,4,0.9160167078620166
+contingency,1.0,2.0,143,0.9160167078620166
+contingency,2.0,1.0,50,0.9160167078620166
+contingency,2.0,2.0,0,0.9160167078620166

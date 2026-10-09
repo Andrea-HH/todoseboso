@@ -1,0 +1,25 @@
+pipeline,block,model,repeat,fold,climate_inner_RMSE,climate_params,residual_inner_RMSE,best_params,n_features
+RIDGE_RESIDUAL_SENTINEL_CORE,SENTINEL_CORE,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6966674169041454,"{""alpha"": 100.0}",592
+ENET_RESIDUAL_SENTINEL_CORE,SENTINEL_CORE,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6024503677371378,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",592
+XGB_RESIDUAL_SENTINEL_CORE,SENTINEL_CORE,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6006429249948544,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",592
+RIDGE_RESIDUAL_PLANET,PLANET,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6848611659084137,"{""alpha"": 100.0}",304
+ENET_RESIDUAL_PLANET,PLANET,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6024503677371378,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",304
+XGB_RESIDUAL_PLANET,PLANET,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6203692941015007,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",304
+RIDGE_RESIDUAL_LANDSAT,LANDSAT,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6238200939750318,"{""alpha"": 100.0}",24
+ENET_RESIDUAL_LANDSAT,LANDSAT,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6024503677371378,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",24
+XGB_RESIDUAL_LANDSAT,LANDSAT,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6136407503334126,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",24
+RIDGE_RESIDUAL_TOPO_BASIC,TOPO_BASIC,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.5910215843849822,"{""alpha"": 100.0}",25
+ENET_RESIDUAL_TOPO_BASIC,TOPO_BASIC,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.5894773634940622,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",25
+XGB_RESIDUAL_TOPO_BASIC,TOPO_BASIC,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6041554091578502,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",25
+RIDGE_RESIDUAL_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6292433070317449,"{""alpha"": 100.0}",87
+ENET_RESIDUAL_TOPO_ADVANCED,TOPO_ADVANCED,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6024503677371378,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",87
+XGB_RESIDUAL_TOPO_ADVANCED,TOPO_ADVANCED,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.593067134688445,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",87
+RIDGE_RESIDUAL_HISTORY,HISTORY,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6129447815562831,"{""alpha"": 100.0}",39
+ENET_RESIDUAL_HISTORY,HISTORY,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6024503677371378,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",39
+XGB_RESIDUAL_HISTORY,HISTORY,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6006214982518592,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",39
+RIDGE_RESIDUAL_ANOMALY,ANOMALY,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6556428176373909,"{""alpha"": 100.0}",143
+ENET_RESIDUAL_ANOMALY,ANOMALY,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6024503677371378,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",143
+XGB_RESIDUAL_ANOMALY,ANOMALY,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6162737360812712,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",143
+RIDGE_RESIDUAL_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6141057231673874,"{""alpha"": 100.0}",18
+ENET_RESIDUAL_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.5923284354645424,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",18
+XGB_RESIDUAL_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,7,5,0.5807131963539311,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",0.6048764150510066,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",18

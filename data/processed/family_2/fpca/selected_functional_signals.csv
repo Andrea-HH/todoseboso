@@ -1,0 +1,10 @@
+source,group,signal,selected_for_fpca,over_smoothing_pct,redundant_with_selected,selection_reason
+Sentinel,SENTINEL_VIGOR,ndvi,True,12.18274111675127,,most stable non-redundant pair in conceptual family
+Sentinel,SENTINEL_VIGOR,evi,False,14.720812182741115,ndvi|savi,excluded from compact first-round set
+Sentinel,SENTINEL_VIGOR,lai,False,16.751269035532996,ndvi|savi,excluded from compact first-round set
+Sentinel,SENTINEL_VIGOR,fapar,False,9.64467005076142,ndvi|savi,excluded from compact first-round set
+Sentinel,SENTINEL_VIGOR,savi,True,19.79695431472081,,most stable non-redundant pair in conceptual family
+Sentinel,SENTINEL_MOISTURE_STRESS,ndwi,True,12.18274111675127,,most stable non-redundant pair in conceptual family
+Sentinel,SENTINEL_MOISTURE_STRESS,endwi,False,13.705583756345176,ndwi|dswi4,excluded from compact first-round set
+Sentinel,SENTINEL_MOISTURE_STRESS,dswi4,True,15.228426395939088,,most stable non-redundant pair in conceptual family
+Sentinel,SENTINEL_MOISTURE_STRESS,dswi5,False,8.629441624365482,ndwi|dswi4,excluded from compact first-round set

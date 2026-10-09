@@ -1,0 +1,1051 @@
+pipeline,block,model,repeat,fold,params,source,n_features
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,1,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,1,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,1,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,1,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,1,1,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,1,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,1,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,1,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,1,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,1,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,1,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,1,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,1,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,1,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,1,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,1,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,1,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,1,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,1,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,1,1,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,1,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,1,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,1,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,1,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,1,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,1,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,1,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,1,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,1,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,1,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 200, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,1,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,1,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,1,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,1,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,1,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,1,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,1,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,1,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,1,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,1,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,1,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,1,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,1,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,1,3,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,1,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,1,3,"{""alpha"": 1.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,1,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,1,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,1,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,1,3,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,1,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,1,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,1,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,1,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,1,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,1,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,1,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,1,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,1,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,1,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,1,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,1,3,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,1,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,1,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,1,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,1,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,1,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,1,4,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,1,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,1,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,1,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,1,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,1,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,1,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,1,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,1,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,1,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,1,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,1,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,1,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,1,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,1,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,1,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,1,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,1,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,1,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,1,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,1,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,1,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,1,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,1,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,1,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,1,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,1,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,1,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,1,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,1,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,1,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,1,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,1,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,17
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,1,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,17
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,1,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,17
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,1,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,1,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,1,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,2,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,2,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,2,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,2,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,2,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,2,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,2,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,2,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,2,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,2,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,2,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,2,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,2,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,2,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,2,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,2,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,2,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,2,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,2,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,2,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,2,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,2,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,2,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,2,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,2,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,2,2,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,2,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,2,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,2,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,2,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,2,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,2,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,2,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,2,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,2,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,2,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,2,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,2,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,2,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,2,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,2,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,2,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,2,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,2,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,2,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,2,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,2,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,2,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,2,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,2,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,2,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,2,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,2,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,2,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,2,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,2,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,2,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,2,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,2,3,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,2,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,2,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,2,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,2,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,2,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,2,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,2,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,2,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,2,4,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,2,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,2,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,2,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,2,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,2,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,2,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,2,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,2,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,2,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,2,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,2,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,2,4,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,2,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,2,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,2,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,2,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,2,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,2,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,2,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,2,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,2,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,2,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,2,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,2,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,2,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,2,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,2,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,2,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,2,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,2,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,2,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,2,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,2,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,2,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,2,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,2,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,2,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,3,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,3,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,3,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,3,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,3,1,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,3,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,3,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,3,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,3,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,3,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,3,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,3,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,3,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,3,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,3,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,3,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,3,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,3,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,3,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,3,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,3,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,3,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,3,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,3,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,3,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,3,2,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,3,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 200, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,3,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,3,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,3,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,3,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,3,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,3,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,3,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,3,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,3,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,3,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,3,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,3,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,3,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,3,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,3,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,3,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,3,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,3,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,3,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,3,3,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,3,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,3,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,3,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,3,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,3,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,3,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,3,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,3,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,3,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,3,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,3,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,3,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,3,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,3,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,3,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,3,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,3,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,3,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,3,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,3,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,3,4,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,3,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,3,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,3,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,3,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,3,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,3,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,3,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,3,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,3,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,3,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,3,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,3,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,3,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,3,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,3,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,3,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,3,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,3,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,3,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,3,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,3,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,3,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,3,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,3,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,3,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,3,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,3,5,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,3,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,3,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,3,5,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,3,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,3,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,3,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,3,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,3,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,3,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,3,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,4,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,4,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,4,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,4,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,4,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,4,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,4,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,4,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,4,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,4,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,4,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,4,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,4,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,4,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,4,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,4,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,4,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,4,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,4,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,4,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,4,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,4,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,4,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,4,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,4,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,4,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,4,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,4,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,4,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,4,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,4,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,4,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,4,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,4,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,4,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,4,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,4,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,4,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,4,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,4,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,4,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,4,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,4,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,4,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,4,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,4,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,4,3,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,4,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,4,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,4,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,4,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,4,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,4,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,4,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,4,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,4,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,4,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,4,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,4,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,4,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,4,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,4,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,4,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,4,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,4,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,4,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,4,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,4,4,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,4,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,4,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,4,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,4,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,4,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,4,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,4,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,4,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,4,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,4,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,4,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,4,4,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,4,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,4,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,4,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,4,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,4,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,4,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,4,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,4,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,4,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,4,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 200, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,4,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,4,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,4,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,4,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,4,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,4,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,4,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,4,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,4,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,4,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,4,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,4,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,4,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,4,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,4,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,5,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,5,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,5,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,5,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,5,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,5,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,5,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,5,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,5,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,5,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,5,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,5,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,5,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,5,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,5,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,5,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,5,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,5,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,5,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,5,1,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,5,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,5,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,5,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,5,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,5,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,5,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,5,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,5,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,5,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,5,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,5,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,5,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,5,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,5,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,5,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,5,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,5,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,5,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,5,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,5,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,5,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,5,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,5,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,5,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,5,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,5,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,5,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,5,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,5,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,5,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,5,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,5,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,5,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,5,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,5,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,5,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,5,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,5,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,5,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,5,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,5,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,5,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,5,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,5,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,5,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,5,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,5,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,5,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,5,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 200, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,5,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,5,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,5,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,5,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,5,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,5,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,5,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,5,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,5,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,5,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,17
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,5,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,17
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,5,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,17
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,5,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,5,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,5,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,5,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,5,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,5,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,5,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,5,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,5,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,5,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,5,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,5,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,5,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,5,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,5,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,5,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,5,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,5,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,5,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,5,5,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,5,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,5,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,5,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,5,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,6,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,6,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,6,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,6,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,6,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,6,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,6,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,6,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,6,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,6,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,6,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,6,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,6,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,6,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,6,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,6,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,17
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,6,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,17
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,6,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,17
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,6,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,6,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,6,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,6,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,6,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,6,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,6,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,6,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,6,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,6,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,6,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,6,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,6,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,6,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,6,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,6,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,6,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,6,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,6,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,6,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,6,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,6,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,6,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,6,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,6,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,6,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,6,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,6,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,6,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,6,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,6,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,6,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,6,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,6,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,6,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,6,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,6,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,6,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,6,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,6,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,6,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,6,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,6,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,6,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,6,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,6,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,6,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,6,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,6,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,6,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,6,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,6,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,6,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,6,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,6,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,6,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,6,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,6,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,6,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,6,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,6,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,6,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,6,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,6,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,6,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,6,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,6,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,6,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,6,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,6,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,6,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,6,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,6,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,6,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,6,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,6,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,6,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,6,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,6,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,6,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,6,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,6,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,6,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,6,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,6,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,6,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,6,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,7,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,7,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,7,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,7,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,7,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,7,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,7,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,7,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,7,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,7,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,7,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,7,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,7,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,7,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,7,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,7,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,7,1,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,7,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,7,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,7,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,7,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,7,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,7,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,7,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 200, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,7,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,7,2,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,7,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,7,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,7,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,7,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,7,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,7,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,7,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,7,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,7,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,7,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,7,2,"{""alpha"": 10.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,7,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,7,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 200, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,7,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,7,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,7,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,7,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,7,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,7,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,7,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,7,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,7,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,7,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,7,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,7,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,7,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,7,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,7,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,7,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,7,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,7,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,7,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,7,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,7,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,7,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,7,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,7,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,7,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,7,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,7,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,7,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,7,4,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,7,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,7,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,7,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,7,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,7,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,7,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,7,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,7,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,7,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,7,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,7,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,7,4,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,7,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,7,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,7,4,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,7,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,7,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,7,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,7,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,7,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,7,5,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,7,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,7,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,7,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,7,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,7,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,7,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,7,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,7,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,7,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,7,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,7,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,7,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,7,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,7,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,7,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,7,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,8,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,8,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,8,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,8,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,8,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,8,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,8,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,8,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,8,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 200, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,8,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,8,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,8,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,8,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,8,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,8,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,8,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,8,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,8,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,8,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,8,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,8,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,8,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,8,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,8,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,8,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,8,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,8,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,8,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,8,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,8,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,8,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,8,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,8,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,8,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,8,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,8,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,8,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,8,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,8,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,8,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,8,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,8,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,8,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,8,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,8,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,8,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,8,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,8,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,8,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,8,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,8,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,8,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,8,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,8,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,8,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,8,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,8,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,8,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,8,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,8,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,8,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,8,3,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,8,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,8,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,8,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,8,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,8,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,8,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,8,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,8,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,8,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,8,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,8,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,8,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,8,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,8,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,8,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,8,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,8,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,8,4,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,8,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,8,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,8,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,8,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,8,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,8,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,8,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,8,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,8,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,8,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,8,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,8,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,8,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,8,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,8,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,8,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,8,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,8,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,8,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,8,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,8,5,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,8,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,8,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,8,5,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,8,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,9,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,9,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,9,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,9,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,9,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,9,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,9,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,9,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,9,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,9,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,9,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,9,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,9,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,9,1,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,9,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,9,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,9,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,9,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,9,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,9,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,9,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,9,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,9,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,9,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,9,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,9,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,9,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,9,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,9,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,9,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,9,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,9,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,9,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,9,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,9,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,9,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,9,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,9,2,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,9,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,9,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,9,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,9,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,9,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,9,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,9,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,9,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,9,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,9,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,9,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,9,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,9,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,9,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,9,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,9,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,9,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,9,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,9,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,9,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,9,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,9,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,9,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,9,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,9,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,9,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,9,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,9,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,9,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,9,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,9,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,9,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,9,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,9,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,9,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,9,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,9,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,9,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,9,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,9,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,9,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,9,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,9,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,9,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,9,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,9,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,9,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,9,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,9,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,9,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,9,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,9,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,9,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,9,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,9,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,9,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,9,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,9,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,9,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,9,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,9,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,9,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,9,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,9,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,9,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,9,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,9,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,10,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,10,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,10,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,10,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,10,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,10,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,10,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,10,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,10,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,10,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,10,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,10,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,10,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,10,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,10,1,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,10,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,10,1,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,10,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,10,1,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,10,1,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,10,1,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,10,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,10,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,10,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,10,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,10,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,10,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,10,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,10,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,10,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,10,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,10,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,10,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,10,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,10,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,10,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,10,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,10,2,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,10,2,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,10,2,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,10,2,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,10,2,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,10,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,10,3,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,10,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,10,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,10,3,"{""alpha"": 0.1, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,10,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,10,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,10,3,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,10,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,10,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,10,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,10,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,10,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,10,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,10,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,10,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,10,3,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,10,3,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,10,3,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,10,3,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,10,3,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,10,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,10,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,10,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,10,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,10,4,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,10,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,10,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,10,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,10,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,10,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,10,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,10,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,10,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,10,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,10,4,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,10,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,10,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,10,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,10,4,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,10,4,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,10,4,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24
+RIDGE_RESIDUAL2_PLANET,PLANET,RIDGE,10,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,304
+ENET_RESIDUAL2_PLANET,PLANET,ENET,10,5,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,304
+XGB_RESIDUAL2_PLANET,PLANET,XGB,10,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,304
+RIDGE_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,RIDGE,10,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,25
+ENET_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,ENET,10,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,25
+XGB_RESIDUAL2_TOPO_BASIC,TOPO_BASIC,XGB,10,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 5, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,25
+RIDGE_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,RIDGE,10,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,592
+ENET_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,ENET,10,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,592
+XGB_RESIDUAL2_SENTINEL_CORE,SENTINEL_CORE,XGB,10,5,"{""colsample_bytree"": 0.7, ""learning_rate"": 0.03, ""max_depth"": 1, ""min_child_weight"": 10, ""n_estimators"": 300, ""reg_alpha"": 1.0, ""reg_lambda"": 10.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,592
+RIDGE_RESIDUAL2_ANOMALY,ANOMALY,RIDGE,10,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,143
+ENET_RESIDUAL2_ANOMALY,ANOMALY,ENET,10,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,143
+XGB_RESIDUAL2_ANOMALY,ANOMALY,XGB,10,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,143
+RIDGE_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,RIDGE,10,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,87
+ENET_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,ENET,10,5,"{""alpha"": 1.0, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,87
+XGB_RESIDUAL2_TOPO_ADVANCED,TOPO_ADVANCED,XGB,10,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,87
+RIDGE_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,RIDGE,10,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,18
+ENET_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,ENET,10,5,"{""alpha"": 0.1, ""l1_ratio"": 0.7}",frozen RS1 small-grid choice within same outer fold,18
+XGB_RESIDUAL2_FUNCTIONAL_FPCA,FUNCTIONAL_FPCA,XGB,10,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,18
+RIDGE_RESIDUAL2_LANDSAT,LANDSAT,RIDGE,10,5,"{""alpha"": 100.0}",frozen RS1 small-grid choice within same outer fold,24
+ENET_RESIDUAL2_LANDSAT,LANDSAT,ENET,10,5,"{""alpha"": 1.0, ""l1_ratio"": 0.1}",frozen RS1 small-grid choice within same outer fold,24
+XGB_RESIDUAL2_LANDSAT,LANDSAT,XGB,10,5,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.02, ""max_depth"": 3, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 1.0, ""reg_lambda"": 15.0, ""subsample"": 0.8}",frozen RS1 small-grid choice within same outer fold,24

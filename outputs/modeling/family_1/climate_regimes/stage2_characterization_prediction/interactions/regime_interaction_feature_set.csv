@@ -1,0 +1,11 @@
+feature,selection_basis,role
+CLIMATE_precip_total,R1/dictionary target-free representative,precipitation total
+CLIMATE_precip_early_sum,R1/dictionary target-free representative,early precipitation
+CLIMATE_precip_mid_sum,R1/dictionary target-free representative,mid precipitation
+CLIMATE_precip_late_sum,R1/dictionary target-free representative,late precipitation
+CLIMATE_precip_wettest_fraction,R1/dictionary target-free representative,precipitation concentration
+CLIMATE_tmin_mean_mean,R1/dictionary target-free representative,Tmin level
+CLIMATE_tmax_mean_mean,R1/dictionary target-free representative,Tmax level
+CLIMATE_tmean_mean_mean,R1/dictionary target-free representative,Tmean level
+CLIMATE_dtr_mean_mean,R1/dictionary target-free representative,DTR level
+CLIMATE_tmean_mean_std,R1/dictionary target-free representative,thermal variability

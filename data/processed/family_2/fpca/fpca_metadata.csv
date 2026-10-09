@@ -1,0 +1,5 @@
+source,signal,fpca_method,domain,n_parcels,n_grid_points,n_fpc_80,n_fpc_90,n_fpc_95,basis_type,default_n_basis,default_lambda,smoothing_lighter_lambda,smoothing_default_lambda,smoothing_stronger_lambda,smoothing_grid_note
+Sentinel,ndvi,L2 weighted SVD with trapezoidal quadrature,2025-04-01..2025-10-31,197,214,3,4,5,cubic_penalized_B_spline,12.0,0.01,0.001,0.01,0.1,future inner-CV only; refit smoothing and FPCA inside each train fold
+Sentinel,savi,L2 weighted SVD with trapezoidal quadrature,2025-04-01..2025-10-31,197,214,3,3,4,cubic_penalized_B_spline,12.0,0.1,0.01,0.1,1.0,future inner-CV only; refit smoothing and FPCA inside each train fold
+Sentinel,ndwi,L2 weighted SVD with trapezoidal quadrature,2025-04-01..2025-10-31,197,214,3,4,5,cubic_penalized_B_spline,10.0,0.01,0.001,0.01,0.1,future inner-CV only; refit smoothing and FPCA inside each train fold
+Sentinel,dswi4,L2 weighted SVD with trapezoidal quadrature,2025-04-01..2025-10-31,197,214,3,3,4,cubic_penalized_B_spline,12.0,0.01,0.001,0.01,0.1,future inner-CV only; refit smoothing and FPCA inside each train fold

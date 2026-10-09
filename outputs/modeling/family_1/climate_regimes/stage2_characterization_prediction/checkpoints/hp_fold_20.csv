@@ -1,0 +1,7 @@
+pipeline,repeat,fold,inner_RMSE,best_params,n_features
+CLIMATE_ENET_BASE,5,1,0.5375794632756987,"{""alpha"": 0.01, ""l1_ratio"": 0.1}",48
+CLIMATE_XGB_BASE,5,1,0.5618845647982066,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 0.5, ""reg_lambda"": 5.0, ""subsample"": 0.8}",48
+ENET_CLIMATE_PLUS_MEMBERSHIP,5,1,0.5435101989897176,"{""alpha"": 0.01, ""l1_ratio"": 0.7}",49
+XGB_CLIMATE_PLUS_MEMBERSHIP,5,1,0.5628096493544479,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 0.5, ""reg_lambda"": 5.0, ""subsample"": 0.8}",49
+ENET_SOFT_INTERACTIONS,5,1,0.5438339511744213,"{""alpha"": 0.01, ""l1_ratio"": 0.7}",59
+ENET_HARD_INTERACTIONS,5,1,0.543810836112209,"{""alpha"": 0.01, ""l1_ratio"": 0.7}",59

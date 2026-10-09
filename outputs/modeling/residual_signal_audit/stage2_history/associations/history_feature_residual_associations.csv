@@ -1,0 +1,40 @@
+feature,pearson_residual,spearman_residual,pearson_abs_residual,spearman_abs_residual,pearson_yield,spearman_yield,source_sensor,variable_index,statistic,semantic_family,index_family,direction,magnitude,rank_within_history,association_type
+HIST_S2_ndvi_promedio_mean,0.1221904753934387,0.1623762240604216,-0.003044699209169978,0.021578167488224588,0.030709165128915486,0.024917574846808403,Sentinel-2,ndvi,mean,historical_level,vigor_structure,positive,0.1623762240604216,1,B_residual_only
+HIST_S2_ndvi_promedio_std,-0.12594941168478543,-0.10505971611159183,-0.1345184153268687,-0.1212656025607949,-0.5763706605058071,-0.5639503130235513,Sentinel-2,ndvi,std,historical_variability,vigor_structure,negative,0.10505971611159183,4,A_yield_only
+HIST_S2_ndvi_promedio_months,,,,,,,Sentinel-2,ndvi,months,coverage,vigor_structure,none,,,D_neither
+HIST_S2_evi_promedio_mean,0.06143887884219597,0.09478548548022894,-0.02689310239500337,-0.028715333033478008,0.03422879797037012,0.044362480605969604,Sentinel-2,evi,mean,historical_level,vigor_structure,positive,0.09478548548022894,6,D_neither
+HIST_S2_evi_promedio_std,-0.09900233405995496,-0.07519138608503866,-0.11645303499900425,-0.12523830507158856,-0.4852772189046233,-0.4699906248582104,Sentinel-2,evi,std,historical_variability,vigor_structure,negative,0.07519138608503866,10,A_yield_only
+HIST_S2_evi_promedio_months,,,,,,,Sentinel-2,evi,months,coverage,vigor_structure,none,,,D_neither
+HIST_S2_lai_promedio_mean,0.04189786274906724,0.07611835000422384,-0.07543275867162302,-0.09385852156104377,-0.08789615554058502,-0.0625467506346569,Sentinel-2,lai,mean,historical_level,vigor_structure,positive,0.07611835000422384,9,D_neither
+HIST_S2_lai_promedio_std,-0.059766234602439926,-0.04477966341620451,-0.1357498531279302,-0.16830787987826176,-0.4361681169366028,-0.42410897524128854,Sentinel-2,lai,std,historical_variability,vigor_structure,negative,0.04477966341620451,18,A_yield_only
+HIST_S2_lai_promedio_months,,,,,,,Sentinel-2,lai,months,coverage,vigor_structure,none,,,D_neither
+HIST_S2_fapar_promedio_mean,0.07575830989545439,0.07293562167086387,-0.01291341515957959,-0.032624106998120954,-0.04635811638732089,-0.027374784963920897,Sentinel-2,fapar,mean,historical_level,vigor_structure,positive,0.07293562167086387,11,D_neither
+HIST_S2_fapar_promedio_std,-0.09147998719381492,-0.05765213281612095,-0.13566713942109057,-0.12492779499028513,-0.4201584815326486,-0.4068650342238985,Sentinel-2,fapar,std,historical_variability,vigor_structure,negative,0.05765213281612095,12,A_yield_only
+HIST_S2_fapar_promedio_months,,,,,,,Sentinel-2,fapar,months,coverage,vigor_structure,none,,,D_neither
+HIST_S2_savi_promedio_mean,0.07203688341005046,0.11072652509537909,-0.01428998787089792,-0.015847429958286623,0.05363392254407362,0.06222415601034322,Sentinel-2,savi,mean,historical_level,vigor_structure,positive,0.11072652509537909,3,D_neither
+HIST_S2_savi_promedio_std,-0.11175000041742092,-0.0924064302984778,-0.11971171455520555,-0.124553356362831,-0.5201008513238248,-0.5069997783539383,Sentinel-2,savi,std,historical_variability,vigor_structure,negative,0.0924064302984778,7,A_yield_only
+HIST_S2_savi_promedio_months,,,,,,,Sentinel-2,savi,months,coverage,vigor_structure,none,,,D_neither
+HIST_S2_ndwi_promedio_mean,-0.0033064198275648236,-0.03804433444675551,-0.0004237050906771636,0.018336076933438965,-0.09166307294708853,-0.07740669449931765,Sentinel-2,ndwi,mean,historical_level,moisture_stress,negative,0.03804433444675551,20,D_neither
+HIST_S2_ndwi_promedio_std,-0.020718632915385816,0.03151449008993376,-0.14619666560075456,-0.11254848866067411,-0.2750193180210039,-0.24102165455990066,Sentinel-2,ndwi,std,historical_variability,moisture_stress,positive,0.03151449008993376,22,A_yield_only
+HIST_S2_ndwi_promedio_months,,,,,,,Sentinel-2,ndwi,months,coverage,moisture_stress,none,,,D_neither
+HIST_S2_msi_promedio_mean,0.012926959998365847,0.050510400946142474,-0.03413771789349744,-0.042601526522355576,0.06156317000183118,0.0671317125291573,Sentinel-2,msi,mean,historical_level,moisture_stress,positive,0.050510400946142474,15,D_neither
+HIST_S2_msi_promedio_std,-0.011153259071573413,0.032080714355839986,-0.1239703186435598,-0.08627385619273543,-0.17397558941249236,-0.18047682092009798,Sentinel-2,msi,std,historical_variability,moisture_stress,positive,0.032080714355839986,21,A_yield_only
+HIST_S2_msi_promedio_months,,,,,,,Sentinel-2,msi,months,coverage,moisture_stress,none,,,D_neither
+HIST_S2_nddi_promedio_mean,0.03409989311474396,0.05306754279217057,-0.045593750516698964,-0.031866097093762626,-0.0076966453077254166,0.008762676674619059,Sentinel-2,nddi,mean,historical_level,moisture_stress,positive,0.05306754279217057,13,D_neither
+HIST_S2_nddi_promedio_std,0.051128800666286424,0.08404548972691094,-0.09747056867647438,-0.07039217879901093,-0.010576214609441761,-0.05465347791208879,Sentinel-2,nddi,std,historical_variability,moisture_stress,positive,0.08404548972691094,8,D_neither
+HIST_S2_nddi_promedio_months,,,,,,,Sentinel-2,nddi,months,coverage,moisture_stress,none,,,D_neither
+HIST_CLIMATE_precip_mean_mean,0.010702958066264538,0.045505830418022676,0.07491622178339946,0.033928792010266995,-0.29958568009750414,-0.3333789157877227,Climate historical,precip,mean,historical_level,precipitation,positive,0.045505830418022676,17,A_yield_only
+HIST_CLIMATE_precip_mean_std,0.01150828049485604,0.05139724121549851,0.07325838789371455,0.01694821081063494,-0.37713383146008794,-0.33558699170048456,Climate historical,precip,std,historical_variability,precipitation,positive,0.05139724121549851,14,A_yield_only
+HIST_CLIMATE_precip_mean_months,,,,,,,Climate historical,precip,months,coverage,precipitation,none,,,D_neither
+HIST_CLIMATE_tmin_mean_mean,0.0030585902551751865,0.1127761230953232,0.08316239774457032,0.048342863796555974,0.610599747482026,0.5487207661633807,Climate historical,tmin,mean,historical_level,temperature,positive,0.1127761230953232,2,A_yield_only
+HIST_CLIMATE_tmin_mean_std,0.0067493137544361766,0.015442987722268863,-0.03863006821220148,0.024869707432358716,0.1233059542140633,0.1453588189936892,Climate historical,tmin,std,historical_variability,temperature,positive,0.015442987722268863,25,D_neither
+HIST_CLIMATE_tmin_mean_months,,,,,,,Climate historical,tmin,months,coverage,temperature,none,,,D_neither
+HIST_CLIMATE_tmax_mean_mean,-0.020450663770841367,-0.03967916039854109,-0.01954363636746345,0.02684430116118303,-0.5546530266040524,-0.5553125562702091,Climate historical,tmax,mean,historical_level,temperature,negative,0.03967916039854109,19,A_yield_only
+HIST_CLIMATE_tmax_mean_std,0.00769708559405384,0.022273139800661167,0.052854293154500326,-0.0399496843637313,0.607443375777721,0.5407480597459478,Climate historical,tmax,std,historical_variability,temperature,positive,0.022273139800661167,24,A_yield_only
+HIST_CLIMATE_tmax_mean_months,,,,,,,Climate historical,tmax,months,coverage,temperature,none,,,D_neither
+HIST_CLIMATE_tmean_mean_mean,-0.005686232985639181,0.09565218731584675,0.08248725730579204,0.09946958104686426,0.42394178601042387,0.4293085768749002,Climate historical,tmean,mean,historical_level,temperature,positive,0.09565218731584675,5,A_yield_only
+HIST_CLIMATE_tmean_mean_std,0.0037413610807107006,0.028520624877105317,0.06467562451537281,0.021632668532646723,0.6528027913015046,0.5582365770487039,Climate historical,tmean,std,historical_variability,temperature,positive,0.028520624877105317,23,A_yield_only
+HIST_CLIMATE_tmean_mean_months,,,,,,,Climate historical,tmean,months,coverage,temperature,none,,,D_neither
+HIST_CLIMATE_dtr_mean_mean,-0.00925517729357124,-0.04852090093604013,-0.0745258514917019,-0.04106877495477459,-0.6829267456422018,-0.674467561480708,Climate historical,dtr,mean,historical_level,thermal_range,negative,0.04852090093604013,16,A_yield_only
+HIST_CLIMATE_dtr_mean_std,0.019000292544235343,0.0020462710187465105,-0.07741349787270554,-0.0997054224524147,-0.24011010391141718,-0.2869166426727028,Climate historical,dtr,std,historical_variability,thermal_range,positive,0.0020462710187465105,26,A_yield_only
+HIST_CLIMATE_dtr_mean_months,,,,,,,Climate historical,dtr,months,coverage,thermal_range,none,,,D_neither

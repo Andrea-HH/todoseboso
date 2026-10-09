@@ -1,0 +1,16 @@
+{
+  "window_start": "2025-04-01",
+  "default_eos": "2025-10-31",
+  "prepared_cutoffs": [
+    "2025-06-30",
+    "2025-07-31",
+    "2025-08-31",
+    "2025-09-30",
+    "2025-10-31"
+  ],
+  "timing_unit": "days_from_window_start",
+  "auc": "trapezoidal_actual_days",
+  "no_global_interpolation": true,
+  "sentinel_cv_abs_mean_threshold": 0.05,
+  "historical_std_threshold": 1e-06
+}

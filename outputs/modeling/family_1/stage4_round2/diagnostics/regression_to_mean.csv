@@ -1,0 +1,15 @@
+pipeline,alpha,beta,R2_descriptive,interpretation
+BASELINE_MEAN,3.9883971287129243,-0.008334813359325908,0.24401749498815195,beta<1 suggests compression toward mean; no correction applied
+ENET_ALL,1.9380447000635903,0.51040436420727,0.6053879830530237,beta<1 suggests compression toward mean; no correction applied
+ENET_CORE,1.8221730282800568,0.53825069340478,0.5955156755249847,beta<1 suggests compression toward mean; no correction applied
+ENET_CORE_EXTENDED,1.9214580380435984,0.5149148992089098,0.6077822022309785,beta<1 suggests compression toward mean; no correction applied
+ENET_CORE_TOPOADV,1.96729407502498,0.502598655489522,0.5938990714966996,beta<1 suggests compression toward mean; no correction applied
+ENET_PRUNED,1.9367907297098763,0.5106172472810869,0.5996871964473134,beta<1 suggests compression toward mean; no correction applied
+LGBM_CORE,1.6537068362884693,0.5796542560724227,0.6234126742682289,beta<1 suggests compression toward mean; no correction applied
+LGBM_CORE_EXTENDED,1.7079703776848074,0.565019778072299,0.6126115764757205,beta<1 suggests compression toward mean; no correction applied
+LGBM_CORE_TOPOADV,1.6684188447716508,0.5752680233107765,0.6180772351475372,beta<1 suggests compression toward mean; no correction applied
+LGBM_PRUNED,1.7294579652346211,0.5582670435661947,0.6081508896906926,beta<1 suggests compression toward mean; no correction applied
+XGB_CORE,1.622378809096833,0.5862202971617254,0.6213749697322614,beta<1 suggests compression toward mean; no correction applied
+XGB_CORE_EXTENDED,1.6593756702155442,0.575894944320607,0.6158316352163759,beta<1 suggests compression toward mean; no correction applied
+XGB_CORE_TOPOADV,1.6464429398154747,0.5805048334127273,0.6158737556782916,beta<1 suggests compression toward mean; no correction applied
+XGB_PRUNED,1.6859953163201382,0.5705376202906971,0.6169593649934642,beta<1 suggests compression toward mean; no correction applied

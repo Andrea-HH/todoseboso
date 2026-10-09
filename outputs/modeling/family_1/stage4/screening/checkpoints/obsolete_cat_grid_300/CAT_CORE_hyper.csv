@@ -1,0 +1,3 @@
+pipeline,repeat,fold,feature_representation,best_params,elapsed_seconds
+CAT_CORE,1,1,CORE,"{""model__depth"": 3, ""model__iterations"": 300, ""model__l2_leaf_reg"": 10, ""model__learning_rate"": 0.03}",33.134997844696045
+CAT_CORE,1,2,CORE,"{""model__depth"": 3, ""model__iterations"": 300, ""model__l2_leaf_reg"": 5, ""model__learning_rate"": 0.03}",102.5136034488678

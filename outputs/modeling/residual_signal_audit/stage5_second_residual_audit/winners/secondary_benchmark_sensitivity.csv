@@ -1,0 +1,2 @@
+block,primary_delta,secondary_baseline_RMSE,secondary_corrected_RMSE,secondary_delta,secondary_median_delta,secondary_fold_win_rate,secondary_repetitions_improved
+TOPO_BASIC,-0.0030423567903139,0.49027175357865155,0.4869635604704263,-0.003308193108225198,-0.004013351140385979,0.62,7

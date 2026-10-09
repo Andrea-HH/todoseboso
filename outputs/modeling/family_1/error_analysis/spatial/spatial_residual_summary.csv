@@ -1,0 +1,10 @@
+pipeline,neighbor_definition,k_neighbors,moran_I,permutation_p_two_sided,permutations
+XGB_CORE,symmetric-distance not forced; row-standardized directed kNN,4,-0.07154761503305433,0.161,999
+XGB_CORE,symmetric-distance not forced; row-standardized directed kNN,6,-0.05901609016328925,0.183,999
+XGB_CORE,symmetric-distance not forced; row-standardized directed kNN,8,-0.0470951683964853,0.233,999
+LGBM_CORE,symmetric-distance not forced; row-standardized directed kNN,4,-0.07200573504728248,0.154,999
+LGBM_CORE,symmetric-distance not forced; row-standardized directed kNN,6,-0.059066681709229164,0.172,999
+LGBM_CORE,symmetric-distance not forced; row-standardized directed kNN,8,-0.04817385016884414,0.221,999
+ENET_CORE_EXTENDED,symmetric-distance not forced; row-standardized directed kNN,4,0.045514703460329764,0.378,999
+ENET_CORE_EXTENDED,symmetric-distance not forced; row-standardized directed kNN,6,0.036466290052769926,0.398,999
+ENET_CORE_EXTENDED,symmetric-distance not forced; row-standardized directed kNN,8,0.04917864599300982,0.213,999

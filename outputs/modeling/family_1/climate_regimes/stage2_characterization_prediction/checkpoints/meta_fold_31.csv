@@ -1,0 +1,2 @@
+repeat,fold,n_train,n_validation,n_pcs,explained_variance,converged,n_iter,min_covariance_eigenvalue,alignment_order,alignment_cost,train_regime1_effective,train_regime2_effective,validation_regime1_effective,validation_regime2_effective
+7,2,110,28,3,0.9532993473388447,True,12,9.999999999554287e-06,1|0,0.3136976793903698,50.99999149539292,59.000008504607095,11.999997647287216,16.000002352712784
