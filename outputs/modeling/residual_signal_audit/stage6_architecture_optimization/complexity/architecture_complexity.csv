@@ -1,0 +1,8 @@
+pipeline,number_of_stages,number_of_features,number_of_models,number_of_tuned_hyperparameters,training_time_relative,RMSE,practical_tie_vs_A
+A_CURRENT_CH_H_T,3,60,3,20,high,0.48650525350940627,True
+D_CH_T_H2,4,60,4,28,very_high,0.4868002436387821,True
+E2_CH_JOINT_TP_XGB,3,364,3,26,very_high,0.488266156144508,False
+B_REVERSED_CT_H,3,60,3,20,high,0.4906358550368399,False
+C2_JOINT_HT_XGB,2,60,2,18,medium,0.4915272467720749,False
+C1_JOINT_HT_RIDGE,2,60,2,12,medium,0.4984133690609172,False
+E1_CH_JOINT_TP_RIDGE,3,364,3,20,high,0.5824016727955489,False
