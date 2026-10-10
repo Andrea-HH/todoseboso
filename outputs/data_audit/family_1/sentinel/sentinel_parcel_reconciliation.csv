@@ -1,7 +1,0 @@
-check,value,details
-master_unique_parcels,197,
-sentinel_unique_parcels,197,
-training_parcels,138,
-prediction_parcels,59,
-master_absent_in_sentinel,0,
-sentinel_absent_in_master,0,

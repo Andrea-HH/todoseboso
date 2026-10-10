@@ -1,9 +1,0 @@
-artifact_version,pipeline,repeat,fold,inner_RMSE,best_params,n_features,n_functional_nonzero
-2,CLIMATE_RIDGE,3,1,0.5629232840431901,"{""alpha"": 10.0}",48,
-2,CLIMATE_FPCA_RIDGE,3,1,0.5794833086981055,"{""alpha"": 10.0}",66,
-2,CLIMATE_ENET,3,1,0.5597437012045452,"{""alpha"": 0.01, ""l1_ratio"": 0.7}",48,
-2,CLIMATE_FPCA_ENET,3,1,0.5689712457628527,"{""alpha"": 0.01, ""l1_ratio"": 0.7}",66,4.0
-2,CLIMATE_XGB,3,1,0.5518213947476538,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 0.5, ""reg_lambda"": 5.0, ""subsample"": 0.8}",48,
-2,CLIMATE_FPCA_XGB,3,1,0.5652659502355705,"{""colsample_bytree"": 0.6, ""learning_rate"": 0.03, ""max_depth"": 2, ""min_child_weight"": 10, ""n_estimators"": 150, ""reg_alpha"": 0.5, ""reg_lambda"": 5.0, ""subsample"": 0.8}",66,
-2,CLIMATE_FUNCTIONAL_LINEAR_BASELINE,3,1,0.5629232840466168,"{""alpha_scalar"": 10.0, ""lambda_functional"": null}",48,
-2,CLIMATE_SOF_ALL4,3,1,0.6827746791939429,"{""alpha_scalar"": 1.0, ""lambda_functional"": 10.0}",96,

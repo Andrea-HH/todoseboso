@@ -1,4 +1,0 @@
-sensor,file,rows,columns,parcels,date_min,date_max,derived_columns,quality_columns,unique_ID_date
-Sentinel-2,data\processed\family_1\timeseries\sentinel_timeseries.parquet,59040,194,197,2022-01-01T00:00:00,2025-12-31T00:00:00,88,6,True
-Landsat,data\processed\family_1\timeseries\landsat_timeseries.parquet,48626,26,197,2022-01-05T00:00:00,2025-12-31T00:00:00,4,6,True
-Planet,data\processed\family_1\timeseries\planet_timeseries.parquet,47804,50,197,2025-01-01T00:00:00,2025-12-30T00:00:00,16,6,True

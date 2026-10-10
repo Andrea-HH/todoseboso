@@ -1,6 +1,0 @@
-role,path,rows,columns
-dataset_basico_original,data\original\01_tablas_maestras\Conjunto_datos_BASICO_AgroCebada2026.csv,107666,96.0
-sentinel_filtrado_del_original,data\original\01_tablas_maestras\Conjunto_datos_BASICO_AgroCebada2026.csv,59040,96.0
-sentinel_procesado_existente,data\processed\01_tablas_maestras\sentinel.csv,59040,92.0
-maestro_area_rendimiento,data\original\01_tablas_maestras\ID_area_rendimiento_70_30_Reto_AgroCebada.csv,197,4.0
-geometrias_parcelas,data\original\02_conjunto_70_30\Parcelas_Reto_AGC_CONJUNTO.shp,197,

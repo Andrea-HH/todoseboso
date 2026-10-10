@@ -1,8 +1,0 @@
-block,matched_model,direct_RMSE_mean,residual_corrected_RMSE_mean,climate_RMSE_mean,direct_delta_RMSE,residual_delta_RMSE,note
-HISTORY,XGB,0.49522280596548623,0.49423503313960454,0.5101455170109477,-0.014922711045461445,-0.015910483871343098,direct augmentation executed because preliminary residual signal criterion met
-PLANET,XGB,0.512638181980582,0.5023392519809947,0.5101455170109477,0.002492664969634295,-0.007806265029952987,direct augmentation executed because preliminary residual signal criterion met
-TOPO_BASIC,RIDGE,0.522569987376657,0.5049036098638952,0.5101455170109477,0.012424470365709372,-0.005241907147052558,direct augmentation executed because preliminary residual signal criterion met
-FUNCTIONAL_FPCA,ENET,0.5278660034718249,0.5087945665688924,0.5101455170109477,0.017720486460877205,-0.0013509504420552354,direct augmentation executed because preliminary residual signal criterion met
-LANDSAT,ENET,0.5478253613840283,0.5098231772868373,0.5101455170109477,0.037679844373080584,-0.00032233972411030654,direct augmentation executed because preliminary residual signal criterion met
-ANOMALY,ENET,0.5191501142098179,0.5099331708428891,0.5101455170109476,0.009004597198870368,-0.00021234616805847372,direct augmentation executed because preliminary residual signal criterion met
-SENTINEL_CORE,XGB,0.5170039774910689,0.5103837739061318,0.5101455170109477,0.006858460480121176,0.00023825689518409688,direct augmentation executed because preliminary residual signal criterion met

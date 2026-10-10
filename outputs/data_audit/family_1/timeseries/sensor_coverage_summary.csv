@@ -1,4 +1,0 @@
-sensor,rows,columns,parcels,date_min,date_max,global_unique_dates,global_valid_dates,n_obs_parcel_min,n_obs_parcel_median,n_obs_parcel_max,n_valid_parcel_min,n_valid_parcel_median,n_valid_parcel_max,median_gap_days,max_gap_days,dates_shared_by_all_parcels,median_parcel_fraction_per_date,median_parcel_fraction_per_valid_date,unique_parcel_calendars
-Sentinel-2,59040,194,197,2022-01-01,2025-12-31,301,288,298,300.0,301,210,227.0,247,5.0,10.0,296,1.0,0.9695431472081218,4
-Landsat,48626,26,197,2022-01-05,2025-12-31,392,332,195,211.0,391,113,147.0,253,7.0,16.0,183,0.8375634517766497,0.35279187817258884,135
-Planet,47804,50,197,2025-01-01,2025-12-30,311,292,233,243.0,251,149,185.0,202,1.0,19.0,82,0.9137055837563451,0.6751269035532995,145

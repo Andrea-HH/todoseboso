@@ -1,4 +1,0 @@
-candidate,apparent_RMSE_same_data,validation_status
-linear,0.48971475085036376,OPTIMISTIC descriptive only; requires nested calibration
-isotonic,0.45676216736086267,OPTIMISTIC descriptive only; requires nested calibration
-low_flex_spline,0.4812466906050282,OPTIMISTIC descriptive only; requires nested calibration

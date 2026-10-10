@@ -1,0 +1,34 @@
+# Datos originales, externos y matrices procesadas: conservar solo en disco.
+/data/
+
+# Resultados reproducibles, modelos, predicciones, figuras y checkpoints.
+/outputs/
+/catboost_info/
+
+# Documentos fuente descargados; la documentación propia sí se versiona.
+/docs/resources/
+
+# Python y herramientas locales.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Modelos serializados y registros de ejecución fuera de outputs.
+*.joblib
+*.pkl
+*.pickle
+*.log
+
+# Configuración privada y archivos temporales del sistema.
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+~$*

@@ -1,8 +1,0 @@
-event_or_statistic,n_features,mean_calculable_pct
-peak_day,22,100.0
-max_growth_rate,91,100.0
-max_decline_rate,91,100.0
-max_drawdown,21,100.0
-max_runup,21,100.0
-pre_peak_slope,12,98.98477157360406
-post_peak_slope,12,99.746192893401

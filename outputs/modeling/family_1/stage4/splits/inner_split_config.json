@@ -1,7 +1,0 @@
-{
-  "type": "KFold",
-  "n_splits": 4,
-  "shuffle": true,
-  "random_state_rule": "2026 + outer_split_index",
-  "outer_validation_never_used_in_preprocessing_or_tuning": true
-}

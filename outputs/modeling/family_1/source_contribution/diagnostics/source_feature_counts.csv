@@ -1,9 +1,0 @@
-source,source_display,n_features,in_core
-S2,Sentinel,530,True
-PLANET,Planet,277,True
-LANDSAT,Landsat,23,True
-CLIMATE,Climate Current,48,True
-HISTORY,History,26,True
-ANOMALY,Anomaly,104,True
-TOPO_BASIC,Topography Basic,25,True
-AREA,Area,0,False
