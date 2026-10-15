@@ -1,0 +1,27 @@
+# Screening exploratorio de fortalezas individuales
+
+Se examinaron 1,473 variables numéricas de las representaciones existentes de clima, historia, Sentinel, Planet, Landsat, topografía y suelo. Se exigieron al menos 110 observaciones válidas de las 138 TRAIN y ocho valores distintos; este filtro deja fuera variables categóricas de suelo escasas. Se excluyeron coordenadas, identificadores, rendimiento y reservas cartográficas explícitas. Los campos de soporte de observaciones que aparecen en las representaciones se consideran diagnósticos de disponibilidad, no automáticamente propiedades agronómicas. No es un inventario de fuentes externas no procesadas ni de modelos no lineales posibles.
+
+Cada variable se evaluó sola mediante Ridge lineal con alpha=1 fijo, sin búsqueda de parámetros, con imputación mediana y estandarización aprendidas únicamente en el entrenamiento de cada fold. Se reutilizaron las asignaciones externas de los 65 folds de J0: diez repeticiones aleatorias y los protocolos por perfil, municipio y espacio. Las métricas se calculan sobre todas las predicciones de una repetición, luego se promedian. Los cuartiles observados solo se usan para diagnóstico posterior. Es un screening nuevo y separado; no altera modelos previos ni Champion.
+
+Se calculó también la correlación con rendimiento después de restar a cada variable y al rendimiento su media dentro del perfil climático. Esa asociación es descriptiva: utiliza las etiquetas para explorar, no constituye un modelo validado ni una estimación causal. Las variables climáticas idénticas dentro del perfil no tienen variación útil para esa comparación.
+
+## Candidatas con fortalezas diferentes
+
+**NDVI Sentinel de mayo (`S2_ndvi_month_05`)**: correlación global +0.558; dentro de perfiles +0.299. La asociación dentro del perfil permanece positiva al dar igual peso a los perfiles (+0.239), al retirar cada perfil por turno (+0.235 a +0.362) y al excluir Chignahuapan (+0.288). Es una señal de contraste entre parcelas con clima idéntico, aunque el NDVI solo tiene RMSE aleatorio 0.716 frente a 0.521 de lluvia. No supera lluvia en ninguno de los cuatro protocolos globales. Su interpretación es verdor observado en mayo, sin asegurar que represente la misma fase fenológica o el mismo cultivo en todas las parcelas.
+
+**Percentil temporal 10 del NDVI (`S2_ndvi_promedio_q10`)**: correlación dentro del perfil +0.281, con igual peso por perfil +0.248 y excluyendo Chignahuapan +0.360. Resume el extremo inferior del verdor observado entre abril y octubre; no es un percentil espacial de píxeles. Puede describir diferencias que los vectores climáticos no distinguen. RMSE aleatorio individual 0.726: sigue lejos de lluvia.
+
+**Duración del ascenso SAVI (`S2_savi_promedio_runup_duration`)**: asociación global pequeña (+0.144), pero dentro del perfil +0.276; con igual peso por perfil +0.251, sin Chignahuapan +0.242. La asociación local es mayor que la regional. Es un descriptor de forma temporal, no una duración validada de una etapa fenológica. Su desempeño individual global es débil (RMSE aleatorio 0.854).
+
+**Desviación temporal de amplitud térmica (`CLIMATE_dtr_mean_std`)**: correlación global −0.717. Describe la variabilidad de Tmax−Tmin en el periodo, no la temperatura máxima media. Un predictor lineal de una sola variable obtiene RMSE municipal 0.636 frente a 0.695 de lluvia, y espacial 0.614 frente a 0.735. En aleatoria pierde: 0.602 frente a 0.521. En Q1 espacial mejora 1.216→0.857, pero en Q4 espacial empeora 0.496→0.600. Es una fortaleza de transferencia regional, especialmente en el extremo bajo; no distingue parcelas con perfil climático idéntico. No se ha probado aquí su ganancia incremental sobre lluvia.
+
+La pendiente q10 también muestra correlación dentro del perfil +0.275 y con igual peso por perfil +0.255, coherente con la evidencia previa de pendiente. Planet NDVI: heterogeneidad espacial mediana tiene correlación dentro del perfil apenas +0.018; Landsat VI6T medio −0.204, con desempeño individual global débil. No aportan una candidata más convincente que las anteriores en este screening.
+
+## Límites y decisión
+
+Explorar 1,473 variables sobre las mismas 138 parcelas produce selección múltiple y correlaciones entre candidatos. Los rankings de validación externa se usan aquí para describir candidatos; escoger los mejores después de ver esos resultados no ofrece una evaluación externa imparcial de la selección. Las verificaciones de asociación al retirar perfiles son sensibilidad descriptiva, no intervalos de confianza ni pruebas de significación. El screening univariado tampoco mide aportación incremental ni demuestra independencia entre índices correlacionados.
+
+La candidata más clara para una fortaleza distinta de clima es **NDVI de mayo**, acompañada por su percentil temporal inferior. **Variabilidad de amplitud térmica** es una segunda candidata con una fortaleza regional diferente. Ninguna se incorpora automáticamente al modelo principal. Una prueba predictiva posterior tendría que seleccionar candidatos dentro de la validación interna y reservar la externa para evaluar el procedimiento completo.
+
+Reproducción: `python scripts/335_variable_strength_screening.py`. Métricas por repetición, resumen de los cuatro protocolos y asociaciones en `outputs/research/family_1/variable_strength_screening/v1/`. La sensibilidad de las cuatro candidatas se documenta aquí como análisis posterior de las asociaciones.

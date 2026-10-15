@@ -1,0 +1,52 @@
+"""Read-only recovery of existing trees and variable semantics before F6 fits."""
+import json
+import pandas as pd
+from . import execution as e
+
+def build():
+    old=e.design.OUT/'tables'
+    names=['historical_metrics_oof_recomputed.csv','historical_metrics_repeat_recomputed.csv','archived_01_RS3.csv','archived_02_RS3.csv','archived_03_RS3.csv','archived_04_RS4.csv','archived_05_RS5.csv','archived_06_RS5.csv','family_1__rainfall_yield__v1__tables__05_model_comparison.csv','family_1__rainfall_yield__e8__v1__tables__40_model_comparison.csv','family_1__g_temperature_signal__v1__tables__40_model_comparison.csv','family_1__h_joint_climate_signal__v1__tables__40_model_comparison.csv','candidate_variable_inventory.csv']
+    sources=[]
+    for name in names:
+        path=old/name
+        if not path.exists():continue
+        pd.read_csv(path).to_csv(e.OUT/'audit'/name,index=False)
+        sources.append(dict(path=path.relative_to(e.ROOT).as_posix(),sha256=e.design.sha(path),aggregation='historical complete OOF if historical_metrics; other published meanfold/meanrepeat preserved explicitly',use='contextual evidence; no refitting'))
+    pd.DataFrame(sources).to_csv(e.OUT/'audit/recovered_evidence_sources.csv',index=False)
+    for label,path in [('RS4',e.ROOT/'outputs/modeling/residual_signal_audit/stage4_champion_reconstruction/models/selected_hyperparameters.csv'),('RS6',e.ROOT/'outputs/modeling/residual_signal_audit/stage6_architecture_optimization/models/selected_hyperparameters.csv')]:
+        pd.read_csv(path).to_csv(e.OUT/'audit'/f'{label}_actual_selected_hyperparameters.csv',index=False)
+    for label,directory in [('RS3_climate_source',e.ROOT/'outputs/modeling/family_2/stage3_round2_hybrid/checkpoints'),('RS5_residual_source',e.ROOT/'outputs/modeling/residual_signal_audit/stage1/checkpoints')]:
+        frames=[pd.read_csv(path).assign(source=path.relative_to(e.ROOT).as_posix()) for path in sorted(directory.glob('hp_fold_*.csv'))]
+        if frames:pd.concat(frames,ignore_index=True).to_csv(e.OUT/'audit'/f'{label}_actual_hyperparameters.csv',index=False)
+    rows=[
+      dict(section='RS3',algorithm='XGBoost',inputs='10 CLIMATE_precip_ summaries; full Current48 and thermal/timing/window subfamilies also audited',selection='archived climate parameters reused for subfamily fits; not new nested tuning per small representation',protocol='random50 only',RMSE_complete_repeat=.51312,role='prior nonlinear rainfall evidence; not compact3+NDVI matched control'),
+      dict(section='RS4',algorithm='XGBoost',inputs='climate10 precipitation summaries or TOP20 ENET; residual historical16 effective / per-fold TOP15',selection='history selected using training residuals; original hyperparameters reused in some internal crossfit contexts',protocol='random50 only',RMSE_complete_repeat=.50114,role='precipitation XGB + residual History15; does not establish standalone NDVI2 benefit'),
+      dict(section='RS5',algorithm='XGBoost/Ridge',inputs='second residual topographic/satellite candidates; slope14 and compact terrain groups',selection='reuses archived tuned parameters; not fully nested all-three-stage Champion targets',protocol='random50 only',RMSE_complete_repeat=None,role='terrain-block evidence; not slope_mean-only direct ablation'),
+      dict(section='RS6 Champion',algorithm='TOP20 ENET -> historical XGB -> topographic Ridge',inputs='fold-selected climate20 + historical15 + terrain block',selection='archived three-stage residual architecture; no faithful fully nested geographic predictions',protocol='random50 only',RMSE_complete_repeat=.4981269,role='frozen random-only control; never reconstructed geographically'),
+      dict(section='rain E1-E8',algorithm='OLS/Ridge/PCR',inputs='rain total/monthly7/summary/dynamics/anomaly/inner-selected/PCA',selection='65 frozen folds and internal selection for supported models',protocol='random/profile/municipality/spatial',RMSE_complete_repeat=None,role='these experiments are not previous RF/ET comparisons'),
+      dict(section='G/H',algorithm='ElasticNet/PCR',inputs='monthly Tmin/Tmax/rain, joint14/21 and Current48',selection='nested65; whole monthly vector versus existing summaries',protocol='random/profile/municipality/spatial',RMSE_complete_repeat=None,role='geographic separation not demonstrated geographic generalization'),
+      dict(section='F4 and C',algorithm='ElasticNet/Ridge; compact hierarchical controls',inputs='rain7+MayNDVI, DTR, local residual candidates; compact3+MayNDVI C-T3',selection='frozen65 and training-only inner selection',protocol='random/profile/municipality/spatial',RMSE_complete_repeat=.5115818,role='matched compact4 C-T3 reference'),
+      dict(section='F5 initial/S1',algorithm='grouped Matern/RBF GP and Ridge-mean GP',inputs='compact3+MayNDVI; monthly7+NDVI S1-B',selection='same65; LML train-only, C mean selected inside four original innerfolds',protocol='random/profile/municipality/spatial',RMSE_complete_repeat=.5040058,role='F5-01 matched GP reference; S1 exposes spatial constant-mean/undercoverage tradeoffs')]
+    pd.DataFrame(rows).to_csv(e.OUT/'audit/prior_tree_audit.csv',index=False)
+    (e.OUT/'audit/primary_sources.json').write_text(json.dumps(dict(installed_version='sklearn1.7.2',sources=['https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.RandomForestRegressor.html','https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html'],accessed='2026-10-12'),indent=2),encoding='utf8')
+    text='''# F6 — Auditoría previa y diseño congelado
+
+Se recuperan los artefactos RS3–RS6, lluvia E1–E8, G/H, F4 y F5 sin reentrenarlos. RS3 XGBoost de precipitación utiliza diez resúmenes climáticos, no lluvia mensual7 ni compact3+NDVI. RS4 y RS6 aprovechan historia en una arquitectura residual, con TOP15 seleccionado por fold de dieciséis columnas efectivas. Su beneficio no demuestra el de NDVI2 directo. RS5 favoreció bloques topográficos, sin demostrar que pendiente media aislada reproduzca slope14. El Champion se conserva; su OOF compatible solo existe para las cincuenta particiones aleatorias. La reproducción de las tres etapas con validación geográfica estricta no está archivada y no se inventa aquí.
+
+La búsqueda de RandomForestRegressor/ExtraTreesRegressor en scripts y src identifica únicamente una importación previa de ExtraTreesRegressor en script208. Sus funciones de ajuste ejecutan Ridge/ElasticNet/XGBoost; no hay llamada de ajuste Extra Trees ni un experimento RF/ET previo verificado. Una importación no se contabiliza como experimento ejecutado.
+
+Los modelos de lluvia E1–E8 y G/H son principalmente lineales/PCR; sus números publicados se recuperan con su agregación original. Los RMSE completos por repetición se identifican aparte: lluvia XGB RS3≈0.51312; lluvia XGB+historia15≈0.50114; Champion≈0.498127. No se sustituyen por medias de RMSE de folds (Champion≈0.486505). Los registros previos preservan parámetros seleccionados y semántica; no equivalen a controles con cuatro predictores idénticos.
+
+La búsqueda XGBoost residual previa (script207, reutilizada por RS4–RS6) era conservadora: cuatro configuraciones con 150–300 árboles, profundidades1–3, learning_rate0.02–0.03, min_child_weight5–10, subsample0.8, colsample_bytree0.6–0.7, reg_alpha1 y reg_lambda10–15. F6 usa ensambles paralelos de árboles, no boosting secuencial ni corrección del Champion. Ocho configuraciones por algoritmo contrastan profundidad3/5/sin límite con hojas mínimas5/10, split mínimo10/20 y max_features0.5/1.0. No son un producto cartesiano masivo. Se fijan384 árboles, semilla2026, RF bootstrap=True y max_samples0.8; ET bootstrap=False. Los diagnósticos de prefijos128/256/384 evalúan Monte Carlo sin ajustar ni seleccionar otra cantidad de árboles. La dispersión entre árboles no se presenta como intervalo predictivo.
+
+Se reutiliza ConditionalFeatures: mediana, escala y eliminación de constantes solo dentro de cada entrenamiento; piso NDVI0.05. Las transformaciones afines no agregan información y los árboles ajustan Y en t/ha. La selección usa el RMSE medio de cuatro folds internos congelados; los resultados externos usan138 OOF por repetición, luego la media de diez repeticiones aleatorias. No entran municipio, estado, coordenadas ni identificadores como X. Las59 parcelas PRED no participan en selección, interpretación ni predicción.
+
+Se fija antes de ajustar un criterio exploratorio para abrir únicamente las cuatro ablaciones predefinidas: al menos uno de RF/ET debe ganar≥0.01t/ha de RMSE municipal a C-T3, mejorar≥3 de sus cinco folds municipales, no deteriorar>0.01 RMSE o MAE en ningún protocolo y no deteriorar>0.01 el RMSE espacial al omitir cualquiera de sus bloques del cálculo. Son márgenes metodológicos orientativos heredados, no significancia estadística ni umbrales económicos. Si se abre la etapa2, todas sus comparaciones siguen siendo exploratorias con etiquetas/folds reutilizados; no constituyen confirmación independiente de una elección externa. Si no se abre, lluvia mensual/DTR/historia2/pendiente permanecen hipótesis no evaluadas con árboles.
+
+Historia NDVI mean/std conserva la definición F5: promedio y desviación muestral entre siete promedios de meses calendario históricos, no variación interanual. DTRstd es la desviación muestral de siete medias mensuales Tmax−Tmin. TOPO_BASIC_slope_mean coincide con slope_degrees. Las hipótesis compactas no sustituyen History15 ni slope14. Las variables y transformaciones exactas se recuperan del inventario F5; no hay screening nuevo.
+
+Los resultados previos de importancia por impureza/selección son descripciones del ajuste, no causalidad. F6 conservará uso de variables y umbrales en unidades originales, ALE sobre soporte de entrenamiento y diferencias locales lluvia×NDVI con ocupación suficiente; no interpretará perturbaciones sin soporte como respuestas observadas. Ningún modelo se promueve automáticamente.
+
+Fuentes primarias: [RandomForestRegressor](https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.RandomForestRegressor.html) y [ExtraTreesRegressor](https://scikit-learn.org/1.7/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html). RF usa muestras bootstrap; Extra Trees aleatoriza umbrales y, por defecto, utiliza toda la muestra. Esta diferencia queda fija: la comparación evalúa las dos familias, sin atribuir cada diferencia exclusivamente al mecanismo de umbral.
+'''
+    (e.OUT/'report/evidence_audit_and_design.md').write_text(text,encoding='utf8')
