@@ -1,0 +1,21 @@
+# Señales de parcelas difíciles: diseño congelado
+
+Experimento exploratorio autorizado: añadir información de trayectoria de vegetación y posición topográfica a J7_BOTH y a las mezclas con expertos 9 y 10. No sustituye las referencias.
+
+Señales: `PLANET_evi_promedio_last_minus_first` (cambio neto EVI), `TOPO_ADV_tpi_3x3_mean` (posición topográfica local), y `S2_ndvi_derived_lower_gap_max_growth_rate` (dinámica derivada de NDVI). Se usan las columnas propias exactas, no alias aproximados de GeoC. Las tres tienen 138 valores válidos. El TPI no demuestra inundación ni las fechas derivadas equivalen a eventos de manejo observados.
+
+Se ejecutan tres referencias × dos bloques × dos ubicaciones = doce alternativas. ET añade EVI y TPI; ETN añade también la dinámica NDVI. LOCAL amplía las entradas estandarizadas de la Ridge local, manteniendo 24 vecinos geográficos, alpha=30 y potencia de distancia=1. CORRECTION conserva las entradas de la Ridge local y añade las variables al corrector Elastic Net de sus residuos cross-fitted, junto con compact4. Es la alternativa adecuada para señales de desviación respecto a la predicción local. No se modifican CT3 ni las variables físicas del gate de mezcla.
+
+J7 parte de siete variables locales; E9 de nueve; E10 de diez. LOCAL aumenta esas cantidades en dos o tres. CORRECTION mantiene la cantidad local y amplía solo el corrector. Se reestiman mediante validación interna los parámetros ya autorizados del corrector y el gate: alpha {0.001,0.01,0.1,1}, l1_ratio {0.1,0.5,0.9}, amplitud {0,0.25,0.5}, clusters {4,8}. Amplitud cero permite rechazar la corrección. No hay búsqueda adicional de modelos ni selección externa de una variante como confirmación.
+
+Se mantienen las 65 particiones externas y las internas originales. La imputación, estandarización, representaciones físicas, ajuste local, residuos y pesos se calculan en el entrenamiento correspondiente, conservando la infraestructura anidada. Las características adicionales se alinean por ID; las 59 parcelas PRED no se transforman en variables adicionales utilizables ni se predicen. No se entrena el modelo final con 138 targets.
+
+Evaluación: RMSE, MAE, R², sesgo y dispersión sobre OOF completas por repetición, luego promedio de diez repeticiones aleatorias. Separar aleatoria, perfil, municipal y espacial. Comparaciones pareadas contra cada referencia, ubicación LOCAL versus CORRECTION y bloque ETN versus ET. Diagnósticos por estado, municipio, bloque, perfil y cuartil del target; ganancias por parcela y concentración. Recalcular las métricas sin 171/015 y omitiendo zonas, sin reajustar. Mostrar ramas locales y corregidas antes de mezcla y pesos externos para identificar qué parte produce o amortigua el efecto.
+
+Los predictores se nominaron después de inspeccionar residuos externos; estos resultados son exploratorios aun con validación interna correcta. No se seleccionan variables con el fold externo ni se presenta la reutilización de particiones como validación independiente. Las 96 comparaciones (48 contra referencia, 24 entre ubicaciones, 24 entre bloques) se documentan con ajuste Holm conjunto; pocos grupos territoriales limitan la potencia.
+
+Congelación numérica y hashes previos al entrenamiento: `outputs/modeling/difficult_case_signals/v1/frozen_design.json`. Scripts 454 (preparación), 455 (ejecución), 456 (evaluación). Modelos y resultados anteriores permanecen intactos; sin promoción automática, reglas por parcela, refit final, PRED59 ni push.
+
+## Aclaración de procedencia durante la ejecución
+
+Sin cambiar columnas, bloques ni parámetros: `derived_lower_gap = NDVI_mean − NDVI_min` por observación, según `110_build_sensor_timeseries.py`. `max_growth_rate` es el máximo cociente de diferencias consecutivas dividido entre días transcurridos, según `src/family_1/temporal_primitives.py`. La tercera señal mide el aumento de una brecha de heterogeneidad interna, no el crecimiento del NDVI medio ni del cultivo. EVI `last_minus_first` usa última menos primera observación válida del periodo, sin garantizar idénticas fechas extremas para todas las parcelas. TPI se construye como elevación menos media espacial 3×3 y luego se agrega por parcela, según `terrain_features.py`. Estas aclaraciones de significado no alteran el diseño experimental.
