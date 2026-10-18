@@ -37,6 +37,8 @@ Las predicciones por parcela, modelos, datos y OOF permanecen en `outputs/` y `d
 
 [Fichas de los modelos](../documentation/models/README.md) · [Registro vigente](../documentation/model_registry.md).
 '''
+    if (ROOT/'results/four_final_checks/v1/README.md').exists():
+        index+='\n[Cuatro investigaciones finales](four_final_checks/v1/README.md): reproducción limpia, soporte59, intervalos y sensibilidad completa sin HHI. No modifica los champions26/14.\n'
     write('results/README.md',index)
     metrics=read('results/current_champions/v1/metrics.csv')
     distributions=read('results/current_champions_final/v1/prediction_distributions.csv')

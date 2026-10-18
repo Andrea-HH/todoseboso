@@ -16,6 +16,8 @@ DOCS=['README.md','documentation/README.md','documentation/project_scope_and_gui
       'documentation/git_data_policy.md','configs/README.md','environments/README.md',
       'documentation/current_champions_reproduction.md','results/README.md','results/current_champions/v1/README.md']
 DOCS += ['documentation/model_status_history.md']
+if (ROOT/'results/four_final_checks/v1/README.md').exists():
+    DOCS.append('results/four_final_checks/v1/README.md')
 DOCS += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'documentation/models').rglob('README.md'))]
 if (ROOT/'results/comparison_97_41/v1/README.md').exists():
     DOCS.append('results/comparison_97_41/v1/README.md')
@@ -132,6 +134,13 @@ def main():
         assert len(pairs)==15 and all(int(row['n'])==59 for row in pairs)
         assert not any('ID_POLIGONO' in row for row in pairs)
         checks['final_prediction_pairs']=len(pairs)
+    if (ROOT/'results/four_final_checks/v1/complete_audit.json').exists():
+        final_checks=read('results/four_final_checks/v1/complete_audit.json')
+        assert final_checks['status']=='complete' and final_checks['no_HHI_external_folds']==65
+        assert final_checks['frozen_final_files_unchanged'] and not final_checks['new_champion']
+        assert not final_checks['new_final_fit'] and not final_checks['new_PRED_point_predictions']
+        assert read('results/four_final_checks/v1/clean_environment_audit.json')['status']=='passed'
+        checks['four_final_studies']=4
     registered={m['id']:m for m in registry}
     assert {m['id'] for m in registry if m['status'].startswith('current_champion')}=={'Reference26','Compact14'}
     assert all(registered[m]['status'].startswith('current_champion') for m in stage['champions'])

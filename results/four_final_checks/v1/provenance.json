@@ -1,0 +1,19 @@
+{
+  "source_code": {
+    "src/reference26_only.py": "318551b8669437dc82d04083fa401346f28d11a3a2582dee75a0a349d898c867",
+    "scripts/535_no_hhi_reference26.py": "83901d04818233c65d0265f21c0edb09c9ecb6346dc7181a64af099566e74633",
+    "scripts/536_operational_support_intervals.py": "a06ed66e78d6d96f104a53ca82b0184b656846d123419db6a126de9bdcd86017",
+    "scripts/537_run_sensitivity_battery.py": "8d91c70583c3d18d83812a08bceae5fe3ed443e870d800c304dd93c5a517435b",
+    "scripts/538_finalize_four_checks.py": "eb8a957ca3a9daf82c0527ef3f9a83210cafdb3158e72509f1a006f79029a278",
+    "scripts/539_clean_replay_environment.py": "cf903b22e73aab7daab11894df7cc6639a8bf520ac5487f587a7a686a6e58403"
+  },
+  "code_hash": "CRLF normalized to LF",
+  "protected_delivery": {
+    "final_train138.joblib": "54afbcf81d60623a634b64afb498152b11a0f66ea4c3e21cab2d4939250ac147",
+    "features197.parquet": "22a18f9907457dacd91377131ae56e1440ab6f47ca2307f38a498d819d0b2733",
+    "distance197.npy": "8f6e62c5967524f6ae3754086a9e2f78615653053c4012865ba2f6da2c8e7113",
+    "Reference26_predictions59.csv": "a58f8d715c75e53eab263f1eedc2e1052f30cf90743e04f14a5f8b8a9c7e87c8",
+    "Compact14_predictions59.csv": "eb40091e4235fbce2ae71c67eed479c54532995f7e7f66b9855b62bec885091e",
+    "predictions59_comparison.csv": "f8e13f712696f715c93aed2c52a01024a7c315ca05dd52d4e349c10028757209"
+  }
+}

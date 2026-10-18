@@ -76,6 +76,8 @@ La evaluación es exploratoria después de amplia reutilización de las mismas e
 
 **Componentes de26:** [evidencia recuperada por función y variable](results/reference26_component_evidence/v1/README.md), con ablaciones existentes, interacciones, dependencias de calibración y límites.
 
+**Cuatro investigaciones de cierre:** [entrega reproducida en instalación limpia, soporte59, intervalos y sensibilidad sin HHI](results/four_final_checks/v1/README.md). Se conservan los champions26/14 y sus estimaciones finales.
+
 ## Cómo leer y reproducir
 
 Empieza por el [mapa de documentación](documentation/README.md), el [índice de experimentos](documentation/experiment_index.md) y las [convenciones de evaluación](documentation/model_comparison_convention.md).

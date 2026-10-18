@@ -50,3 +50,4 @@ Este índice contiene solicitudes, no un registro de ejecución. Herramienta rec
 | P044 | Regenerar presentaciones vigentes de resultados y predicciones26/14 | [Literal](prompts/P044_conversation.txt) | [Documento](../models/README.md) |
 | P045 | Reservar estado champion a26/14 y distinguir nombres heredados preservados | [Literal](prompts/P045_conversation.txt) | [Documento](../model_registry.md) |
 | P046 | Comparar distribución de59 predicciones26 con138 observaciones, global y por estado/municipio | [Literal](prompts/P046_conversation.txt) | [Documento](../models/Reference26/README.md) |
+| P047 | Ejecutar auditoría de entrega, soporte59, cobertura de intervalos y sensibilidad completa de26 sin HHI; preservar champions26/14 | [Literal](prompts/P047_conversation.txt) | [Documento](../models/Reference26/README.md) |

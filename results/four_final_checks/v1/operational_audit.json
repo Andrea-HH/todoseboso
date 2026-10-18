@@ -1,0 +1,81 @@
+{
+  "delivery_files": {
+    "final_train138.joblib": "54afbcf81d60623a634b64afb498152b11a0f66ea4c3e21cab2d4939250ac147",
+    "features197.parquet": "22a18f9907457dacd91377131ae56e1440ab6f47ca2307f38a498d819d0b2733",
+    "distance197.npy": "8f6e62c5967524f6ae3754086a9e2f78615653053c4012865ba2f6da2c8e7113",
+    "Reference26_predictions59.csv": "a58f8d715c75e53eab263f1eedc2e1052f30cf90743e04f14a5f8b8a9c7e87c8",
+    "Compact14_predictions59.csv": "eb40091e4235fbce2ae71c67eed479c54532995f7e7f66b9855b62bec885091e",
+    "predictions59_comparison.csv": "f8e13f712696f715c93aed2c52a01024a7c315ca05dd52d4e349c10028757209"
+  },
+  "file_checks": [
+    {
+      "model": "Reference26",
+      "n": 59,
+      "unique_IDs": true,
+      "same_expected_IDs": true,
+      "finite_positive": true,
+      "comparison_parity": true
+    },
+    {
+      "model": "Compact14",
+      "n": 59,
+      "unique_IDs": true,
+      "same_expected_IDs": true,
+      "finite_positive": true,
+      "comparison_parity": true
+    }
+  ],
+  "isolated_process_exit": 0,
+  "isolated_replay": {
+    "status": "passed",
+    "max_difference": {
+      "Reference26": 8.881784197001252e-16,
+      "Compact14": 4.440892098500626e-16
+    },
+    "python": "3.13.0 | packaged by conda-forge | (main, Nov 27 2024, 19:03:49) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "C:\\Users\\narro\\Desktop\\semestre\\fira_nuria\\outputs\\research\\four_final_checks\\v1\\isolated_replay_env\\Scripts\\python.exe",
+    "restricted_private_file_IO": true,
+    "no_refitting": true,
+    "imported_distributions": {
+      "setuptools": "78.1.1",
+      "numpy": "2.3.4",
+      "pytz": "2025.2",
+      "python-dateutil": "2.9.0.post0",
+      "pandas": "2.3.3",
+      "pyarrow": "23.0.1",
+      "six": "1.17.0",
+      "joblib": "1.5.2",
+      "psutil": "7.0.0",
+      "threadpoolctl": "3.6.0",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.16.2",
+      "Cython": "3.2.4",
+      "charset-normalizer": "3.3.2",
+      "geopandas": "1.1.3",
+      "shapely": "2.1.2",
+      "packaging": "25.0",
+      "certifi": "2026.1.4",
+      "pyproj": "3.7.2",
+      "rasterio": "1.5.2",
+      "click": "8.5.0",
+      "attrs": "25.4.0",
+      "affine": "3.0.1",
+      "exactextract": "0.3.0",
+      "matplotlib": "3.10.7",
+      "pillow": "11.3.0",
+      "defusedxml": "0.7.1",
+      "pyparsing": "3.2.5",
+      "cycler": "0.12.1",
+      "kiwisolver": "1.4.9",
+      "seaborn": "0.13.2",
+      "pywin32": "310",
+      "statsmodels": "0.14.5",
+      "patsy": "1.0.2",
+      "pyogrio": "0.12.1",
+      "zstandard": "0.25.0"
+    }
+  },
+  "original_files_unchanged": true,
+  "private_submission_files": "outputs/research/four_final_checks/v1/submission",
+  "limitation": "Isolated venv and fresh process reuse installed package versions via system_site_packages; not an independent OS or clean dependency installation. No automatic submission."
+}

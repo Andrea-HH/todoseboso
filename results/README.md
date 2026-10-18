@@ -13,3 +13,5 @@
 Las predicciones por parcela, modelos, datos y OOF permanecen en `outputs/` y `data/`, excluidos de Git. Este directorio publica resúmenes agregados. Un clon sólo de Git no incluye los archivos privados.
 
 [Fichas de los modelos](../documentation/models/README.md) · [Registro vigente](../documentation/model_registry.md).
+
+[Cuatro investigaciones finales](four_final_checks/v1/README.md): reproducción limpia, soporte59, intervalos y sensibilidad completa sin HHI. No modifica los champions26/14.

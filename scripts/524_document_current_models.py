@@ -346,6 +346,16 @@ def navigation():
 
 def main():
     cards();navigation()
+    if (ROOT/'results/four_final_checks/v1/README.md').exists():
+        path=ROOT/'README.md';text=path.read_text(encoding='utf-8')
+        note='**Cuatro investigaciones de cierre:** [entrega reproducida en instalación limpia, soporte59, intervalos y sensibilidad sin HHI](results/four_final_checks/v1/README.md). Se conservan los champions26/14 y sus estimaciones finales.\n\n'
+        if note not in text:text=text.replace('## Cómo leer y reproducir',note+'## Cómo leer y reproducir')
+        write('README.md',text)
+        for model in ['Reference26','Compact14']:
+            path=ROOT/'documentation/models'/model/'README.md'
+            text=path.read_text(encoding='utf-8')
+            text+='\n## Cuatro investigaciones finales\n\n[Auditoría de entrega, soporte59, intervalos y sensibilidad sin HHI](../../../results/four_final_checks/v1/README.md). Incluye reproducción con dependencias instaladas desde cero y65 folds de Reference25_NoHHI. Esta sensibilidad no es un nuevo champion ni tiene ajuste final/PRED. Los intervalos son una evaluación OOF con límites explícitos; no se garantizan intervalos para las59 estimaciones finales.\n'
+            write(path.relative_to(ROOT),text)
     refresh=ROOT/'scripts/532_refresh_results_readmes.py'
     if refresh.exists() and (ROOT/'results/current_champions_final/v1/prediction_audit.json').exists():
         import runpy

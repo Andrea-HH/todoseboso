@@ -1,0 +1,17 @@
+{
+  "performance_only": true,
+  "reason": "Equivalent sufficient-statistic local Ridge already audited in repo, memoized experts and memory-only transient inner fits. Original formulas, grids, folds, tie rules and all statistical choices unchanged. Original completed controls retained; additional full baseline controls required before new battery.",
+  "previous_sha256": {
+    "src/reference26_only.py": "ce2780d8847513478ddddc3d69dbc27df38eaaf6bdabc091b15e4316bcc37a55",
+    "src/current_champions.py": "bb732085d65f62d8235dfa96b2bdd61459f8920981be41508dc2770710a5875e",
+    "scripts/535_no_hhi_reference26.py": "a1291936bdf47d23ebbec89a39b280381a9722f4fbc78cbed0b4426b0757ad69"
+  },
+  "current_sha256": {
+    "src/reference26_only.py": "318551b8669437dc82d04083fa401346f28d11a3a2582dee75a0a349d898c867",
+    "src/current_champions.py": "bb732085d65f62d8235dfa96b2bdd61459f8920981be41508dc2770710a5875e",
+    "scripts/535_no_hhi_reference26.py": "83901d04818233c65d0265f21c0edb09c9ecb6346dc7181a64af099566e74633"
+  },
+  "ridge_unit_parity": "passed: ties, zero distances and constant columns",
+  "controls": "control_memory: fold0 random and63 spatial",
+  "original_sensitivity_comparisons": "Fast worker must match already-complete original sensitivity folds when available"
+}

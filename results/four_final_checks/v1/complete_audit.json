@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "studies": 4,
+  "no_HHI_external_folds": 65,
+  "new_predictions_oof": 1794,
+  "core_removed_from_both_consumers": true,
+  "baseline_control_folds": [
+    0,
+    63
+  ],
+  "baseline_control_max_difference": 4.440892098500626e-16,
+  "frozen_final_files_unchanged": true,
+  "new_final_fit": false,
+  "new_PRED_point_predictions": false,
+  "new_champion": false,
+  "sensitive_model": "Reference25_NoHHI; candidate only, not champion",
+  "sum_worker_seconds": 3765.8091395000374,
+  "warning_categories": {
+    "RuntimeWarning": 65
+  },
+  "convergence_warnings": 0
+}
