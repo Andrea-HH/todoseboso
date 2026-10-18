@@ -117,7 +117,7 @@ def main():
     assert "prefers-reduced-motion" in css
     figure = ROOT / "results/four_final_checks/v1/NoHHI_delta_RMSE.png"
     site_figure = ROOT / "site/media/NoHHI_delta_RMSE.png"
-    assert figure.read_bytes().startswith(b"\\x89PNG\\r\\n\\x1a\\n".decode("unicode_escape").encode("latin1"))
+    assert figure.read_bytes()[:8] == bytes((137, 80, 78, 71, 13, 10, 26, 10))
     assert figure.read_bytes() == site_figure.read_bytes()
     assert "./media/NoHHI_delta_RMSE.png" in html
 
