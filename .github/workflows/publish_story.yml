@@ -5,6 +5,7 @@ on:
     paths:
       - "site/**"
       - "scripts/sync_story_data.py"
+      - "scripts/check_new_research.py"
       - "tests/test_story_site.py"
       - ".github/workflows/publish_story.yml"
       - "results/current_champions/v1/metrics.csv"
@@ -47,8 +48,12 @@ jobs:
         run: python scripts/check_story_evidence.py
       - name: Audit repository documentation and frozen model provenance
         run: python scripts/520_validate_repository_documentation.py
+      - name: Verify the expanded statistical explanations
+        run: python scripts/check_new_research.py
       - name: Validate JavaScript syntax
-        run: node --check site/app.js
+        run: |
+          node --check site/app.js
+          node --check site/preguntas.js
 
   deploy:
     needs: validate
