@@ -82,7 +82,14 @@ def main():
         for raw in re.findall(r'(?<!!)\[[^\]]+\]\(([^)]+)\)',text):
             if raw.startswith(('http:','https:','mailto:','#')):continue
             destination=unquote(raw.split('#',1)[0].strip('<>'))
-            assert (p.parent/destination).exists(),f'Broken link: {name} -> {raw}'
+            linked=(p.parent/destination).resolve()
+            # Versioned reports legitimately link to private local output bundles.
+            # Keep checking public relative links; never publish those bundles.
+            if not linked.exists() and any(linked.is_relative_to(ROOT/folder)
+                                           for folder in ('outputs','data','docs/resources')):
+                checks['private_local_links_not_versioned']+=1
+                continue
+            assert linked.exists(),f'Broken link: {name} -> {raw}'
             checks['local_links']+=1
     manifest=read('configs/experiments/manifest.json')
     for record in manifest['snapshots']:
