@@ -6,6 +6,7 @@ No private rows, hidden yields, saved models, licensed images or fitted pipeline
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -67,6 +68,26 @@ def main() -> None:
     assert "./data/evidence.json" in js
     assert "Ninguna retirada individual" in html
     assert "ID_POLIGONO" not in out.read_text(encoding="utf-8")
+
+    # Distribution evidence is public, aggregated and historically frozen.
+    descriptive = read("results/reference26_distribution/v1/descriptive_global_state.csv")
+    observed = next(x for x in descriptive if x["scope"] == "global"
+                    and x["cohort"] == "Observed138")
+    predicted = next(x for x in descriptive if x["scope"] == "global"
+                     and x["cohort"] == "Predicted59")
+    assert int(observed["n"]) == 138 and int(predicted["n"]) == 59
+    for row in (observed, predicted):
+        assert f"{float(row['mean']):.4f}" in html
+        assert f"{float(row['std']):.4f}" in html
+    original_figure = ROOT / "results/reference26_distribution/v1/distribution_ECDF.png"
+    copied_figure = SITE / "media/distribution_ECDF.png"
+    assert original_figure.is_file() and copied_figure.is_file()
+    assert original_figure.read_bytes().startswith(b"\x89PNG\r\n\x1a\n")
+    assert (hashlib.sha256(original_figure.read_bytes()).digest()
+            == hashlib.sha256(copied_figure.read_bytes()).digest())
+    assert "./media/distribution_ECDF.png" in html
+    assert "no conocemos los 59 valores verdaderos" in html
+
     print("Public interpretation snapshot PASS: matched three upstream CSVs, four protocols.")
 
 
