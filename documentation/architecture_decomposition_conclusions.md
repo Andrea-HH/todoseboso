@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Descomposición y combinaciones: resultados e interpretación
 
@@ -6,7 +6,7 @@
 
 Hay simplificaciones útiles con pérdida pequeña en las métricas agregadas, pero no una mejora universal. La combinación de retirar el corrector interno y sustituir el gate geológico por un peso global aprende una mezcla distinta que puede funcionar con14 o12 entradas, sin Planet ni geología. Retirar únicamente el corrector interno perjudica los cuatro protocolos. Las interacciones entre componentes importan: no se pueden sumar las ganancias o pérdidas de cada retirada.
 
-La batería fija comprendió48 bases (ocho conjuntos locales × corrector interno ON/OFF × tres gates), cada una sola y con R3_MASK, más tres controles:99 entradas sobre los65 folds originales. No se seleccionó una arquitectura usando el fold externo, no hubo nuevas fuentes/screenings, y se conservaron138 respuestas, referencias, Champion y PRED59. Estas comparaciones siguen siendo exploratorias sobre particiones ya utilizadas.
+La batería fija comprendió48 bases (ocho conjuntos locales × corrector interno ON/OFF × tres gates), cada una sola y con R3_MASK, más tres controles:99 entradas sobre los65 folds originales. No se seleccionó una arquitectura usando el fold externo, no hubo nuevas fuentes/screenings, y se conservaron138 respuestas, referencias, modelo TOP20/TOP15 y PRED59. Estas comparaciones siguen siendo exploratorias sobre particiones ya utilizadas.
 
 ## Tabla principal
 
@@ -23,7 +23,7 @@ Cada celda es RMSE t/ha / R². Pred./calib. distingue entradas activas para pred
 | Sin pendiente media, interno conservado, gate PCA2 | 25/26 | .4749 / .6863 | .4811 / .6782 | .5722 / .5447 | .6299 / .4483 |
 | NDWI + pendiente, interno conservado, gate geológico | 22/26 | .4742 / .6873 | .4788 / .6812 | .5744 / .5412 | .6378 / .4344 |
 
-El menor RMSE aleatorio de esta batería es .47415, no supera el .4725 / .6895 de vecinos satelitales DIRECT de una etapa anterior con protocolos compatibles. El menor RMSE espacial puntual, .62990, pierde por perfil. No se declara un nuevo Champion ni se presenta una sensibilidad escogida externamente como confirmación independiente.
+El menor RMSE aleatorio de esta batería es .47415, no supera el .4725 / .6895 de vecinos satelitales DIRECT de una etapa anterior con protocolos compatibles. El menor RMSE espacial puntual, .62990, pierde por perfil. No se declara un nuevo líder ni se presenta una sensibilidad escogida externamente como confirmación independiente.
 
 ## 1. Quitar el corrector interno: depende del resto del sistema
 
@@ -79,7 +79,7 @@ Mantener el actual26 como referencia de precisión; conservar el modelo14 como a
 
 La hipótesis de redundancia entre corrector interno y R3 no se sostiene como regla general: la retirada aislada pierde; combinada con otra mezcla es competitiva. Las siete entradas locales tampoco son indispensables en toda arquitectura. No se identificó una combinación que mejore todas las métricas, regiones y extremos ni se certifica un subconjunto óptimo global de variables.
 
-Ninguno de412 contrastes supera .05 tras Holm. Intervalos de OOF fijas y mismos folds no incorporan toda la selección histórica/reajuste, y sólo hay cinco bloques espaciales. Ausencia de significancia no demuestra equivalencia. No se promueve Champion ni se entrenan final138 o PRED59.
+Ninguno de412 contrastes supera .05 tras Holm. Intervalos de OOF fijas y mismos folds no incorporan toda la selección histórica/reajuste, y sólo hay cinco bloques espaciales. Ausencia de significancia no demuestra equivalencia. No se promueve modelo TOP20/TOP15 ni se entrenan final138 o PRED59.
 
 ## Entregables y auditoría
 

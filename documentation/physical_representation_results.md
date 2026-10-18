@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Representaciones físicas y dimensión seleccionada internamente
 
@@ -94,4 +94,4 @@ Carpeta `outputs/modeling/physical_representation/v1/`; libro `resultados_repres
 
 Se generaron 109,434 OOF nuevas de correcciones más 1,794 de C-T3 recuperado. Son 65 contenedores de modelos externos, no un entrenamiento final. La auditoría verifica exclusiones de residuos, integridad de fuentes y reproducción de predicciones. Los detalles finales están en `manifest.json`. La ejecución de modelos duró aproximadamente 201 segundos, además de síntesis y auditoría.
 
-No se modificaron resultados anteriores, Champion, C-T3 ni GeoC. No se entrenó un modelo final sobre las 138 ni se generaron nuevas predicciones para las 59 parcelas.
+No se modificaron resultados anteriores, modelo TOP20/TOP15, C-T3 ni GeoC. No se entrenó un modelo final sobre las 138 ni se generaron nuevas predicciones para las 59 parcelas.

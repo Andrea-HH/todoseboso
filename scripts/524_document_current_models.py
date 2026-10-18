@@ -198,7 +198,7 @@ def cards():
         if (ROOT/'outputs/modeling/current_champions_final/v1/complete.json').exists():
             text+='\n## Comparación final59 disponible\n\nLos champions26/14 ya tienen ajustes finales con138 y sus59 estimaciones se incorporaron a la comparación existente sin sobrescribir las anteriores. [Reporte de diferencias entre predicciones](../../../results/current_champions_final/v1/README.md). Archivo privado: `outputs/modeling/current_champions_final/v1/comparacion_predicciones59.xlsx`. Estas diferencias no son errores contra rendimientos observados.\n'
         write(f'documentation/models/{model}/README.md', text)
-    write('documentation/models/historical_top20_top15/README.md', '''# Champion histórico TOP20 → TOP15 → topografía
+    write('documentation/models/historical_top20_top15/README.md', '''# Modelo histórico — TOP20 → TOP15 → topografía
 
 **Estado: histórico. No es Reference26 ni Compact14, los dos champions actuales.** Identificador conservado: `A_CURRENT_CH_H_T`; alias antiguos `Champion` y `CHAMPION`. No se reasigna ese identificador a la receta de 26 entradas.
 
@@ -343,7 +343,16 @@ def navigation():
 
 
 def main():
-    cards();navigation();rows=status_audit()
+    cards();navigation()
+    refresh=ROOT/'scripts/532_refresh_results_readmes.py'
+    if refresh.exists() and (ROOT/'results/current_champions_final/v1/prediction_audit.json').exists():
+        import runpy
+        runpy.run_path(str(refresh))['main']()
+    rows=status_audit()
+    naming=ROOT/'scripts/533_current_champion_naming.py'
+    if naming.exists():
+        import runpy
+        runpy.run_path(str(naming))['main']()
     print(json.dumps(dict(model_cards=6,documents_reviewed=len(rows),training_performed=False,
                           frozen_designs_modified=False,predictions_generated=False),indent=2))
 

@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # G y H — Señales climáticas y complementariedad
 
@@ -32,7 +32,7 @@ La temperatura contiene información temporal estructurada: dos componentes de T
 
 Lluvia, temperatura y combinación mantienen 53 perfiles exactos. Añadir temperatura subdivide cero grupos de lluvia y distingue cero pares antes iguales. Los rásteres tienen la misma resolución práctica de 0.05° y todas las parcelas intersectan las mismas celdas. Existe una diferencia de origen de aproximadamente 3.3 cm; no se afirma igualdad bit a bit de las cuadrículas.
 
-El Climate Current original recuperado es Elastic Net con 48 resúmenes retenidos: diez de precipitación y 38 térmicos. Se reutilizaron exactamente sus predicciones aleatorias originales; su RMSE publicada, **0.509210**, es una media de RMSE de folds, mientras **0.520019** es la media de RMSE por repetición completa. Ambas agregaciones se conservan y no deben mezclarse. Champion usa una selección climática TOP20 y correcciones residuales de Sentinel histórico y topografía; sus resultados se recuperaron como contexto y permanecen intactos.
+El Climate Current original recuperado es Elastic Net con 48 resúmenes retenidos: diez de precipitación y 38 térmicos. Se reutilizaron exactamente sus predicciones aleatorias originales; su RMSE publicada, **0.509210**, es una media de RMSE de folds, mientras **0.520019** es la media de RMSE por repetición completa. Ambas agregaciones se conservan y no deben mezclarse. modelo TOP20/TOP15 usa una selección climática TOP20 y correcciones residuales de Sentinel histórico y topografía; sus resultados se recuperaron como contexto y permanecen intactos.
 
 ## Reproducción
 
@@ -61,7 +61,7 @@ python -m unittest discover -s tests -p 'test_climate_signal*.py' -v
 python -m unittest discover -s tests -p 'test_rainfall*.py' -v
 ```
 
-Las verificaciones abarcan cobertura y alineación, cálculo de resúmenes y anomalías, exclusión de meses futuros y etiquetas ocultas, fitting interno, conservación de folds, reproducción de modelos guardados, escalamiento exclusivo de entrenamiento, cache original y deltas pareados. La evaluación de 59 parcelas sin etiqueta, un entrenamiento definitivo y cambios al Champion quedan fuera de estas investigaciones.
+Las verificaciones abarcan cobertura y alineación, cálculo de resúmenes y anomalías, exclusión de meses futuros y etiquetas ocultas, fitting interno, conservación de folds, reproducción de modelos guardados, escalamiento exclusivo de entrenamiento, cache original y deltas pareados. La evaluación de 59 parcelas sin etiqueta, un entrenamiento definitivo y cambios al modelo TOP20/TOP15 quedan fuera de estas investigaciones.
 
 ## Investigaciones propuestas, aún sin implementar
 

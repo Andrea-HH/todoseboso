@@ -1,57 +1,70 @@
-# Comparación de predicciones finales de 59 parcelas
+# Resultados finales — Reference26 y Compact14
 
-Se incorporaron **Reference26 y Compact14**, champions actuales, a la comparación existente de C-T3, Champion histórico TOP20/TOP15, EQUAL3 y L40. Los valores anteriores se conservaron sin reentrenar sus modelos. El archivo original permanece intacto.
+**Esta presentación corresponde a las59 predicciones finales de los dos champions actuales**, ajustados con los138 rendimientos conocidos. Incluye como referencias las estimaciones anteriores de C-T3, modelo histórico TOP20/TOP15, EQUAL3 y L40, preservadas sin cambios. No se promovió otro champion ni se eligieron pesos por acuerdo entre estas predicciones.
 
-Las dos recetas actuales se consolidaron con los 138 rendimientos conocidos, KFold interno4 con shuffle y semilla2026, mismos hiperparámetros y lógica de calibración congelados. La selección y los residuos internos usan sólo entrenamiento. No se seleccionaron variantes por sus predicciones59 ni por acuerdo con L40. C-T3 interno se reajusta como parte nativa de la receta; la comparación conserva el C-T3 final histórico y entrega el nuevo por separado.
+## Evidencia de validación de los champions
 
-## Diferencias entre predicciones
+Estas métricas son OOF de las138 parcelas conocidas, **no errores de las59**. Son los65 folds originales:50 aleatorios,5 por perfil,5 municipales y5 espaciales. Aleatoria promedia métricas de10 OOF completas, no RMSE de folds.
 
-Estos números son **desacuerdos**, no RMSE/MAE contra rendimientos reales. No se conoce cuál modelo acierta más en las59 y el rango entre modelos no es un intervalo predictivo.
-
-| A | B | Media A−B t/ha | Diferencia absoluta media t/ha | Máxima diferencia absoluta |
+| Modelo | Protocolo | RMSE t/ha | R² | MAE t/ha |
 |---|---|---|---|---|
-| CT3_t_ha | Reference26_t_ha | -0.0365 | 0.1324 | 0.4476 |
-| CT3_t_ha | Compact14_t_ha | -0.0302 | 0.1307 | 0.4384 |
-| Historical_TOP20_TOP15_t_ha | Reference26_t_ha | -0.0541 | 0.1441 | 0.4944 |
-| Historical_TOP20_TOP15_t_ha | Compact14_t_ha | -0.0479 | 0.1342 | 0.4795 |
-| EQUAL3_t_ha | Reference26_t_ha | -0.0166 | 0.1135 | 0.4582 |
-| EQUAL3_t_ha | Compact14_t_ha | -0.0103 | 0.1182 | 0.5292 |
-| Local04D_t_ha | Reference26_t_ha | -0.0121 | 0.1010 | 0.3054 |
-| Local04D_t_ha | Compact14_t_ha | -0.0059 | 0.1037 | 0.2401 |
-| Reference26_t_ha | Compact14_t_ha | 0.0063 | 0.0376 | 0.1054 |
+| Reference26 | random | 0.4748 | 0.6865 | 0.3396 |
+| Reference26 | climate_profile | 0.4774 | 0.6831 | 0.3342 |
+| Reference26 | municipality | 0.5752 | 0.5400 | 0.4491 |
+| Reference26 | spatial | 0.6333 | 0.4423 | 0.5004 |
+| Compact14 | random | 0.4773 | 0.6832 | 0.3399 |
+| Compact14 | climate_profile | 0.4793 | 0.6805 | 0.3336 |
+| Compact14 | municipality | 0.5755 | 0.5395 | 0.4468 |
+| Compact14 | spatial | 0.6431 | 0.4250 | 0.5140 |
 
-## Archivos
+El resultado97/41 de26 (.4625 RMSE/.6971 R²) y14 (.4661/.6933) pertenece a [otra tabla de evaluación](../../comparison_97_41/v1/README.md), sobre las mismas etiquetas. Los residuos regionales y las auditorías OOF están en [validación actual](../../current_champions/v1/README.md).
 
-Los detalles por parcela y municipio son privados, bajo `outputs/modeling/current_champions_final/v1/`: `comparacion_predicciones59.xlsx`, `predictions59_comparison.csv`, dos archivos individuales de champions, desacuerdos regionales, soporte y modelo final. Git conserva sólo resúmenes sin identificadores. [Fichas de modelos](../../../documentation/models/README.md).
+## Qué predicen para las59
 
-Soporte completo para R3: 51/59 parcelas. La corrección final se desactiva donde falta soporte, siguiendo la receta original.
+Estadísticos descriptivos en t/ha, no residuos ni intervalos de error:
 
-## Interpretación de las diferencias
+| Champion | Parcelas | Media | Desviación | Mínimo | Mediana | Máximo |
+|---|---|---|---|---|---|---|
+| Reference26 | 59 | 3.9564 | 0.6976 | 2.7598 | 4.3489 | 4.8196 |
+| Compact14 | 59 | 3.9502 | 0.6855 | 2.7686 | 4.3170 | 4.8113 |
 
-- Reference26 frente a CT3_t_ha: diferencia firmada media champion−referencia **+0.0365 t/ha**, diferencia absoluta media **0.1324 t/ha**.
-- Reference26 frente a Local04D_t_ha: diferencia firmada media champion−referencia **+0.0121 t/ha**, diferencia absoluta media **0.1010 t/ha**.
-- Compact14 frente a CT3_t_ha: diferencia firmada media champion−referencia **+0.0302 t/ha**, diferencia absoluta media **0.1307 t/ha**.
-- Compact14 frente a Local04D_t_ha: diferencia firmada media champion−referencia **+0.0059 t/ha**, diferencia absoluta media **0.1037 t/ha**.
+## Diferencias con otras predicciones
 
-Por estado (diferencia firmada champion−referencia / diferencia absoluta media):
+Diferencia absoluta media: cercanía entre estimaciones, **no MAE contra rendimiento verdadero**. El rango entre modelos no es un intervalo predictivo.
 
-| Estado | Champion | Frente a | Media firmada | Absoluta media | n |
-|---|---|---|---|---|---|
-| Hidalgo | Reference26_t_ha | CT3_t_ha | +0.0055 | 0.1588 | 15 |
-| Puebla | Reference26_t_ha | CT3_t_ha | +0.0316 | 0.0988 | 29 |
-| Tlaxcala | Reference26_t_ha | CT3_t_ha | +0.0769 | 0.1709 | 15 |
-| Hidalgo | Compact14_t_ha | CT3_t_ha | -0.0109 | 0.1289 | 15 |
-| Puebla | Compact14_t_ha | CT3_t_ha | +0.0269 | 0.1058 | 29 |
-| Tlaxcala | Compact14_t_ha | CT3_t_ha | +0.0778 | 0.1807 | 15 |
-| Hidalgo | Reference26_t_ha | Local04D_t_ha | -0.0434 | 0.0878 | 15 |
-| Puebla | Reference26_t_ha | Local04D_t_ha | +0.0180 | 0.0956 | 29 |
-| Tlaxcala | Reference26_t_ha | Local04D_t_ha | +0.0562 | 0.1246 | 15 |
-| Hidalgo | Compact14_t_ha | Local04D_t_ha | -0.0599 | 0.1130 | 15 |
-| Puebla | Compact14_t_ha | Local04D_t_ha | +0.0134 | 0.0841 | 29 |
-| Tlaxcala | Compact14_t_ha | Local04D_t_ha | +0.0571 | 0.1324 | 15 |
+| A | B | Diferencia absoluta media, t/ha | Máxima diferencia absoluta |
+|---|---|---|---|
+| CT3_t_ha | Reference26_t_ha | 0.1324 | 0.4476 |
+| CT3_t_ha | Compact14_t_ha | 0.1307 | 0.4384 |
+| Historical_TOP20_TOP15_t_ha | Reference26_t_ha | 0.1441 | 0.4944 |
+| Historical_TOP20_TOP15_t_ha | Compact14_t_ha | 0.1342 | 0.4795 |
+| EQUAL3_t_ha | Reference26_t_ha | 0.1135 | 0.4582 |
+| EQUAL3_t_ha | Compact14_t_ha | 0.1182 | 0.5292 |
+| Local04D_t_ha | Reference26_t_ha | 0.1010 | 0.3054 |
+| Local04D_t_ha | Compact14_t_ha | 0.1037 | 0.2401 |
+| Reference26_t_ha | Compact14_t_ha | 0.0376 | 0.1054 |
 
-Las diferencias pueden descomponerse en la mezcla entre C-T3 y el experto y la corrección R3: `champion_prediction_components.csv` verifica que esos componentes reconstruyen exactamente las predicciones. Esto explica el cálculo; no demuestra efectos causales de variables. Los desacuerdos por municipio y las parcelas con mayor separación están en el Excel privado.
+[Todos los pares y correlaciones](pairwise_disagreement.csv) · [Distribuciones de los seis modelos](prediction_distributions.csv). Los estados, municipios y parcelas con mayor desacuerdo están en el Excel privado.
 
-La recalibración nativa de C-T3 difiere de su consolidación histórica en **0.0473 t/ha de diferencia absoluta media**. Por ello, la diferencia champion−C-T3 histórico incluye tanto la nueva calibración de la base como las capas complementarias; no debe atribuirse por completo al experto o a R3. El Excel conserva ambas versiones y los componentes usan la base nativa.
+## Cómo se obtuvieron y comprobaron
 
-No se adoptó un nuevo modelo ni se cambiaron pesos según esta comparación. Las métricas de validación de138 permanecen intactas y siguen siendo la evidencia de desempeño. No se calculan residuos, R² o errores sobre las59.
+Las recetas congeladas se consolidaron con138 etiquetas y KFold interno4, shuffle y semilla2026. Las entradas PRED se incorporaron después de ajustar. Se verificó paridad de las26 variables reconstruidas en las138 conocidas y geometría congelada exacta. Las predicciones se reprodujeron desde el modelo guardado y no cambiaron al alterar etiquetas ficticias PRED sólo en memoria. El registro de exclusión interna se verificó.
+
+R3 dispone de soporte completo en51/59; en las otras se desactiva. La base C-T3 recalibrada nativamente difiere de su consolidación histórica en0.0473t/ha de diferencia absoluta media. El Excel conserva ambas: la diferencia champion−C-T3 histórico incluye esa recalibración, además de las capas complementarias.
+
+La descomposición por parcela comprueba la suma de C-T3, mezcla local, corrector interno y ajuste R3. Es explicación del cálculo, no atribución causal. Se registró una advertencia ambiental OpenMP; el ajuste y las comprobaciones terminaron, sin advertencias de convergencia registradas. [Auditoría](prediction_audit.json) · [Procedencia de la generación](provenance.json). Las métricas de validación previas permanecen intactas.
+
+## Archivos finales locales
+
+| Archivo | Contenido |
+|---|---|
+| [Reference26_predictions59.csv](../../../outputs/modeling/current_champions_final/v1/Reference26_predictions59.csv) | 59 ID y rendimientos del champion26 |
+| [Compact14_predictions59.csv](../../../outputs/modeling/current_champions_final/v1/Compact14_predictions59.csv) | 59 ID y rendimientos del champion14 |
+| [comparacion_predicciones59.xlsx](../../../outputs/modeling/current_champions_final/v1/comparacion_predicciones59.xlsx) | Comparación de seis modelos, regiones, soporte y componentes |
+| [predictions59_comparison.csv](../../../outputs/modeling/current_champions_final/v1/predictions59_comparison.csv) | Tabla conjunta; ambas versiones C-T3 explícitas |
+| [champion_prediction_components.csv](../../../outputs/modeling/current_champions_final/v1/champion_prediction_components.csv) | Descomposición verificada de26/14 |
+| [prediction_scatter59.png](../../../outputs/modeling/current_champions_final/v1/prediction_scatter59.png) | Gráficas de desacuerdo por estado |
+
+Estos enlaces requieren la copia local: `outputs/` no se sube a Git. Su existencia no acredita envío al comité. Todavía no conocemos el error de las59.
+
+[Ficha26](../../../documentation/models/Reference26/README.md) · [Ficha14](../../../documentation/models/Compact14/README.md) · [Índice de resultados](../../README.md). Generación reproducible: `scripts/526_current_champions_final59.py`; descomposición: `scripts/527_finalize_prediction_comparison.py`; esta presentación se regenera con `scripts/532_refresh_results_readmes.py` sin entrenar modelos.

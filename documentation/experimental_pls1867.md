@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Experimento PLS con 1,867 descriptores
 
@@ -10,6 +10,6 @@ RMSE aleatoria/perfil/municipal/espacial: 0.538506 / 0.559928 / 0.716929 / 0.891
 
 Dos pruebas unitarias pasaron. Se verific? reproducci?n OOF desde los 65 modelos guardados e integridad de todos los artefactos sellados. Las m?tricas se calcularon sobre OOF completas por repetici?n y luego se promediaron las diez repeticiones aleatorias; las m?tricas por fold son diagn?sticas.
 
-Durante la ejecuci?n threadpoolctl emiti? advertencias de coexistencia Intel y LLVM OpenMP fuera del contexto de captura de ajustes. La ejecuci?n concluy? y produjo predicciones finitas; estas advertencias de runtime no deben confundirse con advertencias de convergencia, registradas en fit_registry.csv. No se ampli? la bater?a ni se promovi? un Champion.
+Durante la ejecuci?n threadpoolctl emiti? advertencias de coexistencia Intel y LLVM OpenMP fuera del contexto de captura de ajustes. La ejecuci?n concluy? y produjo predicciones finitas; estas advertencias de runtime no deben confundirse con advertencias de convergencia, registradas en fit_registry.csv. No se ampli? la bater?a ni se promovi? un modelo TOP20/TOP15.
 
 Reproducci?n: python scripts/369_experimental_pls1867.py, con salida nueva/versionada al repetir para preservar v1. Implementaci?n: src/experimental_pls.py.

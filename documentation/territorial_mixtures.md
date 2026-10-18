@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # R1–R3: resultados de mezclas globales, municipales y por características
 
@@ -24,7 +24,7 @@ RMSE en t/ha, menor es mejor. OOF completas por repetición y media de diez repe
 | R2 municipal | 0.4960 | **0.4977** | **0.5277** | 0.6783 |
 | R3 por características | **0.4957** | 0.4995 | 0.5326 | 0.6896 |
 
-R1 no mejora al promedio fijo. R2 mejora aleatoria 0.0021 y R3 0.0025 frente a EQUAL3; ambos mejoran en 8 de las 10 repeticiones aleatorias, que no son muestras independientes. Las diferencias son pequeñas y no demuestran superioridad estadística. El Champion aleatorio compatible es 0.498127: las ventajas de R2/R3 frente a él siguen siendo pequeñas, y no hay una comparación territorial equivalente del Champion.
+R1 no mejora al promedio fijo. R2 mejora aleatoria 0.0021 y R3 0.0025 frente a EQUAL3; ambos mejoran en 8 de las 10 repeticiones aleatorias, que no son muestras independientes. Las diferencias son pequeñas y no demuestran superioridad estadística. El modelo TOP20/TOP15 aleatorio compatible es 0.498127: las ventajas de R2/R3 frente a él siguen siendo pequeñas, y no hay una comparación territorial equivalente del modelo TOP20/TOP15.
 
 ## Qué aprendió R2
 
@@ -84,7 +84,7 @@ Se ajustaron 914 GPR profundos y 29,858 CatBoost incluyendo sus selecciones y re
 
 Después de terminar los expertos se corrigió un error de exportación: el campo params estaba duplicado en la llamada que construye filas de la tabla de selección. Se archivó la fuente anterior y se registraron hashes anterior/corregido en `audit/implementation_fix.json`. No cambió ninguna especificación, rejilla, partición, criterio o dato congelado. Se reutilizaron los 914 paquetes profundos, sin nuevos ajustes. El intento interrumpido realizó 21 ajustes de R1 adicionales, registrados aparte; no contribuyen a las predicciones finales. La fuente original, la corregida y los archivos consumidos se verificaron mediante la cadena de auditoría. El tiempo de manifest.wall_seconds corresponde a la ejecución reanudada, excluyendo la fase profunda ya terminada.
 
-No se ajustó un modelo final de 138 etiquetas, no se generaron las 59 predicciones PRED y no se modificó Champion. Las etiquetas se han explorado repetidamente: resultados exploratorios, sin confirmación independiente o superioridad estadística. No se presentan intervalos de mezcla sin calibración.
+No se ajustó un modelo final de 138 etiquetas, no se generaron las 59 predicciones PRED y no se modificó modelo TOP20/TOP15. Las etiquetas se han explorado repetidamente: resultados exploratorios, sin confirmación independiente o superioridad estadística. No se presentan intervalos de mezcla sin calibración.
 
 - [Diseño prospectivo](territorial_mixtures_design.md)
 - [Configuración congelada](../outputs/modeling/territorial_mixtures/v1/frozen_design.json)

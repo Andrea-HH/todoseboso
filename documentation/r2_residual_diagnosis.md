@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # R2: investigación de sesgo residual municipal
 
@@ -49,7 +49,7 @@ Conservar R2 como candidato para municipios representados y C-T3/EQUAL3 como ref
 
 ## Artefactos y verificación
 
-Dos pruebas pasaron: remuestreo determinista que conserva perfiles como unidades y omisiones sin alterar residuos originales. Se verificaron por SHA-256 los archivos consumidos. Cero ajustes de modelos, cero nuevas OOF, sin modificación del Champion, rendimientos o predicciones PRED.
+Dos pruebas pasaron: remuestreo determinista que conserva perfiles como unidades y omisiones sin alterar residuos originales. Se verificaron por SHA-256 los archivos consumidos. Cero ajustes de modelos, cero nuevas OOF, sin modificación del modelo TOP20/TOP15, rendimientos o predicciones PRED.
 
 - [Diseño diagnóstico y límites](../outputs/research/r2_residual_diagnosis/v1/frozen_diagnostic_design.json)
 - [Informe y tablas](../outputs/research/r2_residual_diagnosis/v1/report/informe.md)

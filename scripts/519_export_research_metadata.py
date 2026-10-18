@@ -199,6 +199,8 @@ def prompts():
         ('quiero que ademas agregues esa metrica en los modelos donde los tengo disponibles ya sea en un  readme de comparacion global o dentro de las fichas especificas de los modelos','Incorporar el banco97/41 en comparación global y fichas disponibles','models/README.md'),
         ('okay tambien ahora para ams metodologicamente tengo duda en la parte de mis 4 variables climatica se especifica que no p test was done can yu mahe a hipotheisis testing for relevance de esas varaibels o dodne le daria mayor credidbilidad a mi modleo 26','Contrastar relevancia del núcleo C-T3 y distinguir asociación de aporte predictivo y credibilidad de26','models/Reference26/README.md'),
         ('realiza estos reportes como dices durante el modelado ya fueron explradas combinaciones existentes recura eso y presenta la manera en que cada factor fuede ser relevante o cumplor la funcion que se le dio','Recuperar ablaciones y evidencia existente por componente de26 sin duplicar modelado','models/Reference26/README.md'),
+        ('las presentaciones de rewusltados si estan sobre las predicciones de 14 y 26 si no reggenra esos read me','Regenerar presentaciones vigentes de resultados y predicciones26/14','models/README.md'),
+        ('porfavor checa que en todo el repositorio ya nos estemos refiriendo como champion a 26 y 14 nada ams','Reservar estado champion a26/14 y distinguir nombres heredados preservados','model_registry.md'),
     ]
     for j,(message,purpose,evidence) in enumerate(messages,len(rows)+1):
         target=ROOT/'documentation/ai/prompts'/f'P{j:03d}_conversation.txt'

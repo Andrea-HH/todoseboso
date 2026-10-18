@@ -6,7 +6,7 @@ Los [lineamientos del reto](../docs/guidelines/Lineamientos%20y%20Gui%CC%81a%20d
 
 **Herramienta identificable en esta conversación: Codex, asistente de IA generativa.** No se reconstruye una versión histórica de modelo, fecha, temperatura, configuración o número de tokens sin evidencia. Los textos adjuntos fueron proporcionados por el usuario; el registro no atribuye su autoría original a una persona o modelo distinto. No hay evidencia suficiente aquí para declarar uso o ausencia de IA en el otro repositorioGeoC o por todos los integrantes del equipo.
 
-Registro recuperado al2026-10-18: **43 prompts**,21 adjuntos originales y22 mensajes literales de la conversación, indexados en [ai/README.md](ai/README.md) y [prompt_inventory.csv](ai/prompt_inventory.csv). Incluye la selección explícita de26/14 y la solicitud de reproducción sinL40. Los adjuntos se conservan byte por byte conSHA256; los mensajes son transcripciones del texto disponible. Ningún resumen redactado ahora se presenta como un prompt original.
+Registro recuperado al2026-10-18: **45 prompts**,21 adjuntos originales y24 mensajes literales de la conversación, indexados en [ai/README.md](ai/README.md) y [prompt_inventory.csv](ai/prompt_inventory.csv). Incluye la selección explícita de26/14 y la solicitud de reproducción sinL40. Los adjuntos se conservan byte por byte conSHA256; los mensajes son transcripciones del texto disponible. Ningún resumen redactado ahora se presenta como un prompt original.
 
 ## En qué se utilizó la asistencia
 
@@ -29,7 +29,7 @@ El asistente puede producir código que calcula una métrica; **el valor válido
 - Una solicitud puede incluir experimentos pospuestos. Por ejemplo, el promptF8 se relaciona con una auditoría/propuesta cuyo documento declara que no se ejecutóF8.
 - Los mensajes breves «ejecuta», «continúa» y similares dependen de contexto. Sus extractos no constituyen por sí solos una especificación reproducible; consultar el diseño y los resultados citados.
 - Documentos relacionados permiten localizar la investigación, pero no demuestran que todo su contenido fuera generado por un prompt aislado. No se dispone de un mapa completo prompt→línea de código.
-- Las correcciones, pruebas y decisiones deben conservar su procedencia. Una explicación favorable no autoriza automáticamente un cambio del Champion o predicciones59.
+- Las correcciones, pruebas y decisiones deben conservar su procedencia. Una explicación favorable no autoriza automáticamente un cambio del modelo TOP20/TOP15 o predicciones59.
 
 ## Límites del registro recuperado
 

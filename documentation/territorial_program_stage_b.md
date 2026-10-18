@@ -1,14 +1,14 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Etapa B — Aprendizaje de diferencias intraperfil y mezcla fija
 
-El objetivo intraperfil no produce una mejora defendible de predicción regional. B1 empeora la diferenciación equilibrada; B3 obtiene una mejora local pequeña, con un costo municipal importante. La mezcla fija Champion/F4-S1 mejora modestamente RMSE y MAE aleatorios. Son dos conclusiones independientes y exploratorias, no una confirmación de mejora en regiones nuevas.
+El objetivo intraperfil no produce una mejora defendible de predicción regional. B1 empeora la diferenciación equilibrada; B3 obtiene una mejora local pequeña, con un costo municipal importante. La mezcla fija modelo TOP20/TOP15/F4-S1 mejora modestamente RMSE y MAE aleatorios. Son dos conclusiones independientes y exploratorias, no una confirmación de mejora en regiones nuevas.
 
 ## Antecedentes, congelación y ámbito
 
-Se recuperaron Etapa A, F4-S1/F4-E1/F4-E2, J0, Champion y los65folds externos/particiones internas existentes. Etapa A documentó fuentes50k suspendidas; ninguna variable territorial, pendiente, relieve, amplitud térmica ni otros índices se introduce en B. Hay138TRAIN,59PRED sin etiquetas utilizadas. El manifiesto `frozen_design.json` se generó antes de las métricas externas nuevas. Los hashes del código de aprendizaje se congelaron después de las pruebas sintéticas y antes del ajuste externo. Los cambios previos a ese ajuste fueron correcciones técnicas para admitir grupos y verificar el caso límite cuadrático, sin alterar variables, grilla o criterios.
+Se recuperaron Etapa A, F4-S1/F4-E1/F4-E2, J0, modelo TOP20/TOP15 y los65folds externos/particiones internas existentes. Etapa A documentó fuentes50k suspendidas; ninguna variable territorial, pendiente, relieve, amplitud térmica ni otros índices se introduce en B. Hay138TRAIN,59PRED sin etiquetas utilizadas. El manifiesto `frozen_design.json` se generó antes de las métricas externas nuevas. Los hashes del código de aprendizaje se congelaron después de las pruebas sintéticas y antes del ajuste externo. Los cambios previos a ese ajuste fueron correcciones técnicas para admitir grupos y verificar el caso límite cuadrático, sin alterar variables, grilla o criterios.
 
-B0 reutiliza literalmente F4-E1/F4-S1; B2 reutiliza F4-E2. B1 usa las mismas siete lluvias+NDVI mayo queB0 y B3 añade el mismo inicio de ascensoLAI queB2. Se guardaron130modelos candidatos externos y130controles de implementación lambda0, que no son nuevas candidatas predictivas. Las cuatro arquitecturas tienen7,176prediccionesOOF. No se recalculan rasgos ni se entrenan modelos finales sobre las59PRED. Champion no se reentrena.
+B0 reutiliza literalmente F4-E1/F4-S1; B2 reutiliza F4-E2. B1 usa las mismas siete lluvias+NDVI mayo queB0 y B3 añade el mismo inicio de ascensoLAI queB2. Se guardaron130modelos candidatos externos y130controles de implementación lambda0, que no son nuevas candidatas predictivas. Las cuatro arquitecturas tienen7,176prediccionesOOF. No se recalculan rasgos ni se entrenan modelos finales sobre las59PRED. modelo TOP20/TOP15 no se reentrena.
 
 ## Identidad, normalización y solver
 
@@ -101,7 +101,7 @@ Lambda no es uniformemente mayor quecero: B1 lo desactiva en64%deajustes aleator
 
 ## Mezcla fija independiente
 
-Se recuperan exactamente1,380prediccionescompatibles porID/repetición/fold yY. Cada entrada procede del archivo OOF de su modelo; se mantiene la definición y configuración archivada sin certificar retrospectivamente toda su selección interna como un algoritmo nuevo. No existen Champion municipal/espacial compatibles y no se construyen métricas ficticias. El peso0.5/0.5 no se ajusta y B1/B3 no entran en la mezcla.
+Se recuperan exactamente1,380prediccionescompatibles porID/repetición/fold yY. Cada entrada procede del archivo OOF de su modelo; se mantiene la definición y configuración archivada sin certificar retrospectivamente toda su selección interna como un algoritmo nuevo. No existen modelo TOP20/TOP15 municipal/espacial compatibles y no se construyen métricas ficticias. El peso0.5/0.5 no se ajusta y B1/B3 no entran en la mezcla.
 
 | experiment | RMSE | MAE | R2 | bias_pred_minus_y |
 | --- | --- | --- | --- | --- |
@@ -119,7 +119,7 @@ La mejoraRMSE0.49813→0.49360 yMAE0.35887→0.35343 se reproduce. Nueve repetic
 | --- | --- | --- |
 | B1 | descartar complejidad adicional | no mejora local consistente;lambda0frecuente y gran deterioro municipal |
 | B3 | conservar exclusivamente para investigación | mejora local pequeña aleatoria/perfil, incluida sensibilidadsinChignahuapan, con deterioro municipal y local espacial |
-| FIXED_50_50 | conservar como candidato exploratorio aleatorio | mejora RMSE/MAE; transferencia no evaluable con Champion disponible |
+| FIXED_50_50 | conservar como candidato exploratorio aleatorio | mejora RMSE/MAE; transferencia no evaluable con modelo TOP20/TOP15 disponible |
 | Stage C | posible investigación independiente; no ejecutar aquí | B no justifica promover objetivo intraperfil; jerarquía puede probar otra hipótesis con control compacto |
 
 1. Objetivo local: B1 no reduce elRMSE equilibrado deforma consistente; B3 logra mejora pequeña enaleatoria/perfil.

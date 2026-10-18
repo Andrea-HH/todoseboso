@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Etapa B — Resumen de decisiones
 
@@ -19,24 +19,24 @@ La mejora local de B3 persiste ligeramente fuera de Chignahuapan —0.49992→0.
 
 - B1: descartar complejidad adicional bajo este procedimiento congelado.
 - B3: conservar exclusivamente para investigación local; su mejora es marginal y deteriora transferencia municipal.
-- Mezcla fija50/50: conservar como candidata exploratoria aleatoria, con reservas de extremos e influencia; no promoverla como Champion ni afirmar desempeño geográfico.
+- Mezcla fija50/50: conservar como candidata exploratoria aleatoria, con reservas de extremos e influencia; no promoverla como líder ni afirmar desempeño geográfico.
 - Etapa C: puede estudiar agrupación parcial como otra hipótesis, con control compacto y tratamiento explícito de perfiles nuevos. B no proporciona una ganancia integral que la haga obligatoria; C/D no se ejecutaron.
 
 **Mezcla fija, evaluada por separado:**
 
 | Modelo | RMSE aleatorio | MAE aleatorio |
 |---|---:|---:|
-| Champion archivado | 0.498127 | 0.358869 |
+| modelo TOP20/TOP15 archivado | 0.498127 | 0.358869 |
 | F4-S1 | 0.504834 | 0.364105 |
 | Media50/50 | 0.493604 | 0.353426 |
 
 La identidad MSE_mix=0.25MSE_A+0.25MSE_B+0.5mean(e_Ae_B) se verificó por repetición. La correlación de errores media es0.9382, pero el término cruzado utiliza producto medio, incluyendo sesgo. De la reducción de MSE, aproximadamente96.6%proviene de reducción de variación de errores y3.4%del cambio de sesgo cuadrático por repetición. No se aprendieron pesos ni se probaron otras mezclas.
 
-La mezcla mejora MAE medio en77de138parcelas y MSE en80. Nueve de diez repeticiones mejoranRMSE; las repeticiones no son independientes. En diferencias locales equilibradas baja0.59729→0.58787 frente al Champion y0.58920→0.58787 frente aF4-S1. Dentro de Chignahuapan apenas empata F4-S1, mientras fuera mejora modestamente.
+La mezcla mejora MAE medio en77de138parcelas y MSE en80. Nueve de diez repeticiones mejoranRMSE; las repeticiones no son independientes. En diferencias locales equilibradas baja0.59729→0.58787 frente al modelo TOP20/TOP15 y0.58920→0.58787 frente aF4-S1. Dentro de Chignahuapan apenas empata F4-S1, mientras fuera mejora modestamente.
 
 La ganancia no es uniforme: Q4 empeora RMSE0.45644→0.46728 y MAE0.38936→0.39797 frente aChampion. Q1 mejora apenasRMSE0.68966→0.68796, pero empeoraMAE0.44607→0.45545. En Chignahuapan mejoraRMSE0.56112→0.55366; fuera0.42111→0.42065, prácticamente empate.
 
-**Influencia:** la parcela con mayor ganancia explica49.7%de la ganancia neta deSSE, y las cinco mayores explican163.7%, porque otras deterioran. Al excluir esas cinco beneficiarias, la ventaja neta se revierte. Excluir las parcelas de mayor error inicial Champion no elimina necesariamente la mejora. Son sensibilidades descriptivas seleccionadas después de observar pérdidas; no reglas de activación ni confirmación. La ganancia es pequeña y depende de compensaciones entre casos.
+**Influencia:** la parcela con mayor ganancia explica49.7%de la ganancia neta deSSE, y las cinco mayores explican163.7%, porque otras deterioran. Al excluir esas cinco beneficiarias, la ventaja neta se revierte. Excluir las parcelas de mayor error inicial modelo TOP20/TOP15 no elimina necesariamente la mejora. Son sensibilidades descriptivas seleccionadas después de observar pérdidas; no reglas de activación ni confirmación. La ganancia es pequeña y depende de compensaciones entre casos.
 
 **Matemática e integridad:** la pérdida se implementó con residuos centrados y filas aumentadas, sin optimizar con parejas expandidas. alpha_joint=2·alpha_archivado, alpha_solver=alpha_archivado·n/m; intercepto libre. Lambda0 reprodujo130controles con diferencia máxima0.0t/ha. El solver conserva tol1e-4 original; máximo residuoKKT externo8.93e-5 y máximo gapdual deJ2.33e-4. Todos los ajustes cumplieron la parada declarada. La identidad/gradiente/solución de referencia y reproducción completa se probaron automatizadamente.
 

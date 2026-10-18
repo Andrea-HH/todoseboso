@@ -47,3 +47,5 @@ Este índice contiene solicitudes, no un registro de ejecución. Herramienta rec
 | P041 | Incorporar el banco97/41 en comparación global y fichas disponibles | [Literal](prompts/P041_conversation.txt) | [Documento](../models/README.md) |
 | P042 | Contrastar relevancia del núcleo C-T3 y distinguir asociación de aporte predictivo y credibilidad de26 | [Literal](prompts/P042_conversation.txt) | [Documento](../models/Reference26/README.md) |
 | P043 | Recuperar ablaciones y evidencia existente por componente de26 sin duplicar modelado | [Literal](prompts/P043_conversation.txt) | [Documento](../models/Reference26/README.md) |
+| P044 | Regenerar presentaciones vigentes de resultados y predicciones26/14 | [Literal](prompts/P044_conversation.txt) | [Documento](../models/README.md) |
+| P045 | Reservar estado champion a26/14 y distinguir nombres heredados preservados | [Literal](prompts/P045_conversation.txt) | [Documento](../model_registry.md) |

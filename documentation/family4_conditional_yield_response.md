@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Familia 4 — Sensibilidades condicionales y señales complementarias
 
@@ -6,7 +6,7 @@ NDVI de mayo aporta una mejora local modesta; su percentil temporal bajo produce
 
 ## Diseño y alcance
 
-No existía una implementación previa de Familia 4 en los archivos de este repositorio. Se creó una versión separada bajo `outputs/modeling/family_4/conditional_yield_response/v1`, conservando J, K, L, M y Champion. Se congelaron once pruebas antes de entrenar:
+No existía una implementación previa de Familia 4 en los archivos de este repositorio. Se creó una versión separada bajo `outputs/modeling/family_4/conditional_yield_response/v1`, conservando J, K, L, M y modelo TOP20/TOP15. Se congelaron once pruebas antes de entrenar:
 
 | Prueba | Arquitectura |
 |---|---|
@@ -59,7 +59,7 @@ S1, S2, S3 y C mejoran RMSE aleatorio en las diez repeticiones, que reutilizan l
 
 Ninguna prueba cumple simultáneamente mejora aleatoria, deterioro RMSE agrupado ≤0.01 y deterioro MAE en todos los protocolos ≤0.01. S1 es la más cercana: excede el margen MAE espacial por aproximadamente 0.00091 t/ha. No se cambian los criterios después de observar resultados. Las comparaciones pareadas contra J0 y K5, incluidas las diez repeticiones, están en las tablas adjuntas.
 
-El Champion archivado `A_CURRENT_CH_H_T` tiene RMSE aleatorio compatible 0.49813 y MAE 0.35887. Se verificaron las mismas 1,380 combinaciones ID/repetición/fold. No hay benchmark Champion compatible municipal o espacial y no se inventa uno.
+El modelo TOP20/TOP15 archivado `A_CURRENT_CH_H_T` tiene RMSE aleatorio compatible 0.49813 y MAE 0.35887. Se verificaron las mismas 1,380 combinaciones ID/repetición/fold. No hay benchmark modelo TOP20/TOP15 compatible municipal o espacial y no se inventa uno.
 
 ## Diferenciación dentro de perfiles
 
@@ -126,7 +126,7 @@ En aleatoria S1 mejora Chignahuapan 0.57644→0.55759 y fuera de ese municipio 0
 
 ## Verificación y reproducción
 
-Cinco pruebas automatizadas pasaron: transformación aprendida en entrenamiento, efectos principales de interacciones, soporte edafológico, invariancia a etiquetas/ubicación como entradas, auditoría de los 65 contextos climáticos y reproducción de las once arquitecturas en un fold de cada protocolo. Se verificó integridad SHA-256 de 3,491 artefactos previos de L/M mediante sus manifiestos, sin modificaciones. Los modelos históricos y el Champion se leyeron como referencias.
+Cinco pruebas automatizadas pasaron: transformación aprendida en entrenamiento, efectos principales de interacciones, soporte edafológico, invariancia a etiquetas/ubicación como entradas, auditoría de los 65 contextos climáticos y reproducción de las once arquitecturas en un fold de cada protocolo. Se verificó integridad SHA-256 de 3,491 artefactos previos de L/M mediante sus manifiestos, sin modificaciones. Los modelos históricos y el modelo TOP20/TOP15 se leyeron como referencias.
 
 Entrenamiento: `python scripts/336_family4_conditional_response.py`. La versión completa está protegida contra reentrenamiento accidental. Diagnósticos adicionales: `python scripts/337_family4_diagnostics.py`. Pruebas: `python -m pytest tests/test_family4_conditional_response.py -q`. Configuración, parámetros internos, modelos, procedencia, comparaciones pareadas, errores por cuartil/región, soporte y sensibilidades están en el directorio versionado indicado arriba.
 

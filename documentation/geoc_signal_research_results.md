@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Investigación de señales GeoC y reducción del experto local
 
-Se ejecutaron las 56 recetas y controles definidos antes del entrenamiento, sobre las 65 particiones externas originales. No se modifica el Champion ni se generan modelos finales o predicciones nuevas de las 59 parcelas. Resultados en `outputs/modeling/geoc_signal_research/v1`.
+Se ejecutaron las 56 recetas y controles definidos antes del entrenamiento, sobre las 65 particiones externas originales. No se modifica el modelo TOP20/TOP15 ni se generan modelos finales o predicciones nuevas de las 59 parcelas. Resultados en `outputs/modeling/geoc_signal_research/v1`.
 
 **Recomendación:** conservar la mezcla física anterior como referencia y avanzar con la mezcla de experto reducido SMALL12 como candidata de simplificación. Esta fase encuentra una reducción grande de entradas con cambios predictivos pequeños; no demuestra superioridad, equivalencia estadística ni una nueva combinación ganadora. No conviene añadir las correcciones residuales de 12/30 variables a C-T3 tal como se implementaron aquí.
 

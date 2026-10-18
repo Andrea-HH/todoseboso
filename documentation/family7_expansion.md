@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F7 — Expansión controlada de CatBoost
 
@@ -17,7 +17,7 @@ Se ejecutaron exclusivamente E1 historia NDVI2, E2 pendiente media y E3 ambos, c
 | F6-E1 | 0.509249 | 0.506796 | 0.675872 | 0.741689 |
 | F6-E2 | 0.508354 | 0.510588 | 0.662413 | 0.735425 |
 
-RMSE t/ha: métricas sobre138 OOF completas por repetición; aleatoria promedia10 repeticiones. MAE y sesgo conservan idéntico procedimiento. Los resultados por fold sirven para diagnósticos y no reemplazan estas métricas. Champion solo se compara en los50 folds aleatorios compatibles, sin reconstrucción territorial. ID_POLIGONO es el identificador parcelario real del proyecto.
+RMSE t/ha: métricas sobre138 OOF completas por repetición; aleatoria promedia10 repeticiones. MAE y sesgo conservan idéntico procedimiento. Los resultados por fold sirven para diagnósticos y no reemplazan estas métricas. modelo TOP20/TOP15 solo se compara en los50 folds aleatorios compatibles, sin reconstrucción territorial. ID_POLIGONO es el identificador parcelario real del proyecto.
 
 ## Respuestas sobre bloques y complementariedad
 
@@ -89,7 +89,7 @@ Correlaciones, covarianzas poblacionales, sesgo y dirección común de errores s
 
 ### 7. Base y posibles correctores
 
-La recomendación debe distinguir el control compacto F7-00 de señales locales que puedan corregir sus errores. Las correlaciones por sí solas no justifican una combinación; se requiere mejora incremental territorial y/o intraperfil y suficiente soporte. Un residual futuro usaría cross-fitting del núcleo dentro de cada entrenamiento correspondiente y regularización de amplitud que incluya corrección cero, seleccionada solo internamente. No utilizaría residuos OOF globales como targets, ni el Champion como fuente de targets. Aquí no se ejecuta ninguna combinación.
+La recomendación debe distinguir el control compacto F7-00 de señales locales que puedan corregir sus errores. Las correlaciones por sí solas no justifican una combinación; se requiere mejora incremental territorial y/o intraperfil y suficiente soporte. Un residual futuro usaría cross-fitting del núcleo dentro de cada entrenamiento correspondiente y regularización de amplitud que incluya corrección cero, seleccionada solo internamente. No utilizaría residuos OOF globales como targets, ni el modelo TOP20/TOP15 como fuente de targets. Aquí no se ejecuta ninguna combinación.
 
 ## Interpretabilidad
 
@@ -128,7 +128,7 @@ El resultado debilita que CatBoost directo, con esta búsqueda y muestra, pueda 
 
 ## Límites y cierre
 
-Se detiene tras las tres ablaciones, sin nuevos predictores, nuevos screenings, XGBoost reajustado, límites ampliados, ensemble, stacking, residuos, modelo final,59 PRED o promoción del Champion. Todas las comparaciones y recomendaciones son exploratorias sobre etiquetas y folds reutilizados; no se afirma superioridad estadística.
+Se detiene tras las tres ablaciones, sin nuevos predictores, nuevos screenings, XGBoost reajustado, límites ampliados, ensemble, stacking, residuos, modelo final,59 PRED o promoción del modelo TOP20/TOP15. Todas las comparaciones y recomendaciones son exploratorias sobre etiquetas y folds reutilizados; no se afirma superioridad estadística.
 
 
 ## Verificación

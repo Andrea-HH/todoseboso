@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Bases simplificadas y corrección condicionada a vecinos
 
@@ -74,7 +74,7 @@ El 21.0% de parcelas tiene historia insuficiente para R3 completo; la ponderaci�
 
 ## Recomendación
 
-Conservar tres rutas para revisión, sin sustituir el Champion: (1) J7+R3 como referencia; (2) gate reducido+R3 global como candidata de 26 entradas; (3) C-T3+R3 soporte satelital como candidata compacta de ocho. La versión compacta geográfica es una sensibilidad útil si el objetivo es transferencia municipal. No seguir reduciendo el experto hasta quitar la mezcla con C-T3: esta batería muestra una pérdida territorial grande.
+Conservar tres rutas para revisión, sin sustituir el modelo TOP20/TOP15: (1) J7+R3 como referencia; (2) gate reducido+R3 global como candidata de 26 entradas; (3) C-T3+R3 soporte satelital como candidata compacta de ocho. La versión compacta geográfica es una sensibilidad útil si el objetivo es transferencia municipal. No seguir reduciendo el experto hasta quitar la mezcla con C-T3: esta batería muestra una pérdida territorial grande.
 
 Antes de preferir un peso continuo sobre la versión global, contrastar un control de disponibilidad histórica y confirmar fuera de los bloques que concentran la ganancia. La siguiente confirmación debe congelar estas pocas candidatas, no volver a seleccionar entre 48 con el mismo resultado externo. Una nueva partición de las mismas 138 etiquetas sigue teniendo límites de selección histórica; otro ciclo o territorio aportaría evidencia más independiente.
 
@@ -84,4 +84,4 @@ Se realizaron 332 contrastes pareados y ninguno alcanza .05 tras Holm. Los inter
 
 Scripts 489–492; módulo `src/base_distribution_correction.py`; diseño previo `base_distribution_correction_design.md`; salida `outputs/modeling/base_distribution_correction/v1`. Se guardaron 86,112 filas OOF y se reprodujeron 390 bases y 2,730 correcciones externas. C-T3/J7 y sus R3 globales permanecen exactamente iguales; la reconstrucción de SHARES coincide con el archivo previo en todos los protocolos.
 
-La comprobación inicial detectó que se regeneraban particiones internas externas con otra semilla. La enmienda `amendment_01.json` obligó a reutilizar las originales; el diseño, grillas y recetas permanecieron congelados. Los artefactos previos al arreglo se conservaron en `pre_amendment`. No se usaron métricas externas para ajustar esa corrección de implementación. Pasaron tres pruebas de soporte/atipicidad/exclusión de identidad y respeto de la CV original. No se modificó Champion ni se ajustó el modelo final138 ni se generaron nuevas PRED59.
+La comprobación inicial detectó que se regeneraban particiones internas externas con otra semilla. La enmienda `amendment_01.json` obligó a reutilizar las originales; el diseño, grillas y recetas permanecieron congelados. Los artefactos previos al arreglo se conservaron en `pre_amendment`. No se usaron métricas externas para ajustar esa corrección de implementación. Pasaron tres pruebas de soporte/atipicidad/exclusión de identidad y respeto de la CV original. No se modificó modelo TOP20/TOP15 ni se ajustó el modelo final138 ni se generaron nuevas PRED59.

@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Complementos de modelado: unión climática y correcciones residuales
 
@@ -104,7 +104,7 @@ Detener esta expansión de ventanas y correctores antes de ampliar profundidad o
 
 ## Reproducibilidad y límites numéricos
 
-Se verificaron exactamente los 715 predictores externos guardados, contando SELECTED_BASE como predictor compuesto, con diferencia máxima cero. Los 65 controles de cada representación previa también coinciden exactamente con sus archivos originales. Cuatro pruebas pasaron, incluida perturbación de etiquetas excluidas. No se modificó Champion, C-T3, archivos anteriores, los 138 rendimientos ni se generaron 59 PRED o un ajuste final de 138 parcelas.
+Se verificaron exactamente los 715 predictores externos guardados, contando SELECTED_BASE como predictor compuesto, con diferencia máxima cero. Los 65 controles de cada representación previa también coinciden exactamente con sus archivos originales. Cuatro pruebas pasaron, incluida perturbación de etiquetas excluidas. No se modificó modelo TOP20/TOP15, C-T3, archivos anteriores, los 138 rendimientos ni se generaron 59 PRED o un ajuste final de 138 parcelas.
 
 Se registraron 22 eventos ConvergenceWarning en logs de folds completos; no se ampliaron límites retrospectivamente. El conteo de candidatos descartados no es exhaustivo para contextos interrumpidos antes de guardar su fold; se entrega una auditoría completa adicional de los modelos seleccionados en todos los contextos. La reanudación conservó los checkpoints, verificó cachés y añadió solo memoización del preprocesamiento de X; la prueba de equivalencia sobre las 16 configuraciones tuvo diferencia cero. Los modelos externos finales se exportaron a la clase original sin memoización de predicción. Se registró además la advertencia de Intel/LLVM OpenMP al descubrir pools; la ejecución en Windows terminó y se verificó su reproducción.
 

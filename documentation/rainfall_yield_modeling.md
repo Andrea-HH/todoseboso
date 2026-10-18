@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Rainfall Yield Modeling — versión 1
 
@@ -42,7 +42,7 @@ combined = merge_rainfall(existing, rain)
 El consumidor selecciona una familia compacta y ajusta imputación, escala y
 cualquier selección supervisada dentro de su propia CV. No se debe añadir todo
 el diccionario simultáneamente a un modelo. El módulo no sobrescribe
-`family1_features_all`, Champion ni los experimentos anteriores.
+`family1_features_all`, modelo TOP20/TOP15 ni los experimentos anteriores.
 
 ## Definiciones y decisiones
 
@@ -109,7 +109,7 @@ ser optimista. Ninguna asociación se interpreta como efecto causal.
 E8 consume exclusivamente los siete acumulados CHIRPS de abril–octubre de
 2025. Se integró sobre las características y funciones del módulo, con copias
 idénticas de los 65 folds externos y las asignaciones internas de E3. Los
-resultados E0–E7/F y Champion se verificaron mediante hashes y se conservaron.
+resultados E0–E7/F y modelo TOP20/TOP15 se verificaron mediante hashes y se conservaron.
 Los modelos integrales del repositorio se auditan por separado.
 
 El PCA descriptivo usa 197 parcelas y nunca suministra scores al entrenamiento
@@ -166,5 +166,5 @@ python -m unittest discover -s tests -p 'test_rainfall_*.py' -v
 Un run completo es inmutable: para repetir se debe elegir un identificador
 nuevo. También se puede separar `--phase audit` y `--phase model` con el mismo
 run-id. Los checkpoints permiten continuar un cálculo incompleto con la
-misma configuración. E8 no sustituye Champion ni requiere una mejora positiva
+misma configuración. E8 no sustituye modelo TOP20/TOP15 ni requiere una mejora positiva
 para ser informativo.
