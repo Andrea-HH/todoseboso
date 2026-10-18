@@ -12,6 +12,8 @@
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
+  <script src="./preguntas.js" defer></script>
+  <link rel="stylesheet" href="./preguntas.css">
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -22,12 +24,15 @@
       <button class="menu-toggle" type="button" id="menu-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Abrir menú">Menú <span aria-hidden="true">☰</span></button>
       <nav class="nav-links" id="nav-links" aria-label="Secciones del sitio">
         <a href="#pregunta">El problema</a>
-        <a href="#historia">La historia</a>
-        <a href="#arquitectura">El modelo</a>
-        <a href="#componentes">Qué aporta cada capa</a>
+        <a href="#historia">Cómo llegamos al modelo</a>
+        <a href="#arquitectura">Cómo calcula</a>
+        <a href="#componentes">Qué aporta cada parte</a>
         <a href="#distribucion">Distribuciones</a>
-        <a href="#evidencia">La evidencia</a>
-        <a href="#limites">Alcance</a>
+        <a href="#significancia">Las pruebas</a>
+        <a href="#retirar-hhi">¿Y sin HHI?</a>
+        <a href="#evidencia">Comparación</a>
+        <a href="#cobertura">Las 59 parcelas</a>
+        <a href="#preguntas-tecnicas">Dudas frecuentes</a>
       </nav>
       <a class="nav-report" href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer">Ver repositorio <span aria-hidden="true">↗</span></a>
     </div>
@@ -154,6 +159,84 @@
       </div>
     </section>
 
+
+    <section class="section understanding" id="de-donde-sale" aria-labelledby="calculo-title">
+      <div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">UN EJEMPLO PARA ENTENDER EL CÁLCULO</p><h2 id="calculo-title">¿De dónde sale <em>una estimación?</em></h2></div><p>Reference26 parte de una estimación climática, la contrasta con parcelas cercanas y ajusta el resultado según la composición geológica y los errores que aprendió a corregir.</p></div>
+        <div class="calc-layout">
+          <div class="calc-explanation">
+            <p><strong>Imagina una parcela:</strong> el clima sugiere 4.0 t/ha y las parcelas cercanas, 4.8 t/ha. ¿A cuál hacemos más caso?</p>
+            <p>El modelo aprende un peso entre 0 y 1 para combinar ambas estimaciones. Después puede añadir una corrección pequeña si existen las tres señales necesarias.</p>
+            <p class="small-note">Los valores 4.0 y 4.8 son inventados para explicar la cuenta. Este control <strong>no predice parcelas reales</strong> y los pesos que mueves no son los aprendidos para una parcela determinada.</p>
+            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/Reference26/README.md" target="_blank" rel="noopener noreferrer">Ver cómo se entrena cada componente ↗</a>
+          </div>
+          <div class="calc-workshop" aria-label="Ejemplo interactivo de mezcla de modelos">
+            <div class="calc-endpoints"><span>Estimación climática <strong>4.00</strong> t/ha</span><span>Estimación local <strong>4.80</strong> t/ha</span></div>
+            <label for="geo-blend">¿Qué peso le damos a los vecinos? <output id="geo-blend-value" for="geo-blend">50 %</output></label>
+            <input id="geo-blend" type="range" min="0" max="100" value="50" step="5">
+            <div class="weight-preview" role="img" aria-label="Mitad de peso climático y mitad local" id="weight-preview"><span id="weight-climate" style="width:50%"></span><span id="weight-local" style="width:50%"></span></div>
+            <label for="error-correction">Corrección final de ejemplo <output id="error-correction-value" for="error-correction">+0.00 t/ha</output></label>
+            <input id="error-correction" type="range" min="-25" max="25" value="0" step="5">
+            <div class="calc-result"><div><span>RESULTADO DE ESTE EJEMPLO</span><strong id="calc-result">4.40</strong><small>t/ha</small></div><p id="calc-equation">4.00 + 0.50 × (4.80 − 4.00) + 0.00 = 4.40</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section significance" id="significancia" aria-labelledby="significance-title">
+      <div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">¿QUÉ RESPALDAN LAS PRUEBAS?</p><h2 id="significance-title">Una mejora en el RMSE <em>no lo demuestra todo.</em></h2></div><p>La investigación distingue tres preguntas: si una señal se relaciona con el rendimiento, si quitarla afecta las predicciones y si esa diferencia resiste una prueba estadística.</p></div>
+        <div class="question-panels">
+          <article><span>RELACIÓN OBSERVADA</span><h3>¿La lluvia y la vegetación se asocian con el rendimiento?</h3><p>Se usó una regresión de diagnóstico ajustada por estado. Aquí sí hay pruebas de asociación para algunas señales; los coeficientes no son los del modelo Reference26 ni describen causas.</p></article>
+          <article><span>UTILIDAD PARA PREDECIR</span><h3>¿Qué sucede si quitamos una variable o un componente?</h3><p>Se vuelve a ajustar el modelo sin esa entrada y se comparan los errores sobre las mismas particiones. El cambio de RMSE describe desempeño; por sí solo no indica significancia.</p></article>
+          <article><span>INCERTIDUMBRE ESTADÍSTICA</span><h3>¿La diferencia es suficientemente clara?</h3><p>Los contrastes pareados y la corrección de Holm consideran las comparaciones de una familia. No corrigen por completo los cientos de experimentos previos ni convierten el resultado en confirmación externa.</p></article>
+        </div>
+        <div class="significance-lab">
+          <div class="significance-title-row"><div><h3>Cuatro señales del modelo climático</h3><p>Asociación parcial en una OLS diagnóstica, controlando estado y agrupando errores por perfil climático. Se muestran valores <em>p</em> ajustados por Holm en una familia de 13 pruebas.</p></div><div class="significance-legend"><span class="sig-key"></span> p ajustada inferior a 0.05</div></div>
+          <div id="association-chart" class="association-chart" aria-live="polite">Cargando los contrastes documentados…</div>
+          <div class="sig-interpretation"><span>OJO CON ESTA DISTINCIÓN</span><p>Hay evidencia de asociación para lluvia total, proporción temprana y NDVI de mayo. Para la concentración mensual HHI, la evidencia es insuficiente al ajustar por estado. <strong>Eso no prueba que las otras tres sean indispensables en Reference26.</strong> Tampoco que más lluvia reduzca causalmente la cosecha: los coeficientes negativos son asociaciones condicionadas a estas variables.</p></div>
+        </div>
+        <div class="significance-findings">
+          <div class="significance-number"><span>BATERÍAS HISTÓRICAS DE ARQUITECTURA</span><strong id="holm-zero">0 / 952</strong><p>contrastes que superaron su corrección de Holm en tres familias archivadas de 412, 332 y 208 pruebas.</p></div>
+          <div class="significance-number"><span>REFERENCE26 FRENTE A C-T3</span><strong>0.0253</strong><p>p ajustada por Holm en la comparación aleatoria anterior. En perfil, municipio y espacio no se conservó significancia tras el ajuste.</p></div>
+          <div class="significance-number"><span>AB LACIONES DE C-T3</span><strong>0 / 16</strong><p>retiradas individuales con resultado significativo tras corregir las 24 comparaciones. Las diferencias contra controles sencillos sí aportaron evidencia.</p></div>
+        </div>
+        <p class="small-note">Que una prueba no resulte significativa <strong>no significa que el componente no sirva</strong>. Las comparaciones por municipio tienen nueve grupos y las espaciales sólo cinco. Los datos ya se usaron para elegir modelos: estos valores p deben leerse como evidencia exploratoria, no como confirmación independiente.</p>
+        <div class="research-links"><a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/core4_relevance/v1/README.md" target="_blank" rel="noopener noreferrer">Pruebas de las cuatro señales ↗</a><a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_component_evidence/v1/README.md" target="_blank" rel="noopener noreferrer">Pruebas de los componentes de Reference26 ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section hhi-study" id="retirar-hhi" aria-labelledby="hhi-title">
+      <div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">UNA PREGUNTA QUE CAMBIÓ EL MODELO EXPERIMENTAL</p><h2 id="hhi-title">¿Y si quitamos la concentración de lluvia <em>de toda la arquitectura?</em></h2></div><p>La nueva variante Reference25 quita HHI tanto del núcleo climático como del corrector interno. Las demás capas se mantienen y se recalibran dentro del entrenamiento.</p></div>
+        <div class="hhi-layout">
+          <div class="hhi-selector">
+            <h3>Elige qué dejamos fuera de la validación</h3>
+            <p>Las barras muestran el RMSE en t/ha. Menos es mejor. No compares barras de distintas particiones como si fueran un solo experimento.</p>
+            <div class="hhi-buttons" role="group" aria-label="Tipo de validación del experimento sin HHI">
+              <button type="button" class="hhi-button active" data-hhi-protocol="random" aria-pressed="true">Parcelas al azar</button>
+              <button type="button" class="hhi-button" data-hhi-protocol="climate_profile" aria-pressed="false">Perfiles climáticos</button>
+              <button type="button" class="hhi-button" data-hhi-protocol="municipality" aria-pressed="false">Municipios completos</button>
+              <button type="button" class="hhi-button" data-hhi-protocol="spatial" aria-pressed="false">Bloques geográficos</button>
+            </div>
+            <p class="hhi-observation" id="hhi-observation" aria-live="polite">El tipo de exclusión cambia la respuesta.</p>
+          </div>
+          <div class="hhi-results">
+            <p class="chart-eyebrow" id="hhi-caption">VALIDACIÓN ALEATORIA</p>
+            <div class="hhi-score-row"><span>Reference26, con HHI</span><div class="hhi-track"><span id="hhi-bar-26"></span></div><strong id="hhi-rmse-26">—</strong></div>
+            <div class="hhi-score-row"><span>Reference25, sin HHI</span><div class="hhi-track"><span id="hhi-bar-25"></span></div><strong id="hhi-rmse-25">—</strong></div>
+            <div class="hhi-difference"><span>DIFERENCIA: SIN HHI − CON HHI</span><strong id="hhi-delta">—</strong></div>
+            <div class="ci-scale"><span>−0.30</span><span>0</span><span>+0.30</span></div>
+            <div class="ci-track" role="img" id="hhi-ci-description" aria-label="Intervalo de la diferencia de RMSE"><i class="ci-zero"></i><span id="hhi-ci"></span><b id="hhi-ci-point"></b></div>
+            <p class="ci-note" id="hhi-ci-values">Intervalo del 95 % obtenido al remuestrear grupos sobre las predicciones de validación fijas.</p>
+            <div class="hhi-statistical"><span>p ajustada por Holm (4 pruebas)</span><strong id="hhi-p">—</strong><small id="hhi-significance">Sin conclusión todavía</small></div>
+          </div>
+        </div>
+        <p class="hhi-warning"><strong>Qué encontramos:</strong> el RMSE espacial baja aproximadamente 0.10 t/ha sin HHI, pero el municipal empeora. Ningún contraste de esta batería supera Holm y los intervalos incluyen cero. La mejora espacial se concentra en ciertos bloques: no demuestra una ventaja generalizable. <strong>Reference26 y Compact14 siguen siendo los modelos elegidos.</strong></p>
+        <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/four_final_checks/v1/README.md" target="_blank" rel="noopener noreferrer">Revisar los 65 folds, intervalos, grupos y pruebas pareadas ↗</a>
+      </div>
+    </section>
+
     <section class="section comparison" id="evidencia" aria-labelledby="evidence-title"><div class="shell"><div class="section-heading"><div><p class="eyebrow">04 / RESULTADOS REPRODUCIBLES</p><h2 id="evidence-title">La historia también <em>se comprueba.</em></h2></div><p>El RMSE mide el tamaño típico del error cuadrático, en toneladas por hectárea. Menor es mejor. Todas las barras dentro de cada pestaña usan el mismo protocolo.</p></div>
       <div class="result-hero"><div><span>REFERENCE26 · EVALUACIÓN 97/41</span><strong>0.4625<small> t/ha</small></strong><p>RMSE medio por partición</p></div><div><span>R² DE REFERENCE26</span><strong>0.6971</strong><p>Indicador de ajuste en ese mismo protocolo; no es “69.71 % de aciertos”.</p></div><div class="result-context"><span>QUÉ SIGNIFICAN ESTOS NÚMEROS</span><p>Son resultados exploratorios de <strong>16 particiones de 97 entrenamiento / 41 evaluación</strong>, sobre las mismas 138 etiquetas. No son resultados de las 59 parcelas desconocidas.</p></div></div>
       <div class="protocol-box"><div class="protocol-head"><div><span>COMPARADOR DE MODELOS</span><h3>¿Qué pasa cuando cambia la validación?</h3></div><p>Selecciona un protocolo para evitar comparar cifras producidas bajo particiones distintas.</p></div><div class="protocol-tabs" id="protocol-tabs" role="group" aria-label="Elegir protocolo de validación"><button class="protocol active" type="button" data-protocol="fresh_97_41" aria-pressed="true">97 / 41</button><button class="protocol" type="button" data-protocol="random" aria-pressed="false">Aleatoria</button><button class="protocol" type="button" data-protocol="climate_profile" aria-pressed="false">Perfil climático</button><button class="protocol" type="button" data-protocol="municipality" aria-pressed="false">Municipal</button><button class="protocol" type="button" data-protocol="spatial" aria-pressed="false">Bloques espaciales</button></div>
@@ -183,6 +266,54 @@
           <article><span>RESULTADO 03</span><h3>El territorio cambia la lectura.</h3><p>En Puebla, la desviación estándar de las predicciones es 0.185 t/ha frente a 0.584 entre las parcelas observadas. Las diferencias por estado y composición deben analizarse antes de inferir un comportamiento global.</p></article>
         </div>
         <p class="small-note">Las medias y dispersiones son descriptivas, con una parcela = un voto y sin ponderación por hectáreas. No se intentó igualar distribuciones ni reentrenar el modelo. <a href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_distribution/v1/README.md" target="_blank" rel="noopener noreferrer">Consultar estadísticas, fuentes y límites ↗</a></p>
+      </div>
+    </section>
+
+
+    <section class="section delivery" id="cobertura" aria-labelledby="delivery-title">
+      <div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">QUÉ PODEMOS DECIR SOBRE LAS 59 PARCELAS</p><h2 id="delivery-title">El modelo entrega un número. <em>¿Cuánta confianza merece?</em></h2></div><p>La investigación revisó qué tan parecidas son las nuevas parcelas a las conocidas y cuánto se abren los intervalos calculados sobre validaciones anteriores.</p></div>
+        <div class="delivery-columns">
+          <article class="delivery-panel">
+            <h3>¿Hay parcelas con datos poco representados?</h3><p>De las 59 parcelas por estimar, 11 tienen por lo menos un aviso de soporte. Esto no significa que 11 estén mal pronosticadas.</p>
+            <div class="support-top"><strong id="support-total">11 de 59</strong><span>con al menos un aviso</span></div>
+            <div class="support-track" role="img" aria-label="11 parcelas con algún aviso y 48 sin avisos conocidos"><span id="support-shaded"></span></div>
+            <label class="delivery-control" for="state-support">Consulta los avisos por región</label>
+            <select id="state-support"><option value="all">Tres estados (59 parcelas)</option><option value="Hidalgo">Hidalgo</option><option value="Puebla">Puebla</option><option value="Tlaxcala">Tlaxcala</option></select>
+            <div id="support-categories" class="support-categories" aria-live="polite">Cargando el análisis de soporte…</div>
+            <p class="small-note">Los avisos pueden coincidir en la misma parcela. Por eso las categorías no se suman. Faltar historia para R3 significa que esa corrección se apaga, no que se ignore toda la parcela.</p>
+          </article>
+          <article class="delivery-panel" id="intervalos">
+            <h3>¿Qué tan amplios son los intervalos de validación?</h3><p>Un intervalo que cubre muchos rendimientos puede ser útil, pero también puede ser muy amplio. Elige el nivel nominal para ver ambas cosas.</p>
+            <div class="interval-buttons" role="group" aria-label="Nivel nominal del intervalo"><button type="button" data-interval="0.8" aria-pressed="false">80 % nominal</button><button type="button" class="active" data-interval="0.9" aria-pressed="true">90 % nominal</button></div>
+            <div class="interval-results" id="interval-results" aria-live="polite">Cargando cobertura y anchura…</div>
+            <p class="small-note">Cobertura observada en validación aleatoria con separación parcelaria para calibrar residuos; no es la cobertura certificada de las 59 predicciones finales. Las comparaciones territoriales requieren supuestos adicionales y a veces generan intervalos infinitos.</p>
+          </article>
+        </div>
+        <div class="delivery-warning">Una predicción de 4 t/ha <strong>no significa cuatro toneladas aseguradas</strong>. Antes de utilizarla en una decisión, conviene revisar la procedencia de los insumos, las limitaciones espaciales y qué tan diferentes son las parcelas nuevas.</div>
+        <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/four_final_checks/v1/README.md" target="_blank" rel="noopener noreferrer">Cómo se construyeron los avisos y los intervalos ↗</a>
+      </div>
+    </section>
+
+    <section class="section technical-questions" id="preguntas-tecnicas" aria-labelledby="questions-title">
+      <div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">LAS PREGUNTAS QUE CONVIENE HACER</p><h2 id="questions-title">Lo que preguntaría <em>un productor o alguien que revisa el método.</em></h2></div><p>Una explicación útil también debe decir qué no sabemos todavía. Cada respuesta lleva a la parte correspondiente del trabajo.</p></div>
+        <div class="faq-columns">
+          <div><h3>Para entender el resultado</h3>
+            <details><summary>¿La página puede decirme cuánto rendirá mi parcela?</summary><p>No. Explica cómo se construyeron y revisaron las estimaciones de las 59 parcelas del estudio. No hay un servicio público para cargar nuevas parcelas ni están disponibles sus rendimientos verdaderos.</p></details>
+            <details><summary>¿Por qué importa cuándo llueve, si la cantidad total es la misma?</summary><p>Porque dos ciclos pueden tener igual lluvia acumulada y distintas fracciones al inicio o concentraciones mensuales. C-T3 resume esas diferencias; el ejemplo de arriba es ficticio y no pretende establecer efectos físicos de la lluvia.</p></details>
+            <details><summary>¿Se toma el promedio de las 24 parcelas más cercanas?</summary><p>No. Se ajusta una regresión Ridge propia para cada consulta con siete señales de los 24 vecinos etiquetados; a los cercanos se les da mayor peso. Las coordenadas eligen los vecinos, no sustituyen a las variables agrícolas.</p></details>
+            <details><summary>¿Si dos parcelas son vecinas tendrán el mismo rendimiento estimado?</summary><p>No necesariamente: pueden tener vegetación, relieve y composición geológica distintos. El experto local también aprende coeficientes específicos para la parcela consultada.</p></details>
+          </div>
+          <div><h3>Para revisar la metodología</h3>
+            <details><summary>¿Las 26 entradas son estadísticamente significativas?</summary><p>No se ha demostrado. Hay pruebas de asociación de varias entradas del núcleo C-T3, ablaciones por grupos de Reference26 y contrastes de arquitecturas. No son 26 pruebas individuales dentro del modelo final; varias familias de contrastes no superan Holm.</p></details>
+            <details><summary>¿Un valor p mayor a 0.05 demuestra que dos modelos son iguales?</summary><p>No. Significa que el contraste no aporta evidencia suficiente para rechazar la hipótesis bajo sus supuestos. Con sólo cinco bloques espaciales, además, la resolución de la prueba es limitada. La equivalencia necesita otro diseño estadístico.</p></details>
+            <details><summary>¿El RMSE de 0.4625 corresponde a leave-one-out?</summary><p>No. Corresponde al promedio de RMSE de 16 particiones, cada una con 97 parcelas para entrenar y 41 para evaluar. No es el RMSE de las 59 parcelas ocultas ni la evaluación LOOCV pendiente entre equipos.</p></details>
+            <details><summary>¿Se evitó usar la etiqueta de cada parcela que se evaluaba?</summary><p>Los experimentos documentados separan entrenamiento y evaluación y seleccionan parámetros dentro del entrenamiento. Pero las 138 etiquetas ya se utilizaron repetidamente para explorar arquitecturas: esta validación sigue siendo exploratoria y puede conservar optimismo por selección histórica.</p></details>
+            <details><summary>¿La geología causa el efecto o sólo mejora el ajuste?</summary><p>La compuerta geológica cambia el peso entre el experto climático y el local. Las comparaciones muestran una utilidad condicional en algunas validaciones, no un efecto causal ni la necesidad de cada una de las diez proporciones geológicas.</p></details>
+            <details><summary>¿Por qué mantener Reference26 si quitar HHI mejora el RMSE espacial?</summary><p>Porque Reference25_NoHHI empeora al excluir municipios completos, el beneficio espacial se concentra en ciertos bloques y ninguno de los cuatro contrastes supera Holm. Cambiar la receta requiere un criterio previamente definido y evidencia adicional.</p></details>
+          </div>
+        </div>
       </div>
     </section>
 
