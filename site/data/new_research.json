@@ -158,5 +158,60 @@
     "association_holm_significant": 12,
     "ablation_holm_significant": 4,
     "elapsed_seconds": 3.626208100002259
-  }
+  },
+  "support_states": [
+    {
+      "state": "Hidalgo",
+      "n": 15,
+      "any_flag": 5,
+      "missing_r3": 4,
+      "outside_geography": 1,
+      "outside_climate": 0,
+      "outside_local": 0
+    },
+    {
+      "state": "Puebla",
+      "n": 29,
+      "any_flag": 4,
+      "missing_r3": 4,
+      "outside_geography": 0,
+      "outside_climate": 0,
+      "outside_local": 0
+    },
+    {
+      "state": "Tlaxcala",
+      "n": 15,
+      "any_flag": 2,
+      "missing_r3": 0,
+      "outside_geography": 0,
+      "outside_climate": 2,
+      "outside_local": 2
+    }
+  ],
+  "reference26_vs_ct3": [
+    {
+      "protocol": "climate_profile",
+      "delta_rmse": 0.0431586853499166,
+      "p_holm": 0.0787460626968651,
+      "clusters": 43
+    },
+    {
+      "protocol": "municipality",
+      "delta_rmse": 0.0060380988616378,
+      "p_holm": 1,
+      "clusters": 9
+    },
+    {
+      "protocol": "random",
+      "delta_rmse": 0.0368043539677094,
+      "p_holm": 0.0252987350632468,
+      "clusters": 43
+    },
+    {
+      "protocol": "spatial",
+      "delta_rmse": 0.0454312492390334,
+      "p_holm": 1,
+      "clusters": 5
+    }
+  ]
 }
