@@ -1,0 +1,27 @@
+feature,role,evidence_level,evidence_document
+compact_precip_total,Base C-T3 y corrector interno,"Asociación y ablación individual en C-T3, no en26 completo",results/core4_relevance/v1/README.md
+compact_early_fraction,Base C-T3 y corrector interno,"Asociación y ablación individual en C-T3, no en26 completo",results/core4_relevance/v1/README.md
+compact_concentration_hhi,Base C-T3 y corrector interno,"Asociación y ablación individual en C-T3, no en26 completo",results/core4_relevance/v1/README.md
+S2_ndvi_month_05,Base C-T3 y corrector interno,"Asociación y ablación individual en C-T3, no en26 completo",results/core4_relevance/v1/README.md
+sat_basic_hist__sentinel_2__ndvi_promedio__mean,Regresión del experto local,Retirada conjunta de bloque: NDVI histórico; hiperparámetros internos heredados de FULL7,documentation/architecture_decomposition_conclusions.md
+sat_basic_hist__sentinel_2__ndvi_promedio__std,Regresión del experto local,Retirada conjunta de bloque: NDVI histórico; hiperparámetros internos heredados de FULL7,documentation/architecture_decomposition_conclusions.md
+emp_shape__y2025_planet_evi__turning_fraction,Regresión del experto local,Retirada conjunta de bloque: Planet2025; hiperparámetros internos heredados de FULL7,documentation/architecture_decomposition_conclusions.md
+agro_pheno__y2025_planet_ndvi__jun_to_aug_delta,Regresión del experto local,Retirada conjunta de bloque: Planet2025; hiperparámetros internos heredados de FULL7,documentation/architecture_decomposition_conclusions.md
+sat_basic_2025__sentinel_2__ndwi_promedio__mean,Regresión del experto local,Retirada conjunta de bloque: NDWI2025; hiperparámetros internos heredados de FULL7,documentation/architecture_decomposition_conclusions.md
+sat_basic_2025__sentinel_2__ndwi_promedio__std,Regresión del experto local,Retirada conjunta de bloque: NDWI2025; hiperparámetros internos heredados de FULL7,documentation/architecture_decomposition_conclusions.md
+topo_official__slope__mean,Regresión del experto local,Retirada individual de columna; hiperparámetros internos heredados de FULL7,documentation/architecture_decomposition_conclusions.md
+base_centroid_lat,Selección y ponderación de24 vecinos,"Controles históricos de vecindario; k24 fijo, sin prueba de optimalidad en26",documentation/geoc_signal_research_results.md
+base_centroid_lon,Selección y ponderación de24 vecinos,"Controles históricos de vecindario; k24 fijo, sin prueba de optimalidad en26",documentation/geoc_signal_research_results.md
+geology_physiography::geo250_share__Q(B),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Q(B-Bvb),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Q(Bvb),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Q(al),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Ts(A),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Ts(B),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Ts(R),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Ts(R-Ta),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Ts(Ta),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+geology_physiography::geo250_share__Ts(Ti),Agrupación geológica y peso entre expertos,Ablación del bloque10 y PCA2; no retirada individual de cada categoría,documentation/architecture_decomposition_conclusions.md
+I_history_ndvi_floor,Corrector global R3,Retirada de R3 completo en26; retirada de NDVI floor R3→R2 sólo en J7,documentation/indicator_neighborhoods_conclusions.md
+I_gap_excess_persistence,Corrector global R3,Retirada de R3 completo en26; no ablation individual exacta recuperada,documentation/indicator_neighborhoods_conclusions.md
+I_slope_min,Corrector global R3,Retirada de R3 completo en26; no ablation individual exacta recuperada,documentation/indicator_neighborhoods_conclusions.md

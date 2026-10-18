@@ -1,5 +1,6 @@
 # AgroCebada FIRA 2026 · fira_nuria
-**Sitio interactivo de divulgación:** [La historia detrás de la predicción](https://heri-espino.github.io/todoseboso/) · [fuentes, límites y despliegue](site/README.md). Cuenta el camino C-T3 → experto local → Reference26/Compact14, con figuras didácticas y métricas agregadas bajo protocolos separados. La publicación requiere GitHub Pages habilitado.
+
+**Sitio de divulgación del fork:** [Historia de Reference26](site/) · [fuentes y auditoría](site/README.md). El sitio presenta métricas agregadas; GitHub Pages requiere configuración en Settings → Pages. La investigación upstream contiene nuevos [contrastes de las cuatro señales C-T3](results/core4_relevance/v1/README.md) y [evidencia de los componentes Reference26](results/reference26_component_evidence/v1/README.md).
 
 
 **El propósito del proyecto es desarrollar y validar un modelo que estime el rendimiento de cebada, en toneladas por hectárea, para las parcelas sin rendimiento conocido del Reto AgroCebada FIRA 2026.** La investigación de variables y algoritmos sirve para elegir y explicar esa solución; no es un objetivo independiente ni una búsqueda del menor error sin considerar su uso.
@@ -8,19 +9,7 @@ Trabajamos con **197 parcelas de Hidalgo, Puebla y Tlaxcala**, ciclo 2025: **138
 
 La finalidad práctica es apoyar la estimación de productividad y aportar información para decisiones agropecuarias y financieras. Este estudio no valida un sistema automático de otorgamiento de crédito, una relación causal agronómica ni la transferencia a cualquier región o año.
 
-**Etapa actual: champions Reference26 y Compact14**, con C-T3 como control y B1 como sensibilidad. L40 se conserva como benchmark fuerte del equipo; queda fuera del reentrenamiento propio, no de la comparación. [Resultados](results/current_champions/v1/README.md) · [Reproducción](documentation/current_champions_reproduction.md).
-
-## Sitio editorial independiente
-
-La [historia visual de los modelos](website/README.md) presenta la evolución desde
-C-T3 hasta Reference26 y Compact14, explica cada bloque, muestra un ejemplo
-climático y un vecindario sintético de24 parcelas, y permite comparar los
-protocolos originales con métricas agregadas del propio fork.
-
-El sitio se sirve desde `website/` mediante GitHub Pages (tras configurar
-Pages para GitHub Actions e integrar el cambio en main). No depende en
-tiempo de ejecución del repositorio GeoC; no publica rendimientos por parcela
-ni modifica modelos o predicciones.
+**Etapa actual: champions Reference26 y Compact14**, con C-T3 como control y B1 como sensibilidad. L40 se conserva como benchmark fuerte del equipo; queda fuera del reentrenamiento propio, no de la comparación. [Resultados: validación y predicciones finales](results/README.md) · [Reproducción](documentation/current_champions_reproduction.md).
 
 ## Propósito y entregables según los lineamientos
 
@@ -39,7 +28,7 @@ La [matriz de entregables y evidencia](documentation/project_scope_and_guideline
 
 **La etapa actual conserva dos champions: Reference26 y Compact14**, por decisión explícita del responsable del proyecto después de las comparaciones. El de 26 prioriza precisión y equilibrio territorial; el de 14 prioriza simplicidad de fuentes con desempeño próximo. C-T3 es el control compacto y B1 una sensibilidad. Ambos champions ya tienen ajuste final con138 rendimientos y59 predicciones incorporadas a la comparación existente.
 
-`A_CURRENT_CH_H_T` conserva el nombre de Champion histórico y su entrega previa: no es el champion actual26. El estado y las rutas están en el [registro de modelos](documentation/model_registry.md), la [etapa vigente](configs/current_stage.json) y la [ruta reproducible actual](documentation/current_champions_reproduction.md).
+`A_CURRENT_CH_H_T` conserva el nombre de modelo histórico TOP20/TOP15 y su entrega previa: no es el champion actual26. El estado y las rutas están en el [registro de modelos](documentation/model_registry.md), la [etapa vigente](configs/current_stage.json) y la [ruta reproducible actual](documentation/current_champions_reproduction.md).
 
 | Modelo | Qué hace | Estado y motivo de conservarlo |
 |---|---|---|
@@ -48,7 +37,7 @@ La [matriz de entregables y evidencia](documentation/project_scope_and_guideline
 | **C-T3 / CT3** | Elastic Net global con lluvia total, fracción temprana, concentración mensual y NDVI de mayo | Control compacto de 4 entradas; tiene ajuste final y59 predicciones en la entrega histórica |
 | **B1** | Mezcla aprendida internamente entre C-T3 y26 | Sensibilidad: pequeña ventaja municipal, deterioro espacial; no recomendada para sustituir26 |
 | **L40 / Local04D** | PCA20 de C4 (2082 variables) + Ridge local24 geográfico | Benchmark fuerte externo del equipo; no es champion actual de este repositorio |
-| **Champion histórico** `A_CURRENT_CH_H_T` | Base climática Elastic Net, corrección histórica XGBoost y corrección topográfica Ridge | Referencia histórica; tiene entrega59. No es el modelo26 |
+| **modelo histórico TOP20/TOP15** `A_CURRENT_CH_H_T` | Base climática Elastic Net, corrección histórica XGBoost y corrección topográfica Ridge | Referencia histórica; tiene entrega59. No es el modelo26 |
 | **EQUAL3** | Promedio fijo C-T3 + GPR F5-01 + CatBoost F7-00 | Ensamble histórico con entrega59; no es B1 ni mezcla con L40 |
 | **F5/F6/F7 y otras variantes** | GPR, bagging, boosting, correcciones y ablaciones | Investigación y controles; ver el índice. La propuesta F8 no prueba una ejecución F8 |
 
@@ -85,6 +74,10 @@ La evaluación es exploratoria después de amplia reutilización de las mismas e
 
 [Resultados de los10 modelos disponibles y metodología](results/comparison_97_41/v1/README.md). No se mezclan con la tabla de los65 folds originales ni con los checkpoints propios de GeoC.
 <!-- comparison97:end -->
+
+**Relevancia del núcleo C-T3:** [contrastes de asociación y ablaciones reajustadas](results/core4_relevance/v1/README.md). Evidencia exploratoria, con resultados favorables para algunas señales y límites explícitos para HHI; no certifica significancia de las26 entradas.
+
+**Componentes de26:** [evidencia recuperada por función y variable](results/reference26_component_evidence/v1/README.md), con ablaciones existentes, interacciones, dependencias de calibración y límites.
 
 ## Cómo leer y reproducir
 

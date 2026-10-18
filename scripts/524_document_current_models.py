@@ -186,6 +186,10 @@ def cards():
             text+=f"| {float(r['rmse']):.4f} | {float(r['r2']):.4f} | {float(r['mae']):.4f} | {float(r['bias']):+.4f} |\n"
             text+='\nMedia de las métricas de **16 particiones**, cada una con97 parcelas para entrenar y41 para evaluar. Reutiliza las mismas138 parcelas; no es muestra independiente ni error de las59 PRED. Se conserva separado de los cuatro protocolos anteriores. [Comparación completa y procedencia](../../../results/comparison_97_41/v1/README.md).\n'
         text += '\nSon resultados de validación exploratoria tras reutilización de etiquetas, no el error de las 59 desconocidas ni superioridad universal. Residuo = predicho − observado: positivo significa sobreestimación. El banco adicional 97/41 se interpreta por separado. No se presenta R² ajustado clásico para estas arquitecturas locales y calibradas.\n'
+        if model in ['CT3','Reference26'] and (ROOT/'results/core4_relevance/v1/README.md').exists():
+            text+='\n## Evidencia de relevancia del núcleo: análisis posterior\n\nYa se realizaron contrastes exploratorios de asociación, ajustados por estado y agrupados por perfil, y ablaciones reajustadas de C-T3 en los65 folds. Total de lluvia, fracción temprana y NDVI mantienen evidencia de asociación; HHI no después de ajustar por estado. Ninguna retirada individual supera Holm en los contrastes predictivos, y retirar HHI mejora el RMSE espacial de C-T3. Estos resultados no son p-valores de los coeficientes Elastic Net ni una prueba causal o confirmatoria. Las ablaciones corresponden a C-T3, no al26 completo; sus cuatro entradas intervienen en dos capas de26. [Informe, hipótesis, tablas y límites](../../../results/core4_relevance/v1/README.md).\n'
+        if model=='Reference26' and (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
+            text+='\n## Evidencia recuperada del resto de componentes\n\n[Reporte por función, con RMSE/R² y límites](../../../results/reference26_component_evidence/v1/README.md): siete señales locales,24 vecinos, corrector interno, compuerta geológica, R3 y combinaciones que dieron origen a14. Distingue retiradas de bloques, columnas y cambios conjuntos; conserva los ajustes múltiples originales y señala las pruebas aún faltantes. Incluye un inventario del respaldo disponible para cada una de las26 entradas. Se recuperaron11 contrastes arquitectónicos, sin entrenar modelos nuevos ni alterar las59 predicciones.\n'
         text += '\n## Archivos y reproducción\n\n'
         if model != 'L40':
             text += 'Implementación integrada: [src/current_champions.py](../../../src/current_champions.py). [Reproducción y alcance de la verificación](../../current_champions_reproduction.md). Entrada: `python scripts/521_current_champions.py replay`; reentrenamiento: subcomando `refit` según esa guía. Bundle privado: `data/processed/current_champions/v1/`; OOF: `outputs/research/current_champions/v1/`; [métricas públicas](../../../results/current_champions/v1/README.md). Las fichas no generan nuevos ajustes finales ni predicciones59.\n'
@@ -194,7 +198,7 @@ def cards():
         if (ROOT/'outputs/modeling/current_champions_final/v1/complete.json').exists():
             text+='\n## Comparación final59 disponible\n\nLos champions26/14 ya tienen ajustes finales con138 y sus59 estimaciones se incorporaron a la comparación existente sin sobrescribir las anteriores. [Reporte de diferencias entre predicciones](../../../results/current_champions_final/v1/README.md). Archivo privado: `outputs/modeling/current_champions_final/v1/comparacion_predicciones59.xlsx`. Estas diferencias no son errores contra rendimientos observados.\n'
         write(f'documentation/models/{model}/README.md', text)
-    write('documentation/models/historical_top20_top15/README.md', '''# Champion histórico TOP20 → TOP15 → topografía
+    write('documentation/models/historical_top20_top15/README.md', '''# Modelo histórico — TOP20 → TOP15 → topografía
 
 **Estado: histórico. No es Reference26 ni Compact14, los dos champions actuales.** Identificador conservado: `A_CURRENT_CH_H_T`; alias antiguos `Champion` y `CHAMPION`. No se reasigna ese identificador a la receta de 26 entradas.
 
@@ -293,6 +297,12 @@ def navigation():
         if start in text:
             text=text[:text.index(start)]+block+text[text.index(end)+len(end):].lstrip('\n')
         else:text=text.replace('## Cómo leer y reproducir',block+'## Cómo leer y reproducir')
+    if (ROOT/'results/core4_relevance/v1/README.md').exists():
+        note='**Relevancia del núcleo C-T3:** [contrastes de asociación y ablaciones reajustadas](results/core4_relevance/v1/README.md). Evidencia exploratoria, con resultados favorables para algunas señales y límites explícitos para HHI; no certifica significancia de las26 entradas.\n\n'
+        if note not in text:text=text.replace('## Cómo leer y reproducir',note+'## Cómo leer y reproducir')
+    if (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
+        note='**Componentes de26:** [evidencia recuperada por función y variable](results/reference26_component_evidence/v1/README.md), con ablaciones existentes, interacciones, dependencias de calibración y límites.\n\n'
+        if note not in text:text=text.replace('## Cómo leer y reproducir',note+'## Cómo leer y reproducir')
     write('README.md',text)
     for name in ['documentation/README.md','documentation/model_registry.md','documentation/current_champions_reproduction.md']:
         path=ROOT/name;text=path.read_text(encoding='utf-8')
@@ -333,7 +343,16 @@ def navigation():
 
 
 def main():
-    cards();navigation();rows=status_audit()
+    cards();navigation()
+    refresh=ROOT/'scripts/532_refresh_results_readmes.py'
+    if refresh.exists() and (ROOT/'results/current_champions_final/v1/prediction_audit.json').exists():
+        import runpy
+        runpy.run_path(str(refresh))['main']()
+    rows=status_audit()
+    naming=ROOT/'scripts/533_current_champion_naming.py'
+    if naming.exists():
+        import runpy
+        runpy.run_path(str(naming))['main']()
     print(json.dumps(dict(model_cards=6,documents_reviewed=len(rows),training_performed=False,
                           frozen_designs_modified=False,predictions_generated=False),indent=2))
 

@@ -1,10 +1,10 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Etapa D — Síntesis de evidencia y diagnóstico de generalización
 
 ## 1. Resumen
 
-Cierre metodológico A–D, exclusivamente descriptivo sobre predicciones archivadas. Se preservan las decisiones previas; no se vuelve a seleccionar un ganador ni se entrena ningún modelo. C-T3 merece validación municipal; Champion/mezcla siguen limitados al ámbito aleatorio compatible; C-T1 mantiene una hipótesis espacial con dependencia del bloque3; H1 no aporta ventaja frente a H0M.
+Cierre metodológico A–D, exclusivamente descriptivo sobre predicciones archivadas. Se preservan las decisiones previas; no se vuelve a seleccionar un ganador ni se entrena ningún modelo. C-T3 merece validación municipal; modelo TOP20/TOP15/mezcla siguen limitados al ámbito aleatorio compatible; C-T1 mantiene una hipótesis espacial con dependencia del bloque3; H1 no aporta ventaja frente a H0M.
 
 ## 2. Objetivos
 
@@ -20,7 +20,7 @@ D1 concentración de ganancias; D2 composición bloque3; D3 escenarios de genera
 
 `model_inventory.csv` recupera todas las series OOF de antecedentes, incluidos controles descartados, IDs exactos, configuraciones/especificaciones recuperables, disponibilidad y hashes. `background_artifact_inventory.csv` registra reportes/configuraciones; `protected_inputs.csv` conserva scripts, fuentes, métricas y modelos previos. Donde una especificación no está en JSON se conserva referencia a fuentes/tablas, sin inventarla.
 
-Llave explícita: (ID_POLIGONO, protocolo, repetición, fold), con Y idéntico. `comparability.csv` verifica conjuntos completos uno-a-uno; los IDs de validación corresponden a splits congelados y a procedencia OOF anterior. Champion no se reconstruye. F4-S1 y C-T0 son la misma referencia, y B2/F4-E2 son alias: no constituyen evidencia independiente.
+Llave explícita: (ID_POLIGONO, protocolo, repetición, fold), con Y idéntico. `comparability.csv` verifica conjuntos completos uno-a-uno; los IDs de validación corresponden a splits congelados y a procedencia OOF anterior. modelo TOP20/TOP15 no se reconstruye. F4-S1 y C-T0 son la misma referencia, y B2/F4-E2 son alias: no constituyen evidencia independiente.
 
 | index | experiment | protocol | n_parcels | n_repeats | RMSE | RMSE_sd_repeats | MAE | bias | MSE |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -122,7 +122,7 @@ Contraste3/resto SMD usa desviaciones muestrales y no se calcula ante varianza d
 | 13 | altitude_m | 35 | 103 | -1.17220 | 2496.64847 | 2812.36036 | 2527.72548 | 2903.99038 | 5 | Y differences descriptive; no variable selection or causal attribution |
 | 14 | slope_degrees | 35 | 103 | -0.56547 | 0.34886 | 5.31704 | 0.28767 | 9.39639 | 0 | Y differences descriptive; no variable selection or causal attribution |
 
-`spatial_support.csv` distingue rangos marginales, cercanía al límite y distancia estandarizada conjunta al entrenamiento en lluvia total/DTR/NDVI. Estar dentro de cada rango no garantiza combinaciones conocidas ni soporte del Champion. Los rangos de Y son descripción ex post, nunca una regla para definir soporte predictivo. Suelo y geología se describen mediante cuotas cartográficas existentes; no se atribuyen textura o capacidad hídrica física a una categoría.
+`spatial_support.csv` distingue rangos marginales, cercanía al límite y distancia estandarizada conjunta al entrenamiento en lluvia total/DTR/NDVI. Estar dentro de cada rango no garantiza combinaciones conocidas ni soporte del modelo TOP20/TOP15. Los rangos de Y son descripción ex post, nunca una regla para definir soporte predictivo. Suelo y geología se describen mediante cuotas cartográficas existentes; no se atribuyen textura o capacidad hídrica física a una categoría.
 
 ## 7. Descomposición de errores y sensibilidad
 
@@ -351,8 +351,8 @@ Parcelas semejantes enX pueden diferir en variedad, fecha de siembra, densidad, 
 
 | index | model_or_hypothesis | decision_state | question_specification | evidence_result | utility_scope | external_evidence_pending | risk |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 0 | Champion | Referencia histórica | Arquitectura clima→historia→terreno | Mejor referencia histórica aleatoria evaluada; sin OOF geográfica equivalente | S1 | Faltan validación externa y reconstrucción geográfica compatible | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
-| 1 | FIXED_50_50 | Candidato congelado | Media fija Champion/F4-S1 | Mejora aleatoria pequeña; influencia concentrada; extremos no uniformes | S1 | Comparación externa frente a Champion; no nuevos pesos | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
+| 0 | modelo TOP20/TOP15 | Referencia histórica | Arquitectura clima→historia→terreno | Mejor referencia histórica aleatoria evaluada; sin OOF geográfica equivalente | S1 | Faltan validación externa y reconstrucción geográfica compatible | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
+| 1 | FIXED_50_50 | Candidato congelado | Media fija modelo TOP20/TOP15/F4-S1 | Mejora aleatoria pequeña; influencia concentrada; extremos no uniformes | S1 | Comparación externa frente a modelo TOP20/TOP15; no nuevos pesos | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
 | 2 | F4-S1 | Candidato congelado | Lluvia mensual + NDVI mayo | Control climático parcelario parsimonioso; heterogeneidad local persiste | S1/S2/S3/S4/S5 | Campañas y municipios independientes | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
 | 3 | C-T3 | Candidato congelado | Lluvia compacta + NDVI mayo | Ventaja municipal; mejora espacial concentrada y costo aleatorio | S3 principal; S2 secundario | Municipios nuevos y costo aleatorio/local | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
 | 4 | C-H0M | Control metodológico | Gaussian Ridge sin intercepto aleatorio | Separa cambio L2 de efecto jerárquico | S2/S3/S4/S5 | Control externo bajo mismo procedimiento | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
@@ -369,7 +369,7 @@ Parcelas semejantes enX pueden diferir en variedad, fecha de siembra, densidad, 
 | 15 | Suelo50k / SGM50k | Suspendido por datos | Cartografía local solicitada | Suelo inexistente; PDF geológico sin geometría temática fiable | Inventario | Fuente oficial vectorial y auditoría geométrica | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
 | 16 | Geología250k | Exploratorio sin prioridad | Composición parcelaria existente | Contrastes locales repetidos, sin ganancia incremental demostrada | Descriptivo intraperfil | Verificar límites y soporte; no integración en D | Exploratorio; reutilización de 138 etiquetas; asociaciones no causales |
 
-S1:Champion como referencia histórica y mezcla como candidato exploratorio; S2:compararF4-S1/T3/H0M sin confundir perfil con municipio; S3:T3 es candidato principal observado, con costo aleatorio y local; S4:no hay ganador espacial robusto general; S5:E2 ofrece una mejora local pequeña, H0M sirve de control yB3 no se promueve. No hay ponderación retrospectiva para combinar escenarios.
+S1:modelo TOP20/TOP15 como referencia histórica y mezcla como candidato exploratorio; S2:compararF4-S1/T3/H0M sin confundir perfil con municipio; S3:T3 es candidato principal observado, con costo aleatorio y local; S4:no hay ganador espacial robusto general; S5:E2 ofrece una mejora local pequeña, H0M sirve de control yB3 no se promueve. No hay ponderación retrospectiva para combinar escenarios.
 
 La sensibilidad municipal existente de T3 está preservada en `municipal_fold_omission_archived.csv`: el beneficio RMSE persiste al omitir cada fold del cálculo, pero MAE puede deteriorar ligeramente al omitir uno. Su costo aleatorio e intraperfil está en las tablas compatibles. La persistencia de RMSE no implica que cada municipio ni cada parcela mejore.
 

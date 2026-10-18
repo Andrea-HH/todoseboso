@@ -1,5 +1,6 @@
 # Datos originales, externos y matrices procesadas: conservar solo en disco.
 /data/
+/data.zip
 
 # Resultados reproducibles, modelos, predicciones, figuras y checkpoints.
 /outputs/

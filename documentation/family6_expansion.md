@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F6-E — Expansión informada de variables
 
-**Primera batería completada: E0 recuperado; E1 historia2, E2 pendiente y E3 DTR ajustados. E4/E5 no ejecutados. Referencias y Champion intactos; sin modelo final/PRED.**
+**Primera batería completada: E0 recuperado; E1 historia2, E2 pendiente y E3 DTR ajustados. E4/E5 no ejecutados. Referencias y modelo TOP20/TOP15 intactos; sin modelo final/PRED.**
 
 ## Métricas OOF completas
 
@@ -17,7 +17,7 @@
 | F6-E2 | 0.510588 | 0.662413 | 0.508354 | 0.735425 |
 | F6-E3 | 0.526775 | 0.665630 | 0.515563 | 0.788119 |
 
-RMSE en t/ha. Se calculan138 OOF por repetición y luego el promedio de diez repeticiones aleatorias; no se promedian RMSE de folds como métrica primaria. Los folds y repeticiones comparten parcelas: no se declara superioridad estadística. E0 reproduce exactamente F6-01; F6-00 se conserva solo como contexto RF. Champion y etapas se comparan únicamente en los50 folds aleatorios compatibles.
+RMSE en t/ha. Se calculan138 OOF por repetición y luego el promedio de diez repeticiones aleatorias; no se promedian RMSE de folds como métrica primaria. Los folds y repeticiones comparten parcelas: no se declara superioridad estadística. E0 reproduce exactamente F6-01; F6-00 se conserva solo como contexto RF. modelo TOP20/TOP15 y etapas se comparan únicamente en los50 folds aleatorios compatibles.
 
 ## Utilidad incremental por bloque — ablación con reajuste
 

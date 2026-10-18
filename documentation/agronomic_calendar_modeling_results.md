@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Modelado por calendario: primera batería lineal regularizada
 
@@ -28,7 +28,7 @@ Las cuatro ventanas son abril, mayo–junio, julio–agosto y septiembre–octub
 
 CAL01 frente aCAL02 permite aislar el aporte deTmax en esta representación; comparar soloCAL02 con C-T3 mezclaría cambios de variables, calendario y algoritmo. CAL00 controla el cambio ElasticNet→Ridge.
 
-Se realizaron22,360ajustes internos/externos,520modelos externos, en131.95segundos de ejecución del script. Cero advertencias registradas. Los hashes de los insumos protegidos permanecieron iguales. No se entrenó modelo final sobre138ni se cambió Champion.
+Se realizaron22,360ajustes internos/externos,520modelos externos, en131.95segundos de ejecución del script. Cero advertencias registradas. Los hashes de los insumos protegidos permanecieron iguales. No se entrenó modelo final sobre138ni se cambió modelo TOP20/TOP15.
 
 ## Resultados OOF
 

@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # L/M — Síntesis transversal
 
-Se preservaron E–K, fuentes originales y Champion. Se usan138etiquetas,59parcelas sinY,53perfiles completos y los65folds congelados. Las métricas se calculan sobre cada OOF completo138 y luego se promedian las10repeticiones aleatorias.
+Se preservaron E–K, fuentes originales y modelo TOP20/TOP15. Se usan138etiquetas,59parcelas sinY,53perfiles completos y los65folds congelados. Las métricas se calculan sobre cada OOF completo138 y luego se promedian las10repeticiones aleatorias.
 
 1. **Base climática.** Lluvia y Climate Current48 tienen resultados aleatorios cercanos. Los valores por protocolo son:
 
@@ -17,7 +17,7 @@ Se preservaron E–K, fuentes originales y Champion. Se usan138etiquetas,59parce
 | L0_BASE | spatial | 0.7348 | 0.5620 | 0.2493 |
 | L1_BASE | spatial | 0.9798 | 0.7796 | -0.3349 |
 
-Se compara representación mensual de lluvia con una representación agregada más amplia que incluye temperatura: no es un efecto aislado de temperatura. Climate Current48 tampoco es TOP20 ni el Champion.
+Se compara representación mensual de lluvia con una representación agregada más amplia que incluye temperatura: no es un efecto aislado de temperatura. Climate Current48 tampoco es TOP20 ni el modelo TOP20/TOP15.
 
 2. **PCA edafológico y arquitectura.** Ganancias deRMSE positivas favorecen al candidato. Misma S1 y mismas grillas en controles:
 
@@ -42,7 +42,7 @@ Se compara representación mensual de lluvia con una representación agregada m�
 
 PCA rota y reduce el espacio, pero no añade información intrínseca ni interacciones. Elastic Net L1 cambia geometría al rotar ejes; se distinguen cambio de representación y arquitectura. Los signos dePCs locales no se comparan ciegamente entre folds.
 
-3. **Después del Champion.** Solo auditoría descriptiva de su residuo final OOF y asociaciones totales/intra/interperfil. L8 no se evaluó predictivamente: no se dispone de cross-fitting de las tres etapas con selección íntegramente anidada para reproducir fielmente el original. Las asociaciones no demuestran ganancia incremental ni justifican reentrenarlo.
+3. **Después del modelo TOP20/TOP15.** Solo auditoría descriptiva de su residuo final OOF y asociaciones totales/intra/interperfil. L8 no se evaluó predictivamente: no se dispone de cross-fitting de las tres etapas con selección íntegramente anidada para reproducir fielmente el original. Las asociaciones no demuestran ganancia incremental ni justifican reentrenarlo.
 
 4. **Historia, Planet y Landsat.** Incrementos controlados frente a Sentinel y otras combinaciones:
 
@@ -169,6 +169,6 @@ Reportes: [L](l_multiblock_representation.md), [M](m_historical_multisensor.md).
 
 7. El corrector de Sentinel2025 sobre lluvia ofrece el mejor resultado espacial entre las variantes L/M(.6813frente a lluvia.7348), pero empeora aleatorio(.5252frente a.5214) y municipal(.7083frente a.6954). Es un compromiso para investigar transferencia, no un ganador general. Los sat?lites por s? solos no superan la base clim?tica. La compresi?n de pocos componentes satelitales empeora en general a las variables originales; futuras cantidades mayores requerir?an otro dise?o predefinido, no retuning de estos resultados.
 
-8. Ninguna variante L/M supera la pantalla completa de mejora aleatoria y m?rgenes RMSE/MAE en todos los protocolos. Candidata exploratoria para validaci?n externa: lluvia+correctorSentinel actual con objetivo espacial, junto con el antecedente de pendiente residual K. No hay una integraci?n autom?tica ni reemplazo del Champion. La informaci?n edafol?gica posterior a sat?lite sigue siendo diagn?stico descriptivo, no una tercera etapa validada.
+8. Ninguna variante L/M supera la pantalla completa de mejora aleatoria y m?rgenes RMSE/MAE en todos los protocolos. Candidata exploratoria para validaci?n externa: lluvia+correctorSentinel actual con objetivo espacial, junto con el antecedente de pendiente residual K. No hay una integraci?n autom?tica ni reemplazo del modelo TOP20/TOP15. La informaci?n edafol?gica posterior a sat?lite sigue siendo diagn?stico descriptivo, no una tercera etapa validada.
 
 Estos resultados corresponden a las representaciones, cuatro ?ndicesSentinel seleccionados y Elastic Net estudiados. No prueban irrelevancia agron?mica de suelo, historia o sensores, ni generalizaci?n a otro a?o sin nuevas etiquetas. Los folds/repeticiones se superponen y las mejoras peque?as no constituyen confirmaci?n independiente.

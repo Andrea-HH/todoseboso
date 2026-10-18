@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F4-E — Síntesis para decisiones
 
@@ -23,7 +23,7 @@
 
 **Soporte y significado.** Los cinco índices tienen 31–43 fechas válidas únicas y siete meses válidos por parcela, con gaps máximos de hasta 28 días. Ninguna parcela incumple el umbral descriptivo de cuatro fechas/cuatro meses, pero eso no elimina sensibilidad a la distribución temporal. Al omitir un mes, el percentil 90 del cambio absoluto del inicio LAI es 15 días. Hay LAI negativos y no se estableció una escala física; el predictor representa la forma del índice suministrado. El relieve de DEM120m/vecindad360m no mide microtopografía fina. Las reservas de orientación en terrenos planos están en una auditoría secundaria, sin convertirlas en modelos nuevos.
 
-**Complejidad y conjunto mínimo.** Para predicción general conservar lluvia + NDVI mayo. Para estudiar diferencias locales, añadir únicamente inicio LAI como candidato de una dimensión temporal, sin sumar índices de estado redundantes ni relieve medio. No se cambia el Champion ni se adopta automáticamente E2. No se entrenó una corrección residual adicional.
+**Complejidad y conjunto mínimo.** Para predicción general conservar lluvia + NDVI mayo. Para estudiar diferencias locales, añadir únicamente inicio LAI como candidato de una dimensión temporal, sin sumar índices de estado redundantes ni relieve medio. No se cambia el modelo TOP20/TOP15 ni se adopta automáticamente E2. No se entrenó una corrección residual adicional.
 
 **Cuatro niveles de evidencia.** Las correlaciones parciales y descomposiciones son asociaciones descriptivas. E2 muestra complementariedad predictiva local modesta en estos folds. E3/E4 no muestran una mejora de transferencia frente a E1. Todo el módulo conserva sesgo de descubrimiento del screening retrospectivo: se necesitan nuevos rendimientos o geografías para confirmación independiente.
 

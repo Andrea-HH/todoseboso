@@ -1,0 +1,14 @@
+model,hypothesis,p_value,test,p_holm_family13
+CORE4,compact_precip_total coefficient=0,3.3993906426783124e-05,cluster_t,0.00020396343856069876
+CORE4,compact_early_fraction coefficient=0,6.728549705448572e-08,cluster_t,6.728549705448572e-07
+CORE4,compact_concentration_hhi coefficient=0,0.015215979828754701,cluster_t,0.030431959657509403
+CORE4,S2_ndvi_month_05 coefficient=0,2.089444041057103e-06,cluster_t,1.6715552328456824e-05
+CORE4,RAIN_BLOCK all coefficients=0,7.427892513106399e-17,cluster_F,8.913471015727679e-16
+CORE4,ALL4 all coefficients=0,9.226375073166551e-20,cluster_F,1.1994287595116516e-18
+CORE4_PLUS_STATE,compact_precip_total coefficient=0,6.127904275043562e-05,cluster_t,0.00030639521375217806
+CORE4_PLUS_STATE,compact_early_fraction coefficient=0,0.0031679774148246583,cluster_t,0.009503932244473975
+CORE4_PLUS_STATE,compact_concentration_hhi coefficient=0,0.20244329623936924,cluster_t,0.20244329623936924
+CORE4_PLUS_STATE,S2_ndvi_month_05 coefficient=0,6.4416904456341656e-06,cluster_t,4.509183311943916e-05
+CORE4_PLUS_STATE,RAIN_BLOCK all coefficients=0,1.4448756001874625e-07,cluster_F,1.3003880401687164e-06
+CORE4_PLUS_STATE,ALL4 all coefficients=0,5.2639234606727995e-14,cluster_F,5.79031580674008e-13
+NDVI_PLUS_PROFILE_FIXED_EFFECTS,S2_ndvi_month_05 within-profile coefficient=0,0.0005554098456675134,cluster_t,0.0022216393826700537

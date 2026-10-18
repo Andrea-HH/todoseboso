@@ -1,0 +1,50 @@
+{
+  "current_champions": [
+    "Compact14",
+    "Reference26"
+  ],
+  "modified_document_count": 1,
+  "modified_documents": [
+    {
+      "path": "documentation/models/README.md",
+      "before_sha256": "7a9d60ca5012b39c6c4c79d77d68b97966766d68d57545c41755d8c6d0927052"
+    }
+  ],
+  "preserved_frozen_documents": [
+    "documentation/agronomic_calendar_expansion_design.md",
+    "documentation/agronomic_calendar_validation_modeling_plan.md",
+    "documentation/architecture_decomposition_design.md",
+    "documentation/base_distribution_correction_design.md",
+    "documentation/calendar_complements_design.md",
+    "documentation/conditional_local_phases_design.md",
+    "documentation/ct3_residual_conditional_design.md",
+    "documentation/difficult_case_signals_design.md",
+    "documentation/difficult_quartile_design.md",
+    "documentation/family5_gpr_technical_proposal.md",
+    "documentation/family6_bagging_audit_design.md",
+    "documentation/family6_expansion_frozen_design.md",
+    "documentation/family7_boosting_frozen_design.md",
+    "documentation/family7_expansion_frozen_design.md",
+    "documentation/family8_experimental_design.md",
+    "documentation/four_architecture_explanation.md",
+    "documentation/four_expert_combinations_design.md",
+    "documentation/geoc_cross_repository_comparison_plan.md",
+    "documentation/geoc_signal_research_design.md",
+    "documentation/indicator_neighborhoods_design.md",
+    "documentation/joint_simplification_design.md",
+    "documentation/k1_edaphological_redesign.md",
+    "documentation/learned_r3_weight_design.md",
+    "documentation/neighbor_signal_contrasts_design.md",
+    "documentation/neighbor_signal_linear_design.md",
+    "documentation/physical_representation_design.md",
+    "documentation/physical_similarity_design.md",
+    "documentation/signal_feature_engineering_design.md",
+    "documentation/signal_role_allocation_design.md",
+    "documentation/temporal_indicator_weights_design.md",
+    "documentation/territorial_mixtures_design.md"
+  ],
+  "legacy_policy": "Old raw IDs such as Champion_t_ha, CHAMPION, A_CURRENT_CH_H_T and source identifiers remain for reproducibility; they are not current champion declarations. Literal user prompts and frozen designs preserve their original wording.",
+  "model_code_changed": false,
+  "predictions_changed": false,
+  "repository_files_with_current_or_legacy_references": 339
+}

@@ -9,7 +9,7 @@ Esta carpeta reúne la documentación propia. `../docs/guidelines/` conserva los
 **Etapa vigente: Reference26 y Compact14 son los champions actuales.** La [reproducción actual](current_champions_reproduction.md) incluye también C-T3 y B1, excluyeL40 y no requiereGeoC tras preparar el bundle. Los [resultados agregados](../results/current_champions/v1/README.md) están versionados. Los informes antiguos conservan su alcance histórico.
 
 1. [Propósito y entregables](project_scope_and_guidelines.md): qué solución se quiere producir y cómo se relaciona con los lineamientos.
-2. [Registro de modelos](model_registry.md): nombres, funciones, estados y ubicaciones; diferencia entre Champion histórico y candidatos recientes.
+2. [Registro de modelos](model_registry.md): nombres, funciones, estados y ubicaciones; diferencia entre modelo histórico TOP20/TOP15 y candidatos recientes.
 3. [Índice de experimentos](experiment_index.md): etapas, evidencia y puntos de entrada.
 4. [Convenciones de comparación](model_comparison_convention.md): RMSE/R², OOF y protocolos compatibles.
 5. [Explicación26/14/B1/L40](four_architecture_explanation.md): arquitectura, métricas, residuos y predicciones comparables.
@@ -35,6 +35,6 @@ Esta carpeta reúne la documentación propia. `../docs/guidelines/` conserva los
 | Modelos GPR y árboles | [F5](family5_gpr_initial_decision.md), [F6](family6_expansion.md), [F7](family7_expansion.md), [propuesta F8](family8_recommendation.md) |
 | Comparación con GeoC | [Puente L40](geoc_bridge_results.md), [procedencia de variables](geoc_variable_signal_audit.md) |
 | Simplificación y mezclas recientes | [Descomposición](architecture_decomposition_conclusions.md), [mezclas](four_expert_combinations_conclusions.md) |
-| Predicciones históricas59 | [C-T3/Champion/EQUAL3](winner_predictions_statistical_validation.md) |
+| Predicciones históricas59 | [C-T3/modelo TOP20/TOP15/EQUAL3](winner_predictions_statistical_validation.md) |
 
 El [inventario de archivos](inventories/repository_files.csv) permite localizar scripts, módulos, pruebas y documentos por ruta y descripción. Es un inventario de archivos, **no un conteo de modelos**: un script puede entrenar muchos ajustes y un diseño puede no haberse ejecutado.

@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Sección I — Auditoría inicial de insumos
 
-Primera entrega, previa a crear scripts de análisis. Se reutiliza el procesamiento existente; esta sección no entrena modelos ni modifica E–H o el Champion.
+Primera entrega, previa a crear scripts de análisis. Se reutiliza el procesamiento existente; esta sección no entrena modelos ni modifica E–H o el modelo TOP20/TOP15.
 
 | Insumo | Estado | Uso y reserva |
 |---|---|---|
@@ -17,7 +17,7 @@ Primera entrega, previa a crear scripts de análisis. Se reutiliza el procesamie
 
 Familia 1 utiliza extracciones canónicas y arquitectura residual; Familia 2 estudia representaciones funcionales y Familia 3 estructurales. Los resultados y protocolos existentes de E–H se conservan. No se reconstruyen series climáticas, topografía ni folds.
 
-El resultado guardado del Champion muestra RMSE medio por fold 0.505247 en clima, 0.489548 después de historia satelital y 0.486505 después de topografía: la mejora incremental topográfica es 0.003042 t/ha en esa arquitectura. Es evidencia previa específica de ese protocolo, no garantía para las variables de esta sección.
+El resultado guardado del modelo TOP20/TOP15 muestra RMSE medio por fold 0.505247 en clima, 0.489548 después de historia satelital y 0.486505 después de topografía: la mejora incremental topográfica es 0.003042 t/ha en esa arquitectura. Es evidencia previa específica de ese protocolo, no garantía para las variables de esta sección.
 
 La auditoría anterior de suelo (`outputs/data_audit/soil_pdf_review/assessment.md`) validó contexto y leyenda, pero no intersecciones parcela–unidad. Las representaciones RGB exploradas en fase C no se reinterpretan como categorías edafológicas.
 

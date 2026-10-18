@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F4-E — Complementariedad intraperfil de vegetación, dinámica temporal y relieve
 
@@ -124,7 +124,7 @@ Estos márgenes no son pruebas de significación. Los resultados requieren inter
 
 ## Integridad, reproducibilidad y limitaciones
 
-La configuración y los hashes de las fuentes están congelados antes del ajuste. Los controles mantienen sus especificaciones originales. Se guardan selección interna, modelos, escalas, coeficientes y las listas de IDs de entrenamiento/validación. No se sobrescriben Familias 1–3, E–M, Familia 4 original ni Champion. La integridad de los artefactos anteriores se verifica nuevamente al finalizar.
+La configuración y los hashes de las fuentes están congelados antes del ajuste. Los controles mantienen sus especificaciones originales. Se guardan selección interna, modelos, escalas, coeficientes y las listas de IDs de entrenamiento/validación. No se sobrescriben Familias 1–3, E–M, Familia 4 original ni modelo TOP20/TOP15. La integridad de los artefactos anteriores se verifica nuevamente al finalizar.
 
 La reutilización de etiquetas/folds tras el screening conserva sesgo de descubrimiento, incluso con validación interna correcta. Los perfiles y estados se solapan con la estructura geográfica; el significado físico de LAI y la fase fenológica son reservas materiales. Se necesitan nuevos rendimientos, campañas o geografías para validación independiente. No se recomienda una expansión de combinaciones sobre esta misma muestra.
 

@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Acceso e inventario de señales puntuales de GeoC
 
@@ -41,4 +41,4 @@ Las cargas y energías PCA del catálogo describen representación de X en PCA20
 
 Para hablar de aportación predictiva puntual se requieren ablaciones con reajuste dentro del entrenamiento, agrupación de variables correlacionadas y comparación de OOF pareadas. Permutar una sola columna cruda manteniendo un PCA/local congelado puede crear combinaciones irreales y no sustituye ese contraste. La prioridad es agrupar señales por origen y definición, separar proxies territoriales, y después evaluar los bloques reducidos sobre residuos de C-T3 o sobre pesos entre expertos, con controles equivalentes.
 
-No se ajustaron modelos predictivos nuevos, no se seleccionaron variables para producción, no se usaron rendimientos PRED y no se alteraron las59 predicciones ni el Champion. Se verificaron hashes de las fuentes originales al finalizar.
+No se ajustaron modelos predictivos nuevos, no se seleccionaron variables para producción, no se usaron rendimientos PRED y no se alteraron las59 predicciones ni el modelo TOP20/TOP15. Se verificaron hashes de las fuentes originales al finalizar.

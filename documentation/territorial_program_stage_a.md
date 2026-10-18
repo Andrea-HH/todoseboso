@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Programa territorial intraperfil — Primera entrega: Etapa A
 
@@ -118,7 +118,7 @@ Los atributos geológicos coarse solo podrían pasar a un experimento posterior 
 
 ## Reproducción e integridad
 
-`python scripts/340_territorial_program_stage_a.py`. Una versión completada es inmutable. Fuentes, inventario SHA-256, operaciones CRS, geometrías, fracciones y matriz target-free quedan versionados. La Etapa A requiere pruebas de conservación de área, geometrías, límites de composición, identidad de perfiles/folds, ausencia de Y en clasificación de parejas y verificación de resultados previos. La evidencia de esas pruebas se agrega al finalizar. No se alteran rendimientos, fuentes, modelos, Champion ni resultados anteriores.
+`python scripts/340_territorial_program_stage_a.py`. Una versión completada es inmutable. Fuentes, inventario SHA-256, operaciones CRS, geometrías, fracciones y matriz target-free quedan versionados. La Etapa A requiere pruebas de conservación de área, geometrías, límites de composición, identidad de perfiles/folds, ausencia de Y en clasificación de parejas y verificación de resultados previos. La evidencia de esas pruebas se agrega al finalizar. No se alteran rendimientos, fuentes, modelos, modelo TOP20/TOP15 ni resultados anteriores.
 
 
 ## Verificación final

@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Cuartil difícil: qué diferencia las parcelas y el signo del error
 
@@ -81,7 +81,7 @@ Para las36parcelas con Y≤3.2t/ha aparecen descriptivamente menor carbono orgá
 
 ## Decisión y entregables
 
-El grupo difícil no es un único tipo de parcela ni una simple clase de suelo. Separar signos evita cancelar señales: las subestimadas muestran, en varios descriptores, historia de vegetación más elevada y menor heterogeneidad temporal; las sobreestimadas muestran mayor heterogeneidad y menor pendiente. Son hipótesis descriptivas para comparar representaciones, no reglas listas para desplegar. La clasificación evaluada no justifica usar estos patrones para activar ni dimensionar una corrección de rendimiento. Se conservan J7/CT3 y no se modifican Champion ni PRED59.
+El grupo difícil no es un único tipo de parcela ni una simple clase de suelo. Separar signos evita cancelar señales: las subestimadas muestran, en varios descriptores, historia de vegetación más elevada y menor heterogeneidad temporal; las sobreestimadas muestran mayor heterogeneidad y menor pendiente. Son hipótesis descriptivas para comparar representaciones, no reglas listas para desplegar. La clasificación evaluada no justifica usar estos patrones para activar ni dimensionar una corrección de rendimiento. Se conservan J7/CT3 y no se modifican modelo TOP20/TOP15 ni PRED59.
 
 El Excel contiene los35IDs, las tablas numéricas/categóricas completas, diferencias por parcela respecto a municipio/perfil, soporte, modelos de clasificación y estabilidad. Los perfiles pequeños o con variables constantes no se presentan como outliers continuos. El inventario por parcela usa hasta12variables no redundantes por ámbito, con n≥12,≥5valores distintos e IQR positivo; conserva percentiles y cercas descriptivas incluyendo la parcela focal.
 

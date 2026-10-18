@@ -1,10 +1,10 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Etapa D — Síntesis ejecutiva para FIRA
 
 **El programa identifica candidatos con fortalezas diferentes, pero no un ganador universal ni una validación externa concluida.** Las 138 etiquetas de2025 se han reutilizado para descubrir y comparar hipótesis. Nuevas particiones de esas mismas etiquetas no sustituyen nuevos rendimientos.
 
-Para parcelas semejantes a las observadas, Champion continúa como referencia histórica. La mezcla fija50/50 mejora ligeramente en validación aleatoria, pero parte importante de su ganancia depende de pocas parcelas y no tiene evaluación geográfica equivalente.
+Para parcelas semejantes a las observadas, modelo TOP20/TOP15 continúa como referencia histórica. La mezcla fija50/50 mejora ligeramente en validación aleatoria, pero parte importante de su ganancia depende de pocas parcelas y no tiene evaluación geográfica equivalente.
 
 Para municipios no representados, lluvia compacta + NDVI mayo (C-T3) es el candidato más defendible de esta investigación. Su ventaja municipal se compara con lluvia mensual + NDVI en las mismas parcelas/folds; no demuestra transferencia entre campañas, ni un beneficio universal dentro de Chignahuapan. Su compresión resume cantidad, fracción temprana y concentración temporal de lluvia.
 
@@ -37,10 +37,10 @@ El intercepto jerárquico no mejora de manera consistente frente al control Ridg
 
 Dentro de perfiles idénticos quedan diferencias grandes que clima no puede distinguir. NDVI mayo aporta contraste parcelario y la dinámica LAI aporta una mejora local pequeña. No hemos resuelto la heterogeneidad local ni demostrado que sea irreducible. Conviene verificar rendimientos/superficies y medir fechas, variedad, manejo y suelo real antes de añadir complejidad.
 
-Decisiones actuales: preservar Champion; congelar la mezcla para comparación aleatoria independiente, C-T3 para municipios, F4-S1 como referencia sencilla y C-T1 como hipótesis espacial. Mantener Ridge como control. No integrar jerarquía, pérdidas adicionales ni cartografía50k sin geometrías fiables.
+Decisiones actuales: preservar modelo TOP20/TOP15; congelar la mezcla para comparación aleatoria independiente, C-T3 para municipios, F4-S1 como referencia sencilla y C-T1 como hipótesis espacial. Mantener Ridge como control. No integrar jerarquía, pérdidas adicionales ni cartografía50k sin geometrías fiables.
 
 Prioridades de validación: municipios nuevos para comprobar C-T3, una nueva campaña para comprobar estabilidad temporal, y parcelas adicionales de varios perfiles repetidos si la prioridad es explicar diferencias locales. El tamaño se decidirá por precisión, municipios/campañas independientes y recursos; no por contar parejas ni por sumar diez repeticiones de las mismas etiquetas.
 
 Los intervalos jerárquicos nominales90% subcubren perfiles nuevos municipales y son mucho más amplios en espacio. No deben usarse como garantía operacional. Cualquier calibración futura necesita datos separados.
 
-Etapa D no entrenó modelos, no produjo nuevas estimaciones predictivas ni alteró Champion, mezcla, folds, etiquetas o resultados A–C. El reporte técnico, matriz de evidencia, protocolo prospectivo y auditoría sustentan estas decisiones. Las cifras y límites de esta síntesis provienen de `metrics_summary.csv`, `block_composition.csv`, `spatial_block_gains.csv`, `spatial_block_omission.csv`, `gain_concentration.csv` y `archived_interval_calibration.csv`.
+Etapa D no entrenó modelos, no produjo nuevas estimaciones predictivas ni alteró modelo TOP20/TOP15, mezcla, folds, etiquetas o resultados A–C. El reporte técnico, matriz de evidencia, protocolo prospectivo y auditoría sustentan estas decisiones. Las cifras y límites de esta síntesis provienen de `metrics_summary.csv`, `block_composition.csv`, `spatial_block_gains.csv`, `spatial_block_omission.csv`, `gain_concentration.csv` y `archived_interval_calibration.csv`.

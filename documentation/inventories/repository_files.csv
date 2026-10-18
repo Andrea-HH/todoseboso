@@ -192,6 +192,11 @@ scripts/525_inventory_l40_inputs.py,scripts,execution helper / entry point,Read-
 scripts/526_current_champions_final59.py,scripts,execution helper / entry point,"Fit frozen26/14 on138, append to existing59 comparison; no hidden targets.",Not inferred from file existence
 scripts/527_finalize_prediction_comparison.py,scripts,execution helper / entry point,Explain final59 disagreements and update status after526 completes; no fitting.,Not inferred from file existence
 scripts/528_export_97_41_comparison.py,scripts,execution helper / entry point,"Publish existing97/41 aggregate metrics, without fitting or private rows.",Not inferred from file existence
+scripts/529_core4_relevance.py,scripts,execution helper / entry point,"Exploratory core4 association and refitted ablation; frozen65, no PRED read.",Not inferred from file existence
+scripts/530_report_core4_relevance.py,scripts,execution helper / entry point,"Interpret completed529 tests without new fits, model changes or PRED reads.",Not inferred from file existence
+scripts/531_recover_reference26_evidence.py,scripts,execution helper / entry point,"Recover archived component evidence for26; no fitting, new tests or PRED read.",Not inferred from file existence
+scripts/532_refresh_results_readmes.py,scripts,results / interpretation,Refresh current result presentations from existing26/14 validation and59 outputs.,Not inferred from file existence
+scripts/533_current_champion_naming.py,scripts,execution helper / entry point,Reserve current champion status for26/14; retain frozen and executable legacy IDs.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/00_preguntas_pequeñas.py,scripts,execution helper / entry point,,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/01_eda_temporal.py,scripts,execution helper / entry point,EDA inicial de las tablas maestras de AgroCebada.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/02_revision_eda_tablas_maestreas.py,scripts,execution helper / entry point,02 - Revision dirigida del EDA de tablas maestras.,Not inferred from file existence
@@ -592,7 +597,7 @@ documentation/model_status_history.md,documentation,documentation,Estado de docu
 documentation/models/B1/README.md,documentation,documentation,B1 — ficha del modelo,Not inferred from file existence
 documentation/models/Compact14/README.md,documentation,documentation,Compact14 — ficha del modelo,Not inferred from file existence
 documentation/models/CT3/README.md,documentation,documentation,CT3 — ficha del modelo,Not inferred from file existence
-documentation/models/historical_top20_top15/README.md,documentation,documentation,Champion histórico TOP20 → TOP15 → topografía,Not inferred from file existence
+documentation/models/historical_top20_top15/README.md,documentation,documentation,Modelo histórico — TOP20 → TOP15 → topografía,Not inferred from file existence
 documentation/models/L40/README.md,documentation,documentation,L40 — ficha del modelo,Not inferred from file existence
 documentation/models/README.md,documentation,documentation,Modelos de la comparación final,Not inferred from file existence
 documentation/models/Reference26/blocks.md,documentation,documentation,Recorrido de una predicción,Not inferred from file existence

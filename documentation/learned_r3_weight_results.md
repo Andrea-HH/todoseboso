@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Pesos aprendidos y asimetría R3: resultados exploratorios
 
@@ -244,6 +244,6 @@ La intensidad MASK se selecciona con propuestas R3 OOF internas. Los otros pesos
 | SHARES_MASK | random | 0.8322 | 0.7427 | 0.7899 |
 | SHARES_MASK | spatial | 0.6890 | 0.4911 | 0.6087 |
 
-372 contrastes predefinidos; significativos tras Holm: 0. Contienen comparaciones repetidas para J7 propio-global/referencia; se conserva el ajuste conjunto predefinido, conservador. No se interpreta no significancia como equivalencia. No se promovió Champion ni se generaron PRED59.
+372 contrastes predefinidos; significativos tras Holm: 0. Contienen comparaciones repetidas para J7 propio-global/referencia; se conserva el ajuste conjunto predefinido, conservador. No se interpreta no significancia como equivalencia. No se promovió modelo TOP20/TOP15 ni se generaron PRED59.
 
 Los descriptores locales se construyen sólo con entrenamiento y k24 fijo. Las propuestas R3 para entrenar el peso son OOF: R3 se ajusta en A con residuos base OOF íntegramente dentro de A y predice D, excluyendo D y el fold externo. La auditoría reconstruye195 calibraciones y1,560 metamodelos. MASK/CONSTANT/ASYM requieren siete entradas con C-T3,31 con J7 y26 con SHARES; LEARNED añade FAPAR histórico para geometría satelital: ocho,32 y27 respectivamente. Los seis descriptores derivados no son nuevas fuentes independientes.

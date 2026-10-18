@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Etapa D — Protocolo prospectivo de validación independiente
 
@@ -30,12 +30,12 @@ Las 59 PRED existentes pueden constituir un subconjunto sellado de evaluación d
 
 ## Candidatos y procedimientos que se preservan
 
-- S1: Champion archivado como referencia; mezcla exactamente 0.5Champion+0.5F4-S1 como candidato; F4-S1 como control sencillo. No buscar pesos ni reconstruir protocolos geográficos del Champion.
+- S1: modelo TOP20/TOP15 archivado como referencia; mezcla exactamente 0.5Champion+0.5F4-S1 como candidato; F4-S1 como control sencillo. No buscar pesos ni reconstruir protocolos geográficos del modelo TOP20/TOP15.
 - V2/V3/V4: F4-S1, C-T3, C-T1 y C-H0M, usando las mismas especificaciones y reglas internas de C. C-T0 no se considera un modelo distinto de F4-S1.
 - Local: F4-E2 como control de dinámica, comparado con F4-S1; no promover B3. H1 y nuevas combinaciones quedan fuera del conjunto confirmatorio prioritario.
 - F4-S1 = EN(lluvia mensual7 + NDVI mayo); T1 = EN(lluvia7 + SD mensualDTR); T3 = EN(total7, fracciónabril–junio, HHI mensual + NDVI mayo). Epsilon=1e−6mm. H0M usa las variables de S1, Ridge alpha_solver=n·alpha, intercepto libre y ratio0.
 - Imputación mediana, medias/escalas entrenadas solo en entrenamiento; piso NDVI0.05 y tratamiento de constantes original. Mantener α={0.001,0.01,0.1,1}, ρ={0.1,0.5,0.9} EN; H0M α igual. Selección min mediaRMSE de folds internos, según fuentes congeladas; ningún Y externo entra en selección. Para el futuro ajuste final, la regla pendiente de concretar es reutilizar como CV interna las particiones aleatorias originales sobre138, sin adaptar protocolos según resultados externos. Debe aprobarse y sellarse antes de ajustar o ver Y nueva.
-- Champion requiere confirmar que su entrenamiento final y fuentes están reproducibles con el procedimiento original. Si no puede producirse un artefacto final fiel sin modificar arquitectura/selección, omitir Champion y mezcla de esa validación, explicarlo y conservar los candidatos simples. No reconstruir retrospectivamente una nueva versión bajo el mismo ID.
+- modelo TOP20/TOP15 requiere confirmar que su entrenamiento final y fuentes están reproducibles con el procedimiento original. Si no puede producirse un artefacto final fiel sin modificar arquitectura/selección, omitir modelo TOP20/TOP15 y mezcla de esa validación, explicarlo y conservar los candidatos simples. No reconstruir retrospectivamente una nueva versión bajo el mismo ID.
 - Calendario: NDVI mayo solo es una señal de mayo. Lluvia/DTR abril–octubre y dinámicaE2 requieren toda esa ventana. La evaluación principal es estimación poscampaña, no pronóstico anticipado. Si Y se conoce antes de completar X, mantener Y sellada hasta bloquear predicciones.
 
 ## Tamaño de muestra y precisión

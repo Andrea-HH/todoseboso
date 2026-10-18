@@ -1,0 +1,15 @@
+{
+  "source_sha256": {
+    "scripts/529_core4_relevance.py": "d1625d5ec6de7bf8ee8b80d09948de8d9fbea42c15e85689d712679e687b5c9c",
+    "scripts/530_report_core4_relevance.py": "8e0d7d1987724cb08022fa7acf3955869133a3d263d0026d2eabbf0befbb73d3",
+    "src/family_4/conditional_response.py": "10a15b9ba07f83e190f7b496b4bda8549cc32565ca9ca9a5eec94afdc69d651b",
+    "src/ct3_residual_conditional/models.py": "f9eeb38d8944f58fd05fd42bc4db1ea8bba418e13c90eeb22356ad1da1ab358e"
+  },
+  "input_sha256": {
+    "data/processed/current_champions/v1/train138.parquet": "92aab75ab73e5ae32777f4b4c8a3fb3eb6e1e9cabfe0de7424f00d31f0c2149e",
+    "data/processed/current_champions/v1/splits.json": "ef1ab5efef124fa60e3dd7299de861ad40f05f88e7b39f05a1e970997d90f904",
+    "outputs/research/four_leaders/v1/paired_tests.csv": "cad9a11b5d435b75da02589609471c5567307c4dac55f774a4fe718ebe18371a"
+  },
+  "source_hash_convention": "CRLF normalized to LF for code only; raw bytes for inputs",
+  "claims": "Exploratory and conditional; not causal or post-selection-valid confirmation"
+}

@@ -1,0 +1,5 @@
+{
+  "reason": "Within-profile inference must use the12 informative profiles and107 parcels, not43 profiles including31 singletons with no NDVI within variation. X-only support rule; same hypothesis, no model/feature selection or ablation changes.",
+  "initial_design": "initial_frozen_design.json",
+  "unchanged": "13-test Holm family; all65 ablations and final models unchanged"
+}

@@ -18,7 +18,6 @@
   "excluded_from_current_delivery": [
     "L40"
   ],
-  "historical_champion": "A_CURRENT_CH_H_T",
   "original_external_folds": 65,
   "additional_97_41_partitions": 16,
   "bundle": "data/processed/current_champions/v1",
@@ -51,5 +50,6 @@
     "Compact14"
   ],
   "final_comparison": "outputs/modeling/current_champions_final/v1/comparacion_predicciones59.xlsx",
-  "final_comparison_report": "results/current_champions_final/v1/README.md"
+  "final_comparison_report": "results/current_champions_final/v1/README.md",
+  "historical_model": "A_CURRENT_CH_H_T"
 }

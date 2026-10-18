@@ -1,0 +1,5 @@
+protocol,left,right,delta_rmse,p_mse_signflip,n_clusters,exact_sign_enumeration,n_sign_assignments,p_holm
+climate_profile,CT3,Reference26,0.0431586853499166,0.0037498125093745,43,False,20000,0.0787460626968651
+municipality,CT3,Reference26,0.0060380988616378,0.859375,9,True,512,1.0
+random,CT3,Reference26,0.0368043539677094,0.0010999450027498,43,False,20000,0.0252987350632468
+spatial,CT3,Reference26,0.0454312492390334,0.375,5,True,32,1.0

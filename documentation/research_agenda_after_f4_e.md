@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Líneas de investigación después de F4-E
 
-Propuesta basada en la revisión de Familias 1–4, Champion RS6, diagnósticos F3.2.1, screening y concentración de errores de Chignahuapan. No se entrenaron nuevas arquitecturas ni se modificaron resultados anteriores. Una mezcla fija de predicciones archivadas se examinó únicamente como diagnóstico exploratorio retrospectivo.
+Propuesta basada en la revisión de Familias 1–4, modelo TOP20/TOP15 RS6, diagnósticos F3.2.1, screening y concentración de errores de Chignahuapan. No se entrenaron nuevas arquitecturas ni se modificaron resultados anteriores. Una mezcla fija de predicciones archivadas se examinó únicamente como diagnóstico exploratorio retrospectivo.
 
 ## Evidencia que determina las prioridades
 
@@ -34,13 +34,13 @@ Una propuesta es L=L_parcelas+λ·media_g[media_(i,j en g)((Y_i−Y_j)−(ŷ_i�
 
 ## 2. Mezcla parsimoniosa de modelos existentes — afinamiento de bajo alcance
 
-**Pregunta:** ¿Champion y F4-S1 tienen suficiente diversidad para compensar parte de sus errores?
+**Pregunta:** ¿modelo TOP20/TOP15 y F4-S1 tienen suficiente diversidad para compensar parte de sus errores?
 
-Un diagnóstico de predicciones archivadas compatibles, con los mismos1,380 IDs/repeticiones/folds aleatorios, encontró correlación de residuos0.938. La media fija50/50 de Champion `A_CURRENT_CH_H_T` y F4-S1 da RMSE medio de repetición0.49360 frente a0.49813 de Champion y mejora nueve de diez repeticiones. Las repeticiones no son independientes. No es una confirmación ni una búsqueda autorizada de más mezclas.
+Un diagnóstico de predicciones archivadas compatibles, con los mismos1,380 IDs/repeticiones/folds aleatorios, encontró correlación de residuos0.938. La media fija50/50 de modelo TOP20/TOP15 `A_CURRENT_CH_H_T` y F4-S1 da RMSE medio de repetición0.49360 frente a0.49813 de modelo TOP20/TOP15 y mejora nueve de diez repeticiones. Las repeticiones no son independientes. No es una confirmación ni una búsqueda autorizada de más mezclas.
 
-**Prueba mínima propuesta:** comparar esa media fija con ambos modelos, sin abrir una búsqueda de pesos o miembros después de ver resultados. Si se aprende un peso, aprenderlo exclusivamente con predicciones cruzadas generadas dentro de cada entrenamiento externo e interno. Los contextos de toda la arquitectura Champion deben reconstruirse para ese ajuste; sus OOF globales no sirven para entrenar un meta-modelo ni una nueva capa.
+**Prueba mínima propuesta:** comparar esa media fija con ambos modelos, sin abrir una búsqueda de pesos o miembros después de ver resultados. Si se aprende un peso, aprenderlo exclusivamente con predicciones cruzadas generadas dentro de cada entrenamiento externo e interno. Los contextos de toda la arquitectura modelo TOP20/TOP15 deben reconstruirse para ese ajuste; sus OOF globales no sirven para entrenar un meta-modelo ni una nueva capa.
 
-**Éxito:** mantener MAE, extremos y diferenciación además de la ganancia aleatoria. Para afirmar transferencia, reconstruir una variante completa verificable en protocolos agrupados; no existe hoy un Champion archivado compatible para municipio/espacio. **Descarte:** si la diversidad resulta demasiado pequeña o la mejora se pierde en nuevos datos. Una ganancia~0.0045 t/ha quizá no justifique mayor complejidad operativa.
+**Éxito:** mantener MAE, extremos y diferenciación además de la ganancia aleatoria. Para afirmar transferencia, reconstruir una variante completa verificable en protocolos agrupados; no existe hoy un modelo TOP20/TOP15 archivado compatible para municipio/espacio. **Descarte:** si la diversidad resulta demasiado pequeña o la mejora se pierde en nuevos datos. Una ganancia~0.0045 t/ha quizá no justifique mayor complejidad operativa.
 
 ## 3. Modelo jerárquico compacto — alternativa principal
 

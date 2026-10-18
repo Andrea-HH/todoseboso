@@ -19,6 +19,12 @@ DOCS += ['documentation/model_status_history.md']
 DOCS += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'documentation/models').rglob('README.md'))]
 if (ROOT/'results/comparison_97_41/v1/README.md').exists():
     DOCS.append('results/comparison_97_41/v1/README.md')
+if (ROOT/'results/core4_relevance/v1/README.md').exists():
+    DOCS.append('results/core4_relevance/v1/README.md')
+if (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
+    DOCS.append('results/reference26_component_evidence/v1/README.md')
+if (ROOT/'results/current_champions_final/v1/README.md').exists():
+    DOCS.append('results/current_champions_final/v1/README.md')
 
 
 def sha(p):
@@ -125,6 +131,7 @@ def main():
         assert not any('ID_POLIGONO' in row for row in pairs)
         checks['final_prediction_pairs']=len(pairs)
     registered={m['id']:m for m in registry}
+    assert {m['id'] for m in registry if m['status'].startswith('current_champion')}=={'Reference26','Compact14'}
     assert all(registered[m]['status'].startswith('current_champion') for m in stage['champions'])
     with (ROOT/'results/current_champions/v1/metrics.csv').open(encoding='utf-8',newline='') as stream:
         current=list(csv.DictReader(stream))
