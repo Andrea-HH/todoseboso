@@ -58,6 +58,16 @@ def main():
         close(item["coefficient_per_SD"], coef["coefficient_per_SD"])
         close(item["p_holm"], test["p_holm_family13"])
     assert d["associations"][2]["p_holm"] > 0.05
+    old_comparison = csv_rows("results/core4_relevance/v1/existing_26_vs_CT3_tests.csv")
+    assert len(d["reference26_vs_ct3"]) == 4
+    for row in d["reference26_vs_ct3"]:
+        source = one(old_comparison, protocol=row["protocol"], left="CT3",
+                     right="Reference26")
+        close(row["delta_rmse"], source["delta_rmse"])
+        close(row["p_holm"], source["p_holm"])
+        assert row["clusters"] == int(source["n_clusters"])
+    assert next(x for x in d["reference26_vs_ct3"] if x["protocol"] == "random")["p_holm"] < 0.05
+
 
     audit = json.loads((ROOT / "results/reference26_component_evidence/v1/audit.json").read_text())
     assert d["architecture_tests"] == audit["archived_families"]
@@ -74,6 +84,17 @@ def main():
         "outside_local": "local7_above_training_q95",
     }.items():
         assert d["support"][key] == int(support[source_key])
+
+    assert len(d["support_states"]) == 3
+    for item in d["support_states"]:
+        source = one(csv_rows("results/four_final_checks/v1/support_summary.csv"),
+                     region=item["state"])
+        assert item["n"] == int(source["n"])
+        assert item["any_flag"] == int(source["any_flag"])
+        assert item["missing_r3"] == int(source["missing_R3"])
+        assert item["outside_geography"] == int(source["geo_above_training_q95"])
+        assert item["outside_climate"] == int(source["core4_above_training_q95"])
+        assert item["outside_local"] == int(source["local7_above_training_q95"])
 
     interval = csv_rows("results/four_final_checks/v1/interval_metrics.csv")
     assert len(d["intervals"]) == 4
@@ -94,6 +115,12 @@ def main():
         assert f'id="{section}"' in html
     assert "new_research.json" in js and "p_holm" in js
     assert "prefers-reduced-motion" in css
+    figure = ROOT / "results/four_final_checks/v1/NoHHI_delta_RMSE.png"
+    site_figure = ROOT / "site/media/NoHHI_delta_RMSE.png"
+    assert figure.read_bytes().startswith(b"\\x89PNG\\r\\n\\x1a\\n".decode("unicode_escape").encode("latin1"))
+    assert figure.read_bytes() == site_figure.read_bytes()
+    assert "./media/NoHHI_delta_RMSE.png" in html
+
     print("PASS: evidence, Holm p-values, intervals, HHI and support match upstream sources")
 
 
