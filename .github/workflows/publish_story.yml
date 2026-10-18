@@ -45,6 +45,8 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_story_site.py'
       - name: Verify recovered interpretability evidence
         run: python scripts/check_story_evidence.py
+      - name: Audit repository documentation and frozen model provenance
+        run: python scripts/520_validate_repository_documentation.py
       - name: Validate JavaScript syntax
         run: node --check site/app.js
 
