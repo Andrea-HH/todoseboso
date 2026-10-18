@@ -24,6 +24,7 @@
         <a href="#pregunta">El problema</a>
         <a href="#historia">La historia</a>
         <a href="#arquitectura">El modelo</a>
+        <a href="#componentes">Qué aporta cada capa</a>
         <a href="#evidencia">La evidencia</a>
         <a href="#limites">Alcance</a>
       </nav>
@@ -110,6 +111,47 @@
     </div></section>
 
     <section class="section neighbor-section" aria-labelledby="neighbor-title"><div class="shell neighbor-grid"><div><p class="eyebrow">EL TERRITORIO EN EL MODELO</p><h2 id="neighbor-title">Cada parcela tiene <em>su propio contexto.</em></h2><p>Una consulta utiliza los 24 vecinos etiquetados geográficamente más cercanos. El Ridge local pondera más a los cercanos y ajusta coeficientes específicos para esa consulta.</p><p>El diagrama permite cambiar el número de vecinos <strong>sólo para comprender el mecanismo</strong>. La receta real de Reference26 está congelada en <strong>k = 24</strong>, α = 30 y potencia de distancia = 1.</p><div class="neighbor-control"><label for="neighbor-k">Vecinos ilustrados <output id="neighbor-k-value" for="neighbor-k">24</output></label><input type="range" id="neighbor-k" min="8" max="32" step="1" value="24"><div class="range-ends"><span>8</span><span>24 · configuración real</span><span>32</span></div></div><p class="small-note">Puntos ficticios y distancias en coordenadas de pantalla. No es un mapa geográfico ni modifica el modelo entrenado.</p></div><div class="neighbor-art"><div class="demo-top"><span>CONSULTA HIPOTÉTICA</span><span>RÍDGE PONDERADO</span></div><svg id="neighbor-svg" viewBox="0 0 460 420" role="img" aria-label="Diagrama conceptual con una parcela central y los vecinos seleccionados más cercanos"><g id="neighbor-connections"></g><g id="neighbor-points"></g><circle cx="230" cy="207" r="12" fill="#d9ebaa" stroke="#144538" stroke-width="5"/><circle cx="230" cy="207" r="24" fill="none" stroke="#a8c781" stroke-width="1.5" stroke-dasharray="4 5"/></svg><div class="neighbor-legend"><span><i class="dot bright"></i> Vecinos elegidos</span><span><i class="dot dull"></i> Otros puntos</span><span><i class="dot center"></i> Consulta</span></div></div></div></section>
+
+
+    <section class="section new-evidence" id="componentes" aria-labelledby="component-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div><p class="eyebrow">04 / NUEVA EVIDENCIA DE COMPONENTES</p><h2 id="component-title">¿Qué señales <em>realmente aportan?</em></h2></div>
+          <p>Las pruebas recientes del repositorio permiten evaluar partes de la arquitectura, sin convertir correlaciones en explicaciones causales ni inventar importancia individual.</p>
+        </div>
+        <div class="evidence-context">
+          <strong>Dos preguntas distintas.</strong> Una ablación del núcleo C-T3 muestra qué cambia al retirar una de sus cuatro entradas; una ablación del modelo26 mide el efecto de retirar el corrector R3. No son experimentos intercambiables.
+        </div>
+        <div class="evidence-dashboard">
+          <article class="evidence-study">
+            <span class="evidence-kicker">ESTUDIO 01 · NÚCLEO C-T3</span>
+            <h3>¿Qué sucede al retirar una señal?</h3>
+            <p>Para cada alternativa se vuelve a ajustar la Elastic Net. Las barras comparan RMSE dentro del <strong>mismo protocolo</strong>. Un valor más bajo significa menor error.</p>
+            <div class="evidence-tabs" role="group" aria-label="Protocolo para ablaciones del núcleo">
+              <button type="button" class="evidence-tab active" data-ablation-protocol="random" aria-pressed="true">Aleatoria</button>
+              <button type="button" class="evidence-tab" data-ablation-protocol="climate_profile" aria-pressed="false">Perfil climático</button>
+              <button type="button" class="evidence-tab" data-ablation-protocol="municipality" aria-pressed="false">Municipio</button>
+              <button type="button" class="evidence-tab" data-ablation-protocol="spatial" aria-pressed="false">Espacial</button>
+            </div>
+            <div class="ablation-chart" id="ablation-chart" aria-live="polite">Cargando evidencia reproducible…</div>
+            <p class="evidence-insight" id="ablation-insight" aria-live="polite">Los cambios individuales deben interpretarse junto con las limitaciones estadísticas.</p>
+            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/core4_relevance/v1/README.md" target="_blank" rel="noopener noreferrer">Metodología, asociaciones y contrastes corregidos ↗</a>
+          </article>
+          <article class="evidence-study">
+            <span class="evidence-kicker">ESTUDIO 02 · SISTEMA REFERENCE26</span>
+            <h3>¿Qué añade la corrección residual?</h3>
+            <p>El componente R3 utiliza tres indicadores derivados y está limitado a ±0.25 t/ha. La comparación recupera la misma familia del modelo con y sin R3; no atribuye ganancias a una sola variable.</p>
+            <div id="r3-comparison" class="r3-comparison" aria-live="polite">Cargando métricas de componentes…</div>
+            <p class="evidence-label">EL MODELO AJUSTA CUÁNTO ESCUCHAR AL EXPERTO LOCAL</p>
+            <div id="expert-weights" class="expert-weights" aria-live="polite">Cargando los pesos aprendidos…</div>
+            <p class="evidence-insight">Los pesos se estiman mediante entrenamiento y validación interna. No son porcentajes fijados por municipio ni prueban que los vecinos causen la productividad.</p>
+            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_component_evidence/v1/README.md" target="_blank" rel="noopener noreferrer">Ablaciones, pesos y documentación del modelo ↗</a>
+          </article>
+        </div>
+        <div class="evidence-takeaway"><div><span>QUÉ PODEMOS AFIRMAR</span><strong>Las capas tienen funciones medibles.</strong><p>Las retiradas de R3 empeoran el RMSE en los cuatro protocolos documentados; el corrector interno también muestra aportes condicionales. La geología ayuda en ciertas configuraciones, y las siete señales locales pueden ser parcialmente redundantes.</p></div><div><span>QUÉ NO PODEMOS AFIRMAR</span><strong>Las 26 entradas no están demostradas como indispensables.</strong><p>HHI es el caso más claro: quitarla de C-T3 mejora el RMSE espacial, aunque perjudica otros protocolos. Ninguna retirada individual de C-T3 superó el ajuste Holm en la familia de 24 contrastes. Estos estudios reutilizan las 138 etiquetas conocidas.</p></div></div>
+        <p class="small-note evidence-bottom">Análisis exploratorio retrospectivo; no es confirmación externa, LOOCV ni evaluación de las 59 parcelas de rendimiento oculto. Los resultados del núcleo no demuestran relevancia individual dentro de Reference26 completo. <a href="https://github.com/heri-espino/todoseboso/tree/main/results" target="_blank" rel="noopener noreferrer">Ver fuentes agregadas originales ↗</a></p>
+      </div>
+    </section>
 
     <section class="section comparison" id="evidencia" aria-labelledby="evidence-title"><div class="shell"><div class="section-heading"><div><p class="eyebrow">04 / RESULTADOS REPRODUCIBLES</p><h2 id="evidence-title">La historia también <em>se comprueba.</em></h2></div><p>El RMSE mide el tamaño típico del error cuadrático, en toneladas por hectárea. Menor es mejor. Todas las barras dentro de cada pestaña usan el mismo protocolo.</p></div>
       <div class="result-hero"><div><span>REFERENCE26 · EVALUACIÓN 97/41</span><strong>0.4625<small> t/ha</small></strong><p>RMSE medio por partición</p></div><div><span>R² DE REFERENCE26</span><strong>0.6971</strong><p>Indicador de ajuste en ese mismo protocolo; no es “69.71 % de aciertos”.</p></div><div class="result-context"><span>QUÉ SIGNIFICAN ESTOS NÚMEROS</span><p>Son resultados exploratorios de <strong>16 particiones de 97 entrenamiento / 41 evaluación</strong>, sobre las mismas 138 etiquetas. No son resultados de las 59 parcelas desconocidas.</p></div></div>
