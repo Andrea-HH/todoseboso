@@ -1,0 +1,700 @@
+# FIRA AgroCebada 2026 — Sección K: Rediseño edafológico y modelado independiente/residual
+
+Quiero desarrollar una nueva sección denominada:
+
+**K — Standalone and Residual Geographic–Edaphological Modeling**
+
+Esta investigación continúa las secciones G, H, I y J del proyecto FIRA AgroCebada 2026, además de los resultados previos de Familia 1 y su Champion.
+
+La Sección K debe dividirse en tres componentes:
+
+- **K.1 — Edaphological Feature Redesign & Stability**
+- **K.2 — Standalone Geographic–Edaphological Yield Models**
+- **K.3 — Residual Correction Modeling**
+
+El orden es obligatorio: primero auditar y estabilizar las representaciones edafológicas; después entrenar modelos independientes; finalmente estudiar correcciones residuales.
+
+No quiero una nueva búsqueda indiscriminada de algoritmos o combinaciones. Busco responder si estas variables contienen información predictiva y si su contribución cambia cuando se modelan directamente o como corrección de los errores climáticos.
+
+Mantén intactos los datos originales, las secciones E–J, las familias de modelos y el Champion.
+
+## 0. Recuperación de contexto y auditoría inicial
+
+Antes de implementar:
+
+1. Examina la arquitectura y nomenclatura del repositorio.
+2. Recupera el modelo climático J0 y sus predicciones OOF.
+3. Recupera los experimentos J1–J6 y sus configuraciones.
+4. Recupera las matrices edafológicas construidas en I.
+5. Recupera las variables de pendiente y altitud de CEM4.
+6. Recupera las asignaciones de los 53 perfiles climáticos.
+7. Recupera los 65 folds externos congelados y las particiones internas.
+8. Identifica las funciones existentes de Elastic Net, codificación, selección de variables, validación y cross-fitting.
+9. Recupera la arquitectura residual del Champion de Familia 1 para entender sus convenciones, sin modificarla.
+10. Verifica correspondencia exacta de `ID_POLIGONO`, conjunto y rendimiento.
+
+Trabajaremos con:
+
+- 197 parcelas.
+- 138 parcelas con rendimiento observado.
+- 59 parcelas sin rendimiento.
+- Siete precipitaciones mensuales de abril–octubre de 2025.
+- Altitud y pendiente parcelarias.
+- Representaciones edafológicas oficiales de INEGI Serie III, WRB2014, escala 1:250,000.
+
+Conserva los cuatro protocolos de validación:
+
+- Aleatorio: 5 folds × 10 repeticiones.
+- Por perfil climático.
+- Municipal.
+- Espacial.
+
+No utilizar rendimiento de las parcelas PREDICCION.
+
+Antes del entrenamiento, genera una auditoría de fuentes, columnas efectivas, soporte y diseños experimentales.
+
+---
+
+# K.1 — Rediseño y estabilidad de las características edafológicas
+
+## K.1.1. Objetivo
+
+El propósito no es mejorar artificialmente los resultados de J, sino resolver problemas concretos de representación que dificultan evaluar justamente el valor predictivo del suelo.
+
+En J se observó:
+
+- J3 con grupos de suelo: RMSE aleatoria aproximada 0.5467 t/ha.
+- J5 con 22 unidades: RMSE aleatoria 0.5535 t/ha.
+- J5 con RMSE por perfil climático próxima a 3.2519 t/ha.
+- Una unidad cartográfica muy poco representada en entrenamiento tuvo una cobertura importante en evaluación y generó extrapolación extrema.
+
+El reporte documentó un valor estandarizado cercano a 353 y una contribución individual a la predicción próxima a −14.66 t/ha.
+
+Por tanto, el primer problema que debemos resolver es la **estabilidad estadística frente a categorías raras y cambios de distribución entre entrenamiento y evaluación**.
+
+No interpretar el fracaso de J5 como demostración de que el suelo no tiene relevancia agronómica.
+
+## K.1.2. Auditoría de J5 y J6
+
+Investiga por qué J5 y J6 Top-3 obtuvieron exactamente las mismas métricas en todos los protocolos.
+
+Verifica:
+
+- Columnas efectivas de cada representación.
+- Diferencias reales entre matrices.
+- Transformaciones.
+- Soporte de categorías.
+- Parámetros elegidos.
+- Predicciones por fold.
+- Posibles reutilizaciones accidentales de modelos o resultados.
+- Correspondencia correcta entre nombres de experimentos y artefactos.
+
+Si las representaciones son predictivamente equivalentes en la práctica, documenta por qué.
+
+Si existe un error de implementación, corrígelo únicamente en una nueva versión de K. No sobrescribas los resultados de J.
+
+## K.1.3. Diagnóstico de soporte
+
+Para las 22 unidades cartográficas y las representaciones por grupos y atributos, calcular:
+
+- Número de parcelas donde aparece cada unidad.
+- Número de parcelas etiquetadas.
+- Número de perfiles climáticos representados.
+- Número de municipios representados.
+- Distribución de porcentajes de cobertura.
+- Frecuencia de coberturas muy pequeñas.
+- Categorías ausentes en entrenamiento y presentes en evaluación.
+- Cambios de frecuencia entre folds.
+- Cambios de rango entre entrenamiento y evaluación.
+- Proporción de predicciones afectadas por extrapolaciones.
+
+Repetir por protocolo de validación.
+
+Distinguir tres problemas:
+
+A. Variables raras, pero válidas.
+
+B. Variables con soporte muy bajo para estimar coeficientes propios.
+
+C. Variables que producen valores extremos después del preprocesamiento.
+
+No eliminarlas indiscriminadamente ni utilizar el conjunto de evaluación para decidir cuáles conservar.
+
+## K.1.4. Rediseño de escalamiento
+
+El porcentaje de cobertura de una unidad tiene un rango natural entre 0 y 1.
+
+Investiga el problema que surge al estandarizar columnas cuya varianza en entrenamiento es extremadamente pequeña.
+
+Comparar técnicamente:
+
+- Conservación de proporciones originales entre 0 y 1.
+- Escalamiento acotado predefinido.
+- Estandarización convencional únicamente cuando sea numéricamente estable.
+- Tratamiento específico de categorías raras o casi constantes.
+
+No utilizar escalamiento con varianza ínfima sin protección.
+
+La regularización debe calibrarse de manera coherente con el escalamiento utilizado.
+
+No resolver el problema únicamente recortando predicciones negativas o imponiendo límites artificiales al rendimiento.
+
+Los controles deben actuar sobre la representación y la estabilidad del entrenamiento.
+
+## K.1.5. Representaciones compactas de suelo
+
+Construir las siguientes alternativas con trazabilidad completa:
+
+**S1 — Grupos edafológicos**
+
+Las diez coberturas de unidades que mencionan grupos de suelo identificadas en I.
+
+Recordar que no representan porcentajes físicos reales de cada grupo asociado.
+
+**S2 — Unidades prevalentes + Other**
+
+Conservar las unidades cartográficas con soporte mínimo suficiente en entrenamiento.
+
+Agrupar las restantes en una categoría `Other`, definida exclusivamente a partir del entrenamiento de cada fold.
+
+Evaluar un conjunto pequeño de umbrales de soporte predefinidos, por ejemplo tres y cinco parcelas etiquetadas.
+
+La selección de umbral, cuando sea parte del ajuste predictivo, debe hacerse dentro de la validación interna.
+
+No crear efectos propios para categorías ausentes del entrenamiento.
+
+**S3 — Composición agrupada por características edafológicas**
+
+Agrupar unidades mediante características documentadas y compatibles: grupo principal, clase textural u otra categoría validada.
+
+No combinar unidades simplemente porque sus coeficientes estimados sean parecidos.
+
+No fusionar calificadores diferentes sin documentar la pérdida temática.
+
+**S4 — Top-3 corregido**
+
+Reutilizar la representación Top-3 de I:
+
+- Identificador categórico de cada unidad.
+- Porcentaje correspondiente.
+- Cobertura restante.
+- Tratamiento explícito de unidades desconocidas.
+
+Evitar convertir la posición Top-1/Top-2/Top-3 en una magnitud numérica con significado físico.
+
+Cuando sea posible, reconstruir la composición estable a partir de Top-3, sin duplicar columnas matemáticamente equivalentes.
+
+S4 será una sensibilidad secundaria, no una búsqueda extensa.
+
+## K.1.6. Comparación de representaciones sin rendimiento
+
+Antes de modelar, comparar S1–S4 según:
+
+- Número de columnas.
+- Cobertura conservada.
+- Pérdida de información cartográfica.
+- Número de categorías con soporte suficiente.
+- Robustez frente a categorías no observadas.
+- Estabilidad del escalamiento.
+- Diferenciación de parcelas dentro de perfiles climáticos.
+- Interpretabilidad.
+- Sensibilidad a límites cartográficos.
+- Correspondencia entre entrenamiento y predicción.
+
+La representación más compacta no será automáticamente la mejor.
+
+Conservar siempre la matriz completa original como referencia auditable.
+
+## K.1.7. Pruebas de estabilidad sintéticas
+
+Antes de utilizar rendimientos reales, construir pruebas controladas que incluyan:
+
+- Columnas completamente ausentes en entrenamiento.
+- Columnas casi constantes.
+- Coberturas muy pequeñas en entrenamiento y grandes en evaluación.
+- Unidades desconocidas.
+- Cambios fuertes de frecuencia.
+- Composiciones que suman uno.
+- Parcelas con tres o más unidades.
+- Diferencias entre claves cartográficas de ediciones.
+- Valores faltantes.
+- Empates de prevalencia.
+
+Verificar que el pipeline:
+
+- No genere valores transformados desproporcionados.
+- No genere infinitos o NaN inesperados.
+- No cambie identificadores.
+- No aprenda vocabularios con información del fold de evaluación.
+- Conserve cobertura y masa desconocida.
+- Produzca predicciones numéricamente estables en escenarios sintéticos razonables.
+
+No imponer que todas las predicciones sintéticas sean agronómicamente válidas; el objetivo es comprobar estabilidad numérica y tratamiento de categorías.
+
+## K.1.8. Cierre obligatorio de K.1
+
+Antes de ejecutar K.2 y K.3:
+
+1. Genera un reporte de auditoría y diagnóstico de fallas.
+2. Documenta las representaciones S1–S4.
+3. Define una representación compacta primaria.
+4. Define, como máximo, una sensibilidad secundaria para experimentos predictivos.
+5. Congela el tratamiento de categorías desconocidas.
+6. Congela las políticas de escalamiento.
+7. Documenta los umbrales de soporte y su justificación.
+8. Ejecuta pruebas de estabilidad.
+9. Genera un manifiesto de configuración.
+
+La elección primaria debe sustentarse principalmente en soporte, interpretabilidad, estabilidad y diferenciación climática, no en el RMSE que esperamos obtener.
+
+Si K.1 detecta un problema irresuelto que invalide la representación seleccionada, no continuar automáticamente con los modelos que la utilizan.
+
+---
+
+# K.2 — Modelos independientes de topografía y edafología
+
+## K.2.1. Objetivo
+
+Evaluar el poder predictivo que contienen topografía y suelo cuando no están acompañados por precipitación.
+
+Queremos distinguir:
+
+- Asociación predictiva independiente.
+- Redundancia con clima.
+- Valor incremental sobre lluvia.
+- Capacidad de generalización geográfica.
+
+Los modelos de esta fase predicen directamente rendimiento.
+
+No son correcciones residuales.
+
+## K.2.2. Modelos predefinidos
+
+Implementar:
+
+| Experimento | Predictores |
+|---|---|
+| K0_MEAN | Media de rendimiento del entrenamiento |
+| K1_SLOPE_ONLY | Pendiente |
+| K2_TOPO_ONLY | Altitud + pendiente |
+| K3_SOIL_ONLY | Representación edafológica primaria estable |
+| K4_TOPO_SOIL | Altitud + pendiente + suelo estable |
+
+Como controles reutilizar:
+
+- J0_RAIN.
+- J1_RAIN_SLOPE.
+- J2_RAIN_TOPO.
+- J3_RAIN_SOIL_GROUP.
+- J4_RAIN_TOPO_SOIL.
+
+Los modelos K1–K4 no deben utilizar lluvia, temperatura, índices satelitales, municipio, estado ni localidad como predictores.
+
+Mantener Elastic Net como estimador principal, para preservar comparabilidad con J.
+
+No utilizar algoritmos diferentes para cada familia de características.
+
+## K.2.3. Sensibilidad edafológica
+
+Si K.1 identificó una representación secundaria defendible, entrenar únicamente:
+
+`K3_SOIL_ONLY_ALT`
+
+No abrir una búsqueda de todas las combinaciones de S1–S4.
+
+Si resulta necesario comparar otras representaciones, reportarlas como investigación futura, no introducirlas retrospectivamente.
+
+## K.2.4. Validación
+
+Reutilizar los mismos 65 folds externos de H y J.
+
+Aplicar idénticos criterios de:
+
+- Imputación.
+- Codificación.
+- Selección de columnas.
+- Escalamiento.
+- Regularización.
+- Validación interna.
+
+Cuando corresponda, mantener agrupación interna de acuerdo con el protocolo externo.
+
+Evaluar:
+
+- Aleatoria.
+- Por perfil climático.
+- Municipal.
+- Espacial.
+
+No usar características calculadas con Y del conjunto de evaluación.
+
+## K.2.5. Métricas
+
+Reportar:
+
+- RMSE.
+- MAE.
+- R².
+- Sesgo medio.
+- Variabilidad entre folds.
+- Variabilidad entre repeticiones.
+- Errores por perfil y región.
+- Rendimientos altos y bajos.
+- Estabilidad de coeficientes.
+
+Comparar cada modelo independiente contra K0.
+
+Como comparación secundaria, contrastar su desempeño con J0 y los modelos aditivos.
+
+No concluir que una variable aporta información incremental a lluvia únicamente porque su modelo independiente prediga bien.
+
+## K.2.6. Interpretación
+
+Responder:
+
+1. ¿Qué capacidad predictiva tiene pendiente por sí sola?
+2. ¿Agregar altitud mejora a pendiente?
+3. ¿Qué capacidad tiene suelo estabilizado por sí solo?
+4. ¿Combinar suelo y topografía mejora a cada bloque independiente?
+5. ¿Los modelos presentan dependencia regional?
+6. ¿Su capacidad predictiva es consistente bajo validación espacial?
+7. ¿Cuánta de la señal parece redundante con precipitación?
+
+No interpretar coeficientes como relaciones causales.
+
+---
+
+# K.3 — Modelado de corrección residual
+
+## K.3.1. Objetivo
+
+Investigar si topografía o edafología pueden corregir errores que permanece después de utilizar el modelo climático.
+
+A diferencia de J, el sistema tendrá dos etapas:
+
+\[
+\widehat Y_i^{(0)}=f(C_i)
+\]
+
+\[
+r_i=Y_i-\widehat Y_i^{(0)}
+\]
+
+\[
+\widehat Y_i^{(final)}
+=
+\widehat Y_i^{(0)}+g(Z_i)
+\]
+
+Donde:
+
+- \(C_i\) representa precipitación mensual.
+- \(Z_i\) representa topografía o suelo.
+- \(f\) es el modelo climático de primera etapa.
+- \(g\) es el corrector residual.
+
+En esta fase quiero estudiar si existe una señal residual que las nuevas variables puedan aprender.
+
+No asumir que una arquitectura residual siempre supera a una regresión aditiva de una sola etapa.
+
+## K.3.2. Modelo climático base
+
+Utilizar como primera etapa el equivalente reproducible de `J0_RAIN`, Elastic Net con las siete precipitaciones mensuales.
+
+Conservar las mismas transformaciones, hiperparámetros candidatos y particiones.
+
+El modelo climático debe entrenarse exclusivamente con el entrenamiento externo correspondiente.
+
+No utilizar las predicciones OOF del conjunto completo como residuos directos para entrenar el corrector de un fold externo.
+
+## K.3.3. Cross-fitting para construir residuos
+
+Este procedimiento es obligatorio.
+
+Para cada fold externo:
+
+1. Separar outer-train y outer-validation.
+2. Dentro de outer-train, generar predicciones de la primera etapa mediante validación cruzada interna.
+3. Calcular los residuos cruzados exclusivamente sobre outer-train.
+4. Entrenar el corrector residual utilizando esos residuos y las variables geográficas/edafológicas.
+5. Ajustar la primera etapa con todo outer-train.
+6. Obtener la predicción climática de outer-validation.
+7. Aplicar el corrector residual a outer-validation.
+8. Sumar ambas predicciones.
+9. Guardar individualmente predicción climática, corrección y predicción final.
+
+Ninguna observación puede utilizar su propia etiqueta para construir una predicción de primera etapa que posteriormente sirva como residual supervisado del corrector.
+
+El procedimiento interno de selección de hiperparámetros debe evaluar el pipeline residual completo, incluyendo la generación de residuos cruzados.
+
+Respetar las agrupaciones geográficas cuando corresponda.
+
+No utilizar outer-validation para elegir variables, penalización o intensidad de corrección.
+
+## K.3.4. Modelos residuales
+
+Implementar:
+
+| Experimento | Primera etapa | Corrector |
+|---|---|---|
+| K5_RAIN_RESID_SLOPE | Lluvia | Pendiente |
+| K6_RAIN_RESID_TOPO | Lluvia | Altitud + pendiente |
+| K7_RAIN_RESID_SOIL | Lluvia | Suelo estable |
+| K8_RAIN_RESID_TOPO_SOIL | Lluvia | Topografía + suelo estable |
+
+Reutilizar `J0_RAIN` como baseline de primera etapa.
+
+Comparar las variantes residuales con los modelos aditivos equivalentes de J.
+
+Si la nueva representación de suelo difiere de la utilizada en J, construir también un control aditivo con exactamente las mismas variables estabilizadas. No atribuir una mejora a la arquitectura residual si en realidad proviene del rediseño de suelo.
+
+## K.3.5. Control de intensidad de corrección
+
+Investigar un esquema regularizado para evitar correcciones excesivas.
+
+Considerar:
+
+\[
+\widehat Y_{\mathrm{final}}
+=
+\widehat Y_0+\eta\widehat r
+\]
+
+Donde \(\eta\) controla la magnitud de la corrección.
+
+Usar un conjunto pequeño y predefinido de intensidades de corrección, incluyendo \(\eta=0\), que reproduce el modelo base.
+
+Seleccionar \(\eta\) exclusivamente dentro de validación interna.
+
+No utilizar el RMSE externo para modificar su valor.
+
+Registrar las correcciones propuestas, magnitudes, dispersión y estabilidad.
+
+Evitar introducir numerosos hiperparámetros con 138 observaciones.
+
+## K.3.6. Evaluación residual
+
+Además de RMSE, MAE y R², medir:
+
+- Magnitud media de las correcciones.
+- Distribución de correcciones.
+- Correlación entre residual climático y corrección propuesta.
+- Reducción de sesgo.
+- Cambios de error por parcela.
+- Estabilidad entre particiones.
+- Correcciones extremas.
+- Desempeño en parcelas de rendimiento bajo y alto.
+- Desempeño por perfil climático.
+- Desempeño municipal y espacial.
+
+La asociación entre residual y corrección debe calcularse únicamente sobre predicciones apropiadamente fuera de muestra cuando se utilice como evidencia predictiva.
+
+No interpretar una alta correlación dentro de entrenamiento como prueba de generalización.
+
+## K.3.7. Diagnóstico dentro de perfiles idénticos
+
+Para cada perfil climático con suficientes parcelas etiquetadas:
+
+1. Identificar la variación real del rendimiento.
+2. Medir la dispersión de las predicciones climáticas.
+3. Medir la dispersión introducida por la corrección residual.
+4. Medir la mejora o deterioro del error.
+5. Comparar diferencias de rendimiento entre parejas.
+6. Analizar qué correcciones corresponden a diferencias de pendiente o suelo.
+7. Identificar perfiles donde el corrector produce diferenciación artificial sin mejorar las predicciones.
+
+Realizar la comparación utilizando parcelas evaluadas por el mismo modelo externo cuando sea necesario atribuir diferencias a las variables y no a los folds.
+
+No seleccionar modelos únicamente por aumentar la variabilidad de las predicciones.
+
+## K.3.8. Chignahuapan
+
+Realizar un diagnóstico específico sobre las 71 parcelas etiquetadas de Chignahuapan.
+
+Comparar:
+
+- J0 climático.
+- J1 lluvia + pendiente.
+- Modelos aditivos estabilizados.
+- Correctores residuales K5–K8.
+
+Estudiar especialmente:
+
+- Diferencias de rendimiento dentro de perfiles.
+- Mejora de errores individuales.
+- Sesgo de rendimientos bajos y altos.
+- Dependencia de categorías edafológicas.
+- Estabilidad por perfil.
+- Comportamiento de correctores en regiones retenidas.
+
+No entrenar todavía un modelo exclusivamente local para Chignahuapan.
+
+No presentar sus métricas como prueba independiente, porque son un subconjunto de las mismas predicciones OOF.
+
+---
+
+# K.4 — Comparaciones controladas
+
+Al finalizar K.2 y K.3, generar una matriz comparativa que permita distinguir:
+
+**A. Valor predictivo independiente**
+
+- Pendiente sola.
+- Topografía sola.
+- Suelo solo.
+- Topografía + suelo.
+
+**B. Valor incremental aditivo**
+
+- Lluvia.
+- Lluvia + pendiente.
+- Lluvia + topografía.
+- Lluvia + suelo.
+- Lluvia + topografía + suelo.
+
+**C. Valor incremental residual**
+
+- Lluvia + corrector de pendiente.
+- Lluvia + corrector topográfico.
+- Lluvia + corrector edafológico.
+- Lluvia + corrector topográfico-edafológico.
+
+La comparación entre aditivo y residual debe usar exactamente las mismas variables estabilizadas, folds y esquema de evaluación.
+
+Distinguir las diferencias de representación de las diferencias de arquitectura.
+
+## K.4.1. Benchmark contra Champion
+
+Recuperar los resultados compatibles de Climate Current y Champion de Familia 1.
+
+No modificar ni reentrenar sus modelos.
+
+Usar los resultados como benchmark contextual cuando coincidan identificadores, folds, agregación y etiquetas.
+
+Si no existen predicciones comparables bajo validación municipal o espacial, indicarlo explícitamente.
+
+No declarar un reemplazo del Champion.
+
+---
+
+# K.5 — Decisión metodológica
+
+Antes del modelado, definir criterios operativos que incluyan:
+
+- Mejora de RMSE.
+- Mejora o no deterioro importante de MAE.
+- Estabilidad entre folds.
+- Ausencia de extrapolaciones extremas.
+- Transferencia por perfil climático.
+- Transferencia municipal.
+- Transferencia espacial.
+- Mejora intraperfil.
+- Soporte y estabilidad de categorías.
+- Sensibilidad a reservas edafológicas.
+- Complejidad del modelo.
+
+Conservar el margen exploratorio previo de 0.01 t/ha de RMSE para detectar deterioros geográficos importantes, sin interpretarlo como criterio estadístico de significancia.
+
+Las mejoras pequeñas no deben declararse confirmadas por repetirse en folds correlacionados.
+
+Separar:
+
+- Evidencia para predicción dentro de regiones conocidas.
+- Evidencia para transferencia a regiones nuevas.
+- Capacidad de explicar diferencias intraperfil.
+- Robustez frente a categorías nuevas.
+
+No buscar un único ganador si los objetivos producen clasificaciones distintas.
+
+---
+
+# K.6 — Entregables
+
+Generar una estructura integrada y versionada con:
+
+- Auditoría inicial.
+- Reporte K.1 de problemas de estabilidad.
+- Diccionario de representaciones S1–S4.
+- Matrices edafológicas estabilizadas.
+- Comparación de cobertura y soporte.
+- Pruebas sintéticas.
+- Manifiesto de configuraciones congeladas.
+- Modelos independientes K0–K4.
+- Modelos residuales K5–K8.
+- Controles aditivos con suelo estabilizado.
+- Predicciones OOF.
+- Pipelines por fold.
+- Métricas y comparaciones pareadas.
+- Diagnósticos intraperfil.
+- Diagnósticos de Chignahuapan.
+- Diagnósticos de corrección residual.
+- Sensibilidad a incertidumbre cartográfica.
+- Comparación contextual con Champion.
+- Reporte técnico completo.
+- Resumen interpretativo para toma de decisiones.
+
+Visualizaciones prioritarias:
+
+- RMSE/MAE por protocolo.
+- Diferencias contra lluvia sola.
+- Comparación aditivo versus residual.
+- Predicciones observadas y estimadas.
+- Correcciones residuales por parcela.
+- Cambios de error dentro de perfiles climáticos.
+- Errores según soporte edafológico.
+- Errores según proximidad a límites.
+- Resultados específicos de Chignahuapan.
+
+---
+
+# K.7 — Condiciones no negociables
+
+- No modificar E–J.
+- No modificar Champion.
+- No reconstruir fuentes originales.
+- No entrenar modelos sobre las 59 parcelas sin Y.
+- No incorporar estado, municipio o localidad como predictores en K.
+- No introducir temperatura, índices satelitales ni variables adicionales.
+- No seleccionar unidades utilizando rendimiento del conjunto de evaluación.
+- No preprocesar antes de dividir folds.
+- No aplicar cross-fitting incorrectamente.
+- No utilizar residuos de entrenamiento in-sample como objetivos del corrector.
+- No ajustar hiperparámetros viendo outer-validation.
+- No ocultar predicciones extremas para mejorar métricas.
+- No presentar información edafológica a escala 1:250,000 como mediciones físicas parcelarias.
+- No confundir diferenciación descriptiva con mejora predictiva.
+- No declarar superioridad general sin estabilidad geográfica.
+- No ampliar la búsqueda de arquitecturas sin hipótesis previa.
+
+---
+
+# K.8 — Orden de ejecución
+
+**Primera etapa:**
+
+1. Auditar J5/J6 y las variables edafológicas.
+2. Diagnosticar soporte y extrapolación.
+3. Rediseñar representaciones.
+4. Implementar escalamiento y codificación estables.
+5. Ejecutar pruebas sintéticas.
+6. Congelar representación primaria y sensibilidad.
+7. Publicar resultados de K.1.
+
+**Segunda etapa:**
+
+8. Construir matrices de modelos independientes.
+9. Ejecutar K0–K4.
+10. Comparar con los baselines.
+11. Implementar cross-fitting residual.
+12. Ejecutar K5–K8.
+13. Ejecutar controles aditivos estabilizados.
+14. Evaluar diferencias globales, intraperfil y geográficas.
+15. Analizar Chignahuapan y reservas cartográficas.
+16. Comparar contextualmente con Champion.
+17. Documentar conclusiones y próximos experimentos justificados.
+
+Si K.1 detecta problemas que impiden construir una representación edafológica válida, completa los modelos exclusivamente topográficos y deja suspendidos los modelos con suelo. No fuerces una representación inválida para completar todas las tablas.
+
+**Resultado esperado:** establecer si la topografía y la edafología tienen capacidad predictiva propia, si añaden información a la lluvia y si una arquitectura de corrección residual permite aprovechar mejor esa información que una regresión aditiva de una sola etapa.
+
+No busco obligatoriamente superar J o Champion. Busco determinar qué variables y qué arquitecturas funcionan, bajo qué condiciones y cuáles son sus límites de generalización.

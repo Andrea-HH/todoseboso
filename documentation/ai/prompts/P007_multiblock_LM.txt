@@ -1,0 +1,662 @@
+# FIRA AgroCebada 2026 — Secciones L y M: Representaciones multibloque, correcciones residuales y señales satelitales históricas
+
+Quiero desarrollar dos nuevas investigaciones dentro del repositorio existente:
+
+**L — Multiblock Representation and Residual Complementarity**
+
+**M — Historical and Multisensor Satellite Signal Exploration**
+
+Estas secciones continúan E–K y las familias de modelado existentes. Deben respetar las convenciones de nomenclatura, numeración de scripts, versiones, documentación, validación y almacenamiento del proyecto.
+
+No modificar ni sobrescribir las familias anteriores, el Champion, las investigaciones E–K o los datos originales.
+
+El propósito general es investigar sistemáticamente cómo cambia la capacidad predictiva de una familia de variables según:
+
+1. Su representación original, seleccionada o reducida dimensionalmente.
+2. Su combinación directa con otras fuentes.
+3. Su utilización como corrector de residuos.
+4. La calidad y composición del modelo base que genera esos residuos.
+5. Su complementariedad con otras fuentes a diferentes resoluciones espaciales y temporales.
+
+**No busco solamente el menor RMSE. Quiero comprender qué información contiene cada bloque, cuándo aporta información adicional y qué arquitectura aprovecha mejor esa complementariedad.**
+
+---
+
+# ETAPA INICIAL — Auditoría y diseño experimental
+
+Antes de implementar cualquiera de las dos secciones:
+
+- Recupera la arquitectura completa de Familia 1 y su Champion.
+- Identifica `Climate Current` original y su especificación de 48 características.
+- Identifica su selección climática TOP20 y las etapas de corrección residual.
+- Recupera J0 lluvia mensual, los modelos J y los correctores K.
+- Recupera los resultados de los PCA realizados en E, G y H.
+- Recupera las representaciones edafológicas S1–S4 de I/K y sus diagnósticos de soporte.
+- Recupera topografía CEM4, perfiles climáticos, estados, municipios y localidades.
+- Reutiliza las particiones externas congeladas cuando sean compatibles.
+- Localiza todas las fuentes Sentinel-2, Planet y Landsat disponibles, sus periodos, bandas, índices, calidad y características previamente construidas.
+- Identifica qué variables históricas y satelitales ya fueron utilizadas en las familias anteriores.
+- Examina especialmente las transformaciones temporales, anomalías, diferencias interanuales, selección de índices y representaciones funcionales ya desarrolladas, para evitar duplicaciones.
+
+No asumir que algún análisis no existe sin verificarlo en el repositorio.
+
+Genera una matriz de correspondencia entre trabajos anteriores y experimentos nuevos.
+
+Antes del entrenamiento, congela las especificaciones principales y distingue experimentos predefinidos de análisis exploratorios secundarios.
+
+---
+
+# L — Multiblock Representation and Residual Complementarity
+
+## L.1. Objetivos
+
+Quiero responder:
+
+- ¿Cuánto aporta la reducción dimensional de suelo frente a sus características originales estabilizadas?
+- ¿Qué estructura conjunta aparece cuando combinamos clima, topografía y edafología?
+- ¿Los componentes principales de suelo explican residuos que no explican las variables originales?
+- ¿Es mejor mezclar variables directamente o corregir residuos por etapas?
+- ¿Las conclusiones cambian al utilizar lluvia exclusivamente frente a `Climate Current` original?
+- ¿Queda información edafológica después de las correcciones satelitales y topográficas del Champion?
+- ¿Qué ocurre con los errores dentro de perfiles climáticos idénticos?
+
+No incorporar todavía nuevos índices satelitales: L trabaja con las fuentes y características existentes.
+
+## L.2. Auditoría de bases climáticas
+
+Definir dos bases independientes:
+
+**B1 — Rain Only**
+
+Elastic Net sobre las siete precipitaciones mensuales de abril–octubre de 2025, reproduciendo J0.
+
+**B2 — Climate Current Original**
+
+Elastic Net sobre las 48 características climáticas originales, reproduciendo el bloque climático anterior de Familia 1.
+
+Para ambas, recuperar configuración, penalización, características, imputación, escalamiento, particiones y predicciones compatibles.
+
+Evaluar individualmente ambas bases utilizando:
+
+- Validación aleatoria.
+- Por perfil climático.
+- Municipal.
+- Espacial.
+
+Calcular RMSE, MAE, R², sesgo, dispersión de errores, errores extremos y estabilidad.
+
+Las dos bases deben evaluarse con idénticos folds externos, identificadores, definición de rendimiento y agregación de métricas.
+
+Conservar las diferencias propias de cada especificación original. Si se desea aislar el efecto del conjunto de variables, implementar adicionalmente un control con el mismo esquema de ajuste y búsqueda para ambas.
+
+No atribuir diferencias exclusivamente a precipitación versus temperatura si también cambian representaciones, regularización o selección.
+
+## L.3. Exploración edafológica y reducción dimensional
+
+La Sección I identificó 22 unidades cartográficas. K construyó representaciones estabilizadas:
+
+- S1: diez coberturas de grupos edafológicos.
+- S2: unidades cartográficas con soporte suficiente y categoría `Other`.
+- S3/S4: alternativas temáticas y Top-N.
+
+Primero investigar la estructura de estas matrices sin utilizar rendimiento.
+
+### L.3.1. PCA de grupos edafológicos
+
+Aplicar PCA exploratorio a S1.
+
+Reportar:
+
+- Varianza explicada.
+- Número efectivo de dimensiones.
+- Cargas de los componentes.
+- Variables dominantes.
+- Relación con altitud y pendiente.
+- Distribución de scores por estado, municipio y perfil climático.
+- Relación descriptiva con rendimiento.
+- Diferencias entre regiones.
+
+No interpretar un componente exclusivamente a partir de una carga aislada.
+
+### L.3.2. PCA de composición cartográfica
+
+Investigar una representación apropiada para proporciones con muchos ceros.
+
+Considerar una transformación de raíz cuadrada tipo Hellinger seguida de PCA, con explicación matemática y justificación.
+
+No aplicar CLR directamente sobre ceros estructurales sin un tratamiento explícito y defendible.
+
+Comparar:
+
+- Composición completa estabilizada.
+- Composición transformada.
+- PCA de composición.
+- S1 sin PCA.
+- PCA de S1.
+
+Distinguir reducción dimensional de pérdida de información temática.
+
+### L.3.3. Selección supervisada de variables
+
+Investigar la estabilidad de selección mediante Elastic Net:
+
+- Frecuencia de coeficientes distintos de cero.
+- Magnitud estandarizada apropiadamente.
+- Estabilidad del signo.
+- Cambios entre protocolos geográficos.
+- Dependencia del soporte.
+- Comportamiento ante unidades no observadas.
+- Redundancia entre grupos y atributos.
+
+Cualquier selección supervisada utilizada predictivamente debe ocurrir dentro del entrenamiento del fold correspondiente.
+
+No seleccionar globalmente variables por correlación con rendimiento antes de validación.
+
+No transformar identificadores de suelo en variables ordinales arbitrarias.
+
+### L.3.4. PCA conjunto de bloques
+
+Comparar descriptivamente:
+
+A. Clima + topografía.
+
+B. Clima + suelo.
+
+C. Clima + topografía + suelo.
+
+D. PCA separado por bloque y concatenación posterior de componentes.
+
+Examinar si un PCA conjunto está dominado por el bloque con mayor número de variables o por escalas particulares.
+
+Incluir una sensibilidad de ponderación por bloques.
+
+Conservar la interpretación individual de precipitación, temperatura, pendiente, altitud y composición edafológica.
+
+No confundir PCA con modelado de interacciones no lineales.
+
+## L.4. Comparación de mezcla directa y corrección residual
+
+Quiero comparar tres estrategias:
+
+**Estrategia A — Variables originales estabilizadas**
+
+Un solo modelo sobre clima y el bloque complementario.
+
+**Estrategia B — Componentes principales**
+
+Un solo modelo sobre clima y componentes del bloque complementario, o componentes obtenidos conjuntamente.
+
+**Estrategia C — Corrección residual**
+
+Primera etapa climática y segunda etapa entrenada sobre componentes principales del bloque complementario.
+
+Las comparaciones deben utilizar los mismos folds y, cuando se atribuya una diferencia a arquitectura, los mismos predictores y transformaciones.
+
+La cantidad de componentes PCA se selecciona exclusivamente dentro de validación interna.
+
+Los PCA predictivos deben ajustarse solamente sobre entrenamiento, incluso si el PCA descriptivo se construyó sobre las 197 parcelas.
+
+## L.5. Matriz experimental principal
+
+Implementar de forma controlada:
+
+| Modelo | Base | Corrector / representación |
+|---|---|---|
+| L0 | Rain Only | Ninguno |
+| L1 | Climate Current | Ninguno |
+| L2 | Rain Only | PCA de suelo residual |
+| L3 | Climate Current | PCA de suelo residual |
+| L4 | Rain Only | PCA de topografía + suelo residual |
+| L5 | Climate Current | PCA de topografía + suelo residual |
+| L6 | Rain Only + suelo transformado | Mezcla directa / PCA conjunto |
+| L7 | Climate Current + suelo transformado | Mezcla directa / PCA conjunto |
+
+Crear controles correspondientes con el bloque de suelo original estabilizado, sin PCA, para aislar el aporte de la reducción dimensional.
+
+No interpretar una mejora de PCA cuando simultáneamente cambiaron las variables, el algoritmo o la regularización.
+
+No utilizar todas las representaciones S1–S4 en todas las combinaciones. Seleccionar anticipadamente una representación principal y una sensibilidad de acuerdo con los resultados de estabilidad de K.
+
+## L.6. Corrección posterior al Champion
+
+Investigar si queda señal edafológica después del Champion original.
+
+Primero realizar una auditoría descriptiva de sus residuos OOF:
+
+- Relación con grupos de suelo.
+- Relación con componentes PCA edafológicos.
+- Relación con pendiente y altitud.
+- Asociación dentro y entre perfiles climáticos.
+- Dependencia regional.
+- Comportamiento en Chignahuapan.
+- Errores extremos.
+- Soporte de las categorías.
+
+No utilizar residuos OOF globales como objetivos de entrenamiento de una nueva corrección sin reconstruir la validación.
+
+Si existen datos, código y recursos suficientes para reproducir íntegramente el entrenamiento del Champion, implementar como experimento separado:
+
+**L8 — Champion + PCA Edaphological Residual Correction**
+
+La nueva etapa debe utilizar residuos generados mediante cross-fitting interno de toda la arquitectura previa, no residuos in-sample.
+
+Ajustar la selección de componentes, regularización e intensidad de corrección dentro del entrenamiento externo.
+
+Si no se puede reconstruir fielmente el Champion sin fuga, limitar L8 a la auditoría descriptiva y documentar por qué no puede evaluarse predictivamente.
+
+No agregar pendiente automáticamente como corrector final porque el Champion ya incorpora una etapa topográfica.
+
+## L.7. Evaluación
+
+Para cada comparación:
+
+- RMSE.
+- MAE.
+- R².
+- Sesgo.
+- Diferencias pareadas.
+- Estabilidad entre particiones.
+- Comportamiento municipal y espacial.
+- Rendimientos bajos y altos.
+- Cambios de error dentro de perfiles idénticos.
+- Efecto sobre Chignahuapan.
+- Incertidumbre por límites cartográficos.
+- Extrapolación de componentes.
+- Estabilidad de correcciones residuales.
+
+Conservar predicciones por etapa:
+
+- Predicción de base.
+- Residual cruzado usado en entrenamiento.
+- Corrección propuesta.
+- Intensidad de corrección.
+- Corrección aplicada.
+- Predicción final.
+
+No afirmar que aumentar la dispersión intraperfil equivale a mejorar el rendimiento.
+
+## L.8. Entregables
+
+Generar:
+
+- Auditoría de Climate Current frente a lluvia.
+- PCA edafológico.
+- PCA multibloque.
+- Estabilidad de selección supervisada.
+- Comparación de mezclas directas y correcciones residuales.
+- Comparación B1 versus B2 como bases.
+- Diagnóstico residual del Champion.
+- Resultados L8, si su validación es legítima.
+- Tablas, gráficos, modelos, OOF, configuraciones y pruebas.
+- Reporte final con conclusiones por objetivo de generalización.
+
+---
+
+# M — Historical and Multisensor Satellite Signal Exploration
+
+## M.1. Objetivo
+
+Quiero investigar el valor de las trayectorias espectrales históricas y de la combinación entre Sentinel-2, Planet y Landsat para estimar rendimiento.
+
+La hipótesis es que las diferencias de índices espectrales entre el ciclo de 2025 y años anteriores, así como los cambios en sus distribuciones temporales, pueden contener información adicional a los niveles espectrales observados en un solo año.
+
+El objetivo es determinar:
+
+- Qué información aporta Sentinel actual.
+- Qué aporta su historia.
+- Si anomalías y diferencias interanuales son predictivamente útiles.
+- Qué aporta Planet con mayor detalle espacial en 2025.
+- Qué aporta Landsat como fuente complementaria.
+- Si combinar sensores mejora la diferenciación parcelaria y la generalización.
+- Si las características satelitales explican residuos que deja el clima.
+- Si después de incorporar satélite queda señal edafológica residual.
+
+No construir automáticamente cientos de variables por índice sin evaluar previamente disponibilidad, redundancia y soporte.
+
+## M.2. Auditoría de fuentes
+
+Identificar para cada sensor:
+
+- Periodos disponibles.
+- Número de imágenes por parcela.
+- Resolución espacial.
+- Resolución temporal efectiva.
+- Bandas.
+- Índices.
+- Método de extracción.
+- Agregación espacial.
+- Máscaras de nubes.
+- Porcentaje de observaciones válidas.
+- Meses sin observaciones.
+- Disponibilidad histórica.
+- Diferencias de procesamiento entre años.
+- Riesgo de contaminación por píxeles exteriores a parcelas.
+- Tratamiento de parcelas pequeñas.
+- Variables ya utilizadas en Familia 1, 2 y 3.
+
+No asumir que Planet solamente tiene datos de 2025 sin confirmarlo en el repositorio.
+
+Distinguir fecha de observación, fecha de adquisición, fecha de procesamiento y fecha de disponibilidad para predicción.
+
+No comparar sensores sin comprobar que sus índices y bandas son espectralmente compatibles.
+
+## M.3. Sentinel-2 como fuente principal
+
+Utilizar Sentinel como columna vertebral de la exploración temporal.
+
+Investigar por índice y parcela:
+
+- Trayectoria abril–octubre de 2025.
+- Media.
+- Mediana.
+- Máximo.
+- Mínimo.
+- Desviación.
+- Rango.
+- Percentiles.
+- Amplitud.
+- Incrementos y disminuciones mensuales.
+- Tendencia temporal.
+- Momento del máximo y mínimo.
+- Integral o suma temporal, cuando sea interpretable.
+- Cambios entre etapas del ciclo.
+
+Verificar la disponibilidad real antes de construir cada variable.
+
+No atribuir fenología exacta a un máximo espectral si no existen fechas de siembra, emergencia y cosecha que permitan validarlo.
+
+## M.4. Diferencias históricas
+
+Construir comparaciones entre 2025 y años anteriores para los mismos meses calendario.
+
+Evaluar:
+
+**Diferencia de medias**
+
+\[
+\Delta\mu_i=
+\mu_{i,2025}-\mu_{i,\mathrm{hist}}
+\]
+
+**Diferencia de rangos**
+
+\[
+\Delta R_i=
+R_{i,2025}-R_{i,\mathrm{hist}}
+\]
+
+**Diferencia de dispersión**
+
+\[
+\Delta\sigma_i=
+\sigma_{i,2025}-\sigma_{i,\mathrm{hist}}
+\]
+
+**Anomalías mensuales**
+
+\[
+A_{i,m}=
+X_{i,m,2025}
+-
+\overline{X}_{i,m,\mathrm{hist}}
+\]
+
+Considerar también:
+
+- Diferencia de máximo.
+- Diferencia de mínimo.
+- Cambios de percentiles.
+- Cambios de amplitud.
+- Cambios de forma temporal.
+- Persistencia de desviaciones.
+- Diferencias frente a cada año histórico individual.
+
+La media histórica debe calcularse con años anteriores a 2025 y observaciones comparables.
+
+No usar 2025 para definir su propia referencia histórica.
+
+No llamar normal climatológica a una referencia de pocos años.
+
+Registrar cuántos años y observaciones respaldan cada anomalía.
+
+Cuando la referencia sea muy escasa, marcar la característica como no confiable o no disponible, en lugar de producir una anomalía numéricamente inestable.
+
+## M.5. PCA y representaciones satelitales
+
+Comparar por separado:
+
+- Índices actuales.
+- Trayectorias mensuales.
+- Resúmenes históricos.
+- Diferencias y anomalías.
+- PCA por familia de índices.
+- PCA por sensor.
+- PCA de variables históricas y actuales.
+- PCA de bloques concatenados.
+
+Investigar si las diferencias históricas contienen dimensiones realmente nuevas frente al nivel espectral de 2025.
+
+La selección predictiva de componentes debe realizarse dentro de validación interna.
+
+El PCA descriptivo puede utilizar todas las parcelas sin etiquetas, pero sus resultados no deben reutilizarse como transformación predictiva ajustada fuera del fold sin declarar explícitamente un protocolo transductivo.
+
+## M.6. Planet como fuente complementaria
+
+Investigar qué información adicional aporta Planet en las parcelas de 2025.
+
+Priorizar:
+
+- Mayor detalle espacial.
+- Heterogeneidad intraparcelaria.
+- Distribución de índices dentro de cada parcela.
+- Mediana, percentiles y dispersión.
+- Diferencias entre parcelas cercanas con el mismo perfil climático.
+- Complementariedad con Sentinel en fechas comparables.
+
+No atribuir toda mejora a mayor resolución sin controlar cobertura, fecha e índices disponibles.
+
+## M.7. Landsat como fuente complementaria
+
+Investigar:
+
+- Cobertura histórica.
+- Índices disponibles.
+- Comparabilidad con Sentinel.
+- Complementariedad temporal.
+- Diferencias de resolución.
+- Parcelas con pocos píxeles válidos.
+- Valor predictivo adicional frente a Sentinel.
+
+No asumir que Landsat debe ser una columna vertebral individual.
+
+Si ofrece poca información parcelaria, conservarlo como fuente secundaria y documentar sus limitaciones.
+
+## M.8. Combinación multifuente
+
+Construir comparaciones acotadas:
+
+| Experimento | Información |
+|---|---|
+| M0 | Sentinel 2025 |
+| M1 | Sentinel 2025 + características históricas |
+| M2 | Sentinel 2025 + Planet 2025 |
+| M3 | Sentinel 2025 + Landsat |
+| M4 | Sentinel 2025 + Planet + Landsat |
+| M5 | Sentinel 2025 + historia + Planet + Landsat |
+
+Mantener una matriz comparable de parcelas y folds.
+
+No eliminar silenciosamente parcelas con observaciones incompletas.
+
+Registrar cobertura de cada combinación.
+
+Comparar sensores originales contra una representación de bloques reducidos mediante PCA, con selección interna apropiada.
+
+Separar ganancias por nueva información de ganancias por mayor número de variables.
+
+## M.9. Modelado predictivo
+
+Utilizar inicialmente un modelo simple y regularizado como referencia.
+
+Comparar cada bloque satelital:
+
+A. Por sí solo.
+
+B. Como complemento aditivo al clima.
+
+C. Como corrector de residuos del clima.
+
+Evaluar separadamente:
+
+- Base Rain Only.
+- Base Climate Current.
+
+No repetir indiscriminadamente todas las combinaciones de L. Seleccionar solo las representaciones satelitales que superen controles de disponibilidad, calidad y estabilidad descriptiva.
+
+Para correcciones residuales, utilizar cross-fitting interno de toda la primera etapa y mantener outer-validation separado.
+
+## M.10. Validación y diagnósticos
+
+Reutilizar los protocolos:
+
+- Aleatorio.
+- Por perfil climático.
+- Municipal.
+- Espacial.
+
+Comparar:
+
+- RMSE.
+- MAE.
+- R².
+- Sesgo.
+- Errores extremos.
+- Error intraperfil.
+- Chignahuapan.
+- Regiones poco representadas.
+- Sensibilidad a nubes y faltantes.
+- Diferencias según cobertura temporal.
+- Estabilidad de selección espectral.
+- Capacidad de transferencia.
+
+Analizar especialmente las parcelas que comparten clima, pero difieren en información satelital.
+
+No declarar utilidad de una fuente simplemente por distinguir más parcelas.
+
+## M.11. Relación posterior con el Champion
+
+Recuperar el bloque Sentinel histórico del Champion y evaluar si las nuevas representaciones históricas ya están parcialmente incluidas en sus características.
+
+Distinguir:
+
+- Redescubrimiento de información ya utilizada.
+- Nuevas variables históricas.
+- Complementariedad multifuente.
+- Cambios de arquitectura.
+- Mejoras por selección o reducción dimensional.
+
+No reemplazar ni reentrenar el Champion en M.
+
+Si un bloque demuestra señal complementaria robusta, proponer después una integración específica y validada.
+
+No añadir etapas residuales sobre el Champion sin reconstruir correctamente su entrenamiento anidado.
+
+---
+
+# Requisitos metodológicos conjuntos
+
+## Validación
+
+- Utilizar 138 etiquetas.
+- Mantener las 59 parcelas ocultas sin Y.
+- Preservar los 53 perfiles climáticos.
+- Reutilizar folds congelados cuando sean compatibles.
+- Ajustar todo procesamiento predictivo dentro de entrenamiento.
+- Evitar selección supervisada global antes de CV.
+- Evitar leakage de residuos.
+- Mantener trazabilidad de índices y transformaciones.
+- Conservar resultados negativos.
+- Reportar métricas con agregaciones compatibles.
+- No interpretar repeticiones superpuestas como observaciones independientes.
+
+## Control de complejidad
+
+El tamaño de muestra supervisada es pequeño respecto a la cantidad potencial de características.
+
+Por tanto:
+
+- No ejecutar una búsqueda exhaustiva de modelos.
+- Limitar número de componentes candidatos.
+- Regularizar.
+- Mantener comparaciones pareadas.
+- Documentar dimensionalidad efectiva.
+- Controlar categorías raras.
+- Priorizar hipótesis previamente justificadas.
+- Diferenciar exploración de confirmación.
+
+## Escalas espaciales
+
+Documentar que:
+
+- Clima utiliza una resolución aproximada de 0.05°.
+- Topografía procede de una fuente de mayor detalle.
+- Suelo es una representación cartográfica temática 1:250,000.
+- Sentinel, Planet y Landsat tienen resoluciones y características distintas.
+
+No interpretar estas fuentes como mediciones equivalentes de una misma propiedad.
+
+## Temporalidad
+
+Los análisis actuales estiman rendimiento retrospectivamente al cierre del ciclo abril–octubre de 2025.
+
+No utilizar características calculadas después de la fecha de corte definida para cada experimento.
+
+Si se identifica potencial de pronóstico temprano, documentarlo como propuesta separada, sin mezclarlo con la evaluación retrospectiva.
+
+---
+
+# Orden de implementación
+
+**Primero — L**
+
+1. Auditar bloques y modelos existentes.
+2. Recuperar Rain Only y Climate Current.
+3. Construir PCA edafológicos y multibloque.
+4. Investigar estabilidad de selección.
+5. Comparar representaciones originales, PCA y mezclas.
+6. Construir correcciones residuales equivalentes.
+7. Comparar bases climáticas.
+8. Auditar residuos del Champion.
+9. Ejecutar L8 solo si puede validarse legítimamente.
+10. Documentar resultados y decisiones.
+
+**Segundo — M**
+
+1. Auditar índices, sensores e historia disponible.
+2. Reconstruir la estructura temporal efectiva.
+3. Diseñar características históricas y anomalías.
+4. Analizar cobertura y calidad.
+5. Construir PCA y representaciones satelitales.
+6. Analizar Sentinel como base.
+7. Analizar Planet y Landsat como complementos.
+8. Evaluar combinaciones multifuente.
+9. Comparar modelos individuales, aditivos y residuales.
+10. Diagnosticar complementariedad con clima y suelo.
+11. Documentar resultados y decisiones.
+
+## Entrega final
+
+Generar reportes independientes L y M y una síntesis transversal que responda:
+
+1. ¿Cuál es la base climática más robusta: lluvia exclusivamente o Climate Current?
+2. ¿PCA permite aprovechar mejor la información edafológica?
+3. ¿El suelo aporta más en un modelo conjunto o como corrector de residuos?
+4. ¿Queda información edafológica después de las correcciones del Champion?
+5. ¿Las anomalías históricas de Sentinel añaden información predictiva?
+6. ¿Planet y Landsat aportan señal complementaria a Sentinel?
+7. ¿Qué combinación de fuentes mantiene mejor desempeño al cambiar de municipio o región?
+8. ¿Qué experimentos están suficientemente justificados para una futura integración al Champion?
+
+**No busco obtener un ganador a cualquier costo. Busco cerrar las preguntas sobre representación, complementariedad, redundancia y arquitectura con evidencia comparable y reproducible.**
+
+Ejecuta estas investigaciones respetando los módulos existentes y entrega tanto los resultados favorables como los negativos, sin alterar el Champion.

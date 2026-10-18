@@ -1,0 +1,210 @@
+# F7 — Expansión controlada de CatBoost: historia, topografía y complementariedad
+
+Continuemos con la **Familia 7 (F7) — Gradient Boosting** del proyecto AgroCebada.
+
+Apruebo la ejecución de las tres ablaciones previamente definidas para CatBoost:
+
+- **F7-E1:** CatBoost compact4 + historia NDVI2.
+- **F7-E2:** CatBoost compact4 + pendiente media.
+- **F7-E3:** CatBoost compact4 + historia NDVI2 + pendiente media.
+
+El objetivo es comprobar si CatBoost consigue incorporar información parcelaria histórica y topográfica que mejore las predicciones, particularmente entre parcelas con condiciones climáticas idénticas, sin sacrificar la generalización geográfica.
+
+No quiero ampliar indiscriminadamente el número de variables ni realizar un nuevo screening.
+
+## 1. Referencias y continuidad
+
+Utiliza los experimentos F7-00 y F7-01 ya ejecutados, la auditoría y el diseño congelado de F7, así como las conclusiones de F6-E y RS4–RS6.
+
+Conserva F7-00 como control principal de las ablaciones.
+
+Recupera sus predicciones OOF, hiperparámetros, folds y diagnósticos sin modificar los artefactos originales.
+
+No reejecutes XGBoost ni cambies la familia de algoritmo de esta extensión: las tres ablaciones utilizarán CatBoost.
+
+## 2. Variables autorizadas
+
+**Núcleo compacto:**
+
+- `compact_precip_total`
+- `compact_early_fraction`
+- `compact_concentration_hhi`
+- `S2_ndvi_month_05`
+
+**Bloque histórico:**
+
+- `HIST_S2_ndvi_promedio_mean`
+- `HIST_S2_ndvi_promedio_std`
+
+**Bloque topográfico:**
+
+- `TOPO_BASIC_slope_mean`
+
+Utiliza las columnas existentes, con sus definiciones verificadas en el inventario F5.
+
+No sustituir las dos columnas históricas por History15/16 ni añadir slope14.
+
+No incorporar DTRstd, coordenadas, municipio, estado o identificadores territoriales como predictores.
+
+## 3. Ejecución
+
+Implementa y ejecuta exclusivamente F7-E1, F7-E2 y F7-E3.
+
+Emplea la misma implementación de CatBoost, los mismos 65 folds externos y particiones internas que F7-00.
+
+Conserva el espacio de hiperparámetros y el procedimiento de selección interna previamente congelados. Cada variante puede seleccionar sus propios hiperparámetros usando exclusivamente su entrenamiento correspondiente.
+
+No cambiar profundidad, learning rate, regularización ni número de árboles retrospectivamente para favorecer una extensión.
+
+No utilizar las etiquetas del fold externo para early stopping.
+
+E3 debe entrenarse como modelo conjunto: no sumar aritméticamente las mejoras observadas en E1 y E2.
+
+## 4. Evaluación principal
+
+Calcula RMSE, MAE y sesgo sobre OOF completas por repetición.
+
+Evalúa los cuatro protocolos:
+
+1. Validación aleatoria.
+2. Validación por perfil climático.
+3. Validación municipal.
+4. Validación espacial.
+
+Realiza comparaciones pareadas de cada extensión frente a F7-00 y, como referencias contextuales, C-T3, F5-01, F6-E1/E2 y el Champion únicamente cuando exista compatibilidad real.
+
+No mezclar RMSE medio por fold con RMSE sobre OOF completas.
+
+Conserva predicciones y errores por `ID_parcela`, protocolo, repetición y fold.
+
+## 5. Discriminación intraperfil
+
+Esta es una de las preguntas centrales del experimento.
+
+Sabemos que lluvia compacta es constante dentro de los perfiles climáticos idénticos y que NDVI de mayo es el diferenciador principal de F7-00.
+
+Historia NDVI2 y pendiente introducen variabilidad parcelaria adicional.
+
+Quiero evaluar si esa variabilidad se traduce en mejores predicciones.
+
+Para cada variante:
+
+- Calcula RMSE y MAE de diferencias de rendimiento entre parcelas del mismo perfil climático.
+- Conserva igual ponderación por perfil y ponderación por pares como métricas distintas.
+- Utiliza exclusivamente parejas cuyas predicciones provengan de un mismo ajuste externo.
+- Reporta el número de perfiles, parcelas y parejas evaluables.
+- Separa los resultados dentro y fuera de Chignahuapan cuando exista soporte suficiente.
+- Identifica si una mejora global procede realmente de mayor discriminación intraperfil o solamente de un ajuste del nivel regional.
+
+No interpretar una mejora del RMSE absoluto como evidencia automática de mejora intraperfil.
+
+## 6. Transferencia territorial
+
+Analiza cada municipio y cada bloque espacial.
+
+Presta especial atención a Singuilucan y al bloque espacial 4, porque en F7-00 concentraron gran parte de la ganancia frente a C-T3.
+
+También evalúa Chignahuapan y el bloque espacial 3, donde han persistido dificultades de predicción.
+
+Para cada extensión reporta:
+
+- RMSE y MAE por municipio y bloque.
+- Sesgo regional.
+- Descomposición descriptiva de ganancias SSE entre cambios de sesgo y dispersión de errores.
+- Cantidad de municipios y bloques que mejoran.
+- Sensibilidad al omitir cada bloque y municipio exclusivamente del cálculo OOF.
+- Concentración de mejoras y deterioros por parcela.
+- Resultados al omitir los mayores beneficiarios, sin eliminarlos de los ajustes originales.
+
+No optimizar específicamente Singuilucan, Chignahuapan ni ningún bloque.
+
+Determina si las nuevas variables aportan una mejora distribuida o simplemente trasladan errores entre regiones.
+
+## 7. Complementariedad entre historia y pendiente
+
+F6-E encontró que historia y pendiente mejoraban algunos bloques espaciales diferentes, pero perjudicaban muchas de las mismas parcelas en validación municipal.
+
+Ahora quiero comprobar si CatBoost puede combinar ambas fuentes de manera más eficaz.
+
+Compara:
+
+- E1 frente a F7-00.
+- E2 frente a F7-00.
+- E3 frente a F7-00.
+- E3 frente a E1.
+- E3 frente a E2.
+
+Analiza si E3 produce una ganancia adicional que no pueda explicarse simplemente por el desempeño de cada bloque por separado.
+
+Revisa también si los deterioros municipales compartidos en F6-E persisten o desaparecen con CatBoost.
+
+No asumir complementariedad únicamente porque las variables describen procesos distintos.
+
+## 8. Interpretabilidad
+
+Quiero comprender cómo utiliza CatBoost cada bloque.
+
+Genera diagnósticos de:
+
+- Importancia por permutación de bloques, cuando sea identificable.
+- Ablaciones con reajuste.
+- Estabilidad de uso de variables entre folds.
+- Umbrales y particiones dominantes.
+- Efectos locales acumulados (ALE), limitados a regiones con soporte suficiente.
+- Interacciones lluvia–NDVI, NDVI–historia, lluvia–pendiente e historia–pendiente.
+
+Evita inferencias causales a partir de SHAP, frecuencia de partición o importancias internas.
+
+Si una variable se utiliza frecuentemente pero empeora la generalización, documenta esa contradicción.
+
+## 9. Diagnóstico para una futura arquitectura especializada
+
+Además de comparar los modelos directos, prepara un análisis descriptivo de complementariedad de errores utilizando sus predicciones OOF compatibles.
+
+Investiga:
+
+- Correlación y covarianza de errores entre F7-00, E1, E2 y E3.
+- Diferencias de sesgo y magnitud de error.
+- Parcelas donde historia o pendiente corrigen errores que el núcleo no consigue corregir.
+- Casos donde ambos modelos se equivocan en la misma dirección.
+- Si las mejoras de una extensión ocurren principalmente en parcelas donde el núcleo base falla.
+
+El propósito es determinar si posteriormente convendría investigar un ensemble ponderado o un corrector residual especializado.
+
+**No entrenes todavía ensembles, stacking ni modelos de residuos.**
+
+No calcules un peso óptimo con OOF externas y lo presentes como desempeño validado. Cualquier combinación futura requerirá selección interna y cross-fitting apropiado.
+
+## 10. Entregables
+
+Genera una versión documentada y reproducible de la expansión F7:
+
+- Diseño y parámetros congelados.
+- Resultados globales y territoriales.
+- Predicciones OOF.
+- Ablaciones pareadas.
+- Métricas intraperfil.
+- Diagnósticos de interpretabilidad.
+- Análisis de complementariedad de errores.
+- Síntesis de fortalezas y limitaciones.
+- Recomendación sobre una futura arquitectura residual.
+
+Conserva intactos Champion, F5, F6 y F7-00/F7-01.
+
+No ajustar el modelo final con las 138 etiquetas ni producir predicciones de las 59 parcelas PRED.
+
+## 11. Decisión final
+
+Al terminar, responde explícitamente:
+
+1. ¿Historia NDVI2 mejora a CatBoost compacto?
+2. ¿Pendiente media aporta información incremental?
+3. ¿La combinación de ambas supera los modelos individuales?
+4. ¿Alguna extensión mejora la discriminación intraperfil?
+5. ¿Las ganancias municipales y espaciales son estables o dependen principalmente de Singuilucan?
+6. ¿Los modelos presentan errores suficientemente complementarios para justificar una arquitectura combinada?
+7. ¿Qué modelo y bloques recomendarías como base y cuáles como correctores?
+
+No promociones un nuevo Champion automáticamente.
+
+Detente después de estas tres ablaciones y presenta los resultados para revisión antes de ejecutar cualquier combinación de modelos.

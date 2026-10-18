@@ -1,0 +1,594 @@
+# FIRA AgroCebada 2026 — Sección I: Climate-Conditioned Geographic and Edaphological Exploration
+
+Quiero desarrollar la nueva **Sección I — Exploración geográfica, topográfica y edafológica condicionada a perfiles climáticos**.
+
+Esta investigación continúa las secciones G y H y los experimentos anteriores de precipitación. Respeta estrictamente la nomenclatura, numeración de scripts, organización de carpetas y convenciones del repositorio. No renumeres ni modifiques las familias de modelos, las secciones E–H ni el Champion.
+
+**El objetivo principal todavía NO es entrenar nuevos modelos de rendimiento.** Primero quiero construir y auditar una representación edafológica parcelaria, estudiar la estructura geográfica de las observaciones y determinar qué variables distinguen parcelas que comparten exactamente el mismo perfil climático.
+
+La investigación deberá finalizar con una propuesta fundamentada de variables y experimentos predictivos posteriores, sin implementarlos todavía.
+
+## I.0. Auditoría del repositorio y fuentes disponibles
+
+Antes de crear scripts o procesar información:
+
+1. Explora el repositorio y recupera el contexto de Familia 1, Familia 2, Familia 3 y secciones E–H.
+2. Identifica los resultados que mostraron contribución predictiva de topografía en el Champion.
+3. Recupera los 53 perfiles climáticos exactos identificados anteriormente y sus asignaciones por parcela.
+4. Localiza las geometrías de las 197 parcelas, identificadores, conjunto de entrenamiento/predicción y rendimientos disponibles.
+5. Localiza las fuentes de localidades y su estructura geográfica.
+6. Localiza los archivos de elevación y pendiente y sus variables parcelarias ya calculadas.
+7. Localiza la carta edafológica E1402, Serie III, escala 1:250,000, los documentos de leyenda y reversos, así como cualquier avance de digitalización o interpretación.
+8. Revisa la auditoría edafológica anterior y qué correspondencias entre unidades y parcelas se han validado.
+9. Identifica herramientas geoespaciales y funciones de extracción ya implementadas.
+10. Comprueba los campos reales de estado, municipio y localidad. No infieras la localidad exclusivamente a partir del municipio.
+
+No reconstruyas procesamiento previamente validado ni dupliques módulos.
+
+**La primera entrega debe explicar qué insumos existen, cuáles son utilizables inmediatamente y cuáles requieren validación.**
+
+---
+
+# I.1. Construcción de la representación edafológica por parcela
+
+Esta es la primera prioridad técnica.
+
+Quiero construir una matriz de características de suelo con **una fila por parcela**, identificando todas las unidades edafológicas cartográficas que intersectan cada geometría y la proporción de superficie que ocupa cada una.
+
+No quiero comenzar directamente con un modelo ni reducir las variables antes de conocer su distribución.
+
+## I.1.1. Reconstrucción cartográfica
+
+Antes de calcular porcentajes:
+
+- Verifica georreferenciación, proyección y cobertura de la carta edafológica.
+- Identifica límites de unidades cartográficas.
+- Recupera las claves edafológicas y su correspondencia con la leyenda.
+- Distingue unidades cartográficas, grupos de suelo, asociaciones, calificadores, clases texturales y limitantes.
+- Documenta la incertidumbre de reconstrucción y digitalización.
+- Comprueba qué parcelas cruzan límites edafológicos.
+- Identifica parcelas próximas a límites donde la asignación pueda ser especialmente incierta.
+
+La carta tiene escala temática 1:250,000. Su resolución gráfica no equivale a precisión edafológica de 21 m.
+
+Si no existe una capa vectorial confiable, investiga primero si ya hay fuentes digitales oficiales compatibles con la carta. Si no las hay, continúa únicamente con métodos de extracción que puedan justificarse y validarse.
+
+No convertir automáticamente colores RGB en clases edafológicas sin comprobar su correspondencia.
+
+Si la reconstrucción no alcanza calidad suficiente, detener esa parte y documentar los obstáculos; no inventar unidades o características.
+
+## I.1.2. Intersección parcela–unidad edafológica
+
+Para cada parcela \(i\) y unidad cartográfica \(j\), calcular:
+
+\[
+p_{ij}=
+\frac{\operatorname{Área}(A_i\cap U_j)}
+{\operatorname{Área}(A_i)}
+\]
+
+Donde:
+
+- \(A_i\): geometría de la parcela.
+- \(U_j\): geometría de la unidad edafológica.
+- \(p_{ij}\): fracción de superficie parcelaria cubierta por esa unidad.
+
+Calcular superficies utilizando una proyección apropiada para mediciones de área.
+
+No calcular porcentajes de superficie directamente en grados geográficos.
+
+Crear primero una tabla longitudinal:
+
+`ID_parcela | unidad_edafologica | area_interseccion | porcentaje_parcela | atributos_unidad`
+
+Conservar **todas las unidades intersectadas**, incluso aquellas con participaciones pequeñas.
+
+Comprobar que las fracciones sumen aproximadamente 1 para parcelas completamente cubiertas.
+
+Si existe superficie no clasificada, documentar su porcentaje y no redistribuirlo silenciosamente.
+
+## I.1.3. Matriz completa de unidades edafológicas
+
+Construir posteriormente una tabla ancha:
+
+`ID_parcela | porcentaje_unidad_1 | porcentaje_unidad_2 | ... | porcentaje_unidad_K`
+
+Cada columna representa una unidad cartográfica y contiene la fracción de superficie de la parcela correspondiente a ella.
+
+Las ausencias verificadas deben representarse como cero; los datos no determinados no deben confundirse con cero.
+
+No eliminar todavía unidades poco frecuentes.
+
+Conservar esta matriz completa como producto auditable, independientemente de las reducciones posteriores.
+
+## I.1.4. Variables estructurales por parcela
+
+Calcular:
+
+- `soil_unit_count`: número de unidades cartográficas intersectadas.
+- `soil_dominant_unit`: identificador de la unidad dominante.
+- `soil_dominant_share`: porcentaje de superficie de esa unidad.
+- `soil_second_unit`: segunda unidad por cobertura.
+- `soil_second_share`: porcentaje correspondiente.
+- `soil_mixed_share`: porcentaje no cubierto por la unidad dominante.
+- `soil_entropy`: entropía de la distribución de coberturas.
+- `soil_unclassified_share`: porcentaje sin clasificación válida.
+
+La entropía deberá calcularse sobre proporciones válidas y documentar su fórmula. Distinguir heterogeneidad cartográfica de heterogeneidad física real del suelo.
+
+Tratar empates de cobertura mediante una regla determinista y documentada.
+
+## I.1.5. Variables edafológicas interpretables
+
+A partir de las claves cartográficas validadas, construir variables para:
+
+- Grupos de suelo presentes.
+- Grupo principal de la unidad dominante.
+- Grupos asociados, cuando estén documentados.
+- Calificadores.
+- Clase textural.
+- Limitantes físicas.
+- Limitantes químicas.
+
+**Precaución fundamental:** si una unidad cartográfica contiene una asociación de Phaeozem, Andosol y Leptosol, no asumir que ocupan un tercio de la superficie cada uno.
+
+La proporción de una unidad cartográfica no equivale necesariamente a la proporción de cada grupo de suelo mencionado en su clave.
+
+Conservar esa diferencia en los nombres de variables y en el diccionario.
+
+No inferir directamente propiedades cuantitativas de infiltración, retención hídrica, pH, materia orgánica o profundidad efectiva sin una fuente que las mida o estime válidamente.
+
+---
+
+# I.2. Investigación de representaciones edafológicas compactas
+
+Quiero analizar cuál es la mejor forma de representar las unidades antes de utilizarlas como predictores.
+
+No elegir arbitrariamente N=3 o N=5.
+
+Construir y comparar descriptivamente estas representaciones:
+
+### A. Matriz completa
+
+Una columna por unidad edafológica y su porcentaje de cobertura.
+
+Se conserva como representación de referencia.
+
+### B. Top-N unidades por parcela
+
+Para cada parcela, ordenar las unidades intersectadas por porcentaje de cobertura.
+
+Construir una representación ordenada:
+
+- `soil_top1_unit`
+- `soil_top1_share`
+- `soil_top2_unit`
+- `soil_top2_share`
+- `soil_top3_unit`
+- `soil_top3_share`
+- ...
+- `soil_remaining_share`
+
+Analizar N=1, 2, 3 y, si se justifica, valores mayores.
+
+El porcentaje restante evita perder silenciosamente la cobertura no retenida.
+
+Conservar el identificador de unidad y su porcentaje como campos separados. No codificar arbitrariamente los números de unidad como variables continuas.
+
+### C. Top-N unidades globalmente prevalentes
+
+Esta representación es diferente de la anterior.
+
+Identificar las unidades más prevalentes en el universo de parcelas y evaluar su cobertura.
+
+Medir prevalencia por:
+
+- Número de parcelas donde aparecen.
+- Superficie total que representan.
+- Proporción promedio de cobertura.
+
+No asumir que los tres criterios producen el mismo orden.
+
+Para cada N, calcular:
+
+- Porcentaje de superficie total representada.
+- Porcentaje de parcelas con alguna unidad retenida.
+- Porcentaje de superficie omitida por parcela.
+- Número de unidades eliminadas.
+- Pérdida de diferenciación entre parcelas.
+- Pérdida de diferenciación dentro de perfiles climáticos.
+
+Comparar estas estrategias sin utilizar rendimiento para elegir N en esta etapa.
+
+Cuando se utilicen en modelos posteriores, cualquier selección de unidades basada en frecuencias o transformaciones del conjunto de entrenamiento deberá ajustarse dentro del pipeline de validación correspondiente.
+
+### D. Representación por atributos edafológicos
+
+Evaluar si utilizar grupos, calificadores y limitantes produce una representación más interpretable y compacta que la codificación directa de unidades cartográficas.
+
+No asumir que una mayor compactación mantiene toda la información.
+
+## I.2.1. Criterio de selección provisional
+
+Quiero que el análisis determine qué representación:
+
+1. Conserva mayor cobertura cartográfica.
+2. Distingue más parcelas.
+3. Distingue más parcelas dentro de perfiles climáticos idénticos.
+4. Reduce dimensionalidad sin perder excesiva información.
+5. Contiene categorías suficientemente representadas.
+6. Mantiene interpretación agronómica.
+7. Tiene menor incertidumbre de asignación.
+
+No seleccionar un ganador predictivo todavía.
+
+Guardar las distintas representaciones para experimentos posteriores.
+
+---
+
+# I.3. Caracterización geográfica y concentración de parcelas
+
+Las parcelas no parecen estar distribuidas uniformemente entre estados, municipios y localidades.
+
+Existe una concentración importante en Puebla y particularmente en la zona de Chignahuapan. Quiero verificar y cuantificar esta concentración antes de interpretar asociaciones de suelo, topografía o rendimiento.
+
+## I.3.1. Distribución territorial
+
+Calcular:
+
+- Número total de parcelas por estado.
+- Número por municipio.
+- Número por localidad.
+- Número con rendimiento observado por cada agrupación.
+- Número de parcelas de predicción por agrupación.
+- Superficie total representada.
+- Distribución del rendimiento en grupos con suficientes observaciones.
+
+Generar mapas de parcelas coloreados por estado, municipio y localidad.
+
+No asumir que el municipio es una unidad suficientemente fina para caracterizar el contexto geográfico.
+
+## I.3.2. Localidades
+
+Explora exactamente qué información contienen las fuentes de localidades disponibles.
+
+Determina si permiten asignar una localidad a cada parcela de manera confiable.
+
+Distingue entre:
+
+- Parcela dentro de un polígono de localidad, si existe delimitación válida.
+- Localidad de referencia registrada en otra fuente.
+- Localidad más cercana basada en coordenadas.
+- Municipio administrativo.
+
+No tratar estos procedimientos como equivalentes.
+
+Si únicamente existen puntos de localidades, calcula distancias y asociaciones de proximidad con criterios explícitos, sin afirmar pertenencia administrativa por cercanía.
+
+Conservar fuente, método de asignación y nivel de confianza.
+
+## I.3.3. Concentración espacial
+
+Cuantificar la concentración real de la muestra.
+
+Investigar:
+
+- Qué porcentaje de parcelas se concentra en Chignahuapan.
+- Cuánto del conjunto de entrenamiento procede de esa zona.
+- Cuántos perfiles climáticos existen allí.
+- Cuántas unidades edafológicas aparecen.
+- Qué variabilidad de altitud, pendiente y rendimiento contiene.
+- Si otras regiones están representadas por muy pocas observaciones.
+
+Construir tablas de composición de la muestra y mapas que permitan visualizar estas diferencias.
+
+No asumir que un resultado regional es generalizable a todos los estados si la muestra está concentrada espacialmente.
+
+---
+
+# I.4. Caracterización topográfica condicionada al clima
+
+Reutiliza las variables de elevación y pendiente previamente construidas.
+
+Para cada uno de los 53 perfiles climáticos exactos, calcular:
+
+- Número de parcelas.
+- Altitud mínima, máxima y rango.
+- Altitud promedio y desviación.
+- Pendiente mínima, máxima y rango.
+- Pendiente promedio y desviación.
+- Distribución geográfica.
+- Distribución de unidades edafológicas.
+- Distribución de rendimiento observado, donde exista.
+
+Crear versiones centradas dentro de cada perfil:
+
+\[
+h_i^*=h_i-\overline h_{g(i)}
+\]
+
+\[
+s_i^*=s_i-\overline s_{g(i)}
+\]
+
+Donde \(g(i)\) representa el perfil climático.
+
+Esto permitirá estudiar si las diferencias topográficas existentes dentro de una misma celda climática se relacionan con la variabilidad del rendimiento.
+
+No confundir altitud y pendiente: son características diferentes.
+
+Tampoco interpretar automáticamente una relación altitud–rendimiento como efecto térmico local, porque no tenemos temperatura medida a la escala de cada parcela.
+
+---
+
+# I.5. Análisis edafológico dentro y fuera de perfiles climáticos
+
+Esta es la investigación central de la Sección I.
+
+## I.5.1. Diferenciación entre perfiles
+
+Determinar:
+
+- Qué unidades edafológicas caracterizan cada perfil climático.
+- Cuánto se parecen edafológicamente perfiles próximos.
+- Qué proporción de variación edafológica se encuentra entre perfiles.
+- Qué unidades se distribuyen en múltiples perfiles.
+- Cómo se relaciona la distribución de unidades con altitud, pendiente, estado y localidad.
+
+## I.5.2. Diferenciación dentro de perfiles
+
+Para cada perfil con múltiples parcelas:
+
+- Número de unidades edafológicas distintas.
+- Variación de la unidad dominante.
+- Diferencias de porcentajes de cobertura.
+- Variación de atributos y limitantes.
+- Diferencias de altitud y pendiente.
+- Variación del rendimiento observado.
+
+Determinar cuántos perfiles contienen parcelas con clima idéntico, pero características edafológicas diferentes.
+
+Cuantificar cuántas parejas de parcelas climáticamente idénticas pueden distinguirse mediante:
+
+A. Topografía.
+
+B. Unidades edafológicas.
+
+C. Atributos edafológicos.
+
+D. Topografía y edafología combinadas.
+
+No contar pequeñas diferencias numéricas o incertidumbre cartográfica como distinciones reales sin justificar tolerancias.
+
+## I.5.3. Comparación de heterogeneidad
+
+Construir medidas descriptivas de heterogeneidad dentro y entre perfiles.
+
+Para categorías edafológicas considerar medidas apropiadas para datos categóricos y proporciones, no aplicar correlación Pearson directamente sobre identificadores numéricos de unidades.
+
+Para las composiciones porcentuales considerar que las proporciones suman uno y no son variables independientes.
+
+Evitar seleccionar una representación únicamente porque produce más columnas o distingue mecánicamente más parcelas.
+
+---
+
+# I.6. Análisis del rendimiento observado
+
+Utilizar exclusivamente las 138 parcelas etiquetadas.
+
+Antes de estudiar asociaciones, descomponer la variabilidad del rendimiento:
+
+\[
+SS_{\mathrm{total}}
+=
+SS_{\mathrm{entre\ perfiles}}
++
+SS_{\mathrm{dentro\ perfiles}}
+\]
+
+Reportar la contribución descriptiva entre y dentro de perfiles climáticos.
+
+No interpretar la proporción entre perfiles como una contribución causal del clima.
+
+## I.6.1. Asociaciones exploratorias
+
+Investigar:
+
+- Rendimiento y altitud.
+- Rendimiento y pendiente.
+- Rendimiento y grupo edafológico.
+- Rendimiento y unidad cartográfica.
+- Rendimiento y clase textural.
+- Rendimiento y limitantes.
+- Rendimiento y heterogeneidad edafológica.
+- Rendimiento y porcentajes de cobertura.
+- Rendimiento y ubicación.
+
+Posteriormente, investigar asociaciones condicionadas al perfil climático.
+
+Para variables continuas, estudiar diferencias respecto a la media del perfil.
+
+Para variables categóricas, utilizar comparaciones intragrupo apropiadas, siempre que exista variación suficiente de categorías dentro de cada perfil.
+
+No entrenar todavía modelos destinados a predecir las 59 parcelas ocultas.
+
+## I.6.2. Comparación dentro de Chignahuapan
+
+Debido a la concentración de observaciones, realizar un diagnóstico específico para Chignahuapan y su entorno.
+
+Determinar:
+
+- Número de parcelas etiquetadas.
+- Número de perfiles climáticos.
+- Variación de rendimiento dentro de perfiles.
+- Variación topográfica.
+- Variación edafológica.
+- Diferencias entre localidades identificables.
+
+Investigar si los patrones descriptivos encontrados en la muestra completa también aparecen dentro de esta región concentrada.
+
+No interpretar una asociación local como relación nacional o estatal.
+
+Comparar los hallazgos con las demás regiones únicamente cuando haya suficiente soporte estadístico.
+
+---
+
+# I.7. Evaluación de las representaciones frente a las necesidades de modelado
+
+Esta fase no debe seleccionar modelos mediante RMSE.
+
+Quiero un diagnóstico que determine qué variables tienen condiciones suficientes para ser estudiadas predictivamente.
+
+Para cada representación:
+
+- Dimensionalidad.
+- Frecuencia de categorías.
+- Número de parcelas por categoría.
+- Variabilidad dentro de perfiles climáticos.
+- Variabilidad entre perfiles.
+- Redundancia con altitud y pendiente.
+- Dependencia geográfica.
+- Incertidumbre cartográfica.
+- Cobertura en entrenamiento y predicción.
+- Categorías presentes solamente en parcelas sin rendimiento.
+- Riesgo de sobreajuste por alta dimensionalidad.
+
+Para cada familia de características, clasificar su situación como:
+
+- Lista para una prueba predictiva controlada.
+- Utilizable con reservas.
+- Requiere validación adicional.
+- No recomendable con la información disponible.
+
+Justificar cada clasificación mediante evidencia.
+
+---
+
+# I.8. Diseño de experimentos predictivos posteriores
+
+No ejecutar todavía esta etapa.
+
+Al finalizar la exploración, recomendar un conjunto pequeño de experimentos que permita evaluar la contribución incremental de las variables.
+
+Considerar como posibles comparaciones futuras:
+
+- Lluvia sola.
+- Lluvia + topografía.
+- Lluvia + edafología.
+- Lluvia + topografía + edafología.
+
+Separar posteriormente una investigación específica de interacciones entre precipitación y suelo.
+
+Comparar siempre contra Climate Current y el Champion de Familia 1 cuando corresponda.
+
+No proponer interacciones masivas sin suficiente soporte en las 138 parcelas etiquetadas.
+
+Definir anticipadamente qué métricas, particiones y condiciones permitirían justificar la integración de nuevas variables.
+
+---
+
+# I.9. Visualizaciones requeridas
+
+Quiero que los resultados sean interpretables espacial y estadísticamente.
+
+Priorizar:
+
+1. Mapa de las 197 parcelas con estado, municipio y localidades.
+2. Mapa de perfiles climáticos.
+3. Mapa edafológico con parcelas superpuestas.
+4. Mapa de unidades dominantes por parcela.
+5. Distribución de porcentajes de las principales unidades.
+6. Número de unidades edafológicas por parcela.
+7. Concentración de observaciones por región y localidad.
+8. Altitud y pendiente dentro de cada perfil climático.
+9. Variación edafológica dentro de perfiles.
+10. Variabilidad de rendimiento dentro y entre perfiles.
+11. Comparación de representaciones edafológicas completas y Top-N.
+12. Identificación de perfiles donde el suelo o topografía podrían añadir mayor diferenciación.
+
+Crear una vista interactiva si la infraestructura lo permite, con selección de perfiles y visualización de sus parcelas, características topográficas, unidades edafológicas y rendimiento observado.
+
+No utilizar colores o categorías que impliquen diferencias significativas no demostradas.
+
+---
+
+# I.10. Productos y documentación
+
+Generar, respetando la arquitectura existente:
+
+**A. Auditoría edafológica**
+
+Fuentes, escala, georreferenciación, leyenda, cobertura, método de reconstrucción e incertidumbre.
+
+**B. Tabla longitudinal parcela–unidad**
+
+Todas las intersecciones y porcentajes.
+
+**C. Matriz edafológica completa**
+
+Todas las unidades como características porcentuales.
+
+**D. Representaciones Top-N**
+
+Top-N por parcela, Top-N global y representaciones por atributos, conservando siempre las matrices completas.
+
+**E. Tabla integrada de diagnóstico**
+
+Una fila por parcela con clima identificado por perfil, topografía, edafología y referencias geográficas verificadas.
+
+**F. Reporte de concentración territorial**
+
+Distribución por estado, municipio, localidad y concentración en Chignahuapan.
+
+**G. Reporte de variación intra/interperfil**
+
+Diferencias de suelo, topografía y rendimiento condicionadas a perfiles climáticos idénticos.
+
+**H. Evaluación de variables candidatas**
+
+Diagnóstico de viabilidad, cobertura, redundancia, incertidumbre y posible utilidad.
+
+**I. Reporte técnico de Sección I**
+
+Interpretación, limitaciones y recomendaciones fundamentadas para modelado posterior.
+
+Estos apartados A–I son nombres de entregables internos, no nuevas secciones principales del proyecto. No deben alterar las secciones E–H ya existentes.
+
+## I.11. Requisitos no negociables
+
+- No entrenar todavía un nuevo Champion.
+- No modificar modelos anteriores.
+- No alterar datos originales.
+- No confundir tamaño de píxel gráfico con precisión temática.
+- No asignar propiedades puntuales de perfiles edafológicos a parcelas sin evidencia.
+- No confundir porcentaje de unidad cartográfica con porcentaje de cada suelo asociado.
+- No seleccionar N utilizando rendimiento en esta fase.
+- No eliminar unidades raras antes de construir la matriz completa.
+- No tratar coordenadas o localidades como indicadores causales.
+- No asumir que todas las parcelas están representadas uniformemente.
+- No confundir variación entre perfiles con variación dentro de perfiles.
+- No reportar reducción descriptiva de varianza como mejora predictiva.
+- No utilizar los rendimientos ocultos.
+- No inferir categorías cartográficas cuando la fuente no permita una asignación confiable.
+- Mantener trazabilidad y reproducibilidad de todos los cruces espaciales.
+
+## I.12. Orden de ejecución
+
+1. Auditar repositorio, fuentes y avances anteriores.
+2. Verificar viabilidad y calidad de la capa edafológica.
+3. Reconstruir o reutilizar unidades cartográficas válidas.
+4. Calcular intersecciones parcela–unidad.
+5. Construir la matriz edafológica completa.
+6. Construir y comparar representaciones Top-N.
+7. Auditar localidades y concentración territorial.
+8. Integrar topografía y perfiles climáticos existentes.
+9. Analizar heterogeneidad edafológica y topográfica entre perfiles.
+10. Analizar heterogeneidad dentro de perfiles.
+11. Estudiar asociaciones exploratorias con rendimiento.
+12. Analizar específicamente Chignahuapan.
+13. Evaluar qué representaciones son candidatas a modelado.
+14. Documentar resultados y proponer la siguiente investigación predictiva.
+
+**Objetivo final: determinar cuánto detalle geográfico, topográfico y edafológico adicional podemos aportar a parcelas que comparten la misma información climática, y qué representación de estas fuentes merece incorporarse posteriormente a modelos de rendimiento.**
+
+No quiero agregar variables solo porque estén disponibles. Quiero entender cuáles contienen información nueva, qué tan confiable es esa información y si existe evidencia para utilizarlas después.

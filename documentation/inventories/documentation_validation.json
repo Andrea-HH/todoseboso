@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": {
+    "local_links": 210,
+    "design_snapshots": 30,
+    "fold_records": 146,
+    "registered_models": 9,
+    "prompt_records": 35,
+    "inventory_files": 623,
+    "git_policy": 1
+  },
+  "local_source_hashes_checked": true,
+  "training_performed": false,
+  "private_data_loaded": false,
+  "date": "2026-10-18"
+}

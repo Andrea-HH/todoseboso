@@ -1,0 +1,415 @@
+{
+  "models": [
+    "C-T3",
+    "F5-01",
+    "F7-00"
+  ],
+  "features": [
+    "compact_precip_total",
+    "compact_early_fraction",
+    "compact_concentration_hhi",
+    "S2_ndvi_month_05"
+  ],
+  "weights": [
+    [
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      0.1,
+      0.9
+    ],
+    [
+      0.0,
+      0.2,
+      0.8
+    ],
+    [
+      0.0,
+      0.3,
+      0.7
+    ],
+    [
+      0.0,
+      0.4,
+      0.6
+    ],
+    [
+      0.0,
+      0.5,
+      0.5
+    ],
+    [
+      0.0,
+      0.6,
+      0.4
+    ],
+    [
+      0.0,
+      0.7,
+      0.3
+    ],
+    [
+      0.0,
+      0.8,
+      0.2
+    ],
+    [
+      0.0,
+      0.9,
+      0.1
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.1,
+      0.0,
+      0.9
+    ],
+    [
+      0.1,
+      0.1,
+      0.8
+    ],
+    [
+      0.1,
+      0.2,
+      0.7
+    ],
+    [
+      0.1,
+      0.3,
+      0.6
+    ],
+    [
+      0.1,
+      0.4,
+      0.5
+    ],
+    [
+      0.1,
+      0.5,
+      0.4
+    ],
+    [
+      0.1,
+      0.6,
+      0.3
+    ],
+    [
+      0.1,
+      0.7,
+      0.2
+    ],
+    [
+      0.1,
+      0.8,
+      0.1
+    ],
+    [
+      0.1,
+      0.9,
+      0.0
+    ],
+    [
+      0.2,
+      0.0,
+      0.8
+    ],
+    [
+      0.2,
+      0.1,
+      0.7
+    ],
+    [
+      0.2,
+      0.2,
+      0.6
+    ],
+    [
+      0.2,
+      0.3,
+      0.5
+    ],
+    [
+      0.2,
+      0.4,
+      0.4
+    ],
+    [
+      0.2,
+      0.5,
+      0.3
+    ],
+    [
+      0.2,
+      0.6,
+      0.2
+    ],
+    [
+      0.2,
+      0.7,
+      0.1
+    ],
+    [
+      0.2,
+      0.8,
+      0.0
+    ],
+    [
+      0.3,
+      0.0,
+      0.7
+    ],
+    [
+      0.3,
+      0.1,
+      0.6
+    ],
+    [
+      0.3,
+      0.2,
+      0.5
+    ],
+    [
+      0.3,
+      0.3,
+      0.4
+    ],
+    [
+      0.3,
+      0.4,
+      0.3
+    ],
+    [
+      0.3,
+      0.5,
+      0.2
+    ],
+    [
+      0.3,
+      0.6,
+      0.1
+    ],
+    [
+      0.3,
+      0.7,
+      0.0
+    ],
+    [
+      0.4,
+      0.0,
+      0.6
+    ],
+    [
+      0.4,
+      0.1,
+      0.5
+    ],
+    [
+      0.4,
+      0.2,
+      0.4
+    ],
+    [
+      0.4,
+      0.3,
+      0.3
+    ],
+    [
+      0.4,
+      0.4,
+      0.2
+    ],
+    [
+      0.4,
+      0.5,
+      0.1
+    ],
+    [
+      0.4,
+      0.6,
+      0.0
+    ],
+    [
+      0.5,
+      0.0,
+      0.5
+    ],
+    [
+      0.5,
+      0.1,
+      0.4
+    ],
+    [
+      0.5,
+      0.2,
+      0.3
+    ],
+    [
+      0.5,
+      0.3,
+      0.2
+    ],
+    [
+      0.5,
+      0.4,
+      0.1
+    ],
+    [
+      0.5,
+      0.5,
+      0.0
+    ],
+    [
+      0.6,
+      0.0,
+      0.4
+    ],
+    [
+      0.6,
+      0.1,
+      0.3
+    ],
+    [
+      0.6,
+      0.2,
+      0.2
+    ],
+    [
+      0.6,
+      0.3,
+      0.1
+    ],
+    [
+      0.6,
+      0.4,
+      0.0
+    ],
+    [
+      0.7,
+      0.0,
+      0.3
+    ],
+    [
+      0.7,
+      0.1,
+      0.2
+    ],
+    [
+      0.7,
+      0.2,
+      0.1
+    ],
+    [
+      0.7,
+      0.3,
+      0.0
+    ],
+    [
+      0.8,
+      0.0,
+      0.2
+    ],
+    [
+      0.8,
+      0.1,
+      0.1
+    ],
+    [
+      0.8,
+      0.2,
+      0.0
+    ],
+    [
+      0.9,
+      0.0,
+      0.1
+    ],
+    [
+      0.9,
+      0.1,
+      0.0
+    ],
+    [
+      1.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "weight_selection": "complete original inner OOF RMSE; ties rounded10 prefer CT3 then GPR; nonnegative weights sum1, no intercept",
+  "cb_grid": [
+    {
+      "iterations": 150,
+      "depth": 2,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 2,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 2,
+      "learning_rate": 0.06,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 2,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 30
+    },
+    {
+      "iterations": 150,
+      "depth": 3,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 3,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 3,
+      "learning_rate": 0.06,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 3,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 30
+    }
+  ],
+  "cb_selection": "within each inner training only, archived local protocol CV; original meanfoldRMSE rounded10 ties first; no early stopping",
+  "outer_models": "archived original models frozen, replayed against archived OOF",
+  "inner_models": "CT3 recursively tuned cached models; GPR original training-only LML fits; CatBoost independently retuned in each inner training, never original outer-selected inner models",
+  "comparators": [
+    "C-T3",
+    "F5-01",
+    "F7-00",
+    "EQUAL3"
+  ],
+  "outer_folds": 65,
+  "cb_contexts": 239,
+  "cb_fits_budget": 7799,
+  "decision": "exploratory gain .01 in at least one grouped protocol, no RMSE/MAE harm >.01 vs CT3 anywhere, geographic absolute-bias harm<=.02; inspect omission/local support, no champion promotion",
+  "no_residual": true,
+  "no_new_variables": true,
+  "no_final_fit138": true,
+  "no_PRED": true,
+  "seed": 2026,
+  "workers": 4
+}

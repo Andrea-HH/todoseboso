@@ -1,0 +1,232 @@
+{
+  "specs": {
+    "CAL00": {
+      "columns": [
+        "compact_precip_total",
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05"
+      ],
+      "history": [],
+      "description": "compact4 Ridge architecture control"
+    },
+    "CAL01": {
+      "columns": [
+        "CURRENT_CAL_CLIM_precip_pre_apr",
+        "CURRENT_CAL_CLIM_precip_sowing_may_jun",
+        "CURRENT_CAL_CLIM_precip_post_jul_aug",
+        "CURRENT_CAL_CLIM_precip_late_sep_oct",
+        "S2_ndvi_month_05"
+      ],
+      "history": [],
+      "description": "rain windows + original MayNDVI"
+    },
+    "CAL02": {
+      "columns": [
+        "CURRENT_CAL_CLIM_precip_pre_apr",
+        "CURRENT_CAL_CLIM_precip_sowing_may_jun",
+        "CURRENT_CAL_CLIM_precip_post_jul_aug",
+        "CURRENT_CAL_CLIM_precip_late_sep_oct",
+        "CURRENT_CAL_CLIM_tmax_pre_apr",
+        "CURRENT_CAL_CLIM_tmax_sowing_may_jun",
+        "CURRENT_CAL_CLIM_tmax_post_jul_aug",
+        "CURRENT_CAL_CLIM_tmax_late_sep_oct",
+        "S2_ndvi_month_05"
+      ],
+      "history": [],
+      "description": "rain/Tmax windows + original MayNDVI"
+    },
+    "CAL03": {
+      "columns": [
+        "compact_precip_total",
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05",
+        "CURRENT_CAL_S2_ndvi_pre_apr",
+        "CURRENT_CAL_S2_ndvi_sowing_may_jun",
+        "CURRENT_CAL_S2_ndvi_post_jul_aug",
+        "CURRENT_CAL_S2_ndvi_late_sep_oct",
+        "CURRENT_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "history": [],
+      "description": "compact4 + Sentinel2025 trajectory/heterogeneity"
+    },
+    "CAL04": {
+      "columns": [
+        "CURRENT_CAL_CLIM_precip_pre_apr",
+        "CURRENT_CAL_CLIM_precip_sowing_may_jun",
+        "CURRENT_CAL_CLIM_precip_post_jul_aug",
+        "CURRENT_CAL_CLIM_precip_late_sep_oct",
+        "CURRENT_CAL_CLIM_tmax_pre_apr",
+        "CURRENT_CAL_CLIM_tmax_sowing_may_jun",
+        "CURRENT_CAL_CLIM_tmax_post_jul_aug",
+        "CURRENT_CAL_CLIM_tmax_late_sep_oct",
+        "S2_ndvi_month_05",
+        "CURRENT_CAL_S2_ndvi_pre_apr",
+        "CURRENT_CAL_S2_ndvi_sowing_may_jun",
+        "CURRENT_CAL_S2_ndvi_post_jul_aug",
+        "CURRENT_CAL_S2_ndvi_late_sep_oct",
+        "CURRENT_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "history": [],
+      "description": "joint current2025 windows"
+    },
+    "CAL05": {
+      "columns": [
+        "CURRENT_CAL_CLIM_precip_pre_apr",
+        "CURRENT_CAL_CLIM_precip_sowing_may_jun",
+        "CURRENT_CAL_CLIM_precip_post_jul_aug",
+        "CURRENT_CAL_CLIM_precip_late_sep_oct",
+        "CURRENT_CAL_CLIM_tmax_pre_apr",
+        "CURRENT_CAL_CLIM_tmax_sowing_may_jun",
+        "CURRENT_CAL_CLIM_tmax_post_jul_aug",
+        "CURRENT_CAL_CLIM_tmax_late_sep_oct",
+        "S2_ndvi_month_05",
+        "CURRENT_CAL_S2_ndvi_pre_apr",
+        "CURRENT_CAL_S2_ndvi_sowing_may_jun",
+        "CURRENT_CAL_S2_ndvi_post_jul_aug",
+        "CURRENT_CAL_S2_ndvi_late_sep_oct",
+        "CURRENT_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_MEAN_CAL_S2_ndvi_pre_apr",
+        "HIST_MEAN_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_MEAN_CAL_S2_ndvi_post_jul_aug",
+        "HIST_MEAN_CAL_S2_ndvi_late_sep_oct",
+        "HIST_MEAN_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_pre_apr",
+        "HIST_SD_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_SD_CAL_S2_ndvi_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_late_sep_oct",
+        "HIST_SD_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "history": [
+        "HIST_MEAN_CAL_S2_ndvi_pre_apr",
+        "HIST_MEAN_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_MEAN_CAL_S2_ndvi_post_jul_aug",
+        "HIST_MEAN_CAL_S2_ndvi_late_sep_oct",
+        "HIST_MEAN_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_pre_apr",
+        "HIST_SD_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_SD_CAL_S2_ndvi_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_late_sep_oct",
+        "HIST_SD_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "indicators": true,
+      "description": "joint2025 + history mean/SD, missingness indicators"
+    },
+    "CAL06": {
+      "columns": [
+        "CURRENT_CAL_CLIM_precip_pre_apr",
+        "CURRENT_CAL_CLIM_precip_sowing_may_jun",
+        "CURRENT_CAL_CLIM_precip_post_jul_aug",
+        "CURRENT_CAL_CLIM_precip_late_sep_oct",
+        "CURRENT_CAL_CLIM_tmax_pre_apr",
+        "CURRENT_CAL_CLIM_tmax_sowing_may_jun",
+        "CURRENT_CAL_CLIM_tmax_post_jul_aug",
+        "CURRENT_CAL_CLIM_tmax_late_sep_oct",
+        "S2_ndvi_month_05",
+        "CURRENT_CAL_S2_ndvi_pre_apr",
+        "CURRENT_CAL_S2_ndvi_sowing_may_jun",
+        "CURRENT_CAL_S2_ndvi_post_jul_aug",
+        "CURRENT_CAL_S2_ndvi_late_sep_oct",
+        "CURRENT_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "DELTA_CAL_S2_ndvi_pre_apr",
+        "DELTA_CAL_S2_ndvi_sowing_may_jun",
+        "DELTA_CAL_S2_ndvi_post_jul_aug",
+        "DELTA_CAL_S2_ndvi_late_sep_oct",
+        "DELTA_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_pre_apr",
+        "HIST_SD_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_SD_CAL_S2_ndvi_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_late_sep_oct",
+        "HIST_SD_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "history": [
+        "DELTA_CAL_S2_ndvi_pre_apr",
+        "DELTA_CAL_S2_ndvi_sowing_may_jun",
+        "DELTA_CAL_S2_ndvi_post_jul_aug",
+        "DELTA_CAL_S2_ndvi_late_sep_oct",
+        "DELTA_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_pre_apr",
+        "HIST_SD_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_SD_CAL_S2_ndvi_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_late_sep_oct",
+        "HIST_SD_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "indicators": true,
+      "description": "joint2025 + deviations/SD, missingness indicators"
+    },
+    "CAL07": {
+      "columns": [
+        "CURRENT_CAL_CLIM_precip_pre_apr",
+        "CURRENT_CAL_CLIM_precip_sowing_may_jun",
+        "CURRENT_CAL_CLIM_precip_post_jul_aug",
+        "CURRENT_CAL_CLIM_precip_late_sep_oct",
+        "CURRENT_CAL_CLIM_tmax_pre_apr",
+        "CURRENT_CAL_CLIM_tmax_sowing_may_jun",
+        "CURRENT_CAL_CLIM_tmax_post_jul_aug",
+        "CURRENT_CAL_CLIM_tmax_late_sep_oct",
+        "S2_ndvi_month_05",
+        "CURRENT_CAL_S2_ndvi_pre_apr",
+        "CURRENT_CAL_S2_ndvi_sowing_may_jun",
+        "CURRENT_CAL_S2_ndvi_post_jul_aug",
+        "CURRENT_CAL_S2_ndvi_late_sep_oct",
+        "CURRENT_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_MEAN_CAL_S2_ndvi_pre_apr",
+        "HIST_MEAN_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_MEAN_CAL_S2_ndvi_post_jul_aug",
+        "HIST_MEAN_CAL_S2_ndvi_late_sep_oct",
+        "HIST_MEAN_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_pre_apr",
+        "HIST_SD_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_SD_CAL_S2_ndvi_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_late_sep_oct",
+        "HIST_SD_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "history": [
+        "HIST_MEAN_CAL_S2_ndvi_pre_apr",
+        "HIST_MEAN_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_MEAN_CAL_S2_ndvi_post_jul_aug",
+        "HIST_MEAN_CAL_S2_ndvi_late_sep_oct",
+        "HIST_MEAN_CAL_S2_ndvi_spatial_std_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_pre_apr",
+        "HIST_SD_CAL_S2_ndvi_sowing_may_jun",
+        "HIST_SD_CAL_S2_ndvi_post_jul_aug",
+        "HIST_SD_CAL_S2_ndvi_late_sep_oct",
+        "HIST_SD_CAL_S2_ndvi_spatial_std_post_jul_aug"
+      ],
+      "indicators": false,
+      "description": "CAL05 without missingness indicators"
+    }
+  },
+  "alphas": [
+    100.0,
+    10.0,
+    1.0,
+    0.1,
+    0.01,
+    0.001
+  ],
+  "gammas": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "algorithm": "Ridge, alpha_sklearn = alpha*n_training, minimizes MSE + alpha*sum(beta²)",
+  "selection": "complete original inner OOF RMSE, ties rounded12 prefer larger alpha then smaller gamma",
+  "preprocessing": "training median with allmissing fallback0; training StandardScaler; history multiplied by gamma after scaling; fixed history missing flags optionally included and penalized with history",
+  "outer_folds": 65,
+  "history_selection": "gamma selected within original inner folds; never by external spatial outcomes",
+  "no_champion_change": true,
+  "no_final_fit": true,
+  "no_PRED": true,
+  "reference": "archived C-T3; CAL00 isolates Ridge architecture from EN C-T3",
+  "decision": "exploratory reused labels; prioritize geographic and intraprofile stability; no automatic promotion or CatBoost execution",
+  "sha256": {
+    "data\\processed\\agronomic_calendar_set\\v1\\current_history_delta_197_target_free.parquet": "43a448fea4d3d0528733a80e49e8438090be8d4ff7e5808bf45dc8b9b7c6220f",
+    "outputs\\modeling\\ct3_residual_conditional\\v1\\cache\\train138.parquet": "b43497414fdb5581bc713da2b16176fefe52738461327734b624214488b59203",
+    "outputs\\modeling\\ct3_residual_conditional\\v1\\cache\\frozen65_splits.joblib": "e4bc85766377b3f3b8a2f5a12aa3dc1a43d73d2ae7aa36cc6d8cc6244e26e130",
+    "outputs\\modeling\\compact_ensemble\\v1\\tables\\oof_predictions.parquet": "83667d3dfb5a9bfe2f4eb2885ca7c0e77e07e4ea183e283ba2f56ea3e37e31ce",
+    "scripts\\394_calendar_modeling.py": "a7149f28537e4c7261d9415476956cd14d3687df30f2baec790a86a369a60e40",
+    "src\\calendar_modeling.py": "c8a7294a4c2567c1b0ee8338db6293ccb7e0d50fcb2aa9b835fa4841f1d1a55a"
+  }
+}

@@ -1,0 +1,814 @@
+# FIRA AgroCebada 2026 — Etapa C: Modelos jerárquicos compactos y representación climática para transferencia geográfica
+
+Continúa el programa de investigación de Familia 4 iniciado en las Etapas A y B.
+
+Implementa exclusivamente:
+
+**Etapa C — Hierarchical Climate-Profile Modeling & Transfer-Oriented Climate Representation**
+
+No ejecutar todavía la Etapa D.
+
+Esta investigación debe conservar los modelos, artefactos, resultados y decisiones de las etapas anteriores.
+
+El objetivo no es maximizar indiscriminadamente el rendimiento de una nueva arquitectura. Quiero contrastar dos hipótesis predictivas claramente definidas, mediante modelos parsimoniosos y comparaciones matemáticamente controladas.
+
+---
+
+# 0. Antecedentes y decisiones que deben respetarse
+
+Antes de programar, recupera y examina:
+
+- Familias 1, 2 y 3.
+- Champion archivado de Familia 1.
+- Secciones I–M.
+- Familia 4 original.
+- Extensión F4-E.
+- Diagnóstico de concentración de errores en Chignahuapan.
+- Etapa A: auditoría territorial.
+- Etapa B: objetivo intraperfil y mezcla fija.
+- Agenda de investigación posterior a F4-E.
+
+Utiliza los resultados reales del repositorio y verifica la compatibilidad de cualquier comparación.
+
+## 0.1. Hallazgos relevantes
+
+El universo contiene:
+
+- 197 parcelas.
+- 138 observaciones con rendimiento conocido.
+- 59 parcelas PRED sin etiquetas disponibles.
+- 53 perfiles climáticos exactos.
+- 43 perfiles con etiquetas.
+- 12 perfiles con dos o más etiquetas.
+- Dos perfiles importantes en Chignahuapan con 33 y 29 etiquetas.
+
+### Modelos de referencia
+
+RMSE en t/ha:
+
+| Modelo | Aleatoria | Perfil | Municipal | Espacial |
+|---|---:|---:|---:|---:|
+| J0 — lluvia | 0.52136 | 0.54435 | 0.69536 | 0.73479 |
+| F4-S1 — lluvia + NDVI mayo | 0.50483 | 0.52626 | 0.67110 | 0.73904 |
+| F4-S5 — lluvia + variabilidad de amplitud térmica | 0.52412 | 0.56029 | 0.68540 | 0.60047 |
+
+### Resultados de Etapa B
+
+La optimización explícita de diferencias intraperfil no produjo una mejora integral defendible.
+
+En B1 y B3:
+
+- El RMSE municipal se deterioró hasta aproximadamente 0.86 t/ha.
+- La pequeña mejora local de B3 no justificó el costo regional.
+- En algunos protocolos se seleccionó frecuentemente lambda igual a cero.
+- Parte del deterioro ocurrió por cambios en selección de regularización, incluso sin penalización intraperfil activa.
+
+**No reutilizar la nueva pérdida intraperfil como objetivo de entrenamiento en C.**
+
+La mezcla fija 50/50 Champion + F4-S1:
+
+- Mejoró retrospectivamente RMSE aleatorio de aproximadamente 0.49813 a 0.49360.
+- Mejoró MAE de aproximadamente 0.35887 a 0.35343.
+- Depende considerablemente de pocas parcelas beneficiarias.
+- Empeora algunos diagnósticos de extremos.
+- No tiene validación municipal ni espacial compatible.
+
+**Mantenerla como candidato exploratorio separado; no integrarla a las arquitecturas de C.**
+
+### Resultados de Etapa A
+
+La supuesta carta edafológica local de 1996 era topográfica.
+
+La carta geológico-minera SGM 2017 1:50,000 no dispone, en los archivos actuales, de geometrías temáticas fiables para asignación parcelaria.
+
+La geología INEGI 1:250,000 presenta diferenciación descriptiva, pero no contribución predictiva incremental demostrada.
+
+**No introducir variables geológicas, edafológicas ni topográficas nuevas en C.**
+
+## 0.2. Hipótesis de investigación
+
+**H-C1 — Agrupación parcial**
+
+Un modelo jerárquico compacto puede mejorar la estimación del nivel de rendimiento de perfiles climáticos conocidos, compartiendo información entre grupos y regulando sus desviaciones.
+
+La prueba decisiva es determinar si esa ventaja desaparece o se conserva al evaluar perfiles completos nuevos.
+
+**H-C2 — Complementariedad de escalas**
+
+Una representación climática que combine precipitación y variabilidad de amplitud térmica puede mejorar la transferencia regional; NDVI de mayo podría añadir una dimensión parcelaria complementaria.
+
+La pregunta decisiva es si la combinación mejora la generalización sin perder las ventajas aleatorias, municipales e intraperfil de F4-S1.
+
+Estas hipótesis deben investigarse de forma independiente.
+
+---
+
+# 1. Diseño, trazabilidad y congelación
+
+Crear una Etapa C nueva y versionada dentro del programa territorial intraperfil de Familia 4.
+
+Inspecciona la estructura real del repositorio y conserva las convenciones de documentación, scripts, tests y outputs.
+
+Antes de entrenar:
+
+1. Identificar las matrices originales.
+2. Verificar etiquetas, IDs y perfiles.
+3. Recuperar las asignaciones de los 65 folds externos.
+4. Recuperar particiones internas compatibles.
+5. Recuperar transformaciones y especificaciones de F4-S1/F4-S5.
+6. Identificar las columnas originales de amplitud térmica, lluvia y NDVI.
+7. Verificar semántica temporal de cada predictor.
+8. Congelar arquitecturas, hiperparámetros y criterios.
+9. Registrar hashes de fuentes y artefactos.
+10. No modificar resultados anteriores.
+
+Todos los modelos predictivos deben utilizar exclusivamente las 138 etiquetas TRAIN.
+
+Las 59 parcelas PRED permanecen sin utilización de sus rendimientos.
+
+Las transformaciones aprendidas y toda selección supervisada deben quedar estrictamente dentro del entrenamiento correspondiente.
+
+---
+
+# 2. Módulo C-H — Modelo jerárquico compacto por perfil climático
+
+## 2.1. Pregunta
+
+¿Separar el nivel climático compartido y la señal parcelaria permite mejorar predicciones mediante agrupación parcial?
+
+No asumir que una regresión jerárquica será superior por incorporar una estructura de grupos.
+
+## 2.2. Modelo matemático
+
+Sea:
+
+- \(i\): parcela.
+- \(g\): perfil climático exacto.
+- \(C_g\): características climáticas del perfil.
+- \(V_{ig}\): NDVI Sentinel de mayo.
+- \(D_{ig}\): inicio del ascenso LAI, únicamente si forma parte del contraste predefinido.
+- \(Y_{ig}\): rendimiento observado.
+
+Modelo principal:
+
+\[
+Y_{ig}
+=
+\beta_0+
+C_g^\top\beta_C+
+\gamma V_{ig}+
+u_g+
+\varepsilon_{ig}.
+\]
+
+Con:
+
+\[
+u_g\sim\mathcal N(0,\tau^2),
+\qquad
+\varepsilon_{ig}\sim\mathcal N(0,\sigma^2).
+\]
+
+Supuestos iniciales:
+
+\[
+u_g\perp\varepsilon_{ig}.
+\]
+
+Discutir explícitamente que la independencia entre efectos de perfil y características climáticas es una hipótesis del modelo, no una propiedad garantizada de los datos.
+
+No introducir pendientes aleatorias en el primer experimento.
+
+No entrenar modelos completamente independientes por perfil.
+
+La muestra contiene solamente 12 perfiles con más de una etiqueta, por lo que debe evitarse una estructura aleatoria de alta dimensión.
+
+## 2.3. Controles emparejados
+
+Construir:
+
+**C-H0 — Modelo lineal regularizado no jerárquico**
+
+\[
+Y_{ig}
+=
+\beta_0+C_g^\top\beta_C+\gamma V_{ig}+\varepsilon_{ig}.
+\]
+
+**C-H1 — Modelo jerárquico con intercepto aleatorio**
+
+\[
+Y_{ig}
+=
+\beta_0+C_g^\top\beta_C+\gamma V_{ig}+u_g+\varepsilon_{ig}.
+\]
+
+La única diferencia sustantiva entre C-H0 y C-H1 debe ser la inclusión del intercepto de perfil parcialmente agrupado.
+
+Mantener exactamente las mismas características y el mismo conjunto de evaluación.
+
+Si la implementación jerárquica requiere un procedimiento de regularización distinto del control Elastic Net archivado, construir además un control estadísticamente emparejado sin efectos aleatorios, utilizando la misma formulación de efectos fijos y procedimiento de ajuste.
+
+Esto permitirá separar:
+
+- Cambio de función objetivo o regularización.
+- Cambio debido al efecto aleatorio de perfil.
+
+No atribuir una mejora a la jerarquía si ambos componentes cambiaron simultáneamente.
+
+## 2.4. Parámetros y estimación
+
+Estimar o regularizar:
+
+\[
+\beta_C,\gamma,\sigma^2,\tau^2.
+\]
+
+Utilizar una implementación estable de modelos mixtos o una formulación bayesiana equivalente.
+
+No desarrollar un sistema complejo de inferencia si existe un procedimiento estándar apropiado.
+
+Documentar:
+
+- Función de verosimilitud.
+- Estructura de covarianza.
+- Método de estimación.
+- Restricciones de parámetros.
+- Identificabilidad.
+- Tratamiento de \(\tau^2\) cercano a cero.
+- Convergencia.
+- Regularización de efectos fijos.
+- Incertidumbre de parámetros.
+
+Restringir los grados de libertad de manera coherente con el tamaño de muestra.
+
+Si se utilizan priors, declararlos, justificar sus escalas en t/ha y realizar una sensibilidad pequeña predefinida.
+
+Evitar que las conclusiones dependan de un prior elegido después de ver resultados externos.
+
+## 2.5. Predicción para perfiles conocidos
+
+Para un perfil con observaciones en entrenamiento, el modelo puede obtener una estimación contraída de su efecto aleatorio.
+
+En términos conceptuales:
+
+\[
+\widehat u_g
+=
+\operatorname E[u_g\mid\mathcal D_{\mathrm{train}}],
+\]
+
+bajo los supuestos y parámetros estimados.
+
+Esta estimación debe depender exclusivamente de etiquetas presentes en el entrenamiento pertinente.
+
+No utilizar rendimientos de las parcelas retenidas para actualizar \(\widehat u_g\).
+
+La predicción será:
+
+\[
+\widehat Y_{ig}
+=
+\widehat\beta_0+
+C_g^\top\widehat\beta_C+
+\widehat\gamma V_{ig}
++
+\widehat u_g.
+\]
+
+Estudiar si la mejora procede del nivel medio del perfil o de la información parcelaria.
+
+## 2.6. Predicción para perfiles completamente nuevos
+
+Cuando el perfil \(g^*\) no tiene etiquetas disponibles:
+
+\[
+u_{g^*}\sim\mathcal N(0,\tau^2).
+\]
+
+La predicción puntual marginal debe utilizar la esperanza correspondiente al efecto aleatorio nuevo, bajo el modelo ajustado.
+
+No estimar el intercepto utilizando Y de validación.
+
+Si se generan intervalos, la incertidumbre debe integrar:
+
+- Variabilidad residual.
+- Variabilidad del efecto aleatorio nuevo.
+- Incertidumbre de parámetros cuando el método lo permita.
+
+No presentar una distribución condicional para perfil conocido como equivalente a la distribución marginal para perfil nuevo.
+
+## 2.7. Métricas adicionales del modelo jerárquico
+
+Además de RMSE, MAE, R² y sesgo, reportar:
+
+- RMSE de medias de perfil.
+- Error de nivel por perfil.
+- RMSE de diferencias intraperfil.
+- MAE de diferencias intraperfil.
+- Número de perfiles conocidos y nuevos por fold.
+- Tamaño de entrenamiento por perfil.
+- Estimación de \(\tau^2\).
+- Estimación de \(\sigma^2\).
+- Relación \(\tau^2/(\tau^2+\sigma^2)\), si su interpretación es válida bajo el modelo.
+- Sensibilidad del ajuste a los dos perfiles grandes de Chignahuapan.
+
+No confundir la razón de varianzas con porcentaje de rendimiento explicado causalmente.
+
+Para dos parcelas del mismo perfil, un intercepto común se cancela:
+
+\[
+\widehat Y_{ig}-\widehat Y_{jg}
+=
+\widehat\gamma(V_{ig}-V_{jg})
+\]
+
+cuando comparten exactamente sus características climáticas y no existen otros efectos parcelarios.
+
+Por tanto, una mejora de interceptos no constituye automáticamente una mejora intraperfil.
+
+Esta identidad debe discutirse explícitamente.
+
+## 2.8. Evaluación crítica
+
+El protocolo aleatorio puede contener perfiles presentes tanto en entrenamiento como en validación.
+
+La validación por perfil obliga a predecir grupos completos nuevos.
+
+Estas tareas no son equivalentes.
+
+Separar expresamente:
+
+1. Predicción condicional para perfiles conocidos.
+2. Predicción marginal para perfiles nuevos.
+3. Diferenciación entre parcelas del mismo perfil.
+
+No declarar que un resultado aleatorio favorable implica transferencia regional.
+
+---
+
+# 3. Módulo C-T — Representación climática orientada a transferencia
+
+## 3.1. Pregunta
+
+¿Las señales de lluvia mensual, variabilidad térmica y NDVI de mayo se complementan en la predicción de rendimiento fuera de regiones observadas?
+
+Esta es la línea prioritaria de la Etapa C para capacidad de generalización.
+
+## 3.2. Variable térmica
+
+Utilizar la característica original:
+
+`CLIMATE_dtr_mean_std`
+
+Recuperar su definición exacta.
+
+Representa la desviación temporal de la amplitud térmica:
+
+\[
+DTR_t=T_{\max,t}-T_{\min,t}.
+\]
+
+No interpretar esta variable como la temperatura máxima media.
+
+No crear un sustituto numérico con el mismo nombre.
+
+Verificar que su disponibilidad temporal y el periodo de agregación son comparables con las variables climáticas utilizadas.
+
+Recordar que:
+
+- Su correlación con longitud es aproximadamente −0.953.
+- Su correlación con determinados meses de precipitación es elevada.
+- No varía entre parcelas con perfil climático idéntico.
+
+Estas relaciones motivan una prueba de transferencia, no una conclusión causal ni una prohibición de utilizarla.
+
+## 3.3. Modelos congelados
+
+Ejecutar una matriz pequeña:
+
+**C-T0 — Rain + NDVI**
+
+Siete meses de precipitación + NDVI mayo.
+
+Debe reproducir F4-S1.
+
+**C-T1 — Rain + DTR**
+
+Siete meses de precipitación + `CLIMATE_dtr_mean_std`.
+
+Debe reproducir F4-S5.
+
+**C-T2 — Rain + NDVI + DTR**
+
+Combina por primera vez las dos señales protagonistas en una única regresión aditiva.
+
+Esta es la comparación central de C-T.
+
+No introducir interacciones.
+
+**C-T3 — Compact Rain + NDVI**
+
+Una representación climática compacta predefinida + NDVI mayo.
+
+**C-T4 — Compact Rain + NDVI + DTR**
+
+La misma representación compacta + NDVI mayo + DTR.
+
+Mantener Elastic Net como estimador principal para todos los modelos.
+
+No incorporar nuevos índices satelitales, suelo, geología, coordenadas, municipio ni estado.
+
+## 3.4. Definición matemática de la representación climática compacta
+
+Las variables originales son:
+
+\[
+P_{\mathrm{Apr}},P_{\mathrm{May}},\ldots,P_{\mathrm{Oct}}.
+\]
+
+Definir un resumen de cantidad:
+
+\[
+P_{\mathrm{total}}
+=
+\sum_{m=\mathrm{Apr}}^{\mathrm{Oct}}P_m.
+\]
+
+Definir un contraste temporal antes de observar resultados predictivos.
+
+Por ejemplo, si la agrupación es agronómicamente razonable para las ventanas disponibles:
+
+\[
+P_{\mathrm{early}}
+=
+P_{\mathrm{Apr}}+P_{\mathrm{May}}+P_{\mathrm{Jun}},
+\]
+
+\[
+P_{\mathrm{late}}
+=
+P_{\mathrm{Aug}}+P_{\mathrm{Sep}}+P_{\mathrm{Oct}}.
+\]
+
+Considerar julio por separado únicamente si existe una justificación previa y no por su rendimiento observado.
+
+Una alternativa sería usar una proporción:
+
+\[
+R_{\mathrm{early}}
+=
+\frac{P_{\mathrm{early}}}
+{P_{\mathrm{total}}+\epsilon},
+\]
+
+con \(\epsilon>0\) fijo y documentado para estabilidad numérica.
+
+Seleccionar una sola representación compacta antes del ajuste, evitando redundancia algebraica innecesaria.
+
+No ejecutar un screening nuevo de meses, combinaciones, porcentajes o ventanas.
+
+Verificar:
+
+- Unidades.
+- Finitud.
+- Colinealidad.
+- Comportamiento con precipitación cero.
+- Distribución regional.
+- Relación con DTR.
+- Significado temporal.
+
+Las transformaciones deterministas de precipitación pueden calcularse sin Y; todo escalamiento e imputación predictiva debe ajustarse exclusivamente en entrenamiento.
+
+## 3.5. Comparaciones necesarias
+
+El diseño debe responder por separado:
+
+**Complementariedad regional:**
+
+\[
+C\text{-}T2-C\text{-}T0
+\]
+
+Determina qué cambia al incorporar DTR a lluvia + NDVI.
+
+**Complementariedad parcelaria:**
+
+\[
+C\text{-}T2-C\text{-}T1
+\]
+
+Determina qué cambia al incorporar NDVI a lluvia + DTR.
+
+**Compactación climática:**
+
+\[
+C\text{-}T3-C\text{-}T0
+\]
+
+y:
+
+\[
+C\text{-}T4-C\text{-}T2.
+\]
+
+Determina si comprimir la lluvia mensual aporta estabilidad cuando se retienen regiones.
+
+No interpretar estas diferencias como efectos causales de los predictores.
+
+## 3.6. Métricas de transferencia
+
+Evaluar bajo los cuatro protocolos congelados.
+
+Prioridad:
+
+1. Municipal.
+2. Espacial.
+3. Perfil climático.
+4. Aleatorio.
+
+Esto es un orden de interpretación, no una autorización para modificar folds.
+
+Reportar:
+
+- RMSE.
+- MAE.
+- R².
+- Sesgo.
+- Métricas por municipio.
+- Métricas por bloque espacial.
+- Errores en Chignahuapan.
+- Errores fuera de Chignahuapan.
+- Q1/Q4 como diagnósticos posteriores.
+- Estabilidad de coeficientes.
+- Selección de regularización.
+- Soporte de los predictores.
+- Rango de DTR en entrenamiento y validación.
+
+## 3.7. Evaluación de extrapolación
+
+Para cada fold municipal y espacial:
+
+Determinar si los valores de DTR, lluvia acumulada y NDVI en validación se encuentran dentro del rango observado en entrenamiento.
+
+Construir indicadores descriptivos de:
+
+- Interior del soporte marginal de entrenamiento.
+- Valores próximos a sus límites.
+- Valores fuera de rango.
+- Diferencia entre distribuciones.
+- Distancia estandarizada a entrenamiento, si su definición es estable.
+
+No utilizar Y para definir las categorías.
+
+No seleccionar un modelo diferente para cada categoría después de observar el error.
+
+Evaluar si C-T2 y C-T4 mejoran en regiones nuevas por interpolación o extrapolación.
+
+La presencia dentro de rangos marginales no garantiza soporte conjunto; explicitar esta limitación.
+
+## 3.8. Dependencia de los bloques espaciales
+
+La mejora de F4-S5 puede depender de determinadas regiones.
+
+Por ello:
+
+- Reportar SSE y número de parcelas por fold.
+- Reportar RMSE y MAE por fold.
+- Reportar diferencias pareadas de pérdida por parcela.
+- Identificar contribución de cada fold al cambio de SSE.
+- Realizar una sensibilidad descriptiva dejando fuera cada fold de la agregación.
+- No tratar cinco folds como cinco replicaciones independientes.
+
+No cambiar la partición espacial.
+
+No escoger regiones favorables para la conclusión.
+
+---
+
+# 4. Protocolos de validación
+
+Reutilizar exactamente los 65 folds externos cuando sean compatibles:
+
+- 50 aleatorios.
+- 5 por perfil.
+- 5 municipales.
+- 5 espaciales.
+
+Para cada entrenamiento externo:
+
+1. Recuperar datos y etiquetas autorizadas.
+2. Ajustar transformaciones usando solo entrenamiento.
+3. Realizar selección interna de hiperparámetros.
+4. Ajustar el modelo final sobre todo el entrenamiento externo.
+5. Predecir exclusivamente validación externa.
+6. Guardar predicciones, parámetros y procedencia.
+7. Calcular métricas OOF completas.
+8. Repetir sin utilizar las etiquetas retenidas.
+
+Para C-H, seleccionar regularización o hiperparámetros de varianza exclusivamente mediante entrenamiento interno o un procedimiento estadístico predefinido y verificado, sin usar outer-validation.
+
+Para C-T, reutilizar la grilla original de Elastic Net salvo que exista una razón técnica previa para modificarla.
+
+No utilizar los 59 rendimientos PRED.
+
+No ejecutar entrenamiento final sobre todas las etiquetas en esta etapa.
+
+## 4.1. Comparabilidad
+
+No comparar directamente métricas históricas calculadas como media de RMSE por fold con métricas calculadas sobre OOF completa por repetición.
+
+No comparar predicciones condicionadas al perfil conocido con predicciones marginales para un perfil nuevo sin distinguir sus protocolos.
+
+No crear métricas geográficas para el Champion a partir de su archivo aleatorio.
+
+## 4.2. Incertidumbre
+
+Cuando se generen intervalos predictivos:
+
+- Especificar distribución y cobertura nominal.
+- Evaluar cobertura observada OOF.
+- Evaluar amplitud de intervalos.
+- Separar perfiles conocidos y nuevos.
+- Evaluar cobertura por región cuando haya soporte.
+- No declarar intervalos calibrados solamente porque provienen de un modelo probabilístico.
+
+No utilizar cuartiles definidos por Y observado para construir intervalos o reglas de predicción.
+
+---
+
+# 5. Experimentos y controles de integridad
+
+Implementar pruebas para:
+
+1. Identidad de los 65 folds.
+2. Integridad de IDs y etiquetas.
+3. Ausencia de Y de validación en entrenamiento.
+4. Ajuste train-only de transformaciones.
+5. Reproducción de C-T0 frente a F4-S1.
+6. Reproducción de C-T1 frente a F4-S5.
+7. Igualdad de matrices predictoras en controles emparejados.
+8. Convergencia del modelo jerárquico.
+9. Manejo de \(\tau^2=0\) o valores próximos.
+10. Tratamiento correcto de perfiles nuevos.
+11. No estimación de interceptos usando Y retenido.
+12. Cálculo correcto de predicciones marginales.
+13. Identidad de cancelación del intercepto intraperfil.
+14. Agregación correcta de RMSE/MAE.
+15. Tratamiento de singleton.
+16. Comparación por bloque espacial.
+17. No utilización de coordenadas como predictor.
+18. No utilización de suelo/geología suspendidos.
+19. Conservación de resultados anteriores.
+20. Trazabilidad y reproducción.
+
+No atribuir a la jerarquía mejoras causadas por cambiar simultáneamente variables y regularización.
+
+---
+
+# 6. Criterios de decisión
+
+## Para C-H
+
+**Conservar como alternativa para perfiles conocidos** si mejora consistentemente el nivel de rendimiento cuando existen etiquetas previas del mismo perfil, sin deteriorar de forma importante la predicción por parcela.
+
+**Conservar como alternativa general** solamente si también muestra comportamiento defendible en perfiles completos nuevos y protocolos geográficos.
+
+**Descartar complejidad jerárquica** si:
+
+- La varianza de perfil estimada se aproxima sistemáticamente a cero.
+- La mejora aleatoria procede casi exclusivamente de interceptos memorizados.
+- Los resultados agrupados se deterioran.
+- La sensibilidad a pocos perfiles es excesiva.
+- La estimación es numéricamente inestable.
+
+No exigir que un efecto aleatorio común mejore por sí mismo diferencias entre parcelas del mismo perfil.
+
+## Para C-T
+
+**Conservar como candidato de transferencia** si:
+
+- Mejora RMSE y MAE espacial o municipal.
+- No concentra toda la ganancia en una sola región.
+- El deterioro por perfil y aleatoria permanece dentro de márgenes operativos declarados.
+- Los coeficientes no son numéricamente inestables.
+- No depende de extrapolaciones extremas.
+- La mejora es consistente con el soporte observable.
+
+Usar como referencia exploratoria el margen de deterioro de 0.01 t/ha, sin interpretarlo como significación estadística.
+
+**Descartar la representación compacta** si no reproduce una mejora respecto de sus controles completos o si genera deterioros geográficos importantes.
+
+La combinación de NDVI y DTR no se conservará únicamente porque sus variables sean conceptualmente complementarias: debe mostrar utilidad predictiva.
+
+---
+
+# 7. Entregables
+
+Crear una carpeta versionada de Etapa C dentro del programa territorial intraperfil existente.
+
+Incluir:
+
+## Módulo jerárquico
+
+- Especificación matemática.
+- Controles emparejados.
+- Implementación reproducible.
+- Predicciones OOF.
+- Estimaciones de parámetros.
+- Resultados de perfiles conocidos y nuevos.
+- Diagnóstico de varianza de perfil.
+- Sensibilidad a Chignahuapan.
+- Comparaciones intraperfil.
+- Reporte de convergencia e identificabilidad.
+
+## Módulo climático
+
+- Fórmulas de características compactas.
+- Diccionario de predictores.
+- Matriz congelada C-T0 a C-T4.
+- Resultados de cuatro protocolos.
+- Resultados por bloque espacial y municipio.
+- Diagnóstico de extrapolación.
+- Comparaciones pareadas.
+- Estabilidad de coeficientes.
+- Diagnóstico de extremos.
+- Redundancia entre precipitación y DTR.
+
+## Síntesis de Etapa C
+
+Responder:
+
+1. ¿La agrupación parcial aporta información útil para perfiles conocidos?
+2. ¿Esa ventaja se conserva en perfiles nuevos?
+3. ¿Mejora el nivel regional o las diferencias parcelarias?
+4. ¿La varianza de perfiles es identificable con 12 grupos repetidos?
+5. ¿DTR y NDVI mayo son predictivamente complementarios?
+6. ¿La mejora espacial de DTR se distribuye entre bloques?
+7. ¿La compresión de lluvia mejora transferencia?
+8. ¿Qué modelos presentan errores problemáticos en Chignahuapan?
+9. ¿Qué ventajas permanecen fuera de Chignahuapan?
+10. ¿Qué resultados merecen validación independiente?
+
+Crear un reporte técnico y una síntesis ejecutiva separados.
+
+Todas las figuras deben utilizar unidades, leyendas correctas, tamaños de muestra y ejes claramente identificados.
+
+---
+
+# 8. Orden obligatorio
+
+1. Auditar Etapas A y B.
+2. Recuperar y validar F4-S1/F4-S5.
+3. Congelar hipótesis, matrices, parámetros y criterios.
+4. Implementar primero C-T0, C-T1 y C-T2.
+5. Verificar equivalencia de controles.
+6. Ejecutar C-T3 y C-T4.
+7. Evaluar transferencia geográfica y sensibilidad por bloque.
+8. Implementar el control jerárquico C-H0.
+9. Implementar C-H1.
+10. Evaluar perfiles conocidos y nuevos.
+11. Realizar diagnósticos de diferenciación intraperfil.
+12. Ejecutar pruebas de integridad.
+13. Documentar resultados y decisiones.
+14. Dejar Etapa D sin ejecutar.
+
+Si el módulo jerárquico presenta problemas importantes de identificabilidad, convergencia o comparabilidad, documentarlos y suspender esa parte antes de producir resultados engañosos.
+
+No intentar corregir fallas cambiando retrospectivamente la matriz experimental.
+
+---
+
+# 9. Restricciones permanentes
+
+- No modificar Champion.
+- No reentrenar Champion.
+- No incorporar la mezcla 50/50 a estos experimentos.
+- No reutilizar la pérdida intraperfil B como objetivo de entrenamiento.
+- No modificar Etapas A/B.
+- No modificar Familias 1–3 ni J–M.
+- No introducir datos de las 59 parcelas PRED como etiquetas.
+- No utilizar Y observado para construir características.
+- No usar perfiles, municipios o coordenadas como variables predictoras fijas salvo el efecto aleatorio de perfil explícitamente especificado.
+- No añadir PCA, FPCA, redes neuronales, XGBoost, árboles o procesos gaussianos.
+- No introducir modelos de expertos o nuevas interacciones.
+- No ampliar las combinaciones climáticas después de observar resultados.
+- Conservar 65 folds y particiones internas cuando corresponda.
+- Mantener modelos/resultados versionados.
+- Registrar pruebas, trazabilidad y hashes.
+- Declarar carácter exploratorio de todas las conclusiones actuales.
+
+**Resultado esperado**
+
+Determinar si la estructura climática agrupada puede modelarse de forma útil mediante agrupación parcial y si una representación climática de baja dimensión permite combinar la capacidad de transferencia de amplitud térmica con la diferenciación parcelaria de NDVI mayo.
+
+Quiero una respuesta que separe claramente:
+
+1. Mejora por arquitectura.
+2. Mejora por representación.
+3. Mejora de perfiles conocidos.
+4. Predicción de perfiles nuevos.
+5. Diferenciación intraperfil.
+6. Transferencia municipal y espacial.
+
+No quiero más complejidad salvo que aporte una ventaja empírica identificable, reproducible y suficientemente estable para justificarla.

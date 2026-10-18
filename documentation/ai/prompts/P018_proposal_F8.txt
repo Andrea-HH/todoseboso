@@ -1,0 +1,314 @@
+# Investigación F8 — Modelos residuales especializados y descomposición agroclimática–parcelaria
+
+Quiero iniciar una investigación metodológica para diseñar la siguiente familia experimental del proyecto AgroCebada.
+
+**En esta entrega NO debes entrenar modelos nuevos.** Primero debes auditar la evidencia histórica del repositorio, evaluar la viabilidad estadística y proponer un diseño experimental concreto, acotado y justificable.
+
+La pregunta central es:
+
+**¿Podemos separar la estimación del nivel agroclimático del rendimiento de una corrección parcelaria especializada que aproveche historia satelital, pendiente y vegetación, sin empeorar la generalización municipal y espacial?**
+
+## 1. Motivación y evidencia acumulada
+
+Recupera y verifica en el repositorio los siguientes hallazgos, sin tratarlos como verdades generales ni asumir que se trasladan automáticamente a otra arquitectura.
+
+**F5 — Gaussian Processes**
+
+- El núcleo de lluvia compacta3 + NDVI de mayo mostró información predictiva útil.
+- GPR mejoró escenarios aleatorios, por perfil y municipales, pero sufrió problemas de transferencia espacial.
+- La introducción de una tendencia lineal redujo parte del sesgo espacial.
+- En el bloque espacial problemático, la contribución media del GP residual fue prácticamente cero y la predicción quedó dominada por la tendencia.
+
+**F6 — Bagging**
+
+- Random Forest y Extra Trees con el núcleo compacto no superaron equilibradamente las referencias.
+- Añadir historia NDVI2 o pendiente a Extra Trees mejoró algunas métricas espaciales e intraperfil.
+- Esas extensiones empeoraron el desempeño municipal.
+- DTRstd tuvo alta frecuencia de uso sin utilidad incremental demostrada.
+
+**F7 — Gradient Boosting**
+
+- CatBoost compacto F7-00 presentó un balance agregado prometedor, pero las ganancias frente a C-T3 estuvieron fuertemente concentradas en Singuilucan.
+- Añadir historia NDVI2, pendiente o ambos directamente a CatBoost empeoró el RMSE absoluto en los cuatro protocolos.
+- Algunas extensiones mejoraron el RMSE de diferencias intraperfil cuando se ponderan igualmente los perfiles, especialmente en validación espacial.
+- Estas mejoras no fueron uniformes bajo ponderación por parejas ni se tradujeron en transferencia territorial equilibrada.
+- Las correlaciones de errores entre F7-00 y sus extensiones fueron muy altas, por lo que no existe todavía evidencia suficiente para recomendar un promedio ponderado de esos modelos completos.
+
+**Champion y experimentos previos**
+
+- Ya existe una arquitectura con componente agroclimático, correcciones mediante XGBoost e información histórica y una corrección topográfica con Ridge.
+- La utilidad previa de History15/16 y slope14 se observó en contextos residuales específicos.
+- Es indispensable investigar esos resultados antes de diseñar otro corrector.
+
+No quiero repetir el Champion bajo otro nombre ni asumir que un corrector pequeño será útil solo por ser residual.
+
+## 2. Auditoría exhaustiva de arquitecturas residuales anteriores
+
+Revisa especialmente:
+
+- RS3–RS6.
+- Las etapas de corrección del Champion.
+- Experimentos F4 de heterogeneidad intraperfil.
+- Experimentos con Ridge y topografía.
+- Modelos con historia satelital.
+- Cualquier experimento que haya entrenado modelos sobre residuos, diferencias respecto de perfiles climáticos, desviaciones respecto de medias o targets transformados.
+
+Construye una tabla que documente para cada antecedente:
+
+- Modelo base.
+- Variables de entrada de la base.
+- Cómo se generaron sus predicciones de entrenamiento.
+- Definición exacta del target residual.
+- Variables usadas por el corrector.
+- Algoritmo corrector.
+- Forma de combinar ambas etapas.
+- Regularización o contracción aplicada.
+- Procedimiento de validación.
+- RMSE absoluto e intraperfil cuando existan.
+- Transferencia municipal y espacial cuando se haya medido.
+- Riesgos de fuga de información.
+- Diferencias metodológicas con la nueva propuesta.
+
+Distingue entre componentes verdaderamente evaluados de manera anidada, componentes evaluados solo mediante CV aleatoria y análisis retrospectivos de residuos OOF.
+
+Identifica qué propuestas serían duplicaciones de experimentos anteriores.
+
+## 3. Investigar la descomposición del rendimiento
+
+Estudia la viabilidad de representar el rendimiento como:
+
+y_i = m(C_i) + δ_i + ε_i
+
+donde:
+
+- m(C_i) representa el nivel predictivo asociado al perfil agroclimático.
+- δ_i representa una desviación parcelaria potencialmente explicable por vegetación, historia o topografía.
+- ε_i representa variación no explicada.
+
+Esta es una descomposición predictiva propuesta, no una identificación causal de efectos agroclimáticos y parcelarios.
+
+Investiga al menos dos definiciones operativas de la componente base:
+
+**A. Base agroclimática estricta**
+
+Utiliza únicamente la representación de lluvia compacta3, conservando una función de nivel regional/agroclimático.
+
+**B. Base agroclimática ampliada**
+
+Utiliza lluvia compacta3 + NDVI de mayo, equivalente al núcleo compacto4.
+
+La comparación es importante porque NDVI de mayo ya proporciona diferenciación parcelaria. Si lo incorporamos a la base, parte de la información local estará absorbida antes de entrenar el corrector.
+
+Analiza los beneficios y problemas de cada formulación, incluyendo identificabilidad, redundancia y posible reparto arbitrario de señal entre componentes.
+
+No declares que δ_i representa un efecto puro de la parcela.
+
+## 4. Investigar arquitecturas candidatas
+
+Evalúa metodológicamente las siguientes formulaciones.
+
+**R0 — Referencia sin corrector**
+
+y_hat = f_base(C,V)
+
+Utilizar una base ya evaluada, preferentemente Elastic Net C-T3, si su implementación y reproducibilidad son compatibles con la nueva arquitectura.
+
+**R1 — Corrector lineal regularizado**
+
+y_hat = f_base(C,V) + λ · g_Ridge(T)
+
+Investigar si una corrección sencilla basada en pendiente puede explicar parte de los errores residuales sin añadir mucha complejidad.
+
+**R2 — Corrector no lineal conservador**
+
+y_hat = f_base(C,V) + λ · g_CatBoost(T,V)
+
+Investigar si una función no lineal pequeña puede aprovechar mejor la pendiente y su posible interacción con NDVI de mayo.
+
+**R3 — Historia como sensibilidad secundaria**
+
+y_hat = f_base(C,V) + λ · g_CatBoost(T,V,H)
+
+Investigar si historia NDVI2 aporta utilidad adicional al corrector.
+
+No autorizar R3 automáticamente. Primero debemos determinar si representa una hipótesis nueva y si R2 tiene viabilidad razonable.
+
+**R4 — Alternativa aditiva por bloques**
+
+Investigar, solo conceptualmente, una formulación con correctores independientes:
+
+y_hat = f_base(C,V) + λ_T g_T(T) + λ_H g_H(H)
+
+Explica si esta formulación puede ofrecer ventajas de interpretabilidad y regularización frente a un único corrector conjunto, considerando que tenemos solo 138 etiquetas.
+
+No ejecutar R4 ni ampliar el número de componentes sin justificación.
+
+## 5. Revisar la posibilidad de regresión hacia la media y extrapolación
+
+Esta sección es fundamental.
+
+No quiero asumir que sumar modelos elimina los problemas de extrapolación.
+
+Estudia por separado:
+
+- El retorno a la media de kernels estacionarios.
+- Las limitaciones de extrapolación de árboles de regresión.
+- La contracción introducida por regularización.
+- La diferencia entre una combinación convexa de predicciones completas y una corrección residual aditiva.
+- Cómo pueden acumularse los sesgos de la base y el corrector.
+- Qué ocurre si ambas etapas sobreestiman sistemáticamente parcelas de bajo rendimiento.
+- Cómo detectar si el corrector simplemente aprende proxies territoriales.
+
+La corrección aditiva debe poder producir ajustes positivos y negativos.
+
+Sin embargo, una amplitud mayor no significa mejor predicción ni mejor extrapolación.
+
+Propón diagnósticos de comportamiento fuera del soporte de entrenamiento y de corrección residual por nivel de rendimiento, sin utilizar etiquetas de validación para construir reglas de predicción.
+
+Investiga también si una base con tendencia lineal puede proporcionar una extrapolación más razonable que una base puramente basada en árboles.
+
+## 6. Cross-fitting y prevención de fugas
+
+Diseña explícitamente el procedimiento para entrenar un modelo residual honesto.
+
+La selección de hiperparámetros y de amplitud de corrección debe estar anidada dentro de cada entrenamiento externo.
+
+Explica paso a paso:
+
+1. Cómo producir predicciones out-of-fold de la base únicamente dentro del entrenamiento externo.
+2. Cómo construir los targets residuales a partir de esas predicciones.
+3. Cómo entrenar el corrector sin utilizar etiquetas de validación externa.
+4. Cómo reajustar la base para predecir las observaciones externas.
+5. Cómo aplicar el corrector y combinar las predicciones.
+6. Cómo seleccionar λ, incluyendo λ=0.
+7. Cómo reproducir todo el procedimiento dentro de las particiones internas utilizadas para comparar hiperparámetros.
+
+Revisa específicamente el posible desacoplamiento entre residuos generados con modelos cross-fitted y la predicción de una base reajustada sobre todo el entrenamiento.
+
+No utilizar residuos in-sample como sustitutos de residuos OOF.
+
+No utilizar las OOF globales archivadas del Champion como targets de corrección.
+
+No permitir que las etiquetas del fold externo influyan en parámetros, pesos, funciones de selección o transformaciones.
+
+## 7. Métricas y objetivos de evaluación
+
+El objetivo principal continúa siendo la predicción absoluta de rendimiento en t/ha.
+
+Las métricas primarias deben seguir siendo RMSE, MAE y sesgo sobre OOF completas por repetición, conservando los cuatro protocolos originales:
+
+- Aleatoria.
+- Perfil climático.
+- Municipal.
+- Espacial.
+
+Añadir diagnósticos específicos:
+
+**Discriminación intraperfil**
+
+Comparar diferencias de rendimiento entre parcelas del mismo perfil, utilizando predicciones del mismo ajuste y reportando ponderación igual por perfil y por parejas.
+
+**Contribución real del corrector**
+
+Registrar magnitud y signo de las correcciones, su distribución y cuánto cambian los errores respecto a la base.
+
+**Transferencia territorial**
+
+Evaluar mejoras y deterioros por bloque espacial y municipio, prestando atención a la concentración territorial de las ganancias sin optimizar regiones específicas.
+
+**Extrapolación**
+
+Comparar errores, sesgo y magnitud de corrección dentro y fuera del soporte observado del entrenamiento.
+
+**Estabilidad**
+
+Estudiar variación de hiperparámetros, amplitud λ, utilidad incremental y cambios de error por parcela.
+
+No convertir la mejora intraperfil en el único objetivo si deteriora significativamente la predicción absoluta.
+
+## 8. Complementariedad e identificabilidad
+
+Investiga qué evidencia necesitamos para afirmar que pendiente o historia explican residuos genuinamente predictibles de una base agroclimática.
+
+Distingue:
+
+- Una correlación entre variables y rendimiento.
+- Una variable utilizada frecuentemente por un algoritmo.
+- Una reducción del error al incorporarla directamente.
+- Una reducción del error al utilizarla como corrector residual.
+- Una mejora dentro de perfiles climáticos.
+- Una mejora que se mantiene al transferir entre municipios o bloques espaciales.
+
+Estas evidencias no son equivalentes.
+
+Analiza también si las diferencias entre parcelas con clima idéntico son predecibles con las variables disponibles o si existe heterogeneidad que el dataset no permite explicar de manera estable.
+
+No etiquetar automáticamente como ruido irreducible aquello que todavía no hemos conseguido predecir.
+
+## 9. Diseño experimental propuesto
+
+Después de la auditoría, presenta una matriz pequeña de experimentos candidatos.
+
+Mi preferencia inicial es:
+
+- R0: Elastic Net C-T3 sin corrección.
+- R1: C-T3 + Ridge residual con pendiente.
+- R2: C-T3 + CatBoost residual conservador con pendiente y NDVI.
+- R3: ampliación histórica únicamente si existe una justificación específica.
+
+Pero puedes recomendar modificaciones si la auditoría encuentra que otra arquitectura está mejor sustentada o que alguna propuesta duplica un experimento anterior.
+
+Para cada candidato indica:
+
+- Hipótesis.
+- Variables.
+- Arquitectura.
+- Parámetros libres.
+- Complejidad aproximada.
+- Protocolo de validación.
+- Control pareado.
+- Diagnósticos prioritarios.
+- Riesgos.
+- Qué evidencia permitiría continuarlo o descartarlo.
+
+Propón márgenes prácticos de utilidad y límites de deterioro territorial, dejando claro que son criterios exploratorios, no pruebas formales de significancia.
+
+No optimizar estos márgenes con resultados anteriores.
+
+## 10. Entregables
+
+Genera documentación técnica versionada de la investigación F8, respetando la estructura y numeración del repositorio.
+
+Necesito:
+
+1. Auditoría de arquitecturas residuales existentes.
+2. Tabla de evidencia por fuente predictiva.
+3. Comparación conceptual de las arquitecturas candidatas.
+4. Análisis de identificabilidad y extrapolación.
+5. Diseño detallado de cross-fitting anidado.
+6. Matriz experimental propuesta, con complejidad acotada.
+7. Riesgos metodológicos y controles.
+8. Recomendación explícita sobre qué experimentos vale la pena ejecutar primero.
+
+No ajustar modelos nuevos.
+
+No generar predicciones para las 59 parcelas PRED.
+
+No modificar Champion, F4, F5, F6 o F7.
+
+No promover modelos ni cambiar decisiones anteriores.
+
+## 11. Decisión final
+
+Al terminar, quiero respuestas concretas a estas preguntas:
+
+1. ¿Qué aspectos de una corrección residual ya demostraron utilidad en este repositorio?
+2. ¿Qué experimentos nuevos realmente aportarían información y cuáles serían redundantes?
+3. ¿Conviene una base de lluvia estricta o una base de lluvia + NDVI?
+4. ¿Pendiente debe entrar como corrector lineal o no lineal?
+5. ¿Qué evidencia justificaría incorporar historia?
+6. ¿Cómo evitamos que una corrección útil intraperfil introduzca sesgo territorial?
+7. ¿Cómo diseñamos una validación honesta de todas las etapas?
+8. ¿Es viable esta familia con 138 etiquetas o sería preferible detener la exploración?
+
+**Detente después de la investigación y entrega el diseño para revisión. No ejecutes la nueva familia todavía.**

@@ -1,0 +1,1124 @@
+# FIRA AgroCebada 2026 — ETAPA D
+# Síntesis de evidencia, diagnóstico de generalización y diseño de validación independiente
+
+Continúa el programa de investigación desarrollado en Familia 4 y sus Etapas A, B y C.
+
+Quiero completar exclusivamente la:
+
+**Etapa D — Evidence Synthesis, Generalization Diagnostics & External Validation Design**
+
+Esta etapa constituye el cierre metodológico del programa de investigación sobre heterogeneidad parcelaria y transferencia geográfica.
+
+**No quiero entrenar nuevos modelos, optimizar hiperparámetros, construir ensembles adicionales ni seleccionar nuevas variables.**
+
+Quiero realizar una evaluación rigurosa, reproducible y crítica de los resultados existentes, identificando qué aprendimos, qué hipótesis no encontraron respaldo, qué mejoras son robustas y qué información necesitamos para validar nuestras conclusiones.
+
+La Etapa D debe proporcionar una base documental para decidir cómo continuar el proyecto FIRA AgroCebada 2026 sin aumentar innecesariamente la complejidad.
+
+---
+
+# 0. Contexto obligatorio
+
+Antes de implementar, recupera los resultados, scripts, configuraciones, predicciones y reportes de:
+
+- Familias 1, 2 y 3.
+- Champion de Familia 1.
+- Investigaciones J, K, L y M.
+- Familia 4 original.
+- Extensión F4-E.
+- Screening exploratorio de 1,473 variables.
+- Diagnóstico de concentración de error en Chignahuapan.
+- Programa territorial intraperfil, Etapa A.
+- Etapa B: pérdida intraperfil y mezcla fija.
+- Etapa C: clima compacto y modelos jerárquicos.
+
+Utiliza la documentación real del repositorio. No sustituyas cifras archivadas por aproximaciones cuando existan resultados exactos.
+
+El universo contiene:
+
+- 197 parcelas.
+- 138 observaciones con rendimiento conocido.
+- 59 parcelas sin rendimiento disponible.
+- 53 perfiles climáticos exactos en el universo completo.
+- 43 perfiles con etiquetas.
+- 12 perfiles etiquetados con múltiples observaciones.
+- 71 etiquetas en Chignahuapan.
+- Dos perfiles dominantes con 33 y 29 observaciones.
+
+Se han utilizado 65 folds externos congelados:
+
+- 50 aleatorios: cinco folds por diez repeticiones.
+- Cinco por perfil climático.
+- Cinco municipales.
+- Cinco espaciales.
+
+Todos los resultados de las Etapas A–C siguen siendo exploratorios.
+
+## 0.1. Resultados principales de la Etapa C
+
+RMSE en t/ha:
+
+| Modelo | Aleatorio | Perfil | Municipal | Espacial |
+|---|---:|---:|---:|---:|
+| C-T0: lluvia mensual + NDVI | 0.50483 | 0.52626 | 0.67110 | 0.73904 |
+| C-T1: lluvia mensual + DTR | 0.52412 | 0.56029 | 0.68540 | 0.60047 |
+| C-T2: mensual + NDVI + DTR | 0.50638 | 0.53369 | 0.65442 | 0.75987 |
+| C-T3: lluvia compacta + NDVI | 0.51158 | 0.52060 | 0.58126 | 0.67878 |
+| C-T4: compacta + NDVI + DTR | 0.51375 | 0.52618 | 0.60285 | 0.67659 |
+| C-H0M: Ridge emparejado | 0.50945 | 0.51777 | 0.63945 | 0.67244 |
+| C-H1: jerárquico | 0.51341 | 0.51873 | 0.63945 | 0.69096 |
+
+La representación compacta de C-T3 usa:
+
+\[
+P=\sum_{m=\mathrm{abr}}^{\mathrm{oct}} P_m
+\]
+
+\[
+E=\frac{P_{\mathrm{abr}}+P_{\mathrm{may}}+P_{\mathrm{jun}}}{P+\varepsilon}
+\]
+
+\[
+H=\sum_m\left(\frac{P_m}{P+\varepsilon}\right)^2
+\]
+
+Con \(\varepsilon=10^{-6}\) mm.
+
+La ventaja de C-T3 es principalmente municipal.
+
+Su mejora espacial depende considerablemente del bloque 3; al excluir descriptivamente ese bloque, la ventaja frente a C-T0 se revierte.
+
+La fortaleza espacial de C-T1 también depende principalmente de ese bloque.
+
+C-H1 no supera consistentemente el control estadístico emparejado C-H0M. Las mejoras frente al Elastic Net pertenecen principalmente al cambio de regularización.
+
+## 0.2. Decisiones previas
+
+Mantener:
+
+- Champion de Familia 1 como referencia histórica principal para el ámbito aleatorio evaluado.
+- Mezcla fija Champion/F4-S1 como candidato exploratorio, sin buscar nuevos pesos.
+- C-T3 como candidato para transferencia municipal.
+- C-H0M como control parsimonioso L2.
+- C-T1 como hipótesis de transferencia espacial pendiente de corroboración.
+
+No promover:
+
+- Pérdida intraperfil de Etapa B como modelo general.
+- Modelo jerárquico C-H1.
+- Combinaciones DTR + NDVI como ganadoras generales.
+- Cartografía local 1:50,000 sin geometrías temáticas verificadas.
+- Nuevos índices vegetales redundantes por sus correlaciones retrospectivas.
+
+No reinterpretar estas decisiones como conclusiones confirmatorias.
+
+---
+
+# 1. Objetivos y preguntas de investigación
+
+La Etapa D debe responder formalmente:
+
+**D1.** ¿Cuáles de las mejoras observadas entre modelos representan reducciones de error relativamente distribuidas y cuáles dependen de unas pocas parcelas o regiones?
+
+**D2.** ¿Qué caracteriza al bloque espacial 3 y por qué concentra gran parte de la ventaja de C-T1 y C-T3?
+
+**D3.** ¿Qué modelos son candidatos razonables para parcelas semejantes a las observadas, perfiles nuevos y municipios nuevos?
+
+**D4.** ¿Qué errores permanecen sin explicar dentro de perfiles climáticos idénticos, especialmente en Chignahuapan?
+
+**D5.** ¿Qué información falta para reducir esos errores y cuál sería el diseño más informativo de validación externa?
+
+**D6.** ¿Qué candidatos deben congelarse para futura validación, cuáles mantenerse solo como controles y cuáles descartarse por complejidad injustificada?
+
+**D7.** ¿Qué puede afirmarse científicamente con las 138 etiquetas y qué afirmaciones requerirían nuevas observaciones?
+
+No introducir preguntas adicionales para justificar nuevos experimentos retrospectivos.
+
+---
+
+# 2. Etapa D.1 — Inventario y comparabilidad de evidencia
+
+## 2.1. Matriz de resultados existentes
+
+Construir un inventario estructurado de los modelos relevantes.
+
+Para cada modelo registrar:
+
+- ID exacto.
+- Familia y etapa.
+- Especificación matemática.
+- Variables utilizadas.
+- Ventana temporal.
+- Tipo de regularización.
+- Procedimiento de selección interna.
+- Protocolos externos disponibles.
+- Métricas OOF disponibles.
+- Disponibilidad de predicciones individuales.
+- Disponibilidad de modelos ajustados.
+- Identificadores de folds.
+- Versiones y hashes.
+- Advertencias metodológicas.
+- Estado de decisión anterior.
+
+No limitar el inventario a los modelos favorecidos: recuperar también los controles necesarios para interpretar por qué determinadas alternativas se descartaron.
+
+## 2.2. Comprobación de comparabilidad
+
+Dos modelos solo podrán compararse cuantitativamente como experimentos emparejados si comparten:
+
+\[
+(\text{IDs},Y,\text{protocolo},\text{repetición},\text{fold})
+\]
+
+y las predicciones corresponden a ajustes independientes de sus respectivas observaciones de evaluación.
+
+Verificar esta correspondencia mediante una llave compuesta explícita.
+
+No mezclar:
+
+- Predicciones OOF y predicciones ajustadas in-sample.
+- Validación aleatoria y espacial.
+- RMSE medio de folds y RMSE de OOF completa.
+- Diferentes conjuntos de parcelas.
+- Diferentes definiciones de rendimiento.
+- Resultados de modelos con protocolos no reproducidos.
+
+Si la comparación requiere supuestos adicionales, documentarlos.
+
+No reconstruir nuevas validaciones del Champion en esta etapa.
+
+## 2.3. Candidatos para comparación
+
+Cuando existan predicciones compatibles, investigar:
+
+- Champion.
+- Mezcla fija Champion/F4-S1.
+- F4-S1.
+- F4-E2, como control de dinámica temporal.
+- C-T1.
+- C-T3.
+- C-H0M.
+
+C-T0 coincide con F4-S1; evitar duplicarlo como si fuera un modelo independiente.
+
+Separar las comparaciones en dos conjuntos.
+
+**Conjunto aleatorio:** modelos con OOF aleatoria comparable, incluido Champion.
+
+**Conjunto geográfico:** modelos con OOF municipal, espacial y por perfil comparable, sin inventar equivalencias para Champion.
+
+No construir una tabla que sugiera un único ranking completo cuando hay datos faltantes o protocolos diferentes.
+
+---
+
+# 3. Etapa D.2 — Caracterización científica del bloque espacial 3
+
+Esta es una investigación descriptiva prioritaria.
+
+## 3.1. Pregunta
+
+¿Por qué C-T1 y C-T3 obtienen una proporción tan alta de su ventaja espacial en el bloque 3?
+
+No asumir que el bloque 3 representa un régimen climático específico antes de investigar sus datos.
+
+No entrenar un modelo especializado para ese bloque.
+
+## 3.2. Composición del bloque
+
+Recuperar la asignación geográfica exacta de los cinco bloques.
+
+Para cada uno reportar:
+
+- Número de parcelas.
+- Municipios.
+- Estados.
+- Perfiles climáticos.
+- Rendimientos observados.
+- Media, mediana y dispersión de Y.
+- Rango de rendimientos.
+- Distribución de lluvia.
+- Distribución de DTR.
+- NDVI mayo.
+- Altitud.
+- Pendiente.
+- Características de suelo existentes.
+- Geología 1:250,000, si la cobertura y los atributos lo permiten.
+
+Separar composición descriptiva de posibles mecanismos agronómicos.
+
+No utilizar la pertenencia al bloque como predictor ni variable de activación.
+
+## 3.3. Diferencias de covariables
+
+Para cada predictor \(X_j\), investigar diferencias entre el bloque 3 y el resto.
+
+Se pueden calcular diferencias de medias estandarizadas:
+
+\[
+SMD_j=
+\frac{\bar X_{3,j}-\bar X_{\neg3,j}}
+{\sqrt{\frac{s_{3,j}^2+s_{\neg3,j}^2}{2}}}
+\]
+
+si existe soporte suficiente y varianzas no degeneradas.
+
+También evaluar:
+
+- Cuantiles.
+- Rangos.
+- Valores extremos.
+- Distribuciones empíricas.
+- Solapamiento de soporte.
+- Distancias estandarizadas.
+- Combinaciones de variables fuera de soporte.
+
+Evitar pruebas masivas de significación y rankings retrospectivos de variables como si constituyeran un screening independiente.
+
+Utilizar principalmente características ya investigadas.
+
+No afirmar que una variable explica la mejora solo porque distingue el bloque territorial.
+
+## 3.4. Descomposición del error por bloque
+
+Para un modelo \(M\) y conjunto de evaluación \(B\):
+
+\[
+SSE_M(B)
+=
+\sum_{i\in B}(y_i-\widehat y_{i,M})^2.
+\]
+
+Definir la ganancia frente al control:
+
+\[
+G_M(B)
+=
+SSE_{\mathrm{control}}(B)-SSE_M(B).
+\]
+
+Una ganancia positiva favorece al candidato.
+
+Reportar para cada bloque:
+
+- Número de observaciones.
+- SSE de cada modelo.
+- Ganancia absoluta.
+- Ganancia media por parcela.
+- RMSE.
+- MAE.
+- Sesgo.
+- Distribución de errores.
+- Parcelas con mayor contribución absoluta.
+
+Verificar que las ganancias de los bloques suman exactamente la ganancia total de SSE para ese protocolo.
+
+Distinguir el peso del bloque debido a su tamaño del peso debido a sus errores.
+
+## 3.5. Sensibilidad a omitir bloques
+
+Para cada modelo y cada bloque \(b\), evaluar descriptivamente:
+
+\[
+RMSE_{M,-b}
+=
+\sqrt{
+\frac{
+\sum_{i\notin b}(y_i-\widehat y_{i,M})^2
+}{
+\sum_{i\notin b}1
+}
+}.
+\]
+
+El cálculo usa las mismas predicciones OOF archivadas.
+
+**No reentrenar el modelo después de eliminar el bloque.**
+
+Denominar este análisis:
+
+*Sensibilidad de agregación OOF al omitir el bloque.*
+
+No llamarlo validación leave-one-block-out adicional ni confundirlo con entrenar sin ese bloque.
+
+Repetir para MAE y diferencia pareada de pérdidas.
+
+Investigar explícitamente la reversión conocida de la ventaja espacial de C-T3 al omitir el bloque 3.
+
+## 3.6. Interpretación
+
+Responder:
+
+- ¿El bloque 3 contiene rendimientos o covariables fuera del soporte de las otras regiones?
+- ¿La mejora proviene de un cambio de sesgo o de unos pocos errores muy grandes?
+- ¿C-T1 y C-T3 mejoran las mismas parcelas?
+- ¿Sus ganancias se superponen o proceden de distintos casos?
+- ¿Existe evidencia descriptiva de un patrón climático distintivo?
+- ¿Qué parte del patrón sigue sin explicarse?
+
+No inferir causalidad.
+
+La caracterización del bloque 3 debe concluir con hipótesis verificables en datos futuros, no con una nueva regla de selección de modelos.
+
+---
+
+# 4. Etapa D.3 — Estabilidad, influencia y concentración del error
+
+## 4.1. Diferencia pareada de pérdida
+
+Para dos modelos A y B:
+
+\[
+d_i^{SE}
+=
+(y_i-\widehat y_{i,A})^2
+-
+(y_i-\widehat y_{i,B})^2.
+\]
+
+Si \(d_i^{SE}>0\), B reduce el error cuadrático de la parcela.
+
+Análogamente:
+
+\[
+d_i^{AE}
+=
+|y_i-\widehat y_{i,A}|
+-
+|y_i-\widehat y_{i,B}|.
+\]
+
+Calcular ambas medidas.
+
+Reportar:
+
+- Media y suma.
+- Mediana.
+- Cuantiles.
+- Proporción de mejoras.
+- Proporción de deterioros.
+- Concentración de las ganancias.
+- Casos influyentes.
+- Diferencias por municipio.
+- Diferencias por perfil.
+
+Distinguir ganancias de SSE de ganancias de RMSE; no sumarlas como si fueran equivalentes.
+
+## 4.2. Repeticiones aleatorias
+
+Los mismos 138 rendimientos aparecen en diez repeticiones.
+
+Para diagnosticar influencia por parcela, conservar su identidad y resumir sus errores entre repeticiones.
+
+No tratar las 1,380 filas OOF como 1,380 parcelas independientes.
+
+En métricas primarias:
+
+1. Calcular las métricas sobre OOF completa de cada repetición.
+2. Resumir posteriormente las diez repeticiones.
+
+Cuando sea necesario analizar influencia, reportar también el promedio de pérdida por parcela entre repeticiones, identificado como diagnóstico diferente.
+
+## 4.3. Concentración de mejoras
+
+Para cada comparación:
+
+- Identificar las principales contribuciones positivas y negativas a la ganancia neta.
+- Comparar su magnitud con la mejora total.
+- Evaluar sensibilidad descriptiva al omitir parcelas influyentes del cálculo agregado.
+- Mantener el ID y su relación con los demás modelos.
+- Verificar si las mismas parcelas explican ganancias recurrentes.
+
+No eliminar observaciones para recalcular un ranking favorable.
+
+No modificar etiquetas basándose únicamente en residuos.
+
+La mezcla fija Champion/F4-S1 ya mostró que cinco parcelas explicaban más del 100% de la ganancia neta.
+
+Quiero comprobar si C-T3 y C-T1 presentan una concentración semejante o un patrón de mejoras más distribuido, únicamente en protocolos comparables.
+
+## 4.4. Auditoría de casos persistentes
+
+Identificar parcelas que presentan errores elevados repetidamente en diferentes modelos y protocolos.
+
+Distinguir:
+
+- Errores recurrentes con el mismo signo.
+- Errores grandes pero inestables.
+- Parcelas donde distintos modelos se compensan.
+- Parcelas fuera de soporte predictivo.
+- Posibles inconsistencias documentales previamente registradas.
+
+No declarar errores de etiqueta sin evidencia independiente.
+
+No inferir causas agrícolas individuales a partir de residual alto.
+
+Preparar una tabla priorizada de casos para verificación documental o de campo.
+
+---
+
+# 5. Etapa D.4 — Heterogeneidad intraperfil todavía no explicada
+
+## 5.1. Pregunta
+
+¿Cuánta capacidad de diferenciación local permanece ausente después de incorporar clima y NDVI mayo?
+
+Reutilizar los diagnósticos existentes de F4-E y Etapa A.
+
+No construir nuevas funciones de pérdida.
+
+## 5.2. Perfiles dominantes de Chignahuapan
+
+Estudiar separadamente los perfiles con 33 y 29 etiquetas.
+
+Reportar para cada uno:
+
+- Número de parcelas.
+- Distribución de rendimiento.
+- Varianza observada.
+- Rango.
+- Distribución de NDVI mayo.
+- Dispersión de predicciones.
+- RMSE de diferencias.
+- MAE de diferencias.
+- Número de parejas evaluables por protocolo.
+- Error con igual ponderación por perfil.
+- Parcelas más influyentes.
+
+Comparar con perfiles fuera de Chignahuapan sin suponer que todos tienen tamaños comparables.
+
+No presentar cientos de parejas como réplicas independientes.
+
+## 5.3. Fuentes territoriales
+
+Recuperar las decisiones de Etapa A.
+
+Hechos disponibles:
+
+- No existe todavía una carta edafológica local 1:50,000 utilizable en el repositorio.
+- La imagen de 1996 se identificó como topográfica.
+- La geología SGM 2017 en PDF no proporciona asignación temática parcelaria fiable.
+- La geología INEGI 1:250,000 distingue descriptivamente múltiples parejas locales.
+- Esa diferenciación no demuestra contribución predictiva incremental.
+
+No reabrir integración de estas fuentes.
+
+Documentar si los contrastes geológicos existentes son suficientemente repetidos y no redundantes para justificar una investigación posterior, pero no crear un modelo nuevo.
+
+## 5.4. Límites de identificabilidad
+
+El informe debe explicar que dos parcelas semejantes en las características observadas no son necesariamente equivalentes agronómicamente.
+
+Pueden diferir en:
+
+- Variedad.
+- Fecha de siembra.
+- Densidad de plantación.
+- Fertilización.
+- Manejo de malezas.
+- Manejo hídrico.
+- Profundidad y textura real del suelo.
+- Incidencia de enfermedades.
+- Fecha de cosecha.
+- Calidad de registro de rendimiento.
+
+Estas son hipótesis de variables no observadas.
+
+No concluir que la variabilidad residual equivale a error irreducible.
+
+---
+
+# 6. Etapa D.5 — Marco de decisión predictiva
+
+No producir un ranking único que combine todas las métricas mediante ponderaciones escogidas retrospectivamente.
+
+Organizar la decisión por escenarios.
+
+## Escenario S1 — Parcelas de distribución semejante al entrenamiento
+
+Pregunta:
+
+¿Qué modelo merece validación adicional cuando las parcelas nuevas se parecen a las utilizadas en entrenamiento?
+
+Referencia:
+
+- Champion.
+- Mezcla fija Champion/F4-S1.
+- F4-S1.
+- C-T3, si existe predicción aleatoria comparable.
+
+Enfatizar que el Champion sigue siendo referencia histórica, pero la mezcla mejoró ligeramente sobre las mismas etiquetas y no tiene confirmación independiente.
+
+## Escenario S2 — Nuevos perfiles climáticos
+
+Pregunta:
+
+¿Qué modelos muestran mayor estabilidad cuando se retiene completamente un perfil?
+
+Comparar:
+
+- F4-S1.
+- C-T3.
+- C-H0M.
+- C-T1.
+
+No inferir que perfiles nuevos son equivalentes a municipios nuevos.
+
+## Escenario S3 — Nuevos municipios
+
+Pregunta:
+
+¿Qué representación muestra mejor transferencia a municipios no presentes en entrenamiento?
+
+Candidatos:
+
+- C-T3.
+- C-H0M.
+- F4-S1.
+- C-T1 como control.
+
+C-T3 es el candidato principal observado, pero requiere confirmación municipal externa.
+
+Evaluar el costo aleatorio e intraperfil y la estabilidad al omitir cada fold municipal.
+
+## Escenario S4 — Regiones espacialmente distintas
+
+Pregunta:
+
+¿Existe actualmente un modelo con evidencia consistente de transferencia espacial?
+
+Analizar:
+
+- C-T1.
+- C-T3.
+- C-H0M.
+- F4-S1.
+
+La dependencia del bloque 3 impide interpretar las mejores cifras espaciales como ventaja general robusta.
+
+Si la evidencia no identifica un ganador estable, indicarlo explícitamente.
+
+## Escenario S5 — Diferenciación entre parcelas con clima idéntico
+
+Pregunta:
+
+¿Qué arquitectura distingue mejor diferencias de rendimiento dentro del mismo perfil?
+
+No utilizar RMSE global como sustituto de RMSE de diferencias.
+
+Recuperar:
+
+- F4-S1.
+- F4-E2.
+- B2/B3 como evidencia metodológica, sin promover su entrenamiento.
+- C-T3 y C-H0M como comparaciones existentes.
+
+Reconocer que ninguna de estas líneas resolvió de forma general la heterogeneidad local.
+
+---
+
+# 7. Etapa D.6 — Diseño de validación verdaderamente independiente
+
+Esta sección es uno de los entregables centrales.
+
+No basta con recomendar genéricamente nuevos datos.
+
+Quiero un diseño operacional de validación que permita distinguir entre hipótesis.
+
+## 7.1. Definir los estimandos de generalización
+
+Especificar al menos tres estimandos predictivos diferentes:
+
+\[
+R_{\mathrm{similar}}(M)
+=
+\operatorname E_{(X,Y)\sim P_{\mathrm{similar}}}
+[(Y-\widehat f_M(X))^2]
+\]
+
+\[
+R_{\mathrm{newmun}}(M)
+=
+\operatorname E_{(X,Y)\sim P_{\mathrm{newmun}}}
+[(Y-\widehat f_M(X))^2]
+\]
+
+\[
+R_{\mathrm{newseason}}(M)
+=
+\operatorname E_{(X,Y)\sim P_{\mathrm{newseason}}}
+[(Y-\widehat f_M(X))^2].
+\]
+
+Donde cada distribución objetivo debe describirse operacionalmente.
+
+No asumir que una muestra del mismo año en otros municipios equivale a probar transferencia entre campañas agrícolas.
+
+La validación temporal y la geográfica deben distinguirse.
+
+## 7.2. Diseñar muestras de validación
+
+Proponer un plan de adquisición que contemple:
+
+**Grupo V1 — Nuevas parcelas de perfiles conocidos**
+
+Para evaluar predicción en condiciones semejantes y diferenciación intraperfil.
+
+**Grupo V2 — Nuevos perfiles en municipios representados**
+
+Para aislar generalización climática sin cambiar completamente el territorio administrativo.
+
+**Grupo V3 — Municipios no observados**
+
+Para contrastar directamente la ventaja municipal de C-T3.
+
+**Grupo V4 — Regiones territorialmente diferentes**
+
+Para comprobar si las mejoras espaciales de C-T1/C-T3 se repiten fuera de la configuración actual de bloques.
+
+**Grupo V5 — Nueva campaña agrícola**
+
+Para evaluar estabilidad temporal.
+
+Indicar cómo verificar independencia respecto de entrenamiento, perfiles, parcelas y campañas.
+
+Si no es posible obtener todos los grupos, establecer una priorización fundamentada.
+
+## 7.3. Tamaño de muestra y precisión
+
+No inventar un número óptimo de parcelas sin analizar primero el objetivo de precisión estadística.
+
+Proponer un procedimiento de planificación muestral basado en:
+
+- Diferencia mínima predictivamente relevante.
+- Variabilidad de pérdidas pareadas.
+- Correlación intramunicipal.
+- Concentración intraperfil.
+- Número de municipios.
+- Número de campañas.
+- Recursos disponibles.
+
+Para una comparación de pérdidas cuadráticas:
+
+\[
+D_i=
+(Y_i-\widehat f_A(X_i))^2
+-
+(Y_i-\widehat f_B(X_i))^2.
+\]
+
+Definir cómo estimar la incertidumbre de:
+
+\[
+\bar D.
+\]
+
+La unidad primaria de inferencia deberá corresponder a la unidad de generalización —por ejemplo, municipio para transferencia municipal— cuando sea pertinente.
+
+No utilizar un cálculo de tamaño muestral que considere parcelas altamente agrupadas como observaciones independientes.
+
+No extrapolar directamente la varianza OOF actual como si fuera una estimación no sesgada de la población externa.
+
+Se puede presentar una simulación de sensibilidad de diseño, claramente identificada como planificación y no evidencia empírica nueva.
+
+## 7.4. Congelación de candidatos
+
+Antes de recibir nuevos rendimientos, dejar especificados:
+
+- Modelos candidatos.
+- Variables.
+- Tratamientos de faltantes.
+- Procedimientos de ajuste.
+- Hiperparámetros o reglas de selección.
+- Definición de población de validación.
+- Métricas primarias.
+- Métricas secundarias.
+- Reglas de comparación.
+- Margen de utilidad práctica.
+- Manejo de observaciones problemáticas.
+- Tratamiento de valores fuera de soporte.
+
+No utilizar los nuevos rendimientos para decidir retrospectivamente qué comparación reportar.
+
+Si será necesario entrenar cada modelo usando las 138 etiquetas actuales, distinguir claramente esta operación futura de la evaluación externa y preservar el protocolo congelado antes de observar nuevas Y.
+
+No realizar ese entrenamiento final durante Etapa D.
+
+## 7.5. Evaluación futura
+
+Proponer, según el objetivo:
+
+- RMSE y MAE por parcela.
+- Pérdida cuadrática pareada.
+- Sesgo.
+- Error por municipio.
+- Error por campaña.
+- Error en nuevos perfiles.
+- RMSE de diferencias intraperfil.
+- Cobertura de intervalos, si existen intervalos congelados y válidos.
+
+Predefinir cómo manejar comparaciones incompletas, municipios con pocas observaciones y ausencia de determinados perfiles.
+
+La prueba externa debe responder si la mejora es útil, no simplemente si un estadístico produce un valor p pequeño.
+
+---
+
+# 8. Etapa D.7 — Información nueva de mayor valor
+
+Crear una agenda de adquisición de datos basada en las limitaciones efectivamente identificadas.
+
+Considerar:
+
+- Fechas reales de siembra y cosecha.
+- Variedad de cebada.
+- Manejo y fertilización.
+- Riego o condiciones hídricas.
+- Textura y profundidad de suelo medidas.
+- Suelo local de mayor resolución.
+- Cartografía geológica vectorial 1:50,000 verificada.
+- Información histórica por campañas.
+- Calidad y fecha de adquisición de imágenes satelitales.
+- Validación de rendimientos y superficies cosechadas.
+
+Para cada posible fuente reportar:
+
+| Dimensión | Requerimiento |
+|---|---|
+| Pregunta que respondería | Hipótesis concreta |
+| Variación requerida | Entre perfiles o dentro de perfiles |
+| Resolución | Temporal y espacial |
+| Disponibilidad | Verificada o pendiente |
+| Costo relativo | Si es posible estimarlo |
+| Limitación actual que aborda | Basada en resultados A–C |
+| Validación necesaria | Diseño objetivo |
+| Prioridad | Justificada, no arbitraria |
+
+No confundir disponibilidad potencial con disponibilidad comprobada.
+
+No hacer nuevas búsquedas masivas de variables en las 138 etiquetas.
+
+---
+
+# 9. Etapa D.8 — Incertidumbre y límites de generalización
+
+El proyecto ya identificó que los intervalos nominales del modelo jerárquico no están calibrados uniformemente.
+
+En perfiles nuevos municipales, la cobertura del intervalo nominal del 90% fue aproximadamente 77.9%.
+
+En perfiles nuevos espaciales fue aproximadamente 93.1%, con amplitud media mucho mayor.
+
+Documentar:
+
+- Qué intervalos se generaron realmente.
+- Qué fuentes de incertidumbre incluyeron.
+- Qué fuentes omitieron.
+- Cobertura por protocolo.
+- Amplitud por protocolo.
+- Diferencias entre perfiles conocidos y nuevos.
+- Limitaciones bajo cambio de dominio.
+
+No desarrollar un nuevo método de calibración en esta etapa.
+
+Proponer, para investigación futura, procedimientos de calibración con particiones independientes o métodos que contemplen dependencia por grupo.
+
+No presentar bootstrap ordinario de parcelas ni conformal prediction estándar como garantías automáticas bajo cambio geográfico.
+
+Definir qué datos adicionales serían necesarios para evaluar empíricamente la calibración.
+
+---
+
+# 10. Etapa D.9 — Síntesis científica transversal
+
+Quiero una síntesis interpretativa que explique los principales hallazgos del programa y sus relaciones.
+
+Debe discutir al menos:
+
+## 10.1. Clima y rendimiento
+
+¿Qué proporción de la heterogeneidad observada se encuentra entre y dentro de perfiles climáticos?
+
+Distinguir descomposición descriptiva de suma de cuadrados de explicación causal o capacidad predictiva.
+
+## 10.2. Vegetación
+
+¿Qué información aporta NDVI mayo y qué parte permanece redundante con LAI, SAVI, FAPAR y EVI?
+
+Reconocer que LAI se calcula a partir de SAVI según las ecuaciones proporcionadas por FIRA, por lo que no representa una fuente espectral independiente.
+
+Distinguir señal en fecha específica de descriptores construidos con información hasta octubre.
+
+## 10.3. Terreno y suelo
+
+¿Por qué las variables edafológicas, geológicas y topográficas mostraron asociaciones descriptivas sin ganancias incrementales suficientemente estables?
+
+Discutir escala, soporte, redundancia regional y limitaciones de medición.
+
+No declarar que estas características carecen de importancia agronómica.
+
+## 10.4. Función objetivo
+
+¿Por qué añadir una penalización intraperfil no justificó sustituir el objetivo convencional?
+
+Distinguir el efecto de la penalización del cambio de selección de regularización observado en Etapa B.
+
+## 10.5. Modelo jerárquico
+
+¿Qué aprendimos del intercepto aleatorio y de su comparación con Ridge estadísticamente emparejado?
+
+Distinguir capacidad de ajustar perfiles conocidos de capacidad de transferir a perfiles nuevos.
+
+## 10.6. Compactación climática
+
+¿Por qué representar la precipitación mediante total, fracción temprana y concentración temporal puede constituir una regularización estructural?
+
+Distinguir reducción de dimensionalidad de cambio de parametrización funcional.
+
+No demostrar una explicación mecanicista a partir del cambio de RMSE.
+
+## 10.7. Transferencia
+
+¿Por qué no basta con una reducción agregada de RMSE espacial cuando depende de un bloque específico?
+
+Distinguir estabilidad entre regiones de reducción global de error.
+
+## 10.8. Complejidad y tamaño de muestra
+
+¿Qué resultados muestran que un modelo más complejo no necesariamente utiliza mejor la información disponible?
+
+Distinguir límites de datos, límites de hipótesis, error de medición y limitaciones de algoritmo.
+
+---
+
+# 11. Productos finales
+
+Crear los siguientes documentos, utilizando las convenciones reales del repositorio.
+
+## Documento 1 — Reporte técnico de Etapa D
+
+Contenido:
+
+1. Resumen.
+2. Objetivos.
+3. Datos y protocolos.
+4. Inventario de candidatos.
+5. Comparabilidad de evidencia.
+6. Caracterización del bloque espacial 3.
+7. Descomposición de errores.
+8. Influencia de parcelas.
+9. Heterogeneidad intraperfil.
+10. Comparación por escenarios de uso.
+11. Incertidumbre y límites.
+12. Diseño de validación independiente.
+13. Datos adicionales requeridos.
+14. Síntesis científica.
+15. Conclusiones.
+16. Limitaciones.
+17. Trabajo futuro.
+
+Todas las afirmaciones cuantitativas deben poder rastrearse a una tabla o artefacto reproducible.
+
+## Documento 2 — Síntesis ejecutiva para FIRA
+
+Lenguaje menos técnico.
+
+Debe explicar:
+
+- Qué modelos son prometedores.
+- Qué resultados no se pudieron generalizar.
+- Por qué no se propone un ganador universal.
+- Qué significa realmente la ventaja municipal de C-T3.
+- Por qué hacen falta nuevos rendimientos.
+- Qué información adicional convendría recopilar.
+- Qué decisiones pueden tomarse ahora.
+- Qué decisiones todavía no están justificadas.
+
+No simplificar al punto de ocultar las limitaciones.
+
+## Documento 3 — Matriz final de evidencia
+
+Para cada hipótesis o arquitectura:
+
+- Pregunta.
+- Evidencia.
+- Resultado.
+- Ámbito de utilidad.
+- Riesgos.
+- Estado de decisión.
+- Evidencia externa pendiente.
+
+Estados recomendados:
+
+- Referencia histórica.
+- Candidato congelado.
+- Control metodológico.
+- Exploratorio sin prioridad.
+- Suspendido por datos.
+- No recomendado bajo la formulación evaluada.
+
+## Documento 4 — Protocolo prospectivo de validación
+
+Debe servir como base para obtener y evaluar nuevos rendimientos.
+
+Distinguir decisiones que pueden congelarse ahora de aspectos que dependen del diseño de recolección aún no decidido.
+
+## Documento 5 — Auditoría de integridad
+
+Registrar:
+
+- Hashes.
+- Archivos anteriores protegidos.
+- Resultados reproducidos.
+- Comprobaciones de compatibilidad.
+- Número de observaciones por comparación.
+- Ausencia de nuevas estimaciones predictivas.
+- Pruebas automatizadas.
+
+---
+
+# 12. Visualizaciones prioritarias
+
+Generar únicamente figuras que ayuden a interpretar evidencia existente.
+
+1. Matriz de disponibilidad de modelos por protocolo.
+2. Comparación de errores globales sobre universos compatibles.
+3. Composición geográfica del bloque 3 frente a los otros bloques.
+4. Distribuciones de lluvia, DTR y NDVI por bloque.
+5. Ganancias de SSE por bloque para C-T1 y C-T3.
+6. Sensibilidad al omitir cada bloque.
+7. Distribución de diferencias pareadas de pérdidas.
+8. Concentración de ganancias por parcela.
+9. Perfiles dominantes de Chignahuapan y error intraperfil.
+10. Mapa de límites de generalización y soporte, si existen geometrías fiables.
+11. Matriz de candidatos por escenario predictivo.
+12. Esquema de validación externa por grupos de adquisición.
+
+No utilizar gráficos que den una impresión de significación estadística no demostrada.
+
+Incluir unidades, soporte, tamaño de muestra y definición de los errores.
+
+No superponer títulos, leyendas o escalas.
+
+---
+
+# 13. Pruebas de integridad
+
+Implementar pruebas automatizadas para verificar:
+
+1. Identidad de etiquetas.
+2. Identidad de parcelas.
+3. No utilización de rendimientos ocultos.
+4. Conservación de folds.
+5. Compatibilidad exacta de predicciones emparejadas.
+6. Reproducción de métricas archivadas.
+7. Agregación OOF por repetición.
+8. Cálculo correcto de SSE.
+9. Suma de contribuciones SSE por bloque.
+10. Sensibilidad de omisión sin reentrenamiento.
+11. Agrupación correcta de pérdidas por parcela.
+12. Ausencia de pseudorreplicación de parejas.
+13. Separación de resultados por protocolo.
+14. Conservación de observaciones influyentes.
+15. Integridad de artefactos A–C.
+16. No modificación del Champion.
+17. No entrenamiento de candidatos adicionales.
+18. Trazabilidad de tablas y figuras.
+19. Consistencia entre reportes técnicos y ejecutivos.
+20. Identificación explícita de limitaciones de soporte.
+
+Si un artefacto necesario no está disponible, registrar la limitación y omitir esa comparación. No reconstruir información de forma especulativa.
+
+---
+
+# 14. Secuencia de ejecución
+
+Ejecutar en este orden:
+
+**D.0 — Recuperación y congelación**
+
+Inventario de antecedentes, candidatos y predicciones compatibles.
+
+**D.1 — Comparabilidad**
+
+Construcción de matriz de evidencia y controles sobre mismos conjuntos.
+
+**D.2 — Bloque espacial 3**
+
+Composición territorial, distribuciones de predictores, errores y sensibilidad de agregación.
+
+**D.3 — Influencia**
+
+Comparación pareada y concentración de mejoras por parcela.
+
+**D.4 — Heterogeneidad local**
+
+Chignahuapan y perfiles climáticos dominantes.
+
+**D.5 — Decisiones por escenario**
+
+Referencias, candidatos y límites de uso.
+
+**D.6 — Validación independiente**
+
+Poblaciones objetivo, adquisición, diseño de muestreo, métricas y congelación prospectiva.
+
+**D.7 — Incertidumbre y datos faltantes**
+
+Necesidades de nuevas mediciones y calibración.
+
+**D.8 — Documentación final**
+
+Reporte técnico, versión ejecutiva, matriz de evidencia, protocolo y pruebas.
+
+No iniciar nuevos experimentos predictivos durante esta secuencia.
+
+---
+
+# 15. Restricciones permanentes
+
+- No entrenar nuevos modelos.
+- No modificar Champion.
+- No modificar la mezcla fija.
+- No ajustar nuevos pesos de combinación.
+- No crear nuevas interacciones.
+- No recalibrar parámetros.
+- No agregar features predictivas.
+- No abrir nuevos screenings.
+- No utilizar las 59 etiquetas ocultas.
+- No eliminar parcelas por residuo.
+- No realizar un nuevo proceso de selección retrospectiva de modelos.
+- No cambiar los 65 folds.
+- No presentar las diez repeticiones aleatorias como muestras independientes.
+- No utilizar pares superpuestos como observaciones independientes.
+- No presentar correlaciones descriptivas como mecanismos causales.
+- No asignar propiedades físicas a categorías cartográficas sin mediciones que las respalden.
+- No declarar intervalos calibrados sin evidencia.
+- No presentar un resultado de validación municipal como garantía de transferencia espacial o temporal.
+- No afirmar que un modelo gana universalmente porque encabeza una métrica.
+- No modificar los resultados anteriores.
+- Versionar todos los entregables y preservar trazabilidad.
+
+---
+
+# 16. Criterio de éxito de la Etapa D
+
+La Etapa D no se evaluará por reducir RMSE.
+
+Se considerará satisfactoria si responde rigurosamente:
+
+1. Qué información aprendimos a representar mejor.
+2. Qué modelos siguen siendo candidatos defendibles.
+3. Qué modelos no justifican mayor complejidad.
+4. Por qué las mejoras regionales no son homogéneas.
+5. Qué parte del error local permanece sin explicar.
+6. Cuál es el alcance real de nuestras validaciones.
+7. Qué nuevos rendimientos necesitamos.
+8. Qué variables adicionales conviene medir.
+9. Qué decisiones pueden congelarse ahora.
+10. Qué evidencia futura podría modificar esas decisiones.
+
+**Resultado esperado:**
+
+Un cierre científico y metodológico del programa A–D que permita a FIRA distinguir entre desempeño predictivo observado, generalización demostrada, hipótesis exploratorias y necesidades de información futura.
+
+No quiero convertir la Etapa D en otro concurso de modelos.
+
+Quiero comprender de manera reproducible qué descubrimos, dónde funcionan nuestras representaciones actuales, dónde dejan de ser confiables y qué experimento verdaderamente independiente permitiría avanzar.

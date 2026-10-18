@@ -1,0 +1,532 @@
+# FIRA AgroCebada 2026 — Extensión de Familia 4: Complementariedad intraperfil de vegetación, dinámica temporal y relieve
+
+Quiero ampliar la investigación existente:
+
+**Family 4 — Conditional Yield Response Models**
+
+con un nuevo módulo:
+
+**F4-E — Within-Profile Signal Complementarity**
+
+Esta investigación debe ser una extensión independiente y versionada de Familia 4, sin sobrescribir sus resultados anteriores.
+
+El objetivo es identificar qué variables permiten explicar diferencias de rendimiento entre parcelas que comparten exactamente el mismo perfil climático, y especialmente cuáles contienen información adicional a la ya representada por NDVI de mayo.
+
+**Pregunta central:**
+
+> Si ya conocemos las precipitaciones mensuales y el NDVI Sentinel de mayo, ¿qué información adicional aportan la dinámica temporal de la vegetación y el relieve local para explicar diferencias de rendimiento entre parcelas climáticamente idénticas?
+
+No busco repetir el screening de 1,473 variables ni abrir otra búsqueda indiscriminada de combinaciones.
+
+Esta investigación debe concentrarse en redundancia, complementariedad, diferenciación intraperfil y transferencia geográfica.
+
+## 0. Contexto y recuperación de antecedentes
+
+Antes de implementar:
+
+1. Examina Familia 4 y sus artefactos, especialmente F4-S1.
+2. Recupera los modelos y predicciones de J0_RAIN y F4-S1_RAIN_NDVI_MAY_ADDITIVE.
+3. Recupera las características del screening exploratorio de 1,473 variables.
+4. Recupera los perfiles climáticos exactos y sus asignaciones.
+5. Recupera las variables de topografía, vegetación y dinámica temporal ya construidas.
+6. Verifica la definición exacta, procedencia, ventana temporal y disponibilidad de cada característica.
+7. Reutiliza los 65 folds congelados cuando sean compatibles.
+8. Recupera las metodologías de evaluación intraperfil de J, K, L y Familia 4.
+9. Verifica correspondencia de las 138 etiquetas y las 59 parcelas PREDICCION.
+10. Revisa las convenciones de nomenclatura y numeración para crear esta extensión sin modificar el trabajo previo.
+
+No volver a calcular características si ya existen matrices confiables y reproducibles.
+
+No modificar el Champion, Familias 1–3, secciones E–M ni los resultados congelados de Familia 4.
+
+## 1. Hipótesis de investigación
+
+### H1 — Estado de vegetación
+
+El NDVI de mayo contiene información parcelaria que no está representada por los perfiles climáticos compartidos.
+
+Familia 4 ya encontró una mejora modesta de predicción intraperfil al incorporarlo aditivamente.
+
+Queremos determinar si otros índices de estado vegetal, como EVI mayo, LAI q10 o FAPAR q10, describen fundamentalmente la misma dimensión o una señal adicional.
+
+### H2 — Dinámica temporal
+
+El inicio del ascenso de LAI podría describir diferencias de trayectoria temporal que no están representadas por NDVI mayo.
+
+Esta es la principal hipótesis nueva de complementariedad satelital.
+
+No interpretar automáticamente el inicio del ascenso como fecha real de emergencia, desarrollo fenológico o siembra.
+
+### H3 — Relieve local
+
+Relieve local, orientación y pendiente representan condiciones topográficas que pueden variar entre parcelas con el mismo perfil climático.
+
+Queremos investigar si el relieve local añade información predictiva después de controlar por lluvia y NDVI mayo.
+
+### H4 — Redundancia entre bloques
+
+Es posible que varias características con correlaciones intraperfil apreciables representen dimensiones predictivas muy similares.
+
+La prioridad es identificar complementariedad, no acumular predictores.
+
+---
+
+# 2. Variables candidatas congeladas
+
+Considerar exclusivamente las siguientes variables y sus nombres reales del repositorio:
+
+**Referencia principal:**
+
+- NDVI Sentinel de mayo: `S2_ndvi_month_05`.
+
+**Estado de vegetación alternativo:**
+
+- Percentil temporal bajo de NDVI.
+- Percentil temporal bajo de LAI.
+- Percentil temporal bajo de FAPAR.
+- EVI de mayo.
+
+**Dinámica temporal:**
+
+- Inicio del ascenso de LAI.
+- Duración del ascenso de SAVI, únicamente como comparación descriptiva de redundancia.
+
+**Topografía:**
+
+- Relieve local.
+- Pendiente media o pendiente q10, como referencia.
+- Orientación del terreno representada mediante seno y coseno.
+
+Recupera los nombres exactos de las columnas, no los inventes.
+
+Antes de utilizar alguna variable, verifica cómo se construyó y qué significa.
+
+Especialmente:
+
+- Diferenciar percentiles temporales de percentiles espaciales.
+- Documentar definición algorítmica del inicio de ascenso de LAI.
+- Verificar resolución temporal y número de observaciones.
+- Comprobar tratamiento de nubes y faltantes.
+- Verificar unidades del relieve local.
+- Comprobar que la orientación está codificada de forma circular.
+- Verificar que no se utiliza información posterior a la fecha de corte del experimento.
+
+Los resultados previos que motivan la investigación son aproximados:
+
+| Variable | Correlación intraperfil con Y |
+|---|---:|
+| NDVI mayo | +0.30 |
+| NDVI temporal q10 | +0.28 |
+| LAI temporal q10 | +0.26 |
+| Inicio del ascenso LAI | −0.25 |
+| FAPAR temporal q10 | +0.24 |
+| EVI mayo | +0.24 |
+| Relieve local | +0.22 |
+| Orientación coseno | −0.21 |
+| Pendiente q10 | +0.28 |
+
+Estas correlaciones proceden del mismo conjunto de 138 etiquetas y deben tratarse como hallazgos exploratorios, no como evidencias confirmatorias independientes.
+
+---
+
+# 3. Etapa A — Auditoría de redundancia y soporte
+
+Antes de entrenar cualquier modelo, realizar una exploración descriptiva de las candidatas.
+
+## 3.1. Matriz de asociaciones
+
+Calcular para cada pareja de variables:
+
+- Correlación global.
+- Correlación dentro de perfiles climáticos.
+- Correlación entre medias de perfiles.
+- Asociación por estado y municipio.
+- Correlaciones excluyendo Chignahuapan.
+- Estabilidad al excluir un perfil por turno.
+- Número de parcelas y perfiles efectivos.
+
+Evitar interpretar perfiles con una sola parcela etiquetada como evidencia de asociación intraperfil.
+
+Distinguir las correlaciones Pearson y Spearman cuando sea útil.
+
+## 3.2. Descomposición dentro y entre perfiles
+
+Para cada predictor continuo \(X\):
+
+\[
+X_{ig}=\overline X_g+(X_{ig}-\overline X_g)
+\]
+
+Donde:
+
+- \(g\) representa un perfil climático.
+- \(\overline X_g\) es la media del predictor en ese perfil.
+- \(X_{ig}-\overline X_g\) es su desviación intraperfil.
+
+Reportar:
+
+- Variación total.
+- Fracción entre perfiles.
+- Fracción dentro de perfiles.
+- Correlación con Y dentro de perfiles.
+- Asociación entre medias de perfiles.
+- Tamaños de grupo.
+- Sensibilidad a perfiles dominantes.
+
+Utilizar esta descomposición inicialmente con fines descriptivos.
+
+No construir predictores supervisados a partir de medias de rendimiento por perfil.
+
+Si posteriormente se utilizan medias de características como predictores, definir un tratamiento válido de perfiles nuevos y evitar calcular transformaciones predictivas con información no permitida del conjunto de evaluación.
+
+## 3.3. Redundancia condicional
+
+Investigar si las asociaciones de LAI, FAPAR, EVI y relieve persisten una vez considerada la información de NDVI mayo.
+
+Para ello, realizar diagnósticos descriptivos de:
+
+- Asociación entre cada variable candidata y NDVI mayo.
+- Correlación parcial o residualización de características respecto de NDVI mayo y lluvia, cuando sea apropiado.
+- Asociación de la parte no redundante de cada característica con las diferencias de Y dentro de perfiles.
+- Sensibilidad a observaciones influyentes.
+- Soporte fuera de Chignahuapan.
+
+Distinguir explícitamente una asociación parcial descriptiva de una ganancia predictiva validada.
+
+No usar estos diagnósticos sobre la muestra completa para escoger retrospectivamente nuevas variables de los experimentos principales.
+
+## 3.4. Soporte y calidad temporal
+
+Para LAI, FAPAR, EVI, NDVI y SAVI, auditar:
+
+- Meses con observaciones válidas.
+- Cantidad efectiva de observaciones.
+- Faltantes.
+- Concentración de observaciones en determinados meses.
+- Dependencia respecto de nubes.
+- Estabilidad de resúmenes temporales.
+- Número de parcelas con trayectorias insuficientes.
+
+No inventar estadísticos espaciales cuando solamente existan series de promedios temporales.
+
+No eliminar parcelas silenciosamente para conseguir mejores resultados.
+
+## 3.5. Orientación del terreno
+
+No interpretar orientación en grados como una variable lineal ordinaria.
+
+Usar componentes seno y coseno cuando corresponda.
+
+Evaluar si orientación tiene significado estable cuando la pendiente es casi cero.
+
+No imponer que la orientación sea predictiva independientemente de la inclinación.
+
+La orientación permanecerá inicialmente como análisis exploratorio secundario, no como candidato principal.
+
+---
+
+# 4. Etapa B — Experimentos predictivos incrementales
+
+Una vez completada la auditoría, ejecutar una matriz pequeña y congelada de modelos.
+
+La referencia principal será F4-S1:
+
+**Lluvia mensual + NDVI mayo, Elastic Net aditivo.**
+
+Comparar exclusivamente las nuevas dimensiones con esta base.
+
+## Modelos principales
+
+**F4-E0 — Rain Only**
+
+Reutilizar J0_RAIN.
+
+**F4-E1 — Rain + NDVI May**
+
+Reproducir F4-S1, sin alterar sus especificaciones.
+
+**F4-E2 — Rain + NDVI May + LAI Rise Start**
+
+Agregar exclusivamente el inicio del ascenso de LAI.
+
+Pregunta: ¿aporta la dinámica temporal información que no ofrece el nivel de NDVI mayo?
+
+**F4-E3 — Rain + NDVI May + Local Relief**
+
+Agregar exclusivamente relieve local.
+
+Pregunta: ¿aporta la variación microtopográfica información adicional a clima y estado de vegetación?
+
+**F4-E4 — Rain + Alternative Vegetation State**
+
+Comparar NDVI mayo contra una representación alternativa del estado vegetal.
+
+La alternativa primaria debe definirse antes de observar nuevos resultados predictivos, mediante criterios de soporte, significado y redundancia.
+
+Priorizar LAI q10 como alternativa preespecificada, y conservar EVI mayo/FAPAR q10 como diagnósticos descriptivos o sensibilidades no utilizadas para buscar ganadores.
+
+F4-E4 reemplaza NDVI mayo; no agrega automáticamente todos los índices.
+
+## Controles
+
+Para F4-E2 y F4-E3, recuperar el modelo F4-E1 con mismos folds y configuración.
+
+No cambiar simultáneamente arquitectura, base climática y representación.
+
+Mantener Elastic Net como estimador principal de estos contrastes.
+
+No introducir nuevos algoritmos en esta extensión.
+
+La incorporación de cada variable debe ser el único cambio sustantivo frente al control correspondiente.
+
+---
+
+# 5. Etapa C — Evaluación predictiva intraperfil
+
+Esta es la etapa central de la investigación.
+
+Para cada perfil climático con suficientes parcelas etiquetadas:
+
+1. Identificar parejas de parcelas que comparten clima exactamente.
+2. Recuperar diferencias observadas de rendimiento.
+3. Recuperar diferencias predichas por F4-E1.
+4. Recuperar diferencias predichas por cada candidato.
+5. Calcular error de predicción de diferencias.
+6. Evaluar si la nueva variable reduce ese error.
+7. Separar perfiles con mejora de perfiles con deterioro.
+8. Registrar soporte de cada comparación.
+
+Definir para cada pareja:
+
+\[
+\Delta Y_{ij}=Y_i-Y_j
+\]
+
+\[
+\Delta\widehat Y_{ij}
+=
+\widehat Y_i-\widehat Y_j
+\]
+
+Y evaluar:
+
+\[
+e_{ij}
+=
+\Delta Y_{ij}-\Delta\widehat Y_{ij}
+\]
+
+Reportar:
+
+- RMSE de diferencias.
+- MAE de diferencias.
+- Sesgo de diferencias cuando exista una orientación definida de parejas.
+- Correlación entre diferencias observadas y predichas.
+- Dispersión de predicciones dentro de perfil.
+- Variación de rendimiento observada.
+- Mejora respecto de F4-E1.
+
+Las parejas deben evaluarse bajo el mismo modelo externo cuando se atribuya una diferencia a las características.
+
+No mezclar predicciones de folds externos distintos para afirmar diferenciación atribuible a una variable.
+
+Evitar contar parejas superpuestas como muestras independientes.
+
+## Ponderación
+
+Presentar tres perspectivas:
+
+1. Todas las parejas, con ponderación implícita según número de parejas por perfil.
+2. Igual peso por perfil.
+3. Igual peso por perfil excluyendo Chignahuapan, como sensibilidad.
+
+Reportar cantidades de perfiles, parcelas y parejas.
+
+Calcular métricas correctamente sobre errores individuales antes de agregarlas; no promediar RMSE de grupos sin declarar el criterio de ponderación.
+
+No concluir que una mayor dispersión de predicciones intraperfil equivale a mejora.
+
+---
+
+# 6. Etapa D — Generalización y heterogeneidad regional
+
+Aplicar los cuatro protocolos:
+
+- Aleatorio, cinco folds y diez repeticiones.
+- Perfil climático.
+- Municipal.
+- Espacial.
+
+Utilizar las mismas asignaciones externas congeladas cuando corresponda.
+
+Reportar:
+
+- RMSE.
+- MAE.
+- R².
+- Sesgo.
+- Diferencias pareadas frente a F4-E1.
+- Estabilidad de coeficientes.
+- Errores por municipio.
+- Errores en Chignahuapan.
+- Errores fuera de Chignahuapan.
+- Rendimientos altos y bajos, como diagnóstico posterior.
+- Sensibilidad a soporte temporal.
+- Diferenciación de parcelas con clima idéntico.
+
+La evaluación por perfil climático requiere especial cuidado: las parcelas de un mismo perfil deben permanecer completamente retenidas y evaluadas por el mismo modelo.
+
+La evaluación espacial debe conservar las reglas de partición preexistentes.
+
+No modificar los folds para favorecer una variable.
+
+---
+
+# 7. Etapa E — Interpretación de información complementaria
+
+Al concluir los experimentos, responder:
+
+**Estado frente a dinámica**
+
+¿El inicio del ascenso de LAI reduce errores que permanecen después de incorporar NDVI mayo?
+
+¿Esa mejora ocurre porque introduce información temporal nueva o solo porque está correlacionado con el estado vegetal?
+
+**Estado frente a relieve**
+
+¿El relieve local mejora diferencias de rendimiento entre parcelas con NDVI y clima similares?
+
+¿Su señal permanece en distintos perfiles o depende de una región concreta?
+
+**Redundancia entre índices**
+
+¿LAI q10, EVI mayo y FAPAR q10 representan prácticamente la misma dimensión predictiva que NDVI mayo?
+
+¿Existe una alternativa más estable que NDVI mayo cuando cambia la geografía?
+
+**Dentro frente a entre perfiles**
+
+¿Las ganancias proceden de distinguir parcelas dentro de un perfil o de separar perfiles geográficamente diferentes?
+
+**Complejidad**
+
+¿Se justifica añadir una variable nueva frente a mantener el modelo simple F4-S1?
+
+---
+
+# 8. Criterios de decisión
+
+Evaluar separadamente dos objetivos.
+
+## Objetivo A — Diferenciación intraperfil
+
+Una variable es prometedora si:
+
+- Mejora el error de diferencias entre parcelas.
+- No depende exclusivamente de un perfil dominante.
+- La mejora persiste con igual peso por perfil.
+- Mantiene una señal razonable fuera de Chignahuapan.
+- No aumenta la variabilidad predicha sin mejorar el ajuste.
+
+## Objetivo B — Predicción y transferencia
+
+Una variable es prometedora si:
+
+- Mejora o mantiene RMSE y MAE generales.
+- No produce deterioros grandes por perfil o municipio.
+- No empeora fuertemente la transferencia espacial.
+- No depende de un subconjunto muy pequeño de parcelas.
+- Su efecto tiene estabilidad suficiente entre entrenamientos.
+
+No exigir que todos los modelos ganen simultáneamente todos los criterios, pero declarar explícitamente cuál es su ámbito de utilidad.
+
+Utilizar el margen exploratorio de 0.01 t/ha de investigaciones anteriores como referencia descriptiva, sin presentarlo como prueba estadística de significación.
+
+Las correlaciones que motivaron esta extensión se obtuvieron tras examinar 1,473 variables sobre las mismas etiquetas.
+
+Los experimentos siguen siendo exploratorios aunque utilicen validación cruzada anidada.
+
+No declarar confirmación independiente sin nuevos rendimientos o geografías.
+
+---
+
+# 9. Entregables y visualizaciones
+
+Crear una extensión versionada de `family_4`, siguiendo la estructura real del repositorio.
+
+Incluir:
+
+- Auditoría de variables.
+- Diccionario de características.
+- Matriz de redundancia global.
+- Matriz de redundancia intraperfil.
+- Descomposición dentro/entre perfiles.
+- Diagnóstico de calidad temporal.
+- Matrices de modelos incrementales.
+- Modelos y transformaciones por fold.
+- Predicciones OOF.
+- Métricas globales y geográficas.
+- Resultados pareados.
+- Errores de diferencias intraperfil.
+- Resultados por perfil.
+- Análisis de Chignahuapan.
+- Estabilidad de coeficientes.
+- Comparación de alternativas de vegetación.
+- Reporte técnico.
+- Resumen interpretativo para decisiones.
+- Pruebas automatizadas.
+
+Visualizaciones prioritarias:
+
+1. Matriz de redundancia global e intraperfil.
+2. Varianza dentro/entre perfiles de cada variable.
+3. Relación NDVI mayo frente a LAI ascenso.
+4. Relación NDVI mayo frente a relieve local.
+5. RMSE/MAE de F4-E0–E4.
+6. Mejoras de error intraperfil por modelo.
+7. Diferencias observadas frente a diferencias predichas.
+8. Ganancia por perfil climático.
+9. Chignahuapan frente al resto.
+10. Estabilidad de coeficientes y soporte temporal.
+
+Las figuras deben ser legibles, sin sobreposición de leyendas o etiquetas.
+
+---
+
+# 10. Orden obligatorio de ejecución
+
+1. Auditar Familia 4 y los datos del screening.
+2. Identificar variables y validar su construcción.
+3. Recuperar F4-S1 y J0.
+4. Construir diagnóstico de redundancia.
+5. Descomponer variación dentro/entre perfiles.
+6. Evaluar soporte temporal y topográfico.
+7. Congelar diseño experimental.
+8. Ejecutar F4-E2, E3 y E4.
+9. Reutilizar o reproducir controles E0 y E1.
+10. Evaluar diferencias intraperfil.
+11. Evaluar validación geográfica.
+12. Analizar dependencia regional y Chignahuapan.
+13. Elaborar interpretaciones y recomendaciones.
+14. Ejecutar pruebas de integridad y reproducibilidad.
+15. Documentar limitaciones y necesidades de validación externa.
+
+No ampliar la matriz después de inspeccionar los resultados.
+
+No combinar automáticamente todas las variables prometedoras.
+
+No entrenar una corrección residual adicional en esta extensión: primero determinar si las nuevas dimensiones contienen información complementaria en el marco incremental simple.
+
+**Resultado esperado:**
+
+Establecer si las diferencias de rendimiento entre parcelas climáticamente idénticas pueden explicarse mejor con información adicional sobre dinámica vegetal o relieve local, y determinar si esas ganancias son complementarias a NDVI mayo o simplemente redundantes.
+
+La conclusión debe distinguir explícitamente:
+
+- Asociación descriptiva.
+- Complementariedad predictiva.
+- Diferenciación intraperfil.
+- Transferencia geográfica.
+- Evidencia exploratoria frente a validación independiente.
+
+Quiero identificar un conjunto mínimo de dimensiones útiles, no continuar ampliando modelos sin comprender qué información nueva estamos incorporando.

@@ -1,0 +1,154 @@
+Quiero iniciar una nueva familia de experimentación, **F5 — Gaussian Process Regression (GPR)**, construida sobre las conclusiones más sólidas de todo el trabajo previo de AgroCebada, no únicamente sobre las variables seleccionadas por el champion.
+
+Antes de implementar modelos, realiza una investigación exhaustiva de los experimentos, resultados, artefactos, selecciones de variables y documentación que ya existen en el repositorio.
+
+## 1. Objetivo de la investigación
+
+Reconstruir la evidencia empírica acumulada para determinar qué variables y representaciones contienen la señal predictiva más sólida del rendimiento agrícola y diseñar una primera batería compacta de Gaussian Processes.
+
+La investigación debe distinguir:
+
+- Señales con poder predictivo consistente.
+- Señales que funcionan principalmente como diferenciadores territoriales.
+- Señales que no son suficientemente fuertes por sí mismas, pero han mejorado correcciones residuales.
+- Variables redundantes, inestables o que demostraron no aportar información incremental.
+- Resultados exploratorios frente a resultados reproducidos bajo validaciones exigentes.
+
+No asumir que las variables del champion constituyen la mejor selección posible para GPR.
+
+## 2. Reconstrucción de evidencia
+
+Revisa primero todos los experimentos relevantes y localiza sus resultados originales, especialmente:
+
+**A. Precipitación**
+
+- Experimentos de lluvia exclusivamente y sus mejores selecciones.
+- `PRECIPITATION_ONLY_XGB`, `PRECIPITATION_XGB`, RS3, RS4 y cualquier estudio posterior.
+- Importancia del acumulado abril–junio frente a la distribución mensual de abril–octubre.
+- Variables de lluvia que demostraron utilidad predictiva, relaciones redundantes y diferencias regionales.
+- Efecto de utilizar siete valores mensuales frente a representaciones agregadas.
+
+**B. Temperatura**
+
+- Evidencia de temperatura mínima como variable de diferenciación territorial.
+- Comparaciones entre lluvia sola, lluvia + Tmin y lluvia + Tmax.
+- Verificar en qué escenarios Tmax aporta información incremental y en cuáles solamente introduce variabilidad.
+- Revisar experimentos G/H, PCR y resultados por perfiles climáticos, municipios y validación espacial.
+- No asumir que una variable útil para describir regiones necesariamente mejora la predicción del rendimiento.
+
+**C. Vegetación de 2025**
+
+- Identificar exactamente la variable de NDVI de mayo que ha presentado buenos resultados: fuente, estadístico, ventana y transformación.
+- Revisar los experimentos C-T0, C-T3, F4-S1 y cualquier comparación relacionada.
+- Determinar si NDVI de mayo aporta una señal robusta después de controlar por precipitación.
+- Comparar la evidencia de NDVI con LAI, EVI, índices de estrés hídrico y duración de actividad vegetal.
+- Evitar sustituir una señal puntual valiosa por un resumen temporal más amplio sin demostrar que mejora la predicción.
+
+**D. Historia satelital 2022–2024**
+
+- Revisar especialmente RS4 y los experimentos de corrección residual histórica.
+- Identificar las variables exactas de `History TOP15` y otras selecciones que hayan demostrado utilidad.
+- Separar ganancias en predicción directa de ganancias en corrección residual.
+- Investigar si la información histórica mejora la diferenciación entre parcelas con perfiles climáticos semejantes.
+- Documentar estabilidad, redundancia y capacidad incremental de cada representación.
+
+**E. Topografía y territorio**
+
+- Revisar los aportes de pendiente, elevación, TWI, relieve y demás variables topográficas evaluadas.
+- Recuperar los resultados de las correcciones topográficas del champion.
+- Distinguir predicción por características físicas de predicción por pertenencia territorial.
+- Revisar las pruebas con perfiles climáticos idénticos, validación municipal y validación espacial.
+- No confundir reducción de sesgo regional con mejora de discriminación intrarregional.
+
+## 3. Consolidar las mejores selecciones de variables
+
+Construye un inventario transversal de las mejores variables y conjuntos de variables encontrados en todos los experimentos.
+
+Para cada candidato reporta:
+
+1. Nombre exacto de columna.
+2. Fuente y periodo temporal.
+3. Familia de información.
+4. Transformación o agregación aplicada.
+5. Experimentos en los que aparece.
+6. Evidencia de asociación o capacidad predictiva.
+7. Evidencia de utilidad incremental.
+8. Estabilidad entre particiones.
+9. Riesgo de redundancia.
+10. Papel recomendado dentro de F5.
+11. Ruta del artefacto que respalda la conclusión.
+
+No utilices exclusivamente importancias de XGBoost ni coeficientes de Elastic Net como criterio de selección. Considera evidencia de ablaciones, comparaciones OOF, correlación entre predictores, estabilidad y desempeño bajo validaciones territoriales.
+
+Si una conclusión no está respaldada por resultados disponibles, clasifícala explícitamente como hipótesis.
+
+## 4. Investigar diseños GPR apropiados
+
+Dado que contamos con 138 parcelas etiquetadas, considera Gaussian Processes exactos sobre representaciones compactas.
+
+Evalúa conceptualmente las siguientes alternativas:
+
+- GPR con kernel Matérn.
+- GPR con kernel RBF.
+- GPR con escalas de longitud distintas por variable o grupo (ARD), evitando configuraciones sobredimensionadas.
+- Kernels aditivos por bloques agroclimático, histórico y topográfico.
+- Kernels con interacciones limitadas entre lluvia y vegetación.
+- GPR directo frente a GPR como corrector residual del champion mediante cross-fitting.
+
+Estudia explícitamente:
+
+- Cómo afecta la colinealidad y la escala de los predictores.
+- Cuántos hiperparámetros del kernel son razonables para 138 observaciones.
+- Si una media constante, una media lineal o un modelo base externo resulta más apropiado.
+- Riesgos de sobreajuste al optimizar marginal likelihood.
+- Necesidad de ruido observacional (WhiteKernel/nugget).
+- Tratamiento de perfiles climáticos idénticos.
+- Cómo impedir que coordenadas o identidad territorial dominen el kernel.
+- Qué información podemos obtener de la incertidumbre predictiva y sus limitaciones.
+- Cómo realizar correctamente cualquier selección supervisada dentro de cada fold.
+
+No asumir que GPR es superior a boosting por su flexibilidad. Debemos establecer bajo qué hipótesis tendría ventajas reales.
+
+## 5. Diseñar la batería inicial, sin ejecutarla todavía
+
+Propón una matriz pequeña y progresiva.
+
+Mi hipótesis inicial es trabajar aproximadamente así:
+
+- F5-00: referencia de lluvia exclusivamente.
+- F5-01: lluvia + NDVI mayo.
+- F5-02: lluvia + NDVI mayo + temperatura mínima.
+- F5-03: mejor núcleo anterior + información histórica seleccionada.
+- F5-04: mejor núcleo anterior + topografía seleccionada.
+- F5-05: kernel aditivo para separar señal agroclimática de correcciones históricas y topográficas.
+- F5-06: GPR residual sobre una predicción base correctamente generada fuera de muestra.
+
+Estas configuraciones son propuestas iniciales, no decisiones definitivas. Puedes modificarlas si la evidencia del repositorio justifica otra secuencia.
+
+La matriz debe especificar las variables exactas, kernel, hipótesis, baseline correspondiente, validación, costo relativo y criterio para continuar o descartar cada experimento.
+
+Utiliza el mismo esquema de evaluación OOF del champion para mantener comparabilidad, complementándolo con las validaciones por perfiles, municipios y espacio ya existentes.
+
+No utilices información del conjunto de predicción para seleccionar modelos mediante etiquetas inexistentes.
+
+## 6. Entregables de esta etapa
+
+Genera documentación trazable dentro de la estructura existente del proyecto, respetando las convenciones de nombres, numeración y directorios. No dupliques pipelines ni alteres el champion.
+
+Quiero recibir:
+
+**A. Auditoría de evidencia:** qué está demostrado, qué es exploratorio y qué resultados se contradicen.
+
+**B. Inventario de variables candidatas:** una tabla con nombres exactos y referencias a experimentos.
+
+**C. Análisis de redundancia:** qué señales proporcionan información distinta y cuáles pueden eliminarse.
+
+**D. Propuesta técnica F5:** familias de kernels, representaciones y comparaciones que realmente vale la pena probar.
+
+**E. Matriz experimental:** experimentos ordenados por prioridad, con criterios de evaluación y descarte.
+
+**F. Recomendación final:** cuál debe ser el primer experimento ejecutable de GPR y por qué.
+
+No entrenes modelos definitivos, no generes las 59 predicciones finales y no realices una búsqueda amplia de hiperparámetros en esta etapa.
+
+Primero presenta los hallazgos y la propuesta para revisión. Quiero utilizar la evidencia acumulada para decidir la estructura del experimento, no simplemente abrir otra ronda de búsqueda automática de modelos.

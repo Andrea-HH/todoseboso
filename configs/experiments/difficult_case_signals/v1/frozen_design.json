@@ -1,0 +1,568 @@
+{
+  "status": "frozen_before_training",
+  "exploratory": true,
+  "selection_warning": "Features nominated after inspecting external residuals; reused folds are not independent confirmation.",
+  "variants": {
+    "J7_ET_LOCAL": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean",
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "J7_ET_CORRECTION": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean"
+      ],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "J7_ETN_LOCAL": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean",
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean",
+        "S2_ndvi_derived_lower_gap_max_growth_rate"
+      ],
+      "mode": "raw",
+      "correction_columns": [],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "J7_ETN_CORRECTION": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean",
+        "S2_ndvi_derived_lower_gap_max_growth_rate"
+      ],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E9_ET_LOCAL": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "sat_basic_hist__sentinel_2__msi_promedio__mean",
+        "sat_basic_hist__sentinel_2__msi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean",
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E9_ET_CORRECTION": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "sat_basic_hist__sentinel_2__msi_promedio__mean",
+        "sat_basic_hist__sentinel_2__msi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean"
+      ],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E9_ETN_LOCAL": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "sat_basic_hist__sentinel_2__msi_promedio__mean",
+        "sat_basic_hist__sentinel_2__msi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean",
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean",
+        "S2_ndvi_derived_lower_gap_max_growth_rate"
+      ],
+      "mode": "raw",
+      "correction_columns": [],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E9_ETN_CORRECTION": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "sat_basic_hist__sentinel_2__msi_promedio__mean",
+        "sat_basic_hist__sentinel_2__msi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "topo_official__slope__mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean",
+        "S2_ndvi_derived_lower_gap_max_growth_rate"
+      ],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E10_ET_LOCAL": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "soilgrids__clay__depth_weighted_0_30cm",
+        "soilgrids__bdod__depth_weighted_0_30cm",
+        "soilgrids__soc__depth_weighted_0_30cm",
+        "topo_official__slope__mean",
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E10_ET_CORRECTION": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "soilgrids__clay__depth_weighted_0_30cm",
+        "soilgrids__bdod__depth_weighted_0_30cm",
+        "soilgrids__soc__depth_weighted_0_30cm",
+        "topo_official__slope__mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean"
+      ],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E10_ETN_LOCAL": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "soilgrids__clay__depth_weighted_0_30cm",
+        "soilgrids__bdod__depth_weighted_0_30cm",
+        "soilgrids__soc__depth_weighted_0_30cm",
+        "topo_official__slope__mean",
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean",
+        "S2_ndvi_derived_lower_gap_max_growth_rate"
+      ],
+      "mode": "raw",
+      "correction_columns": [],
+      "correction_atoms": [],
+      "legacy_variant": null
+    },
+    "E10_ETN_CORRECTION": {
+      "type": "small",
+      "columns": [
+        "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+        "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+        "emp_shape__y2025_planet_evi__turning_fraction",
+        "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+        "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+        "soilgrids__clay__depth_weighted_0_30cm",
+        "soilgrids__bdod__depth_weighted_0_30cm",
+        "soilgrids__soc__depth_weighted_0_30cm",
+        "topo_official__slope__mean"
+      ],
+      "mode": "raw",
+      "correction_columns": [
+        "PLANET_evi_promedio_last_minus_first",
+        "TOPO_ADV_tpi_3x3_mean",
+        "S2_ndvi_derived_lower_gap_max_growth_rate"
+      ],
+      "correction_atoms": [],
+      "legacy_variant": null
+    }
+  },
+  "recipes": {
+    "J7_ET_LOCAL": {
+      "variant": "J7_ET_LOCAL",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 30,
+      "base_label": "J7",
+      "block": "ET",
+      "placement": "LOCAL"
+    },
+    "J7_ET_CORRECTION": {
+      "variant": "J7_ET_CORRECTION",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 30,
+      "base_label": "J7",
+      "block": "ET",
+      "placement": "CORRECTION"
+    },
+    "J7_ETN_LOCAL": {
+      "variant": "J7_ETN_LOCAL",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 31,
+      "base_label": "J7",
+      "block": "ETN",
+      "placement": "LOCAL"
+    },
+    "J7_ETN_CORRECTION": {
+      "variant": "J7_ETN_CORRECTION",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 31,
+      "base_label": "J7",
+      "block": "ETN",
+      "placement": "CORRECTION"
+    },
+    "E9_ET_LOCAL": {
+      "variant": "E9_ET_LOCAL",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 32,
+      "base_label": "E9",
+      "block": "ET",
+      "placement": "LOCAL"
+    },
+    "E9_ET_CORRECTION": {
+      "variant": "E9_ET_CORRECTION",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 32,
+      "base_label": "E9",
+      "block": "ET",
+      "placement": "CORRECTION"
+    },
+    "E9_ETN_LOCAL": {
+      "variant": "E9_ETN_LOCAL",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 33,
+      "base_label": "E9",
+      "block": "ETN",
+      "placement": "LOCAL"
+    },
+    "E9_ETN_CORRECTION": {
+      "variant": "E9_ETN_CORRECTION",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 33,
+      "base_label": "E9",
+      "block": "ETN",
+      "placement": "CORRECTION"
+    },
+    "E10_ET_LOCAL": {
+      "variant": "E10_ET_LOCAL",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 33,
+      "base_label": "E10",
+      "block": "ET",
+      "placement": "LOCAL"
+    },
+    "E10_ET_CORRECTION": {
+      "variant": "E10_ET_CORRECTION",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 33,
+      "base_label": "E10",
+      "block": "ET",
+      "placement": "CORRECTION"
+    },
+    "E10_ETN_LOCAL": {
+      "variant": "E10_ETN_LOCAL",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 34,
+      "base_label": "E10",
+      "block": "ETN",
+      "placement": "LOCAL"
+    },
+    "E10_ETN_CORRECTION": {
+      "variant": "E10_ETN_CORRECTION",
+      "gate_atoms": [
+        "soil_texture_phase",
+        "geologic_composition",
+        "geologic_distances"
+      ],
+      "input_count": 34,
+      "base_label": "E10",
+      "block": "ETN",
+      "placement": "CORRECTION"
+    }
+  },
+  "references": {
+    "J7_ET_LOCAL": "J7_BOTH",
+    "J7_ET_CORRECTION": "J7_BOTH",
+    "J7_ETN_LOCAL": "J7_BOTH",
+    "J7_ETN_CORRECTION": "J7_BOTH",
+    "E9_ET_LOCAL": "DROP_SOIL",
+    "E9_ET_CORRECTION": "DROP_SOIL",
+    "E9_ETN_LOCAL": "DROP_SOIL",
+    "E9_ETN_CORRECTION": "DROP_SOIL",
+    "E10_ET_LOCAL": "DROP_HISTORY_WATER",
+    "E10_ET_CORRECTION": "DROP_HISTORY_WATER",
+    "E10_ETN_LOCAL": "DROP_HISTORY_WATER",
+    "E10_ETN_CORRECTION": "DROP_HISTORY_WATER"
+  },
+  "gate_k": [
+    4,
+    8
+  ],
+  "corrector_grid": [
+    {
+      "alpha": 0.001,
+      "l1_ratio": 0.1
+    },
+    {
+      "alpha": 0.001,
+      "l1_ratio": 0.5
+    },
+    {
+      "alpha": 0.001,
+      "l1_ratio": 0.9
+    },
+    {
+      "alpha": 0.01,
+      "l1_ratio": 0.1
+    },
+    {
+      "alpha": 0.01,
+      "l1_ratio": 0.5
+    },
+    {
+      "alpha": 0.01,
+      "l1_ratio": 0.9
+    },
+    {
+      "alpha": 0.1,
+      "l1_ratio": 0.1
+    },
+    {
+      "alpha": 0.1,
+      "l1_ratio": 0.5
+    },
+    {
+      "alpha": 0.1,
+      "l1_ratio": 0.9
+    },
+    {
+      "alpha": 1.0,
+      "l1_ratio": 0.1
+    },
+    {
+      "alpha": 1.0,
+      "l1_ratio": 0.5
+    },
+    {
+      "alpha": 1.0,
+      "l1_ratio": 0.9
+    }
+  ],
+  "amplitudes": [
+    0.0,
+    0.25,
+    0.5
+  ],
+  "signal_columns": {
+    "evi_change": "PLANET_evi_promedio_last_minus_first",
+    "tpi": "TOPO_ADV_tpi_3x3_mean",
+    "ndvi_dynamics": "S2_ndvi_derived_lower_gap_max_growth_rate"
+  },
+  "outer_folds": 65,
+  "local_recipe": {
+    "k": 24,
+    "alpha": 30,
+    "distance_power": 1
+  },
+  "placement_rationale": "Primary: local predictors describing vegetation trajectory and microtopography. Alternative: additions to regularized compact residual corrector. Keep CT3 and gate feature atoms unchanged; reselect allowed correction and gate parameters internally.",
+  "selection_policy": "No external winner selector, regional rules, case removal or automatic champion promotion.",
+  "no_PRED": true,
+  "no_final138_fit": true,
+  "source_sha256": {
+    "${REPO_ROOT}/outputs/modeling/experimental_pls1867/v1/cache/train138_1867.parquet": "b4c8f7b60382a4f4e84e552f1d400256e79d16fe287e83f33817e27b0eb2918b",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/frozen_design.json": "eddaff0762facafe31341b65e8b96f27920cab529ec3afcc4c51522d3e8e3268",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/tables/predictions.parquet": "52583dfa28de645b45b60d50498ed184293877927426f226824e785c67658c0e",
+    "${REPO_ROOT}/outputs/modeling/ct3_residual_conditional/v1/cache/execution_plan.joblib": "0e1d94b2cf05103ab955c1e8d7a12fca4f33787374ae3fdff8185ea41a0c4568",
+    "${REPO_ROOT}/outputs/modeling/ct3_residual_conditional/v1/cache/frozen65_splits.joblib": "e4bc85766377b3f3b8a2f5a12aa3dc1a43d73d2ae7aa36cc6d8cc6244e26e130",
+    "${REPO_ROOT}/outputs/modeling/ct3_residual_conditional/v1/cache/groups.csv": "2e291edea9a5c5d17de3f1895372b8dead8660ea598d61f7716c97982093fe47",
+    "${REPO_ROOT}/src/difficult_case_signals.py": "2a57ed8d98759b2ad7229b421ad070536cd71f728bb4767fde42f2f761d38989",
+    "${REPO_ROOT}/src/signal_role_allocation.py": "79f9d801381f19092e09c48b9ab8c271e72e506e0d4ccd37da56d2bf8e8fd88d",
+    "${REPO_ROOT}/src/geoc_signal_research.py": "e86adac02cd1d74849c85a16805211e8591e8fcbaec9486d24088ca905b2b0a3",
+    "${REPO_ROOT}/src/conditional_local_phases.py": "78cdb165216769cddf56417d3898333520588135b375e4a62bcd96546de11353",
+    "${REPO_ROOT}/scripts/454_prepare_difficult_case_signals.py": "bc82e8462a65011fea768c86234cf5d6c84c95e4cd4e2e5871f031995fb404f6",
+    "${REPO_ROOT}/scripts/455_run_difficult_case_signals.py": "ad4fb19035a68e9b78f2adf3f765bbb571e4e49c6d884b49a2f6176f7ad06eb1",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/00.joblib": "77bbf69a049c93d92c0da7bde40faeda21cf6be67446c93bd9d4308f18e2d7fd",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/01.joblib": "65b81489dc4f9fbb9b92e9677dc2d179f432670072bb4549abdc63af42fdc056",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/02.joblib": "436cbedc2184f2c599c520b4e7f38a30d21f4a454c7ed18ccbb81840345b7e75",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/03.joblib": "8f91a60f2f56c07035214924c0ae6eb11212ed3bef6915b7530a743e927a0788",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/04.joblib": "897245fef35376433f47a20789aadeb43174f9930281e6f4c31b07e100535d54",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/05.joblib": "95f798b02d989e6b51302d09c5c1d37b7894b66b6adaeb1a241e98a18070d2e2",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/06.joblib": "1a4359026b03efce81505a56845e3db910d707416f32788103036e12d207d8f8",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/07.joblib": "8f28b27cb5a9d0fdc791e8ee75b99b11d57789d3cf73966d707c6fa4f0e89444",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/08.joblib": "8cd4df6d5bd246b102fd751b430fd59c5c0e50503e389bf921a1fd9049bff2ac",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/09.joblib": "1891e762cc773d2fd15eaabb5632a2b49575413857235865d1ecbf3f2224fcd3",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/10.joblib": "3386003f92b551fbf88514e157476d782449be44b0818ed5e46b8f2978f107e6",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/11.joblib": "0cb7c8b86a0eff1161fa722c7490bf8e6029be23050455849eafb1ba122155c0",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/12.joblib": "9e59e27598b93f530cfa47e8eb5fa66567f0d695167628a7d716ab0d97b298ed",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/13.joblib": "6846715e0e584150b20ef2f7069f13cdf2fbd0acfcd9f3073e18576265a0697d",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/14.joblib": "785c43676c73c5d03b8d64f7a59a08d89dcec0cad503b2190a530192ee86e4d9",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/15.joblib": "f77c7b13d5462b9f286a65ebb2060918a83c426640272fbd7c29cce75658504c",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/16.joblib": "feaba864e9a8d0fd022dad8dd5997e67ac0581a266ff1b136376e9546d3f604c",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/17.joblib": "95191cd724166f693feba1583282e3bf7b8d2c58441c594c3f7dcf8912d4bcd2",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/18.joblib": "464df67ce107573628af5dec6e1c16e1f485ecf7ee914eb5c01fef3a982a64ae",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/19.joblib": "bf0872d28cffe5d54dcd652d358a3420ee606e8a5dd770c34bfb00ba08e86a4c",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/20.joblib": "1f38b57eaf8d659b8a14aedae9a544942787b28d7eabb6f91b3a569436e64553",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/21.joblib": "6a4973cf1f7e46f81b575b2209f39c6e117c5b3d9ac1d223c304aa6221bcd816",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/22.joblib": "6c7759a05e6be6960bdc7742d8dcdf929180f2d44679dd3bb9a571cfec091004",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/23.joblib": "b6c1129f1f1da0003dc15d81ffc8531f8a7d689287452b5910d4ae1c1e6873e1",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/24.joblib": "9a3d948270c95a5e262d64ca89671580c2157df53e34db9d4b3e9ea37ddb033d",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/25.joblib": "b78063a64fed2f9bc23e71bcd8df5413c21bd64ccadd1068796c5961a9395f74",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/26.joblib": "6679ec1c95d4b68b8972d91904e43a1a5461701b7bbfa9d53403d08ded97fd3b",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/27.joblib": "af9229a4b3dc4663a58526744bff053e6061a3bc6acbefdb456412281728941d",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/28.joblib": "5758e7788417fd34de23e8732638a8ecb41ba545b17e18b22c5f68e5af6723ae",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/29.joblib": "445e08f9a24f76ff072d2b9a31b2849ab550604a79c83c498e7b1d2c1b85e9fd",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/30.joblib": "0d6a816274e5898d05c2064c78965616c2572112d7433b4e590a32b9d797a63b",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/31.joblib": "3e8fdd6f55e17904f1e1be8157be1d9387e44e21d7c59a3c7c310cca7e7a5ac6",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/32.joblib": "0574fd9d40e4242be1b8355f0f01e0044a34d17c9199ff6020a58f54e7ecd55f",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/33.joblib": "2ce662a2ed471089cfb77866356e96433b25925dbaaa6f6364268210719b472d",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/34.joblib": "ec0a9f80828f2ce9bf6174db1c1bb373d142e90db7bb4f8f04f954e2c5eb7574",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/35.joblib": "fcfe17dc2040b675b1c01ff8d55077a548053b4cab5d0e525f96be0a716e1dbd",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/36.joblib": "ac35954038bab3776645ab4c46e12d1406c27c5066d036ac18fc2ca19558c6a1",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/37.joblib": "fb722469489a47faf64fb1569e5cbfcaef9411a050b14bfaf5cedde0e0d6bf64",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/38.joblib": "75b4635a741f7a0cbbdddc8ac7336c3ad293ed0ed9778f4f616ce0c5431847b8",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/39.joblib": "72edf3e07c11897aee7284b3459ab6db5baf451ce381373b05e5f718fe63fe1b",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/40.joblib": "5a9dac83e0451a7818f109b62e2b9aecc6227d7b0920053bf0ec3b521e886a73",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/41.joblib": "22d06aa9ef8f9734e91b1af55c203e8798ec84a1e3f40a1e297a4899e337c202",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/42.joblib": "8dea578d695fc773d266c7a136923de81f5da28bcb71b271cda41e965f69d4cc",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/43.joblib": "9bc05f7a45449cda6064ccb19b161a51aee8d74b8b145d898ca6dfc75a30bf4e",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/44.joblib": "212eaadab9211c90eeda8b61c828a0f393011018296ee2e41a3fdc9690e13383",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/45.joblib": "2de44d5e119708ae140b6d577b7679ffdb1b09b6a8328786a959bba0970b8abb",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/46.joblib": "4ef8f32dd775cc96ed4769aed00302fc64beadf333cb50aa413fd367bd3ec2f2",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/47.joblib": "0f0f6cc4bbd7936c24ba5727add7a4e619f18d8c17b653a1fc9624c4749dbbbd",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/48.joblib": "050a79519e2765b903d33598e1192d696fa2be5c901e30281d6334f793016f64",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/49.joblib": "893f6668519cd8368f98c6c476a042de1cd7e4705e7a53c690d5ca1142122cec",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/50.joblib": "21c232e9b40be4929b022bc305a94da1651569837064f69528e6f5c6b07d523d",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/51.joblib": "8f81e8e4678dab079389a4140f94048adf2e846758aeec87d43bdb79fc7d8046",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/52.joblib": "aa0b26bb98573138d791913b2b0b002a7e7c4601fd590a3f55dc0a5089335c01",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/53.joblib": "65dc550ec12d366e726e2b2378ba51481c02f81aadd833c4e8ee6949d63d78bc",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/54.joblib": "2fb808da995df20358e5c767438caa3b71c25005dff0723bebbbdb3b9960a102",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/55.joblib": "6ac75fbd3c960e6cc7792b701274db7de7b049fb80efaadd6b67df7fa3b8dd3b",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/56.joblib": "67db038dc9a1cfaed49f5bdeda514e4cf09a0adeec7cbf5b4630610c8921132b",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/57.joblib": "987ba74baf16d80b2350db32888388bb68ccbdc589af931c660d65d84fe85da7",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/58.joblib": "1a2127ef703bb7e4bab7a2da3620546d8d8700a72ad63526787dce8455977a5f",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/59.joblib": "5363f52387415061f4f0e4a5266285957f9c5c2f30c996d3ee0e905b0a69accf",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/60.joblib": "c2cae9846dcb7736f6b2b7766b59caade8cdf179e460bac498228dd038d31d60",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/61.joblib": "c90320ec25799bb096a445566c462303c95a3c3409a3830bbd78cfa711702d75",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/62.joblib": "f607f36043a8c1e0d93ceed5bd97b86205ad465d647fc6182fa63236e3ac5634",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/63.joblib": "5ef3905d5db9840a46f3b589e11abc54e472835faee6c224930ef95b18569c60",
+    "${REPO_ROOT}/outputs/modeling/joint_simplification/v1/models/64.joblib": "5b1dd7f84e9b83fc4503eb43bba1557e108a37257383020a29ac2b2fffef5e7c"
+  }
+}

@@ -1,0 +1,752 @@
+# FIRA AgroCebada 2026 — Etapa B: Within-Profile Objective Learning & Fixed Ensemble Audit
+
+Continúa el programa de investigación territorial e intraperfil iniciado en la Etapa A.
+
+Quiero implementar exclusivamente la:
+
+**Etapa B — Aprendizaje explícito de diferencias intraperfil y evaluación de una mezcla fija de modelos existentes.**
+
+Esta etapa pertenece a la línea de investigación de **Familia 4**, pero debe conservar una estructura propia, versionada e independiente de Familia 4 original y de F4-E.
+
+No ejecutar todavía Etapa C ni Etapa D.
+
+## 0. Propósito de la investigación
+
+Los experimentos anteriores han mostrado que los modelos climáticos capturan parte de la estructura regional del rendimiento, pero no siempre distinguen las diferencias entre parcelas con exactamente el mismo perfil climático.
+
+En particular:
+
+- F4-S1, lluvia mensual + NDVI de mayo, alcanza RMSE aleatoria aproximadamente 0.50483 t/ha.
+- Su RMSE por perfil es aproximadamente 0.52626.
+- Su RMSE municipal es aproximadamente 0.67110.
+- Su RMSE espacial es aproximadamente 0.73904.
+- Los dos perfiles dominantes de Chignahuapan contienen 33 y 29 parcelas etiquetadas.
+- El RMSE de diferencias entre parejas internas de Chignahuapan es aproximadamente 0.798 t/ha, frente a 0.531 fuera.
+- El inicio del ascenso de LAI mostró una mejora pequeña del error intraperfil, pero no del RMSE general.
+- La Etapa A identificó diferencias geológicas descriptivas, pero no demostró una contribución predictiva.
+
+Por tanto, quiero contrastar dos hipótesis.
+
+**Hipótesis B1 — Función objetivo:**
+
+> Una función de entrenamiento que penalice explícitamente los errores en las diferencias de rendimiento dentro de perfiles climáticos puede mejorar la diferenciación parcelaria respecto de minimizar exclusivamente el error cuadrático global.
+
+**Hipótesis B2 — Complementariedad de predictores:**
+
+> El Champion de Familia 1 y F4-S1 podrían compensar parcialmente sus errores mediante una mezcla fija, aunque ambos presentan una correlación residual elevada.
+
+Estas hipótesis deben investigarse por separado.
+
+No quiero que Codex introduzca nuevas variables, arquitecturas adicionales, nuevas interacciones ni otros algoritmos en esta etapa.
+
+---
+
+# B.0 — Auditoría y congelación del diseño
+
+Antes de implementar:
+
+1. Recupera el informe y la decisión de la Etapa A.
+2. Identifica la estructura existente del programa territorial intraperfil.
+3. Recupera F4-S1 de Familia 4.
+4. Recupera F4-E1 y F4-E2.
+5. Recupera los artefactos de J0 y del Champion de Familia 1.
+6. Recupera los 65 folds externos y las particiones internas utilizadas en F4-E.
+7. Verifica coincidencia exacta de identificadores, etiquetas, perfiles y particiones.
+8. Revisa la definición de RMSE de diferencias y su ponderación por perfil.
+9. Recupera las rutinas de imputación, escalamiento, Elastic Net y selección de hiperparámetros.
+10. Documenta qué resultados existentes pueden reutilizarse literalmente y cuáles requieren entrenamiento nuevo.
+
+Trabajar exclusivamente sobre las 138 observaciones con rendimiento conocido.
+
+Conservar las 59 parcelas PREDICCION sin etiquetas.
+
+No utilizar las nuevas características geológicas, edafológicas ni topográficas producidas o auditadas en Etapa A como predictores de los modelos B.
+
+Crear un manifiesto congelado con hipótesis, variables, folds, hiperparámetros candidatos, funciones objetivo, métricas y criterios de comparación.
+
+El manifiesto debe generarse antes de acceder a las métricas externas de los modelos nuevos.
+
+---
+
+# B.1 — Definición matemática del problema intraperfil
+
+Sea el conjunto de entrenamiento de un ajuste dado:
+
+\[
+\mathcal D=\{(x_i,y_i,g_i)\}_{i=1}^{n}
+\]
+
+donde:
+
+- \(x_i\) es el vector de características.
+- \(y_i\) es el rendimiento observado en t/ha.
+- \(g_i\) identifica el perfil climático exacto.
+- \(\hat y_i=\beta_0+x_i^\top\beta\).
+
+El identificador \(g_i\) se utiliza exclusivamente para organizar la pérdida intraperfil; no es una variable predictora del regresor.
+
+Definir:
+
+\[
+e_i=y_i-\hat y_i.
+\]
+
+## B.1.1. Pérdida global
+
+\[
+\mathcal L_G(\beta_0,\beta)
+=
+\frac{1}{n}
+\sum_{i=1}^{n}e_i^2.
+\]
+
+Esta pérdida evalúa precisión absoluta de rendimiento por parcela.
+
+## B.1.2. Pérdida de diferencias por perfil
+
+Para cada perfil \(g\) con al menos dos etiquetas, denotar:
+
+\[
+I_g=\{i:g_i=g\},
+\qquad n_g=|I_g|.
+\]
+
+Definir:
+
+\[
+\mathcal L_{\Delta,g}
+=
+\frac{1}{\binom{n_g}{2}}
+\sum_{\substack{i<j\\i,j\in I_g}}
+\left[
+(y_i-y_j)-(\hat y_i-\hat y_j)
+\right]^2.
+\]
+
+La expresión dentro del cuadrado equivale a \(e_i-e_j\).
+
+El conjunto de perfiles elegibles es:
+
+\[
+\mathcal G_2=\{g:n_g\geq2\}.
+\]
+
+Definir la pérdida intraperfil con igual peso por perfil:
+
+\[
+\mathcal L_I
+=
+\frac{1}{|\mathcal G_2|}
+\sum_{g\in\mathcal G_2}
+\mathcal L_{\Delta,g}.
+\]
+
+Esto impide que los perfiles de 33 y 29 observaciones dominen exclusivamente por su número combinatorio de parejas.
+
+No implica que cada perfil sea una observación estadística independiente ni elimina su diferente precisión de estimación.
+
+## B.1.3. Identidad algebraica
+
+Verificar e implementar la igualdad:
+
+\[
+\sum_{i<j;\ i,j\in I_g}(e_i-e_j)^2
+=
+n_g\sum_{i\in I_g}(e_i-\bar e_g)^2,
+\]
+
+donde:
+
+\[
+\bar e_g=\frac{1}{n_g}\sum_{i\in I_g}e_i.
+\]
+
+Por tanto:
+
+\[
+\boxed{
+\mathcal L_{\Delta,g}
+=
+\frac{2}{n_g-1}
+\sum_{i\in I_g}(e_i-\bar e_g)^2
+}
+\]
+
+para \(n_g\geq2\).
+
+Implementar la pérdida mediante residuos centrados por grupo, sin expandir explícitamente todas las parejas para optimización.
+
+La complejidad computacional debe depender del número de parcelas, no del número cuadrático de parejas.
+
+Crear pruebas unitarias que comprueben igualdad numérica entre ambas expresiones para:
+
+- Grupos de dos observaciones.
+- Grupos de tres.
+- Grupos grandes.
+- Errores constantes por perfil.
+- Errores heterogéneos.
+- Perfiles singleton.
+
+Los perfiles singleton contribuyen a la pérdida global y no a \(\mathcal L_I\).
+
+## B.1.4. Función objetivo conjunta
+
+Definir:
+
+\[
+\mathcal J(\beta_0,\beta)
+=
+\mathcal L_G
++
+\lambda\mathcal L_I
++
+\alpha\left[
+\rho\|\beta\|_1+
+\frac{1-\rho}{2}\|\beta\|_2^2
+\right].
+\]
+
+Condiciones:
+
+\[
+\lambda\geq0,\qquad
+\alpha\geq0,\qquad
+0\leq\rho\leq1.
+\]
+
+El intercepto \(\beta_0\) no se penaliza.
+
+Documentar rigurosamente la normalización de \(\mathcal L_G\), \(\mathcal L_I\) y la penalización, ya que la parametrización estándar de Elastic Net puede incluir factores de escala diferentes.
+
+La condición \(\lambda=0\) debe reproducir el objetivo convencional equivalente, con las transformaciones y parámetros correctamente mapeados.
+
+No afirmar equivalencia con scikit-learn sin verificarla numéricamente.
+
+Si el ajuste original optimiza \(1/(2n)\) del SSE, adaptar la parametrización para que ambos problemas sean comparables.
+
+## B.1.5. Convexidad y optimización
+
+El término intraperfil es una forma cuadrática semidefinida positiva en los residuos, por lo que la función objetivo propuesta conserva convexidad en los coeficientes de un modelo lineal.
+
+Con penalización Elastic Net convexa, la optimización puede resolverse mediante un procedimiento proximal o una reformulación equivalente.
+
+Priorizar un enfoque reproducible y numéricamente estable.
+
+Si se utiliza gradiente proximal:
+
+- Derivar gradiente de la parte suave.
+- Calcular o acotar una constante de Lipschitz.
+- Aplicar correctamente el operador proximal L1.
+- Establecer tolerancias de convergencia.
+- Registrar condiciones de parada.
+- Contrastar con soluciones de referencia.
+
+Alternativamente, estudiar la reformulación de la pérdida cuadrática como un problema de mínimos cuadrados aumentado y utilizar un solver Elastic Net compatible, documentando las equivalencias de escalamiento.
+
+No implementar un optimizador artesanal si existe una transformación exacta y verificable hacia una implementación estable.
+
+Comprobar:
+
+- Convergencia.
+- Finitud de coeficientes.
+- Estabilidad ante perfiles grandes.
+- Estabilidad ante singleton.
+- Equivalencia en \(\lambda=0\).
+- Comportamiento cuando no existen perfiles elegibles en una partición interna.
+
+---
+
+# B.2 — Diseño experimental controlado
+
+Quiero aislar el efecto de cambiar el objetivo y distinguirlo del efecto de incorporar LAI.
+
+Usar cuatro experimentos:
+
+| ID | Variables predictoras | Función objetivo |
+|---|---|---|
+| B0 | Lluvia mensual + NDVI mayo | Global convencional |
+| B1 | Lluvia mensual + NDVI mayo | Global + intraperfil |
+| B2 | Lluvia mensual + NDVI mayo + inicio de ascenso LAI | Global convencional |
+| B3 | Lluvia mensual + NDVI mayo + inicio de ascenso LAI | Global + intraperfil |
+
+B0 debe corresponder a F4-S1/F4-E1.
+
+B2 debe corresponder a F4-E2.
+
+Cuando sea posible, reutilizar sus predicciones OOF exactamente como controles históricos.
+
+Para comprobar equivalencia del nuevo solver, entrenar adicionalmente controles de implementación \(\lambda=0\) y verificar que reproducen B0 y B2 dentro de una tolerancia numérica estricta.
+
+Los controles de implementación no son nuevas candidatas predictivas.
+
+No incorporar pendiente, relieve, edafología, geología, orientación, amplitud térmica ni variables satelitales adicionales.
+
+Mantener idénticas columnas entre B0/B1 y entre B2/B3.
+
+No aplicar PCA.
+
+No incorporar efectos aleatorios en esta etapa: corresponden a la futura Etapa C.
+
+---
+
+# B.3 — Selección interna de hiperparámetros y balance de objetivos
+
+## B.3.1. Parámetros
+
+Seleccionar dentro de cada entrenamiento externo:
+
+\[
+(\alpha,\rho,\lambda).
+\]
+
+Recuperar primero la grilla original de F4-S1 y conservar valores comparables de \(\alpha\) y \(\rho\).
+
+Para \(\lambda\), proponer una grilla pequeña y predefinida, por ejemplo:
+
+\[
+\Lambda=\{0,0.1,0.3,1.0\}.
+\]
+
+La grilla definitiva debe justificarse con la escala relativa de las pérdidas y congelarse antes del entrenamiento externo.
+
+No ampliar retrospectivamente el rango después de observar los resultados externos.
+
+## B.3.2. Criterio de selección
+
+No seleccionar parámetros solamente por \(\mathcal L_I\), porque podría deteriorarse gravemente la predicción absoluta.
+
+Usar una selección interna restringida.
+
+Definir, para cada configuración:
+
+\[
+R_G^{CV}=
+RMSE_{\mathrm{parcelas}}^{CV}
+\]
+
+y:
+
+\[
+R_I^{CV}=
+RMSE_{\mathrm{diferencias,perfil\ equilibrado}}^{CV}.
+\]
+
+Seleccionar la configuración que minimice \(R_I^{CV}\), sujeta a:
+
+\[
+R_G^{CV}
+\leq
+R_{G,\lambda=0}^{CV}+\delta_G.
+\]
+
+Usar inicialmente:
+
+\[
+\delta_G=0.01\ \text{t/ha},
+\]
+
+como tolerancia exploratoria operativa, no como significación estadística.
+
+Agregar una restricción predefinida de MAE, cuando sea compatible con el procedimiento de ajuste interno:
+
+\[
+MAE^{CV}
+\leq
+MAE_{\lambda=0}^{CV}+\delta_A.
+\]
+
+No elegir después del ajuste qué restricciones aplicar.
+
+Definir reglas de desempate deterministas, priorizando menor complejidad y menor \(\lambda\) cuando la evidencia interna sea equivalente.
+
+Si ninguna configuración positiva satisface restricciones, seleccionar \(\lambda=0\).
+
+## B.3.3. Problema de perfiles nuevos
+
+La métrica de diferencias intraperfil requiere que al menos dos parcelas del mismo perfil queden dentro de un conjunto de validación interno y reciban predicciones del mismo modelo.
+
+En protocolos que retienen perfiles completos, esto puede ser factible.
+
+En validación municipal o espacial, la cantidad de perfiles con múltiples observaciones retenidas puede variar.
+
+No inventar métricas cuando no hay soporte.
+
+Documentar para cada protocolo:
+
+- Número de perfiles evaluables.
+- Parcelas elegibles.
+- Parejas elegibles.
+- Perfiles excluidos por singleton.
+- Porcentaje de cobertura de la evaluación intraperfil.
+
+Establecer previamente una política de fallback cuando la evaluación local interna no sea informativa.
+
+El fallback debe utilizar únicamente métricas internas, sin observar outer-validation.
+
+## B.3.4. Cross-validation anidada
+
+Para cada fold externo:
+
+1. Separar entrenamiento y evaluación.
+2. Ajustar imputación y escalamiento exclusivamente con entrenamiento interno.
+3. Construir el término intraperfil únicamente con etiquetas disponibles en ese entrenamiento.
+4. Entrenar cada configuración candidata.
+5. Generar predicciones en validación interna.
+6. Evaluar criterios globales y locales.
+7. Seleccionar parámetros.
+8. Reentrenar con todo outer-train.
+9. Predecir outer-validation.
+10. Guardar parámetros, coeficientes, métricas internas y predicciones externas.
+
+Mantener las agrupaciones de perfil, municipio o bloque espacial según el protocolo correspondiente.
+
+No usar datos de evaluación externa para ajustar la ponderación de perfiles.
+
+---
+
+# B.4 — Métricas y evaluación
+
+## B.4.1. Predicción por parcela
+
+Reportar para B0–B3:
+
+- RMSE.
+- MAE.
+- R².
+- Sesgo.
+- Error cuadrático total.
+- Diferencias pareadas respecto de B0 y B2.
+- Estabilidad entre folds.
+- Estabilidad entre repeticiones.
+- Coeficientes y selección interna.
+
+Calcular métricas sobre predicciones OOF completas por repetición y después resumir repeticiones.
+
+No promediar RMSE de folds para reconstruir el RMSE general.
+
+## B.4.2. Predicción de diferencias
+
+Evaluar pares de parcelas que:
+
+- Comparten exactamente el mismo perfil climático.
+- Tienen etiquetas.
+- Fueron evaluadas con el mismo modelo externo.
+
+Para cada pareja:
+
+\[
+d_{ij}=y_i-y_j,
+\]
+
+\[
+\hat d_{ij}=\hat y_i-\hat y_j.
+\]
+
+Reportar:
+
+\[
+RMSE_{\Delta}
+=
+\sqrt{\operatorname{mean}_{(i,j)}
+(d_{ij}-\hat d_{ij})^2}.
+\]
+
+Además:
+
+- MAE de diferencias.
+- RMSE de diferencias con igual peso por perfil.
+- MAE de diferencias con igual peso por perfil.
+- Resultados por perfil.
+- Resultados excluyendo Chignahuapan.
+- Diferencias observadas y predichas.
+- Distribución de mejora y deterioro por perfil.
+
+Las parejas son una representación de las relaciones entre etiquetas, no nuevas unidades independientes.
+
+No calcular errores estándar fingiendo independencia entre parejas.
+
+## B.4.3. Chignahuapan
+
+Estudiar:
+
+- Los dos perfiles grandes por separado.
+- Resto de perfiles locales.
+- Parcelas fuera de Chignahuapan.
+- Comparación con igual peso por perfil.
+- Soporte efectivo.
+- Errores de diferencias superiores a 1 t/ha, como diagnóstico posterior.
+
+No utilizar el umbral de 1 t/ha para ajustar el modelo.
+
+Recordar que Chignahuapan concentra aproximadamente 51% de las etiquetas, pero alrededor de 87% de las parejas evaluables en el diagnóstico aleatorio anterior.
+
+Una reducción del error bruto total de parejas no será suficiente si proviene solamente de esos dos perfiles.
+
+## B.4.4. Validación geográfica
+
+Ejecutar los cuatro protocolos congelados:
+
+- Aleatorio: 5 folds × 10 repeticiones.
+- Perfil climático: 5 folds.
+- Municipio: 5 folds.
+- Espacial: 5 folds.
+
+Distinguir:
+
+**Desempeño intraperfil:** capacidad para estimar diferencias locales.
+
+**Desempeño regional:** capacidad para predecir parcelas en perfiles y regiones retenidos.
+
+El informe debe presentar ambas evaluaciones por separado.
+
+No declarar superioridad general si el entrenamiento intraperfil mejora diferencias, pero deteriora significativamente MAE o transferencia regional.
+
+---
+
+# B.5 — Mezcla fija del Champion y F4-S1
+
+Este componente es una investigación separada de B1–B3.
+
+## B.5.1. Modelos
+
+Utilizar:
+
+- Champion archivado de Familia 1.
+- F4-S1 lluvia + NDVI mayo.
+- Promedio fijo 50/50.
+
+Definir:
+
+\[
+\hat y_i^{mix}
+=
+\frac12\hat y_i^{Champion}
++
+\frac12\hat y_i^{F4-S1}.
+\]
+
+No estimar pesos.
+
+No comparar retrospectivamente una colección de mezclas alternativas.
+
+No agregar B1 o B3 a la mezcla en esta etapa.
+
+## B.5.2. Auditoría de correspondencia
+
+Verificar:
+
+- Mismos IDs.
+- Misma variable objetivo.
+- Mismas etiquetas.
+- Misma repetición.
+- Mismo fold externo.
+- Mismo conjunto evaluado.
+- Ausencia de predicciones dentro de muestra.
+- Correspondencia exacta de registros.
+
+Si alguna predicción no es compatible, no mezclarla.
+
+Usar exclusivamente artefactos existentes.
+
+No reentrenar Champion.
+
+## B.5.3. Evaluación
+
+Reportar:
+
+- RMSE y MAE aleatorios.
+- Sesgo.
+- R².
+- Diferencias pareadas.
+- Correlación de errores.
+- Diferencia entre errores individuales.
+- Proporción de parcelas mejoradas.
+- Contribución a SSE de parcelas extremas.
+- Resultados Q1–Q4 como diagnóstico posterior.
+- Error de diferencias intraperfil, si las predicciones de ambas fuentes son compatibles.
+- Resultados en Chignahuapan y fuera.
+
+Descomponer matemáticamente el MSE de la mezcla:
+
+\[
+MSE_{mix}
+=
+w^2MSE_A+
+(1-w)^2MSE_B+
+2w(1-w)\operatorname{E}[e_Ae_B].
+\]
+
+Con \(w=1/2\), verificar la identidad numéricamente sobre las predicciones OOF compatibles.
+
+Esta descomposición permite explicar cuándo dos modelos que individualmente tienen errores semejantes pueden mejorar mediante una mezcla.
+
+No confundir correlación de residuos con el producto medio de los errores: los sesgos también afectan el término cruzado.
+
+## B.5.4. Interpretación
+
+El resultado retrospectivo anterior fue:
+
+\[
+RMSE_{Champion}\approx0.49813,
+\]
+
+\[
+RMSE_{mix}\approx0.49360.
+\]
+
+Esta diferencia debe reproducirse, no asumirse.
+
+Distinguir:
+
+- Reducción de errores por compensación.
+- Reducción por diferencias de sesgo.
+- Mejora concentrada en unas pocas parcelas.
+- Mejora de extremos.
+- Mejora intraperfil.
+
+No afirmar una mejora confirmada porque nueve de diez repeticiones presentan menor RMSE: las repeticiones reutilizan las mismas parcelas.
+
+No inferir transferencia municipal o espacial sin predicciones compatibles del Champion.
+
+---
+
+# B.6 — Pruebas matemáticas y de implementación
+
+Además de las pruebas habituales, incluir:
+
+## Pérdida intraperfil
+
+1. Identidad exacta entre parejas y residuos centrados.
+2. Equivalencia del objetivo cuando \(\lambda=0\).
+3. Gradiente de la parte suave mediante diferencias finitas.
+4. Tratamiento de intercepto no penalizado.
+5. Convergencia del optimizador.
+6. Estabilidad ante grupos desbalanceados.
+7. Grupos singleton.
+8. Entrenamientos sin perfiles elegibles.
+9. Invariancia ante permutación de filas.
+10. Ausencia de información del fold externo en la construcción de grupos.
+
+## Validación
+
+11. Identidad de folds y etiquetas.
+12. Ajuste de preprocesamiento exclusivamente en entrenamiento.
+13. Selección interna de \(\lambda\).
+14. Comportamiento de fallback.
+15. No filtración de Y de perfiles retenidos.
+16. Métricas OOF completas por repetición.
+17. Igual peso por perfil.
+18. Tratamiento de parejas solapadas.
+
+## Mezcla fija
+
+19. Correspondencia exacta de predicciones.
+20. Reproducción de los baselines.
+21. Identidad algebraica del MSE de mezcla.
+22. Ausencia de ajuste de pesos.
+23. No modificación de Champion ni F4-S1.
+
+Una implementación que no reproduzca los controles en \(\lambda=0\) no puede utilizarse para atribuir una mejora al nuevo objetivo.
+
+---
+
+# B.7 — Entregables
+
+Crear una versión nueva de Etapa B dentro de la estructura del programa territorial intraperfil de Familia 4.
+
+Conservar las convenciones reales de directorios, scripts y documentación.
+
+Generar:
+
+- Manifiesto experimental congelado.
+- Implementación de la pérdida intraperfil.
+- Demostración algebraica de la identidad de parejas.
+- Pruebas numéricas.
+- Configuraciones de optimización.
+- Resultados B0–B3.
+- Predicciones OOF.
+- Parámetros seleccionados por fold.
+- Coeficientes y diagnósticos de convergencia.
+- Métricas por parcela.
+- Métricas de diferencias.
+- Comparaciones pareadas.
+- Diagnósticos de Chignahuapan.
+- Resultados fuera de Chignahuapan.
+- Diagnósticos por perfil.
+- Evaluación de mezcla fija.
+- Descomposición del error de mezcla.
+- Reporte técnico.
+- Resumen de decisiones.
+- Pruebas automatizadas.
+- Registro de integridad de resultados anteriores.
+
+Visualizaciones prioritarias:
+
+1. RMSE/MAE global para B0–B3.
+2. RMSE de diferencias con igual peso por perfil.
+3. Frente de compromiso entre error global y error local.
+4. Distribución de valores seleccionados de \(\lambda\).
+5. Mejora/deterioro por perfil.
+6. Diferencias observadas frente a predichas.
+7. Chignahuapan y resto del universo.
+8. Diagnósticos de convergencia.
+9. Comparación Champion–F4-S1–mezcla.
+10. Contribución de errores y casos influyentes en la mezcla.
+
+Las figuras deben ser legibles y conservar unidades, escalas y leyendas claras.
+
+---
+
+# B.8 — Criterios de decisión
+
+La etapa debe responder:
+
+1. ¿Optimizar explícitamente diferencias intraperfil reduce su RMSE fuera de muestra?
+2. ¿La mejora se conserva dando igual peso a los perfiles?
+3. ¿La mejora se observa también fuera de Chignahuapan?
+4. ¿Cuál es el costo en error global de parcela?
+5. ¿Cómo cambia la transferencia por municipio y espacio?
+6. ¿El peso óptimo del término intraperfil es consistentemente mayor que cero?
+7. ¿La mejora de B3 frente a B2 demuestra que la dinámica LAI es más aprovechable con otro objetivo?
+8. ¿La mezcla fija compensa errores del Champion y F4-S1?
+9. ¿Su mejora depende de pocos casos?
+10. ¿Hay evidencia suficiente para justificar la Etapa C?
+
+Definir tres posibles decisiones para los modelos intraperfil:
+
+**Conservar como candidato local:** mejora repetida de diferencias con deterioro global aceptable y sin problemas numéricos.
+
+**Conservar exclusivamente para investigación:** mejora local acompañada de deterioro relevante en RMSE/MAE o transferencia.
+
+**Descartar complejidad adicional:** no mejora diferencias o selecciona frecuentemente \(\lambda=0\).
+
+La mezcla fija debe clasificarse de forma independiente.
+
+No usar el margen exploratorio de 0.01 t/ha como prueba formal de significación.
+
+---
+
+# B.9 — Orden obligatorio de ejecución
+
+1. Auditar Etapa A y artefactos de Familia 4.
+2. Verificar F4-S1/F4-E2 y Champion.
+3. Congelar modelos, hiperparámetros y objetivos.
+4. Demostrar y probar la identidad de pérdida intraperfil.
+5. Implementar solver verificable.
+6. Reproducir \(\lambda=0\).
+7. Ejecutar B1 y B3 con validación anidada.
+8. Reutilizar B0/B2 como controles.
+9. Calcular métricas por parcela e intraperfil.
+10. Diagnosticar Chignahuapan y transferencia.
+11. Evaluar por separado la mezcla fija 50/50.
+12. Realizar pruebas matemáticas y de integridad.
+13. Escribir reporte técnico y resumen ejecutivo.
+14. Registrar decisión para avanzar o no hacia Etapa C.
+
+No ejecutar Etapa C.
+
+No integrar geología o suelo local suspendidos en Etapa A.
+
+No reentrenar ni modificar el Champion.
+
+**Resultado esperado:** determinar si el objetivo convencional de error global está limitando la capacidad de diferenciación parcelaria y si una optimización que atienda explícitamente las diferencias dentro de perfiles climáticos produce una mejora válida fuera de muestra, sin confundir esa mejora con la mera redistribución de errores o con la introducción de nuevas variables.

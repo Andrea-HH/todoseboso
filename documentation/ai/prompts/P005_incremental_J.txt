@@ -1,0 +1,295 @@
+# FIRA AgroCebada 2026 — Sección J: Incremental Geographic and Edaphological Yield Modeling
+
+Quiero implementar y ejecutar la **Sección J — Modelado incremental del rendimiento con topografía y edafología**, dando continuidad a las investigaciones E–I y respetando la arquitectura de Familia 1.
+
+Codex ya tiene acceso al repositorio y al contexto de estas investigaciones. Antes de implementar, recupera las configuraciones, datos procesados, resultados, particiones y convenciones existentes.
+
+**Objetivo:** determinar si altitud, pendiente y características edafológicas aportan capacidad predictiva adicional a la precipitación mensual, especialmente para diferenciar parcelas que comparten exactamente el mismo perfil climático.
+
+No modificar ni reemplazar el Champion, los modelos anteriores ni sus resultados.
+
+## J.0. Auditoría y recuperación del contexto
+
+1. Recupera las siete precipitaciones mensuales de abril–octubre de 2025 y el experimento de lluvia con Elastic Net utilizado en H.
+2. Recupera las 138 parcelas etiquetadas, las 59 sin rendimiento y los identificadores originales.
+3. Recupera los 53 perfiles climáticos exactos y sus asignaciones.
+4. Reutiliza las variables topográficas de altitud y pendiente de la extracción validada de CEM4.
+5. Recupera de la Sección I las matrices edafológicas completas, por grupos y Top-N, los indicadores de incertidumbre y las tablas de soporte de categorías.
+6. Recupera los cuatro protocolos de validación: aleatorio, por perfil climático, municipal y espacial.
+7. Confirma los algoritmos, hiperparámetros, métricas y particiones comparables de Familia 1 y H.
+8. Verifica que todos los bloques de características se integren exclusivamente mediante identificadores de parcela, con correspondencia uno a uno.
+
+No reconstruyas los datos originales ni ejecutes procesos geoespaciales redundantes.
+
+Antes de entrenar, presenta una auditoría breve con las columnas efectivas y el diseño experimental definitivo.
+
+## J.1. Diseño de los experimentos
+
+Mantén como referencia común **Elastic Net**, con estandarización, imputación y selección de hiperparámetros dentro de validación interna.
+
+Implementa los siguientes experimentos predefinidos:
+
+| Experimento | Variables |
+|---|---|
+| J0_RAIN | Siete precipitaciones mensuales |
+| J1_RAIN_SLOPE | Lluvia + pendiente |
+| J2_RAIN_TOPO | Lluvia + altitud + pendiente |
+| J3_RAIN_SOIL_GROUP | Lluvia + representación compacta de 10 coberturas de grupos edafológicos |
+| J4_RAIN_TOPO_SOIL | Lluvia + altitud + pendiente + 10 coberturas de grupos |
+| J5_RAIN_SOIL_FULL | Lluvia + composición completa de las 22 unidades cartográficas |
+
+J0 debe reproducir el baseline de lluvia sola de H bajo los mismos folds y la misma agregación de métricas. Si no coincide, identificar y corregir la discrepancia antes de continuar.
+
+Conservar J3 y J4 como principales pruebas de suelo compacto; J5 será una sensibilidad por dimensionalidad, no un candidato privilegiado.
+
+### Sensibilidad Top-3
+
+Evaluar separadamente una representación Top-3 por parcela únicamente si puede implementarse con codificación categórica correcta para las unidades y tratamiento explícito de porcentajes restantes.
+
+No interpretar las claves cartográficas como números continuos ni asumir que `top1_unit` tiene el mismo significado entre parcelas.
+
+No seleccionar N utilizando el rendimiento; utilizar inicialmente N=3, justificado descriptivamente en I.
+
+Las representaciones Top-N globales deberán seleccionar categorías dentro del entrenamiento cuando su elección dependa de la muestra del fold.
+
+## J.2. Restricciones para la edafología
+
+La representación oficial corresponde a INEGI Serie III, WRB2014, escala 1:250,000.
+
+Conservar explícitamente estas limitaciones:
+
+- Las fracciones representan cobertura de unidades cartográficas, no porcentajes físicos de grupos de suelo asociados.
+- Las variables de grupo describen unidades que mencionan ese grupo, no una medición directa de su proporción.
+- Existen dos claves con discrepancias temáticas respecto al texto de la carta E1402.
+- Existen 13 unidades con menos de cinco parcelas etiquetadas y dos unidades exclusivas del conjunto de predicción.
+- Muchas distinciones edafológicas ocurren cerca de límites cartográficos.
+
+No eliminar automáticamente las categorías raras utilizando información del conjunto completo.
+
+Implementar codificación robusta para categorías desconocidas, regularización y una política documentada para variables constantes o extremadamente escasas.
+
+No utilizar valores inventados de pH, capacidad de retención de agua, infiltración o propiedades de laboratorio.
+
+## J.3. Validación cruzada
+
+Utilizar exactamente los mismos folds externos para todos los experimentos dentro de cada protocolo:
+
+- Aleatorio: cinco folds × diez repeticiones, conservando la especificación existente.
+- Por perfil climático: mantener cada perfil íntegro en entrenamiento o evaluación.
+- Municipal: retener municipios completos.
+- Espacial: retener bloques geográficos completos.
+
+Reutiliza las particiones congeladas de H cuando sean compatibles.
+
+Todas las transformaciones aprendidas deben ajustarse exclusivamente en entrenamiento:
+
+- Escalamiento.
+- Imputación.
+- Codificación categórica.
+- Eliminación de columnas constantes.
+- Selección de variables.
+- Selección de hiperparámetros.
+
+La validación interna debe respetar los grupos cuando corresponda al protocolo externo.
+
+No utilizar las 59 etiquetas ocultas ni aplicar selección supervisada antes de dividir los datos.
+
+Distinguir claramente resultados de validación aleatoria y capacidad de transferencia geográfica.
+
+## J.4. Evaluación general
+
+Para cada experimento calcular:
+
+- RMSE en t/ha.
+- MAE en t/ha.
+- R².
+- Sesgo medio predicción menos observación.
+- Variación entre folds y repeticiones.
+- Diferencias pareadas de RMSE y MAE respecto de J0.
+- Proporción de folds donde mejora, como diagnóstico descriptivo.
+
+Mantener la misma convención de agregación usada en H: métricas calculadas sobre las predicciones OOF completas de cada repetición y después promediadas.
+
+No mezclar RMSE medio de folds con RMSE OOF por repetición.
+
+Guardar resultados por parcela, fold, repetición y protocolo para analizar errores posteriormente.
+
+## J.5. Análisis de diferencias dentro de perfiles climáticos
+
+Esta es una prioridad central del experimento.
+
+Los resultados de la Sección I muestran que, entre 2,136 pares de parcelas con clima idéntico:
+
+- 1,587 presentan diferencias topográficas bajo los umbrales descriptivos establecidos.
+- 863 presentan diferencias en composición cartográfica de suelo.
+- 1,661 se distinguen por topografía o suelo.
+- Muchas diferencias de suelo están sujetas a reservas de límites cartográficos.
+
+Quiero investigar si estas diferencias de información se traducen en mejores predicciones de rendimiento.
+
+### Evaluación intraperfil
+
+Para perfiles con al menos dos parcelas etiquetadas:
+
+1. Comparar dispersión del rendimiento observado y predicho.
+2. Comparar errores de J0 y J1–J5 dentro de cada perfil.
+3. Medir si la variación de predicciones dentro del perfil se aproxima mejor a la variación real de rendimiento.
+4. Evaluar diferencias pareadas de error por parcela.
+5. Analizar sesgo en rendimientos bajos y altos.
+6. Identificar qué perfiles mejoran y cuáles empeoran al incorporar suelo o topografía.
+
+Calcular correlaciones o asociaciones intraperfil entre rendimiento observado y predicho únicamente cuando el tamaño y variación del grupo lo permitan.
+
+Distinguir si una predicción proviene de un modelo ajustado en el mismo fold o de modelos distintos; no atribuir dispersión intraperfil a las nuevas variables si procede solamente de diferencias entre modelos de folds.
+
+No presentar resultados descriptivos intraperfil como una prueba independiente de generalización.
+
+## J.6. Análisis específico de Chignahuapan
+
+Chignahuapan contiene aproximadamente 100 parcelas, de las cuales 71 tienen rendimiento etiquetado, distribuidas entre 15 perfiles climáticos y seis unidades cartográficas.
+
+En el análisis descriptivo anterior, 85.8% de la variabilidad del rendimiento de las etiquetas locales se encontró dentro de perfiles climáticos.
+
+Quiero evaluar si las variables edafológicas y topográficas permiten reducir el error en esa heterogeneidad.
+
+Analizar:
+
+- RMSE y MAE de J0–J5 sobre las parcelas de Chignahuapan evaluadas fuera de muestra.
+- Sesgo en rendimientos bajos y altos.
+- Mejoras por perfil.
+- Mejoras en perfiles con diferentes unidades edafológicas.
+- Sensibilidad a las parcelas próximas a límites.
+- Diferencias entre resultados locales y globales.
+
+No entrenar un modelo local exclusivamente con Chignahuapan en esta primera etapa.
+
+Los resultados de Chignahuapan serán análisis de subgrupo de predicciones OOF, no una segunda evaluación independiente.
+
+Indicar cuántas observaciones respaldan cada comparación.
+
+## J.7. Sensibilidad a incertidumbre edafológica
+
+Utilizar los indicadores de la Sección I para identificar parcelas próximas a límites temáticos y aquellas afectadas por discrepancias entre claves.
+
+Realizar una sensibilidad predefinida:
+
+A. Evaluación en todas las parcelas.
+
+B. Evaluación descriptiva por estratos de incertidumbre cartográfica.
+
+C. Cuando sea metodológicamente viable, evaluar la estabilidad de los resultados frente a cambios justificados en la asignación o representación de suelo.
+
+No eliminar parcelas de los conjuntos de evaluación solamente para mejorar el RMSE.
+
+No presentar los buffers cartográficos como intervalos probabilísticos de precisión.
+
+Si las mejoras de los modelos edafológicos se concentran en parcelas con asignación incierta, señalarlo explícitamente.
+
+## J.8. Contribución incremental y redundancia
+
+Investigar:
+
+- J1 frente a J0: aporte de pendiente.
+- J2 frente a J1: aporte adicional de altitud.
+- J3 frente a J0: aporte de grupos de suelo.
+- J4 frente a J2: aporte de suelo condicionado a topografía.
+- J4 frente a J3: aporte de topografía condicionado a suelo.
+- J5 frente a J3: efecto de mayor detalle cartográfico y dimensionalidad.
+
+Las diferencias son contribuciones predictivas condicionales, no efectos causales.
+
+Examinar estabilidad de coeficientes, redundancia y correlación entre variables.
+
+Para las composiciones edafológicas, recordar que los porcentajes son dependientes y requieren tratamiento apropiado; documentar cualquier colinealidad estructural.
+
+No interpretar directamente el signo de un coeficiente edafológico sin considerar regularización, codificación y variables omitidas.
+
+## J.9. Comparación con Familia 1 y Champion
+
+Una vez evaluados los experimentos J, recuperar los resultados del Climate Current original y del Champion.
+
+Distinguir:
+
+- Lluvia mensual exclusivamente.
+- Clima completo.
+- Clima con topografía y correcciones residuales.
+- Nuevos modelos aditivos de lluvia, topografía y edafología.
+
+No comparar métricas con convenciones de agregación distintas sin recalcularlas sobre predicciones compatibles.
+
+No afirmar que una diferencia proviene exclusivamente de una nueva familia de variables cuando también cambia el algoritmo o la arquitectura.
+
+No sustituir el Champion. Esta fase únicamente identifica candidatos a integración posterior.
+
+## J.10. Criterios de decisión
+
+Antes de ejecutar, dejar fijada una regla para evaluar resultados.
+
+Priorizar:
+
+1. Mejora reproducible contra J0 bajo validación comparable.
+2. Ausencia de deterioros geográficos importantes.
+3. Reducción del sesgo en rendimientos extremos.
+4. Mejora de diferenciación predictiva dentro de perfiles climáticos.
+5. Estabilidad ante incertidumbre cartográfica.
+6. Complejidad razonable para 138 observaciones.
+7. Soporte suficiente de categorías de suelo.
+
+Utilizar como referencia de sensibilidad un margen de no inferioridad de **0.01 t/ha RMSE**, documentando que es un criterio operativo exploratorio, no un intervalo estadístico de confianza ni una garantía de utilidad agrícola.
+
+Si una variante mejora en validación aleatoria, pero empeora municipal o espacial, clasificarla como potencialmente útil dentro de regiones conocidas, sin declarar transferencia demostrada.
+
+No seleccionar automáticamente el modelo con menor RMSE aleatorio.
+
+## J.11. Entregables
+
+Crear una sección documentada J, integrada a la arquitectura existente, que contenga:
+
+- Auditoría de datos y correspondencia con I y H.
+- Especificaciones de J0–J5.
+- Configuraciones y semillas.
+- Pipelines reproducibles.
+- Predicciones OOF.
+- Métricas por protocolo.
+- Comparaciones pareadas.
+- Análisis de errores.
+- Análisis intraperfil.
+- Análisis específico de Chignahuapan.
+- Sensibilidad a incertidumbre edafológica.
+- Estabilidad de coeficientes.
+- Comparación contextual con Climate Current y Champion.
+- Diccionario de variables.
+- Pruebas automatizadas.
+- Reporte técnico e interpretación de resultados.
+
+Priorizar visualizaciones que muestren:
+
+- RMSE por protocolo y experimento.
+- Diferencias de RMSE respecto de J0.
+- Observado frente a predicho.
+- Residuales espaciales.
+- Distribución de errores dentro de perfiles.
+- Comparación específica de Chignahuapan.
+- Mejora o deterioro por representación de suelo.
+- Sensibilidad a límites cartográficos.
+
+Mantener intactos los datos originales y los resultados de experimentos anteriores.
+
+## J.12. Orden de ejecución
+
+1. Auditar y recuperar información de I, H y Familia 1.
+2. Congelar especificaciones y criterios de evaluación.
+3. Construir las matrices J0–J5.
+4. Verificar correspondencia y ausencia de fuga.
+5. Ejecutar validación cruzada.
+6. Calcular métricas comparables.
+7. Realizar diagnósticos intraperfil.
+8. Analizar Chignahuapan.
+9. Evaluar incertidumbre edafológica.
+10. Interpretar aportes incrementales.
+11. Comparar con los benchmarks existentes.
+12. Documentar conclusiones y recomendar la siguiente decisión metodológica.
+
+**Resultado esperado:** determinar si la pendiente, la altitud y la edafología aportan señal predictiva útil por encima de la lluvia, particularmente donde los perfiles climáticos son idénticos, y establecer si alguna representación merece investigarse posteriormente como parte de una mejora del Champion.
+
+No quiero que se declare un nuevo ganador si la evidencia es débil. Quiero una comparación rigurosa que permita decidir qué información vale la pena integrar y qué información debe descartarse o conservarse únicamente como contexto.

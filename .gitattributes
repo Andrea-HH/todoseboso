@@ -1,0 +1,8 @@
+# Portable metadata hashes must survive checkout on Windows/Linux.
+/.gitattributes text eol=lf
+/configs/** text eol=lf
+/documentation/ai/*.csv text eol=lf
+/documentation/inventories/*.json text eol=lf
+
+# Literal recovered attachments: preserve original bytes and line endings.
+/documentation/ai/prompts/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

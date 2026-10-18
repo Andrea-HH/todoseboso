@@ -1,0 +1,112 @@
+{
+  "experiment": "CT3 paired-base coherence",
+  "specs": {
+    "M1_LAI": {
+      "kind": "ridge",
+      "columns": [
+        "S2_lai_promedio_runup_start_day"
+      ],
+      "grid": [
+        {
+          "alpha": 1.0
+        },
+        {
+          "alpha": 0.1
+        },
+        {
+          "alpha": 0.01
+        }
+      ]
+    },
+    "M1_Z": {
+      "kind": "ridge",
+      "columns": [
+        "S2_lai_promedio_runup_start_day",
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05"
+      ],
+      "grid": [
+        {
+          "alpha": 1.0
+        },
+        {
+          "alpha": 0.1
+        },
+        {
+          "alpha": 0.01
+        }
+      ]
+    },
+    "M2_Z": {
+      "kind": "tree",
+      "columns": [
+        "S2_lai_promedio_runup_start_day",
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05"
+      ],
+      "grid": [
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 15
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 15
+        }
+      ]
+    },
+    "C_CONTEXT": {
+      "kind": "tree",
+      "columns": [
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05"
+      ],
+      "grid": [
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 15
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 15
+        }
+      ]
+    }
+  },
+  "amplitudes": [
+    0.0,
+    0.25,
+    0.5
+  ],
+  "outer_folds": 65,
+  "selection": "complete original inner OOF RMSE; original selection_key",
+  "base_policy": "reuse previously nested-tuned archived caches exactly; no new base fitting",
+  "outer_prediction": "equal-weight four original inner base models, each corrected on its disjoint heldout calibration fold; never refit the paired base",
+  "inner_prediction": "for each original inner validation fold, average deep base/calibration pairs contained entirely in inner training; evaluate only original inner heldout",
+  "controls": "paired ensemble with zero correction; original five-model archived OOF unchanged",
+  "centering": "original calibration mean-zero centered corrector; no new intercept",
+  "limits": "original features, grids, amplitudes and frozen splits; no regional rules, no extra depth",
+  "scope": "exploratory structural contrast, not independent confirmation or pure isolation: training sizes and calibration support also change",
+  "no_final_fit138": true,
+  "no_PRED": true,
+  "no_champion_change": true
+}

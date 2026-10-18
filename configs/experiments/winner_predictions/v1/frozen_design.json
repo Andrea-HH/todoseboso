@@ -1,0 +1,103 @@
+{
+  "winners": [
+    "C-T3",
+    "Champion",
+    "EQUAL3"
+  ],
+  "authorization": "User explicitly confirmed three winners and 59 PRED generation",
+  "final_training_n": 138,
+  "prediction_n": 59,
+  "consolidation": "modal complete hyperparameter tuple across the 50 original random outer fits, lexical JSON tie; no selection from PRED values or external protocol rankings",
+  "ct3": {
+    "model__alpha": 0.01,
+    "model__l1_ratio": 0.1
+  },
+  "catboost": {
+    "depth": 2,
+    "iterations": 300,
+    "l2_leaf_reg": 30.0,
+    "learning_rate": 0.03
+  },
+  "gpr": {
+    "n_restarts_optimizer": 2,
+    "seed": 2026,
+    "amplitude_bounds": [
+      0.01,
+      100.0
+    ],
+    "length_bounds": [
+      0.2,
+      20.0
+    ],
+    "noise_variance_bounds": [
+      0.001,
+      2.0
+    ],
+    "initial_amplitude": 1.0,
+    "initial_length": 1.0,
+    "initial_noise_variance": 0.1,
+    "jitter": 1e-08
+  },
+  "champion": {
+    "climate_params": {
+      "alpha": 0.01,
+      "l1_ratio": 0.7
+    },
+    "history_params": {
+      "colsample_bytree": 0.7,
+      "learning_rate": 0.03,
+      "max_depth": 1,
+      "min_child_weight": 5,
+      "n_estimators": 150,
+      "reg_alpha": 1.0,
+      "reg_lambda": 10.0,
+      "subsample": 0.8
+    },
+    "topography_params": {
+      "alpha": 100.0
+    }
+  },
+  "equal3_weights": {
+    "ct3": 0.3333333333333333,
+    "gpr": 0.3333333333333333,
+    "catboost": 0.3333333333333333
+  },
+  "champion_final_targets": "History: y minus mean of 10 archived TOP20_ENET_BASE OOF predictions. Topography: y minus mean of 10 archived strict Climate+History champion_pred OOF predictions. Re-rank climate20 on full TRAIN y, history15 on full TRAIN cross-fitted residual1. All final stages fit 138 TRAIN; never fit PRED or substitute training fitted residuals.",
+  "evaluation": "Reuse archived OOF, Champion random only; refit consolidation is defined now and has no new independent test. Mean repeated OOF losses, never score mean predictions as original CV.",
+  "statistics": {
+    "seed": 2026,
+    "bootstrap_draws": 5000,
+    "primary_clusters": {
+      "random": "climate_profile",
+      "climate_profile": "climate_profile",
+      "municipality": "municipality",
+      "spatial": "spatial"
+    },
+    "paired_signflip": "mean per-parcel squared loss averaged over repeats; exact signs up to16 clusters, otherwise20000 draws",
+    "multiplicity": "Holm across all six available model-pair/protocol MSE contrasts",
+    "limitations": "Fixed-prediction conditional exploratory intervals; no training or model-selection uncertainty, no correction for historical search over all project experiments; clusters may retain spatial dependence. Five spatial blocks imply two-sided exact p>=.0625. No calibrated PRED intervals."
+  },
+  "sha256": {
+    "data\\processed\\family_4\\territorial_intraprofile_program\\v1\\stage_c\\c_features_197_target_free.parquet": "d764f441246a5c921ae36392e8300df54c1aece641653e2787501322bf399dce",
+    "data\\original\\01_tablas_maestras\\ID_area_rendimiento_70_30_Reto_AgroCebada.csv": "ec07b7ede0ae692109d91b3e941b1a353fe7f89410507db9bfbe6d7c112590ef",
+    "outputs\\modeling\\ct3_residual_conditional\\v1\\cache\\train138.parquet": "b43497414fdb5581bc713da2b16176fefe52738461327734b624214488b59203",
+    "outputs\\modeling\\ct3_residual_conditional\\v1\\cache\\execution_plan.joblib": "0e1d94b2cf05103ab955c1e8d7a12fca4f33787374ae3fdff8185ea41a0c4568",
+    "outputs\\modeling\\ct3_residual_conditional\\v1\\tables\\base_fit_registry.csv": "3ab6960237c766d51fd57e883d397640d62ee82cc1959c74fa2b90c80ec7b7c5",
+    "data\\processed\\family_1\\features\\climate_features.parquet": "ddcba3119c309ee89f158916f84967c3df73f5402d13b130dec064fa591378de",
+    "data\\processed\\family_1\\features\\history_features.parquet": "bcacff29f590877b0d0282f50cb64fa35ecd5f52126a24ae6e49fd2ffd4ee3fa",
+    "data\\processed\\family_1\\features\\topography_basic_features.parquet": "919042844f5a73637f5477606bb04ae364ececac674a7c3a467f2a39621ef86c",
+    "outputs\\modeling\\residual_signal_audit\\stage6_architecture_optimization\\models\\selected_hyperparameters.csv": "60b5ed6fdc37f18dc111deb913cebd09358cf2a6226668ee29010ccca06feab1",
+    "outputs\\modeling\\residual_signal_audit\\stage4_champion_reconstruction\\predictions\\oof_predictions.parquet": "6df3b43d69d00c86368c8e10aa628cdb16ca50fed40d79a29b641ddbf2769ae6",
+    "outputs\\modeling\\residual_signal_audit\\stage5_second_residual_audit\\checkpoints\\residual2_predictions.parquet": "86c83de340142511dbe29d2ad55ef3e29fb8dfd83ca938171c542dcff40a0203",
+    "outputs\\modeling\\family_7\\boosting\\v1\\tables\\fit_registry.csv": "4fb68c8dcce0459474b9f74e5c1b990ea8111fac38e0b4a4efb5907403ab43c0",
+    "outputs\\modeling\\compact_ensemble\\v1\\tables\\oof_predictions.parquet": "83667d3dfb5a9bfe2f4eb2885ca7c0e77e07e4ea183e283ba2f56ea3e37e31ce",
+    "outputs\\modeling\\residual_signal_audit\\stage6_architecture_optimization\\predictions\\oof_predictions.parquet": "429fff6f01c4118c75551216f02f11dd30bff883002f76f6811c7e64f3156fd8",
+    "outputs\\modeling\\family_7\\expansion\\v1\\splits\\group_memberships.csv": "2e291edea9a5c5d17de3f1895372b8dead8660ea598d61f7716c97982093fe47",
+    "scripts\\411_predict_frozen_winners.py": "a0e4070143b5ee166dc5351620d39398aeb40734acfaac9d2e486d5917c5d95f",
+    "src\\winner_delivery.py": "0114a0d883bd5b309fa28c5b981823e079f8fa42f0c91b5a835059e68c0294b6",
+    "src\\family_7\\models.py": "e8153eb94850755241f329a5a982d6246420058f6dde0a796bcd8e559923005d",
+    "src\\family_5\\gpr_initial\\model.py": "b397ea9c4f71e9b8e24744721dd11b580274b5ef122d7c31f8e72f9f20b091f7",
+    "src\\family_5\\gpr_initial\\kernel.py": "61e0939d9304a8c2ff9757336a498ac800ef3a70e951a7031b90c91217415b88",
+    "src\\family_4\\conditional_response.py": "10a15b9ba07f83e190f7b496b4bda8549cc32565ca9ca9a5eec94afdc69d651b"
+  }
+}

@@ -1,0 +1,132 @@
+# F6-E — Expansión informada de variables para Random Forest y Extra Trees
+
+Quiero ampliar la investigación de F6 antes de cerrar definitivamente la familia de bagging y avanzar a F7.
+
+Los resultados F6-00 y F6-01 no superaron los criterios de continuación con el núcleo compacto de cuatro predictores. Sin embargo, esa comparación no permite concluir que los árboles no puedan beneficiarse de las variables históricas, topográficas y térmicas identificadas previamente.
+
+El objetivo de esta extensión es **investigar la utilidad incremental de bloques de variables con evidencia previa**, manteniendo una selección controlada, reproducible e interpretable.
+
+No quiero realizar fuerza bruta, combinaciones exhaustivas ni una nueva selección global entre las 1,354 variables.
+
+## 1. Recuperar evidencia y congelar diseño
+
+Revisa el inventario F5, los resultados RS3–RS6, F4 y F6, incluyendo los experimentos de historia, topografía, temperatura, lluvia y vegetación.
+
+Conserva las selecciones de variables y definiciones ya auditadas.
+
+Reutiliza los 65 folds originales y las particiones internas.
+
+Mantén intactos F6-00, F6-01 y el Champion.
+
+## 2. Bloques autorizados
+
+Núcleo original:
+- `compact_precip_total`
+- `compact_early_fraction`
+- `compact_concentration_hhi`
+- `S2_ndvi_month_05`
+
+Historia:
+- `HIST_S2_ndvi_promedio_mean`
+- `HIST_S2_ndvi_promedio_std`
+
+Topografía:
+- `TOPO_BASIC_slope_mean`
+
+Temperatura:
+- `CLIMATE_dtr_mean_std`
+
+Representación alternativa de lluvia:
+- Siete valores mensuales de abril a octubre de 2025, con nombres exactos del inventario F5.
+
+No asumir que estos subconjuntos reproducen el beneficio anteriormente observado con History15, History16 o slope14 completos.
+
+## 3. Primera batería de ablaciones
+
+Ejecuta exclusivamente:
+
+- F6-E0: recuperar Extra Trees del núcleo compacto como referencia.
+- F6-E1: Extra Trees + historia NDVI2.
+- F6-E2: Extra Trees + pendiente media.
+- F6-E3: Extra Trees + DTRstd.
+
+Conserva la misma familia de algoritmo y un procedimiento comparable de regularización y selección interna.
+
+No reutilices los hiperparámetros seleccionados mediante los resultados externos de otros experimentos.
+
+Evalúa utilidad incremental contra F6-E0, no solamente contra C-T3.
+
+Después de esta primera batería, presenta resultados y recomienda si merece la pena ejecutar:
+
+- F6-E4: núcleo + historia NDVI2 + pendiente.
+- F6-E5: lluvia mensual7 + NDVI mayo + historia NDVI2 + pendiente.
+
+No ejecutes E4/E5 automáticamente.
+
+## 4. Evaluación
+
+Reutiliza los 65 folds originales y reporta RMSE, MAE y sesgo sobre OOF completas por repetición.
+
+Evalúa separadamente:
+
+- Aleatoria.
+- Perfil climático.
+- Municipio.
+- Bloques espaciales.
+- Diferencias intraperfil.
+- Sesgos regionales.
+- Concentración de ganancias y pérdidas por parcela.
+- Robustez al omitir bloques del cálculo, sin reajustar modelos.
+
+Compara resultados pareados con el Extra Trees original y contextualízalos frente a C-T3, F5-01 y Champion cuando la evaluación sea compatible.
+
+No elegir un ganador global mediante resultados externos y presentar después esa selección como confirmación independiente.
+
+## 5. Interpretabilidad
+
+Quiero entender qué aporta cada nueva fuente.
+
+Para cada extensión calcula, cuando haya soporte suficiente:
+
+- Ablación de bloque reajustando el modelo.
+- Importancia por permutación agrupada o condicional.
+- Estabilidad del uso de variables entre ajustes.
+- Curvas ALE univariadas.
+- Interacciones interpretables de baja dimensión.
+- Umbrales de partición y soporte de hojas.
+
+Distingue importancia predictiva, asociación estadística y mecanismos causales.
+
+No asumir que una variable con alta frecuencia de partición necesariamente reduce el error fuera de muestra.
+
+Evita visualizaciones de efectos sobre regiones del espacio de predictores sin soporte empírico.
+
+## 6. Regularización y reproducibilidad
+
+Mantén árboles conservadores y selección de hiperparámetros exclusivamente dentro de entrenamiento.
+
+Registra profundidad, mínimo de muestras por hoja, número de variables candidatas por split, cantidad de árboles, semillas y estabilidad de las predicciones.
+
+No ampliar hiperparámetros como respuesta retrospectiva a errores específicos.
+
+Si detectas sensibilidad importante al número de árboles, documenta el problema sin abrir una búsqueda adicional automáticamente.
+
+## 7. Entregables
+
+Genera resultados versionados dentro de F6, respetando numeración y estructura existentes:
+
+- Diseño congelado.
+- Tabla de bloques y evidencia que justifica cada uno.
+- Métricas y comparaciones pareadas.
+- Predicciones OOF.
+- Ablaciones.
+- Diagnósticos regionales.
+- Interpretaciones de efectos.
+- Tabla de decisión para E4/E5.
+- Recomendación para F7.
+
+No modificar artefactos anteriores ni generar predicciones de las 59 parcelas.
+
+Al terminar la primera batería, detente y presenta una recomendación.
+
+El objetivo es determinar si la limitación observada en F6 proviene parcialmente de la representación de variables y si la incorporación de fuentes complementarias puede mejorar el desempeño sin sacrificar interpretabilidad ni generalización territorial.

@@ -1,0 +1,550 @@
+# FIRA AgroCebada 2026 — Secciones G y H: Exploración de señales climáticas y complementariedad predictiva
+
+Quiero desarrollar dos nuevas secciones de investigación dentro del repositorio existente:
+
+**G — Temperature Signal Exploration**
+
+**H — Joint Climate Signal Exploration**
+
+Estas secciones dan continuidad al trabajo realizado en las familias de modelos y en las investigaciones E y F. No deben renumerar, sustituir ni sobrescribir ningún módulo anterior.
+
+Ambas corresponden a la primera hipótesis de nuestra siguiente etapa de investigación:
+
+**H1: La temperatura contiene información temporal y predictiva complementaria a la precipitación, y la combinación de ambas permite representar condiciones climáticas que no capturamos mediante lluvia exclusivamente.**
+
+El objetivo no es entrenar tantos modelos como sea posible. Es identificar, cuantificar e interpretar la información que tenemos y determinar si justifica cambios en el bloque climático de Familia 1.
+
+## 0. Auditoría de contexto y convenciones
+
+Antes de desarrollar G y H:
+
+1. Explora la estructura completa del repositorio.
+2. Localiza las familias de modelos 1, 2 y 3.
+3. Identifica las secciones E y F ya existentes y su esquema de numeración.
+4. Recupera los resultados y configuraciones del Champion de Familia 1.
+5. Identifica el modelo `Climate Current`, su selección de características y su algoritmo Elastic Net.
+6. Identifica las particiones de validación utilizadas en Familia 1.
+7. Identifica los módulos existentes de procesamiento climático, ingeniería de características, evaluación y visualización.
+8. Recupera los experimentos de precipitación E0–E8 como antecedentes, sin confundir sus identificadores internos con las nuevas secciones G y H.
+9. Confirma cómo se procesaron Tmin y Tmax en la base climática longitudinal.
+10. Determina qué análisis climáticos equivalentes ya existen para evitar repetirlos.
+
+No reutilices la letra E para nuevos módulos ni la F para identificar estas investigaciones. Utiliza G y H como identificadores principales y sigue las convenciones internas del repositorio para scripts, directorios y productos.
+
+No cambies los nombres, resultados ni configuraciones de modelos anteriores.
+
+Produce una tabla de correspondencia entre las nuevas investigaciones y los módulos existentes.
+
+---
+
+# G — Temperature Signal Exploration
+
+## G.1. Objetivo
+
+Investigar la estructura estadística, temporal y espacial de las temperaturas mínimas y máximas mensuales y su relación con el rendimiento de cebada durante abril–octubre de 2025.
+
+Queremos determinar:
+
+- Cómo varían Tmin y Tmax entre parcelas y meses.
+- Qué información contienen las temperaturas que no esté representada por una sola variable térmica.
+- Si aparecen perfiles térmicos repetidos debido a la resolución espacial.
+- Si existen patrones térmicos regionales.
+- Cómo se relacionan descriptivamente las condiciones térmicas con los rendimientos.
+- Qué representaciones térmicas son candidatas razonables para un modelo predictivo.
+
+No incorporar precipitación como predictor en los modelos exclusivos de G. Puede utilizarse posteriormente como referencia descriptiva, claramente separada.
+
+## G.2. Fuente y auditoría
+
+Reutiliza la información climática longitudinal existente para las 197 parcelas durante 2022–2025.
+
+La información térmica proviene de CHIRTS-ERA5 y contiene:
+
+- Temperatura mínima mensual promedio.
+- Temperatura máxima mensual promedio.
+
+Verifica:
+
+1. Unidades originales y conversiones, si existen.
+2. Cobertura temporal completa.
+3. Valores faltantes.
+4. Consistencia Tmin ≤ Tmax.
+5. Tratamiento de NoData.
+6. Método de extracción espacial y ponderación por intersección.
+7. Correspondencia exacta con identificadores de parcela.
+8. Resolución espacial y alineación con los rásteres de precipitación.
+9. Existencia de series idénticas o prácticamente iguales.
+10. Ausencia de filtraciones de información del rendimiento.
+
+Si la extracción ya fue auditada y es correcta, reutilízala. No reconstruyas los datos originales.
+
+## G.3. Exploración temporal
+
+Analizar Tmin y Tmax por separado, mes a mes, para abril–octubre de 2025.
+
+Construir:
+
+- Series temporales promedio y distribución entre parcelas.
+- Diagramas de caja por mes.
+- Histogramas mensuales.
+- Dispersión espacial por mes.
+- Diferencias entre años 2022–2025.
+- Comparación de la misma mensualidad entre años.
+- Matrices de correlación temporal.
+- Evolución de la variabilidad espacial durante el ciclo.
+
+Estudiar las temperaturas dentro del ciclo, no tratar los siete meses como siete observaciones independientes de rendimiento.
+
+## G.4. Ingeniería de variables térmicas
+
+Construir candidatos interpretables sin incluirlos automáticamente todos en regresiones.
+
+### Temperatura mensual original
+
+Conservar las siete Tmin y las siete Tmax de abril–octubre de 2025.
+
+### Temperatura media
+
+Calcular:
+
+\[
+T_{\mathrm{mean},i,m}=
+\frac{T_{\max,i,m}+T_{\min,i,m}}{2}
+\]
+
+Documentar que se trata de una aproximación derivada de promedios mensuales de máximas y mínimas, no de la integración horaria de la temperatura.
+
+### Amplitud térmica
+
+Calcular:
+
+\[
+DTR_{i,m}=T_{\max,i,m}-T_{\min,i,m}
+\]
+
+### Resúmenes del ciclo
+
+Para Tmin, Tmax, Tmean y DTR, explorar:
+
+- Media temporal.
+- Mínimo y máximo de los promedios mensuales.
+- Desviación estándar entre meses.
+- Rango.
+- Mes del máximo.
+- Mes del mínimo.
+- Cambios mensuales.
+- Tendencia lineal a lo largo del ciclo.
+- Mayor incremento y disminución mensual.
+- Rachas de incrementos o disminuciones, si muestran variación suficiente.
+
+No llamar a los extremos de estas series "heladas", "olas de calor" o temperaturas extremas diarias. Los datos son promedios mensuales.
+
+### Referencia histórica
+
+Para cada mes de abril–octubre comparar 2025 con 2022–2024.
+
+Calcular anomalías absolutas de Tmin, Tmax y, cuando corresponda, Tmean.
+
+Documentar que tres años constituyen una referencia histórica corta, no una normal climatológica.
+
+No utilizar umbrales fisiológicos de cebada sin respaldo documental.
+
+## G.5. Estructura espacial y perfiles térmicos
+
+Determinar:
+
+- Número de series térmicas únicas para Tmin.
+- Número de series únicas para Tmax.
+- Número de perfiles térmicos conjuntos Tmin–Tmax.
+- Grupos de parcelas con perfiles iguales.
+- Distancias y distribución geográfica de esos grupos.
+- Relación con las celdas de la cuadrícula CHIRTS-ERA5.
+- Variación térmica dentro de estados y municipios.
+- Relación de los perfiles con elevación y pendiente, exclusivamente a nivel exploratorio.
+
+Comparar la diferenciación espacial de temperatura con los 53 perfiles de precipitación previamente encontrados.
+
+No asumir que la temperatura distingue más parcelas solamente por ser una fuente meteorológica diferente.
+
+## G.6. PCA de temperatura
+
+Realizar PCA exploratorio sobre representaciones separadas:
+
+A. Siete Tmin mensuales.
+
+B. Siete Tmax mensuales.
+
+C. Catorce variables mensuales Tmin y Tmax.
+
+D. Siete Tmean y siete DTR, como representación alternativa.
+
+Para cada una:
+
+- Estandarizar apropiadamente.
+- Calcular varianza explicada.
+- Examinar cargas.
+- Visualizar PC1–PC2.
+- Identificar patrones temporales.
+- Colorear por estado, municipio y rendimiento observado.
+- Examinar agrupamientos regionales.
+- Comparar dimensionalidad efectiva.
+
+No interpretar agrupaciones visuales como clusters confirmados.
+
+No atribuir significado agronómico a componentes únicamente por explicar mucha varianza.
+
+PCA aquí es principalmente una herramienta descriptiva.
+
+## G.7. Asociación exploratoria con rendimiento
+
+Utilizar únicamente las 138 parcelas etiquetadas para investigar:
+
+- Correlaciones con rendimiento.
+- Relaciones no lineales aparentes.
+- Diferencias entre rendimientos bajos y altos.
+- Estructura regional.
+- Variación del rendimiento dentro de perfiles térmicos idénticos.
+- Posibles variables redundantes.
+
+No utilizar estas asociaciones descriptivas para seleccionar retrospectivamente variables y luego reportar como independientes métricas sobre las mismas etiquetas.
+
+## G.8. Regresiones térmicas controladas
+
+Una vez terminado el EDA, evaluar un número pequeño de representaciones térmicas predefinidas.
+
+Comparar:
+
+- Baseline promedio.
+- Tmin mensual.
+- Tmax mensual.
+- Tmin + Tmax mensuales.
+- Tmean + DTR mensuales.
+- Resúmenes térmicos compactos.
+- PCR térmica, solamente si el PCA descriptivo justifica investigar reducción dimensional.
+
+Utilizar Elastic Net como referencia principal si es el algoritmo del bloque climático de Familia 1, con regularización seleccionada dentro de validación interna.
+
+No añadir árboles, Random Forest o boosting de forma automática.
+
+Reutilizar particiones existentes de Familia 1 y, como sensibilidad, los esquemas espacial, municipal y de perfiles climáticos cuando sean compatibles.
+
+Reportar MAE, RMSE, R², sesgo y errores por región, bajo los mismos protocolos.
+
+No declarar un modelo térmico ganador por una mejora pequeña o inconsistente.
+
+## G.9. Entregables
+
+Producir:
+
+- Auditoría de temperatura.
+- Diccionario de características térmicas.
+- Tablas descriptivas.
+- Análisis de perfiles térmicos.
+- PCA exploratorio.
+- Análisis de asociaciones.
+- Comparaciones de modelos exclusivamente térmicos.
+- Diagnóstico de limitaciones de resolución.
+- Conclusiones sobre qué información térmica merece investigarse junto con precipitación.
+
+No modificar el Champion.
+
+---
+
+# H — Joint Climate Signal Exploration
+
+## H.1. Objetivo
+
+Investigar la estructura conjunta de precipitación, Tmin y Tmax y cuantificar qué aporta cada familia de variables a la predicción del rendimiento.
+
+La pregunta principal es:
+
+**¿El poder predictivo de Climate Current procede principalmente de precipitación, temperatura o de su información complementaria?**
+
+También queremos saber si combinar temperatura y precipitación introduce nuevos perfiles climáticos o simplemente mantiene la misma diferenciación espacial.
+
+Esta investigación debe usar los resultados auditados de G y los experimentos de precipitación existentes.
+
+## H.2. Integración climática
+
+Construir una matriz parcelaria con los valores de abril–octubre de 2025:
+
+- Siete precipitaciones mensuales.
+- Siete temperaturas mínimas.
+- Siete temperaturas máximas.
+
+Un total de 21 variables mensuales originales, antes de transformaciones.
+
+Cada fila corresponde a una parcela.
+
+Verificar correspondencia de meses, parcelas y unidades. No duplicar registros supervisados.
+
+Conservar bloques separados de precipitación y temperatura dentro de la matriz para permitir ablaciones y análisis de contribución.
+
+## H.3. Exploración conjunta
+
+Investigar:
+
+- Correlaciones entre lluvia y Tmin.
+- Correlaciones entre lluvia y Tmax.
+- Correlaciones entre Tmin y Tmax.
+- Correlaciones dentro de cada familia.
+- Redundancia entre variables.
+- Estructura espacial conjunta.
+- Perfiles climáticos idénticos.
+- Diferencias entre regiones.
+- Asociaciones exploratorias con rendimiento.
+- Comparaciones entre 2025 y la referencia 2022–2024.
+
+Incluir matrices de correlación por bloques, no solamente una matriz de 21×21 sin interpretación.
+
+Investigar si existen relaciones no lineales aparentes entre precipitación y temperatura, sin atribuir causalidad.
+
+## H.4. PCA climático conjunto
+
+Realizar PCA exploratorio con las 21 variables mensuales estandarizadas.
+
+Comparar su estructura con:
+
+- PCA de precipitación existente.
+- PCA de temperatura de G.
+- PCA conjunto.
+
+Documentar:
+
+- Varianza explicada.
+- Cargas por mes y familia.
+- Contribución relativa de bloques.
+- Scores.
+- Agrupamientos geográficos.
+- Relación descriptiva con rendimiento.
+
+Investigar si las principales componentes representan gradientes conjuntos de lluvia y temperatura o contrastes entre ambas señales.
+
+No imponer interpretaciones antes de observar las cargas.
+
+Dado que hay siete variables de precipitación y catorce de temperatura, considerar una sensibilidad de escalamiento por bloques para evitar que el número de columnas otorgue automáticamente mayor peso al componente térmico.
+
+No elegir el escalamiento a partir de los resultados de rendimiento sin validación interna.
+
+## H.5. Diagnóstico de complementariedad espacial
+
+Partiendo de los 53 perfiles de precipitación idénticos:
+
+1. Determinar cuántos perfiles conjuntos lluvia–temperatura existen.
+2. Identificar si la temperatura subdivide perfiles de precipitación.
+3. Medir cuántas parcelas antes indistinguibles se distinguen ahora.
+4. Analizar el número de valores climáticos diferentes por municipio y región.
+5. Medir la variabilidad del rendimiento dentro de los perfiles climáticos conjuntos.
+6. Comparar la dispersión intraperfil antes y después de incorporar temperatura.
+
+No comparar directamente la disminución de dispersión intragrupo como evidencia predictiva si los grupos son cada vez más pequeños. Reportar tamaños y considerar el efecto mecánico de la fragmentación de grupos.
+
+Investigar explícitamente si ambas variables están condicionadas por la misma cuadrícula espacial y qué limitaciones mantiene esa resolución.
+
+## H.6. Ablación predictiva controlada de Climate Current
+
+Este es el experimento central de la hipótesis H1.
+
+Primero recupera exactamente el modelo `Climate Current` de Familia 1:
+
+- Algoritmo.
+- Features originales.
+- Escalamiento.
+- Imputación.
+- Regularización.
+- Configuraciones.
+- Particiones externas e internas.
+- Métricas originales.
+
+Construye una comparación controlada utilizando la misma familia de algoritmo, estrategia de validación y procesamiento.
+
+### Modelos
+
+H0. Baseline sin variables climáticas.
+
+H1. Precipitación exclusivamente.
+
+H2. Tmin exclusivamente.
+
+H3. Tmax exclusivamente.
+
+H4. Tmin + Tmax.
+
+H5. Precipitación + Tmin.
+
+H6. Precipitación + Tmax.
+
+H7. Precipitación + Tmin + Tmax.
+
+H8. Climate Current original de Familia 1, sin modificar su especificación.
+
+Estos identificadores H0–H8 son internos a la sección H. No deben confundirse con E0–E8 del módulo de precipitación.
+
+Para la comparación principal, usar representaciones mensuales originales de manera consistente.
+
+Después, como análisis secundario, comparar contra las características agregadas que utiliza el Climate Current original.
+
+No mezclar en una sola comparación un cambio de algoritmo, un cambio de features y un cambio de protocolo de validación.
+
+## H.7. Medir contribución incremental
+
+Evaluar:
+
+\[
+\Delta_{\mathrm{temp}\mid\mathrm{rain}}
+=
+RMSE_{\mathrm{rain}}
+-
+RMSE_{\mathrm{rain+temp}}
+\]
+
+Un valor positivo indica menor RMSE al incorporar temperatura.
+
+También evaluar la contribución incremental de lluvia condicionada a temperatura:
+
+\[
+\Delta_{\mathrm{rain}\mid\mathrm{temp}}
+=
+RMSE_{\mathrm{temp}}
+-
+RMSE_{\mathrm{rain+temp}}
+\]
+
+Estas medidas son mejoras predictivas condicionales, no importancia causal.
+
+Realizar comparaciones pareadas sobre exactamente los mismos folds.
+
+Reportar variación por fold y repetición y consistencia entre protocolos.
+
+No presentar las repeticiones superpuestas de cross-validation como observaciones estadísticamente independientes.
+
+## H.8. Generalización geográfica
+
+Evaluar las ablaciones bajo:
+
+- Validación aleatoria original de Familia 1.
+- Validación por perfil climático.
+- Validación municipal.
+- Validación espacial.
+
+Cuando las particiones sean compatibles, reutilizarlas exactamente.
+
+Para agrupación por perfil, distinguir explícitamente perfiles definidos solo por lluvia y perfiles conjuntos lluvia–temperatura. Evitar redefinir silenciosamente el protocolo durante una comparación.
+
+Investigar si agregar temperatura mejora realmente la transferencia o únicamente las predicciones dentro de regiones previamente representadas.
+
+## H.9. Errores del modelo
+
+Comparar los errores de lluvia, temperatura y clima combinado.
+
+Analizar:
+
+- Rendimientos bajos.
+- Rendimientos altos.
+- Sesgo por región.
+- Predicciones repetidas.
+- Variación del rendimiento dentro de perfiles iguales.
+- Residuales espaciales.
+- Cambios de predicción al incorporar temperatura.
+
+Evaluar si temperatura ayuda a corregir los errores más importantes de la regresión exclusiva de precipitación.
+
+No asumir que reducción del sesgo global implica corrección de sesgos condicionales.
+
+## H.10. Sensibilidad a representaciones climáticas
+
+Después de completar las ablaciones principales, considerar comparaciones limitadas entre:
+
+- Variables mensuales originales.
+- Resúmenes temporales compactos.
+- Componentes principales conjuntos.
+- Componentes PCA separados por bloque y posteriormente concatenados.
+
+No ejecutar una búsqueda exhaustiva de todas las combinaciones posibles.
+
+PCA debe ajustarse dentro de validación interna cuando intervenga en predicción.
+
+Recordar que explicar una alta proporción de variación climática no garantiza explicar rendimiento.
+
+## H.11. Relación con el Champion
+
+No reemplazar ni modificar el Champion.
+
+Al finalizar H, determinar:
+
+1. Cuánto poder predictivo tiene lluvia exclusivamente.
+2. Cuánto tiene temperatura exclusivamente.
+3. Qué información complementaria aporta temperatura.
+4. Qué información complementaria aporta lluvia.
+5. Si Climate Current ya utiliza eficazmente esa complementariedad.
+6. Qué representaciones climáticas merecerían investigarse en una futura mejora del Champion.
+7. Si las limitaciones persistentes parecen asociadas a falta de resolución espacial o de variables agronómicas.
+
+La comparación con el Champion debe separar la contribución del bloque climático de las correcciones residuales posteriores de Sentinel-2 y topografía.
+
+No atribuir a una familia de variables diferencias que también provengan de cambios de algoritmo.
+
+---
+
+# Requisitos conjuntos de G y H
+
+## Arquitectura
+
+- Integrar ambas investigaciones en el repositorio existente.
+- Respetar la nomenclatura de familias, secciones y numeración.
+- No crear carpetas duplicadas.
+- Reutilizar las funciones existentes.
+- Mantener datos originales inmutables.
+- Versionar resultados.
+- Registrar configuraciones y semillas.
+- Conservar la trazabilidad de variables.
+- Mantener independientes los productos descriptivos y predictivos.
+
+## Metodología
+
+- Una observación supervisada por parcela.
+- Solo 138 rendimientos disponibles.
+- Las 59 parcelas de predicción nunca aportan Y.
+- No usar nubosidad como predictor climático.
+- No incorporar satélite, suelo ni topografía como predictores de G o H.
+- No confundir resolución de ráster con información independiente entre parcelas.
+- No utilizar información posterior a octubre de 2025 en los predictores del ciclo.
+- No interpretar asociaciones predictivas como causalidad.
+- No declarar una nueva arquitectura ganadora sin evidencia consistente.
+- Mantener claro que son estimaciones retrospectivas al cierre del ciclo 2025.
+
+## Reportes finales
+
+Generar dos reportes separados:
+
+**G — Temperature Signal Exploration**
+
+Debe explicar qué información térmica contiene el dataset, cómo está distribuida temporal y espacialmente, qué redundancias existen y qué capacidad predictiva presenta temperatura por sí sola.
+
+**H — Joint Climate Signal Exploration**
+
+Debe explicar qué información aporta la combinación de precipitación y temperatura, si su complementariedad está aprovechada en Climate Current y cómo afecta al desempeño y generalización.
+
+Además, elaborar una síntesis conjunta de H1 que conteste:
+
+**¿Qué señal climática estamos aprovechando realmente en Familia 1, cuánto aporta cada componente y qué limitaciones permanecen?**
+
+Incluir evidencia estadística, tablas, gráficos y resultados negativos cuando corresponda.
+
+No volver a entrenar modelos de las familias anteriores salvo que sea estrictamente necesario para comparaciones controladas y reproducibles.
+
+## Orden de trabajo
+
+1. Auditar contexto del repositorio y convenciones.
+2. Confirmar fuentes, variables y métodos de extracción.
+3. Ejecutar G descriptivo.
+4. Ejecutar H descriptivo y analizar complementariedad espacial.
+5. Construir PCA exploratorios.
+6. Revisar hallazgos y consistencia de variables.
+7. Ejecutar regresiones térmicas controladas de G.
+8. Ejecutar ablaciones climáticas de H.
+9. Evaluar errores, validación espacial y aportes incrementales.
+10. Documentar resultados y limitaciones.
+11. Proponer, sin implementar todavía, cuáles investigaciones adicionales justifican los resultados.
+
+**El propósito es comprender el papel real de temperatura y precipitación dentro de la arquitectura que ya hemos construido, no agregar complejidad por sí misma. Quiero resultados comparables, interpretables y útiles para decidir qué información incorporar después.**

@@ -1,0 +1,821 @@
+{
+  "experiments": [
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "configs": {
+    "R1": [
+      {
+        "alpha": null
+      },
+      {
+        "alpha": 1.0
+      },
+      {
+        "alpha": 0.1
+      },
+      {
+        "alpha": 0.01
+      },
+      {
+        "alpha": 0.0
+      }
+    ],
+    "R2": [
+      {
+        "alpha": null,
+        "shrink": null
+      },
+      {
+        "alpha": null,
+        "shrink": 150.0
+      },
+      {
+        "alpha": null,
+        "shrink": 50.0
+      },
+      {
+        "alpha": null,
+        "shrink": 15.0
+      },
+      {
+        "alpha": 1.0,
+        "shrink": null
+      },
+      {
+        "alpha": 1.0,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 1.0,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 1.0,
+        "shrink": 15.0
+      },
+      {
+        "alpha": 0.1,
+        "shrink": null
+      },
+      {
+        "alpha": 0.1,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.1,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.1,
+        "shrink": 15.0
+      },
+      {
+        "alpha": 0.01,
+        "shrink": null
+      },
+      {
+        "alpha": 0.01,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.01,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.01,
+        "shrink": 15.0
+      },
+      {
+        "alpha": 0.0,
+        "shrink": null
+      },
+      {
+        "alpha": 0.0,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.0,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.0,
+        "shrink": 15.0
+      }
+    ],
+    "R3": [
+      {
+        "alpha": null,
+        "depth": 0,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": null,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": null,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": null,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": null,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": null,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": null,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": null,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": null,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 0,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 1.0,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 0,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.1,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 0,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.01,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 0,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 1,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 1,
+        "leaf": 20,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 2,
+        "leaf": 35,
+        "shrink": 50.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 150.0
+      },
+      {
+        "alpha": 0.0,
+        "depth": 2,
+        "leaf": 20,
+        "shrink": 50.0
+      }
+    ]
+  },
+  "weights": [
+    [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      0.1,
+      0.9
+    ],
+    [
+      0.0,
+      0.2,
+      0.8
+    ],
+    [
+      0.0,
+      0.3,
+      0.7
+    ],
+    [
+      0.0,
+      0.4,
+      0.6
+    ],
+    [
+      0.0,
+      0.5,
+      0.5
+    ],
+    [
+      0.0,
+      0.6,
+      0.4
+    ],
+    [
+      0.0,
+      0.7,
+      0.3
+    ],
+    [
+      0.0,
+      0.8,
+      0.2
+    ],
+    [
+      0.0,
+      0.9,
+      0.1
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.1,
+      0.0,
+      0.9
+    ],
+    [
+      0.1,
+      0.1,
+      0.8
+    ],
+    [
+      0.1,
+      0.2,
+      0.7
+    ],
+    [
+      0.1,
+      0.3,
+      0.6
+    ],
+    [
+      0.1,
+      0.4,
+      0.5
+    ],
+    [
+      0.1,
+      0.5,
+      0.4
+    ],
+    [
+      0.1,
+      0.6,
+      0.3
+    ],
+    [
+      0.1,
+      0.7,
+      0.2
+    ],
+    [
+      0.1,
+      0.8,
+      0.1
+    ],
+    [
+      0.1,
+      0.9,
+      0.0
+    ],
+    [
+      0.2,
+      0.0,
+      0.8
+    ],
+    [
+      0.2,
+      0.1,
+      0.7
+    ],
+    [
+      0.2,
+      0.2,
+      0.6
+    ],
+    [
+      0.2,
+      0.3,
+      0.5
+    ],
+    [
+      0.2,
+      0.4,
+      0.4
+    ],
+    [
+      0.2,
+      0.5,
+      0.3
+    ],
+    [
+      0.2,
+      0.6,
+      0.2
+    ],
+    [
+      0.2,
+      0.7,
+      0.1
+    ],
+    [
+      0.2,
+      0.8,
+      0.0
+    ],
+    [
+      0.3,
+      0.0,
+      0.7
+    ],
+    [
+      0.3,
+      0.1,
+      0.6
+    ],
+    [
+      0.3,
+      0.2,
+      0.5
+    ],
+    [
+      0.3,
+      0.3,
+      0.4
+    ],
+    [
+      0.3,
+      0.4,
+      0.3
+    ],
+    [
+      0.3,
+      0.5,
+      0.2
+    ],
+    [
+      0.3,
+      0.6,
+      0.1
+    ],
+    [
+      0.3,
+      0.7,
+      0.0
+    ],
+    [
+      0.4,
+      0.0,
+      0.6
+    ],
+    [
+      0.4,
+      0.1,
+      0.5
+    ],
+    [
+      0.4,
+      0.2,
+      0.4
+    ],
+    [
+      0.4,
+      0.3,
+      0.3
+    ],
+    [
+      0.4,
+      0.4,
+      0.2
+    ],
+    [
+      0.4,
+      0.5,
+      0.1
+    ],
+    [
+      0.4,
+      0.6,
+      0.0
+    ],
+    [
+      0.5,
+      0.0,
+      0.5
+    ],
+    [
+      0.5,
+      0.1,
+      0.4
+    ],
+    [
+      0.5,
+      0.2,
+      0.3
+    ],
+    [
+      0.5,
+      0.3,
+      0.2
+    ],
+    [
+      0.5,
+      0.4,
+      0.1
+    ],
+    [
+      0.5,
+      0.5,
+      0.0
+    ],
+    [
+      0.6,
+      0.0,
+      0.4
+    ],
+    [
+      0.6,
+      0.1,
+      0.3
+    ],
+    [
+      0.6,
+      0.2,
+      0.2
+    ],
+    [
+      0.6,
+      0.3,
+      0.1
+    ],
+    [
+      0.6,
+      0.4,
+      0.0
+    ],
+    [
+      0.7,
+      0.0,
+      0.3
+    ],
+    [
+      0.7,
+      0.1,
+      0.2
+    ],
+    [
+      0.7,
+      0.2,
+      0.1
+    ],
+    [
+      0.7,
+      0.3,
+      0.0
+    ],
+    [
+      0.8,
+      0.0,
+      0.2
+    ],
+    [
+      0.8,
+      0.1,
+      0.1
+    ],
+    [
+      0.8,
+      0.2,
+      0.0
+    ],
+    [
+      0.9,
+      0.0,
+      0.1
+    ],
+    [
+      0.9,
+      0.1,
+      0.0
+    ],
+    [
+      1.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "expert_features": [
+    "compact_precip_total",
+    "compact_early_fraction",
+    "compact_concentration_hhi",
+    "S2_ndvi_month_05"
+  ],
+  "experts": [
+    "C-T3",
+    "F5-01",
+    "F7-00"
+  ],
+  "global_prior": [
+    0.3333333333333333,
+    0.3333333333333333,
+    0.3333333333333333
+  ],
+  "regularization": "mean squared OOF error + alpha*train_y_variance*L2(weight-prior)^2; alpha None fixes equal prior",
+  "municipal": "state+municipality key; local weights shrink n/(n+s) toward global; min15 labels and2 profiles; unseen/unsupported use global; shrink None disables locality",
+  "gate": "greedy direct blended SSE improvement; depth0/1/2, leaf20/35, min2 profiles per child; train quartile-like thresholds .2/.4/.6/.8; local weights shrink50/150 toward global; out-of-training marginal support falls back global",
+  "selection": "complete original inner OOF RMSE; rounded10 ties first candidate (stronger regularization, global fallback, shallower larger leaves); all gates/hyperparameters fitted recursively within training",
+  "expert_reuse": "all outer originals frozen; original honest inner triples reused; deep CT3 caches reused; deep GPR/CB trained/tuned only in their context; GP original OPT, CB original grid meanfold criterion",
+  "new_deep_contexts": 914,
+  "cb_grid": [
+    {
+      "iterations": 150,
+      "depth": 2,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 2,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 2,
+      "learning_rate": 0.06,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 2,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 30
+    },
+    {
+      "iterations": 150,
+      "depth": 3,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 3,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 3,
+      "learning_rate": 0.06,
+      "l2_leaf_reg": 10
+    },
+    {
+      "iterations": 300,
+      "depth": 3,
+      "learning_rate": 0.03,
+      "l2_leaf_reg": 30
+    }
+  ],
+  "gpr_optimizer": {
+    "n_restarts_optimizer": 2,
+    "seed": 2026,
+    "amplitude_bounds": [
+      0.01,
+      100.0
+    ],
+    "length_bounds": [
+      0.2,
+      20.0
+    ],
+    "noise_variance_bounds": [
+      0.001,
+      2.0
+    ],
+    "initial_amplitude": 1.0,
+    "initial_length": 1.0,
+    "initial_noise_variance": 0.1,
+    "jitter": 1e-08
+  },
+  "expected_cb_fits": 29858,
+  "expected_gp_fits": 914,
+  "no_ad_hoc_municipal_rules": true,
+  "no_intercept": true,
+  "no_new_variables": true,
+  "no_residual": true,
+  "no_final_fit138": true,
+  "no_PRED": true,
+  "no_champion_change": true,
+  "workers": 4,
+  "seed": 2026,
+  "decision": "exploratory gains >=.01 grouped, no RMSE/MAE harm>.01 vs CT3 or EQUAL3; absolute geographic bias harm<=.02; spatial omission harm<=.01; both intraprofile weights no harm>.01; no statistical superiority claim"
+}

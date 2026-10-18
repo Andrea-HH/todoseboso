@@ -1,0 +1,975 @@
+# FIRA AgroCebada 2026 — Programa de investigación: heterogeneidad intraperfil, generalización geográfica y nuevas fuentes territoriales
+
+Quiero continuar el proyecto FIRA AgroCebada 2026 mediante un programa de investigación matemáticamente riguroso, reproducible y dividido en etapas.
+
+El propósito no es realizar otra búsqueda general de hiperparámetros ni generar todas las combinaciones posibles de variables.
+
+**Objetivo central: determinar si podemos identificar y modelar información adicional que explique diferencias de rendimiento entre parcelas climáticamente equivalentes, sin sacrificar capacidad de transferencia a regiones nuevas.**
+
+Partimos de dos problemas distintos:
+
+1. **Heterogeneidad intraperfil:** parcelas con exactamente el mismo perfil climático presentan rendimientos considerablemente distintos.
+2. **Transferencia geográfica:** los modelos entrenados sobre unas regiones muestran deterioros importantes cuando se evalúan en municipios o bloques espaciales no observados.
+
+Los modelos y objetivos de ambas tareas deben distinguirse explícitamente.
+
+## Contexto obligatorio
+
+Recupera el contexto del repositorio antes de implementar.
+
+Investigaciones relevantes:
+
+- Familias 1, 2 y 3.
+- Champion de Familia 1.
+- Secciones I–M.
+- Familia 4 y su extensión F4-E.
+- Diagnóstico de concentración de error de Chignahuapan.
+- Screening de 1,473 variables.
+- Agenda de investigación posterior a F4-E.
+
+Datos generales:
+
+- 197 parcelas.
+- 138 etiquetas de rendimiento.
+- 59 parcelas sin rendimiento disponible.
+- 53 perfiles climáticos exactos en el conjunto completo.
+- 43 perfiles con alguna etiqueta.
+- 12 perfiles con múltiples etiquetas.
+- Chignahuapan contiene 71 etiquetas.
+- Dos perfiles de Chignahuapan contienen 33 y 29 etiquetas.
+
+Los dos perfiles dominantes generan 934 parejas posibles, pero estas parejas no representan 934 observaciones independientes.
+
+Resultados principales de referencia:
+
+| Modelo | Random RMSE | Profile RMSE | Municipal RMSE | Spatial RMSE |
+|---|---:|---:|---:|---:|
+| J0 lluvia | 0.52136 | 0.54435 | 0.69536 | 0.73479 |
+| K5 lluvia + pendiente residual | 0.51624 | 0.53756 | 0.69606 | 0.71393 |
+| F4-S1 lluvia + NDVI mayo | 0.50483 | 0.52626 | 0.67110 | 0.73904 |
+| F4-S5 lluvia + amplitud térmica | 0.52412 | 0.56029 | 0.68540 | 0.60047 |
+
+Champion archivado:
+
+- RMSE aleatorio ≈0.49813 t/ha.
+- MAE aleatorio ≈0.35887 t/ha.
+- No dispone de evaluación archivada equivalente bajo todos los protocolos agrupados.
+
+Un promedio fijo 50/50 entre Champion y F4-S1 obtuvo retrospectivamente RMSE aleatorio ≈0.49360, con correlación de residuos ≈0.938.
+
+Estas cifras son antecedentes exploratorios, no mejoras confirmadas.
+
+Todos los cálculos nuevos deben recuperar y verificar las cifras exactas en los artefactos originales.
+
+---
+
+# Estructura general del programa
+
+Desarrollar cuatro etapas:
+
+**Etapa A — Auditoría territorial de Chignahuapan y errores persistentes.**
+
+**Etapa B — Aprendizaje explícito de diferencias intraperfil y evaluación de una mezcla fija.**
+
+**Etapa C — Modelado jerárquico compacto y representación climática para transferencia.**
+
+**Etapa D — Síntesis, identificabilidad y decisiones de investigación.**
+
+No ejecutar automáticamente una etapa posterior si la anterior identifica una limitación metodológica que invalida el experimento.
+
+Cada etapa debe producir resultados, pruebas, documentación y una decisión explícita sobre si corresponde continuar.
+
+---
+
+# ETAPA A — Nuevas fuentes territoriales y diagnóstico de heterogeneidad
+
+## A.1. Fuentes disponibles
+
+Existen tres documentos que quiero investigar.
+
+**Fuente A1 — Carta edafológica histórica de Chignahuapan**
+
+Localización:
+
+`data/externo/chignahuapan/`
+
+Es una fuente edafológica de edición 1996. Examina los archivos realmente presentes en esa carpeta, identifica sus nombres, formatos, metadatos y sistemas de referencia.
+
+No supongas que son datos vectoriales si solamente existe cartografía raster o PDF.
+
+Verifica si la fecha 1996 corresponde al levantamiento, edición, publicación o a metadatos del producto.
+
+**Fuente A2 — Carta topográfica E14B13 Chignahuapan**
+
+Localización:
+
+`docs/resources/`
+
+Identifica la carta topográfica E14B13 a escala 1:50,000, Serie II, edición 1996, correspondiente a la fuente de INEGI.
+
+Documenta:
+
+- Escala.
+- Datum NAD27.
+- Proyección.
+- Cobertura geográfica.
+- Representación de curvas de nivel.
+- Hidrografía.
+- Elementos territoriales relevantes.
+- Limitaciones temporales.
+
+**Fuente A3 — Carta geológico-minera Chignahuapan E14-B13**
+
+Localización:
+
+`docs/resources/`
+
+Identifica el PDF geológico-minero suministrado anteriormente.
+
+Recupera su escala, fecha cartográfica, cobertura y clasificación temática a partir del documento mismo.
+
+No equipares su fecha con la de la carta topográfica.
+
+Distingue metadatos de creación/modificación del PDF de la fecha de adquisición del conocimiento geológico.
+
+Investiga:
+
+- Litología.
+- Unidades de roca.
+- Materiales volcánicos.
+- Depósitos piroclásticos.
+- Aluviones y depósitos superficiales.
+- Contactos geológicos.
+- Estructuras y lineamientos.
+- Posibles categorías relacionadas con material parental.
+
+No utilizar directamente minas, bancos de material ni yacimientos como indicadores de calidad agrícola.
+
+## A.2. Auditoría de disponibilidad geoespacial
+
+Para las tres fuentes:
+
+1. Determina si existen capas vectoriales, raster georreferenciados o solo documentos cartográficos.
+2. Extrae los metadatos que realmente estén disponibles.
+3. Comprueba proyección, datum, escala y cobertura.
+4. Verifica transformación correcta al CRS de las parcelas.
+5. Identifica diferencias entre ediciones y sistemas de clasificación.
+6. Documenta las fuentes oficiales y sus limitaciones.
+7. Comprueba si hay versiones vectoriales oficiales ya descargadas en el repositorio.
+
+No digitalices toda una carta ni interpretes colores como clases automáticamente.
+
+Si una fuente no permite una intersección geométrica defendible, limita la investigación a inventario, revisión visual o una prueba piloto identificada como tal.
+
+No fabriques precisión espacial.
+
+## A.3. Cobertura de las parcelas
+
+Para cada fuente con georreferenciación verificable, calcular:
+
+\[
+c_i=
+\frac{
+\operatorname{Area}(P_i\cap A)
+}{
+\operatorname{Area}(P_i)
+}
+\]
+
+donde:
+
+- \(P_i\) es el polígono parcelario.
+- \(A\) es la cobertura válida de la fuente.
+
+Reportar:
+
+- Parcelas completamente cubiertas.
+- Parcialmente cubiertas.
+- Fuera de cobertura.
+- TRAIN cubiertas.
+- PRED cubiertas.
+- Perfiles climáticos cubiertos.
+- Municipios cubiertos.
+- Cobertura de los dos perfiles dominantes de Chignahuapan.
+
+Usar superficies en un CRS proyectado apropiado.
+
+No considerar cubierta una parcela por la sola presencia de su centroide dentro de la hoja.
+
+Distinguir cobertura de la hoja de disponibilidad de clasificación temática.
+
+## A.4. Comparación edafológica multiescala
+
+Comparar, cuando sea posible, la fuente edafológica histórica con la representación nacional WRB2014 Serie III a escala 1:250,000 utilizada en I–L.
+
+Investigar:
+
+- Número de unidades distintas por parcela.
+- Proporciones de intersección.
+- Unidades dominantes.
+- Coberturas mixtas.
+- Entropía de composición.
+- Diferenciación entre parcelas de un mismo perfil climático.
+- Correspondencia entre clasificaciones.
+- Categorías presentes solo en una representación.
+- Sensibilidad a límites.
+- Soporte por categoría.
+
+No asumir equivalencia entre taxonomías de distintas épocas.
+
+No asumir que una unidad cartográfica representa una medición física de textura, fertilidad o profundidad en una parcela.
+
+Si la correspondencia temática entre cartas no puede justificarse, comparar capacidad de diferenciación descriptiva sin forzar equivalencias taxonómicas.
+
+## A.5. Material geológico y relación con suelo
+
+Cuando exista geometría fiable, construir un inventario por parcela de unidades litológicas.
+
+Para una unidad geológica \(k\):
+
+\[
+p_{ik}^{geo}=
+\frac{
+\operatorname{Area}(P_i\cap G_k)
+}{
+\operatorname{Area}(P_i)
+}
+\]
+
+Conservar la representación completa antes de considerar agregaciones.
+
+Investigar:
+
+- Unidades litológicas presentes.
+- Familias litológicas dominantes.
+- Composición por parcela.
+- Diversidad interna.
+- Número de parcelas por unidad.
+- Relación entre litología y unidad edafológica.
+- Variación dentro del mismo perfil climático.
+- Contactos geológicos próximos.
+- Unidades desconocidas o con soporte insuficiente.
+
+Separar roca superficial, depósitos no consolidados y roca subyacente cuando la clasificación original lo permita.
+
+No asumir que la litología mapeada corresponde directamente al horizonte radicular del cultivo.
+
+No atribuir propiedades de retención hídrica o nutrientes a una categoría geológica sin datos adicionales.
+
+## A.6. Topografía e hidrología potencial
+
+No repetir simplemente altitud y pendiente.
+
+Examinar si la carta topográfica, sus posibles datos vectoriales o los modelos de elevación existentes permiten obtener:
+
+- Posición topográfica relativa.
+- Índice de posición topográfica (TPI).
+- Posición en ladera.
+- Distancia a red hidrográfica.
+- Diferencia de elevación respecto de cauces.
+- Convergencia topográfica.
+- Acumulación de flujo potencial.
+- Índices topográficos de humedad, si su derivación es defendible.
+
+Auditar previamente resolución, acondicionamiento hidrológico y tratamiento de depresiones del DEM.
+
+No presentar índices topográficos como humedad real, nivel freático o drenaje observado.
+
+Verificar que las nuevas características contienen información distinta de pendiente, altitud y relieve local ya estudiados.
+
+## A.7. Análisis de pares difíciles de Chignahuapan
+
+Centrar la investigación en los dos perfiles de 33 y 29 etiquetas.
+
+Utilizar como referencia el modelo F4-S1: lluvia + NDVI mayo.
+
+El diagnóstico anterior observó:
+
+- RMSE de diferencias dentro de Chignahuapan ≈0.798 t/ha.
+- RMSE fuera ≈0.531 t/ha.
+- Dos perfiles grandes concentran la mayor parte de las parejas.
+- No se dispone de evidencia de que la nueva cartografía explique esas diferencias.
+
+Quiero investigar si las nuevas fuentes generan contrastes realmente adicionales.
+
+Para cada pareja \(i,j\) perteneciente al mismo perfil:
+
+\[
+\Delta Y_{ij}=Y_i-Y_j
+\]
+
+\[
+\Delta\widehat Y_{ij}
+=
+\widehat Y_i-\widehat Y_j
+\]
+
+\[
+e_{ij}^{\Delta}
+=
+\Delta Y_{ij}-\Delta\widehat Y_{ij}
+\]
+
+Primero comparar predictores, sin utilizar Y para construir la clasificación de parejas.
+
+Evaluar:
+
+1. Mismo clima, diferente geología.
+2. Mismo clima, diferente suelo 1:50,000.
+3. Mismo clima y NDVI similar, diferente geología.
+4. Mismo clima y NDVI similar, diferente suelo.
+5. Mismo clima y suelo amplio similar, diferente posición geomorfológica.
+6. Parcelas similares en clima, vegetación y terreno.
+
+Definir criterios de similitud con métricas y escalas explícitas, preferentemente predefinidas y basadas solo en X.
+
+No seleccionar parejas a partir de la magnitud de sus errores.
+
+Reportar soporte efectivo por parcela y perfil.
+
+Las parejas comparten observaciones y no son unidades independientes. Evitar pseudorreplicación en intervalos y pruebas.
+
+## A.8. Análisis de residuos condicionado a las nuevas fuentes
+
+Realizar únicamente una exploración descriptiva usando residuos OOF existentes.
+
+Por ejemplo:
+
+\[
+r_i=Y_i-\widehat Y_i^{F4-S1}
+\]
+
+Investigar asociaciones con:
+
+- Unidad edafológica local.
+- Litología.
+- Diversidad litológica.
+- Posición topográfica.
+- Diferencia vertical al drenaje.
+- Heterogeneidad cartográfica.
+
+Controlar descriptivamente la pertenencia a perfil climático y, cuando sea apropiado, NDVI mayo.
+
+No interpretar estas asociaciones como capacidad predictiva incremental validada.
+
+No utilizar los residuos OOF globales para entrenar una nueva etapa de corrección.
+
+## A.9. Criterio de avance
+
+Solo proponer una nueva prueba predictiva territorial si:
+
+- La fuente es geoespacialmente confiable.
+- Tiene cobertura suficiente.
+- Distingue un número defendible de parcelas.
+- La diferenciación aparece dentro de perfiles relevantes.
+- No depende exclusivamente de categorías aisladas.
+- Existe interpretación temática razonable.
+- La información es distinta de predictores existentes.
+- Es posible evaluar controles sobre las mismas parcelas.
+
+Si no se satisfacen estos puntos, documentar por qué no corresponde integrar la fuente todavía.
+
+**Entregable de A:** reporte territorial y matriz de características candidatas, sin entrenamiento predictivo adicional.
+
+---
+
+# ETAPA B — Objetivo intraperfil y mezcla de modelos
+
+Esta etapa pertenece a Familia 4 como una extensión de modelado independiente y versionada.
+
+## B.1. Pregunta principal
+
+¿La diferenciación intraperfil puede mejorar si optimizamos explícitamente el error de diferencias, en lugar de usar solamente MSE global?
+
+## B.2. Función objetivo
+
+Sea \(g(i)\) el perfil climático de la parcela \(i\).
+
+Definimos:
+
+\[
+\widehat y_i=f_\theta(x_i)
+\]
+
+\[
+e_i=y_i-\widehat y_i
+\]
+
+La pérdida de parcelas será:
+
+\[
+\mathcal L_{\mathrm{global}}(\theta)
+=
+\frac{1}{n}
+\sum_{i=1}^{n}e_i^2
+\]
+
+Para perfiles con \(n_g\geq2\), definir:
+
+\[
+\mathcal L_{\Delta,g}(\theta)
+=
+\frac{1}{\binom{n_g}{2}}
+\sum_{i<j;\,g(i)=g(j)=g}
+(e_i-e_j)^2
+\]
+
+La pérdida intraperfil:
+
+\[
+\mathcal L_{\mathrm{intra}}(\theta)
+=
+\frac1{G_2}
+\sum_{g:n_g\geq2}
+\mathcal L_{\Delta,g}(\theta)
+\]
+
+donde \(G_2\) es el número de perfiles con al menos dos etiquetas en el entrenamiento correspondiente.
+
+La función total:
+
+\[
+\mathcal J(\theta)
+=
+\mathcal L_{\mathrm{global}}(\theta)
++
+\lambda\mathcal L_{\mathrm{intra}}(\theta)
++
+\alpha
+\left[
+\rho\|\beta\|_1+
+\frac{1-\rho}{2}\|\beta\|_2^2
+\right]
+\]
+
+El intercepto no debe penalizarse.
+
+Verificar la identidad:
+
+\[
+\mathcal L_{\Delta,g}
+=
+\frac{2}{n_g-1}
+\sum_{i\in g}(e_i-\bar e_g)^2
+\]
+
+Esta identidad permite evaluar la pérdida sin construir explícitamente todas las parejas.
+
+Los perfiles singleton contribuyen a la pérdida global pero no al término de diferencias.
+
+Si no existen perfiles elegibles en un entrenamiento interno, definir una política explícita y segura de desactivación del término intraperfil.
+
+## B.3. Modelo y controles
+
+Mantener inicialmente una regresión lineal regularizada con exactamente los mismos predictores.
+
+Modelos:
+
+**B0 — Rain + NDVI May**
+
+Objetivo estándar, equivalente a F4-S1.
+
+**B1 — Rain + NDVI May, Within-Profile Objective**
+
+Mismos predictores; añadir el término intraperfil.
+
+**B2 — Rain + NDVI May + LAI Rise Start**
+
+Objetivo estándar, equivalente a F4-E2.
+
+**B3 — Rain + NDVI May + LAI Rise Start, Within-Profile Objective**
+
+Mismos predictores de B2; añadir el término intraperfil.
+
+No añadir nuevas fuentes cartográficas todavía.
+
+Así aislaremos el cambio debido a la función objetivo, sin mezclarlo con nuevas variables.
+
+## B.4. Selección de parámetros
+
+Predefinir una grilla pequeña y razonable para \(\lambda\), incluyendo cero.
+
+La selección debe realizarse exclusivamente dentro del entrenamiento externo mediante validación interna.
+
+No seleccionar \(\lambda\) mirando resultados externos.
+
+Especificar previamente un criterio multiobjetivo o restringido.
+
+Por ejemplo:
+
+\[
+\min_\theta
+\mathcal L_{\mathrm{intra}}^{CV}
+\]
+
+sujeto a:
+
+\[
+RMSE_{\mathrm{global}}^{CV}
+\leq
+RMSE_{\mathrm{baseline}}^{CV}+\delta
+\]
+
+y una restricción análoga para MAE cuando resulte viable.
+
+El margen \(\delta\) debe definirse antes de ejecutar y mantenerse como tolerancia operativa exploratoria, no como umbral de significación.
+
+Si un algoritmo estándar de Elastic Net no soporta correctamente la función de pérdida compuesta, implementar un optimizador adecuado y verificar equivalencia numérica con Elastic Net convencional cuando \(\lambda=0\).
+
+No modificar el significado de alpha o l1_ratio sin documentarlo.
+
+Verificar convergencia, condiciones de optimalidad y tolerancias numéricas.
+
+## B.5. Validación
+
+Reutilizar los cuatro protocolos:
+
+- Aleatorio.
+- Por perfil.
+- Municipal.
+- Espacial.
+
+Los pares utilizados en entrenamiento se forman exclusivamente dentro de outer-train y, en ajuste interno, del entrenamiento interno correspondiente.
+
+Evaluar:
+
+- RMSE por parcela.
+- MAE por parcela.
+- R².
+- Sesgo.
+- RMSE de diferencias.
+- MAE de diferencias.
+- RMSE de diferencias con igual peso por perfil.
+- Resultados sin Chignahuapan.
+- Mejoras por perfil.
+- Errores extremos.
+- Estabilidad de \(\lambda\).
+- Coeficientes.
+- Deterioro geográfico.
+
+Para evaluar diferencias, utilizar exclusivamente parejas cuyas predicciones procedan del mismo modelo externo.
+
+No usar el rendimiento observado del fold de evaluación en transformaciones, selección o ajuste.
+
+## B.6. Mezcla fija Champion + F4-S1
+
+Realizar una investigación separada de bajo alcance.
+
+Modelos:
+
+- Champion archivado.
+- F4-S1.
+- Promedio fijo 50/50.
+
+Definir:
+
+\[
+\widehat Y_{\mathrm{mix}}
+=
+\frac12\widehat Y_{\mathrm{Champion}}
++
+\frac12\widehat Y_{\mathrm{F4-S1}}
+\]
+
+Usar exclusivamente pares de predicciones OOF compatibles por ID, repetición y fold.
+
+No aprender pesos en esta etapa.
+
+No buscar nuevas mezclas después de observar los resultados.
+
+Evaluar:
+
+- RMSE.
+- MAE.
+- Sesgo.
+- Q1/Q4 como diagnóstico posterior.
+- Diferencias intraperfil.
+- Parcelas mejoradas y deterioradas.
+- Correlación de residuos.
+- Concentración de error.
+- Dependencia de unas pocas observaciones.
+
+Distinguir los resultados retrospectivos del 50/50 de una evaluación confirmatoria.
+
+Si no hay Champion compatible bajo validación municipal o espacial, no inventar métricas.
+
+No reentrenar el Champion.
+
+**Entregable de B:** comparación controlada de objetivos de entrenamiento y diagnóstico de mezcla fija.
+
+---
+
+# ETAPA C — Arquitecturas alternativas para los dos objetivos
+
+Desarrollar esta etapa solamente después de documentar B.
+
+Mantener dos investigaciones independientes.
+
+## C.1. Modelo jerárquico compacto
+
+### Pregunta
+
+¿La agrupación parcial por perfiles climáticos permite estimar mejor el nivel regional sin perder diferenciación parcelaria?
+
+Proponer:
+
+\[
+Y_{ig}
+=
+f_\beta(C_g)
++
+\gamma_1NDVI_{ig}
++
+\gamma_2D_{ig}
++
+u_g+\varepsilon_{ig}
+\]
+
+con:
+
+\[
+u_g\sim\mathcal N(0,\tau^2)
+\]
+
+\[
+\varepsilon_{ig}\sim\mathcal N(0,\sigma^2)
+\]
+
+donde \(D_{ig}\) representa una sola característica temporal previamente especificada.
+
+No incluir inicialmente pendientes aleatorias por perfil.
+
+La muestra tiene 43 perfiles etiquetados, pero solo 12 con múltiples observaciones.
+
+Por ello, la complejidad debe ser deliberadamente pequeña.
+
+### Controles
+
+Comparar contra una versión sin efectos aleatorios:
+
+\[
+u_g=0
+\]
+
+con idénticos predictores.
+
+### Dos escenarios de predicción
+
+**Perfiles conocidos:**
+
+Existen otras etiquetas del mismo perfil dentro del entrenamiento.
+
+El modelo puede utilizar su información mediante agrupación parcial.
+
+**Perfiles nuevos:**
+
+Ninguna etiqueta del perfil se encuentra disponible en entrenamiento.
+
+Para un perfil nuevo, no estimar \(u_g\) utilizando sus rendimientos retenidos.
+
+Utilizar la distribución predictiva correspondiente al efecto aleatorio no observado, integrándolo cuando sea necesario.
+
+El valor esperado del efecto puede ser cero bajo la parametrización centrada, pero la incertidumbre predictiva debe considerar su variabilidad.
+
+### Evaluación
+
+Evaluar:
+
+- RMSE y MAE globales.
+- Diferencias intraperfil.
+- Sesgo de nivel medio por perfil.
+- Perfiles conocidos frente a nuevos.
+- Sensibilidad a la varianza \(\tau^2\).
+- Estabilidad de parámetros.
+- Calibración predictiva si se producen intervalos.
+
+No interpretar una mejora de interceptos como capacidad para distinguir parcelas dentro del mismo perfil.
+
+No utilizar identificación del perfil como sustituto arbitrario de coordenadas.
+
+## C.2. Clima compacto para transferencia
+
+### Pregunta
+
+¿Una representación de baja dimensión física y estadísticamente interpretable produce mejor transferencia que la lluvia mensual original?
+
+Comparar:
+
+**C-T0**
+
+Siete precipitaciones mensuales + NDVI mayo.
+
+**C-T1**
+
+Siete precipitaciones mensuales + variabilidad de amplitud térmica.
+
+**C-T2**
+
+Siete precipitaciones mensuales + NDVI mayo + variabilidad de amplitud térmica.
+
+**C-T3**
+
+Representación climática compacta predefinida + NDVI mayo.
+
+**C-T4**
+
+Representación climática compacta predefinida + NDVI mayo + variabilidad de amplitud térmica.
+
+La representación compacta debe contener pocas variables con interpretación previa, por ejemplo:
+
+- Precipitación acumulada.
+- Contraste de distribución temporal de precipitación.
+- Una medida de concentración o estacionalidad de lluvia, si puede definirse sin redundancia trivial.
+
+Definir fórmulas exactas y verificar relaciones lineales entre las características.
+
+No seleccionar meses o contrastes por su RMSE externo.
+
+Mantener Elastic Net como estimador principal para separar el efecto de representación del efecto de algoritmo.
+
+### Evaluación
+
+Priorizar:
+
+- Validación municipal.
+- Validación espacial.
+- MAE.
+- RMSE.
+- Sesgo regional.
+- Error fuera de Chignahuapan.
+- Soporte de precipitación/amplitud térmica.
+- Extremos.
+- Estabilidad por bloque espacial.
+
+No asumir que la buena validación espacial previa de amplitud térmica se trasladará automáticamente a nuevas regiones.
+
+Auditar específicamente si la mejora se concentra en uno o dos folds espaciales.
+
+### Proceso gaussiano
+
+No implementarlo automáticamente.
+
+Conservarlo como posible estudio posterior solo si aparece evidencia concreta de curvatura no lineal no capturada por el modelo lineal, con soporte suficiente.
+
+---
+
+# ETAPA D — Síntesis y decisiones
+
+## D.1. Separar los objetivos
+
+El reporte final debe mantener dos tableros independientes.
+
+**Objetivo local:**
+
+- RMSE de diferencias.
+- MAE de diferencias.
+- Igual peso por perfil.
+- Sin Chignahuapan.
+- Perfiles conocidos.
+- Diferenciación de los dos perfiles grandes.
+
+**Objetivo regional:**
+
+- RMSE/MAE municipal.
+- RMSE/MAE espacial.
+- Sesgo por región.
+- Desempeño de regiones retenidas.
+- Robustez a cambio de dominio.
+
+Una mejora local no debe presentarse automáticamente como mejora regional.
+
+Una mejora regional tampoco demuestra diferenciación entre parcelas del mismo perfil.
+
+## D.2. Evaluación de identificabilidad
+
+Investigar si la información disponible permite distinguir rendimientos dentro de conjuntos de parcelas similares.
+
+Definir similitud usando únicamente predictores y reglas congeladas.
+
+Analizar variación residual entre parcelas cercanas en:
+
+- Clima.
+- NDVI mayo.
+- Dinámica de vegetación.
+- Topografía.
+- Suelo y geología, si la Etapa A generó fuentes válidas.
+
+No interpretar diferencias observadas como una estimación formal del error irreducible sin supuestos adicionales.
+
+No entrenar reglas seleccionadas a partir de los casos donde los modelos fallan.
+
+## D.3. Prioridad de nuevas mediciones
+
+Si persisten diferencias importantes, identificar qué información adicional sería más útil solicitar:
+
+- Fecha de siembra.
+- Fecha de cosecha.
+- Cultivo realmente sembrado durante las observaciones satelitales.
+- Variedad.
+- Fertilización.
+- Manejo hídrico.
+- Suelo medido a nivel parcela.
+- Profundidad efectiva.
+- Textura.
+- Drenaje.
+- Humedad.
+- Rendimientos de campañas independientes.
+
+Distinguir disponibilidad comprobada de hipótesis de adquisición.
+
+Si es posible, proponer un diseño de muestreo que incluya los dos perfiles grandes de Chignahuapan y regiones externas.
+
+No concentrar todas las nuevas etiquetas en Chignahuapan si también se desea validar transferencia regional.
+
+## D.4. Criterio de cierre
+
+Reportar para cada investigación:
+
+1. Pregunta.
+2. Hipótesis.
+3. Datos y soporte.
+4. Modelo matemático.
+5. Estimando o cantidad evaluada.
+6. Validación.
+7. Resultado.
+8. Incertidumbre y limitaciones.
+9. Interpretación.
+10. Decisión: conservar, validar externamente, descartar o suspender.
+
+No seleccionar una arquitectura final utilizando una suma arbitraria de objetivos definidos después de observar resultados.
+
+Si no existe una mejora defendible, conservar el modelo de referencia.
+
+---
+
+# Reglas metodológicas generales
+
+## Integridad
+
+- No modificar Champion.
+- No modificar Familias 1–3.
+- No modificar E–M.
+- No sobrescribir Familia 4 o F4-E.
+- No utilizar las 59 etiquetas ocultas.
+- No modificar rendimientos por su residuo.
+- Conservar hashes y trazabilidad de artefactos.
+- Crear directorios nuevos y versionados.
+- Mantener nombres y numeración existentes.
+
+## Prevención de leakage
+
+Todo procesamiento predictivo debe ajustarse dentro del entrenamiento apropiado:
+
+- Imputación.
+- Escalamiento.
+- Selección de variables.
+- Transformación PCA, si se necesitara.
+- Codificación de categorías.
+- Regularización.
+- Selección de hiperparámetros.
+- Cálculo de residuos cruzados.
+- Calibración de modelos.
+- Pesos aprendidos, si existieran en investigaciones posteriores.
+
+Nunca utilizar medias de rendimiento de perfiles retenidos para construir predictores.
+
+La construcción descriptiva de nuevas capas sin Y puede estudiarse por separado, siempre documentando qué información estaba disponible antes de evaluar.
+
+## Agregación y comparabilidad
+
+- Mantener los 65 folds externos congelados cuando sean compatibles.
+- Calcular OOF completo por repetición.
+- No promediar primero RMSE de folds.
+- Mantener todas las etiquetas elegibles.
+- Conservar métricas pareadas.
+- Reportar diferencias por región y perfil.
+- No tratar folds o repeticiones correlacionadas como observaciones independientes.
+
+## Selección retrospectiva
+
+Las mismas 138 etiquetas han participado en numerosas investigaciones anteriores.
+
+Por tanto, incluso un experimento correctamente anidado sigue estando sujeto a selección de hipótesis por reutilización de la muestra.
+
+La validación cruzada no convierte automáticamente estos resultados en confirmatorios.
+
+Toda conclusión actual debe etiquetarse exploratoria.
+
+La evidencia confirmatoria requerirá nuevas campañas, nuevas etiquetas o una evaluación externa verdaderamente independiente.
+
+---
+
+# Entregables obligatorios
+
+Organizar los resultados en un programa de investigación nuevo, respetando la estructura actual del repositorio.
+
+**Etapa A:**
+
+- Inventario de las tres cartas.
+- Metadatos, proyecciones y cobertura.
+- Auditoría del material cartográfico.
+- Comparación edafológica multiescala.
+- Inventario geológico por parcela, si es viable.
+- Diagnóstico de posición geomorfológica, si es viable.
+- Comparación de parejas difíciles.
+- Reporte de soporte y decisión.
+
+**Etapa B:**
+
+- Función de pérdida implementada y verificada.
+- Pruebas de equivalencia de la pérdida de parejas.
+- Modelos B0–B3.
+- Predicciones OOF.
+- Comparaciones global/local.
+- Diagnóstico de mezcla fija.
+- Estabilidad de parámetros y restricciones.
+- Reporte técnico.
+
+**Etapa C:**
+
+- Modelo jerárquico compacto.
+- Comparación con control no jerárquico.
+- Evaluación perfiles conocidos/nuevos.
+- Modelos de clima compacto.
+- Diagnóstico por bloque espacial.
+- Análisis de generalización.
+- Reporte técnico.
+
+**Etapa D:**
+
+- Síntesis transversal.
+- Comparación de objetivos.
+- Matriz de evidencia.
+- Diagnóstico de identificabilidad.
+- Prioridades de adquisición de datos.
+- Conclusiones y próximos pasos.
+
+Crear figuras y tablas reproducibles, con escalas y leyendas claras.
+
+Añadir pruebas de integridad, validación de geometrías, reproducibilidad de folds, ausencia de leakage y estabilidad numérica.
+
+---
+
+# Orden de trabajo solicitado
+
+**Primera entrega: Etapa A.**
+
+Audita las tres fuentes, estudia la cobertura sobre nuestras parcelas y determina si la nueva cartografía aporta diferenciación real dentro de los perfiles dominantes de Chignahuapan.
+
+Entrega sus resultados y una decisión fundamentada antes de iniciar integración territorial predictiva.
+
+**Segunda entrega: Etapa B.**
+
+Implementa el objetivo intraperfil y evalúa la mezcla fija, sin incorporar nuevas fuentes ni alterar los modelos existentes.
+
+**Tercera entrega: Etapa C.**
+
+Desarrolla el modelo jerárquico y los modelos climáticos compactos mediante comparaciones independientes.
+
+**Cuarta entrega: Etapa D.**
+
+Integra la evidencia y formula una recomendación metodológica final.
+
+Las etapas pueden compartir utilidades técnicas, pero sus resultados, configuraciones y conclusiones deben conservarse separados.
+
+**No quiero un modelo más complejo por defecto. Quiero saber si cambiar la función de aprendizaje, la estructura de agrupación o la resolución de las fuentes permite aprovechar información que nuestros modelos actuales no están utilizando.**

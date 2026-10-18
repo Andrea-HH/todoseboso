@@ -1,0 +1,286 @@
+# AgroCebada — Fase III: representaciones complementarias condicionadas a C-T3
+
+Continúa la investigación `ct3_incremental_information` utilizando las fases I y II ya completadas, sus artefactos congelados, el código del repositorio y las conclusiones documentadas.
+
+Actúa como investigador senior en aprendizaje estadístico, reducción de dimensionalidad, análisis multibloque y teledetección agrícola.
+
+**Objetivo:** concluir la investigación de estructura informativa examinando si las señales adicionales a C-T3 pueden representarse mediante un conjunto compacto, no redundante, interpretable y estable, sin utilizar todavía su desempeño predictivo como criterio de selección.
+
+Esta fase no pretende demostrar que una representación mejore el rendimiento. Pretende determinar qué representaciones merecen una evaluación supervisada posterior.
+
+## 1. Continuidad y reproducibilidad
+
+Antes de implementar:
+
+1. Recupera los informes, tablas, scripts, manifests y pruebas de las fases I y II.
+2. Verifica definiciones, variables, perfiles, identidades y procedencias.
+3. Recupera las conclusiones relevantes de F4-E, etapas B/C, F7, PLS1867 y F8 para evitar duplicación.
+4. Conserva los 65 folds congelados como referencia para la experimentación futura.
+5. No modifiques ni sobrescribas artefactos anteriores.
+
+Crea una versión separada `phase_iii` dentro de la investigación existente, siguiendo las convenciones del repositorio.
+
+No reconstruyas las 1,867 variables desde cero si las matrices verificadas pueden reutilizarse.
+
+## 2. Restricción fundamental
+
+**Esta fase es no supervisada respecto a `RENDIMIENTO_T_HA`.**
+
+No utilizar rendimiento, residuos OOF, errores por municipio, VIP, correlaciones con Y ni métricas predictivas para ajustar, seleccionar o comparar representaciones durante esta fase.
+
+La evidencia supervisada previa puede utilizarse para justificar qué bloques investigar, pero no para seleccionar componentes utilizando nuevamente las etiquetas.
+
+No implementar PLS o Sparse PLS todavía: esos métodos requieren Y y pertenecen al diseño posterior supervisado.
+
+Distingue las conclusiones descriptivas, que pueden utilizar las 197 parcelas, de cualquier transformación destinada a un futuro modelo inductivo, que deberá reajustarse exclusivamente dentro de cada entrenamiento.
+
+## 3. Bloques de investigación
+
+Trabaja únicamente con bloques que respondan preguntas concretas:
+
+**A. Dinámica vegetal**
+
+Prioridad principal.
+
+Investiga:
+
+- `S2_lai_promedio_runup_start_day`
+- `S2_savi_promedio_runup_duration`
+- NDVI mayo como referencia ya contenida en C-T3.
+- Variables temporales espectrales relacionadas cuya inclusión esté justificada por los diccionarios y la evidencia de las fases anteriores.
+
+Determina si LAI y SAVI representan dimensiones temporales distintas entre sí y respecto al NDVI de mayo.
+
+No asumas que describen fenología física validada.
+
+**B. Estado espectral y series satelitales**
+
+Investiga si Sentinel-2 y Planet contienen modos de variación intraperfil no capturados por las cuatro variables C-T3.
+
+Evita tratar automáticamente cada una de las 846 columnas Sentinel-2 como información independiente.
+
+Organiza primero por índice, ventana temporal, estadístico y sensor.
+
+**C. Historia y anomalías**
+
+Investiga la estructura y redundancia de historia NDVI y anomalías respecto al núcleo actual.
+
+Conserva su carácter secundario, dado que la evidencia previa apunta principalmente a asociaciones territoriales y no a utilidad incremental intraperfil estable.
+
+**D. Topografía, suelo y geología**
+
+Investiga únicamente representaciones con contraste intraperfil verificable y soporte espacial apropiado.
+
+No fabricar resolución parcelaria a partir de cartografía gruesa.
+
+Evita PCA indiscriminado sobre categorías, indicadores cartográficos y variables composicionales.
+
+**E. Clima y temperatura**
+
+Tratar como bloque principalmente entre perfiles.
+
+No presentar variables constantes dentro del perfil como diferenciadores parcelarios.
+
+Investiga redundancia con la representación compacta de precipitación, pero no realizar una búsqueda de nuevas variables climáticas predictivas.
+
+## 4. Complementariedad respecto a C-T3
+
+Para cada bloque, diferenciar tres propiedades:
+
+1. Variación total.
+2. Variación intraperfil.
+3. Variación no reconstruible mediante una representación explícita de C-T3.
+
+Para variables numéricas apropiadas, construir diagnósticos de residualización lineal:
+
+\[
+R_Z=Z-\widehat{\mathbb E}_{lin}[Z\mid X_{\mathrm{CT3}}]
+\]
+
+No interpretar el residuo como independencia condicional.
+
+En caso de utilizar una residualización no lineal, justificarla, limitar su complejidad y reportarla como sensibilidad separada. No seleccionar transformaciones por su relación con Y.
+
+Distinguir además residualización respecto a las cuatro entradas C-T3 de centrado por perfil de precipitación. Son operaciones diferentes.
+
+Para perfiles repetidos, estudiar:
+
+\[
+Z^{within}_{ig}=Z_{ig}-\bar Z_g
+\]
+
+y conservar por separado la estructura entre perfiles.
+
+Las medias de perfil y el preprocesamiento sobre toda la muestra son exclusivamente descriptivos. Cualquier versión predictiva posterior deberá ajustarse dentro de entrenamiento, contemplando perfiles no observados.
+
+## 5. Métodos de representación
+
+Estudiar tres enfoques, sin búsqueda masiva:
+
+### R0. Representación original interpretable
+
+Conservar un pequeño conjunto de indicadores físicos, particularmente LAI y SAVI, como referencia sin compresión.
+
+Si un bloque contiene una o dos dimensiones justificadas, no aplicar PCA artificialmente.
+
+### R1. PCA por bloques
+
+Aplicar únicamente a grupos numéricos con suficiente dimensionalidad, cobertura y redundancia.
+
+Comparar:
+
+- Espectro de autovalores.
+- Varianza acumulada.
+- Número de componentes para 90% y 95% de varianza.
+- Rango efectivo.
+- Estabilidad de subespacios.
+- Variación intraperfil conservada.
+
+No decidir componentes únicamente mediante varianza global: una dirección de poca varianza total podría representar diferencias parcelarias importantes.
+
+### R2. Representación jerárquica
+
+Cuando sea pertinente, reducir primero subgrupos homogéneos —por ejemplo, índice y ventana temporal— y después estudiar la integración entre sensores.
+
+Controlar explícitamente el peso de cada bloque para que Sentinel-2 no domine solo por su número de columnas.
+
+No combinar categorías, proporciones composicionales y variables numéricas mediante PCA euclídeo sin justificación.
+
+No usar t-SNE o UMAP para declarar que existen señales predictivas.
+
+## 6. Estabilidad de las representaciones
+
+Evaluar sensibilidad a:
+
+- Remuestreo por perfil.
+- Exclusión de perfiles dominantes.
+- Exclusión de Chignahuapan, cuando exista soporte.
+- Cambios de escalado.
+- Redundancia exacta o casi exacta.
+- Disponibilidad de observaciones satelitales.
+- Resolución temporal y espacial.
+- Variaciones razonables del número de componentes.
+
+Para PCA, comparar subespacios mediante ángulos principales o medidas equivalentes, no mediante correlación ingenua entre componentes que pueden cambiar de signo u orden.
+
+En representaciones temporales, verificar sensibilidad a observaciones faltantes y a la distribución irregular de fechas.
+
+Distinguir inestabilidad numérica de falta de soporte estadístico.
+
+No crear inferencias de precisión artificial a partir de cientos de remuestreos dependientes.
+
+## 7. Información intraperfil conservada
+
+Esta es la evaluación central.
+
+Para cada representación candidata, determinar:
+
+- Cuántos perfiles conservan contraste.
+- Cuántas parcelas respaldan ese contraste.
+- Qué proporción descriptiva de la variación intraperfil del bloque original queda representada.
+- Si la representación concentra su variación en los dos perfiles grandes.
+- Si existe contraste fuera de Chignahuapan.
+- Si las componentes conservan variación que C-T3 no representa linealmente.
+- Si las dimensiones obtenidas son interpretables y estables.
+
+Separar resultados con ponderación por observación de resultados con igual peso por perfil.
+
+No seleccionar necesariamente la representación con máxima varianza intraperfil: más variación no implica más información predictiva.
+
+Para cada dimensión retenida, explicar qué combinación de señales físicas representa, sin atribuir efectos sobre rendimiento.
+
+## 8. Comparación y selección descriptiva
+
+Comparar representaciones mediante una matriz de criterios:
+
+- Compacidad.
+- Redundancia.
+- Contraste intraperfil.
+- Complementariedad descriptiva con C-T3.
+- Estabilidad.
+- Interpretabilidad.
+- Calidad y cobertura.
+- Soporte espacial y temporal.
+- Complejidad para utilizarla posteriormente dentro de CV.
+
+No construir una puntuación agregada arbitraria ni declarar un ganador universal.
+
+Clasificar las representaciones como:
+
+**A. Lista para prueba predictiva:** técnicamente definida, estable y con soporte suficiente.
+
+**B. Exploratoria:** contiene contraste interesante, pero presenta problemas de estabilidad, redundancia o soporte.
+
+**C. No prioritaria:** aporta poca información adicional observable o reproduce señales ya examinadas.
+
+Estas categorías no constituyen evidencia de mejora predictiva.
+
+No descartar un bloque únicamente por baja varianza o rango efectivo.
+
+## 9. Entregables
+
+Crear:
+
+1. `phase_iii/representation_catalog.csv`: definición, procedencia, dimensiones, transformaciones y soporte.
+2. `phase_iii/block_comparison.csv`: métricas descriptivas por bloque y representación.
+3. `phase_iii/stability_analysis.csv`: estabilidad, omisiones y sensibilidad.
+4. `phase_iii/figures/`: solo gráficos que permitan comprender resultados que no sean evidentes en tablas.
+5. `phase_iii/representation_report.md`: resultados técnicos e interpretación.
+6. `phase_iii/phase_iv_design.md`: propuesta de validación predictiva posterior, **sin ejecutarla**.
+
+Seguir las convenciones reales de rutas, versiones y manifests del proyecto. Registrar configuración, semillas, hashes y dependencias.
+
+No generar numerosas figuras redundantes.
+
+## 10. El informe debe responder
+
+1. ¿Qué partes de la información original ya están representadas por C-T3?
+2. ¿Qué dimensiones adicionales permanecen en los distintos bloques?
+3. ¿Cuáles varían dentro de perfiles de precipitación?
+4. ¿Cuáles son principalmente territoriales o entre perfiles?
+5. ¿Cuánta redundancia existe entre sensores y transformaciones?
+6. ¿LAI y SAVI contienen información temporal distinta respecto a NDVI mayo y entre sí?
+7. ¿La reducción por PCA conserva o destruye contrastes intraperfil?
+8. ¿La representación jerárquica aporta alguna ventaja descriptiva frente a PCA global o por bloque?
+9. ¿Cuáles representaciones son suficientemente estables e interpretables para evaluarlas predictivamente?
+10. ¿Qué información parece requerir mediciones adicionales y no solamente más transformaciones?
+
+Explicar siempre la diferencia entre dimensionalidad geométrica, información condicional e información predictiva.
+
+## 11. Diseñar, pero no ejecutar, Fase IV
+
+A partir de las conclusiones, proponer un máximo de tres contrastes predictivos claramente diferenciados, incluyendo:
+
+- C-T3 congelado como referencia.
+- Una representación original compacta.
+- Una alternativa reducida, solo si realmente aporta una hipótesis distinta.
+
+La propuesta puede contemplar posteriormente una corrección residual con árbol pequeño, pero no ejecutarla ni seleccionarla mediante resultados de esta fase.
+
+Para cada contraste especificar hipótesis, matriz de entrada, objetivo de aprendizaje, controles, validación anidada, riesgos de fuga, métricas absolutas e intraperfil, transferencia municipal/espacial y criterios de detención.
+
+Recordar que el futuro contraste C-T3 + inicio LAI es cercano conceptualmente a F4-E2, aunque cambia la representación de lluvia base; no presentarlo como una validación independiente de una hipótesis completamente nueva.
+
+La selección de hiperparámetros debe realizarse dentro de entrenamiento. No utilizar componentes descriptivas ajustadas sobre las 197 parcelas como transformaciones inductivas congeladas.
+
+## 12. Restricciones finales
+
+- No modificar C-T3, Champion ni modelos anteriores.
+- No ejecutar F8.
+- No entrenar predictores nuevos de rendimiento.
+- No generar predicciones de las 59 parcelas PRED.
+- No promover ninguna representación como superior predictivamente.
+- No declarar causalidad.
+- No tratar perfiles, parejas o remuestreos dependientes como muestras independientes.
+- No usar el rendimiento para escoger representaciones en esta fase.
+- No interpretar componentes PCA como factores agronómicos automáticamente.
+- No duplicar análisis ya resueltos en fases I y II.
+- No utilizar variables derivadas del target como características disponibles.
+
+Implementa controles automatizados de identidad, ausencia de target, aislamiento de entrenamiento para cualquier transformación futura, reproducibilidad y preservación de artefactos previos.
+
+**Cierra la Fase III con una conclusión explícita sobre qué información complementaria observamos, cómo puede representarse y cuáles son los límites de esa representación.**
+
+Después entrega el diseño de Fase IV para revisión. No continúes automáticamente al entrenamiento.
+
+La investigación no necesita encontrar una representación ganadora para considerarse completa. Un resultado negativo o inconcluso también debe documentarse.

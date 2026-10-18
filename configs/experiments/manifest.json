@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "export_date": "2026-10-18",
+  "path_tokens": {
+    "${REPO_ROOT}": "repository root",
+    "${GEOC_ROOT}": "optional GeoC repository root"
+  },
+  "source_policy": "Only outputs/modeling/*/v*/frozen_design.json files available locally. Not a complete historic configuration archive.",
+  "snapshots": [
+    {
+      "source": "outputs/modeling/agronomic_calendar/v1/frozen_design.json",
+      "snapshot": "configs/experiments/agronomic_calendar/v1/frozen_design.json",
+      "source_sha256": "8153cf4e3bc93c7996e29b8769980a1b82dcbcf2ac3bb98a8682f9d999276eb7",
+      "snapshot_sha256": "7b0115aa53db50568486b13d08669d45a7e42f1d8bd85490ff463e92a5bc6577",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/architecture_decomposition/v1/frozen_design.json",
+      "snapshot": "configs/experiments/architecture_decomposition/v1/frozen_design.json",
+      "source_sha256": "a72d40771a606949363a5b528d141cef5e11bfef5ea691771f8884675319af32",
+      "snapshot_sha256": "463862e4fc1523370d9ed3df353d6583c1205d977542ad96db9e6c42a513bca5",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/base_distribution_correction/v1/frozen_design.json",
+      "snapshot": "configs/experiments/base_distribution_correction/v1/frozen_design.json",
+      "source_sha256": "249c8704f3a17441420fec26de83b3dc010a22e84a2dbdd551143cfd26c185f7",
+      "snapshot_sha256": "7c6ad6bb8dd867d986b04ac669aa43ffe9ee90671636c899b477f563973be6a9",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/compact_ensemble/v1/frozen_design.json",
+      "snapshot": "configs/experiments/compact_ensemble/v1/frozen_design.json",
+      "source_sha256": "365ef3f8938c068e6ce8151a2589bf2ec5670d250c00e437cfc3a21dbfef8d7c",
+      "snapshot_sha256": "d2f2671c1d25b42239a2f711fbdfc95bf58aa1657d74fd4f99fff788d098c8d5",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/compact_geography/v1/frozen_design.json",
+      "snapshot": "configs/experiments/compact_geography/v1/frozen_design.json",
+      "source_sha256": "2bb816ee137b0a35c1b950d60e8594e39b3d908c5cf8779f4078f9c3b4bc1711",
+      "snapshot_sha256": "8a36ffbe3e371900a28625234a193280bae3e06f66b8fddacdbe0d190cf218c6",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/conditional_local_phases/v1/frozen_design.json",
+      "snapshot": "configs/experiments/conditional_local_phases/v1/frozen_design.json",
+      "source_sha256": "fb17a9f480fc834221250edbe90f4c06fd7b1ac79ba231df76e0ff410e01e169",
+      "snapshot_sha256": "6200577f7720409ef3bef41e676736953e62f9a708aa615c72cd1d173534417e",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/ct3_residual_coherence/v1/frozen_design.json",
+      "snapshot": "configs/experiments/ct3_residual_coherence/v1/frozen_design.json",
+      "source_sha256": "2148fcf4de79532683141357b502f415945fa00bb5569c5ce877a05cef493187",
+      "snapshot_sha256": "d32f5d10c738617de8655e009f5726abead91a2ae26a4a40ddf0a1affcdbbf76",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/ct3_residual_conditional/v1/frozen_design.json",
+      "snapshot": "configs/experiments/ct3_residual_conditional/v1/frozen_design.json",
+      "source_sha256": "0ab427617a33e4ef0bc6f040f1433641dce9c65f31dfbae145cb2ec31257f06e",
+      "snapshot_sha256": "e23e49fc19308cca6cdf90d419145e638b89088fe33191ae6cb3d14e8f832a3b",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/difficult_case_signals/v1/frozen_design.json",
+      "snapshot": "configs/experiments/difficult_case_signals/v1/frozen_design.json",
+      "source_sha256": "46a58ee3a81fa8418c5ff209481b3ca4bf7907f575dcfa4c6d3fed18c0fabc57",
+      "snapshot_sha256": "988c9fb67ebeaced2e1f1f9d6947bb59ddcb2afb2091e7a67eec70cb2869bacd",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/experimental_pls1867/v1/frozen_design.json",
+      "snapshot": "configs/experiments/experimental_pls1867/v1/frozen_design.json",
+      "source_sha256": "e635af3bf6995e9a80e0426d9ebbbac4ed4b1a9b9153d7db97d788258169aa67",
+      "snapshot_sha256": "e7c4cb1857b20bca9d86aee0315b06b177b57b9c038536bc87424425ba211184",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/experimental_tree1867/v1/frozen_design.json",
+      "snapshot": "configs/experiments/experimental_tree1867/v1/frozen_design.json",
+      "source_sha256": "4969c824e241a46138a86f5c0ae885cb14042c8476ae3462a94ac5e68990f44a",
+      "snapshot_sha256": "710c0ad86f76c72e0a079d9288e03de618414ba3cc8ac03e02fb0e0b27b1862c",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/four_expert_combinations/v1/frozen_design.json",
+      "snapshot": "configs/experiments/four_expert_combinations/v1/frozen_design.json",
+      "source_sha256": "161a6810a0714bf6408c207d4f26bd4e23c8e31077b30287e2656f727853bb06",
+      "snapshot_sha256": "cf1c49b6079175c2f24312e6751b49f5e540d1a303d286747da3aa9a2ebc3412",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/geoc_bridge/v1/frozen_design.json",
+      "snapshot": "configs/experiments/geoc_bridge/v1/frozen_design.json",
+      "source_sha256": "ad5b43c4a5a2440ac3e10888d051887b81f338e79d8946e691da5e043a4a2ff7",
+      "snapshot_sha256": "f19f34ed19435532251791419fabce901bfce70fd6dffda390efa68312bbaec0",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/geoc_signal_research/v1/frozen_design.json",
+      "snapshot": "configs/experiments/geoc_signal_research/v1/frozen_design.json",
+      "source_sha256": "7532ccc2e11d74e684bd27bb2ff12d5713fc37ad3572a89fbbfe49ce23f7282b",
+      "snapshot_sha256": "1adb093c4707844ea5bf3766b4a2c2de538326f134e93d3e1468356a210ab8d5",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/geoc_support_blend/v1/frozen_design.json",
+      "snapshot": "configs/experiments/geoc_support_blend/v1/frozen_design.json",
+      "source_sha256": "4bed95d25d40813b27379248829e2d692634e91a500dae8dd858487f3b052943",
+      "snapshot_sha256": "f6f1df18d286079398b64b89794fbf49a8ed5d43a95a835ac7c5ac6b94b83333",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/indicator_neighborhoods/v1/frozen_design.json",
+      "snapshot": "configs/experiments/indicator_neighborhoods/v1/frozen_design.json",
+      "source_sha256": "cd755549057bb0f07a72f15fa6988a9f0c996199825971e45c240c76c3e8e489",
+      "snapshot_sha256": "e0de6ad7b267090c5e816685dd5ecdff15a59ccd38d94f2021df719061fcfe3f",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/joint_simplification/v1/frozen_design.json",
+      "snapshot": "configs/experiments/joint_simplification/v1/frozen_design.json",
+      "source_sha256": "eddaff0762facafe31341b65e8b96f27920cab529ec3afcc4c51522d3e8e3268",
+      "snapshot_sha256": "871a3c10ab514d4838b6a601f33aaf7d67b3e52d9f1d9bc62fffc3bf7be95499",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/learned_r3_weight/v1/frozen_design.json",
+      "snapshot": "configs/experiments/learned_r3_weight/v1/frozen_design.json",
+      "source_sha256": "df5b624d5c5ceb783ba218c3173fa12f629c62d533cfd9d49edd387a927beac3",
+      "snapshot_sha256": "6504ba9a75efe9d17371b09be2813f865339cc9d9929408066c22c6c28aefc62",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/neighbor_signal_contrasts/v1/frozen_design.json",
+      "snapshot": "configs/experiments/neighbor_signal_contrasts/v1/frozen_design.json",
+      "source_sha256": "687fd9e4be7816cec2b7484d50148eb1c822833b0d277fc5c0d0b7343d6ed777",
+      "snapshot_sha256": "734cf4bb6f16436c9827810b72ab25025ad82638e177f99390f62566bec7cca1",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/neighbor_signal_linear/v1/frozen_design.json",
+      "snapshot": "configs/experiments/neighbor_signal_linear/v1/frozen_design.json",
+      "source_sha256": "479508b70bef6bcdbd8af171475447855f4e6d6deaaaafe99c02047f5993f0a4",
+      "snapshot_sha256": "c73f00450f9d0ed54380625dc7ae07703f4abe966e71af0c0c8146c72282b591",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/nonclimatic_local/v1/frozen_design.json",
+      "snapshot": "configs/experiments/nonclimatic_local/v1/frozen_design.json",
+      "source_sha256": "618ecddf3705a25336b377182b8a89b69697416887f355ca3e9bdf48c2804624",
+      "snapshot_sha256": "634d7e1a8718673636bc582ee4fae06ee260a822804f14c7d590a980ea6e37e4",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/physical_representation/v1/frozen_design.json",
+      "snapshot": "configs/experiments/physical_representation/v1/frozen_design.json",
+      "source_sha256": "c1331bf8748bb44c97fa38b1a86f0670bfe6b4af8983ebe5dae1ba2d0b72b761",
+      "snapshot_sha256": "29e3f10e4c3faa2912b44d37a3c7f65d9a0cf562958e626f05e2246dd4af8b71",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/physical_similarity/v1/frozen_design.json",
+      "snapshot": "configs/experiments/physical_similarity/v1/frozen_design.json",
+      "source_sha256": "a3109efe7060d17307c8a11765cf3f03ac3971bfa7163db91c5f713ca64f871a",
+      "snapshot_sha256": "aa7b4c3b56c367f57a05b49567784cb8673a79e96619a13d61dce1dab1cd5449",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/physical_similarity/v2/frozen_design.json",
+      "snapshot": "configs/experiments/physical_similarity/v2/frozen_design.json",
+      "source_sha256": "3e66b50b86e7a104ea94cfc34c373506ec9e2d6598d9501336da9a5743740f58",
+      "snapshot_sha256": "6d2265e78a1a928d9730018a5467f114c7ab416e5f9b4e02a49d21bad6e0759d",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/signal_feature_engineering/v1/frozen_design.json",
+      "snapshot": "configs/experiments/signal_feature_engineering/v1/frozen_design.json",
+      "source_sha256": "3f8323a031e6b4e19e1457eee08c4eacd53b7af8236990aab2b88c3826c4bed5",
+      "snapshot_sha256": "0a2ff7ab8e4d66d2649c6d9e434837886d252903e9b3b0b239840d96de0e7864",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/signal_role_allocation/v1/frozen_design.json",
+      "snapshot": "configs/experiments/signal_role_allocation/v1/frozen_design.json",
+      "source_sha256": "c8f9eb95eb1f06d2f0fbe749deeb5d80665d6ceabe4fa753889751098a3ed379",
+      "snapshot_sha256": "30dafa510da490ddc2307937402e64bd027959282bd499f20a91bcb0dfb3903b",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/temporal_indicator_weights/v1/frozen_design.json",
+      "snapshot": "configs/experiments/temporal_indicator_weights/v1/frozen_design.json",
+      "source_sha256": "287121133e7af28b91cb3bdd73366425b9c646563f95a96bcf3e6e578159623a",
+      "snapshot_sha256": "86c85d10640e7aed2caeddf223303428da1a0dbcf57d158f50daf36bbb6ebafd",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/territorial_mixtures/v1/frozen_design.json",
+      "snapshot": "configs/experiments/territorial_mixtures/v1/frozen_design.json",
+      "source_sha256": "9295e65b761c507123313c1cee9197753a0831d74f372d5e450e1c1729bc7b9a",
+      "snapshot_sha256": "840544ca0d9c259601bf13588f3a4c77234479d32c8ec73c4b4f8be10961baed",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/winner_predictions/v1/frozen_design.json",
+      "snapshot": "configs/experiments/winner_predictions/v1/frozen_design.json",
+      "source_sha256": "95f58032b2bbbcf84605fa8daeb99a025591a9aa17f2042c89f45e50b50239c5",
+      "snapshot_sha256": "d0159720e9bdb1a5992e1db31e01dcfdee47b14680c5fc5d39f8a29969fe0f98",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    },
+    {
+      "source": "outputs/modeling/winner_predictions/v1_initial_unexecuted/frozen_design.json",
+      "snapshot": "configs/experiments/winner_predictions/v1_initial_unexecuted/frozen_design.json",
+      "source_sha256": "20b78a6bc3045bec011b8049c3a3a863c520f0f9226e0cd9a0336e14aa5f6411",
+      "snapshot_sha256": "8609e380abf66558c006323e01cda990744ccfdd409bd3fffb0fdc2a02942887",
+      "note": "Portable metadata snapshot; source unchanged. A frozen design does not prove execution."
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "experiments": [
+    "M0",
+    "M1_LAI",
+    "M1_Z",
+    "M2_Z",
+    "C_CONTEXT"
+  ],
+  "specs": {
+    "M1_LAI": {
+      "kind": "ridge",
+      "columns": [
+        "S2_lai_promedio_runup_start_day"
+      ],
+      "grid": [
+        {
+          "alpha": 1.0
+        },
+        {
+          "alpha": 0.1
+        },
+        {
+          "alpha": 0.01
+        }
+      ]
+    },
+    "M1_Z": {
+      "kind": "ridge",
+      "columns": [
+        "S2_lai_promedio_runup_start_day",
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05"
+      ],
+      "grid": [
+        {
+          "alpha": 1.0
+        },
+        {
+          "alpha": 0.1
+        },
+        {
+          "alpha": 0.01
+        }
+      ]
+    },
+    "M2_Z": {
+      "kind": "tree",
+      "columns": [
+        "S2_lai_promedio_runup_start_day",
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05"
+      ],
+      "grid": [
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 15
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 15
+        }
+      ]
+    },
+    "C_CONTEXT": {
+      "kind": "tree",
+      "columns": [
+        "compact_early_fraction",
+        "compact_concentration_hhi",
+        "S2_ndvi_month_05"
+      ],
+      "grid": [
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 1,
+          "min_samples_leaf": 15
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 25
+        },
+        {
+          "max_depth": 2,
+          "min_samples_leaf": 15
+        }
+      ]
+    }
+  },
+  "base_grid": {
+    "model__alpha": [
+      0.001,
+      0.01,
+      0.1,
+      1.0
+    ],
+    "model__l1_ratio": [
+      0.1,
+      0.5,
+      0.9
+    ]
+  },
+  "base_selection": "original mean innerfold RMSE, original GridSearchCV exact ties; never outer-chosen HP inside residual crossfits",
+  "corrector_selection": "complete original inner OOF RMSE; rounded10 ties smaller amplitude then simpler/stronger penalty",
+  "amplitudes": [
+    0.0,
+    0.25,
+    0.5
+  ],
+  "correction_center": "train mean0; Ridge no intercept, alpha_solver=n*alpha; CART fit honest residuals then subtract mean train prediction",
+  "tree_support": "min_samples_leaf15/25 fixed; no forcing splits on small samples; root-only=>zero; profiles/municipality per leaf diagnostic only",
+  "primary": "incremental absolute performance; paired intraprofile utility separately; no change to B loss",
+  "acceptance": "exploratory margin.01: benefit>=.01 in absolute grouped or intraprofile BOTH weights, no absolute RMSE/MAE harm>.01 any protocol, no local harm>.01 both weights; geographic |bias| harm<=.02; omissions/top5 stability; no significance claim",
+  "context_control": "mandatory C_CONTEXT with exact same CART grid and amplitudes; M1_Z matches M2_Z inputs; H3 interactions remain descriptive without additive/LAI-only tree controls",
+  "sensitivity": "fixed-model temporal perturbations and metric omissions; no extra refits",
+  "contexts": 1218,
+  "new_base_fit_upper": 55909,
+  "corrector_fit_upper": 3900,
+  "seed": 2026,
+  "workers": 4,
+  "no_final_fit138": true,
+  "no_PRED": true,
+  "no_F8_execution": true,
+  "no_champion_change": true,
+  "source_sha": {
+    "src/ct3_residual_conditional/execution.py": "54cbe73847426f77d3c3517417bcb79c43d0585241bd1c62d684f8877fabcabb",
+    "src/ct3_residual_conditional/models.py": "f9eeb38d8944f58fd05fd42bc4db1ea8bba418e13c90eeb22356ad1da1ab358e",
+    "src/ct3_residual_conditional/reporting.py": "f22f005b8851f304cbc396794ee55f3e98cc936635a838ea15ff6426f3189297",
+    "src/ct3_residual_conditional/__init__.py": "eb8db5bc5d9cd8a23de80345978d5515d59550ac275b2e379f68844f4c23bbeb"
+  },
+  "dependencies": {
+    "python": "3.13.0",
+    "numpy": "2.3.4",
+    "pandas": "2.3.3"
+  },
+  "cache_sha": {
+    "outputs/modeling/ct3_residual_conditional/v1/cache/base_contexts.joblib": "e73ec8d6dbee3f11052bc4987a005f1725e2363021690a4ac029380f75afdd07",
+    "outputs/modeling/ct3_residual_conditional/v1/cache/execution_plan.joblib": "0e1d94b2cf05103ab955c1e8d7a12fca4f33787374ae3fdff8185ea41a0c4568",
+    "outputs/modeling/ct3_residual_conditional/v1/cache/frozen65_splits.joblib": "e4bc85766377b3f3b8a2f5a12aa3dc1a43d73d2ae7aa36cc6d8cc6244e26e130",
+    "outputs/modeling/ct3_residual_conditional/v1/cache/groups.csv": "2e291edea9a5c5d17de3f1895372b8dead8660ea598d61f7716c97982093fe47",
+    "outputs/modeling/ct3_residual_conditional/v1/cache/reference_oof.parquet": "69b95f772a66d7d1ce693d1640f59d899a69df8b82f2e87be9ff2741d43288b0",
+    "outputs/modeling/ct3_residual_conditional/v1/cache/temporal_coverage.csv": "99f830df579aee8984327b9f43d866bf999786ecfbfd34fa08cc1c30cf4a0f94",
+    "outputs/modeling/ct3_residual_conditional/v1/cache/temporal_sensitivity.csv": "f41c8205439915953db3cae54634605a4702b87ee628309772015c5e02f387b4",
+    "outputs/modeling/ct3_residual_conditional/v1/cache/train138.parquet": "b43497414fdb5581bc713da2b16176fefe52738461327734b624214488b59203"
+  }
+}

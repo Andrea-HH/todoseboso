@@ -1,0 +1,404 @@
+# AgroCebada — Investigación de corrección residual condicional sobre C-T3
+
+Actúa como **Senior Research Data Scientist especializado en aprendizaje estadístico, árboles de decisión, modelado residual, validación anidada, teledetección agrícola y aprendizaje con muestras pequeñas y dependencia espacial**.
+
+Trabaja directamente en el repositorio existente de AgroCebada. Ya cuentas con los experimentos, scripts, particiones, modelos congelados y documentación.
+
+## 1. Objetivo científico
+
+Investigar si una corrección residual de baja complejidad, condicionada por características agroclimáticas y de dinámica vegetal, puede mejorar las predicciones de rendimiento de C-T3.
+
+La hipótesis central es que **una señal parcelaria como la dinámica LAI podría tener una contribución al rendimiento que dependa del contexto climático o del estado de vegetación**, y que una única relación lineal global no represente adecuadamente.
+
+La arquitectura será:
+
+\[
+\hat y_i=\hat f_{\mathrm{CT3}}(X_i)+\lambda g(Z_i)
+\]
+
+Donde:
+
+- \(f_{\mathrm{CT3}}\) es la especificación original Elastic Net de C-T3.
+- \(g\) es un corrector residual de baja complejidad.
+- \(Z\) contiene un conjunto pequeño de características predefinidas.
+- \(\lambda\) controla la amplitud de la corrección e incluye cero como opción.
+
+**La hipótesis nula operativa es que el corrector no aporta una mejora suficientemente estable respecto a C-T3.**
+
+No optimices para encontrar obligatoriamente una arquitectura ganadora.
+
+## 2. Evidencia de partida
+
+Recupera y verifica los resultados de:
+
+- C-T3 y Etapa C.
+- F4-E, particularmente LAI y diferenciación intraperfil.
+- Etapa B, incluidos los intentos de modificar el objetivo de aprendizaje.
+- F7 y expansiones de CatBoost.
+- F8, cuyo diseño residual existe, pero no debe ejecutarse ni confundirse con esta investigación.
+- PLS1867.
+- Investigación `ct3_incremental_information`, fases I–III, utilizando la versión revisada v2.
+
+Considera especialmente:
+
+1. C-T3 contiene precipitación total, fracción temprana, concentración HHI y NDVI mayo.
+2. Las variables de lluvia son constantes dentro de perfiles de precipitación; NDVI permite diferenciación parcelaria.
+3. LAI inicio tiene una asociación intraperfil condicionada a NDVI de aproximadamente −0.230.
+4. LAI y SAVI muestran redundancia intraperfil considerable, con correlación aproximada −0.703.
+5. LAI/SAVI presentan sensibilidad temporal a observaciones faltantes, de hasta varias semanas en ciertos escenarios.
+6. Las extensiones directas de modelos globales frecuentemente empeoraron la transferencia.
+7. Los modelos orientados a diferencias intraperfil no lograron una mejora integral.
+8. PLS1867 no superó a la referencia compacta.
+9. No existe evidencia suficiente para construir modelos municipales independientes.
+10. Las mismas 138 etiquetas han sido utilizadas extensamente; los resultados nuevos seguirán siendo exploratorios.
+
+Consulta los artefactos originales antes de utilizar cifras, definiciones o resultados.
+
+## 3. Preguntas de investigación
+
+Responder por separado:
+
+**H1. Señal residual lineal**
+
+¿El inicio del ascenso LAI contiene información que permite corregir linealmente los errores de C-T3?
+
+**H2. No linealidad o interacción**
+
+¿Un árbol residual pequeño mejora frente a una corrección lineal con la misma información?
+
+**H3. Dependencia del contexto**
+
+¿La contribución de LAI cambia según condiciones resumidas por C-T3, especialmente concentración de lluvia, fracción temprana o NDVI mayo?
+
+**H4. Diferenciación intraperfil**
+
+¿La corrección mejora las diferencias predichas entre parcelas del mismo perfil de precipitación, y no solamente el nivel medio?
+
+**H5. Transferencia territorial**
+
+¿La posible mejora se conserva en evaluación municipal y espacial sin introducir nuevos sesgos regionales importantes?
+
+No interpretar una mejora en una sola dimensión como demostración de las otras.
+
+## 4. Modelos y controles
+
+Congelar inicialmente solo tres modelos principales.
+
+### M0 — C-T3 original
+
+Utilizar exactamente la referencia archivada:
+
+- `compact_precip_total`
+- `compact_early_fraction`
+- `compact_concentration_hhi`
+- `S2_ndvi_month_05`
+
+Preservar transformaciones, Elastic Net, hiperparámetros y selección interna originales.
+
+Reutilizar sus OOF compatibles y verificar identidad exacta.
+
+M0 no debe reoptimizarse para favorecer a los correctores.
+
+### M1 — Corrector residual lineal
+
+\[
+\hat y=\hat y_{\mathrm{CT3}}+\lambda g_{\mathrm{linear}}(\mathrm{LAIinicio})
+\]
+
+Usar una corrección lineal regularizada, con intercepto tratado explícitamente y centrado adecuado de la señal.
+
+Distinguir corrección constante de nivel y contribución variable de LAI. Incluir un control de corrección constante o intercepto si es necesario para interpretar la ganancia.
+
+Seleccionar regularización y amplitud dentro del entrenamiento, incluyendo \(\lambda=0\).
+
+La corrección debe ser pequeña y estable.
+
+### M2 — Árbol residual condicional
+
+\[
+\hat y=\hat y_{\mathrm{CT3}}+\lambda g_{\mathrm{tree}}(Z)
+\]
+
+Utilizar inicialmente:
+
+- `S2_lai_promedio_runup_start_day`
+- `compact_early_fraction`
+- `compact_concentration_hhi`
+- `S2_ndvi_month_05`
+
+No incluir automáticamente historia, pendiente, suelo, SAVI, coordenadas, municipio o estado.
+
+Usar un árbol CART de regresión con profundidad máxima 1–2, hojas grandes y restricciones explícitas de soporte.
+
+Propuesta inicial de configuración:
+
+- `max_depth`: 1 o 2.
+- `min_samples_leaf`: 15 o 25, sujeto al tamaño real de cada entrenamiento.
+- `ccp_alpha`: inicialmente 0; no abrir una búsqueda adicional sin justificación.
+- Amplitud \(\lambda\): 0, 0.25, 0.5 y 1.
+
+Revisar previamente si el presupuesto de hiperparámetros es razonable para el número de parcelas y perfiles efectivos.
+
+No introducir boosting, Random Forest, XGBoost ni un ensemble.
+
+El árbol debe utilizar características físicas y no IDs territoriales.
+
+### Control de interacción
+
+Para interpretar M2, distinguir si el árbol:
+
+1. Recalibra C-T3 usando características del propio núcleo.
+2. Utiliza LAI para corregir diferencias parcelarias.
+3. Aprende interacciones entre LAI y contexto.
+
+Si es necesario, incluir un control muy pequeño que utilice exclusivamente las variables contextuales de C-T3, sin LAI.
+
+**No atribuir una mejora a interacciones con LAI cuando un árbol sin LAI alcanza la misma ganancia.**
+
+Evitar convertir este control en una búsqueda adicional de modelos.
+
+## 5. Advertencia sobre la estructura del árbol
+
+Un árbol CART estándar genera predicciones constantes dentro de cada hoja.
+
+Por tanto, puede corregir niveles regionales o agroclimáticos sin mejorar diferencias entre parcelas que permanecen en una misma hoja.
+
+No asumir que el uso de LAI implica diferenciación intraperfil.
+
+Analizar explícitamente:
+
+- Cuántos perfiles tienen parcelas en hojas distintas.
+- Cuántas parcelas del mismo perfil reciben correcciones diferentes.
+- Qué fracción de las correcciones intraperfil se origina en divisiones por LAI.
+- Qué parte de la mejora corresponde a corrección de nivel frente a diferencias parcelarias.
+- Si las divisiones del árbol representan principalmente diferencias entre perfiles.
+
+Una variante con hojas lineales en LAI podría estudiarse posteriormente, pero **no forma parte de esta batería inicial**.
+
+## 6. Entrenamiento residual sin fuga
+
+Este es el requisito metodológico más importante.
+
+No entrenar los correctores con residuos in-sample de C-T3.
+
+No utilizar los OOF globales archivados como targets de entrenamiento residual.
+
+Para cada fold externo:
+
+1. Recuperar el conjunto externo de entrenamiento y prueba original.
+2. Dentro del entrenamiento externo, generar predicciones de C-T3 honestas mediante cross-fitting.
+3. Cada predicción utilizada para construir un residuo debe excluir la etiqueta correspondiente de todos los pasos de ajuste y selección.
+4. Calcular residuos únicamente con esas predicciones honestas.
+5. Entrenar el corrector con las características predefinidas y dichos residuos.
+6. Seleccionar sus hiperparámetros y \(\lambda\) utilizando validación interna que regenere completamente los residuos y modelos base correspondientes.
+7. Reajustar la base C-T3 con el entrenamiento externo completo utilizando el procedimiento original.
+8. Entrenar el corrector final con residuos cross-fitted del entrenamiento externo.
+9. Predecir el conjunto externo una sola vez mediante base reajustada más corrección.
+10. Guardar los componentes de la predicción por separado.
+
+Especificar con precisión cómo se generan los residuos cuando una partición interna sirve para seleccionar el corrector.
+
+No permitir que la etiqueta de una observación utilizada como validación interna intervenga en la selección, preprocesamiento o ajuste de ningún componente que produzca su predicción.
+
+Documentar el posible desajuste entre residuos obtenidos con bases cross-fitted y la base reajustada sobre todo el entrenamiento externo.
+
+Reutilizar mecanismos verificados de F8 cuando sean apropiados, **sin ejecutar F8 ni modificar su diseño**.
+
+## 7. Validación
+
+Conservar los 65 folds externos originales y sus particiones internas:
+
+- Aleatorio: 10 repeticiones.
+- Por perfil climático.
+- Municipal.
+- Espacial.
+
+Calcular RMSE, MAE y sesgo sobre las 138 predicciones OOF completas por repetición.
+
+No promediar RMSE por fold para sustituir la evaluación global.
+
+No tratar las diez repeticiones aleatorias como observaciones independientes.
+
+Comparar M0, M1 y M2 mediante las mismas observaciones externas.
+
+### Diferenciación intraperfil
+
+Para parcelas del mismo perfil y evaluadas por el mismo modelo externo:
+
+\[
+e_{ij}^{\Delta}=
+(y_i-y_j)-(\hat y_i-\hat y_j)
+\]
+
+Reportar:
+
+- RMSE de diferencias ponderado por parejas.
+- RMSE de diferencias con igual peso por perfil.
+- MAE de diferencias.
+- Resultados dentro y fuera de Chignahuapan.
+- Resultados excluyendo ambos perfiles dominantes.
+- Soporte en parcelas, perfiles y parejas.
+- Proporción de parejas cuyas predicciones cambian por la corrección.
+
+Las parejas son dependientes y no representan observaciones nuevas.
+
+### Transferencia territorial
+
+Analizar:
+
+- RMSE y MAE por municipio.
+- Sesgo por municipio.
+- Resultados por bloque espacial.
+- Omisión de municipios o bloques sin reajuste.
+- Concentración de ganancias y deterioros.
+- Errores de rendimientos bajos y altos como diagnóstico posterior.
+- Diferencias entre perfiles conocidos y nuevos.
+- Frecuencia de selección de corrección cero.
+
+No atribuir automáticamente un patrón territorial a un efecto causal regional.
+
+## 8. Interpretabilidad y estabilidad
+
+Para M2 registrar:
+
+- Estructura del árbol por fold.
+- Variables utilizadas para dividir.
+- Umbrales de división.
+- Profundidad efectiva.
+- Tamaño de cada hoja.
+- Número de perfiles distintos por hoja.
+- Número de municipios representados por hoja.
+- Corrección promedio por hoja.
+- Magnitud máxima y distribución de las correcciones.
+- Sensibilidad de las reglas a la exclusión de perfiles dominantes.
+- Consistencia aproximada de las divisiones entre entrenamientos.
+
+Una hoja con muchas parcelas, pero concentrada en un único perfil, no constituye evidencia robusta de transferencia.
+
+Distinguir estabilidad de la variable utilizada para dividir de estabilidad de su umbral y de su corrección.
+
+No interpretar reglas del árbol como relaciones causales agronómicas.
+
+## 9. Robustez de LAI
+
+Antes de interpretar el efecto del corrector:
+
+- Recuperar la auditoría de disponibilidad temporal de LAI de Fase III v2.
+- Verificar las unidades operativas de `runup_start_day`.
+- No atribuirle directamente una fecha de siembra o emergencia.
+- Revisar observaciones LAI negativas y su efecto sobre la extracción.
+- Examinar si parcelas con menor soporte temporal presentan correcciones mayores o menos estables.
+- Analizar sensibilidad de las reglas ante las perturbaciones de fechas ya documentadas.
+
+Si se evalúan transformaciones adicionales de LAI, no seleccionarlas por resultados externos.
+
+No incorporar SAVI automáticamente.
+
+## 10. Criterios de evaluación y detención
+
+Conservar como referencia los márgenes prácticos propuestos de 0.01 t/ha, aclarando que no son significación estadística ni beneficio económico.
+
+Examinar:
+
+1. Mejora del RMSE absoluto frente a C-T3.
+2. Mejora del RMSE intraperfil con ambos pesos.
+3. Ausencia de deterioros territoriales relevantes.
+4. Estabilidad de las ganancias frente a omisiones.
+5. Diferencia entre M1 y M2.
+6. Existencia real de correcciones variables dentro de perfiles.
+7. Magnitud y frecuencia de selección de \(\lambda=0\).
+
+**No seleccionar el mejor modelo usando los folds externos y presentar ese mismo resultado como confirmación independiente.**
+
+Si M2 no supera a M1, no existe evidencia suficiente para justificar el árbol.
+
+Si ambos seleccionan corrección cero frecuentemente, documentar el resultado negativo y detener la expansión.
+
+Si M2 mejora solamente la diferenciación local y perjudica transferencia, conservarlo como evidencia exploratoria local, no como modelo general.
+
+Si mejora exclusivamente por recalibrar niveles entre perfiles, no describirlo como una solución intraperfil.
+
+No ampliar retrospectivamente profundidad, variables, hiperparámetros ni arquitecturas para perseguir una mejora.
+
+## 11. Entregables y reproducibilidad
+
+Crear una nueva investigación independiente, siguiendo las convenciones reales del repositorio.
+
+Entregar:
+
+1. **Plan experimental congelado:** hipótesis, controles, matrices, grids y particiones.
+2. **Implementación reproducible:** código de cross-fitting anidado y correctores.
+3. **Predicciones OOF:** ID, fold, repetición, protocolo, predicción base, corrección, amplitud y predicción final.
+4. **Resultados agregados:** métricas absolutas e intraperfil, con agregación compatible.
+5. **Diagnóstico territorial:** municipios, perfiles y bloques espaciales.
+6. **Diagnóstico de árboles:** hojas, reglas, soporte y estabilidad.
+7. **Análisis de errores pareados:** diferencias contra C-T3 y entre M1/M2.
+8. **Informe técnico:** hipótesis respaldadas, refutadas o no concluyentes.
+9. **Resumen ejecutivo:** conclusiones comprensibles sin perder restricciones metodológicas.
+10. **Pruebas automatizadas, manifests y hashes.**
+
+No generar gráficos redundantes ni tablas gigantes en el informe principal. Mantener los datos completos en archivos trazables y seleccionar pocas visualizaciones informativas.
+
+## 12. Restricciones de integridad
+
+- No modificar C-T3 ni Champion.
+- No ejecutar F8 como familia.
+- No sobrescribir modelos o resultados anteriores.
+- No generar las 59 predicciones PRED.
+- No ajustar un modelo final con las 138 etiquetas.
+- No introducir categorías regionales como predictores.
+- No utilizar etiquetas de validación para entrenamiento, calibración o selección.
+- No reutilizar componentes descriptivas ajustadas sobre las 197 parcelas.
+- No hacer screening adicional sobre las 1,867 variables.
+- No seleccionar un corrector por su desempeño en el mismo fold externo que después se presenta como evidencia independiente.
+- No interpretar importancia, asociación, particiones o coeficientes como causalidad.
+- No confundir mejora intraperfil con mejora absoluta.
+- No confundir reproducibilidad computacional con generalización estadística.
+
+## 13. Secuencia de ejecución
+
+**Paso A — Auditoría previa**
+
+Revisa el estado del repositorio, las conclusiones anteriores y la implementación reutilizable de F8.
+
+Identifica cualquier diferencia entre esta propuesta y el esquema de cross-fitting ya documentado.
+
+**Paso B — Congelación del diseño**
+
+Define exactamente:
+
+- Matrices de entrada.
+- Controles mínimos.
+- Espacio de hiperparámetros.
+- Tratamiento de LAI.
+- Generación de residuos.
+- Selección anidada.
+- Métricas.
+- Reglas de detención.
+
+Guarda el diseño antes del primer entrenamiento experimental.
+
+**Paso C — Implementación y pruebas**
+
+Implementa los pipelines y verifica ausencia de fuga mediante pruebas automatizadas, incluida una prueba de independencia de las etiquetas externas.
+
+**Paso D — Ejecución controlada**
+
+Ejecuta únicamente M0, M1 y M2, más el control contextual mínimo si es indispensable para separar recalibración de interacción.
+
+No ejecutar extensiones adicionales.
+
+**Paso E — Evaluación y cierre**
+
+Entrega los resultados y una decisión razonada sobre:
+
+- Si existe señal residual aprovechable.
+- Si la relación es lineal o requiere una partición condicional.
+- Si mejora diferenciación intraperfil.
+- Si corrige niveles territoriales.
+- Si las ganancias sobreviven fuera de los perfiles dominantes.
+- Si hay justificación para seguir investigando árboles o conviene detener esa línea.
+
+Antes de cualquier implementación, si encuentras una incompatibilidad metodológica que comprometa la validez del experimento, documenta el problema y corrige el diseño, sin usar resultados externos para orientar la corrección.
+
+**El objetivo de esta investigación no es fabricar un nuevo Champion. Es contrastar de manera falsable si una corrección residual condicional puede aprovechar información parcelaria que C-T3 no representa, conservando su capacidad de transferencia.**

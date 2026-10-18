@@ -1,0 +1,624 @@
+# Investigación: información predictiva incremental condicionada a C-T3
+
+Actúa como **Senior Research Data Scientist especializado en aprendizaje estadístico, reducción de dimensionalidad supervisada, datos geoespaciales, teledetección, validación estructurada y modelado predictivo con muestras pequeñas y alta dimensionalidad**.
+
+Trabaja directamente sobre el repositorio existente de AgroCebada. Ya tienes acceso al código, matrices, diccionarios, experimentos y documentación. **No reconstruyas el proyecto desde cero ni sustituyas evidencia experimental previa por supuestos.**
+
+## 1. Objetivo científico
+
+Diseñar e implementar una investigación reproducible para determinar si las variables disponibles contienen **información predictiva incremental sobre `RENDIMIENTO_T_HA` respecto al núcleo C-T3**, particularmente información capaz de diferenciar parcelas que comparten el mismo perfil de precipitación.
+
+La investigación debe distinguir tres fenómenos:
+
+1. **Variabilidad informativa:** una característica cambia entre parcelas que C-T3 considera semejantes.
+2. **Información complementaria:** esa variación no está suficientemente representada por los predictores existentes de C-T3.
+3. **Utilidad predictiva incremental:** esa información mejora predicciones fuera de entrenamiento, sin deteriorar injustificadamente la transferencia territorial.
+
+Estas condiciones no son equivalentes. No interpretes variación, correlación, VIP, componentes principales, asociación parcial o separación entre grupos como evidencia suficiente de ganancia predictiva.
+
+La investigación parte de la hipótesis nula operativa de que **no existe una mejora incremental suficientemente estable**. No fuerces la identificación de variables útiles.
+
+---
+
+## 2. Punto de partida obligatorio: C-T3
+
+Utiliza como representación base las cuatro variables del experimento C-T3:
+
+- `compact_precip_total`
+- `compact_early_fraction`
+- `compact_concentration_hhi`
+- `S2_ndvi_month_05`
+
+Las primeras tres representan cantidad y estructura temporal de precipitación de abril a octubre; la cuarta representa estado espectral de la vegetación en mayo.
+
+Recupera del repositorio:
+
+- Definiciones y código generador de las variables.
+- Modelo y regularización originales de C-T3.
+- Particiones externas e internas originales.
+- Predicciones OOF y métricas previamente congeladas.
+- Definiciones de perfiles climáticos.
+- Protocolos aleatorio, `climate_profile`, municipal y espacial.
+- Reglas de agregación y métricas intraperfil.
+- Comprobaciones de identidad de las parcelas y ausencia de fuga de información.
+
+**C-T3 es una referencia experimental congelada, no una arquitectura para modificar durante la fase diagnóstica.**
+
+Distingue cuidadosamente entre evaluar información incremental *condicionada a los predictores de C-T3* y corregir residuos del modelo C-T3. No son el mismo problema.
+
+No presupongas que las cuatro variables contienen toda la información predictiva disponible.
+
+---
+
+## 3. Evidencia previa que debe guiar el diseño
+
+Antes de implementar, revisa los artefactos y documentos existentes de:
+
+- C-T3 y Etapa C.
+- F4-E y diagnóstico de concentración del error en Chignahuapan.
+- Etapa B y sus funciones objetivo intraperfil.
+- F5 y F6.
+- F7 y sus expansiones E1/E2/E3.
+- PLS1867 y su diagnóstico posterior.
+- Investigaciones J/K/L/M de suelo, relieve, historia y representación multibloque.
+- F8, exclusivamente como propuesta de investigación residual todavía no ejecutada.
+- Inventarios de variables originales, externas y experimentales.
+
+Verifica las siguientes observaciones contra los artefactos del repositorio:
+
+**A. Estructura de datos**
+
+- 197 parcelas, de las cuales 138 cuentan con rendimiento observado y 59 no tienen etiqueta.
+- 43 perfiles de precipitación entre las 138 etiquetas.
+- 12 perfiles repetidos y 31 singleton.
+- 107 parcelas pertenecen a perfiles repetidos.
+- Dos perfiles grandes concentran gran parte de la evidencia intraperfil en Chignahuapan.
+- Inventarios de 1,557 columnas procesadas y 310 nombres experimentales adicionales, con equivalencias, redundancias y transformaciones.
+
+Los conteos de columnas no representan dimensiones independientes.
+
+**B. Evidencia predictiva**
+
+C-T3 consiguió aproximadamente:
+
+| Protocolo | RMSE |
+|---|---:|
+| Aleatorio | 0.5116 |
+| Perfil climático | 0.5206 |
+| Municipal | 0.5813 |
+| Espacial | 0.6788 |
+
+PLS1867 obtuvo aproximadamente 0.5385, 0.5599, 0.7169 y 0.8920, respectivamente.
+
+Estos resultados debilitan la hipótesis de que una compresión supervisada global y densa de todos los descriptores produzca una representación transferible.
+
+No descartan PLS por bloques ni selección supervisada.
+
+**C. Evidencia intraperfil**
+
+- La diferenciación de parcelas dentro de Chignahuapan es particularmente difícil.
+- El inicio del ascenso LAI mostró complementariedad pequeña y parcialmente estable frente a NDVI de mayo.
+- Cambiar directamente la función objetivo hacia diferencias intraperfil no produjo una mejora integral y deterioró transferencia municipal.
+- Los interceptos jerárquicos por perfil no superaron consistentemente controles de regularización.
+- Historia NDVI, pendiente, suelo y variables territoriales mostraron beneficios localizados o contrastes descriptivos, pero no ganancias predictivas universales.
+- Las expansiones de CatBoost pueden mejorar diferencias locales bajo ciertas ponderaciones y empeorar las predicciones absolutas.
+- PLS1867 identificó asociaciones agroclimáticas fuertes en entrenamiento sin mejorar generalización.
+
+**No redescubras estos hallazgos mediante screenings extensivos para volver a presentar los mismos resultados como nuevos.**
+
+Construye una matriz de evidencia previa: señal, hipótesis ya probada, resultado, limitación, representación utilizada y pregunta que efectivamente permanece abierta.
+
+---
+
+## 4. Hipótesis de investigación
+
+Estructura el estudio mediante cuatro hipótesis separadas.
+
+### H1. Existe variabilidad parcelaria no representada por C-T3
+
+Algunas variables observadas tienen variación intraperfil relevante, incluso después de considerar las características del núcleo C-T3.
+
+Esta hipótesis se estudia inicialmente **sin utilizar rendimiento**.
+
+No equipares variabilidad con predictividad.
+
+### H2. Parte de esa variabilidad contiene información relacionada con rendimiento
+
+Ciertas características muestran una asociación condicional con `RENDIMIENTO_T_HA` una vez considerada la información de C-T3.
+
+El contraste debe distinguir asociaciones entre perfiles y dentro de perfiles.
+
+No interpretes asociaciones como causalidad ni como utilidad predictiva validada.
+
+### H3. Existen representaciones compactas de esa información complementaria
+
+Es posible representar señales adicionales mediante menos dimensiones sin destruir sus contrastes parcelarios o su información condicional.
+
+Considera PCA por bloques, selección de características y métodos supervisados solamente cuando sus supuestos sean apropiados.
+
+### H4. Algunas representaciones generan utilidad predictiva incremental transferible
+
+Una representación candidata mejora una referencia C-T3 en predicciones externas, y su posible beneficio no depende exclusivamente de un perfil, municipio, bloque espacial o unas pocas parcelas.
+
+**H4 no se considera demostrada por H1–H3.**
+
+---
+
+## 5. Fase I: auditoría de información y dimensionalidad
+
+Esta fase es diagnóstica y no debe entrenar nuevos modelos predictivos de rendimiento.
+
+### 5.1 Construir el catálogo analítico
+
+Integra conceptualmente las características disponibles sin concatenarlas ciegamente.
+
+Clasifícalas por:
+
+- Fuente física.
+- Sensor o producto.
+- Familia de transformación.
+- Escala espacial.
+- Resolución y soporte temporal.
+- Fenómeno agronómico representado.
+- Variable original frente a derivada.
+- Histórico, campaña actual o anomalía.
+- Numérica continua, binaria, categórica, proporción o composición.
+- Disponibilidad y faltantes.
+- Equivalencias exactas o casi exactas.
+- Posible dependencia del target, de predicciones previas o del entrenamiento.
+
+Excluir identificadores, rendimiento y metadatos no predictivos de las matrices explicativas.
+
+Excluir del catálogo de covariables fijas las predicciones, residuos, componentes y transformaciones que requieren ajuste dentro del fold.
+
+Detectar redundancias estructurales sin confundir igualdad numérica en las parcelas disponibles con equivalencia física o semántica.
+
+No eliminar definitivamente variables de las fuentes existentes.
+
+### 5.2 Estudiar variación entre y dentro de perfiles
+
+Sea \(g(i)\) el perfil de precipitación de la parcela \(i\).
+
+Para cada predictor numérico candidato \(X_j\), estudiar:
+
+\[
+X_{ij}=\bar X_{g(i),j}+
+(X_{ij}-\bar X_{g(i),j})
+\]
+
+Calcular, cuando sea apropiado:
+
+- Variación total.
+- Variación dentro de perfiles.
+- Variación entre perfiles.
+- Fracción descriptiva de variación intraperfil.
+- Número de perfiles con contraste observable.
+- Número de parcelas que respaldan ese contraste.
+- Variación en Chignahuapan.
+- Variación fuera de Chignahuapan.
+- Sensibilidad a perfiles dominantes.
+- Faltantes y soporte efectivo.
+
+No utilizar exclusivamente la varianza: una característica puede tener baja varianza global y contrastes intraperfil relevantes.
+
+Para variables categóricas, binarias y composicionales, utilizar medidas apropiadas a su naturaleza; no aplicar mecánicamente descomposiciones de varianza continua.
+
+No convertir clases de suelo o geología en magnitudes ordinales artificiales.
+
+Explicitar cuándo una señal es constante por construcción dentro de perfiles definidos mediante las mismas variables.
+
+### 5.3 Estudiar información redundante respecto a C-T3
+
+La pregunta central es:
+
+**¿Qué variación adicional conserva una señal una vez considerada la representación C-T3?**
+
+Evaluar redundancia mediante métodos adecuados al tipo de variable:
+
+- Correlaciones e intercorrelaciones.
+- Relaciones no lineales exploratorias cuando estén justificadas.
+- Proyecciones sobre el espacio de C-T3.
+- Fracción de variación residual frente a C-T3.
+- Agrupaciones de variables correlacionadas.
+- Comparación de rangos y coberturas.
+- Estabilidad de las representaciones.
+
+Para variables continuas, puede utilizarse una residualización exploratoria:
+
+\[
+R_{X_j}=X_j-\widehat{\mathbb E}[X_j\mid X_{\mathrm{CT3}}]
+\]
+
+Su interpretación depende del modelo empleado para estimar la esperanza condicional.
+
+Distinguir expresamente:
+
+- Información no explicada por una proyección lineal.
+- Información condicional no redundante en sentido más general.
+
+La primera no demuestra automáticamente la segunda.
+
+Evitar modelos demasiado flexibles de residualización que generen diferencias artificiales por sobreajuste.
+
+No utilizar el target en esta etapa.
+
+### 5.4 Analizar dimensionalidad efectiva
+
+Para bloques numéricos con soporte suficiente y preprocesamiento apropiado, examinar:
+
+- Rango matricial y rango numérico.
+- Valores singulares.
+- Espectro de autovalores.
+- Varianza acumulada.
+- Rango efectivo basado en entropía espectral.
+- Participación de autovalores.
+- Estabilidad de subespacios bajo remuestreo.
+
+Separar análisis sobre las 197 parcelas disponibles del análisis restringido a las 138 etiquetadas.
+
+Identificar explícitamente el carácter descriptivo o transductivo de representaciones ajustadas sobre 197 parcelas. No reutilizar automáticamente esas componentes dentro de validaciones inductivas.
+
+En esta fase, PCA debe utilizarse principalmente como herramienta de diagnóstico de redundancia, no como prueba de valor predictivo.
+
+No interpretar un rango efectivo bajo como garantía de baja dimensionalidad predictiva.
+
+---
+
+## 6. Fase II: estudiar información relacionada con rendimiento
+
+Esta fase utiliza etiquetas y, por tanto, requiere un tratamiento más estricto de exploración y validación.
+
+No ejecutar una búsqueda indiscriminada sobre las 1,867 variables.
+
+Selecciona bloques candidatos mediante:
+
+1. Evidencia física y agronómica.
+2. Evidencia de investigaciones anteriores.
+3. Variación intraperfil verificada.
+4. Información no redundante respecto a C-T3.
+5. Calidad, resolución y disponibilidad de las mediciones.
+
+Documenta la justificación de cada bloque antes de utilizar el rendimiento.
+
+### 6.1 Asociación condicional a C-T3
+
+Para variables candidatas, evaluar si existe relación adicional con rendimiento una vez considerada C-T3.
+
+Como diagnóstico lineal puede utilizarse la lógica de Frisch–Waugh–Lovell:
+
+\[
+r_y=y-\widehat y_{\mathrm{CT3}}
+\]
+
+\[
+r_z=z-\widehat{\mathbb E}[z\mid X_{\mathrm{CT3}}]
+\]
+
+y estudiar la asociación entre \(r_y\) y \(r_z\).
+
+**No utilizar residuos in-sample como evidencia de generalización predictiva.**
+
+Distinguir dos modalidades:
+
+- Diagnóstico asociativo retrospectivo, claramente identificado.
+- Estimación de asociación o señal predictiva mediante residualización cross-fitted, cuando corresponda.
+
+No asumir que las asociaciones deben ser lineales.
+
+Toda inferencia debe reconocer el pequeño tamaño muestral, la dependencia territorial y el screening previo.
+
+### 6.2 Asociación intraperfil
+
+Investigar si las señales candidatas explican diferencias observadas entre parcelas del mismo perfil.
+
+Considerar:
+
+\[
+\Delta y_{ij}=y_i-y_j
+\]
+
+\[
+\Delta z_{ij}=z_i-z_j
+\]
+
+para \(g(i)=g(j)\).
+
+Controlar la diferencia de NDVI mayo y reconocer que las variables compactas de lluvia se cancelan dentro de un perfil definido por la misma serie.
+
+Las parejas son unidades de comparación, **no observaciones independientes de entrenamiento**.
+
+Evitar pseudorreplicación. Para incertidumbre o remuestreo, respetar la dependencia entre parcelas, perfiles y regiones.
+
+Reportar por separado:
+
+- Ponderación por parejas.
+- Igual peso por perfil.
+- Chignahuapan.
+- Fuera de Chignahuapan.
+- Sensibilidad a la exclusión de los dos perfiles dominantes.
+- Soporte real de cada estimación.
+
+No interpretar la ausencia de asociación en pocos perfiles como prueba de irrelevancia agronómica.
+
+### 6.3 Distinguir señal regional de señal parcelaria
+
+Investigar si una asociación aparece:
+
+- Principalmente entre municipios o perfiles.
+- Principalmente dentro de perfiles.
+- En ambos niveles.
+- Solo en determinados subconjuntos.
+
+Prestar especial atención a señales de temperatura y precipitación con VIP altos en PLS1867: podrían reflejar estructura agroclimática legítima, redundancia con C-T3 o diferencias territoriales confundidas.
+
+No atribuir causalidad a los signos de los coeficientes ni interpretar los VIP como importancia incremental.
+
+Una asociación intraperfil observada en Chignahuapan debe evaluarse también fuera de ese municipio, reconociendo el soporte limitado.
+
+---
+
+## 7. Fase III: evaluar técnicas de representación
+
+**No ejecutar esta fase automáticamente antes de entregar y revisar las conclusiones de las fases I y II.**
+
+Preparar una propuesta técnica acotada que incluya únicamente métodos justificados por los resultados diagnósticos.
+
+Considerar:
+
+### A. Representación original compacta
+
+Conservar C-T3 como control obligatorio.
+
+### B. Selección de variables o grupos
+
+Evaluar selección regularizada cuando las señales candidatas sean interpretables y el objetivo sea conservar sus magnitudes originales.
+
+Considerar Elastic Net, Group Lasso o Sparse Group Lasso únicamente si la estructura de grupos y el soporte estadístico lo justifican.
+
+### C. PCA por bloques
+
+Evaluar si la reducción no supervisada permite preservar variación complementaria sin introducir cientos de variables correlacionadas.
+
+Estandarizar dentro del entrenamiento y evitar que el número de columnas de un sensor determine arbitrariamente su peso relativo.
+
+### D. PLS o Sparse PLS condicionado a C-T3
+
+No repetir PLS1867 global.
+
+Considerar PLS solamente sobre bloques candidatos definidos previamente.
+
+Distinguir:
+
+- PLS aplicado a \(Z\) para predecir \(Y\).
+- PLS aplicado a \(Z\) condicionado a C-T3.
+- PLS sobre residuos de un modelo base.
+
+Son procedimientos diferentes con estimandos y riesgos distintos.
+
+Para una formulación condicionada, especificar claramente cómo se residualizan predictores y objetivo dentro de cada partición de entrenamiento y cómo se generan transformaciones para nuevas observaciones.
+
+Considerar Sparse PLS si el objetivo es identificar un subconjunto estable de señales y la implementación permite regularización apropiada.
+
+### E. Métodos no lineales
+
+Kernel PCA, SIR, SAVE o autoencoders no deben incorporarse automáticamente.
+
+Solo proponerlos cuando exista una hipótesis específica que una representación lineal no pueda investigar adecuadamente y cuando el soporte efectivo permita una evaluación razonable.
+
+No usar UMAP o t-SNE como demostración de predictividad por separación visual.
+
+---
+
+## 8. Eventual fase IV: validación predictiva incremental
+
+Esta fase deberá quedar diseñada pero **no ejecutada sin revisión previa**.
+
+Para cada representación autorizada, comparar:
+
+\[
+\hat y_0=f(X_{\mathrm{CT3}})
+\]
+
+frente a:
+
+\[
+\hat y_1=f(X_{\mathrm{CT3}},Z_{\mathrm{nuevo}})
+\]
+
+o, cuando esté justificado:
+
+\[
+\hat y_1=\hat y_0+\lambda\hat r(Z_{\mathrm{nuevo}})
+\]
+
+No asumir que un corrector residual sea necesariamente superior a una regresión conjunta.
+
+Si se utilizan residuos para entrenamiento, generarlos mediante cross-fitting anidado sin fuga de etiquetas desde validación interna o externa.
+
+La amplitud de una corrección debe incluir \(\lambda=0\) como alternativa y seleccionarse exclusivamente dentro de entrenamiento.
+
+### Protocolos
+
+Preservar los 65 folds externos originales y sus particiones internas compatibles:
+
+- Aleatorio.
+- Por perfil climático.
+- Municipal.
+- Espacial.
+
+Calcular las métricas externas sobre OOF completas por repetición, no mediante medias de RMSE por fold.
+
+Las diez repeticiones aleatorias y las parejas intraperfil no constituyen observaciones independientes.
+
+### Métricas
+
+**Predicción absoluta:**
+
+- RMSE en t/ha.
+- MAE en t/ha.
+- Sesgo.
+- Distribución de errores.
+- Errores en rendimientos bajos y altos, solamente como diagnóstico posterior.
+
+**Diferenciación intraperfil:**
+
+\[
+e_{ij}^{\Delta}=
+(y_i-y_j)-(\hat y_i-\hat y_j)
+\]
+
+- RMSE de diferencias por pareja.
+- RMSE de diferencias con igual peso por perfil.
+- MAE de diferencias.
+- Resultados dentro/fuera de Chignahuapan.
+- Soporte de parcelas y perfiles.
+
+Las parejas solo son elegibles si sus predicciones provienen del mismo modelo externo, conforme a la metodología archivada.
+
+**Transferencia:**
+
+- Resultados por municipio y bloque.
+- Sesgo territorial.
+- Sensibilidad a la exclusión de regiones.
+- Dependencia de parcelas beneficiarias.
+- Estabilidad de las mejoras entre particiones.
+- Desempeño para perfiles conocidos y nuevos.
+
+Comparar diferencias pareadas contra el mismo C-T3 y otros controles pertinentes, con exacta compatibilidad de IDs, folds y agregación.
+
+Ninguna mejora exclusivamente aleatoria será suficiente para afirmar transferencia territorial.
+
+No seleccionar ganadores mediante resultados externos de los mismos protocolos que después se presentan como confirmación independiente.
+
+---
+
+## 9. Requisitos de integridad experimental
+
+Aplicar las siguientes restricciones a todo el proyecto:
+
+1. No modificar el Champion ni otros modelos archivados.
+2. No sobrescribir resultados de F4–F8, C-T3, PLS1867 u otras familias.
+3. No generar las 59 predicciones PRED.
+4. No entrenar modelos finales sobre las 138 etiquetas.
+5. No utilizar etiquetas de validación en escalado, selección, componentes, residualización, calibración o tuning.
+6. No utilizar coordenadas, estado, municipio o identificadores como predictores sin una hipótesis autorizada y un protocolo explícito.
+7. No interpretar fuentes cartográficas de baja resolución como mediciones parcelarias precisas.
+8. No crear nuevos indicadores físicos sin definiciones, unidades y procedencia verificables.
+9. No equiparar nombres duplicados con información independiente.
+10. No seleccionar variables por el mismo desempeño externo que después se pretende validar.
+11. No interpretar correlaciones, VIP, cargas, coeficientes, agrupamientos ni dimensionalidad efectiva como importancia causal.
+12. Preservar trazabilidad de semillas, hashes, inputs, folds, configuraciones y versiones de código.
+
+Diferenciar claramente análisis exploratorio de validación predictiva.
+
+El proyecto ha reutilizado extensamente las mismas 138 etiquetas. Una nueva comparación OOF puede ser metodológicamente correcta y aun así estar afectada por sesgo acumulado de investigación. Documentar esta limitación explícitamente.
+
+---
+
+## 10. Implementación y organización
+
+Revisa primero las convenciones existentes del repositorio. Crea un módulo nuevo, aislado y coherente con la estructura de `src`, `documentation` y `outputs/research`.
+
+No copies pipelines completos si existen funciones reutilizables y verificadas.
+
+Evita generar cientos de archivos de gráficos o tablas con información repetida.
+
+Organiza los resultados en cuatro productos principales:
+
+### A. Auditoría de información
+
+Un dataset trazable por variable con:
+
+- Procedencia.
+- Grupo conceptual.
+- Tipo.
+- Redundancia.
+- Variación intraperfil.
+- Cobertura.
+- Resolución relevante.
+- Relación descriptiva con C-T3.
+- Soporte estadístico.
+- Limitaciones.
+
+### B. Análisis condicionado
+
+Un documento con la evidencia de asociación incremental e intraperfil de los bloques priorizados, distinguiendo asociaciones descriptivas de evidencia predictiva.
+
+### C. Informe técnico
+
+Debe responder directamente:
+
+1. ¿Qué información contiene C-T3?
+2. ¿Qué variación observada no contiene?
+3. ¿Cuáles de las señales adicionales son redundantes?
+4. ¿Qué características presentan contrastes intraperfil reales?
+5. ¿Cuáles tienen asociaciones condicionales con rendimiento?
+6. ¿Qué evidencia depende de Chignahuapan?
+7. ¿Qué señales podrían representar estructura territorial más que parcelaria?
+8. ¿Qué bloques ameritan una reducción supervisada o no supervisada?
+9. ¿Qué hipótesis ya fueron investigadas suficientemente y no conviene repetir?
+10. ¿Qué información nueva sería necesario recolectar si no aparece señal complementaria?
+
+### D. Propuesta experimental posterior
+
+Una matriz pequeña de experimentos candidatos con:
+
+- Hipótesis.
+- Señales y representación.
+- Método estadístico.
+- Control correspondiente.
+- Validación requerida.
+- Riesgo principal.
+- Condiciones de aceptación.
+- Costo computacional estimado.
+- Criterios de detención.
+
+No presentar una arquitectura como recomendada únicamente porque una variable tenga asociación parcial alta.
+
+---
+
+## 11. Pruebas y controles automatizados
+
+Crear pruebas que comprueben:
+
+- Identidad y número esperado de parcelas.
+- Correspondencia exacta de IDs entre matrices.
+- Separación de TRAIN y PRED.
+- Definición correcta de perfiles.
+- Equivalencias verificadas de variables.
+- Tratamiento consistente de faltantes y categorías.
+- Conservación de fuentes y modelos previos.
+- Inexistencia de información del target en las características diagnósticas.
+- Consistencia de agregaciones entre perfiles.
+- Identidad de las descomposiciones matemáticas.
+- Ausencia de pseudorreplicación en resúmenes e inferencias.
+- Respeto de las particiones para cualquier operación supervisada.
+- Reproducibilidad de resultados.
+
+No modificar parámetros de investigaciones anteriores para hacer que controles y reproducciones coincidan artificialmente.
+
+---
+
+## 12. Forma de trabajo y criterio de avance
+
+**Primero realiza una auditoría del estado existente y presenta un plan breve de implementación, identificando qué investigaciones anteriores responden ya a parte de las preguntas.**
+
+Después ejecuta las fases I y II como investigación diagnóstica, siempre que puedan realizarse sin modificar artefactos anteriores.
+
+No ejecutes nuevas familias predictivas, búsquedas amplias de hiperparámetros, selección de un Champion, combinaciones residuales ni fase IV.
+
+Al terminar, entrega:
+
+1. Hallazgos respaldados con cifras y soporte.
+2. Señales redundantes y dimensiones efectivamente nuevas.
+3. Diferenciación entre variación intraperfil y asociación predictiva.
+4. Sensibilidad de los resultados a Chignahuapan y otros perfiles dominantes.
+5. Resultados negativos o no concluyentes.
+6. Propuesta concreta y acotada para la siguiente fase experimental.
+7. Limitaciones de identificabilidad y generalización.
+
+Para cada recomendación, indica qué evidencia previa la justifica, qué información nueva añade y qué resultado la refutaría.
+
+**No optimices para encontrar obligatoriamente una mejora. Optimiza para determinar con rigor si existe información complementaria a C-T3 y si vale la pena intentar convertirla en una mejora predictiva.**
+
+La investigación será exitosa incluso si concluye que las fuentes actuales no contienen suficiente señal adicional estable. Ese resultado debe orientar la recolección de información nueva y evitar seguir aumentando la complejidad sin fundamento.

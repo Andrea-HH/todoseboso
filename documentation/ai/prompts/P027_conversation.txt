@@ -1,0 +1,1 @@
+se hizo una exploracion exaustiva de los compenentes y señales fisicas y una reduccion de dimensionalidad de ellos apra saber si es lo optimo

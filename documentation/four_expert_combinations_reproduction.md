@@ -7,9 +7,9 @@ Se requieren los datos y artefactos históricos locales que enumera `outputs/mod
 Sólo cuando no exista el diseño de esta ejecución:
 
 ```powershell
-C:\Users\narro\miniconda3\python.exe scripts/503_prepare_four_expert_combinations.py
-C:\Users\narro\miniconda3\python.exe scripts/508_verify_four_expert_fast.py
-C:\Users\narro\miniconda3\python.exe scripts/515_verify_four_expert_tuner.py
+python scripts/503_prepare_four_expert_combinations.py
+python scripts/508_verify_four_expert_fast.py
+python scripts/515_verify_four_expert_tuner.py
 ```
 
 El primer comando congela las seis mezclas, cuatro controles,65 folds originales y16 particiones nuevas97/41. Los siguientes verifican optimizaciones equivalentes; no seleccionan otra rejilla ni otro modelo. Los diseños/manifiestos ya existentes se conservan al reanudar.
@@ -19,11 +19,11 @@ El primer comando congela las seis mezclas, cuatro controles,65 folds originales
 Ejecutar una sola instancia; los checkpoints completos se reutilizan:
 
 ```powershell
-C:\Users\narro\miniconda3\python.exe scripts/516_run_four_expert_cached_tuner.py all
-C:\Users\narro\miniconda3\python.exe scripts/507_run_four_expert_fast.py
-C:\Users\narro\miniconda3\python.exe scripts/511_finalize_four_expert_combinations.py
-C:\Users\narro\miniconda3\python.exe scripts/513_summarize_four_expert_combinations.py
-C:\Users\narro\miniconda3\python.exe scripts/517_review_four_expert_results.py
+python scripts/516_run_four_expert_cached_tuner.py all
+python scripts/507_run_four_expert_fast.py
+python scripts/511_finalize_four_expert_combinations.py
+python scripts/513_summarize_four_expert_combinations.py
+python scripts/517_review_four_expert_results.py
 ```
 
 El segundo comando recoge los81 checkpoints y verifica integridad; al estar completos no vuelve a entrenarlos. El finalizador ejecuta nueve pruebas, evaluación/replay, diagnósticos y Excel. La síntesis espera su finalización. La revisión final comprueba los límites convexos, la integridad de modelos y la interpretación específica de los resultados. Los scripts512/511/513 también permiten supervisar una ejecución en curso. La separación de colas usada durante esta investigación está registrada en `execution_topology.json`; no cambia los modelos ni las particiones.

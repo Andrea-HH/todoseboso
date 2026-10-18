@@ -1,0 +1,39 @@
+{
+  "experiment": "PLS1867",
+  "n_inputs": 1867,
+  "components": [
+    1,
+    2,
+    3,
+    5,
+    8,
+    12,
+    16
+  ],
+  "selection": "complete inner OOF RMSE; ties rounded 10 decimals prefer fewer components",
+  "outer_folds": 65,
+  "inner": "original frozen inner splits",
+  "preprocessing": "train-only numeric median (empty=0), categorical one-hot unknown=all-zero, train-only constants removed and StandardScaler; PLS scale=False",
+  "target": "PLS centers target internally using training labels only; native t/ha",
+  "duplicates": "retained intentionally; repeated descriptors may overweight signals",
+  "categorical_caution": "includes locality names and soil map labels/summary; these may proxy geography",
+  "scope": "whole-season Apr-Oct2025; exploratory, no final full138 fit, no PRED inference, no champion modification",
+  "source_hash": "e8ec413b944c13f359cd17be9c93d836aa313d103516b70a21bdbd81c5760365",
+  "inputs": {
+    "outputs\\research\\variable_inventory\\v1\\inventario_1557.csv": "f09d2e39bdf9deb0ddfbd30170f73617ed7d0010e6deb7d5e905dffd01fb2789",
+    "outputs\\research\\experimental_variable_inventory\\v1\\variables_adicionales.csv": "ced5931b7a4a4b361f457c624a976e2b2525af239057ad661b7ac0283dd1dbf0",
+    "outputs\\modeling\\family_7\\boosting\\v1\\cache\\train138_exact_features.parquet": "6be568a66d02846b9d78d1944c5cf1e029c49854a4900fe5b5d43a785f9ad9b1",
+    "data\\processed\\family_1\\features\\family1_features_all.parquet": "06ba7b2c78bfdf51dba671b7f4de36fd6812ed9cf195466e2d575eaec984c6fc",
+    "data\\processed\\phase_c\\c0_c1\\external_parcel_features.parquet": "7a0974e65733f2b97a8d588997a5ebc495f8ce9c487aff5afa267535a7c9f7e6",
+    "data\\processed\\family_1\\i_climate_conditioned_geographic_edaphological\\v1\\integrated_diagnostic_197.parquet": "cfd8f05616d46407473eb85c96dd73cc8995687fa86244c36db0a506fb530a9f",
+    "data\\processed\\family_4\\territorial_intraprofile_program\\v1\\stage_a\\geology_attributes_197.parquet": "4e4a9d524b924aa0824fc430b5adf0acc1a1ed4107c34573cafb5c8050ae477f",
+    "data\\processed\\family_4\\territorial_intraprofile_program\\v1\\stage_a\\geology_full_composition_197.parquet": "65ac92f265e0726c871d7948ed9fb0ad478d0480c5fc6c8fc76e568922ef0fb9",
+    "data\\processed\\family_1\\m_historical_multisensor\\v1\\m_features_197_target_free.parquet": "9d59497528e5f0b1883dbfb4e41aa2a14b8702c835d66ba53920f42e938ba97a",
+    "data\\processed\\family_4\\territorial_intraprofile_program\\v1\\stage_c\\c_features_197_target_free.parquet": "d764f441246a5c921ae36392e8300df54c1aece641653e2787501322bf399dce",
+    "data\\processed\\family_1\\rainfall_yield\\v1\\rainfall_features.parquet": "25edc3c10ec4291b219a0f8d225aa744d0c43a4005e9eacc54ae88f88c9efbf0",
+    "data\\processed\\family_1\\j_incremental_geographic_edaphological_yield\\v1\\j_features_197_target_free.parquet": "5ae22d90162593c86ad0b0312d3ec1298d84bffe08c4d8ba0122ee62fa90a672",
+    "data\\processed\\family_1\\g_temperature_signal\\v1\\climate_candidates_197.parquet": "64fdad1eeb2b900f97b6dc1be85fe0f1f601c7f24263e3ea270d27860ecb0824",
+    "outputs\\modeling\\family_7\\boosting\\v1\\cache\\frozen65_splits.joblib": "e4bc85766377b3f3b8a2f5a12aa3dc1a43d73d2ae7aa36cc6d8cc6244e26e130",
+    "outputs\\modeling\\family_7\\boosting\\v1\\tables\\oof_predictions.parquet": "aba0541d193fc9e81ae00dbe1302c0a44fea5a5d636f6c542a037d862f4a4150"
+  }
+}

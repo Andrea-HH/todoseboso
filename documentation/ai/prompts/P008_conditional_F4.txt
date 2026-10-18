@@ -1,0 +1,213 @@
+# Ajuste a Familia 4 — Sensibilidades condicionales y señales complementarias identificadas mediante screening
+
+Actualiza el diseño de **Family 4 — Conditional Yield Response Models** con los resultados del screening exploratorio de 1,473 variables.
+
+Conserva las hipótesis, convenciones, controles de leakage, protocolos de validación y restricciones establecidas anteriormente. No sobrescribas modelos, resultados ni el Champion.
+
+## Nueva evidencia que debe incorporarse
+
+El screening identificó cuatro variables con fortalezas diferenciadas:
+
+**Señales intraperfil:**
+
+- `S2_ndvi_month_05`: correlación rendimiento–NDVI dentro de perfiles climáticos ≈+0.299; sin Chignahuapan ≈+0.288.
+- `S2_ndvi_promedio_q10`: correlación intraperfil ≈+0.281; sin Chignahuapan ≈+0.360.
+- `S2_savi_promedio_runup_duration`: correlación intraperfil ≈+0.276, frente a correlación global ≈+0.144.
+
+**Señal de transferencia regional:**
+
+- `CLIMATE_dtr_mean_std`: RMSE espacial univariado ≈0.614 t/ha y municipal ≈0.636, frente a lluvia sola ≈0.735 y 0.695, respectivamente.
+
+La variabilidad de amplitud térmica representa una señal climática regional, mientras las variables satelitales pueden distinguir parcelas con clima idéntico.
+
+Estos resultados son exploratorios y proceden de un screening sobre las mismas 138 etiquetas. No constituyen evidencia confirmatoria ni aportación incremental demostrada.
+
+## F4.1 — Reformulación de las preguntas
+
+Investigar cuatro preguntas principales:
+
+**H1 — Diferenciación intraperfil**
+
+¿Las variables satelitales seleccionadas permiten mejorar la predicción de diferencias de rendimiento entre parcelas con perfiles climáticos idénticos?
+
+**H2 — Sensibilidad condicional**
+
+¿La contribución de pendiente, NDVI de mayo u otras señales satelitales cambia según precipitación acumulada, rendimiento climático esperado o condiciones edafológicas observables?
+
+**H3 — Transferencia regional**
+
+¿La variabilidad de amplitud térmica ofrece una señal complementaria a lluvia, o su aparente fortaleza espacial procede de representar diferencias regionales que no son transportables?
+
+**H4 — Complementariedad residual**
+
+¿Estas variables reducen los residuos de un modelo climático y, especialmente, los errores restantes después de la corrección de pendiente K5?
+
+No asumir que una alta correlación intraperfil implica utilidad predictiva residual, ni que un RMSE univariado bajo implica complementariedad.
+
+## F4.2 — Candidatos y controles
+
+Mantener como referencias:
+
+- J0: lluvia mensual.
+- K5: lluvia + corrector residual de pendiente.
+- Climate Current original, como referencia secundaria.
+- Champion, exclusivamente como benchmark compatible.
+
+Incorporar las siguientes pruebas predefinidas:
+
+| Experimento | Hipótesis |
+|---|---|
+| F4-S1 | Lluvia + NDVI de mayo, aditivo |
+| F4-S2 | Lluvia + NDVI de mayo, corrección residual |
+| F4-S3 | Lluvia + NDVI q10, corrección residual |
+| F4-S4 | Lluvia + duración de ascenso SAVI, corrección residual |
+| F4-S5 | Lluvia + variabilidad de amplitud térmica, aditivo |
+| F4-S6 | Lluvia + variabilidad de amplitud térmica, residual |
+| F4-S7 | Lluvia + pendiente residual + NDVI de mayo como tercera etapa |
+
+En S7 debe reconstruirse el cross-fitting anidado de toda la arquitectura; no entrenar una tercera etapa directamente sobre residuos OOF globales de K5. Si no puede implementarse válidamente, suspender S7 y documentarlo.
+
+Mantener los experimentos originales de interacciones y GAM de pendiente, pero reducir su alcance si es necesario para no multiplicar excesivamente el número de modelos.
+
+No combinar automáticamente todas las variables del screening.
+
+## F4.3 — Interacciones condicionales
+
+Además de los modelos anteriores, evaluar un conjunto pequeño de interacciones justificadas:
+
+**A. Pendiente × precipitación acumulada**
+
+Investigar si el aporte de pendiente depende de las condiciones de lluvia.
+
+**B. NDVI de mayo × precipitación acumulada**
+
+Investigar si el valor predictivo del verdor observado en mayo depende del régimen de precipitación.
+
+**C. NDVI de mayo × rendimiento climático esperado**
+
+Investigar si NDVI aporta una corrección diferente cuando el modelo climático espera rendimientos bajos, medios o altos.
+
+El rendimiento esperado debe proceder de predicciones cruzadas del modelo climático, nunca de Y observado ni de predicciones in-sample usadas indebidamente como características.
+
+**D. Pendiente × atributo edafológico**
+
+Mantener como sensibilidad secundaria, únicamente si existe soporte suficiente dentro de entrenamiento y variación apropiada entre perfiles.
+
+No introducir interacciones de orden superior ni todas las combinaciones posibles.
+
+Utilizar modelos lineales jerárquicos y regularizados antes de métodos más flexibles.
+
+## F4.4 — Estudio especial de diferencias dentro de perfiles climáticos
+
+Este análisis debe tener un papel central en Familia 4.
+
+Para perfiles con al menos dos parcelas etiquetadas, investigar si NDVI de mayo, NDVI q10 y duración del ascenso SAVI mejoran la predicción de diferencias de rendimiento.
+
+Comparar:
+
+- Diferencias observadas de Y entre parcelas.
+- Diferencias predichas por lluvia sola.
+- Diferencias predichas después de incorporar cada señal satelital.
+- Error de diferencias por pareja.
+- Dispersión de correcciones.
+- Mejora efectiva por perfil.
+
+Realizar las comparaciones predictivas sobre parejas evaluadas por el mismo modelo externo para no confundir variación entre folds con diferenciación producida por características parcelarias.
+
+No usar una correlación descriptiva calculada globalmente como sustituto de validación predictiva.
+
+Examinar el efecto de excluir Chignahuapan y de ponderar perfiles equitativamente, reportando tamaños muestrales y dependencia entre parejas.
+
+## F4.5 — Análisis de amplitud térmica
+
+Investigar específicamente `CLIMATE_dtr_mean_std`.
+
+Su buen resultado univariado espacial puede reflejar una estructura regional.
+
+Evaluar:
+
+1. Su asociación con lluvia mensual.
+2. Su distribución por estado y municipio.
+3. Su dependencia de altitud y ubicación.
+4. Su capacidad incremental sobre lluvia.
+5. Su comportamiento como corrector residual.
+6. Su efecto sobre rendimientos bajos y altos.
+7. Su estabilidad cuando se retienen regiones completas.
+
+Recordar que esta variable no diferencia parcelas dentro de los 53 perfiles climáticos compartidos.
+
+No interpretar su RMSE espacial univariado como una mejora confirmada frente al modelo climático conjunto.
+
+## F4.6 — Separación entre exploración y evaluación confirmatoria
+
+El screening de 1,473 variables ya utilizó las etiquetas y los folds disponibles.
+
+Por eso:
+
+- Registrar que las cuatro candidatas fueron seleccionadas retrospectivamente.
+- No afirmar que reutilizar los mismos folds produce confirmación independiente.
+- Tratar los resultados actuales de Familia 4 como exploratorios.
+- Congelar la lista de candidatos y arquitecturas antes de entrenar.
+- No ampliar la lista después de observar las métricas.
+- Si se implementa nuevamente una selección entre las 1,473 variables, encapsular el screening supervisado íntegro dentro de cada entrenamiento interno y evaluar el procedimiento completo externamente.
+- Distinguir ese experimento de la evaluación de las cuatro candidatas preseleccionadas, que conserva sesgo de descubrimiento.
+- Recomendar validación confirmatoria con nuevos rendimientos o regiones externas.
+
+Mantener las mismas particiones para comparabilidad descriptiva y utilizar validación interna anidada para todas las transformaciones y ajustes.
+
+## F4.7 — Diagnóstico de extremos
+
+Conservar los cuartiles Q1–Q4 existentes como herramienta diagnóstica posterior.
+
+Investigar si NDVI de mayo, pendiente y amplitud térmica:
+
+- Reducen la sobreestimación de Q1.
+- Reducen la subestimación de Q4.
+- Mejoran RMSE sin deteriorar MAE.
+- Reducen sesgo sin provocar correcciones extremas.
+- Mantienen sus beneficios en validación por perfil, municipal y espacial.
+
+No definir activaciones utilizando el cuartil real de una parcela.
+
+Si se investiga una corrección dependiente del rendimiento esperado, construirla únicamente a partir de predicciones climáticas disponibles fuera de muestra.
+
+## F4.8 — Evaluación y decisiones
+
+Evaluar todos los candidatos con:
+
+- RMSE, MAE, R² y sesgo.
+- Comparación contra J0 y K5.
+- Mejoras por protocolo.
+- Diagnóstico intraperfil.
+- Errores en Chignahuapan y fuera de Chignahuapan.
+- Estabilidad de coeficientes e interacciones.
+- Magnitud de correcciones.
+- Sensibilidad a soporte temporal satelital.
+- Dependencia regional.
+
+Priorizar dos resultados distintos:
+
+**Capacidad de diferenciación local:** evidencia de que una variable mejora predicciones entre parcelas con clima idéntico.
+
+**Capacidad de transferencia:** evidencia de que una variable permite predecir municipios o regiones no vistos durante entrenamiento.
+
+No exigir que una misma variable resuelva ambas tareas, pero tampoco declarar superioridad general a partir de una sola.
+
+## F4.9 — Reporte final
+
+Además del reporte general de Familia 4, producir una síntesis que responda:
+
+1. ¿La fortaleza intraperfil de NDVI de mayo se convierte en mejora predictiva fuera de muestra?
+2. ¿El percentil temporal bajo de NDVI y el ascenso de SAVI contienen información diferente o redundante con NDVI de mayo?
+3. ¿La pendiente interactúa realmente con la precipitación o el rendimiento esperado?
+4. ¿La amplitud térmica añade capacidad de transferencia sobre lluvia?
+5. ¿Qué mejora más: variables aditivas, interacciones explícitas o correcciones residuales condicionadas?
+6. ¿Las diferencias entre cuartiles pueden explicarse mediante características observables antes de conocer Y?
+7. ¿Qué conclusiones dependen de Chignahuapan?
+8. ¿Qué candidatos merecen validación independiente?
+9. ¿Qué relaciones siguen siendo descriptivas y no predictivas?
+10. ¿Qué variables conviene dejar de investigar con esta muestra?
+
+**Objetivo final:** determinar si existen señales observables capaces de identificar cuándo una corrección debe aplicarse y cuáles de ellas realmente mejoran la diferenciación de parcelas o la transferencia geográfica.
+
+No quiero simplemente reducir el RMSE promedio. Quiero identificar, cuando sea posible, qué fuente corrige qué tipo de error, en qué condiciones y con qué evidencia de generalización.

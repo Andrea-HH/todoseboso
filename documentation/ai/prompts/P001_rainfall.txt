@@ -1,0 +1,561 @@
+# FIRA AgroCebada 2026 — Desarrollo del módulo `Rainfall Yield Modeling`
+
+Quiero desarrollar una nueva sección metodológica y experimental dentro del proyecto existente, denominada **Rainfall Yield Modeling (Modelado Hídrico del Rendimiento)**.
+
+Su objetivo es estudiar de manera independiente la relación entre la precipitación y el rendimiento agrícola de cebada durante el ciclo abril–octubre de 2025, utilizando las series históricas de lluvia de 2022 a 2025.
+
+**Antes de implementar cualquier cosa, explora el repositorio completo y recupera el contexto de los módulos, modelos, pipelines, experimentos, documentación y convenciones existentes.** No quiero crear un sistema paralelo, duplicar funciones ni alterar innecesariamente la arquitectura.
+
+El módulo deberá integrarse con los demás modelos y permitir comparaciones posteriores, tanto de desempeño predictivo como de contribución de familias de variables.
+
+## 1. Auditoría obligatoria de la infraestructura existente
+
+Antes de iniciar el desarrollo, verifica si ya existe una tabla longitudinal de información climática por parcela y si la precipitación fue extraída correctamente mediante un promedio ponderado por cobertura fraccional de los píxeles que intersectan cada parcela.
+
+Existe como referencia una construcción previa con las siguientes características:
+
+- 197 parcelas.
+- 48 meses, correspondientes a enero de 2022–diciembre de 2025.
+- 9,456 observaciones parcela-mes.
+- 46 columnas.
+- Clave parcela-mes única.
+- Método de extracción declarado: `exactextract fractional pixel coverage`.
+- Datos originales sin modificación.
+- Variable objetivo no utilizada durante la extracción.
+
+Busca especialmente, si existen en el repositorio, los archivos equivalentes a:
+
+- `climate_monthly_timeseries.parquet`
+- `climate_build_manifest.json`
+- Rásteres mensuales CHIRPS.
+- Geometrías de las parcelas.
+- Datos de rendimiento de entrenamiento.
+
+No asumas que la información ya es correcta únicamente porque existe un manifiesto. Verifica su implementación y consistencia.
+
+### Comprobaciones requeridas
+
+1. Identificar cómo fueron extraídos los valores de precipitación.
+2. Comprobar que se consideran todos los píxeles intersectados por cada geometría.
+3. Verificar que la ponderación corresponde a la superficie de intersección, utilizando correctamente las fracciones de cobertura que devuelve la herramienta.
+4. Comprobar el tratamiento de `NoData`, valores faltantes y posibles áreas sin cobertura válida.
+5. Verificar unidades de precipitación (mm acumulados por mes).
+6. Verificar identificación de parcela, fecha, mes, año y ausencia de duplicados.
+7. Confirmar que las series cubren los 48 meses para las 197 parcelas, o documentar cualquier excepción.
+8. Evaluar cuántas series únicas o prácticamente equivalentes existen, dadas las limitaciones de resolución espacial de CHIRPS.
+9. Comparar, a manera de diagnóstico, la extracción ponderada contra una extracción por píxel central, sin reemplazar automáticamente el método ponderado.
+10. Comprobar que las transformaciones climáticas no hayan utilizado el rendimiento objetivo.
+
+**Si la extracción existente es correcta, reutilízala. No reconstruyas los rásteres ni generes una segunda versión redundante de las series.**
+
+Si encuentras errores, documenta el problema, su magnitud y las correcciones necesarias antes de modificar el pipeline.
+
+Entrega primero un resumen breve de la auditoría y sus resultados. Si todo es consistente, continúa con el desarrollo.
+
+## 2. Definición estadística del problema
+
+El objetivo es predecir el rendimiento de cebada por parcela en toneladas por hectárea (t/ha).
+
+Tenemos:
+
+- 197 parcelas.
+- 138 parcelas con rendimiento observado.
+- 59 parcelas con rendimiento oculto.
+- Rendimiento correspondiente únicamente al ciclo abril–octubre de 2025.
+- Información mensual de precipitación entre 2022 y 2025.
+
+La unidad supervisada es la parcela, no cada registro mensual.
+
+Por tanto, aunque tengamos siete observaciones mensuales durante el ciclo agrícola, **no tenemos siete observaciones de rendimiento por parcela**.
+
+Se debe construir una matriz de características con una fila por parcela, derivada de su serie temporal climática.
+
+No utilizar redes recurrentes, LSTM, transformers temporales ni otros modelos secuenciales complejos en esta primera etapa.
+
+El propósito es desarrollar un módulo interpretable y estadísticamente defendible, con un número reducido de observaciones etiquetadas.
+
+## 3. Ingeniería de variables de precipitación
+
+Construye una biblioteca de generación de características hídricas, con definiciones matemáticas explícitas, unidades, periodos de referencia y tratamiento de valores faltantes.
+
+Las variables deberán generarse de forma reproducible, evitando transformaciones arbitrarias.
+
+### A. Precipitación mensual del ciclo 2025
+
+Conservar individualmente:
+
+- `rain_apr_2025`
+- `rain_may_2025`
+- `rain_jun_2025`
+- `rain_jul_2025`
+- `rain_aug_2025`
+- `rain_sep_2025`
+- `rain_oct_2025`
+
+Todas expresadas en mm.
+
+Estas siete variables representan directamente la distribución temporal de la precipitación durante el ciclo agrícola.
+
+### B. Estadísticos descriptivos del ciclo
+
+Calcular, para abril–octubre de 2025:
+
+- `rain_total`: precipitación acumulada.
+- `rain_mean`: precipitación mensual promedio.
+- `rain_std`: desviación estándar de los acumulados mensuales.
+- `rain_min`: precipitación del mes menos lluvioso.
+- `rain_max`: precipitación del mes más lluvioso.
+- `rain_range`: diferencia entre máximo y mínimo.
+- `rain_cv`: coeficiente de variación mensual, con tratamiento explícito si la media es cero.
+- `rain_median`: mediana de precipitación mensual.
+- `rain_max_month`: mes de mayor precipitación.
+- `rain_min_month`: mes de menor precipitación.
+- `rain_max_share`: proporción de la precipitación total del ciclo concentrada en el mes más lluvioso.
+
+Los meses de máximo y mínimo son variables temporales discretas, no magnitudes continuas. Define cómo codificarlas adecuadamente para cada modelo.
+
+Documenta cómo se resuelven los empates.
+
+Evita incorporar simultáneamente variables matemáticamente redundantes sin justificación. Por ejemplo, `rain_total` y `rain_mean` contienen exactamente la misma información cuando todos los ciclos tienen siete meses válidos.
+
+### C. Distribución de precipitación por etapas del ciclo
+
+Construye candidatos interpretables:
+
+- Precipitación temprana: abril–mayo.
+- Precipitación intermedia: junio–agosto.
+- Precipitación tardía: septiembre–octubre.
+- Proporción de lluvia recibida en cada etapa respecto al total.
+- Diferencia entre lluvia temprana y tardía.
+- Diferencia entre lluvia de la etapa intermedia y temprana.
+
+Estas divisiones son inicialmente calendáricas, no fenológicas.
+
+Antes de atribuirles un significado fisiológico, revisar si existen fechas reales de siembra, emergencia, espigamiento o cosecha.
+
+No asumir que todas las parcelas atravesaron las mismas etapas fenológicas en los mismos meses.
+
+### D. Cambios mensuales, tendencias y rachas
+
+Quiero capturar la dinámica interna de la lluvia, no solamente sus niveles.
+
+Para cada parcela, ordenar los siete meses cronológicamente y calcular las diferencias:
+
+\[
+\Delta P_{i,t}=P_{i,t}-P_{i,t-1}
+\]
+
+A partir de esas diferencias construir:
+
+- `rain_largest_increase`: mayor incremento absoluto entre meses consecutivos.
+- `rain_largest_decrease`: mayor disminución absoluta entre meses consecutivos, reportada como magnitud positiva.
+- `rain_increase_count`: número de transiciones mensuales con incremento de precipitación.
+- `rain_decrease_count`: número de transiciones con disminución.
+- `rain_longest_increase_streak`: mayor racha de incrementos mensuales consecutivos.
+- `rain_longest_decrease_streak`: mayor racha de disminuciones mensuales consecutivas.
+- `rain_net_change`: precipitación de octubre menos precipitación de abril.
+- `rain_mean_absolute_change`: cambio absoluto promedio entre meses consecutivos.
+
+Definir cuidadosamente qué constituye una racha.
+
+Por ejemplo, si la precipitación aumenta de abril a mayo, de mayo a junio y de junio a julio, se trata de tres transiciones ascendentes consecutivas. Documentar expresamente si la longitud de racha se mide en transiciones o meses y mantener la convención consistentemente.
+
+Una transición sin cambio deberá romper la racha, salvo que se justifique otro criterio. Considerar tolerancias numéricas para diferencias esencialmente iguales a cero.
+
+Distinguir entre una tendencia creciente a lo largo del ciclo y un incremento puntual grande.
+
+Opcionalmente calcular una pendiente lineal de precipitación contra mes, pero analizar si aporta información distinta a las demás variables.
+
+No interpretar estas rachas como periodos de días consecutivos con o sin lluvia: solo contamos con observaciones mensuales.
+
+### E. Historia climática 2022–2024 y anomalías de 2025
+
+Esta es una de las familias que más me interesa estudiar.
+
+Para cada parcela y cada mes de abril–octubre, calcular la precipitación media histórica del mismo mes durante 2022, 2023 y 2024:
+
+\[
+\overline P_{i,m}^{hist}
+=\frac{1}{3}\sum_{y=2022}^{2024}P_{i,m,y}
+\]
+
+Después calcular:
+
+**Anomalía absoluta mensual:**
+
+\[
+A_{i,m}=P_{i,m,2025}-\overline P_{i,m}^{hist}
+\]
+
+**Anomalía relativa mensual:**
+
+\[
+A^{rel}_{i,m}=
+\frac{P_{i,m,2025}-\overline P_{i,m}^{hist}}
+{\overline P_{i,m}^{hist}}
+\]
+
+Para anomalías relativas, definir una política explícita cuando la referencia histórica sea cero o cercana a cero. No sustituir denominadores arbitrariamente sin documentarlo.
+
+Generar:
+
+- Anomalía absoluta de abril.
+- Anomalía absoluta de mayo.
+- Anomalía absoluta de junio.
+- Anomalía absoluta de julio.
+- Anomalía absoluta de agosto.
+- Anomalía absoluta de septiembre.
+- Anomalía absoluta de octubre.
+- Anomalías relativas mensuales cuando sean numéricamente estables.
+- Anomalía absoluta del acumulado abril–octubre.
+- Anomalía relativa del acumulado abril–octubre.
+- Número de meses de 2025 con lluvia inferior a su promedio histórico.
+- Número de meses de 2025 con lluvia superior a su promedio histórico.
+- Mayor déficit mensual absoluto respecto a la referencia.
+- Mayor exceso mensual absoluto respecto a la referencia.
+- Mes del mayor déficit histórico relativo o absoluto, documentando cuál se utiliza.
+- Mayor racha de meses consecutivos con anomalía negativa.
+- Mayor racha de meses consecutivos con anomalía positiva.
+
+Para las rachas de anomalías, interpretar cada mes como inferior o superior a su propio promedio histórico, no comparar los valores absolutos de meses distintos.
+
+**Advertencia metodológica:** 2022–2024 constituye solamente una referencia histórica corta. No llamar a estos promedios una normal climatológica ni interpretar automáticamente una anomalía negativa como sequía meteorológica oficialmente diagnosticada.
+
+### F. Características climáticas anteriores al ciclo
+
+Explorar de forma independiente si las precipitaciones previas al inicio del ciclo aportan información.
+
+Por ejemplo:
+
+- Precipitación acumulada enero–marzo de 2025.
+- Precipitación de marzo de 2025.
+- Anomalía enero–marzo de 2025 frente a 2022–2024.
+
+Esto debe implementarse como un grupo adicional de variables, separado del experimento principal abril–octubre.
+
+No asumir que existe una relación directa con humedad almacenada en el suelo sin información edáfica o hidrológica que lo sustente.
+
+### G. Variables opcionales para análisis posterior
+
+Dejar previstas, pero no incorporar al primer modelo sin validación, características como:
+
+- Índices estandarizados de precipitación.
+- Anomalías calculadas con una climatología de mayor duración.
+- Indicadores de sequía externa.
+- Precipitación diaria y número de días secos.
+- Eventos extremos de precipitación.
+- Interacciones entre lluvia y temperatura.
+- Interacciones entre precipitación y características de suelo o topografía.
+
+**Importante:** no crear todas estas variables para alimentar indiscriminadamente un único modelo. Queremos una biblioteca organizada y experimentos controlados, no una matriz excesivamente grande.
+
+## 4. Exploración descriptiva
+
+Antes de ajustar las regresiones, desarrollar un análisis exploratorio específico de precipitación.
+
+Investigar:
+
+1. Distribución mensual de lluvia entre parcelas.
+2. Evolución temporal promedio de abril–octubre de 2025.
+3. Diferencias de precipitación entre estados y municipios.
+4. Similitud entre series de parcelas cercanas.
+5. Número de series climáticas idénticas o prácticamente equivalentes.
+6. Variabilidad espacial y temporal.
+7. Comparación de los acumulados de 2025 con los años anteriores.
+8. Distribución de anomalías por mes.
+9. Distribución de rachas ascendentes y descendentes.
+10. Distribución de las variables derivadas.
+11. Correlaciones entre variables y redundancias.
+12. Relación exploratoria de cada familia de variables con el rendimiento observado de entrenamiento.
+
+Incluir gráficos de series temporales, diagramas de dispersión, histogramas y mapas cuando aporten información útil.
+
+Prestar especial atención a la pregunta:
+
+**¿Cuánto puede distinguirse el rendimiento entre parcelas utilizando información climática que tiene una resolución espacial relativamente gruesa?**
+
+No utilizar los rendimientos de las 59 parcelas del conjunto PREDICCION, puesto que están ocultos.
+
+## 5. Diseño de experimentos de regresión
+
+Desarrollar una secuencia de experimentos reproducible, empezando con modelos sencillos.
+
+### Experimento 0. Baseline sin precipitación
+
+Predecir el rendimiento promedio del conjunto de entrenamiento de cada partición.
+
+Este será el punto de referencia obligatorio.
+
+### Experimento 1. Precipitación total
+
+Regresión lineal:
+
+\[
+Y_i=\beta_0+\beta_1P_{i,total}+\varepsilon_i
+\]
+
+Evaluar qué proporción de la variabilidad del rendimiento puede capturarse usando solamente precipitación total del ciclo.
+
+### Experimento 2. Relación no lineal sencilla
+
+Regresión cuadrática:
+
+\[
+Y_i=\beta_0+\beta_1P_{i,total}
++\beta_2P_{i,total}^{2}+\varepsilon_i
+\]
+
+Comparar contra la regresión lineal.
+
+Evitar afirmar que existe un nivel óptimo de precipitación si los datos no respaldan una relación estable y estadísticamente defendible.
+
+### Experimento 3. Distribución mensual
+
+Utilizar los siete acumulados mensuales de abril–octubre como predictores.
+
+Comparar:
+
+- Regresión lineal múltiple.
+- Ridge con regularización seleccionada mediante validación interna.
+
+Analizar colinealidad, estabilidad de coeficientes y contribución de los meses.
+
+### Experimento 4. Resúmenes temporales
+
+Utilizar un conjunto reducido de variables descriptivas, por ejemplo:
+
+- Precipitación total.
+- Variabilidad mensual.
+- Concentración en el mes más lluvioso.
+- Indicadores seleccionados de distribución temporal.
+
+Evaluar si estos resúmenes permiten resultados similares o superiores a utilizar directamente los siete meses.
+
+### Experimento 5. Dinámica y rachas
+
+Agregar características de incrementos, disminuciones y rachas.
+
+Estudiar si la dinámica temporal proporciona información adicional a los niveles de precipitación.
+
+### Experimento 6. Anomalías históricas
+
+Evaluar variables de diferencia entre 2025 y la referencia 2022–2024.
+
+Comparar modelos con:
+
+- Precipitación absoluta solamente.
+- Anomalías solamente.
+- Precipitación absoluta y anomalías combinadas.
+
+Investigar si las anomalías agregan capacidad predictiva o simplemente introducen variables redundantes.
+
+### Experimento 7. Modelo hídrico combinado
+
+Construir un modelo final candidato con las familias de variables que hayan demostrado mayor utilidad.
+
+Priorizar:
+
+- Parsimonia.
+- Interpretabilidad.
+- Estabilidad.
+- Generalización.
+- Ausencia de redundancias innecesarias.
+
+No interpretar una mejora pequeña en una sola partición como evidencia suficiente de superioridad.
+
+### Modelos adicionales
+
+Si los experimentos anteriores justifican explorar no linealidades o interacciones, considerar un árbol de regresión pequeño o un Random Forest con complejidad estrictamente controlada.
+
+Estos modelos serán complementarios, no el punto de partida.
+
+## 6. Validación y prevención de sobreajuste
+
+Tenemos únicamente 138 parcelas con rendimiento observado.
+
+Establecer un esquema de validación coherente con este tamaño muestral.
+
+Implementar validación cruzada reproducible, conservando las mismas particiones para comparar modelos.
+
+Investigar si existe dependencia espacial entre parcelas y si muchas de ellas comparten los mismos perfiles de precipitación.
+
+Comparar, cuando los datos lo permitan:
+
+- Validación cruzada aleatoria.
+- Validación agrupada por ubicación, municipio, grupos espaciales o perfiles climáticos, según resulte justificable.
+
+Explicar qué capacidad de generalización mide cada esquema.
+
+Prevenir fuga de información:
+
+- Ningún rendimiento del conjunto de evaluación puede utilizarse para ajustar transformaciones, seleccionar variables o calibrar hiperparámetros.
+- Estandarización, imputación y selección de variables deben ajustarse exclusivamente dentro del conjunto de entrenamiento correspondiente.
+- Si la selección de características es supervisada, debe quedar dentro del proceso de validación.
+- Utilizar validación interna para seleccionar hiperparámetros cuando corresponda.
+- No seleccionar el mejor experimento mirando reiteradamente resultados de una partición reservada como prueba final.
+
+La construcción de promedios históricos exclusivamente climáticos puede utilizar información de los años anteriores al periodo de estudio, pero debe evitar incorporar inadvertidamente observaciones posteriores al momento en que se pretende realizar la predicción.
+
+Distinguir claramente un modelo retrospectivo de rendimiento al final del ciclo de un modelo de pronóstico anticipado.
+
+## 7. Evaluación del desempeño
+
+Para cada experimento, reportar:
+
+- MAE en t/ha.
+- RMSE en t/ha.
+- R².
+- Error medio con signo para analizar sesgo.
+- Variabilidad del desempeño entre particiones.
+- Comparación relativa contra el baseline.
+
+Generar gráficos de:
+
+- Rendimiento observado contra predicho.
+- Residuos contra predicciones.
+- Distribución de errores.
+- Desempeño por experimento.
+- Desempeño por municipio o estado, cuando el tamaño de muestra lo permita.
+
+Investigar si el modelo produce errores sistemáticos para rendimientos bajos o altos.
+
+No reportar resultados únicamente del conjunto de entrenamiento.
+
+## 8. Interpretación estadística
+
+Quiero entender qué aporta la lluvia, no solamente optimizar una métrica.
+
+Analizar:
+
+- Dirección y magnitud de las relaciones estimadas.
+- Importancia relativa de la precipitación total.
+- Meses aparentemente más asociados al rendimiento.
+- Posibles relaciones no lineales.
+- Contribución de la distribución temporal.
+- Contribución adicional de rachas.
+- Contribución de anomalías históricas.
+- Sensibilidad de coeficientes y resultados a las particiones de validación.
+- Limitaciones derivadas de la resolución espacial.
+- Posible confusión por ubicación, suelo, manejo y otros factores no observados.
+
+No interpretar coeficientes de regresión como efectos causales.
+
+Cuando exista multicolinealidad, no utilizar coeficientes inestables como prueba de que un mes es agronómicamente más importante que otro.
+
+Si el modelo de precipitación explica poco rendimiento, reportarlo expresamente y discutir qué información podría estar faltando.
+
+## 9. Integración con los demás módulos del repositorio
+
+Esta sección debe formar parte de la arquitectura general del proyecto FIRA.
+
+Antes de crear carpetas nuevas, examina la organización existente y reutiliza sus convenciones.
+
+El módulo debe:
+
+1. Consumir las series climáticas ya construidas y auditadas.
+2. Producir una tabla de características hídricas con una fila por parcela.
+3. Mantener identificadores exactamente compatibles con el resto del proyecto.
+4. Distinguir entrenamiento y predicción.
+5. Integrarse con el sistema existente de experimentos y evaluación.
+6. Permitir que otros modelos reutilicen las características hídricas sin volver a calcularlas.
+7. Conservar una versión identificable de las variables y sus definiciones.
+8. Permitir comparar el modelo exclusivamente de lluvia con modelos que utilizan otras familias de información.
+9. Evitar modificar módulos ajenos salvo que sea necesario para la integración.
+10. No sobrescribir resultados anteriores.
+
+Utiliza el esquema de nomenclatura, numeración, configuración y documentación ya establecido en el repositorio.
+
+No inventes una arquitectura nueva si ya existen soluciones equivalentes.
+
+## 10. Productos y documentación
+
+Generar, siguiendo las convenciones existentes:
+
+**A. Auditoría de datos**
+
+Documentar cómo se construyeron las series ponderadas, sus unidades, cobertura, consistencia y limitaciones.
+
+**B. Diccionario de características**
+
+Para cada variable incluir:
+
+- Nombre.
+- Definición.
+- Fórmula.
+- Unidad.
+- Periodo.
+- Fuente.
+- Interpretación.
+- Tratamiento de valores faltantes.
+- Advertencias metodológicas.
+
+**C. Tabla de características**
+
+Una fila por parcela, incluyendo todas las parcelas y sin incorporar valores de rendimiento ocultos.
+
+**D. Reporte exploratorio**
+
+Con gráficos, estadísticas descriptivas y análisis de variabilidad espacial y temporal.
+
+**E. Experimentos de regresión**
+
+Guardar configuraciones, métricas, particiones de validación, modelos y predicciones reproducibles.
+
+**F. Comparación de modelos**
+
+Una tabla clara que muestre qué aporta cada familia de características y cuánto mejora respecto del modelo base.
+
+**G. Reporte técnico**
+
+Documentar hallazgos, interpretación, incertidumbre, limitaciones, decisiones metodológicas y recomendaciones para integrar posteriormente otras variables.
+
+**H. Pruebas**
+
+Agregar pruebas para:
+
+- Exactitud de los acumulados.
+- Anomalías mensuales.
+- Diferencias entre meses.
+- Rachas de crecimiento y disminución.
+- Empates en máximos y mínimos.
+- Manejo de ceros y datos faltantes.
+- Unicidad de registros por parcela.
+- Ausencia de fuga del rendimiento oculto.
+- Reproducibilidad de las particiones y experimentos.
+
+## 11. Condiciones metodológicas no negociables
+
+- No inflar artificialmente la muestra tratando los meses como observaciones independientes de rendimiento.
+- No modificar los datos originales.
+- No duplicar funcionalidades existentes.
+- No incorporar simultáneamente todas las variables sin controlar la complejidad.
+- No confundir asociaciones con causalidad.
+- No tratar las anomalías de tres años como normales climatológicas.
+- No utilizar información de sequía externa todavía.
+- No mezclar temperatura, índices satelitales, topografía ni nubosidad en este módulo inicial.
+- No asumir que las mismas cantidades de lluvia son igualmente beneficiosas en todos los momentos del cultivo.
+- No afirmar que una mejora predictiva está confirmada sin validación apropiada.
+- Mantener diferenciados el análisis explicativo retrospectivo y la predicción anticipada del rendimiento.
+
+## 12. Orden de ejecución
+
+Trabaja en este orden:
+
+1. Explora repositorio, módulos, fuentes y pipelines existentes.
+2. Confirma la construcción correcta de las series ponderadas.
+3. Presenta un diagnóstico de la calidad y resolución de los datos.
+4. Implementa la ingeniería de características hídricas.
+5. Genera pruebas y valida sus resultados.
+6. Realiza el análisis exploratorio.
+7. Implementa los experimentos de regresión de menor a mayor complejidad.
+8. Ejecuta la validación y registra métricas.
+9. Compara familias de variables.
+10. Identifica un modelo hídrico candidato, solo si los resultados lo justifican.
+11. Integra resultados y características en la arquitectura general.
+12. Actualiza la documentación técnica y produce un resumen de hallazgos.
+
+No necesitas detenerte para pedirme autorización en decisiones menores cuando existan convenciones claras en el repositorio.
+
+Si hay inconsistencias importantes, decisiones metodológicas que afecten la validez del experimento o necesidad de modificar sustancialmente componentes existentes, explícame el problema antes de proceder.
+
+**El resultado que busco no es simplemente otro modelo, sino establecer de forma rigurosa cuánto poder explicativo y predictivo contiene nuestra información de precipitación, qué representación de esa información funciona mejor y cómo podemos aprovecharla posteriormente en los modelos integrales de rendimiento.**

@@ -1,0 +1,192 @@
+# F6 — Bagging y árboles aleatorizados: experimentación sobre señales predictivas consolidadas
+
+Quiero iniciar la **Familia 6 (F6)** del proyecto AgroCebada, enfocada en modelos basados en árboles y ensambles por bagging: **Random Forest y Extra Trees**.
+
+El objetivo es investigar si los modelos basados en particiones no lineales del espacio predictivo consiguen aprovechar mejor las señales identificadas durante las familias y experimentos anteriores, especialmente las relaciones entre precipitación, vegetación, variabilidad territorial, historia satelital y topografía.
+
+Esta familia debe construir sobre la evidencia acumulada, no comenzar nuevamente una búsqueda indiscriminada de variables.
+
+## 1. Recuperación de evidencia y preparación
+
+Antes de ejecutar, revisa los experimentos anteriores que utilizaron árboles, especialmente RS3–RS6, lluvia E1–E8, F4, G/H y los componentes XGBoost del Champion.
+
+Identifica qué configuraciones ya se probaron, qué variables utilizaron, qué resultados obtuvieron y qué diferencias metodológicas existen respecto a la nueva propuesta.
+
+Reutiliza los pipelines, transformaciones, selecciones de variables y sistemas de evaluación existentes siempre que sea posible.
+
+No sobrescribas resultados anteriores ni reconstruyas componentes que ya estén correctamente implementados.
+
+## 2. Hipótesis principales
+
+Queremos investigar cinco cuestiones:
+
+1. ¿Random Forest y Extra Trees pueden aprender relaciones entre lluvia, NDVI y rendimiento que los modelos lineales y Gaussian Processes no consiguieron representar consistentemente?
+2. ¿La estructura mensual de precipitación resulta más útil para árboles que los tres resúmenes compactos?
+3. ¿La variabilidad térmica permite identificar particiones regionales útiles sin perjudicar la transferencia geográfica?
+4. ¿Las variables históricas permiten distinguir parcelas que comparten perfiles agroclimáticos semejantes?
+5. ¿La información topográfica aporta poder predictivo incremental o solamente actúa como proxy territorial?
+
+No asumimos que un número mayor de predictores producirá automáticamente mejores modelos.
+
+## 3. Representaciones de variables
+
+Utiliza los nombres exactos y las transformaciones documentadas en el inventario F5.
+
+**Núcleo compacto:**
+- `compact_precip_total`
+- `compact_early_fraction`
+- `compact_concentration_hhi`
+- `S2_ndvi_month_05`
+
+**Representación alternativa de lluvia:**
+- Las siete variables mensuales de precipitación de abril a octubre de 2025.
+- `S2_ndvi_month_05`
+
+**Temperatura:**
+- `CLIMATE_dtr_mean_std`
+
+**Historia:**
+- `HIST_S2_ndvi_promedio_mean`
+- `HIST_S2_ndvi_promedio_std`
+
+**Topografía:**
+- `TOPO_BASIC_slope_mean`
+
+Preserva la semántica de los campos históricos: la desviación estándar histórica corresponde a variación entre los siete promedios de meses calendario, no a una desviación interanual.
+
+Las selecciones de historia NDVI2 y pendiente media son hipótesis compactas, no equivalentes a los bloques completos History15 y slope14 que demostraron utilidad residual anteriormente.
+
+No incluir coordenadas, estado, municipio o identificadores territoriales como predictores iniciales.
+
+## 4. Matriz experimental
+
+Implementa las siguientes configuraciones:
+
+| ID | Modelo | Predictores |
+|---|---|---|
+| F6-00 | Random Forest | Núcleo compacto de 4 variables |
+| F6-01 | Extra Trees | Núcleo compacto de 4 variables |
+| F6-02 | Extra Trees | Lluvia mensual7 + NDVI mayo |
+| F6-03 | Extra Trees | Núcleo compacto + DTRstd |
+| F6-04 | Extra Trees | Núcleo compacto + historia NDVI mean/std |
+| F6-05 | Extra Trees | Núcleo compacto + pendiente media |
+
+En la primera etapa ejecuta F6-00 y F6-01, comparándolos contra C-T3, F5-01 y los controles del Champion cuando exista validación compatible.
+
+Si el resultado justifica continuar, ejecuta F6-02 a F6-05 como ablaciones predefinidas. Documenta explícitamente si alguna configuración no supera el criterio de continuación y evita ampliar la batería automáticamente.
+
+No selecciones una representación ganadora utilizando resultados OOF externos para después presentar las ablaciones como confirmación independiente. Si existe una decisión adaptativa, debe estar contenida dentro de validación interna o declararse exploratoria.
+
+## 5. Hiperparámetros y regularización
+
+Con 138 parcelas etiquetadas, prioriza modelos conservadores.
+
+Investiga especialmente:
+- Profundidad máxima.
+- Número mínimo de observaciones por hoja.
+- Número mínimo de observaciones para dividir un nodo.
+- Número de variables consideradas por partición.
+- Cantidad de árboles suficiente para estabilizar las predicciones.
+- Bootstrap y tamaño efectivo de muestra, cuando corresponda.
+
+Utiliza una búsqueda acotada y técnicamente justificada, seleccionada mediante validación interna.
+
+No realizar un grid search masivo.
+
+Mantén semillas, particiones y parámetros registrados para garantizar reproducibilidad.
+
+No interpretar la importancia por impureza como evidencia causal ni utilizarla como único criterio para afirmar utilidad incremental de una variable.
+
+## 6. Evaluación y controles
+
+Reutiliza los 65 folds externos originales y sus particiones internas.
+
+Evalúa:
+
+- RMSE.
+- MAE.
+- Sesgo medio.
+- Validación aleatoria.
+- Validación por perfil climático.
+- Validación municipal.
+- Validación espacial.
+
+Calcula métricas sobre OOF completas por repetición y conserva también métricas por fold como diagnósticos.
+
+Mantén la comparación pareada por parcela con los controles compatibles.
+
+Analiza especialmente:
+
+**A. Transferencia espacial**
+
+Revisa el comportamiento del bloque espacial 3, pero también de los otros cuatro bloques.
+
+Distingue mejora general de ganancia concentrada en una sola región.
+
+**B. Discriminación intraperfil**
+
+Determina si los árboles consiguen diferenciar rendimientos entre parcelas con los mismos perfiles climáticos.
+
+Evalúa si NDVI, historia y pendiente aportan información local real.
+
+**C. Contribución incremental**
+
+Compara cada extensión contra el núcleo original con el mismo algoritmo y protocolo.
+
+No atribuyas las mejoras del bloque histórico completo a únicamente dos columnas, ni las de slope14 exclusivamente a pendiente media.
+
+**D. Estabilidad**
+
+Analiza dispersión de resultados, casos influyentes, diferencias regionales y sensibilidad a las particiones.
+
+Examina también la estabilidad de las variables y umbrales de partición entre ajustes, sin confundir frecuencia de selección con importancia predictiva.
+
+## 7. Interpretación
+
+Además de reportar métricas, quiero entender qué relaciones están aprendiendo los árboles.
+
+Cuando el soporte lo permita, utiliza gráficos de efectos acumulados locales (ALE) o diagnósticos equivalentes para visualizar las respuestas aprendidas a precipitación, NDVI y variables adicionales.
+
+Inspecciona interacciones entre lluvia y NDVI sin asumir que representan relaciones causales.
+
+Considera que la lluvia tiene solamente 43 perfiles distintos entre las 138 parcelas etiquetadas.
+
+No confundas diferencias entre perfiles climáticos con capacidad para discriminar parcelas dentro de un mismo perfil.
+
+## 8. Trazabilidad y entregables
+
+Respeta la arquitectura existente del repositorio y continúa la numeración de scripts correspondiente a la nueva familia.
+
+Genera documentación y resultados versionados de F6, incluyendo:
+
+- Auditoría breve de árboles ya utilizados.
+- Diseño experimental congelado.
+- Configuraciones y parámetros.
+- Predicciones OOF.
+- Métricas globales y territoriales.
+- Comparaciones pareadas.
+- Ablaciones de variables.
+- Diagnósticos de estabilidad.
+- Interpretaciones de efectos e interacciones.
+- Síntesis de decisiones.
+
+Mantén intactos los modelos y artefactos del Champion, F4 y F5.
+
+No entrenar todavía el modelo final sobre las 138 etiquetas ni generar predicciones para las 59 parcelas PRED.
+
+## 9. Decisión final
+
+Al terminar, responde:
+
+1. ¿Random Forest o Extra Trees mejoran las referencias lineales y GPR?
+2. ¿Cuál generaliza mejor territorialmente?
+3. ¿Qué representación de lluvia funciona mejor para árboles?
+4. ¿Historia y topografía aportan utilidad incremental fuera de su arquitectura residual original?
+5. ¿La familia bagging presenta suficiente evidencia para seguir desarrollándose?
+6. ¿Qué experimentos deberían realizarse posteriormente con CatBoost/XGBoost?
+
+Si ninguno presenta ganancias robustas, recomienda cerrar F6 y avanzar a **F7 — Gradient Boosting**, sin añadir experimentos arbitrarios.
+
+No promociones automáticamente ningún modelo a Champion.
+
+El objetivo de F6 es identificar si existe una mejora reproducible y comprender qué estructura de datos está aprovechando, manteniendo una metodología comparable, trazable y defendible.

@@ -1,0 +1,624 @@
+path,area,role,title,execution_status
+scripts/334_soil_yield_quartiles.py,scripts,execution helper / entry point,Post-fit soil diagnosis by observed yield quartile; no model fitting.,Not inferred from file existence
+scripts/335_variable_strength_screening.py,scripts,execution helper / entry point,"Exploratory single-variable screening, using existing outer split assignments.",Not inferred from file existence
+scripts/336_family4_conditional_response.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/337_family4_diagnostics.py,scripts,execution helper / entry point,"Post-fit paired, conditional and provenance audits; no fitting.",Not inferred from file existence
+scripts/338_family4_within_profile_complementarity.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/339_family4_e_finalize.py,scripts,execution helper / entry point,Finalize exploratory interpretation and integrity after the frozen model matrix.,Not inferred from file existence
+scripts/340_territorial_program_stage_a.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/341_territorial_stage_a_finalize.py,scripts,execution helper / entry point,Complete descriptive source support and freeze the first Stage A delivery.,Not inferred from file existence
+scripts/342_stage_b_within_profile_learning.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/343_stage_b_finalize.py,scripts,execution helper / entry point,"Post-fit interpretation, provenance and integrity; no additional candidate fitting.",Not inferred from file existence
+scripts/344_stage_c_transfer_and_hierarchy.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/345_stage_c_finalize.py,scripts,execution helper / entry point,Finalize Stage C diagnostics and immutable provenance without candidate refitting.,Not inferred from file existence
+scripts/346_stage_d_evidence_synthesis.py,scripts,execution helper / entry point,Run Stage D exclusively: immutable archived predictions and descriptive diagnostics.,Not inferred from file existence
+scripts/347_stage_d_finalize.py,scripts,execution helper / entry point,Finalize provenance and five deliverables; no training or prediction calls.,Not inferred from file existence
+scripts/348_family5_gpr_evidence_design.py,scripts,frozen design / proposal,F5 evidence and proposal only; no model execution authorized at this stage.,Not inferred from file existence
+scripts/349_family5_gpr_initial.py,scripts,execution helper / entry point,Only the authorized initial F5 GPR experiments and exact C-T3 control.,Not inferred from file existence
+scripts/350_family5_gpr_initial_finalize.py,scripts,execution helper / entry point,"Reproducibility, tests and manifest for initial F5, with no additional fitting.",Not inferred from file existence
+scripts/351_family5_gpr_s1.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/352_family5_gpr_s1_finalize.py,scripts,execution helper / entry point,Finalize S1 with replay tests and immutable-reference hashes; no model fits.,Not inferred from file existence
+scripts/353_family6_prepare.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/354_family6_bagging.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/355_family6_finalize.py,scripts,execution helper / entry point,"Integration replay, unchanged-reference hashes and versioned F6 deliverables.",Not inferred from file existence
+scripts/356_family6_e_prepare.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/357_family6_e_bagging.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/358_family6_e_finalize.py,scripts,execution helper / entry point,Immutable-reference verification and F6-E versioned deliverables; no fitting.,Not inferred from file existence
+scripts/359_family7_prepare.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/360_family7_boosting.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/361_family7_finalize.py,scripts,execution helper / entry point,Seal verified F7 initial artifacts; no fitting or promotion.,Not inferred from file existence
+scripts/362_family7_expansion.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/363_family7_expansion_finalize.py,scripts,execution helper / entry point,Verify and seal controlled F7 expansion without any scientific fit.,Not inferred from file existence
+scripts/364_family8_research.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/365_family8_research_finalize.py,scripts,execution helper / entry point,Seal research-only F8 proposal; zero fits and no PRED inference.,Not inferred from file existence
+scripts/366_target_distribution.py,scripts,execution helper / entry point,"Descriptive target audit only; no models, target edits or PRED inference.",Not inferred from file existence
+scripts/367_variable_inventory.py,scripts,execution helper / entry point,"Descriptive inventory only: no fitting, feature selection or PRED inference.",Not inferred from file existence
+scripts/368_experimental_variable_inventory.py,scripts,execution helper / entry point,Inventory existing experimental representations without fitting models.,Not inferred from file existence
+scripts/369_experimental_pls1867.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/370_pls1867_diagnostics.py,scripts,execution helper / entry point,Post-hoc diagnostics of frozen PLS models; no refitting.,Not inferred from file existence
+scripts/371_ct3_information.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/372_ct3_information_interpretation.py,scripts,execution helper / entry point,"Interpret frozen diagnostics; effective contrast support, no model fitting.",Not inferred from file existence
+scripts/374_ct3_information_phase_iii.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/375_ct3_phase_iii_review.py,scripts,execution helper / entry point,X-only interpretation review: preserve v1 and publish corrected v2 catalogue.,Not inferred from file existence
+scripts/376_ct3_residual_conditional.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/377_ct3_residual_synthesis.py,scripts,execution helper / entry point,"Interpret sealed controlled results, no refits or additional experiments.",Not inferred from file existence
+scripts/378_experimental_tree1867.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/379_tree1867_diagnostics.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/380_ct3_residual_coherence.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/381_ct3_coherence_synthesis.py,scripts,execution helper / entry point,Read-only scientific interpretation of the sealed coherence sensitivity.,Not inferred from file existence
+scripts/382_compact_ensemble.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/383_compact_ensemble_synthesis.py,scripts,execution helper / entry point,"Interpret sealed compact ensemble results, without training.",Not inferred from file existence
+scripts/384_territorial_mixtures.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/385_territorial_mixtures_synthesis.py,scripts,execution helper / entry point,Interpret frozen territorial mixture results without fits or model selection.,Not inferred from file existence
+scripts/386_r2_residual_diagnosis.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/389_erosion_spatial_audit.py,scripts,execution helper / entry point,Target-free cartographic support audit of newly supplied INEGI erosion data.,Not inferred from file existence
+scripts/390_fira_ena_yield_context.py,scripts,execution helper / entry point,Descriptive external-yield context; no model fitting or PRED inference.,Not inferred from file existence
+scripts/391_build_agronomic_calendar_set.py,scripts,execution helper / entry point,Build historical/current calendar set without reading yields or fitting models.,Not inferred from file existence
+scripts/392_validate_calendar_history_2025.py,scripts,execution helper / entry point,"Independent reconstruction and descriptive annual shift, without targets.",Not inferred from file existence
+scripts/393_plot_calendar_validation.py,scripts,execution helper / entry point,"Descriptive figure on TRAIN only, with matched four-year cohorts per feature.",Not inferred from file existence
+scripts/394_calendar_modeling.py,scripts,execution helper / entry point,Frozen 65-fold nested comparison: 2025 representations and penalized history.,Not inferred from file existence
+scripts/395_calendar_modeling_synthesis.py,scripts,execution helper / entry point,Paired diagnostics on sealed OOF; no model fitting or selection.,Not inferred from file existence
+scripts/396_verify_calendar_models.py,scripts,execution helper / entry point,Replay all sealed external models on TRAIN-heldout rows only.,Not inferred from file existence
+scripts/397_calendar_expansion.py,scripts,execution helper / entry point,Prepare then run remaining frozen calendar-block model comparisons.,Not inferred from file existence
+scripts/398_calendar_expansion_synthesis.py,scripts,execution helper / entry point,"Sealed OOF metrics, block ablations and selection stability; no fits.",Not inferred from file existence
+scripts/399_verify_calendar_expansion.py,scripts,execution helper / entry point,Replay archived expansion models on their original heldout TRAIN rows.,Not inferred from file existence
+scripts/400_validate_calendar_temporal_extension.py,scripts,execution helper / entry point,Check new trimester/season data independently from model fitting.,Not inferred from file existence
+scripts/401_resume_calendar_efficiently.py,scripts,execution helper / entry point,Resume frozen candidates with equivalent single-thread scoring only.,Not inferred from file existence
+scripts/402_compact_spectral_addendum.py,scripts,execution helper / entry point,"Exploratory comparator-gap closure; same variables, grids and frozen folds.",Not inferred from file existence
+scripts/403_compact_spectral_synthesis.py,scripts,execution helper / entry point,Metrics and full replay for the exploratory compact spectral comparator.,Not inferred from file existence
+scripts/404_consolidate_calendar_expansion.py,scripts,execution helper / entry point,Single review bundle; preserve the original and exploratory addendum.,Not inferred from file existence
+scripts/405_calendar_base_complementarity.py,scripts,execution helper / entry point,"Exploratory paired OOF diagnostics; fixed blends, no fitting or selection.",Not inferred from file existence
+scripts/406_explore_calendar_core_variables.py,scripts,execution helper / entry point,"Descriptive predictor overlap, no predictive model selection or fits.",Not inferred from file existence
+scripts/407_calendar_complements.py,scripts,execution helper / entry point,Freeze and execute bounded complements; resume only unchanged designs.,Not inferred from file existence
+scripts/408_calendar_complements_synthesis.py,scripts,execution helper / entry point,"Evaluate full OOF, geographic stability and exact persisted-model replay.",Not inferred from file existence
+scripts/409_resume_calendar_complements.py,scripts,execution helper / entry point,Resume frozen statistical design using audited X-transform memoization.,Not inferred from file existence
+scripts/410_audit_calendar_complement_models.py,scripts,execution helper / entry point,Numerical and tree-support audit after all fits; no refits.,Not inferred from file existence
+scripts/411_predict_frozen_winners.py,scripts,execution helper / entry point,"Authorized 59 PRED delivery: preserve archives, freeze consolidation first.",Not inferred from file existence
+scripts/412_validate_winner_statistics.py,scripts,execution helper / entry point,"Paired cluster resampling of immutable OOF, never an independent test.",Not inferred from file existence
+scripts/413_audit_geoc_bridge.py,scripts,execution helper / entry point,Read-only cross-repository identity and 59-prediction agreement audit.,Not inferred from file existence
+scripts/414_run_geoc_bridge.py,scripts,execution helper / entry point,"Freeze exact Local04D snapshot, parity gates, and two evaluation banks.",Not inferred from file existence
+scripts/415_summarize_geoc_bridge.py,scripts,execution helper / entry point,"Paired metrics, geographic dependence, and replay for the bridge.",Not inferred from file existence
+scripts/416_run_reverse_geoc.py,scripts,execution helper / entry point,"Bounded reverse correction, preserving all earlier bridge artifacts.",Not inferred from file existence
+scripts/417_summarize_reverse_geoc.py,scripts,execution helper / entry point,"Reverse formulation diagnostics, exact replay, clustered contrasts and cost.",Not inferred from file existence
+scripts/418_run_compact_geography.py,scripts,execution helper / entry point,Seven bounded geography variants on the original65 and GeoC16 banks.,Not inferred from file existence
+scripts/419_summarize_compact_geography.py,scripts,execution helper / entry point,OOF evidence and support diagnostics for the bounded compact geography test.,Not inferred from file existence
+scripts/420_run_original_local_support.py,scripts,execution helper / entry point,"Original Local04D + CT3 support blend, with a matched unshrunk control.",Not inferred from file existence
+scripts/421_summarize_original_local_support.py,scripts,execution helper / entry point,"Paired evidence for original Local04D support, distinct from local compact4.",Not inferred from file existence
+scripts/422_prepare_nonclimatic_local.py,scripts,execution helper / entry point,Audit C4 ancestry without Y; rebuild full/safe/nonclimatic PCA20.,Not inferred from file existence
+scripts/423_run_nonclimatic_local.py,scripts,execution helper / entry point,Fixed nonclimatic local base and both honest correction directions.,Not inferred from file existence
+scripts/424_summarize_nonclimatic_local.py,scripts,execution helper / entry point,"Matched climate ablation, both residual directions and geography-only control.",Not inferred from file existence
+scripts/425_prepare_physical_similarity.py,scripts,execution helper / entry point,"Target-free census, source triage and frozen physical-similarity design.",Not inferred from file existence
+scripts/426_run_physical_similarity.py,scripts,execution helper / entry point,Frozen block/family ablations and fully internal selector over honest C-T3 residuals.,Not inferred from file existence
+scripts/427_summarize_physical_similarity.py,scripts,execution helper / entry point,"Exploratory physical-similarity OOF results, inference and exact replay audit.",Not inferred from file existence
+scripts/428_physical_similarity_support_audit.py,scripts,execution helper / entry point,"Post-fit diagnostics only: no model fitting, selection or new predictions PRED.",Not inferred from file existence
+scripts/429_physical_representation_models.py,scripts,execution helper / entry point,"Prepare/freeze, then run bounded physical representation sensitivity.",Not inferred from file existence
+scripts/430_summarize_physical_representation.py,scripts,execution helper / entry point,OOF analysis and replay; no refitting or retrospective model changes.,Not inferred from file existence
+scripts/431_physical_representation_delivery.py,scripts,execution helper / entry point,Post-fit group/warning audit and readable figures; no fitting.,Not inferred from file existence
+scripts/432_run_conditional_local_phases.py,scripts,execution helper / entry point,Frozen three-phase nested exploration over Local nonclimatic + compact EN.,Not inferred from file existence
+scripts/433_summarize_conditional_local_phases.py,scripts,execution helper / entry point,"Comparable OOF, nested audit and decisions for three conditional local lines.",Not inferred from file existence
+scripts/434_conditional_local_delivery.py,scripts,execution helper / entry point,Post-fit delivery provenance and physical cluster diagnostics; no training.,Not inferred from file existence
+scripts/435_geoc_variable_signal_audit.py,scripts,execution helper / entry point,"Read-only GeoC inventory and exploratory TRAIN138 associations, not feature selection.",Not inferred from file existence
+scripts/436_prepare_geoc_signal_research.py,scripts,execution helper / entry point,Freeze family ablations and definition-selected 12/30-feature representations.,Not inferred from file existence
+scripts/437_run_geoc_signal_research.py,scripts,execution helper / entry point,"Frozen attribution, reduced experts, corrections and conditional gates.",Not inferred from file existence
+scripts/438_summarize_geoc_signal_research.py,scripts,execution helper / entry point,"OOF attribution/reduction analysis, matched inference and independent exact replay.",Not inferred from file existence
+scripts/439_geoc_signal_structural_diagnostics.py,scripts,execution helper / entry point,"Post-fit descriptions of geographic means, local shrinkage and compact mixtures.",Not inferred from file existence
+scripts/440_finalize_geoc_signal_research.py,scripts,execution helper / entry point,Validate delivered OOF references and add descriptive audits to the workbook.,Not inferred from file existence
+scripts/441_prepare_signal_role_allocation.py,scripts,execution helper / entry point,"Freeze bounded block deletions and moves between expert, corrector and gate.",Not inferred from file existence
+scripts/442_run_signal_role_allocation.py,scripts,execution helper / entry point,"Run frozen role swaps, nested gates and internal compact-route selection.",Not inferred from file existence
+scripts/443_summarize_signal_role_allocation.py,scripts,execution helper / entry point,"Paired role recovery, compactness, regional diagnostics and exact replay.",Not inferred from file existence
+scripts/444_audit_signal_role_delivery.py,scripts,execution helper / entry point,Check route-selector decisions and unchanged archived OOF after role analysis.,Not inferred from file existence
+scripts/445_prepare_joint_simplification.py,scripts,execution helper / entry point,Freeze four joint reductions suggested by the preceding role experiment.,Not inferred from file existence
+scripts/446_run_joint_simplification.py,scripts,execution helper / entry point,Four fixed joint reductions; unchanged nested expert and convex gate classes.,Not inferred from file existence
+scripts/447_summarize_joint_simplification.py,scripts,execution helper / entry point,"Joint reductions: paired RMSE/R2 tables, interactions, regional audits and replay.",Not inferred from file existence
+scripts/448_audit_joint_simplification_delivery.py,scripts,execution helper / entry point,"Audit OOF metric identities, summaries, field counts and final source hashes.",Not inferred from file existence
+scripts/449_j7_both_residual_audit.py,scripts,execution helper / entry point,Read-only comprehensive J7_BOTH OOF residual audit; no predictive refits.,Not inferred from file existence
+scripts/450_j7_residual_delivery.py,scripts,execution helper / entry point,Refresh plots using actual repeat IDs and validate the complete residual delivery.,Not inferred from file existence
+scripts/451_case_outlier_audit.py,scripts,execution helper / entry point,"Descriptive target/predictor outlier census for AGC_171/015, without model selection.",Not inferred from file existence
+scripts/452_comparative_residual_audit.py,scripts,execution helper / entry point,"Compatible OOF comparison of Local04D, CT3, J7_BOTH and reduced expert mixtures.",Not inferred from file existence
+scripts/453_deliver_comparative_residual_audit.py,scripts,execution helper / entry point,Package frozen OOF diagnostics; no predictive fitting or model selection.,Not inferred from file existence
+scripts/454_prepare_difficult_case_signals.py,scripts,execution helper / entry point,Freeze twelve paired exploratory alternatives before any new external fit.,Not inferred from file existence
+scripts/455_run_difficult_case_signals.py,scripts,execution helper / entry point,Twelve frozen exploratory signal additions: local versus residual placement.,Not inferred from file existence
+scripts/456_evaluate_difficult_case_signals.py,scripts,execution helper / entry point,Paired frozen-OOF evaluation of signal placement; no predictive refit.,Not inferred from file existence
+scripts/457_finalize_difficult_case_signals.py,scripts,execution helper / entry point,Recover packaging only: archived reference rows already carry an index field.,Not inferred from file existence
+scripts/458_audit_difficult_case_signals_delivery.py,scripts,execution helper / entry point,"Validate stored artifacts, all train/held exclusions, role placement and metrics.",Not inferred from file existence
+scripts/459_reproduce_difficult_case_signals.py,scripts,execution helper / entry point,Resume/reproduce the frozen experiment and its documented packaging recovery.,Not inferred from file existence
+scripts/460_prepare_neighbor_contrasts.py,scripts,execution helper / entry point,Freeze four neighbor-contrast alternatives and two exact references.,Not inferred from file existence
+scripts/461_run_neighbor_contrasts.py,scripts,execution helper / entry point,Strictly nested signal contrast rules over exact external J7 references.,Not inferred from file existence
+scripts/462_evaluate_neighbor_contrasts.py,scripts,execution helper / entry point,"Complete OOF evaluation, rule replay and uncertainty diagnostics; no refit.",Not inferred from file existence
+scripts/463_audit_neighbor_contrasts_delivery.py,scripts,execution helper / entry point,"Final frozen-design, internal-selection and delivered-artifact integrity audit.",Not inferred from file existence
+scripts/464_run_neighbor_signal_linear.py,scripts,execution helper / entry point,Strictly nested continuous contrast correction over exact external J7 references.,Not inferred from file existence
+scripts/465_prepare_neighbor_signal_linear.py,scripts,execution helper / entry point,"Freeze the user's continuous-feature alternative, without changing tree results.",Not inferred from file existence
+scripts/466_evaluate_neighbor_signal_linear.py,scripts,execution helper / entry point,"Continuous contrast alternatives, compared with frozen J7 and tree variants.",Not inferred from file existence
+scripts/467_finalize_neighbor_research.py,scripts,execution helper / entry point,"Joint delivery: actual applied rules, coefficient audit and product hashes.",Not inferred from file existence
+scripts/468_top10_difficult_parcels_inventory.py,scripts,execution helper / entry point,Descriptive extension: ten largest J7 random OOF errors; no model training.,Not inferred from file existence
+scripts/469_package_top10_difficult_parcels.py,scripts,execution helper / entry point,Package descriptive top-ten audit; does not fit predictive models.,Not inferred from file existence
+scripts/470_prepare_signal_feature_engineering.py,scripts,execution helper / entry point,Freeze three paired representation experiments and intercept-only controls.,Not inferred from file existence
+scripts/471_run_signal_feature_engineering.py,scripts,execution helper / entry point,"Paired raw/engineered blocks over exact CT3/J7, with nested residual calibration.",Not inferred from file existence
+scripts/472_evaluate_signal_feature_engineering.py,scripts,execution helper / entry point,"OOF evaluation, paired exploratory inference and replay of all engineered models.",Not inferred from file existence
+scripts/473_audit_signal_feature_engineering.py,scripts,execution helper / entry point,Read-only final delivery checks for the frozen engineering experiment.,Not inferred from file existence
+scripts/474_prepare_difficult_quartile.py,scripts,execution helper / entry point,Freeze the expanded error-quartile inventory and nested diagnostic classification.,Not inferred from file existence
+scripts/475_analyze_difficult_quartile.py,scripts,execution helper / entry point,"Inventory all error groups, then fit two fixed train-only diagnostic classifiers.",Not inferred from file existence
+scripts/476_deliver_difficult_quartile.py,scripts,execution helper / entry point,Evaluate honest diagnostic classification and package error-quartile inventories.,Not inferred from file existence
+scripts/477_finalize_difficult_quartile.py,scripts,execution helper / entry point,"Per-parcel descriptive inventory, readable figures and final provenance checks.",Not inferred from file existence
+scripts/478_prepare_temporal_indicator_weights.py,scripts,execution helper / entry point,"Freeze eight temporal indicators, one physical context and six architectures/base.",Not inferred from file existence
+scripts/479_run_temporal_indicator_weights.py,scripts,execution helper / entry point,Fit continuous correction weights with strictly cross-fitted candidate deltas.,Not inferred from file existence
+scripts/480_evaluate_temporal_indicator_weights.py,scripts,execution helper / entry point,"Paired evaluation of continuous weights, direct integration and fixed controls.",Not inferred from file existence
+scripts/481_audit_temporal_indicator_weights.py,scripts,execution helper / entry point,Independent rebuild of indicator inputs and strictly cross-fitted gate calibration.,Not inferred from file existence
+scripts/482_interpret_temporal_indicators.py,scripts,execution helper / entry point,Read-only grouped permutation within municipality; no new model training.,Not inferred from file existence
+scripts/483_prepare_indicator_neighborhoods.py,scripts,execution helper / entry point,"Freeze reductions, three neighbor geometries and paired correction uses.",Not inferred from file existence
+scripts/484_run_indicator_neighborhoods.py,scripts,execution helper / entry point,Select neighbor count/strength internally; paired direct and weight roles.,Not inferred from file existence
+scripts/485_evaluate_indicator_neighborhoods.py,scripts,execution helper / entry point,OOF evaluation of reductions and paired neighborhood correction architectures.,Not inferred from file existence
+scripts/486_audit_indicator_neighborhoods.py,scripts,execution helper / entry point,"Independent candidate calibration rebuild, paired-selection and support audit.",Not inferred from file existence
+scripts/487_j7_r3_residual_simplification.py,scripts,execution helper / entry point,Frozen corrector ablations and descriptive residual research; no final/PRED fit.,Not inferred from file existence
+scripts/488_deliver_j7_r3_research.py,scripts,execution helper / entry point,"Replay new ablations, inspect saved R3, and deliver both research reports.",Not inferred from file existence
+scripts/489_prepare_base_distribution_correction.py,scripts,execution helper / entry point,Freeze a finite base-by-proximity factorial before external evaluation.,Not inferred from file existence
+scripts/490_run_base_distribution_correction.py,scripts,execution helper / entry point,Base simplification crossed with global or local-distribution-conditioned R3.,Not inferred from file existence
+scripts/491_evaluate_base_distribution_correction.py,scripts,execution helper / entry point,OOF evaluation and full replay of base simplification x conditional R3.,Not inferred from file existence
+scripts/492_summarize_base_distribution_correction.py,scripts,execution helper / entry point,Descriptive architecture/proximity comparisons and input-count frontier.,Not inferred from file existence
+scripts/493_prepare_learned_r3_weight.py,scripts,execution helper / entry point,Freeze learned/asymmetric weighting before training and external evaluation.,Not inferred from file existence
+scripts/494_run_learned_r3_weight.py,scripts,execution helper / entry point,Nested correction proposals for learned and asymmetric R3 weights.,Not inferred from file existence
+scripts/494b_run_fixed_learned_r3_weight.py,scripts,execution helper / entry point,Fixed meta-regularization sensitivities using original nested OOF proposals.,Not inferred from file existence
+scripts/495_evaluate_learned_r3_weight.py,scripts,execution helper / entry point,Evaluate and replay learned R3 weighting without external model selection.,Not inferred from file existence
+scripts/496_deliver_learned_r3_weight.py,scripts,execution helper / entry point,"Independent metric aggregation, contrast tables, figure and delivery hashes.",Not inferred from file existence
+scripts/497_prepare_architecture_decomposition.py,scripts,execution helper / entry point,Freeze base simplification factorial before training.,Not inferred from file existence
+scripts/498_run_architecture_decomposition.py,scripts,execution helper / entry point,Frozen factorial base architecture ablations with R3 availability control.,Not inferred from file existence
+scripts/499_evaluate_architecture_decomposition.py,scripts,execution helper / entry point,"OOF metrics, paired architectural effects and replay of the fixed factorial.",Not inferred from file existence
+scripts/500_deliver_architecture_decomposition.py,scripts,execution helper / entry point,"Independent metric checks, complexity/frontier views, figure and audit hashes.",Not inferred from file existence
+scripts/501_audit_pruned_architectures.py,scripts,execution helper / entry point,Reconstruct two compact existing configurations with unwanted inputs removed.,Not inferred from file existence
+scripts/502_compare_four_leaders.py,scripts,execution helper / entry point,Read-only matched OOF comparison; no fitting or model selection.,Not inferred from file existence
+scripts/503_prepare_four_expert_combinations.py,scripts,execution helper / entry point,Freeze six mixtures and fresh partition sensitivity before training.,Not inferred from file existence
+scripts/504_run_four_expert_combinations.py,scripts,execution helper / entry point,Execute bounded mixtures using honest internal predictions of all experts.,Not inferred from file existence
+scripts/505_evaluate_four_expert_combinations.py,scripts,execution helper / entry point,"Matched OOF diagnostics, regional sensitivity and saved-mixture replay.",Not inferred from file existence
+scripts/506_deliver_four_expert_combinations.py,scripts,execution helper / entry point,Additional interpretation of fixed mixtures; no fitting or post-hoc rules.,Not inferred from file existence
+scripts/507_run_four_expert_fast.py,scripts,execution helper / entry point,Resume frozen six-mixture design with documented equivalent Ridge solver.,Not inferred from file existence
+scripts/508_verify_four_expert_fast.py,scripts,execution helper / entry point,Real-data parity and performance amendment before using faster execution.,Not inferred from file existence
+scripts/509_diagnose_expert_complementarity.py,scripts,execution helper / entry point,Descriptive hindsight expert selection; not a lower bound on convex mixtures.,Not inferred from file existence
+scripts/510_evaluate_four_expert_combinations.py,scripts,execution helper / entry point,"Matched OOF diagnostics, regional sensitivity and saved-mixture replay.",Not inferred from file existence
+scripts/511_finalize_four_expert_combinations.py,scripts,execution helper / entry point,Finish evaluations only after the frozen execution has completed.,Not inferred from file existence
+scripts/512_gather_four_expert_combinations.py,scripts,execution helper / entry point,Gather only when all disjoint training pools have written their checkpoints.,Not inferred from file existence
+scripts/513_summarize_four_expert_combinations.py,scripts,execution helper / entry point,"Create a reviewable synthesis after all training, replay and metrics finish.",Not inferred from file existence
+scripts/514_keep_training_awake.py,scripts,execution helper / entry point,"Temporary Windows idle-sleep request, automatically released after delivery.",Not inferred from file existence
+scripts/515_verify_four_expert_tuner.py,scripts,execution helper / entry point,Validate C-T3 grid equivalence on real nested contexts before resuming.,Not inferred from file existence
+scripts/516_run_four_expert_cached_tuner.py,scripts,execution helper / entry point,"Same frozen worker, with equivalent Ridge and C-T3 preprocessing reuse.",Not inferred from file existence
+scripts/517_review_four_expert_results.py,scripts,results / interpretation,Final numerical review and data-specific interpretation; no training.,Not inferred from file existence
+scripts/518_explain_four_architectures.py,scripts,execution helper / entry point,"Read-only matched OOF comparison: no fitting, no PRED59 predictions.",Not inferred from file existence
+scripts/519_export_research_metadata.py,scripts,execution helper / entry point,Export portable research metadata; never fit models or copy data/predictions.,Not inferred from file existence
+scripts/520_validate_repository_documentation.py,scripts,execution helper / entry point,"Validate documentation, provenance and positional splits using stdlib only.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/00_preguntas_pequeñas.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/01_eda_temporal.py,scripts,execution helper / entry point,EDA inicial de las tablas maestras de AgroCebada.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/02_revision_eda_tablas_maestreas.py,scripts,execution helper / entry point,02 - Revision dirigida del EDA de tablas maestras.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/03_eda_cobertura_landsat.py,scripts,execution helper / entry point,EDA 03: cobertura Landsat por parcela y relación con el rendimiento 2025.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/04_eda_parcelas_rendimiento.py,scripts,execution helper / entry point,EDA 04: distribución espacial de parcelas y rendimiento observado en 2025.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/100_sentinel_audit.py,scripts,execution helper / entry point,"Familia 1, etapa 1: auditoría reproducible de Sentinel-2.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/110_build_sensor_timeseries.py,scripts,execution helper / entry point,"Familia 1, Etapa 2: construir capas temporales canónicas por sensor.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/114_temporal_alignment_diagnostics.py,scripts,execution helper / entry point,"Familia 1, Etapa 2: diagnóstico de capas temporales por sensor.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/120_audit_environment_rasters.py,scripts,execution helper / entry point,"Familia 1, Etapa 2.5A-B: inventario y compatibilidad de rásteres.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/121_build_climate_monthly_timeseries.py,scripts,execution helper / entry point,"Familia 1, Etapa 2.5C-H: serie climática mensual por parcela.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/122_build_topography_by_parcel.py,scripts,execution helper / entry point,"Familia 1, Etapa 2.5I-J: topografía estática y auditoría de área.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/123_environment_diagnostics.py,scripts,execution helper / entry point,"Familia 1, Etapa 2.5K-M: diagnósticos y reporte ambiental.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/130_validate_temporal_primitives.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/131_build_sentinel_features.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/132_build_landsat_features.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/133_build_planet_features.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/134_build_climate_features.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/135_build_historical_anomaly_features.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/136_build_basic_topography_features.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/137_build_advanced_terrain_features.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/138_build_family1_feature_table.py,scripts,execution helper / entry point,Une bloques no supervisados y elimina sólo constantes/duplicados exactos.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/139_family1_feature_diagnostics.py,scripts,execution helper / entry point,Diagnóstico no supervisado y reporte contestado de Etapa 3.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/140_create_frozen_cv_splits.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/141_run_stage4_screening.py,scripts,execution helper / entry point,Ronda 1 de Etapa 4 con nested CV y checkpoints por pipeline.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/142_consolidate_stage4_screening.py,scripts,execution helper / entry point,"Consolida Ronda 1, estabilidad y reporte; no ejecuta Ronda 2.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/143_stage4_1_diagnostics.py,scripts,execution helper / entry point,"Etapa 4.1: correlación/pruning e interpretación PLS, sin nuevos modelos.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/144_run_stage4_round2.py,scripts,execution helper / entry point,Ejecuta exclusivamente los nueve pipelines autorizados de Ronda 2.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/145_consolidate_stage4_round2.py,scripts,execution helper / entry point,Consolida Ronda 2 y genera diagnósticos; no entrena etapas posteriores.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/146_family1_error_analysis.py,scripts,execution helper / entry point,Etapa 4.3: diagnóstico profundo de error y robustez espacial.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/147_family1_support_analysis.py,scripts,execution helper / entry point,"Etapa 4.4: soporte, extrapolacion y covariate shift (solo diagnostico).",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/148_family1_source_contribution.py,scripts,execution helper / entry point,Etapa 4.5: contribucion predictiva por fuente con nested CV congelada.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/201_family2_functional_preprocessing.py,scripts,execution helper / entry point,F2.1: representaciones funcionales target-free para AgroCebada.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/202_family2_fpca.py,scripts,execution helper / entry point,F2.2: redundancia funcional y FPCA target-free.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/203_family2_round1.py,scripts,execution helper / entry point,F2.3 Round 1: nested CV para modelos functional-only.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/204_family2_round2_hybrid.py,scripts,execution helper / entry point,F2.3 Round 2: prueba acotada Climate Current + Sentinel funcional.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/205_climate_regime_discovery.py,scripts,execution helper / entry point,Climate Regime Extension R1: discovery completamente target-free.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/206_climate_regime_stage2.py,scripts,execution helper / entry point,Climate Regime Stage R2: caracterizacion y prediccion regime-aware.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/207_residual_signal_audit.py,scripts,execution helper / entry point,Residual Signal Audit RS1: señal incremental respecto a Climate ENET OOF.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/208_history_signal_decomposition.py,scripts,execution helper / entry point,RS2: descomposición target-safe de la señal HISTORY encontrada en RS1.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/209_climate_signal_decomposition.py,scripts,execution helper / entry point,"RS3: descomposición de las 48 variables Climate Current, sin History/Satellite.",Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/210_champion_reconstruction.py,scripts,execution helper / entry point,RS4: reconstrucción leakage-safe de Climate refinado + Sentinel Historical.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/211_second_residual_audit.py,scripts,execution helper / entry point,RS5: segunda auditoría residual sobre TOP20_ENET + S2 History TOP15.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/212_residual_architecture_optimization.py,scripts,execution helper / entry point,RS6: optimización acotada de arquitectura Climate/History/Topo (+Planet sensitivity).,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/213_final_model_diagnostics.py,scripts,execution helper / entry point,RS7: diagnóstico final del campeón usando exclusivamente predicciones OOF congeladas.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/214_rs8_calibration_extreme_optimization.py,scripts,execution helper / entry point,RS8: nested calibration and controlled extreme-aware sensitivity.,Not inferred from file existence
+scripts/data_uderstanding/tablas_agrocebada/_environment_zonal_utils.py,scripts,execution helper / entry point,Funciones compartidas para la Etapa 2.5 ambiental.,Not inferred from file existence
+scripts/modeling/301_f3_1_0_structural_data_audit.py,scripts,execution helper / entry point,F3.1.0 target-free structural audit: Sentinel Historical 2022-2024 + Topography Basic.,Not inferred from file existence
+scripts/modeling/302_f3_1_1_structural_representation.py,scripts,execution helper / entry point,F3.1.1 target-free structural representations and probabilistic memberships.,Not inferred from file existence
+scripts/modeling/303_f3_1_2_structural_source_expansion.py,scripts,execution helper / entry point,F3.1.2 target-free audit of Topography Advanced and structural expansion.,Not inferred from file existence
+scripts/modeling/304_f3_2_structural_climate_conditioning.py,scripts,execution helper / entry point,"F3.2 nested structural climate conditioning, M0-M4 only.",Not inferred from file existence
+scripts/modeling/305_f3_2_1_structural_error_diagnostics.py,scripts,execution helper / entry point,F3.2.1 diagnostic-only analysis of Champion V1 OOF errors and frozen structure.,Not inferred from file existence
+scripts/modeling/306_block_a_agroenvironmental_research.py,scripts,execution helper / entry point,Bloque A: investigación agroambiental y extremos de rendimiento.,Not inferred from file existence
+scripts/modeling/307_block_b_regional_context.py,scripts,execution helper / entry point,"Bloque B B0-B6: contexto regional, ENA y síntesis A+B.",Not inferred from file existence
+scripts/modeling/308_phase_c_c0_c1_geospatial_features.py,scripts,execution helper / entry point,"Fase C, C0-C1: auditoría y variables geoespaciales externas por parcela.",Not inferred from file existence
+scripts/modeling/309_phase_c_c0_c1_review_v2.py,scripts,execution helper / entry point,"Complemento versionado C0-C1 v2: resolución, cobertura e interpretabilidad.",Not inferred from file existence
+scripts/modeling/310_phase_c_c1_2_rgb_representation.py,scripts,execution helper / entry point,C1.2: statistical cartographic representations of RGB maps by parcel.,Not inferred from file existence
+scripts/modeling/311_phase_c_c2_c3_agroenvironmental_regimes.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/modeling/312_phase_c_c4_c6_predictive_competition.py,scripts,execution helper / entry point,C4-C6: leakage-controlled predictive competition against frozen Champion V1.,Not inferred from file existence
+scripts/modeling/313_rainfall_yield_audit.py,scripts,execution helper / entry point,Read-only rainfall audit. Refuses to overwrite a previous audit.,Not inferred from file existence
+scripts/modeling/314_rainfall_yield_modeling.py,scripts,execution helper / entry point,"Rainfall v1: strict features, EDA and nested experiments on audited data.",Not inferred from file existence
+scripts/modeling/315_rainfall_pca_pcr.py,scripts,execution helper / entry point,E8 phased runner using existing rainfall artifacts and exact frozen splits.,Not inferred from file existence
+scripts/modeling/316_g_temperature_signal_exploration.py,scripts,execution helper / entry point,"G descriptive audit, features, thermal profiles and PCA.",Not inferred from file existence
+scripts/modeling/317_h_joint_climate_signal_exploration.py,scripts,execution helper / entry point,H joint descriptive exploration; requires audited G.,Not inferred from file existence
+scripts/modeling/318_g_h_climate_signal_modeling.py,scripts,execution helper / entry point,G/H controlled modeling after descriptive phases 316 and 317.,Not inferred from file existence
+scripts/modeling/319_g_thermal_profile_geography.py,scripts,execution helper / entry point,"Target-free follow-up: exact thermal/rain pairs, altitude and geographic support.",Not inferred from file existence
+scripts/modeling/320_g_temperature_short_reference_sensitivity.py,scripts,execution helper / entry point,Describe how including 2024 changes the short thermal reference; no model fits.,Not inferred from file existence
+scripts/modeling/322_h_rain_tmax_extension.py,scripts,execution helper / entry point,Run the small precipitation/Tmax extension within section H.,Not inferred from file existence
+scripts/modeling/323_i_soil_representation.py,scripts,execution helper / entry point,Section I official soil representation; does not fit yield models.,Not inferred from file existence
+scripts/modeling/324_i_geographic_edaphological_exploration.py,scripts,execution helper / entry point,Section I descriptive exploration only; preserves all existing models.,Not inferred from file existence
+scripts/modeling/325_j_incremental_yield_audit.py,scripts,execution helper / entry point,Freeze Section J design before fitting any yield model.,Not inferred from file existence
+scripts/modeling/326_j_incremental_yield_modeling.py,scripts,execution helper / entry point,Run prespecified Section J models; no replacement of Champion.,Not inferred from file existence
+scripts/modeling/327_k_edaphological_stability.py,scripts,execution helper / entry point,Execute K.1 and freeze feature policies before any K prediction fitting.,Not inferred from file existence
+scripts/modeling/328_k_standalone_residual_modeling.py,scripts,execution helper / entry point,"Run frozen K.2/K.3 experiments, with resumable fold checkpoints.",Not inferred from file existence
+scripts/modeling/329_lm_initial_audit.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/modeling/330_l_multiblock_modeling.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/modeling/331_m_satellite_modeling.py,scripts,execution helper / entry point,,Not inferred from file existence
+scripts/modeling/332_lm_synthesis.py,scripts,execution helper / entry point,Summarize frozen L/M results and verify provenance; never fit a model.,Not inferred from file existence
+scripts/modeling/333_lm_finalize.py,scripts,execution helper / entry point,Finalize reporting/provenance and artifact hashes without refitting models.,Not inferred from file existence
+src/agronomic_calendar_features.py,src,implementation,"Target-free, calendar-based Sentinel and monthly climate representations.",Not inferred from file existence
+src/architecture_decomposition.py,src,implementation,Paired base ablations with reusable nested component fits and train-only PCA.,Not inferred from file existence
+src/base_distribution_correction.py,src,implementation,"Simpler bases and target-free, query-specific local-distribution weights.",Not inferred from file existence
+src/calendar_complements.py,src,implementation,Nested representation selection and honest cross-fitted residual targets.,Not inferred from file existence
+src/calendar_complements_execution.py,src,implementation,"Execution-only memoization of identical X preprocessing, no Y caching.",Not inferred from file existence
+src/calendar_execution.py,src,implementation,Equivalent single-thread scoring to avoid nested CatBoost thread oversubscription.,Not inferred from file existence
+src/calendar_expansion.py,src,implementation,Frozen block expansion: nested ElasticNet and conservative CatBoost.,Not inferred from file existence
+src/calendar_modeling.py,src,implementation,Conservative nested Ridge models for frozen agronomic representations.,Not inferred from file existence
+src/compact_ensemble.py,src,implementation,"Strict inner prediction blend of original compact EN, GPR and CatBoost.",Not inferred from file existence
+src/compact_geographic.py,src,implementation,Compact4 local Ridge and honest neighbor-residual corrections.,Not inferred from file existence
+src/conditional_local_phases.py,src,implementation,Three controlled lines over the frozen nonclimatic Local + compact EN pipeline.,Not inferred from file existence
+src/ct3_information/__init__.py,src,implementation,Diagnostic information audit conditioned on the immutable C-T3 core.,Not inferred from file existence
+src/ct3_information/phase_iii/__init__.py,src,implementation,Unsupervised representation research. Yield is not an input.,Not inferred from file existence
+src/ct3_information/phase_iii/execution.py,src,implementation,"Phase III X-only execution, fixed hypotheses and preservation audit.",Not inferred from file existence
+src/ct3_information/phase_iii/reporting.py,src,implementation,X-only descriptive decisions and a maximum-three-contrast Phase IV design.,Not inferred from file existence
+src/ct3_information/phase_iii/representations.py,src,implementation,"Train-isolated X transforms and reconstruction diagnostics, no Y interface.",Not inferred from file existence
+src/ct3_information/reporting.py,src,implementation,"Render bounded diagnostics, including negative/inconclusive findings.",Not inferred from file existence
+src/ct3_information/research.py,src,implementation,Phases I–II only; immutable references and descriptive associations.,Not inferred from file existence
+src/ct3_information/statistics.py,src,implementation,Descriptive statistics; no hypothesis tests or predictive yield models.,Not inferred from file existence
+src/ct3_residual_coherence.py,src,implementation,Frozen paired-base/disjoint-calibration sensitivity; no new base fits.,Not inferred from file existence
+src/ct3_residual_conditional/__init__.py,src,implementation,"Controlled residual correction on immutable C-T3, separate from F8.",Not inferred from file existence
+src/ct3_residual_conditional/execution.py,src,implementation,"Five-model controlled experiment, strict recursive tuning and cached contexts.",Not inferred from file existence
+src/ct3_residual_conditional/models.py,src,implementation,Exact original C-T3 tuner and small centered correctors.,Not inferred from file existence
+src/ct3_residual_conditional/reporting.py,src,implementation,"Complete OOF aggregation and local/regional diagnostics, no extra fits.",Not inferred from file existence
+src/difficult_case_signals.py,src,implementation,Target-free additions for frozen exploratory role-allocation sensitivities.,Not inferred from file existence
+src/difficult_quartile.py,src,implementation,Exploratory error-group diagnosis; training-only classification of hard errors.,Not inferred from file existence
+src/experimental_pls.py,src,implementation,"Standalone nested PLS experiment over the audited 1,867 named descriptors.",Not inferred from file existence
+src/experimental_tree.py,src,implementation,"Standalone nested decision tree experiment over the audited 1,867 named descriptors.",Not inferred from file existence
+src/family_1/__init__.py,src,implementation,Infraestructura reproducible de features para Familia 1.,Not inferred from file existence
+src/family_1/climate_signal_descriptive.py,src,implementation,G/H target-free spatial/temporal descriptions and separately labeled associations.,Not inferred from file existence
+src/family_1/climate_signal_features.py,src,implementation,G/H parcel climate representations; canonical extraction is never rebuilt.,Not inferred from file existence
+src/family_1/climate_signal_modeling.py,src,implementation,Small prespecified G/H Elastic Net ablations on existing frozen CV.,Not inferred from file existence
+src/family_1/climate_signal_reporting.py,src,implementation,"G/H paired evidence, separate reports, and bounded H1 interpretation.",Not inferred from file existence
+src/family_1/feature_pipeline.py,src,implementation,Constructores de bloques de features de Familia 1 (sin rendimiento).,Not inferred from file existence
+src/family_1/h_rain_tmax_extension.py,src,implementation,Small extension of H: rain/Tmax structure and one nested PCR experiment.,Not inferred from file existence
+src/family_1/i_geographic_edaphological.py,src,implementation,Section I: reproducible descriptive spatial research; no yield models.,Not inferred from file existence
+src/family_1/j_incremental_yield.py,src,implementation,Section J: small prespecified additive models using immutable H/I products.,Not inferred from file existence
+src/family_1/k_geographic_edaphological.py,src,implementation,"K: bounded soil features and strictly nested, cross-fitted residual models.",Not inferred from file existence
+src/family_1/l_representation.py,src,implementation,"L: target-free multiblock PCA, matched EN architectures, Champion audit gate.",Not inferred from file existence
+src/family_1/lm_final_audit.py,src,implementation,Read-only checks and supplementary quality interpretation; no predictive fits.,Not inferred from file existence
+src/family_1/lm_multiblock.py,src,implementation,L/M shared nested EN/PCA engine. Historical files and Champion are read-only.,Not inferred from file existence
+src/family_1/m_satellite.py,src,implementation,"M: bounded prespecified temporal summaries, historical support and multisensor EN.",Not inferred from file existence
+src/family_1/rainfall_audit.py,src,implementation,"Independent, read-only audit of canonical CHIRPS extraction.",Not inferred from file existence
+src/family_1/rainfall_features.py,src,implementation,Versioned rainfall-only parcel features; no target access or learned transforms.,Not inferred from file existence
+src/family_1/rainfall_modeling.py,src,implementation,"Nested, paired rainfall experiments integrated with frozen Family 1 CV.",Not inferred from file existence
+src/family_1/rainfall_pcr.py,src,implementation,"E8: seven-month PCA/PCR, strictly nested within immutable rainfall folds.",Not inferred from file existence
+src/family_1/rainfall_pcr_audit.py,src,implementation,"E8 predictor provenance and repeated-OOF diagnosis, before any PCA fit.",Not inferred from file existence
+src/family_1/rainfall_pcr_reporting.py,src,implementation,"E8 PCA structure, paired OOF comparisons and parcel-information limits.",Not inferred from file existence
+src/family_1/rainfall_reporting.py,src,implementation,Descriptive rainfall diagnostics and honest out-of-fold reporting.,Not inferred from file existence
+src/family_1/stage4_modeling.py,src,implementation,"Utilidades de Etapa 4: CV congelada, representaciones y transformadores.",Not inferred from file existence
+src/family_1/temporal_primitives.py,src,implementation,"Primitivas temporales para series irregulares, sin usar el target.",Not inferred from file existence
+src/family_1/terrain_features.py,src,implementation,"Features topográficas básicas y avanzadas, derivadas sin usar rendimiento.",Not inferred from file existence
+src/family_4/__init__.py,src,implementation,Exploratory conditional yield response models.,Not inferred from file existence
+src/family_4/conditional_response.py,src,implementation,Frozen retrospective candidates; nested evaluation using immutable climate contexts.,Not inferred from file existence
+src/family_4/stage_b_final_report.py,src,implementation,Technical derivation and decision report for the frozen Stage B experiment.,Not inferred from file existence
+src/family_4/stage_b_learning.py,src,implementation,Stage B only: frozen objective contrasts plus separate archived fixed ensemble.,Not inferred from file existence
+src/family_4/stage_b_objective.py,src,implementation,Convex group-centered objective via exact Elastic Net augmented least squares.,Not inferred from file existence
+src/family_4/stage_b_reporting.py,src,implementation,Separate complete-repeat and same-external-model evaluation of Stage B and fixed blend.,Not inferred from file existence
+src/family_4/stage_c_final_report.py,src,implementation,Stage C technical report: representation effects separated from statistical hierarchy.,Not inferred from file existence
+src/family_4/stage_c_hierarchy.py,src,implementation,Gaussian random-intercept GLS/Ridge with train-only BLUP and exact block whitening.,Not inferred from file existence
+src/family_4/stage_c_models.py,src,implementation,"Stage C only: frozen transfer contrasts first, then matched hierarchical controls.",Not inferred from file existence
+src/family_4/stage_c_reporting.py,src,implementation,"Separate transfer, profile-level, within-profile and conditional/marginal C diagnostics.",Not inferred from file existence
+src/family_4/stage_d_evidence.py,src,implementation,Read-only synthesis of archived OOF; no estimator construction or predictive fitting.,Not inferred from file existence
+src/family_4/stage_d_reporting.py,src,implementation,"Stage D tables, figures and five documentary deliverables, from archived evidence.",Not inferred from file existence
+src/family_4/territorial_stage_a.py,src,implementation,Stage A: source/geometry audit and descriptive contrasts; no predictive fitting.,Not inferred from file existence
+src/family_4/territorial_stage_a_reporting.py,src,implementation,Stage A descriptive report and explicit advancement decisions.,Not inferred from file existence
+src/family_4/within_profile_complementarity.py,src,implementation,F4-E: frozen additive contrasts after NDVI May; no residual stage or rescreening.,Not inferred from file existence
+src/family_4/within_profile_reporting.py,src,implementation,Post-fit figures and a self-contained exploratory F4-E report.,Not inferred from file existence
+src/family_5/gpr_design_reporting.py,src,implementation,Reviewable F5 documentation and descriptive figures; no model implementation.,Not inferred from file existence
+src/family_5/gpr_evidence_design.py,src,implementation,"F5 design only: existing evidence, feature provenance and target-free redundancy.",Not inferred from file existence
+src/family_5/gpr_initial/execution.py,src,implementation,Execute only approved F5-00-C/F5-01 and recover the exact archived C-T3.,Not inferred from file existence
+src/family_5/gpr_initial/interpretation.py,src,implementation,Scientific interpretation of the approved initial GPR contrast only.,Not inferred from file existence
+src/family_5/gpr_initial/kernel.py,src,implementation,Matérn 3/2 with exactly one free log length per declared dimension group.,Not inferred from file existence
+src/family_5/gpr_initial/model.py,src,implementation,Approved exact GPR only; training-only existing preprocessing and bounded LML.,Not inferred from file existence
+src/family_5/gpr_initial/reporting.py,src,implementation,"OOF complete-repeat comparisons, locality, influence and calibrated-coverage diagnostics.",Not inferred from file existence
+src/family_5/gpr_s1/decision.py,src,implementation,"Reviewed exploratory interpretation for S1 v1, not an outer-fold selector.",Not inferred from file existence
+src/family_5/gpr_s1/execution.py,src,implementation,"Frozen, bounded S1 sensitivities with full-pipeline inner Ridge selection.",Not inferred from file existence
+src/family_5/gpr_s1/interpretation.py,src,implementation,Shared-support diagnostics and exploratory interpretation of restricted S1.,Not inferred from file existence
+src/family_5/gpr_s1/models.py,src,implementation,Restricted RBF and deterministic Ridge-mean sensitivities; original F5 is read-only.,Not inferred from file existence
+src/family_5/gpr_s1/reporting.py,src,implementation,"OOF complete-repeat comparisons, locality, influence and calibrated-coverage diagnostics.",Not inferred from file existence
+src/family_6/audit.py,src,implementation,Read-only recovery of existing trees and variable semantics before F6 fits.,Not inferred from file existence
+src/family_6/diagnostics.py,src,implementation,"Descriptive fitted-tree diagnostics, training-supported effects and heldout permutations.",Not inferred from file existence
+src/family_6/execution.py,src,implementation,F6 stage-one gate and only the four predefined conditional ablations.,Not inferred from file existence
+src/family_6/expansion/audit.py,src,implementation,Block evidence and exact-field semantics; no new variable screening.,Not inferred from file existence
+src/family_6/expansion/diagnostics.py,src,implementation,Training-supported effects and conditional block permutations; no extra model fits.,Not inferred from file existence
+src/family_6/expansion/execution.py,src,implementation,"F6-E1–E3 only, using the immutable F6 search engine in isolated workers.",Not inferred from file existence
+src/family_6/expansion/interpretation.py,src,implementation,Incremental exploratory synthesis; E4/E5 recommendations only.,Not inferred from file existence
+src/family_6/expansion/reporting.py,src,implementation,"OOF complete-repeat comparisons, locality, influence and calibrated-coverage diagnostics.",Not inferred from file existence
+src/family_6/interpretation.py,src,implementation,Exploratory decisions and supported interpretation; no retrospective refitting.,Not inferred from file existence
+src/family_6/models.py,src,implementation,Conservative direct tree ensembles; existing training-only feature transforms.,Not inferred from file existence
+src/family_6/reporting.py,src,implementation,"OOF complete-repeat comparisons, locality, influence and calibrated-coverage diagnostics.",Not inferred from file existence
+src/family_7/__init__.py,src,implementation,"F7: bounded, nested direct gradient boosting experiments.",Not inferred from file existence
+src/family_7/audit.py,src,implementation,Read-only recovery of earlier boosting and prospective F7 definitions.,Not inferred from file existence
+src/family_7/diagnostics.py,src,implementation,"Data-supported effects, actual tree partitions and regional diagnostics.",Not inferred from file existence
+src/family_7/execution.py,src,implementation,F7-00/F7-01 only. Immutable F6 engine reused through a scoped adapter.,Not inferred from file existence
+src/family_7/expansion/__init__.py,src,implementation,Controlled CatBoost history/topography ablations; no combined estimators.,Not inferred from file existence
+src/family_7/expansion/diagnostics.py,src,implementation,Expanded data-supported diagnostics; no additional scientific fits.,Not inferred from file existence
+src/family_7/expansion/execution.py,src,implementation,,Not inferred from file existence
+src/family_7/expansion/interpretation.py,src,implementation,Explicit exploratory answers based on frozen OOF; no combination selection.,Not inferred from file existence
+src/family_7/expansion/reporting.py,src,implementation,Immutable reporting reuse plus expanded paired/error-complementarity diagnostics.,Not inferred from file existence
+src/family_7/interpretation.py,src,implementation,Exploratory architecture decision; no extension training or automatic promotion.,Not inferred from file existence
+src/family_7/models.py,src,implementation,Training-only transforms and conservative boosting; no external eval_set.,Not inferred from file existence
+src/family_7/reporting.py,src,implementation,Reuse verified complete-OOF reporting without changing earlier source or artifacts.,Not inferred from file existence
+src/family_8/__init__.py,src,implementation,"F8 research only: archived evidence, partition feasibility and proposed design.",Not inferred from file existence
+src/family_8/audit.py,src,implementation,Exact residual targets and provenance classes; recover archived specifications.,Not inferred from file existence
+src/family_8/reporting.py,src,implementation,"Versioned F8 research documents, no predictive execution.",Not inferred from file existence
+src/family_8/research.py,src,implementation,"Read-only F8 audit. No estimator construction, training or prediction calls.",Not inferred from file existence
+src/four_expert_combinations.py,src,implementation,"Nested, bounded mixtures of four frozen expert recipes; no regional rules.",Not inferred from file existence
+src/four_expert_fast_execution.py,src,implementation,Performance-only execution amendment: equivalent weighted dense Ridge.,Not inferred from file existence
+src/four_expert_fast_tuner.py,src,implementation,"Same C-T3 grid and folds, reusing parameter-independent preprocessing.",Not inferred from file existence
+src/geoc_bridge.py,src,implementation,Controlled CT3/Local04D comparison on frozen splits and honest residuals.,Not inferred from file existence
+src/geoc_local04d_snapshot.py,src,implementation,Frozen exact Local04D functions from GeoC fe056a759790e5e4cf5d1d62dec323851625b121.,Not inferred from file existence
+src/geoc_reverse.py,src,implementation,Reverse residual formulation: fixed Local04D plus compact4 Elastic Net.,Not inferred from file existence
+src/geoc_signal_research.py,src,implementation,Frozen-family ablations and inductive small representations over GeoC signals.,Not inferred from file existence
+src/geoc_support_blend.py,src,implementation,Convex blend of frozen CT3 and original Local04D with X-only support.,Not inferred from file existence
+src/indicator_neighborhoods.py,src,implementation,Train-only reductions and geographic/physical/satellite correction neighborhoods.,Not inferred from file existence
+src/learned_r3_protocol.py,src,implementation,,Not inferred from file existence
+src/learned_r3_weight.py,src,implementation,Strongly regularized correction weights trained on nested OOF proposals.,Not inferred from file existence
+src/local_ridge_sufficient_statistics.py,src,implementation,Equivalent small dense weighted Ridge solve without per-query estimator setup.,Not inferred from file existence
+src/neighbor_signal_contrasts.py,src,implementation,"Train-only neighbor contrasts and small, shrunk conditional adjustments.",Not inferred from file existence
+src/neighbor_signal_linear.py,src,implementation,"Continuous zero-anchored signal contrasts, with read-only warm base caches.",Not inferred from file existence
+src/nonclimatic_local.py,src,implementation,Target-free provenance filtering and local complementary representation.,Not inferred from file existence
+src/physical_representation.py,src,implementation,Training-only alternatives to fixed PCA5 for physical residual correction.,Not inferred from file existence
+src/physical_similarity.py,src,implementation,"Inductive, block-balanced representations and centered residual correctors.",Not inferred from file existence
+src/pruned_global_architecture.py,src,implementation,Standalone OFF/GLOBAL fit: no geological gate or FULL7 hyperparameter calibration.,Not inferred from file existence
+src/r2_residual_diagnosis.py,src,implementation,Read-only municipal residual support audit; no external OOF used for fitting.,Not inferred from file existence
+src/signal_feature_engineering.py,src,implementation,"Frozen, target-free temporal representations and nested residual adjustments.",Not inferred from file existence
+src/signal_role_allocation.py,src,implementation,Nested role allocation with train-only representations and frozen local recipe.,Not inferred from file existence
+src/temporal_indicator_weights.py,src,implementation,"Temporal X-only indicators and bounded, cross-fitted correction weights.",Not inferred from file existence
+src/territorial_mixtures.py,src,implementation,"Nested regularized global, municipality and feature-gated compact mixtures.",Not inferred from file existence
+src/winner_delivery.py,src,implementation,Persistable final stages and paired fixed-OOF cluster diagnostics.,Not inferred from file existence
+tests/test_agronomic_calendar_features.py,tests,test,,Not inferred from file existence
+tests/test_architecture_decomposition.py,tests,test,,Not inferred from file existence
+tests/test_base_distribution_correction.py,tests,test,,Not inferred from file existence
+tests/test_base_distribution_original_cv.py,tests,test,,Not inferred from file existence
+tests/test_calendar_complements.py,tests,test,,Not inferred from file existence
+tests/test_calendar_expansion.py,tests,test,,Not inferred from file existence
+tests/test_calendar_modeling.py,tests,test,,Not inferred from file existence
+tests/test_climate_signal.py,tests,test,"Scientific guards for G/H feature alignment, allowed inputs and nested fitting.",Not inferred from file existence
+tests/test_climate_signal_artifacts.py,tests,test,Integration checks against actual frozen G/H predictions and fitted pipelines.,Not inferred from file existence
+tests/test_compact_ensemble.py,tests,test,,Not inferred from file existence
+tests/test_compact_geographic.py,tests,test,,Not inferred from file existence
+tests/test_conditional_local_phases.py,tests,test,,Not inferred from file existence
+tests/test_ct3_information.py,tests,test,,Not inferred from file existence
+tests/test_ct3_information_integration.py,tests,test,"Validate the completed diagnostics and preserved inputs, without fitting.",Not inferred from file existence
+tests/test_ct3_phase_iii.py,tests,test,,Not inferred from file existence
+tests/test_ct3_phase_iii_integration.py,tests,test,,Not inferred from file existence
+tests/test_ct3_phase_iii_review.py,tests,test,,Not inferred from file existence
+tests/test_ct3_residual_coherence.py,tests,test,,Not inferred from file existence
+tests/test_ct3_residual_conditional.py,tests,test,,Not inferred from file existence
+tests/test_ct3_residual_conditional_integration.py,tests,test,,Not inferred from file existence
+tests/test_difficult_quartile.py,tests,test,,Not inferred from file existence
+tests/test_experimental_pls.py,tests,test,,Not inferred from file existence
+tests/test_family4_conditional_response.py,tests,test,,Not inferred from file existence
+tests/test_family4_within_profile_complementarity.py,tests,test,,Not inferred from file existence
+tests/test_family5_gpr_design.py,tests,test,,Not inferred from file existence
+tests/test_family5_gpr_initial_integration.py,tests,test,,Not inferred from file existence
+tests/test_family5_gpr_initial_math.py,tests,test,,Not inferred from file existence
+tests/test_family5_gpr_s1_integration.py,tests,test,,Not inferred from file existence
+tests/test_family5_gpr_s1_math.py,tests,test,,Not inferred from file existence
+tests/test_family6_diagnostics.py,tests,test,,Not inferred from file existence
+tests/test_family6_e_integration.py,tests,test,,Not inferred from file existence
+tests/test_family6_e_unit.py,tests,test,,Not inferred from file existence
+tests/test_family6_integration.py,tests,test,,Not inferred from file existence
+tests/test_family6_models.py,tests,test,,Not inferred from file existence
+tests/test_family7_expansion_integration.py,tests,test,,Not inferred from file existence
+tests/test_family7_expansion_unit.py,tests,test,,Not inferred from file existence
+tests/test_family7_integration.py,tests,test,,Not inferred from file existence
+tests/test_family7_unit.py,tests,test,,Not inferred from file existence
+tests/test_family8_research.py,tests,test,,Not inferred from file existence
+tests/test_four_expert_combinations.py,tests,test,,Not inferred from file existence
+tests/test_four_expert_fast_tuner.py,tests,test,,Not inferred from file existence
+tests/test_four_expert_support.py,tests,test,,Not inferred from file existence
+tests/test_geoc_bridge.py,tests,test,,Not inferred from file existence
+tests/test_geoc_reverse.py,tests,test,,Not inferred from file existence
+tests/test_geoc_signal_research.py,tests,test,,Not inferred from file existence
+tests/test_geoc_support_blend.py,tests,test,,Not inferred from file existence
+tests/test_h_rain_tmax_extension.py,tests,test,Scientific controls for the bounded rain/Tmax extension of H.,Not inferred from file existence
+tests/test_i_geographic_edaphological.py,tests,test,Scientific invariants for Section I; synthetic and generated-artifact audits.,Not inferred from file existence
+tests/test_indicator_neighborhoods.py,tests,test,,Not inferred from file existence
+tests/test_j_incremental_yield.py,tests,test,"Section J leakage, encoding, model-origin and reproducibility checks.",Not inferred from file existence
+tests/test_joint_simplification.py,tests,test,,Not inferred from file existence
+tests/test_k_geographic_edaphological.py,tests,test,"Stability, unknown mass, nested label exclusion and actual frozen outputs.",Not inferred from file existence
+tests/test_learned_r3_oof_features.py,tests,test,,Not inferred from file existence
+tests/test_learned_r3_weight.py,tests,test,,Not inferred from file existence
+tests/test_lm_multiblock.py,tests,test,"L/M numerical stability, representation isolation and historical label exclusion.",Not inferred from file existence
+tests/test_local_ridge_sufficient_statistics.py,tests,test,,Not inferred from file existence
+tests/test_neighbor_signal_contrasts.py,tests,test,,Not inferred from file existence
+tests/test_neighbor_signal_linear.py,tests,test,,Not inferred from file existence
+tests/test_nonclimatic_local.py,tests,test,,Not inferred from file existence
+tests/test_physical_representation.py,tests,test,,Not inferred from file existence
+tests/test_physical_similarity.py,tests,test,,Not inferred from file existence
+tests/test_r2_residual_diagnosis.py,tests,test,,Not inferred from file existence
+tests/test_rainfall_artifacts.py,tests,test,Integration contracts for a completed v1 run (skipped when artifacts absent).,Not inferred from file existence
+tests/test_rainfall_extraction.py,tests,test,"Synthetic exactextract contracts: fractions, touched cells, NoData, no coverage.",Not inferred from file existence
+tests/test_rainfall_pcr.py,tests,test,"E8 numerical, leakage, compositional and reproducibility contracts.",Not inferred from file existence
+tests/test_rainfall_pcr_artifacts.py,tests,test,"Integration checks for completed E8, without refitting prior experiments.",Not inferred from file existence
+tests/test_rainfall_yield.py,tests,test,Mathematical and leakage contracts for rainfall-only modeling.,Not inferred from file existence
+tests/test_signal_feature_engineering.py,tests,test,,Not inferred from file existence
+tests/test_signal_role_allocation.py,tests,test,,Not inferred from file existence
+tests/test_stage_b_integration.py,tests,test,,Not inferred from file existence
+tests/test_stage_b_objective.py,tests,test,,Not inferred from file existence
+tests/test_stage_c_integration.py,tests,test,,Not inferred from file existence
+tests/test_stage_c_mathematics.py,tests,test,,Not inferred from file existence
+tests/test_stage_d_evidence.py,tests,test,,Not inferred from file existence
+tests/test_temporal_indicator_weights.py,tests,test,,Not inferred from file existence
+tests/test_territorial_mixtures.py,tests,test,,Not inferred from file existence
+tests/test_territorial_stage_a.py,tests,test,,Not inferred from file existence
+tests/test_winner_delivery.py,tests,test,,Not inferred from file existence
+documentation/agronomic_calendar_expansion_design.md,documentation,frozen design / proposal,Calendarios agroclimáticos: expansión congelada de modelado,Not inferred from file existence
+documentation/agronomic_calendar_expansion_results.md,documentation,results / interpretation,"Calendarios, Sentinel e historia: resultados del modelado pendiente",Not inferred from file existence
+documentation/agronomic_calendar_modeling_results.md,documentation,results / interpretation,Modelado por calendario: primera batería lineal regularizada,Not inferred from file existence
+documentation/agronomic_calendar_set.md,documentation,documentation,Set histórico y actual guiado por calendarios FIRA,Not inferred from file existence
+documentation/agronomic_calendar_validation_modeling_plan.md,documentation,documentation,Validación del set y planteamiento de modelos: 2025 como núcleo,Not inferred from file existence
+documentation/ai/README.md,documentation,documentation,Prompts recuperados: índice de originales,Not inferred from file existence
+documentation/ai_usage.md,documentation,documentation,Inventario de uso de inteligencia artificial generativa,Not inferred from file existence
+documentation/architecture_decomposition_conclusions.md,documentation,results / interpretation,Descomposición y combinaciones: resultados e interpretación,Not inferred from file existence
+documentation/architecture_decomposition_design.md,documentation,frozen design / proposal,Descomposición y combinaciones de la base: diseño congelado,Not inferred from file existence
+documentation/architecture_decomposition_results.md,documentation,results / interpretation,Descomposición de bases: resultados exploratorios,Not inferred from file existence
+documentation/base_distribution_correction_conclusions.md,documentation,results / interpretation,Bases simplificadas y corrección condicionada a vecinos,Not inferred from file existence
+documentation/base_distribution_correction_design.md,documentation,frozen design / proposal,Simplificación de bases y R3 condicionado a distribución local,Not inferred from file existence
+documentation/base_distribution_correction_results.md,documentation,results / interpretation,Simplificación de bases y corrección por distribución de vecinos: resultados,Not inferred from file existence
+documentation/calendar_base_complementarity.md,documentation,documentation,Complementariedad exploratoria: C-T3 y EN_CAL02,Not inferred from file existence
+documentation/calendar_complements_design.md,documentation,frozen design / proposal,Complementos de C-T3 y EN_CAL02: diseno congelado,Not inferred from file existence
+documentation/calendar_complements_results.md,documentation,results / interpretation,Complementos de modelado: unión climática y correcciones residuales,Not inferred from file existence
+documentation/calendar_core_variable_overlap.md,documentation,documentation,Exploracion de predictores: C-T3 y EN_CAL02,Not inferred from file existence
+documentation/chignahuapan_error_concentration.md,documentation,documentation,Concentración del error en Chignahuapan,Not inferred from file existence
+documentation/compact_ensemble.md,documentation,documentation,"Complementariedad de C-T3, GPR y CatBoost compacto",Not inferred from file existence
+documentation/compact_geography_results.md,documentation,results / interpretation,Geografía con el núcleo compacto: prueba acotada terminada,Not inferred from file existence
+documentation/comparative_residuals_and_case_outliers.md,documentation,documentation,"Comparación completa de residuos: L40, C-T3, J7 y expertos 9/10",Not inferred from file existence
+documentation/conditional_local_phases_design.md,documentation,frozen design / proposal,"Tres fases: expertos condicionales, vecinos físicos y segunda corrección",Not inferred from file existence
+documentation/conditional_local_phases_results.md,documentation,results / interpretation,Tres líneas sobre el local sin clima + corrector compacto,Not inferred from file existence
+documentation/ct3_incremental_information.md,documentation,documentation,Información incremental condicionada a C-T3,Not inferred from file existence
+documentation/ct3_incremental_information_findings.md,documentation,documentation,Informaci?n incremental condicionada a C-T3: hallazgos,Not inferred from file existence
+documentation/ct3_information_phase_iii.md,documentation,documentation,Fase III: representaciones condicionadas a C-T3,Not inferred from file existence
+documentation/ct3_residual_coherence.md,documentation,documentation,Coherencia residual sobre C-T3: ejecución controlada,Not inferred from file existence
+documentation/ct3_residual_conditional.md,documentation,documentation,Corrección residual condicional sobre C-T3,Not inferred from file existence
+documentation/ct3_residual_conditional_design.md,documentation,frozen design / proposal,Correcci?n residual condicional sobre C-T3: dise?o aplicado,Not inferred from file existence
+documentation/difficult_case_signals_conclusions.md,documentation,results / interpretation,Conclusiones: nuevas señales y ubicación arquitectónica,Not inferred from file existence
+documentation/difficult_case_signals_design.md,documentation,frozen design / proposal,Señales de parcelas difíciles: diseño congelado,Not inferred from file existence
+documentation/difficult_case_signals_results.md,documentation,results / interpretation,Señales adicionales: comparación de ubicación arquitectónica,Not inferred from file existence
+documentation/difficult_quartile_conclusions.md,documentation,results / interpretation,Cuartil difícil: qué diferencia las parcelas y el signo del error,Not inferred from file existence
+documentation/difficult_quartile_design.md,documentation,frozen design / proposal,Cuartil difícil: diseño previo del inventario y clasificación diagnóstica,Not inferred from file existence
+documentation/difficult_quartile_results.md,documentation,results / interpretation,Cuartil difícil y signo del error: resultados exploratorios,Not inferred from file existence
+documentation/erosion_spatial_audit.md,documentation,documentation,Auditoría espacial de la nueva capa de erosión,Not inferred from file existence
+documentation/experiment_index.md,documentation,documentation,Índice de investigación y experimentos,Not inferred from file existence
+documentation/experimental_pls1867.md,documentation,documentation,"Experimento PLS con 1,867 descriptores",Not inferred from file existence
+documentation/experimental_tree1867.md,documentation,documentation,TREE1867: exploracion CART,Not inferred from file existence
+documentation/family4_conditional_yield_response.md,documentation,documentation,Familia 4 — Sensibilidades condicionales y señales complementarias,Not inferred from file existence
+documentation/family4_e_decision_summary.md,documentation,results / interpretation,F4-E — Síntesis para decisiones,Not inferred from file existence
+documentation/family4_e_within_profile_complementarity.md,documentation,documentation,"F4-E — Complementariedad intraperfil de vegetación, dinámica temporal y relieve",Not inferred from file existence
+documentation/family5_gpr_candidate_inventory.md,documentation,documentation,F5 — Inventario de variables candidatas,Not inferred from file existence
+documentation/family5_gpr_evidence_audit.md,documentation,documentation,F5 — Auditoría transversal de evidencia para diseñar GPR,Not inferred from file existence
+documentation/family5_gpr_experimental_matrix.md,documentation,documentation,"F5 — Matriz experimental propuesta, sin ejecutar",Not inferred from file existence
+documentation/family5_gpr_initial.md,documentation,documentation,F5-00-C / F5-01 — Ejecución inicial controlada de GPR,Not inferred from file existence
+documentation/family5_gpr_initial_decision.md,documentation,results / interpretation,F5 inicial — Síntesis para decisiones,Not inferred from file existence
+documentation/family5_gpr_recommendation.md,documentation,documentation,F5 — Recomendación para la primera ejecución futura,Not inferred from file existence
+documentation/family5_gpr_redundancy.md,documentation,documentation,"F5 — Redundancia, soporte e identificabilidad",Not inferred from file existence
+documentation/family5_gpr_s1.md,documentation,documentation,"F5-S1 — Representación, suavidad y extrapolación",Not inferred from file existence
+documentation/family5_gpr_technical_proposal.md,documentation,frozen design / proposal,F5 — Propuesta técnica para revisión,Not inferred from file existence
+documentation/family6_bagging.md,documentation,documentation,F6 — Bagging y árboles aleatorizados,Not inferred from file existence
+documentation/family6_bagging_audit_design.md,documentation,frozen design / proposal,F6 — Auditoría previa y diseño congelado,Not inferred from file existence
+documentation/family6_expansion.md,documentation,documentation,F6-E — Expansión informada de variables,Not inferred from file existence
+documentation/family6_expansion_frozen_design.md,documentation,frozen design / proposal,F6-E — Evidencia y diseño congelado,Not inferred from file existence
+documentation/family7_boosting.md,documentation,documentation,F7 — Primera ejecución: CatBoost y XGBoost directos,Not inferred from file existence
+documentation/family7_boosting_frozen_design.md,documentation,frozen design / proposal,F7 — Auditoría y diseño congelado,Not inferred from file existence
+documentation/family7_expansion.md,documentation,documentation,F7 — Expansión controlada de CatBoost,Not inferred from file existence
+documentation/family7_expansion_frozen_design.md,documentation,frozen design / proposal,F7 — Expansión controlada: diseño congelado,Not inferred from file existence
+documentation/family8_architecture_audit.md,documentation,documentation,F8 — Auditoría de arquitecturas y targets,Not inferred from file existence
+documentation/family8_experimental_design.md,documentation,frozen design / proposal,F8 — Matriz acotada y criterios propuestos,Not inferred from file existence
+documentation/family8_identifiability_extrapolation.md,documentation,documentation,"F8 — Identificabilidad, soporte y extrapolación",Not inferred from file existence
+documentation/family8_nested_crossfitting.md,documentation,documentation,F8 — Cross-fitting anidado de todas las etapas,Not inferred from file existence
+documentation/family8_recommendation.md,documentation,documentation,F8 — Recomendación y ocho respuestas,Not inferred from file existence
+documentation/fira_ena_yield_context.md,documentation,documentation,Contexto externo del rendimiento: FIRA y ENA,Not inferred from file existence
+documentation/firadocs_erosion_usability_leakage.md,documentation,documentation,Usabilidad y fuga de información: FIRA y erosión,Not inferred from file existence
+documentation/four_architecture_explanation.md,documentation,documentation,"Comparación explicada: Reference26, Compact14, B1 y Local04D",Not inferred from file existence
+documentation/four_expert_combinations_conclusions.md,documentation,results / interpretation,Seis combinaciones: síntesis de evidencia,Not inferred from file existence
+documentation/four_expert_combinations_design.md,documentation,frozen design / proposal,Seis combinaciones de cuatro expertos: diseño congelado,Not inferred from file existence
+documentation/four_expert_combinations_reproduction.md,documentation,documentation,Reproducción de las seis combinaciones,Not inferred from file existence
+documentation/four_expert_combinations_results.md,documentation,results / interpretation,Combinaciones de cuatro expertos: resultados,Not inferred from file existence
+documentation/four_leaders_comparison.md,documentation,documentation,"Comparación de C-T3, Local04D, Compact14 y Reference26",Not inferred from file existence
+documentation/g_h_climate_signal_exploration.md,documentation,documentation,G y H — Señales climáticas y complementariedad,Not inferred from file existence
+documentation/geoc_bridge_results.md,documentation,results / interpretation,"Comparación y combinaciones de C-T3 y Local04D, ejecutadas en fira_nuria",Not inferred from file existence
+documentation/geoc_cross_repository_comparison_plan.md,documentation,documentation,GeoC y fira_nuria: comparación e integración propuesta,Not inferred from file existence
+documentation/geoc_original_support_results.md,documentation,results / interpretation,C-T3 + Local04D original con soporte geográfico,Not inferred from file existence
+documentation/geoc_reverse_and_complexity.md,documentation,documentation,Local04D como base y C-T3 como corrección: resultado y complejidad,Not inferred from file existence
+documentation/geoc_signal_research_design.md,documentation,frozen design / proposal,Señales que sostienen al experto GeoC y sustitución por representaciones pequeñas,Not inferred from file existence
+documentation/geoc_signal_research_results.md,documentation,results / interpretation,Investigación de señales GeoC y reducción del experto local,Not inferred from file existence
+documentation/geoc_variable_signal_audit.md,documentation,documentation,Acceso e inventario de señales puntuales de GeoC,Not inferred from file existence
+documentation/git_data_policy.md,documentation,documentation,Archivos que se publican en Git,Not inferred from file existence
+documentation/h_rain_tmax_extension.md,documentation,documentation,H — Extensión de estructura climática: precipitación + Tmax,Not inferred from file existence
+documentation/i_geographic_edaphological_exploration.md,documentation,documentation,"Sección I — Exploración geográfica, topográfica y edafológica condicionada al clima",Not inferred from file existence
+documentation/i_inputs_audit.md,documentation,documentation,Sección I — Auditoría inicial de insumos,Not inferred from file existence
+documentation/indicator_neighborhoods_conclusions.md,documentation,results / interpretation,Reducción de indicadores y correcciones por vecindario,Not inferred from file existence
+documentation/indicator_neighborhoods_design.md,documentation,frozen design / proposal,Reducción y vecindarios para corrección: diseño congelado,Not inferred from file existence
+documentation/indicator_neighborhoods_results.md,documentation,results / interpretation,Reducciones y vecindarios: resultados exploratorios,Not inferred from file existence
+documentation/j7_both_residual_audit.md,documentation,documentation,Evaluación completa de residuos OOF de J7_BOTH,Not inferred from file existence
+documentation/j7_r3_residual_research.md,documentation,documentation,Investigación de residuos: J7 y J7 + corrector global R3,Not inferred from file existence
+documentation/j7_r3_simplification_research.md,documentation,documentation,Investigación de simplificación de J7 + R3,Not inferred from file existence
+documentation/j_incremental_yield_modeling.md,documentation,documentation,Sección J — Modelado incremental con topografía y edafología,Not inferred from file existence
+documentation/j_pretraining_audit.md,documentation,documentation,Sección J — Auditoría previa y diseño congelado,Not inferred from file existence
+documentation/joint_simplification_design.md,documentation,frozen design / proposal,Simplificaciones conjuntas: diseño previo,Not inferred from file existence
+documentation/joint_simplification_results.md,documentation,results / interpretation,Simplificación conjunta: experto7 y gate geológico reducido,Not inferred from file existence
+documentation/k1_edaphological_redesign.md,documentation,frozen design / proposal,K.1 — Auditoría y rediseño edafológico,Not inferred from file existence
+documentation/k_decision_summary.md,documentation,results / interpretation,K — Resumen para decisiones,Not inferred from file existence
+documentation/k_standalone_residual_modeling.md,documentation,documentation,K — Standalone and Residual Geographic–Edaphological Modeling,Not inferred from file existence
+documentation/l_m_initial_audit.md,documentation,documentation,L/M — Auditoría inicial y diseño congelado,Not inferred from file existence
+documentation/l_m_synthesis.md,documentation,documentation,L/M — Síntesis transversal,Not inferred from file existence
+documentation/l_multiblock_representation.md,documentation,documentation,L — Multiblock Representation and Residual Complementarity,Not inferred from file existence
+documentation/learned_r3_weight_amendment.md,documentation,documentation,Enmienda previa a resultados: penalizaciones fijas del peso,Not inferred from file existence
+documentation/learned_r3_weight_conclusions.md,documentation,results / interpretation,"Peso aprendido, asimetría y disponibilidad de R3: conclusiones",Not inferred from file existence
+documentation/learned_r3_weight_design.md,documentation,frozen design / proposal,R3: peso aprendido y asimetría de correcciones,Not inferred from file existence
+documentation/learned_r3_weight_results.md,documentation,results / interpretation,Pesos aprendidos y asimetría R3: resultados exploratorios,Not inferred from file existence
+documentation/m_historical_multisensor.md,documentation,documentation,M — Historical and Multisensor Satellite Signal Exploration,Not inferred from file existence
+documentation/model_comparison_convention.md,documentation,documentation,Convención de presentación de modelos,Not inferred from file existence
+documentation/model_registry.md,documentation,documentation,Registro de modelos y estados,Not inferred from file existence
+documentation/neighbor_signal_contrasts_conclusions.md,documentation,results / interpretation,Contrastes vecinales: conclusiones de la batería de árboles,Not inferred from file existence
+documentation/neighbor_signal_contrasts_design.md,documentation,frozen design / proposal,Contrastes de señales respecto a vecinos: diseño congelado,Not inferred from file existence
+documentation/neighbor_signal_contrasts_results.md,documentation,results / interpretation,Contrastes de señales respecto a vecinos: resultados,Not inferred from file existence
+documentation/neighbor_signal_linear_conclusions.md,documentation,results / interpretation,"Síntesis conjunta: señal continua, reglas de corrección y peso del experto",Not inferred from file existence
+documentation/neighbor_signal_linear_design.md,documentation,frozen design / proposal,Contrastes como variables continuas de corrección,Not inferred from file existence
+documentation/neighbor_signal_linear_results.md,documentation,results / interpretation,Contrastes continuos: resultados y comparación conjunta,Not inferred from file existence
+documentation/nonclimatic_local_results.md,documentation,results / interpretation,Local04D sin clima explícito y complementariedad con C-T3,Not inferred from file existence
+documentation/physical_representation_design.md,documentation,frozen design / proposal,Selección acotada de representaciones físicas: diseño previo,Not inferred from file existence
+documentation/physical_representation_results.md,documentation,results / interpretation,Representaciones físicas y dimensión seleccionada internamente,Not inferred from file existence
+documentation/physical_similarity_design.md,documentation,frozen design / proposal,Correcciones de C-T3 por semejanza física: diseño antes del entrenamiento,Not inferred from file existence
+documentation/physical_similarity_results.md,documentation,results / interpretation,Exploración de fuentes y correcciones por semejanza física sobre C-T3,Not inferred from file existence
+documentation/project_scope_and_guidelines.md,documentation,documentation,Propósito del proyecto y correspondencia con los lineamientos,Not inferred from file existence
+documentation/r2_residual_diagnosis.md,documentation,documentation,R2: investigación de sesgo residual municipal,Not inferred from file existence
+documentation/rainfall_yield_modeling.md,documentation,documentation,Rainfall Yield Modeling — versión 1,Not inferred from file existence
+documentation/README.md,documentation,documentation,Mapa de documentación,Not inferred from file existence
+documentation/repository_organization.md,documentation,documentation,Organización documental y de versionado,Not inferred from file existence
+documentation/reproducibility.md,documentation,documentation,"Reproducibilidad, metadatos y límites",Not inferred from file existence
+documentation/research_agenda_after_f4_e.md,documentation,documentation,Líneas de investigación después de F4-E,Not inferred from file existence
+documentation/signal_feature_engineering_conclusions.md,documentation,results / interpretation,Ingeniería de señales: interpretación y decisión,Not inferred from file existence
+documentation/signal_feature_engineering_design.md,documentation,frozen design / proposal,Ingeniería de señales: diseño congelado,Not inferred from file existence
+documentation/signal_feature_engineering_results.md,documentation,results / interpretation,Ingeniería de señales: resultados exploratorios,Not inferred from file existence
+documentation/signal_role_allocation_design.md,documentation,frozen design / proposal,Composición SMALL12 y asignación de funciones: diseño previo,Not inferred from file existence
+documentation/signal_role_allocation_results.md,documentation,results / interpretation,Composición y reasignación de funciones en SMALL12,Not inferred from file existence
+documentation/soil_yield_quartile_analysis.md,documentation,documentation,Suelo y cuartiles de rendimiento,Not inferred from file existence
+documentation/target_analysis.md,documentation,documentation,Análisis de la variable objetivo — Rendimiento,Not inferred from file existence
+documentation/temporal_indicator_weights_conclusions.md,documentation,results / interpretation,Indicadores temporales y pesos continuos: interpretación,Not inferred from file existence
+documentation/temporal_indicator_weights_design.md,documentation,frozen design / proposal,Indicadores temporales para pesos continuos de corrección: diseño congelado,Not inferred from file existence
+documentation/temporal_indicator_weights_results.md,documentation,results / interpretation,Indicadores y pesos continuos: resultados exploratorios,Not inferred from file existence
+documentation/territorial_mixtures.md,documentation,documentation,"R1–R3: resultados de mezclas globales, municipales y por características",Not inferred from file existence
+documentation/territorial_mixtures_design.md,documentation,frozen design / proposal,R1–R3: diseño congelado,Not inferred from file existence
+documentation/territorial_program_stage_a.md,documentation,documentation,Programa territorial intraperfil — Primera entrega: Etapa A,Not inferred from file existence
+documentation/territorial_program_stage_a_decision.md,documentation,results / interpretation,Etapa A — Decisión territorial,Not inferred from file existence
+documentation/territorial_program_stage_b.md,documentation,documentation,Etapa B — Aprendizaje de diferencias intraperfil y mezcla fija,Not inferred from file existence
+documentation/territorial_program_stage_b_decision.md,documentation,results / interpretation,Etapa B — Resumen de decisiones,Not inferred from file existence
+documentation/territorial_program_stage_c.md,documentation,documentation,Etapa C — Agrupación parcial y representación climática para transferencia,Not inferred from file existence
+documentation/territorial_program_stage_c_decision.md,documentation,results / interpretation,Etapa C — Síntesis de decisiones,Not inferred from file existence
+documentation/territorial_program_stage_d.md,documentation,documentation,Etapa D — Síntesis de evidencia y diagnóstico de generalización,Not inferred from file existence
+documentation/territorial_program_stage_d_evidence.md,documentation,documentation,Etapa D — Matriz final de evidencia,Not inferred from file existence
+documentation/territorial_program_stage_d_executive.md,documentation,documentation,Etapa D — Síntesis ejecutiva para FIRA,Not inferred from file existence
+documentation/territorial_program_stage_d_integrity.md,documentation,documentation,Etapa D — Auditoría de integridad,Not inferred from file existence
+documentation/territorial_program_stage_d_validation.md,documentation,documentation,Etapa D — Protocolo prospectivo de validación independiente,Not inferred from file existence
+documentation/top10_difficult_parcels_inventory.md,documentation,documentation,Diez parcelas difíciles: entradas de los modelos y diferencias descriptivas,Not inferred from file existence
+documentation/variable_strength_screening.md,documentation,documentation,Screening exploratorio de fortalezas individuales,Not inferred from file existence
+documentation/winner_predictions_statistical_validation.md,documentation,documentation,Predicciones de los tres ganadores y validación estadística,Not inferred from file existence

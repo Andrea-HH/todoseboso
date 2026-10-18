@@ -1,0 +1,300 @@
+# FIRA AgroCebada 2026 — Experimento E8: Rainfall PCA & Principal Component Regression
+
+Quiero desarrollar un nuevo experimento denominado **E8_RAINFALL_PCA_PCR**, integrado en el módulo existente `Rainfall Yield Modeling`.
+
+El objetivo es investigar si una representación mediante componentes principales de las siete precipitaciones mensuales de abril–octubre de 2025 permite mejorar la estabilidad, parsimonia y generalización del modelo de regresión de rendimiento agrícola.
+
+Este experimento debe funcionar de manera independiente, conservar los resultados anteriores y utilizar exclusivamente información de precipitación.
+
+**Antes de implementar, inspecciona los pipelines, configuraciones, resultados, particiones de validación y funciones existentes. No construyas una arquitectura paralela.**
+
+## 1. Auditoría previa: verificar qué modelos estamos comparando
+
+Confirma exactamente qué predictores utilizan:
+
+- E0_MEAN
+- E1_TOTAL_LINEAR
+- E3_MONTHLY_LINEAR
+- E3_MONTHLY_RIDGE
+- E4_SUMMARY_RIDGE
+- E5_DYNAMICS_RIDGE
+- E6_ANOMALIES_RIDGE
+- E7_NESTED_COMBINED
+- F_PRE_CYCLE_RIDGE
+
+También identifica por separado los modelos integrales existentes en el repositorio.
+
+Genera una tabla con el nombre de cada experimento, las columnas utilizadas, la fuente de cada columna, el algoritmo y si contiene exclusivamente precipitación.
+
+No asumir que una variable es climática únicamente por su nombre: verifica su procedencia en el código.
+
+El experimento E8 debe utilizar solamente las siete variables:
+
+`rain_apr_2025`, `rain_may_2025`, `rain_jun_2025`, `rain_jul_2025`, `rain_aug_2025`, `rain_sep_2025`, `rain_oct_2025`.
+
+No incorporar temperatura, elevación, pendiente, nubosidad, índices satelitales, características municipales, datos de sequía externa ni características de rendimiento.
+
+## 2. Diagnóstico de predicciones repetidas
+
+Antes de implementar PCA, investigar por qué aparecen bandas verticales en las gráficas de predicciones OOF.
+
+Quiero distinguir entre:
+
+1. Parcelas con vectores de precipitación exactamente iguales.
+2. Parcelas con vectores prácticamente equivalentes.
+3. Parcelas diferentes que reciben predicciones similares a pesar de tener vectores climáticos distintos.
+4. Posibles artefactos de agregar o promediar predicciones OOF de distintas repeticiones de validación.
+
+Para cada grupo de perfiles climáticos, calcular:
+
+- Número de parcelas.
+- Número de parcelas etiquetadas.
+- Número de municipios y estados representados.
+- Dispersión del rendimiento observado.
+- Rango del rendimiento observado.
+- Dispersión de las predicciones OOF.
+- Error absoluto promedio.
+
+Crear un gráfico de predicciones observadas y estimadas coloreado por grupo climático, y un gráfico de dispersión del rendimiento real dentro de cada grupo.
+
+Distinguir visual y numéricamente las predicciones OOF individuales por fold de las predicciones promediadas entre repeticiones.
+
+No interpretar las bandas visuales como sobreajuste sin comprobar su origen.
+
+Explicar qué parte de la variabilidad de rendimiento no puede distinguir una función determinista que recibe exclusivamente estos siete valores de precipitación.
+
+## 3. PCA exploratorio
+
+Construir una matriz de 197 filas por siete columnas, con los acumulados mensuales de abril–octubre de 2025.
+
+La matriz debe contener una observación por parcela.
+
+Realizar un PCA exploratorio para investigar la estructura de la precipitación.
+
+### Estandarización
+
+Estandarizar las siete variables mensuales:
+
+\[
+Z_{i,m}=\frac{P_{i,m}-\mu_m}{\sigma_m}
+\]
+
+Justificar el uso de escalamiento y documentar cualquier variable con varianza cero.
+
+El PCA exploratorio puede utilizar las 197 parcelas exclusivamente para describir la estructura climática, siempre que quede claramente separado del PCA empleado para evaluación predictiva.
+
+No utilizar el PCA exploratorio ajustado con las 197 parcelas como entrada ya transformada de la validación supervisada.
+
+### Productos del PCA
+
+Calcular y guardar:
+
+- Varianza explicada por componente.
+- Varianza explicada acumulada.
+- Autovalores.
+- Cargas de cada componente.
+- Contribución de cada mes a los componentes.
+- Scores de las parcelas.
+- Matriz de correlación de los meses originales.
+- Correlación entre componentes y variables originales.
+
+Crear:
+
+- Scree plot.
+- Curva de varianza explicada acumulada.
+- Heatmap de cargas.
+- Biplot PC1–PC2.
+- Dispersión PC1–PC2 coloreada por estado.
+- Dispersión PC1–PC2 coloreada por municipio.
+- Dispersión PC1–PC2 coloreada por rendimiento observado, únicamente en las 138 parcelas etiquetadas.
+- Mapas geográficos de los scores de PC1 y PC2, si la infraestructura existente lo permite.
+
+Analizar si los componentes principales representan:
+
+- Intensidad general de la precipitación.
+- Contrastes temporales entre meses.
+- Distribución de lluvia temprana y tardía.
+- Estructura geográfica.
+
+No asignar estas interpretaciones previamente. Deben derivarse de las cargas efectivamente observadas.
+
+Investigar especialmente si las parcelas se agrupan por municipio o perfil climático dentro del espacio PCA.
+
+## 4. Nuevo modelo: Principal Component Regression
+
+Implementar un pipeline de regresión:
+
+`StandardScaler → PCA → LinearRegression`
+
+Su formulación será:
+
+\[
+Y_i=\alpha+\sum_{k=1}^{K}\gamma_k PC_{ik}+\varepsilon_i
+\]
+
+Donde \(K\) es el número de componentes seleccionados.
+
+Evaluar modelos con:
+
+- K = 1
+- K = 2
+- K = 3
+- K = 4
+- K = 5
+- K = 6
+- K = 7
+
+No asumir que los componentes que explican más variabilidad de precipitación necesariamente predicen mejor el rendimiento.
+
+Implementar selección de K mediante validación interna utilizando exclusivamente las observaciones del entrenamiento correspondiente.
+
+Comparar también, como experimento secundario, un pipeline:
+
+`StandardScaler → PCA → Ridge`
+
+Con hiperparámetros de regularización seleccionados dentro de validación interna.
+
+Explicar las diferencias entre PCR y PCA + Ridge.
+
+Incluir K = 7 como control: con todos los componentes y sin penalización, PCR debería producir predicciones numéricamente equivalentes a OLS sobre las siete variables originales, siempre que la matriz tenga rango completo y se aplique un tratamiento consistente del intercepto.
+
+Verificar explícitamente esta equivalencia mediante una prueba automatizada.
+
+## 5. Comparación contra modelos anteriores
+
+Utilizar las mismas particiones de validación que E3 siempre que sea posible.
+
+Comparar:
+
+- E0_MEAN
+- E3_MONTHLY_LINEAR
+- E3_MONTHLY_RIDGE
+- E8_PCR
+- E8_PCA_RIDGE
+
+Aplicar los protocolos existentes:
+
+- Random CV.
+- Climate-profile grouped CV.
+- Municipality grouped CV.
+- Spatial grouped CV.
+
+No modificar las particiones ni recalcular los resultados originales de forma incompatible.
+
+Para todos los modelos reportar:
+
+- RMSE.
+- MAE.
+- R².
+- Sesgo medio.
+- Variabilidad entre folds.
+- Variabilidad entre repeticiones, cuando corresponda.
+- Diferencia de RMSE contra E3_MONTHLY_RIDGE.
+
+Usar exactamente los mismos conjuntos de evaluación dentro de cada protocolo.
+
+**Control obligatorio de fuga de información:**
+
+El escalamiento, PCA, selección de componentes y ajuste de la regresión deben ejecutarse dentro de cada fold de entrenamiento.
+
+No ajustar PCA sobre el conjunto completo y después utilizar sus componentes precomputados para evaluar el rendimiento mediante validación cruzada.
+
+Si se optimiza K o la penalización de Ridge, realizar esa selección exclusivamente dentro de validación interna.
+
+## 6. Diagnóstico del nuevo modelo
+
+Generar gráficas de observado contra predicho y de residuos para PCR, comparables visualmente con las de E3.
+
+Quiero investigar especialmente:
+
+- Sobreestimación de rendimientos bajos.
+- Subestimación de rendimientos altos.
+- Concentración de las predicciones en bandas.
+- Errores extremos.
+- Diferencias de desempeño entre regiones.
+- Cambios de sesgo al utilizar menos componentes.
+- Estabilidad de los componentes seleccionados entre folds.
+
+También evaluar la dispersión del error condicionada al rendimiento observado y al perfil climático.
+
+Identificar si PCA reduce la multicolinealidad sin sacrificar capacidad predictiva.
+
+Investigar si algunos componentes con poca varianza explicada tienen asociaciones importantes con rendimiento y si descartarlos perjudica el modelo.
+
+## 7. Experimento complementario: separar intensidad y forma de la lluvia
+
+Si los resultados del PCA justifican profundizar, estudiar de manera separada la información contenida en:
+
+A. La precipitación total del ciclo.
+
+B. La forma temporal de la distribución de precipitación.
+
+Para B, construir un experimento exploratorio con las proporciones mensuales:
+
+\[
+S_{i,m}=\frac{P_{i,m}}{\sum_{j=1}^{7}P_{i,j}}
+\]
+
+Estas proporciones representan la fracción de la lluvia del ciclo correspondiente a cada mes.
+
+No introducir simultáneamente las siete proporciones sin reconocer que suman uno y son linealmente dependientes.
+
+Comparar de manera separada:
+
+- PCA sobre precipitación mensual absoluta.
+- PCA sobre una representación apropiada de la distribución relativa.
+- Modelo que combina precipitación total con una representación reducida de la distribución relativa.
+
+Recordar que las proporciones constituyen datos composicionales. Si se utiliza PCA convencional sobre proporciones, documentar sus limitaciones; considerar transformaciones log-ratio únicamente si existe un tratamiento justificable para valores cero.
+
+No convertir esta extensión en una búsqueda indiscriminada de transformaciones.
+
+Quiero saber si representar por separado cantidad y distribución temporal puede mejorar la transferencia espacial.
+
+## 8. Criterios de evaluación y decisión
+
+No considerar exitoso el experimento solamente porque PCA explique un porcentaje elevado de la varianza climática.
+
+El éxito predictivo se determina mediante evaluación fuera de muestra del rendimiento.
+
+Responder explícitamente:
+
+1. ¿Cuántos componentes explican la mayor parte de la variabilidad de precipitación?
+2. ¿Qué patrones temporales representan?
+3. ¿Cuántos componentes se seleccionan dentro de cada fold?
+4. ¿PCR supera a Ridge mensual bajo validación aleatoria?
+5. ¿PCR conserva o mejora su desempeño bajo validación espacial y municipal?
+6. ¿Disminuyen los errores de rendimientos extremos?
+7. ¿Se reducen las bandas de predicciones repetidas o persisten por falta de diferenciación entre parcelas?
+8. ¿El modelo gana estabilidad o simplemente pierde información predictiva?
+9. ¿Qué implicaciones tienen los resultados para incorporar nuevas fuentes climáticas o agronómicas?
+
+No afirmar superioridad si las diferencias son pequeñas, dependen de una sola partición o son inconsistentes entre protocolos.
+
+## 9. Integración y documentación
+
+Integrar E8 en la infraestructura actual de experimentos.
+
+Conservar:
+
+- Configuraciones.
+- Cargas y varianza explicada del PCA exploratorio.
+- Pipelines completos por fold.
+- Componentes seleccionados en validación interna.
+- Predicciones OOF.
+- Métricas.
+- Gráficas.
+- Tablas de comparación.
+- Diccionario de transformaciones.
+- Pruebas automatizadas.
+- Reporte técnico.
+
+No sobrescribir E0–E7 ni modificar el Champion del repositorio.
+
+Actualizar el reporte del módulo `Rainfall Yield Modeling` con una sección específica de PCA y PCR.
+
+Finalmente, producir una explicación interpretativa en lenguaje técnico pero comprensible sobre qué aprendimos de la estructura temporal de la lluvia y cuáles son los límites de información que impiden distinguir los rendimientos individuales.
+
+**No busco que PCA mejore obligatoriamente el modelo. Busco determinar de manera rigurosa si la estructura de siete meses puede representarse con menos dimensiones sin perder información predictiva, y si esa representación mejora la generalización espacial.**
+
+Implementa el experimento completo, siguiendo las convenciones del repositorio, y reporta tanto los resultados favorables como los negativos.

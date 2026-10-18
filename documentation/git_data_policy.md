@@ -12,5 +12,18 @@ no descarga esos insumos, modelos ni resultados. Los informes propios dentro de
 `documentation/` sí se pueden versionar. Sus enlaces a resultados locales
 requieren disponer también de la carpeta `outputs/`.
 
+Las especificaciones y la procedencia recuperadas se versionan por separado en
+[`configs/`](../configs/README.md): diseñosJSON, hashes, registro de modelos y
+particiones expresadas como posiciones, sin rendimientos ni matrices. Esto no
+cambia el `.gitignore`, no copia los datos a Git y no convierte el clon en una
+distribución autosuficiente de los experimentos. Las copias no sobrescriben sus
+fuentes locales congeladas.
+
+La documentación propia incluye un [inventario de IA generativa](ai_usage.md) y
+prompts textuales recuperados, con procedencia y límites. Revisar su contenido
+antes de publicar, igual que cualquier documento propio. Los archivos compilados
+`__pycache__/` y `*.pyc` no pertenecen al repositorio; retirar su seguimiento no
+requiere borrarlos del disco.
+
 No usar `git add -f` para incluir datos o artefactos ignorados. Antes de publicar,
 revisar `git status` y `git diff --cached --stat`.
