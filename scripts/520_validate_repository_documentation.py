@@ -21,6 +21,8 @@ if (ROOT/'results/comparison_97_41/v1/README.md').exists():
     DOCS.append('results/comparison_97_41/v1/README.md')
 if (ROOT/'results/core4_relevance/v1/README.md').exists():
     DOCS.append('results/core4_relevance/v1/README.md')
+if (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
+    DOCS.append('results/reference26_component_evidence/v1/README.md')
 
 
 def sha(p):

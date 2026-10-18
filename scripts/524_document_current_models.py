@@ -188,6 +188,8 @@ def cards():
         text += '\nSon resultados de validación exploratoria tras reutilización de etiquetas, no el error de las 59 desconocidas ni superioridad universal. Residuo = predicho − observado: positivo significa sobreestimación. El banco adicional 97/41 se interpreta por separado. No se presenta R² ajustado clásico para estas arquitecturas locales y calibradas.\n'
         if model in ['CT3','Reference26'] and (ROOT/'results/core4_relevance/v1/README.md').exists():
             text+='\n## Evidencia de relevancia del núcleo: análisis posterior\n\nYa se realizaron contrastes exploratorios de asociación, ajustados por estado y agrupados por perfil, y ablaciones reajustadas de C-T3 en los65 folds. Total de lluvia, fracción temprana y NDVI mantienen evidencia de asociación; HHI no después de ajustar por estado. Ninguna retirada individual supera Holm en los contrastes predictivos, y retirar HHI mejora el RMSE espacial de C-T3. Estos resultados no son p-valores de los coeficientes Elastic Net ni una prueba causal o confirmatoria. Las ablaciones corresponden a C-T3, no al26 completo; sus cuatro entradas intervienen en dos capas de26. [Informe, hipótesis, tablas y límites](../../../results/core4_relevance/v1/README.md).\n'
+        if model=='Reference26' and (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
+            text+='\n## Evidencia recuperada del resto de componentes\n\n[Reporte por función, con RMSE/R² y límites](../../../results/reference26_component_evidence/v1/README.md): siete señales locales,24 vecinos, corrector interno, compuerta geológica, R3 y combinaciones que dieron origen a14. Distingue retiradas de bloques, columnas y cambios conjuntos; conserva los ajustes múltiples originales y señala las pruebas aún faltantes. Incluye un inventario del respaldo disponible para cada una de las26 entradas. Se recuperaron11 contrastes arquitectónicos, sin entrenar modelos nuevos ni alterar las59 predicciones.\n'
         text += '\n## Archivos y reproducción\n\n'
         if model != 'L40':
             text += 'Implementación integrada: [src/current_champions.py](../../../src/current_champions.py). [Reproducción y alcance de la verificación](../../current_champions_reproduction.md). Entrada: `python scripts/521_current_champions.py replay`; reentrenamiento: subcomando `refit` según esa guía. Bundle privado: `data/processed/current_champions/v1/`; OOF: `outputs/research/current_champions/v1/`; [métricas públicas](../../../results/current_champions/v1/README.md). Las fichas no generan nuevos ajustes finales ni predicciones59.\n'
@@ -297,6 +299,9 @@ def navigation():
         else:text=text.replace('## Cómo leer y reproducir',block+'## Cómo leer y reproducir')
     if (ROOT/'results/core4_relevance/v1/README.md').exists():
         note='**Relevancia del núcleo C-T3:** [contrastes de asociación y ablaciones reajustadas](results/core4_relevance/v1/README.md). Evidencia exploratoria, con resultados favorables para algunas señales y límites explícitos para HHI; no certifica significancia de las26 entradas.\n\n'
+        if note not in text:text=text.replace('## Cómo leer y reproducir',note+'## Cómo leer y reproducir')
+    if (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
+        note='**Componentes de26:** [evidencia recuperada por función y variable](results/reference26_component_evidence/v1/README.md), con ablaciones existentes, interacciones, dependencias de calibración y límites.\n\n'
         if note not in text:text=text.replace('## Cómo leer y reproducir',note+'## Cómo leer y reproducir')
     write('README.md',text)
     for name in ['documentation/README.md','documentation/model_registry.md','documentation/current_champions_reproduction.md']:

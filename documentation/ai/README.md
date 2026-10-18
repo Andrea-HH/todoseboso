@@ -46,3 +46,4 @@ Este índice contiene solicitudes, no un registro de ejecución. Herramienta rec
 | P040 | Ampliar documentación de26: origen C-T3, siete señales, vecinos, compuerta y correctorR3 | [Literal](prompts/P040_conversation.txt) | [Documento](../models/Reference26/README.md) |
 | P041 | Incorporar el banco97/41 en comparación global y fichas disponibles | [Literal](prompts/P041_conversation.txt) | [Documento](../models/README.md) |
 | P042 | Contrastar relevancia del núcleo C-T3 y distinguir asociación de aporte predictivo y credibilidad de26 | [Literal](prompts/P042_conversation.txt) | [Documento](../models/Reference26/README.md) |
+| P043 | Recuperar ablaciones y evidencia existente por componente de26 sin duplicar modelado | [Literal](prompts/P043_conversation.txt) | [Documento](../models/Reference26/README.md) |

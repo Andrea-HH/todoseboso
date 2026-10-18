@@ -1,0 +1,13 @@
+experiment,local,local_fields,internal_corrector,gate,prediction_inputs,calibration_inputs,gate_dimensions,requires_Planet_prediction,requires_Planet_calibration,requires_geology,requires_historical_S2,local_hyperparameters
+FULL7_OFF_RAW_MASK,FULL7,7,OFF,RAW,26,26,10,True,True,True,True,FULL7 same training context; coefficients refit
+FULL7_OFF_GLOBAL_MASK,FULL7,7,OFF,GLOBAL,16,16,0,True,True,False,True,FULL7 same training context; coefficients refit
+FULL7_ON_RAW_MASK,FULL7,7,ON,RAW,26,26,10,True,True,True,True,FULL7 same training context; coefficients refit
+FULL7_ON_PCA2_MASK,FULL7,7,ON,PCA2,26,26,2,True,True,True,True,FULL7 same training context; coefficients refit
+FULL7_ON_GLOBAL_MASK,FULL7,7,ON,GLOBAL,16,16,0,True,True,False,True,FULL7 same training context; coefficients refit
+NO_HISTORY_ON_RAW_MASK,NO_HISTORY,5,ON,RAW,24,26,10,True,True,True,True,FULL7 same training context; coefficients refit
+NO_PLANET_OFF_GLOBAL_MASK,NO_PLANET,5,OFF,GLOBAL,14,14,0,False,False,False,True,FULL7 same training context; coefficients refit
+NO_PLANET_ON_RAW_MASK,NO_PLANET,5,ON,RAW,24,26,10,False,True,True,True,FULL7 same training context; coefficients refit
+NO_NDWI_ON_RAW_MASK,NO_NDWI,5,ON,RAW,24,26,10,True,True,True,True,FULL7 same training context; coefficients refit
+NO_SLOPE_ON_RAW_MASK,NO_SLOPE,6,ON,RAW,25,26,10,True,True,True,True,FULL7 same training context; coefficients refit
+HISTORY_SLOPE_OFF_GLOBAL_MASK,HISTORY_SLOPE,3,OFF,GLOBAL,12,12,0,False,False,False,True,FULL7 same training context; coefficients refit
+NDWI_SLOPE_OFF_GLOBAL_MASK,NDWI_SLOPE,3,OFF,GLOBAL,12,12,0,False,False,False,True,FULL7 same training context; coefficients refit
