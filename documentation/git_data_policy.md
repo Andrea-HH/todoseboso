@@ -19,6 +19,12 @@ cambia el `.gitignore`, no copia los datos a Git y no convierte el clon en una
 distribución autosuficiente de los experimentos. Las copias no sobrescriben sus
 fuentes locales congeladas.
 
+`results/current_champions/` publica exclusivamente métricas y auditorías agregadas
+deC-T3,26,14 yB1. No contiene registros individuales, rendimientos,OOF ni modelos.
+El bundle reproducible de26 entradas permanece en `data/processed/current_champions/`
+y sus predicciones por parcela en `outputs/research/current_champions/`, ambos
+excluidos. L40 queda fuera de esa entrega actual, conservando su historial.
+
 La documentación propia incluye un [inventario de IA generativa](ai_usage.md) y
 prompts textuales recuperados, con procedencia y límites. Revisar su contenido
 antes de publicar, igual que cualquier documento propio. Los archivos compilados

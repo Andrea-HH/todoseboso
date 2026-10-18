@@ -1,5 +1,7 @@
 # Reproducción de las seis combinaciones
 
+**Documento histórico de la batería conL40.** La etapa actual selecciona26/14 como champions y utiliza la [ruta propia sinL40](current_champions_reproduction.md) para C-T3,26,14 yB1. Estas instrucciones se conservan para reproducir la investigación anterior, no son el punto de entrada actual.
+
 Se requieren los datos y artefactos históricos locales que enumera `outputs/modeling/four_expert_combinations/v1/frozen_design.json`. El repositorio público sin datos/outputs no contiene por sí solo esos prerrequisitos. Las referencias anteriores se consultan sin sobrescribirlas.
 
 ## Preparación inicial

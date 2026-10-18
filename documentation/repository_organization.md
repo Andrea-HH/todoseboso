@@ -4,6 +4,8 @@ Reorganización documental al2026-10-18. No mueve experimentos ni modifica model
 
 ## Cambios
 
+Actualización de etapa: el responsable seleccionó Reference26 y Compact14 como champions actuales. La [reproducción propia](current_champions_reproduction.md) y sus [resultados versionados](../results/current_champions/v1/README.md) excluyenL40 y mantienenC-T3/B1 como control y sensibilidad. Se conserva la distinción respecto a la entrega histórica59.
+
 - README principal centrado en el propósito del reto y las condiciones del conjunto197/138/59.
 - Mapa de documentación e índice de investigación, con distinción entre diseño, ejecución, interpretación y entrega.
 - Registro humano/JSON de modelos: Champion histórico, controles, candidatos26/14, sensibilidades y entregas históricas59.

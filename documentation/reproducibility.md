@@ -2,6 +2,8 @@
 
 ## Qué se puede hacer con un clon de Git
 
+**La ruta vigente es [reproducción de los champions26 y 14](current_champions_reproduction.md)**, junto aC-T3 y B1, excluyendoL40. El ejecutor521 reconstruyeOOF o reentrena desde el bundle privado de 26 entradas sin el otro repositorio ni los caches históricos. Los [resultados agregados](../results/current_champions/v1/README.md) se pueden consultar con Git. Las referencias aGeoC más abajo corresponden a la preparación o a etapas históricas.
+
 Leer código, diseños, particiones posicionales, documentación y prompts recuperados; inspeccionar el registro; ejecutar la verificación documental. No se puede reproducir entrenamiento uOOF sólo con Git porque datos, modelos y checkpoints se distribuyen aparte. Tampoco se puede inferir el error real de 59.
 
 ## Preparación

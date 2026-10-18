@@ -23,7 +23,7 @@ Este índice conserva la historia sin mover ni renumerar archivos. Las filas agr
 | Coherencia/ensambles/territorio | Estabilidad y mezclas sin reglas retrospectivas | [Coherencia](ct3_residual_coherence.md), [ensamble](compact_ensemble.md), [territorio](territorial_mixtures.md) | `src/ct3_residual_coherence.py`, `src/compact_ensemble.py` |
 | Calendario y nuevas variables | Ventanas2025, historia y anomalías | [Conjunto](agronomic_calendar_set.md), [modelado](agronomic_calendar_modeling_results.md), [expansión](agronomic_calendar_expansion_results.md) | `src/agronomic_calendar_features.py`, `src/calendar_modeling.py` |
 | Entrega histórica59 | Consolidación C-T3/Champion/EQUAL3 | [Entrega y validación](winner_predictions_statistical_validation.md) | `outputs/modeling/winner_predictions/v1/`; no equivale a entrega 26/14 |
-| GeoC y L40 | Reproducir vecino local y comparar conC-T3 | [Puente](geoc_bridge_results.md), [auditoría variables](geoc_variable_signal_audit.md) | `src/geoc_bridge.py`, `src/geoc_local04d_snapshot.py` |
+| GeoC y L40 | Reproducir vecino local y comparar con C-T3 | [Puente](geoc_bridge_results.md), [auditoría variables](geoc_variable_signal_audit.md) | `src/geoc_bridge.py`, `src/geoc_local04d_snapshot.py` |
 | Local no climático | Separar representación local y señal global | [Resultados](nonclimatic_local_results.md) | `src/nonclimatic_local.py` |
 | Similitud/representación física | Vecinos y reducciones físicas | [Similitud](physical_similarity_results.md), [representación](physical_representation_results.md) | `src/physical_similarity.py`, `src/physical_representation.py` |
 | Fases locales y reparto | Pesos físicos y roles de las señales | [Fases](conditional_local_phases_results.md), [roles](signal_role_allocation_results.md) | `src/conditional_local_phases.py`, `src/signal_role_allocation.py` |
@@ -37,7 +37,11 @@ Este índice conserva la historia sin mover ni renumerar archivos. Las filas agr
 | MezclasB1–B6 | Complementariedad entreCT3,14,26,L40 | [Diseño](four_expert_combinations_design.md), [conclusión](four_expert_combinations_conclusions.md) | scripts503–517; secuencia vigente abajo |
 | Explicación de arquitecturas | Métricas/predicciones/residuos de 26/14/B1/L40 | [Informe](four_architecture_explanation.md) | script518; sólo análisis deOOF existentes |
 
-## Última batería: secuencia vigente
+## Etapa vigente: reproducción de los champions
+
+Reference26 y Compact14 son los champions actuales; C-T3 es control y B1 sensibilidad. L40 se conserva sólo como historial. El punto de entrada es `scripts/521_current_champions.py` con `export`, `replay` y `refit`: ver [instrucciones actuales](current_champions_reproduction.md) y [resultados](../results/current_champions/v1/README.md). La reconstrucción y el reentrenamiento no usanC4/PCA20 ni el repositorio GeoC. El alcance efectivamente verificado se registra por separado.
+
+## Batería histórica de mezclas: secuencia conservada
 
 Consultar primero [reproducción detallada](four_expert_combinations_reproduction.md), insumos y configuraciones en [configs](../configs/README.md).
 

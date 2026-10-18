@@ -184,6 +184,9 @@ scripts/517_review_four_expert_results.py,scripts,results / interpretation,Final
 scripts/518_explain_four_architectures.py,scripts,execution helper / entry point,"Read-only matched OOF comparison: no fitting, no PRED59 predictions.",Not inferred from file existence
 scripts/519_export_research_metadata.py,scripts,execution helper / entry point,Export portable research metadata; never fit models or copy data/predictions.,Not inferred from file existence
 scripts/520_validate_repository_documentation.py,scripts,execution helper / entry point,"Validate documentation, provenance and positional splits using stdlib only.",Not inferred from file existence
+scripts/521_current_champions.py,scripts,execution helper / entry point,"Export/replay/refit the current CT3/26/14/B1 scope, without L40 or GeoC.",Not inferred from file existence
+scripts/522_finalize_current_champions.py,scripts,execution helper / entry point,Validate completed replay/cold-refit evidence and publish aggregate provenance.,Not inferred from file existence
+scripts/523_check_current_champions_exclusions.py,scripts,execution helper / entry point,Integration check: held-out targets cannot change a cold fold's predictions.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/00_preguntas_pequeñas.py,scripts,execution helper / entry point,,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/01_eda_temporal.py,scripts,execution helper / entry point,EDA inicial de las tablas maestras de AgroCebada.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/02_revision_eda_tablas_maestreas.py,scripts,execution helper / entry point,02 - Revision dirigida del EDA de tablas maestras.,Not inferred from file existence
@@ -286,6 +289,7 @@ src/ct3_residual_conditional/__init__.py,src,implementation,"Controlled residual
 src/ct3_residual_conditional/execution.py,src,implementation,"Five-model controlled experiment, strict recursive tuning and cached contexts.",Not inferred from file existence
 src/ct3_residual_conditional/models.py,src,implementation,Exact original C-T3 tuner and small centered correctors.,Not inferred from file existence
 src/ct3_residual_conditional/reporting.py,src,implementation,"Complete OOF aggregation and local/regional diagnostics, no extra fits.",Not inferred from file existence
+src/current_champions.py,src,implementation,"CT3/26/14/B1 replay and cold refit from a narrow, local 26-input bundle.",Not inferred from file existence
 src/difficult_case_signals.py,src,implementation,Target-free additions for frozen exploratory role-allocation sensitivities.,Not inferred from file existence
 src/difficult_quartile.py,src,implementation,Exploratory error-group diagnosis; training-only classification of hard errors.,Not inferred from file existence
 src/experimental_pls.py,src,implementation,"Standalone nested PLS experiment over the audited 1,867 named descriptors.",Not inferred from file existence
@@ -500,6 +504,7 @@ documentation/ct3_information_phase_iii.md,documentation,documentation,Fase III:
 documentation/ct3_residual_coherence.md,documentation,documentation,Coherencia residual sobre C-T3: ejecución controlada,Not inferred from file existence
 documentation/ct3_residual_conditional.md,documentation,documentation,Corrección residual condicional sobre C-T3,Not inferred from file existence
 documentation/ct3_residual_conditional_design.md,documentation,frozen design / proposal,Correcci?n residual condicional sobre C-T3: dise?o aplicado,Not inferred from file existence
+documentation/current_champions_reproduction.md,documentation,documentation,"Etapa vigente: champions26 y 14, reproducción sin L40",Not inferred from file existence
 documentation/difficult_case_signals_conclusions.md,documentation,results / interpretation,Conclusiones: nuevas señales y ubicación arquitectónica,Not inferred from file existence
 documentation/difficult_case_signals_design.md,documentation,frozen design / proposal,Señales de parcelas difíciles: diseño congelado,Not inferred from file existence
 documentation/difficult_case_signals_results.md,documentation,results / interpretation,Señales adicionales: comparación de ubicación arquitectónica,Not inferred from file existence

@@ -4,6 +4,8 @@ Esta carpeta reúne la documentación propia. `../docs/guidelines/` conserva los
 
 ## Ruta de lectura
 
+**Etapa vigente: Reference26 y Compact14 son los champions actuales.** La [reproducción actual](current_champions_reproduction.md) incluye también C-T3 y B1, excluyeL40 y no requiereGeoC tras preparar el bundle. Los [resultados agregados](../results/current_champions/v1/README.md) están versionados. Los informes antiguos conservan su alcance histórico.
+
 1. [Propósito y entregables](project_scope_and_guidelines.md): qué solución se quiere producir y cómo se relaciona con los lineamientos.
 2. [Registro de modelos](model_registry.md): nombres, funciones, estados y ubicaciones; diferencia entre Champion histórico y candidatos recientes.
 3. [Índice de experimentos](experiment_index.md): etapas, evidencia y puntos de entrada.

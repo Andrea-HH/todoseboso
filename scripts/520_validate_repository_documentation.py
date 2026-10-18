@@ -13,7 +13,8 @@ ROOT=Path(__file__).resolve().parents[1]
 DOCS=['README.md','documentation/README.md','documentation/project_scope_and_guidelines.md',
       'documentation/model_registry.md','documentation/experiment_index.md','documentation/reproducibility.md',
       'documentation/repository_organization.md','documentation/ai_usage.md','documentation/ai/README.md',
-      'documentation/git_data_policy.md','configs/README.md','environments/README.md']
+      'documentation/git_data_policy.md','configs/README.md','environments/README.md',
+      'documentation/current_champions_reproduction.md','results/README.md','results/current_champions/v1/README.md']
 
 
 def sha(p):
@@ -82,6 +83,20 @@ def main():
         for key in ['documentation','implementation']:
             if key in model:assert (ROOT/model[key]).exists(),model[key]
         checks['registered_models']+=1
+    stage=read('configs/current_stage.json')
+    assert stage['champions']==['Reference26','Compact14']
+    assert stage['included_models']==['CT3','Reference26','Compact14','B1']
+    assert 'L40' in stage['excluded_from_current_delivery']
+    registered={m['id']:m for m in registry}
+    assert all(registered[m]['status'].startswith('current_champion') for m in stage['champions'])
+    with (ROOT/'results/current_champions/v1/metrics.csv').open(encoding='utf-8',newline='') as stream:
+        current=list(csv.DictReader(stream))
+    assert {r['experiment'] for r in current}==set(stage['included_models'])
+    assert len(current)==20
+    replay=read('results/current_champions/v1/reproduction_audit.json')
+    assert replay['status']=='passed' and replay['external_folds']==81 and replay['max_prediction_difference']<1e-10
+    assert replay['restricted_file_io'] and replay['no_L40']
+    checks['current_result_rows']=len(current)
     with (ROOT/'documentation/ai/prompt_inventory.csv').open(encoding='utf-8',newline='') as stream:
         rows=list(csv.DictReader(stream))
     assert len({row['prompt_id'] for row in rows})==len(rows)

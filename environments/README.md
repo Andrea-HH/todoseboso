@@ -1,5 +1,7 @@
 # Entorno de investigación
 
+Etapa actual: champions Reference26 y Compact14, con C-T3 y B1. La [ruta actual](../documentation/current_champions_reproduction.md) usa el bundle local acotado; no requiere el repositorioGeoC ni PCA20 para ejecutar. Las dependencias de preparación geoespacial e investigación histórica siguen inventariadas por separado del alcance de ese ejecutor.
+
 `research_environment.json` y `../requirements-research.txt` registran versiones instaladas de distribuciones asociadas a imports detectados estáticamente en el código. Es una fotografía del entorno que tiene disponibles los artefactos de investigación; **no es un lock completo de dependencias transitivas ni una instalación limpia verificada**. El JSON indica la versión de Python y el sistema operativo observados.
 
 El proyecto usa paquetes numéricos, aprendizaje automático, extracción geoespacial, tablas, gráficos y lectura documental. Algunos sólo son necesarios para preparar datos; interpretarOOF existentes requiere menos dependencias. No se eliminan esas diferencias ocultándolas tras una supuesta instalación mínima universal.

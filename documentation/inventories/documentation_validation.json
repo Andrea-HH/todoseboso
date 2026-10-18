@@ -1,12 +1,13 @@
 {
   "status": "passed",
   "checks": {
-    "local_links": 210,
+    "local_links": 251,
     "design_snapshots": 30,
     "fold_records": 146,
     "registered_models": 9,
-    "prompt_records": 35,
-    "inventory_files": 623,
+    "current_result_rows": 20,
+    "prompt_records": 37,
+    "inventory_files": 628,
     "git_policy": 1
   },
   "local_source_hashes_checked": true,

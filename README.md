@@ -6,6 +6,8 @@ Trabajamos con **197 parcelas de Hidalgo, Puebla y Tlaxcala**, ciclo 2025: **138
 
 La finalidad práctica es apoyar la estimación de productividad y aportar información para decisiones agropecuarias y financieras. Este estudio no valida un sistema automático de otorgamiento de crédito, una relación causal agronómica ni la transferencia a cualquier región o año.
 
+**Etapa actual: champions Reference26 y Compact14**, con C-T3 como control y B1 como sensibilidad. La entrega reproducible actual excluyeL40. [Resultados](results/current_champions/v1/README.md) · [Reproducción](documentation/current_champions_reproduction.md).
+
 ## Propósito y entregables según los lineamientos
 
 Los [lineamientos del reto](docs/guidelines/Lineamientos%20y%20Gui%CC%81a%20de%20Registro%20de%20Proyectos_.pdf), páginas 3–4, piden explicar fuentes, preparación, variables, metodología, resultados, limitaciones y utilidad para el sector. También solicitan una demostración práctica, bibliografía, transparencia sobre IA generativa y una tabla final de identificador y rendimiento predicho por parcela. El README orienta la lectura; no reemplaza esos entregables ni acredita que el proyecto esté publicado.
@@ -21,36 +23,36 @@ La [matriz de entregables y evidencia](documentation/project_scope_and_guideline
 
 ## Qué modelo es cuál y cuál es su estado
 
-**Champion es un nombre histórico de una receta, no una promoción automática del experimento más reciente.** Un candidato con mejores OOF no equivale a un modelo final autorizado ni a una predicción ya entregada. El estado detallado y las rutas están en el [registro de modelos](documentation/model_registry.md) y su [versión estructurada](configs/model_registry.json).
+**La etapa actual conserva dos champions: Reference26 y Compact14**, por decisión explícita del responsable del proyecto después de las comparaciones. El de 26 prioriza precisión y equilibrio territorial; el de 14 prioriza simplicidad de fuentes con desempeño próximo. C-T3 es el control compacto y B1 una sensibilidad. Esta selección no implica que ya exista un ajuste final138 o una nueva entrega59 de ambos champions.
+
+`A_CURRENT_CH_H_T` conserva el nombre de Champion histórico y su entrega previa: no es el champion actual26. El estado y las rutas están en el [registro de modelos](documentation/model_registry.md), la [etapa vigente](configs/current_stage.json) y la [ruta reproducible actual](documentation/current_champions_reproduction.md).
 
 | Modelo | Qué hace | Estado y motivo de conservarlo |
 |---|---|---|
+| **Reference26 · champion actual** | C-T3 + experto local7, compuerta geológica y corrector R3 | Seleccionado por precisión y equilibrio de validación; OOF reproducibles, sin nuevo ajuste final138/PRED59 |
+| **Compact14 · champion actual compacto** | C-T3 + experto local5, peso global y R3; sin Planet ni compuerta geológica | Seleccionado por simplificación y desempeño próximo; OOF reproducibles, sin nuevo ajuste final138/PRED59 |
 | **C-T3 / CT3** | Elastic Net global con lluvia total, fracción temprana, concentración mensual y NDVI de mayo | Control compacto de 4 entradas; tiene ajuste final y59 predicciones en la entrega histórica |
+| **B1** | Mezcla aprendida internamente entre C-T3 y26 | Sensibilidad: pequeña ventaja municipal, deterioro espacial; no recomendada para sustituir26 |
 | **Champion histórico** `A_CURRENT_CH_H_T` | Base climática Elastic Net, corrección histórica XGBoost y corrección topográfica Ridge | Referencia histórica; tiene entrega59. No es el modelo26 |
 | **EQUAL3** | Promedio fijo C-T3 + GPR F5-01 + CatBoost F7-00 | Ensamble histórico con entrega59; no es B1 ni mezcla con L40 |
-| **L40 / Local04D** | PCA20 de C4 de 2082 variables y Ridge local con 24 vecinos geográficos | Benchmark importado de GeoC y reproducido aquí; útil para estudiar interpolación y transferencia |
-| **Reference26** | C-T3 + experto local7, compuerta geológica y corrector R3 | Referencia recomendada de precisión en la comparación reciente de estos cuatro; no promoción formal ni ajuste final138 en esa batería |
-| **Compact14** | C-T3 + experto local5, peso global y R3; sin Planet ni compuerta geológica | Alternativa de menor dependencia de fuentes, con desempeño próximo a 26 |
-| **B1** | Mezcla aprendida internamente entre C-T3 y26 | Sensibilidad: pequeña ventaja municipal, deterioro espacial; no recomendada para sustituir26 |
 | **F5/F6/F7 y otras variantes** | GPR, bagging, boosting, correcciones y ablaciones | Investigación y controles; ver el índice. La propuesta F8 no prueba una ejecución F8 |
 
-Las14/26 son **entradas derivadas**, no números de coeficientes globales; los20 componentes de L40 no son20 variables originales. Todas esas arquitecturas requieren sus insumos para construir la representación.
+Las14/26 son **entradas derivadas**, no números de coeficientes globales. L40/Local04D pertenece al repositorioGeoC y queda como comparación histórica; no forma parte del paquete ni de los resultados reproducibles actuales. Se conservan los informes históricos sin reescribirlos.
 
 ## Comparación reciente compatible
 
-RMSE en t/ha / R². Mismos65 folds externos y138 rendimientos; métricas sobre OOF completas por repetición y después promedio. Esta tabla compara candidatos, no el error desconocido de las 59.
+RMSE en t/ha / R². Mismos65 folds externos y138 rendimientos; métricas sobre OOF completas por repetición y después promedio. Esta tabla compara los champions actuales, el control y la sensibilidad; no es el error desconocido de las 59.
 
 | Modelo | Aleatoria | Perfil climático | Municipal | Espacial |
 |---|---|---|---|---|
 | C-T3 | .5116 / .6361 | .5206 / .6232 | .5813 / .5302 | .6788 / .3594 |
-| L40 | .4930 / .6619 | .5031 / .6481 | .7602 / .1964 | .9794 / −.3337 |
 | Reference26 | .4748 / .6865 | .4774 / .6831 | .5752 / .5400 | .6333 / .4423 |
 | Compact14 | .4773 / .6832 | .4793 / .6805 | .5755 / .5395 | .6431 / .4250 |
 | B1 | .4755 / .6856 | .4839 / .6744 | .5681 / .5513 | .6813 / .3546 |
 
-La diferencia 26–14 es pequeña; no demuestra equivalencia estadística ni justifica por sí sola toda la complejidad adicional. L40 mantiene ventajas locales, pero transfiere peor en estos protocolos territoriales. La recomendación reciente es26 como referencia de precisión y14 como alternativa operativa; no se presenta como el ganador absoluto de todos los experimentos históricos. Véanse la [explicación de arquitecturas y residuos](documentation/four_architecture_explanation.md) y la [conclusión de las mezclas](documentation/four_expert_combinations_conclusions.md).
+La diferencia26–14 es pequeña y no demuestra equivalencia estadística. Ambos se conservan como champions con prioridades distintas; no se afirma un mínimo universal de todos los experimentos históricos. Los [resultados actuales versionados](results/current_champions/v1/README.md) incluyen C-T3,26,14 y B1, sin L40, con RMSE/R²/MAE, sesgo y diagnósticos agregados. Las OOF por parcela permanecen locales.
 
-La evaluación es exploratoria después de amplia reutilización de las mismas etiquetas. El banco adicional97/41 se conserva separado: cambia las particiones, no aporta rendimientos independientes. L40 mantiene una PCA transductiva sobre 197 X, sin etiquetas ocultas; no equivale a ajustar esa representación sólo con cada entrenamiento externo.
+La evaluación es exploratoria después de amplia reutilización de las mismas etiquetas. El banco adicional97/41 se conserva separado: cambia las particiones, no aporta rendimientos independientes. Declarar champions expresa una decisión del proyecto y no una superioridad estadística universal.
 
 ## Cómo leer y reproducir
 
@@ -62,11 +64,14 @@ Clonar el repositorio **no descarga los datos, los modelos ni las predicciones**
 # Desde la raíz, con Python y los insumos locales disponibles:
 python scripts/520_validate_repository_documentation.py
 
-# Sólo con los resultados OOF anteriores disponibles; no entrena:
-python scripts/518_explain_four_architectures.py
+# Reconstruye las 81 particiones guardadas con el bundle local actual, sin L40:
+python scripts/521_current_champions.py replay
+
+# Reentrena las recetas congeladas. Costoso; requiere el mismo bundle local:
+python scripts/521_current_champions.py refit --folds all --output outputs/research/current_champions/v1/refit_full
 ```
 
-La [reproducción de las últimas combinaciones](documentation/four_expert_combinations_reproduction.md) distingue preparación, ejecutor vigente, verificaciones y entrega. No ejecutes todos los scripts en orden numérico: hay análisis, propuestas, ejecutores alternativos y etapas que dependen de resultados históricos.
+La [reproducción actual](documentation/current_champions_reproduction.md) distingue bundle de entrada, reconstrucción con modelos guardados y reentrenamiento desde las 26 entradas sin cachés históricos. No requiere acceso al otro repositorio una vez preparado el bundle. La [batería anterior de mezclas](documentation/four_expert_combinations_reproduction.md) se conserva como historial, no como punto de entrada actual. No ejecutar todos los scripts por numeración.
 
 ## Estructura y política de publicación
 
@@ -77,6 +82,7 @@ La [reproducción de las últimas combinaciones](documentation/four_expert_combi
 | `tests/` | Pruebas de implementaciones e integridad | Sí |
 | `configs/` | Registro, especificaciones exportadas, particiones posicionales y procedencia | Sí; sin rendimientos ni matrices |
 | `environments/` | Versiones observadas y límites de instalación | Sí |
+| `results/` | Métricas y auditorías agregadas de los modelos actuales, sin registros por parcela | Sí |
 | `documentation/` | Documentación propia, índices, resultados interpretados e inventario de IA | Sí |
 | `docs/guidelines/` | Lineamientos y diccionarios proporcionados | Sí |
 | `docs/resources/` | Referencias externas descargadas | No |

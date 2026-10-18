@@ -39,3 +39,5 @@ Este índice contiene solicitudes, no un registro de ejecución. Herramienta rec
 | P033 | Ejecutar batería de combinaciones previamente discutida | [Literal](prompts/P033_conversation.txt) | [Documento](../four_expert_combinations_conclusions.md) |
 | P034 | Auditar organización, documentación y Git | [Literal](prompts/P034_conversation.txt) | [Documento](../repository_organization.md) |
 | P035 | Reorganizar documentación, versionar metadatos e inventariar IA | [Literal](prompts/P035_conversation.txt) | [Documento](../repository_organization.md) |
+| P036 | Seleccionar26/14 como champions y reproducir modelos propios excluyendoL40 | [Literal](prompts/P036_conversation.txt) | [Documento](../current_champions_reproduction.md) |
+| P037 | Actualizar navegación y estados a la etapa actual de champions | [Literal](prompts/P037_conversation.txt) | [Documento](../current_champions_reproduction.md) |

@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "execution_index": 60,
+  "models": [
+    "CT3",
+    "Reference26",
+    "Compact14",
+    "B1"
+  ],
+  "maximum_prediction_differences": {
+    "CT3": 0.0,
+    "Reference26": 0.0,
+    "Compact14": 0.0,
+    "B1": 0.0
+  },
+  "test": "Outer held-out targets changed only in memory; cold training predictions unchanged.",
+  "actual_dataset_modified": false,
+  "no_saved_models_in_bundle": true,
+  "restricted_file_io": true,
+  "scope": "One spatial fold; complements cross-fitting provenance, not an exhaustive leakage proof for all possible changes."
+}

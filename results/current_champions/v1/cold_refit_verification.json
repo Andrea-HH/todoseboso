@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "scope": "Representative cold refits, not all81 retrained",
+  "unique_folds": [
+    0,
+    50,
+    55,
+    60,
+    63,
+    64,
+    65
+  ],
+  "protocols_checked": [
+    "random",
+    "climate_profile",
+    "municipality",
+    "spatial",
+    "fresh_97_41"
+  ],
+  "max_prediction_difference": 8.881784197001252e-16,
+  "runs": [
+    {
+      "folder": "cold_verification_spatial",
+      "fold_ids": [
+        60
+      ],
+      "max_prediction_difference": 0.0,
+      "restricted_file_io": false
+    },
+    {
+      "folder": "cold_verification",
+      "fold_ids": [
+        0,
+        50,
+        55,
+        63,
+        64,
+        65
+      ],
+      "max_prediction_difference": 8.881784197001252e-16,
+      "restricted_file_io": false
+    },
+    {
+      "folder": "cold_inputs_only",
+      "fold_ids": [
+        60,
+        63,
+        64
+      ],
+      "max_prediction_difference": 0.0,
+      "restricted_file_io": true
+    }
+  ],
+  "inputs_only_run": "cold_inputs_only",
+  "inputs_only_has_no_saved_models": true,
+  "full_81_cold_refit_performed": false,
+  "no_PRED59": true,
+  "no_final138_fit": true
+}

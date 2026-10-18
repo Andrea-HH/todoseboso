@@ -1,5 +1,7 @@
 # Metadatos versionados de investigación
 
+La [etapa actual](current_stage.json) selecciona Reference26 y Compact14 como champions. Su ejecutor y bundle se describen en la [reproducción vigente](../documentation/current_champions_reproduction.md); C-T3 y B1 se conservan como control/sensibilidad yL40 queda fuera de esta entrega. Las copias históricas de diseños que siguen diciendo no cambiarChampion describen la decisión de su momento, no anulan la selección explícita posterior.
+
 `.gitattributes` fija LF para estos metadatos y preserva los bytes de los prompts originales. Así, los hashes no cambian únicamente por conversiones de fin de línea entre Windows y Linux.
 
 Se separan especificaciones de los artefactos generados para que excluir `outputs/` no elimine también la trazabilidad del diseño. **Esta carpeta no reemplaza los artefactos históricos ni cambia las rutas de los pipelines.**

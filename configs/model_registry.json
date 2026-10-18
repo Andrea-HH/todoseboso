@@ -1,16 +1,119 @@
 {
   "schema_version": 1,
   "updated": "2026-10-18",
-  "decision": "Documentation only; no automatic promotion, fitting or PRED59 generation",
+  "decision": "Explicit user selection: Reference26 andCompact14 are current champions; no new final138 fit or PRED59",
   "models": [
-    {"id":"CT3","aliases":["C-T3"],"status":"control_and_historical_final59","inputs":4,"documentation":"documentation/ct3_residual_conditional.md","implementation":"src/ct3_residual_conditional/models.py","artifacts":"outputs/modeling/ct3_residual_conditional/v1","final_artifacts":"outputs/modeling/winner_predictions/v1"},
-    {"id":"A_CURRENT_CH_H_T","aliases":["Champion","historical_champion"],"status":"historical_champion_final59","documentation":"documentation/winner_predictions_statistical_validation.md","artifacts":"outputs/modeling/winner_predictions/v1"},
-    {"id":"EQUAL3","aliases":[],"status":"historical_ensemble_final59","components":["CT3","F5-01","F7-00"],"documentation":"documentation/winner_predictions_statistical_validation.md","artifacts":"outputs/modeling/winner_predictions/v1"},
-    {"id":"F5-01","aliases":[],"status":"evaluated_GPR_and_EQUAL3_component","inputs":4,"documentation":"documentation/family5_gpr_initial_decision.md","implementation":"src/family_5"},
-    {"id":"F7-00","aliases":[],"status":"evaluated_CatBoost_and_EQUAL3_component","inputs":4,"documentation":"documentation/family7_boosting.md","implementation":"src/family_7"},
-    {"id":"L40","aliases":["Local04D","LOCAL04D"],"status":"reproduced_GeoC_benchmark","original_representation_features":2082,"pca_components":20,"neighbors":24,"transductive_X_n":197,"documentation":"documentation/geoc_bridge_results.md","implementation":"src/geoc_bridge.py","artifacts":"outputs/modeling/geoc_bridge/v1"},
-    {"id":"Reference26","aliases":["FULL7_ON_RAW_MASK","SHARES_MASK"],"status":"recommended_accuracy_reference_in_recent_comparison_not_formally_promoted","inputs":26,"final138_fit_in_latest_battery":false,"new_PRED59_in_latest_battery":false,"documentation":"documentation/four_architecture_explanation.md","implementation":"src/architecture_decomposition.py","artifacts":"outputs/modeling/four_expert_combinations/v1"},
-    {"id":"Compact14","aliases":["NO_PLANET_OFF_GLOBAL_MASK"],"status":"simplification_candidate","inputs":14,"final138_fit_in_latest_battery":false,"new_PRED59_in_latest_battery":false,"documentation":"documentation/architecture_decomposition_conclusions.md","implementation":"src/pruned_global_architecture.py","artifacts":"outputs/modeling/four_expert_combinations/v1"},
-    {"id":"B1","aliases":[],"status":"evaluated_sensitivity_not_recommended_to_replace26","inputs":26,"formula":"CT3 + a*(Reference26-CT3)","documentation":"documentation/four_expert_combinations_conclusions.md","implementation":"src/four_expert_combinations.py","artifacts":"outputs/modeling/four_expert_combinations/v1"}
+    {
+      "id": "CT3",
+      "aliases": [
+        "C-T3"
+      ],
+      "status": "control_and_historical_final59",
+      "inputs": 4,
+      "documentation": "documentation/ct3_residual_conditional.md",
+      "implementation": "src/ct3_residual_conditional/models.py",
+      "artifacts": "outputs/modeling/ct3_residual_conditional/v1",
+      "final_artifacts": "outputs/modeling/winner_predictions/v1"
+    },
+    {
+      "id": "A_CURRENT_CH_H_T",
+      "aliases": [
+        "Champion histórico",
+        "historical_champion"
+      ],
+      "status": "historical_champion_final59",
+      "documentation": "documentation/winner_predictions_statistical_validation.md",
+      "artifacts": "outputs/modeling/winner_predictions/v1",
+      "legacy_aliases": [
+        "Champion",
+        "CHAMPION"
+      ]
+    },
+    {
+      "id": "EQUAL3",
+      "aliases": [],
+      "status": "historical_ensemble_final59",
+      "components": [
+        "CT3",
+        "F5-01",
+        "F7-00"
+      ],
+      "documentation": "documentation/winner_predictions_statistical_validation.md",
+      "artifacts": "outputs/modeling/winner_predictions/v1"
+    },
+    {
+      "id": "F5-01",
+      "aliases": [],
+      "status": "evaluated_GPR_and_EQUAL3_component",
+      "inputs": 4,
+      "documentation": "documentation/family5_gpr_initial_decision.md",
+      "implementation": "src/family_5"
+    },
+    {
+      "id": "F7-00",
+      "aliases": [],
+      "status": "evaluated_CatBoost_and_EQUAL3_component",
+      "inputs": 4,
+      "documentation": "documentation/family7_boosting.md",
+      "implementation": "src/family_7"
+    },
+    {
+      "id": "L40",
+      "aliases": [
+        "Local04D",
+        "LOCAL04D"
+      ],
+      "status": "external_historical_benchmark_excluded_from_current_delivery",
+      "original_representation_features": 2082,
+      "pca_components": 20,
+      "neighbors": 24,
+      "transductive_X_n": 197,
+      "documentation": "documentation/geoc_bridge_results.md",
+      "implementation": "src/geoc_bridge.py",
+      "artifacts": "outputs/modeling/geoc_bridge/v1"
+    },
+    {
+      "id": "Reference26",
+      "aliases": [
+        "FULL7_ON_RAW_MASK",
+        "SHARES_MASK",
+        "Champion26"
+      ],
+      "status": "current_champion_accuracy",
+      "inputs": 26,
+      "final138_fit_in_latest_battery": false,
+      "new_PRED59_in_latest_battery": false,
+      "documentation": "documentation/current_champions_reproduction.md",
+      "implementation": "src/current_champions.py",
+      "artifacts": "outputs/research/current_champions/v1"
+    },
+    {
+      "id": "Compact14",
+      "aliases": [
+        "NO_PLANET_OFF_GLOBAL_MASK",
+        "Champion14"
+      ],
+      "status": "current_champion_compact",
+      "inputs": 14,
+      "final138_fit_in_latest_battery": false,
+      "new_PRED59_in_latest_battery": false,
+      "documentation": "documentation/current_champions_reproduction.md",
+      "implementation": "src/current_champions.py",
+      "artifacts": "outputs/research/current_champions/v1"
+    },
+    {
+      "id": "B1",
+      "aliases": [],
+      "status": "evaluated_sensitivity_not_recommended_to_replace26",
+      "inputs": 26,
+      "formula": "CT3 + a*(Reference26-CT3)",
+      "documentation": "documentation/four_expert_combinations_conclusions.md",
+      "implementation": "src/four_expert_combinations.py",
+      "artifacts": "outputs/modeling/four_expert_combinations/v1"
+    }
+  ],
+  "current_champions": [
+    "Reference26",
+    "Compact14"
   ]
 }
