@@ -23,3 +23,5 @@ Las copias se generan con `python scripts/519_export_research_metadata.py` cuand
 El export incluye los diseños encontrados bajo `outputs/modeling/*/v*/frozen_design.json`; no recupera todos los formatos de configuración antiguos ni acredita ejecución. Por ejemplo, `winner_predictions/v1_initial_unexecuted` es una configuración no ejecutada y no una segunda entrega. La evidencia y el estado deben leerse junto con los resultados y el registro.
 
 Antes de versionar nuevosJSON, revisar que contengan sólo especificaciones y procedencia, nunca vectores objetivo, tablas privadas, credenciales o predicciones finales. No subir modelos ni saltar `.gitignore` con `git add -f`.
+
+`four_final_checks/v1/` conserva el diseño y las enmiendas de implementación de las cuatro investigaciones finales. Las optimizaciones de cómputo mantuvieron las rejillas, particiones y reglas de selección; se exigió paridad numérica antes de la sensibilidad. `replay_requirements.txt` fija las dependencias usadas en la reproducción limpia de las59 predicciones, sin declarar que cubra todos los experimentos históricos.

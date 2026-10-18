@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-18",
+  "models_unchanged": [
+    "Reference26",
+    "Compact14"
+  ],
+  "sensitivity": "Reference25_NoHHI",
+  "remove": "compact_concentration_hhi from both CT3 and local-expert internal EN, physically absent from input frame",
+  "outer_folds": 65,
+  "inner": "Original frozen partitions; deeper original group rules and seed2026",
+  "unchanged": "local7, k24, alpha30, inverse geography, geology10 K4/8, EN grids, R3 alpha.01/l1.5 clamp±.25 and intensity0/.5/1",
+  "tests": "Original26 adapter parity on random fold0 and spatial63 before evaluating sensitivity; grouped paired MSE signs with Holm4",
+  "no_new_final_model": true,
+  "no_new_PRED_predictions": true,
+  "support": "Target-free geometry, training-only feature distances, missing R3,26/14 disagreement; descriptive flags, not error probabilities",
+  "intervals": "Nominal80/90 split conformal of saved models, disjoint halves of each external validation fold; rotate halves, no own-label calibration; random primary, grouped protocol diagnostics use calibration labels from excluded territory and do not certify strict transfer",
+  "group_intervals": "Secondary calibration by whole climate profiles with maximum residual per profile; infinite radius if finite-sample rank exceeds available calibration groups",
+  "interval_limit": "No guaranteed interval attached to final138 point model; calibration/evaluation of heldout models only; exchangeability and historical selection remain limitations",
+  "operational": "Freeze final model and files by SHA; subprocess isolated replay from local inputs; source-only clean environment installation limitation explicit",
+  "selection": "No model promotion or hyperparameter changes based on outer results",
+  "code_sha256": {
+    "src/reference26_only.py": "318551b8669437dc82d04083fa401346f28d11a3a2582dee75a0a349d898c867",
+    "src/current_champions.py": "bb732085d65f62d8235dfa96b2bdd61459f8920981be41508dc2770710a5875e",
+    "scripts/535_no_hhi_reference26.py": "83901d04818233c65d0265f21c0edb09c9ecb6346dc7181a64af099566e74633"
+  }
+}

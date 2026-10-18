@@ -8,7 +8,7 @@
 # Literal recovered attachments: preserve original bytes and line endings.
 /documentation/ai/prompts/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 
-# Binary figures override the global /results/** LF text rule.
+# Las figuras de resultados son binarias, nunca archivos de texto.
 /results/**/*.png -text
 /results/**/*.jpg -text
 /results/**/*.jpeg -text

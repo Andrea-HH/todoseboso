@@ -36,6 +36,10 @@ La [última batería](four_expert_combinations_reproduction.md) tiene pruebas y 
 ## Qué aún requiere cierre
 
 - Confirmación externa con rendimientos nuevos para sostener superioridad fuera de las muestras exploradas.
-- Elección y consolidación explícita de la receta final de entrega si se desea cambiar la entrega histórica.
-- Una instalación nueva verificada y, si se necesita, empaquetado independiente de los artefactos históricos.
+- Confirmación de envío a la plataforma y revisión humana del archivo elegido:26/14 ya tienen ajuste final138 y59 estimaciones congeladas.
+- Portabilidad a otros sistemas operativos, si se requiere. La reproducción de59 ya pasó en Windows con dependencias instaladas desde cero; no acredita portabilidad universal.
 - Bibliografía/anexosPDF, enlace demostrativo y revisión humana de los requisitos de plataforma.
+
+## Cierre adicional de las cuatro investigaciones
+
+[Resultados y comandos reproducibles](../results/four_final_checks/v1/README.md): auditoría de archivos finales, instalación limpia, diagnóstico de soporte59, intervalos OOF y65 folds de sensibilidad sin HHI en los dos lugares donde intervenía. Los champions siguen siendo26/14; la candidata sin HHI no tiene ajuste final ni nuevas predicciones59. Los requisitos específicos del replay están en [replay_requirements.txt](../configs/four_final_checks/v1/replay_requirements.txt).

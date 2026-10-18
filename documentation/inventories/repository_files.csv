@@ -198,6 +198,11 @@ scripts/531_recover_reference26_evidence.py,scripts,execution helper / entry poi
 scripts/532_refresh_results_readmes.py,scripts,results / interpretation,Refresh current result presentations from existing26/14 validation and59 outputs.,Not inferred from file existence
 scripts/533_current_champion_naming.py,scripts,execution helper / entry point,Reserve current champion status for26/14; retain frozen and executable legacy IDs.,Not inferred from file existence
 scripts/534_reference26_distribution.py,scripts,execution helper / entry point,Descriptive comparison of59 predictions and138 observed yields; no error tests.,Not inferred from file existence
+scripts/535_no_hhi_reference26.py,scripts,execution helper / entry point,Freeze and run65-fold25-input sensitivity; process-local core configuration.,Not inferred from file existence
+scripts/536_operational_support_intervals.py,scripts,execution helper / entry point,"Freeze delivery, isolated replay, target-free support and honest split intervals.",Not inferred from file existence
+scripts/537_run_sensitivity_battery.py,scripts,execution helper / entry point,Resume65 sensitivity folds in six isolated worker processes after controls.,Not inferred from file existence
+scripts/538_finalize_four_checks.py,scripts,execution helper / entry point,"Summarize four completed studies, preserving frozen champions and59 outputs.",Not inferred from file existence
+scripts/539_clean_replay_environment.py,scripts,execution helper / entry point,Attempt independent clean wheel installation and immutable59 model replay.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/00_preguntas_pequeñas.py,scripts,execution helper / entry point,,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/01_eda_temporal.py,scripts,execution helper / entry point,EDA inicial de las tablas maestras de AgroCebada.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/02_revision_eda_tablas_maestreas.py,scripts,execution helper / entry point,02 - Revision dirigida del EDA de tablas maestras.,Not inferred from file existence
@@ -403,6 +408,7 @@ src/physical_representation.py,src,implementation,Training-only alternatives to 
 src/physical_similarity.py,src,implementation,"Inductive, block-balanced representations and centered residual correctors.",Not inferred from file existence
 src/pruned_global_architecture.py,src,implementation,Standalone OFF/GLOBAL fit: no geological gate or FULL7 hyperparameter calibration.,Not inferred from file existence
 src/r2_residual_diagnosis.py,src,implementation,Read-only municipal residual support audit; no external OOF used for fitting.,Not inferred from file existence
+src/reference26_only.py,src,implementation,Reference26-only adapter preserving original nested recipes; no Compact14 fit.,Not inferred from file existence
 src/signal_feature_engineering.py,src,implementation,"Frozen, target-free temporal representations and nested residual adjustments.",Not inferred from file existence
 src/signal_role_allocation.py,src,implementation,Nested role allocation with train-only representations and frozen local recipe.,Not inferred from file existence
 src/temporal_indicator_weights.py,src,implementation,"Temporal X-only indicators and bounded, cross-fitted correction weights.",Not inferred from file existence

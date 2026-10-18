@@ -1,0 +1,5 @@
+region,n,missing_R3,geo_above_training_q95,core4_above_training_q95,local7_above_training_q95,unseen_geology,disagreement_above_OOF_q95,any_flag,median_nearest_distance,median_abs_26_minus14
+all,59,8,1,2,2,0,0,11,0.8756897996352702,0.029777642925558734
+Hidalgo,15,4,1,0,0,0,0,5,1.119794236364502,0.02869737447437881
+Puebla,29,4,0,0,0,0,0,4,0.72438237185866,0.04078327746058008
+Tlaxcala,15,0,0,2,2,0,0,2,1.4396070211293472,0.020441019271314698

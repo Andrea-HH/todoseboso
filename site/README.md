@@ -128,3 +128,70 @@ python -m unittest discover -s tests -p test_story_site.py
 python scripts/529_check_story_site.py
 node --check site/app.js
 ```
+
+
+## Presentación para lectores con distintos conocimientos
+
+La portada cuenta la historia de la predicción en lenguaje cotidiano. El
+apartado «¿De dónde sale una estimación?» permite modificar, con números
+**ficticios**, el peso del experto y la magnitud acotada de R3. El apartado
+«Qué respaldan las pruebas» separa asociaciones estadísticas, ablaciones
+reajustadas y contrastes pareados. Las preguntas al final documentan las
+diferencias entre evaluación aleatoria, espacial, 97/41 y LOOCV.
+
+Los nuevos recursos son:
+
+- `site/preguntas.js`: controles accesibles de pesos sintéticos, asociaciones
+  con p ajustada por Holm, protocolo de Reference25_NoHHI frente a Reference26,
+  avisos de soporte por estado y cobertura/anchura de intervalos.
+- `site/preguntas.css`: presentación de escritorio y móvil, sin scripts ni
+  servicios externos.
+- `site/data/new_research.json`: sólo **agregados públicos** de
+  `results/core4_relevance/v1`, `results/reference26_component_evidence/v1`
+  y `results/four_final_checks/v1`.
+- `site/media/NoHHI_delta_RMSE.png`: la figura original del experimento sin
+  HHI, reparada a partir del archivo PNG corrupto de upstream (restauración de
+  un byte CR de la firma y comprobación CRC de sus cinco bloques).
+- `scripts/check_new_research.py`: compara cifras e intervalos del sitio con
+  los CSV y auditorías originales, incluyendo el archivo PNG; se ejecuta en CI.
+
+### Qué se puede comunicar
+
+- En la OLS diagnóstica ajustada por estado, lluvia total, proporción de
+  lluvia temprana y NDVI mayo conservan asociación bajo Holm13; HHI no.
+  Esta OLS **no** proporciona los coeficientes ni p-valores de Reference26.
+- Ninguna retirada individual de C-T3 sobrevivió Holm en la familia de 24
+  contrastes; los controles NDVI solo y media de entrenamiento sí reflejaron
+  diferencia en ciertos protocolos.
+- En las tres familias archivadas de arquitectura, 0 de 952 contrastes
+  sobrevivieron el ajuste respectivo. No implica equivalencia ni ausencia de
+  efectos: las etiquetas ya se habían reutilizado para elegir arquitecturas.
+- Reference25_NoHHI mejora RMSE espacial `0.6333 → 0.5328` t/ha,
+  pero empeora municipal `0.5752 → 0.5982`; los cuatro IC95% incluyen
+  cero y los contrastes no superan Holm4. No reemplaza Reference26.
+- De las 59 parcelas sin etiqueta, 11 tienen algún aviso de soporte (se
+  pueden superponer). No se ha calculado su error porque Y no está disponible.
+- Los intervalos aleatorios de cobertura nominal 90% logran ~92.9% de
+  cobertura en validación con anchura media ~2.085 t/ha para Reference26.
+  **No son intervalos garantizados para las 59 predicciones finales**.
+
+Se conservan el núcleo histórico y todas las comparaciones anteriores; no
+se modificaron los modelos, las 59 predicciones ni la selección de champions.
+No se deben ofrecer los controles didácticos como inferencia real.
+
+### Validación ampliada
+
+```bash
+python scripts/sync_story_data.py --check
+python scripts/check_story_evidence.py
+python scripts/check_new_research.py
+python scripts/520_validate_repository_documentation.py
+python -m unittest discover -s tests -p 'test_story_site.py'
+python scripts/529_check_story_site.py
+node --check site/app.js
+node --check site/preguntas.js
+```
+
+Los resultados se versionan con sus protocolos originales. No agregar números
+al sitio si su figura o su afirmación no pueden verificarse contra una tabla
+pública concreta.
