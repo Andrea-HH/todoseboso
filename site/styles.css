@@ -60,3 +60,24 @@
 .evidence-bottom a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:920px){.evidence-dashboard{grid-template-columns:1fr}.evidence-study{padding:28px}.evidence-takeaway{grid-template-columns:1fr}}
 @media(max-width:480px){.evidence-study{padding:20px}.ablation-row{grid-template-columns:116px 1fr 51px;gap:7px;font-size:10px}.ablation-score{font-size:11px}.component-r3-row{grid-template-columns:1fr 54px 15px 54px;gap:5px;font-size:11px}.evidence-tab{font-size:10px;padding:8px}}
+
+
+/* Verifiable, noncausal distribution comparison: original public upstream ECDF. */
+.distribution-section{background:var(--paper)}
+.distribution-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:24px 0 35px}
+.distribution-stat{padding:24px 18px 24px 0;display:flex;flex-direction:column;border-right:1px solid var(--rule);gap:5px}
+.distribution-stat:not(:first-child){padding-left:25px}
+.distribution-stat:last-child{border-right:0}
+.distribution-stat>span{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.1em}
+.distribution-stat strong{font-size:clamp(32px,3.5vw,54px);line-height:1.1;letter-spacing:-.05em;font-variant-numeric:tabular-nums;font-weight:650}
+.distribution-stat small{font-size:11px;color:var(--muted)}
+.distribution-figure{margin:0;padding:15px 15px 20px;border:1px solid var(--rule);background:#fff}
+.distribution-figure img{display:block;width:100%;height:auto}
+.distribution-figure figcaption{font-size:12px;color:var(--muted);margin:15px 8px 0;line-height:1.7}
+.distribution-lessons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;padding:38px 0}
+.distribution-lessons span{font-size:10px;font-weight:800;letter-spacing:.13em;color:var(--jade)}
+.distribution-lessons h3{font-size:24px;line-height:1.2;letter-spacing:-.04em;margin:12px 0}
+.distribution-lessons p{font-size:13px;color:var(--muted);line-height:1.8}
+.distribution-section .small-note a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:850px){.distribution-lessons{grid-template-columns:1fr;gap:0}.distribution-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.distribution-stat:nth-child(2){border-right:0}.distribution-stat:nth-child(n+3){border-top:1px solid var(--rule)}}
+@media(max-width:480px){.distribution-stat{padding:16px 8px 16px 0}.distribution-stat:not(:first-child){padding-left:12px}.distribution-stat strong{font-size:35px}.distribution-figure{padding:8px}}
