@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # H — Extensión de estructura climática: precipitación + Tmax
 
 Extensión acotada de [H original](../outputs/modeling/family_1/h_joint_climate_signal/v1/report/h_joint_climate_signal_report.md). No crea una sección I ni modifica G/H v1 o Champion.

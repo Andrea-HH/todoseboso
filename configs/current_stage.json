@@ -1,13 +1,23 @@
 {
   "schema_version": 1,
   "date": "2026-10-18",
-  "stage": "current_champions_reproducibility_and_results",
-  "decision_source": "Explicit user instruction to treat26 and14 as current champions and excludeL40 from the current reproducible delivery",
-  "champions": ["Reference26", "Compact14"],
+  "stage": "current_champions_final59_comparison",
+  "decision_source": "Explicit user instruction to incorporate both current champions into the existing59 comparison.",
+  "champions": [
+    "Reference26",
+    "Compact14"
+  ],
   "control": "CT3",
   "sensitivity": "B1",
-  "included_models": ["CT3", "Reference26", "Compact14", "B1"],
-  "excluded_from_current_delivery": ["L40"],
+  "included_models": [
+    "CT3",
+    "Reference26",
+    "Compact14",
+    "B1"
+  ],
+  "excluded_from_current_delivery": [
+    "L40"
+  ],
   "historical_champion": "A_CURRENT_CH_H_T",
   "original_external_folds": 65,
   "additional_97_41_partitions": 16,
@@ -16,7 +26,30 @@
   "implementation": "src/current_champions.py",
   "public_aggregate_results": "results/current_champions/v1",
   "private_oof_results": "outputs/research/current_champions/v1",
-  "new_final138_fit": false,
-  "new_PRED59": false,
-  "statistical_claim": "Project selection, not proof of statistical superiority or independent confirmation"
+  "new_final138_fit": true,
+  "new_PRED59": true,
+  "statistical_claim": "Project selection, not proof of statistical superiority or independent confirmation",
+  "comparison_models": [
+    "CT3",
+    "Reference26",
+    "Compact14",
+    "B1",
+    "L40"
+  ],
+  "external_reference": "L40: included in comparative documentation; excluded_from_current_delivery refers only to the own-model reproducibility bundle and retraining.",
+  "final_prediction_models": [
+    "Reference26",
+    "Compact14"
+  ],
+  "final_entry_point": "scripts/526_current_champions_final59.py",
+  "final_comparison_models": [
+    "CT3",
+    "Historical_TOP20_TOP15",
+    "EQUAL3",
+    "L40",
+    "Reference26",
+    "Compact14"
+  ],
+  "final_comparison": "outputs/modeling/current_champions_final/v1/comparacion_predicciones59.xlsx",
+  "final_comparison_report": "results/current_champions_final/v1/README.md"
 }

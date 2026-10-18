@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # F5 — Matriz experimental propuesta, sin ejecutar
 
 Ocho filas corresponden a siete familias numeradas: F5-00 tiene controles compacto y mensual. Todas permanecen propuestas para revisión. RBF/ARD se documentan como sensibilidades acotadas del mismo núcleo, no una expansión automática.

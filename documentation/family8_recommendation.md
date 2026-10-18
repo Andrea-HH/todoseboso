@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # F8 — Recomendación y ocho respuestas
 
 **Es viable una prueba residual pequeña, pero no una nueva búsqueda extensa. No se ejecutó F8.** Recomiendo C-T3 compact4 como base inicial, R1 Ridge de pendiente primero y R2 CatBoost pendiente+May únicamente tras revisión y con control May-only. No iniciar historia, R4, mezcla de modelos completos ni corrección del Champion.

@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # R2: investigación de sesgo residual municipal
 
 Se completó el diagnóstico solicitado. **No se justifica todavía añadir una calibración municipal a R2 bajo el soporte conservador de la etapa anterior.** Los municipios con al menos 15 parcelas no muestran una dirección suficientemente estable entre parcelas y perfiles. Almoloya presenta la señal positiva más persistente, pero solo tiene 10 parcelas.

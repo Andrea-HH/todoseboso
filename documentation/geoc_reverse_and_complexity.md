@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Local04D como base y C-T3 como corrección: resultado y complejidad
 
 Se ejecutó la dirección inversa en este repositorio: **Local04D + amplitud × Elastic Net de sus residuos usando las cuatro entradas de C-T3**. Los coeficientes del corrector se vuelven a estimar para los nuevos targets residuales; no se suma sin más la predicción original de C-T3.

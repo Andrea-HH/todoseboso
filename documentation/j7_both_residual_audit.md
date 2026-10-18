@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Evaluación completa de residuos OOF de J7_BOTH
 
 **Conclusión:** J7_BOTH está bien calibrado globalmente en validación aleatoria y por perfil, pero tiene tres límites claros: algunos rendimientos bajos generan errores positivos muy grandes y persistentes; el R² global oculta diferencias marcadas dentro de los estados; y la transferencia espacial introduce sobreestimación territorial. No aparece evidencia de que un ajuste lineal global simple vaya a resolver los tres problemas.

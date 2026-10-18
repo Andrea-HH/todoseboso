@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Líneas de investigación después de F4-E
 
 Propuesta basada en la revisión de Familias 1–4, Champion RS6, diagnósticos F3.2.1, screening y concentración de errores de Chignahuapan. No se entrenaron nuevas arquitecturas ni se modificaron resultados anteriores. Una mezcla fija de predicciones archivadas se examinó únicamente como diagnóstico exploratorio retrospectivo.

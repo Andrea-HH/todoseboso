@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # F7 — Primera ejecución: CatBoost y XGBoost directos
 
 Se ejecutaron únicamente F7-00 y F7-01. E1–E3 permanecen predefinidas para CatBoost y requieren revisión. Las comparaciones son exploratorias sobre etiquetas y folds reutilizados; no constituyen confirmación independiente ni superioridad estadística.

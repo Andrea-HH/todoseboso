@@ -6,7 +6,7 @@ Trabajamos con **197 parcelas de Hidalgo, Puebla y Tlaxcala**, ciclo 2025: **138
 
 La finalidad práctica es apoyar la estimación de productividad y aportar información para decisiones agropecuarias y financieras. Este estudio no valida un sistema automático de otorgamiento de crédito, una relación causal agronómica ni la transferencia a cualquier región o año.
 
-**Etapa actual: champions Reference26 y Compact14**, con C-T3 como control y B1 como sensibilidad. La entrega reproducible actual excluyeL40. [Resultados](results/current_champions/v1/README.md) · [Reproducción](documentation/current_champions_reproduction.md).
+**Etapa actual: champions Reference26 y Compact14**, con C-T3 como control y B1 como sensibilidad. L40 se conserva como benchmark fuerte del equipo; queda fuera del reentrenamiento propio, no de la comparación. [Resultados](results/current_champions/v1/README.md) · [Reproducción](documentation/current_champions_reproduction.md).
 
 ## Propósito y entregables según los lineamientos
 
@@ -23,28 +23,30 @@ La [matriz de entregables y evidencia](documentation/project_scope_and_guideline
 
 ## Qué modelo es cuál y cuál es su estado
 
-**La etapa actual conserva dos champions: Reference26 y Compact14**, por decisión explícita del responsable del proyecto después de las comparaciones. El de 26 prioriza precisión y equilibrio territorial; el de 14 prioriza simplicidad de fuentes con desempeño próximo. C-T3 es el control compacto y B1 una sensibilidad. Esta selección no implica que ya exista un ajuste final138 o una nueva entrega59 de ambos champions.
+**La etapa actual conserva dos champions: Reference26 y Compact14**, por decisión explícita del responsable del proyecto después de las comparaciones. El de 26 prioriza precisión y equilibrio territorial; el de 14 prioriza simplicidad de fuentes con desempeño próximo. C-T3 es el control compacto y B1 una sensibilidad. Ambos champions ya tienen ajuste final con138 rendimientos y59 predicciones incorporadas a la comparación existente.
 
 `A_CURRENT_CH_H_T` conserva el nombre de Champion histórico y su entrega previa: no es el champion actual26. El estado y las rutas están en el [registro de modelos](documentation/model_registry.md), la [etapa vigente](configs/current_stage.json) y la [ruta reproducible actual](documentation/current_champions_reproduction.md).
 
 | Modelo | Qué hace | Estado y motivo de conservarlo |
 |---|---|---|
-| **Reference26 · champion actual** | C-T3 + experto local7, compuerta geológica y corrector R3 | Seleccionado por precisión y equilibrio de validación; OOF reproducibles, sin nuevo ajuste final138/PRED59 |
-| **Compact14 · champion actual compacto** | C-T3 + experto local5, peso global y R3; sin Planet ni compuerta geológica | Seleccionado por simplificación y desempeño próximo; OOF reproducibles, sin nuevo ajuste final138/PRED59 |
+| **Reference26 · champion actual** | C-T3 + experto local7, compuerta geológica y corrector R3 | Seleccionado por precisión y equilibrio de validación; OOF reproducibles y ajuste final138 con59 predicciones |
+| **Compact14 · champion actual compacto** | C-T3 + experto local5, peso global y R3; sin Planet ni compuerta geológica | Seleccionado por simplificación y desempeño próximo; OOF reproducibles y ajuste final138 con59 predicciones |
 | **C-T3 / CT3** | Elastic Net global con lluvia total, fracción temprana, concentración mensual y NDVI de mayo | Control compacto de 4 entradas; tiene ajuste final y59 predicciones en la entrega histórica |
 | **B1** | Mezcla aprendida internamente entre C-T3 y26 | Sensibilidad: pequeña ventaja municipal, deterioro espacial; no recomendada para sustituir26 |
+| **L40 / Local04D** | PCA20 de C4 (2082 variables) + Ridge local24 geográfico | Benchmark fuerte externo del equipo; no es champion actual de este repositorio |
 | **Champion histórico** `A_CURRENT_CH_H_T` | Base climática Elastic Net, corrección histórica XGBoost y corrección topográfica Ridge | Referencia histórica; tiene entrega59. No es el modelo26 |
 | **EQUAL3** | Promedio fijo C-T3 + GPR F5-01 + CatBoost F7-00 | Ensamble histórico con entrega59; no es B1 ni mezcla con L40 |
 | **F5/F6/F7 y otras variantes** | GPR, bagging, boosting, correcciones y ablaciones | Investigación y controles; ver el índice. La propuesta F8 no prueba una ejecución F8 |
 
-Las14/26 son **entradas derivadas**, no números de coeficientes globales. L40/Local04D pertenece al repositorioGeoC y queda como comparación histórica; no forma parte del paquete ni de los resultados reproducibles actuales. Se conservan los informes históricos sin reescribirlos.
+Las14/26 son **entradas derivadas**, no números de coeficientes globales. L40/Local04D pertenece a GeoC y se conserva en las tablas como benchmark externo fuerte del equipo. No se reentrena dentro del paquete propio. Cada modelo tiene una [ficha completa](documentation/models/README.md), con variables, función de sus bloques, origen, ventajas y límites. Los [documentos históricos](documentation/model_status_history.md) se distinguen de la selección vigente.
 
 ## Comparación reciente compatible
 
-RMSE en t/ha / R². Mismos65 folds externos y138 rendimientos; métricas sobre OOF completas por repetición y después promedio. Esta tabla compara los champions actuales, el control y la sensibilidad; no es el error desconocido de las 59.
+RMSE en t/ha / R². Mismos65 folds externos y138 rendimientos; métricas sobre OOF completas por repetición y después promedio. Esta tabla compara los champions actuales, el control, la sensibilidad y L40 sobre evaluación compatible; no es el error desconocido de las 59.
 
 | Modelo | Aleatoria | Perfil climático | Municipal | Espacial |
 |---|---|---|---|---|
+| L40 / Local04D | .4930 / .6619 | .5031 / .6481 | .7602 / .1964 | .9794 / −.3337 |
 | C-T3 | .5116 / .6361 | .5206 / .6232 | .5813 / .5302 | .6788 / .3594 |
 | Reference26 | .4748 / .6865 | .4774 / .6831 | .5752 / .5400 | .6333 / .4423 |
 | Compact14 | .4773 / .6832 | .4793 / .6805 | .5755 / .5395 | .6431 / .4250 |
@@ -94,3 +96,5 @@ Los enlaces a `outputs/` funcionan con la copia local de artefactos; no estarán
 ## Uso de inteligencia artificial generativa
 
 Se utilizó asistencia de IA en diseño y revisión de experimentos, programación, interpretación de resultados y documentación. El [inventario de IA generativa](documentation/ai_usage.md) contiene prompts recuperables, finalidad, herramienta, fuentes y límites de trazabilidad. Distingue solicitudes de ejecuciones y no atribuye a una IA mediciones, datos o validaciones que deban sustentarse con artefactos. Este inventario complementa la bibliografía; no la sustituye.
+
+**Predicciones finales disponibles:** los dos champions se ajustaron con138 rendimientos y se incorporaron a la comparación existente de59. [Comparación entre predicciones](results/current_champions_final/v1/README.md); no se conoce aún su error real.

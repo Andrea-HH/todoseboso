@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Complementos de modelado: unión climática y correcciones residuales
 
 **Conclusión: conservar C-T3.** La unión de representaciones mejora el error espacial agregado, pero perjudica la transferencia municipal. Las nuevas correcciones vegetales no ofrecen una ganancia consistente sobre la base seleccionada internamente. Pendiente produce cambios de pocas milésimas; historia ofrece una mejora espacial pequeña con costo municipal. No se recomienda integrar estas correcciones ni promover una nueva base.

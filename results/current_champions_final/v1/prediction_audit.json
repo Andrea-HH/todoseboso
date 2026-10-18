@@ -1,0 +1,27 @@
+{
+  "n_predictions": 59,
+  "champions_added": [
+    "Reference26",
+    "Compact14"
+  ],
+  "existing_predictions_preserved": true,
+  "old_columns_unchanged": true,
+  "historical_champion_unchanged": true,
+  "saved_model_replay_exact": true,
+  "R3_complete": 51,
+  "CT3_native_vs_historical_mean_abs": 0.04728490992251732,
+  "unknown_error_metrics_computed": false,
+  "internal_ledger_verified": true,
+  "unknown_target_invariance_passed": true,
+  "ledger_records": 5796,
+  "training_seconds": 567.6704032999987,
+  "R3_strengths": [
+    1.0,
+    1.0
+  ],
+  "warning_count": 1,
+  "warning_categories": [
+    "RuntimeWarning"
+  ],
+  "warning_summary": "One environment RuntimeWarning: Intel and LLVM OpenMP both loaded. Fit and exact replay completed; no convergence warning recorded."
+}

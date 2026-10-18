@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Acceso e inventario de señales puntuales de GeoC
 
 Se confirmó acceso local de lectura a `C:/Users/narro/Desktop/semestre/fira/GeoC`. Las tablas por parcela y sus manifiestos están disponibles en `data/processed/features_v1`, `agronomic_features_v1` y `empirical_features_v1`. Contienen 197 filas y respectivamente 1,408, 351 y 336 columnas, incluyendo metadatos. No se suman esos tamaños como fuentes independientes ni como un nuevo total de variables.

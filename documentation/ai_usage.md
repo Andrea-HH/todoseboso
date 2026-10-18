@@ -6,7 +6,7 @@ Los [lineamientos del reto](../docs/guidelines/Lineamientos%20y%20Gui%CC%81a%20d
 
 **Herramienta identificable en esta conversación: Codex, asistente de IA generativa.** No se reconstruye una versión histórica de modelo, fecha, temperatura, configuración o número de tokens sin evidencia. Los textos adjuntos fueron proporcionados por el usuario; el registro no atribuye su autoría original a una persona o modelo distinto. No hay evidencia suficiente aquí para declarar uso o ausencia de IA en el otro repositorioGeoC o por todos los integrantes del equipo.
 
-Registro recuperado al2026-10-18: **37 prompts**,21 adjuntos originales y16 mensajes literales de la conversación, indexados en [ai/README.md](ai/README.md) y [prompt_inventory.csv](ai/prompt_inventory.csv). Incluye la selección explícita de26/14 y la solicitud de reproducción sinL40. Los adjuntos se conservan byte por byte conSHA256; los mensajes son transcripciones del texto disponible. Ningún resumen redactado ahora se presenta como un prompt original.
+Registro recuperado al2026-10-18: **39 prompts**,21 adjuntos originales y18 mensajes literales de la conversación, indexados en [ai/README.md](ai/README.md) y [prompt_inventory.csv](ai/prompt_inventory.csv). Incluye la selección explícita de26/14 y la solicitud de reproducción sinL40. Los adjuntos se conservan byte por byte conSHA256; los mensajes son transcripciones del texto disponible. Ningún resumen redactado ahora se presenta como un prompt original.
 
 ## En qué se utilizó la asistencia
 

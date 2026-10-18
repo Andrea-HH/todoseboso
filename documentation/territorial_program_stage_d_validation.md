@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Etapa D — Protocolo prospectivo de validación independiente
 
 Este documento congela el conjunto de hipótesis y procedimientos de referencia. Las cuotas de reclutamiento, presupuesto y margen económico final siguen pendientes de decisión de FIRA. Ningún candidato se entrenó sobre las 138 etiquetas completas durante D. No se adquirieron nuevas etiquetas.

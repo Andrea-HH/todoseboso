@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Contrastes vecinales: conclusiones de la batería de árboles
 
 Se completaron cuatro alternativas en las mismas 65 particiones. La utilidad más prometedora observada es moderar el peso del experto local; no hay una ganancia general demostrada ni se promueve un modelo. La alternativa continua solicitada después se evalúa por separado en `neighbor_signal_linear_results.md` y se sintetiza conjuntamente en `neighbor_signal_linear_conclusions.md`.

@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Indicadores temporales y pesos continuos: interpretación
 
 Se construyeron ocho indicadores temporales propios y pendiente mínima como contexto. Se completaron12arquitecturas nuevas sobre65folds (780sistemas externos), con referencia exacta CT3/J7 y dos benchmarks del corrector anterior. Los resultados son exploratorios del mismo banco ya investigado; no hay promoción de Champion, ajuste final138 ni PRED59.

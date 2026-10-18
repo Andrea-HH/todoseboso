@@ -1,10 +1,12 @@
 # Etapa vigente: champions26 y 14, reproducción sin L40
 
+**Lectura vigente:** champions Reference26 y Compact14. [Fichas completas de los cinco modelos](models/README.md) · [Estado de la documentación histórica](model_status_history.md).
+
 ## Decisión y alcance
 
 Por instrucción explícita del responsable del proyecto, **Reference26 y Compact14 son los champions actuales**. C-T3 permanece como control compacto y B1 como sensibilidad evaluada. No se incorporaL40/Local04D a la entrega reproducible actual; su historial comparativo permanece disponible. La decisión está versionada en [current_stage.json](../configs/current_stage.json).
 
-No se cambian variables, hiperparámetros,138 rendimientos o particiones. No se generan modelos finales138 ni predicciones59. Seleccionar champions y demostrar reproducción no equivale a conocer el error de 59 o demostrar superioridad estadística independiente.
+No se cambian variables, hiperparámetros,138 rendimientos o particiones. La auditoría de OOF descrita abajo no generó finales. Posteriormente se consolidaron ambos champions con138 y se generaron59 estimaciones; véase la comparación final. Seleccionar champions y demostrar reproducción no equivale a conocer el error de 59 o demostrar superioridad estadística independiente.
 
 ## Código y entradas independientes del otro repositorio
 
@@ -67,3 +69,5 @@ Las métricas actuales están en [results/current_champions/v1](../results/curre
 Los paquetes contienen las etapas ajustadas y sus selecciones. Ningún archivo de esta ruta usa las 59 parcelas para elegir modelos. El replay completo tiene prueba de equivalencia; el alcance del reentrenamiento comprobado se documenta en [verificación de entrenamiento](../results/current_champions/v1/cold_refit_verification.json) y no se infiere de la existencia del comando.
 
 Las versiones del entorno se conservan en [environments](../environments/README.md). Un replay o un reentrenamiento en este entorno no certifica instalación limpia en cualquier plataforma. Durante la verificación local apareció una advertencia de bibliotecasOpenMP simultáneas; se registra en los logs por fold cuando se emite. No hubo deterioro numérico en las comprobaciones que pasaron; revisar el entorno si se reproduce un fallo de ejecución.
+
+**Etapa posterior de predicción final:** [26/14 incorporados a la comparación59](../results/current_champions_final/v1/README.md). Los modelos y resultados históricos se conservan.

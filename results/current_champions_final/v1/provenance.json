@@ -1,0 +1,10 @@
+{
+  "source_sha256": {
+    "scripts/526_current_champions_final59.py": "acd2703c4246711b454f5068900ffd3f8b27622f5e4d32a258a1732489a53a58",
+    "scripts/527_finalize_prediction_comparison.py": "ac30401a4f4d741fbf32fdd1832398c9111a35016fba64353bf3c998e77c6285",
+    "src/current_champions.py": "bb732085d65f62d8235dfa96b2bdd61459f8920981be41508dc2770710a5875e"
+  },
+  "final_model_sha256": "54afbcf81d60623a634b64afb498152b11a0f66ea4c3e21cab2d4939250ac147",
+  "original_comparison_sha256": "07e01109dba02b18ae8f86d1a19397872a033c6db789d3af0cfacdc7151b396f",
+  "source_hash_encoding": "UTF-8 source bytes with CRLF normalized to LF; model and original CSV use raw bytes"
+}

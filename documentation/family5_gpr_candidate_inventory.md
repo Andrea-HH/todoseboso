@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # F5 — Inventario de variables candidatas
 
 Los11campossolicitados y elsoporte porcolumna se encuentran en [candidate_variable_inventory.csv](../outputs/research/family_5/gpr_evidence_design/v1/tables/candidate_variable_inventory.csv). Incluye los16camposhistóricos efectivos, cobertura constante, lluvia7/10/3, variables térmicas, vegetación ytopografía. No es una nueva selección supervisada.

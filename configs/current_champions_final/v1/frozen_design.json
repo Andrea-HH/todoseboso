@@ -1,0 +1,42 @@
+{
+  "models": [
+    "Reference26",
+    "Compact14"
+  ],
+  "n_train": 138,
+  "n_predict": 59,
+  "inner_splits": 4,
+  "shuffle": true,
+  "seed": 2026,
+  "scope": "Native frozen champion consolidation; no B1/new architecture or hyperparameter search.",
+  "fit_inputs": "Only train138 and distance138. Prediction features never used for selection.",
+  "implementation_sha256": "bb732085d65f62d8235dfa96b2bdd61459f8920981be41508dc2770710a5875e",
+  "feature_names": [
+    "compact_precip_total",
+    "compact_early_fraction",
+    "compact_concentration_hhi",
+    "S2_ndvi_month_05",
+    "sat_basic_hist__sentinel_2__ndvi_promedio__mean",
+    "sat_basic_hist__sentinel_2__ndvi_promedio__std",
+    "emp_shape__y2025_planet_evi__turning_fraction",
+    "agro_pheno__y2025_planet_ndvi__jun_to_aug_delta",
+    "sat_basic_2025__sentinel_2__ndwi_promedio__mean",
+    "sat_basic_2025__sentinel_2__ndwi_promedio__std",
+    "topo_official__slope__mean",
+    "base_centroid_lat",
+    "base_centroid_lon",
+    "geology_physiography::geo250_share__Q(B)",
+    "geology_physiography::geo250_share__Q(B-Bvb)",
+    "geology_physiography::geo250_share__Q(Bvb)",
+    "geology_physiography::geo250_share__Q(al)",
+    "geology_physiography::geo250_share__Ts(A)",
+    "geology_physiography::geo250_share__Ts(B)",
+    "geology_physiography::geo250_share__Ts(R)",
+    "geology_physiography::geo250_share__Ts(R-Ta)",
+    "geology_physiography::geo250_share__Ts(Ta)",
+    "geology_physiography::geo250_share__Ts(Ti)",
+    "I_history_ndvi_floor",
+    "I_gap_excess_persistence",
+    "I_slope_min"
+  ]
+}

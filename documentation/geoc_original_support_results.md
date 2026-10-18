@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # C-T3 + Local04D original con soporte geográfico
 
 **Resultado: esta mezcla no mejora de forma equilibrada a C-T3 y no se recomienda integrarla.** Se probó el Local04D completo que pidió el usuario: PCA20 de C4 (2,082 variables de origen),24 vecinos, alpha30 y potencia1. No se sustituyó por una Ridge local climatológica de cuatro variables.

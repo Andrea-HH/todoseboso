@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Predicciones de los tres ganadores y validación estadística
 
 Entrega autorizada el 15 de octubre de 2026: **C-T3, Champion y EQUAL3**, con 59 predicciones por modelo. Se ajustaron seis componentes finales con las 138 etiquetas TRAIN; no se usaron rendimientos de PRED. Los archivos y modelos históricos permanecen intactos.

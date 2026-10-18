@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Comparación de C-T3, Local04D, Compact14 y Reference26
 
 Comparación descriptiva y pareada, sin entrenamiento nuevo: 7,176 predicciones OOF, 1,794 por arquitectura, sobre las mismas 138 parcelas y 65 folds. Diez repeticiones aleatorias y una evaluación completa por perfil, municipal y espacial. Se verifican coincidencia de IDs, fold, respuesta y predicciones históricas C-T3. Métricas sobre OOF completas por repetición y después promedio; no se tratan repeticiones como parcelas independientes. Error = predicho − observado.

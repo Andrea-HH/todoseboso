@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Pesos aprendidos y asimetría R3: resultados exploratorios
 
 33 entradas: 24 nuevas y nueve referencias exactas; mismos 65 folds. Métricas por OOF completas de cada repetición, nunca media de errores por fold. BASE=base original; GLOBAL_GLOBAL=R3 global anterior; SATELLITE_SUPPORT=peso fijo anterior; MASK=sólo disponibilidad; CONSTANT=peso escalar aprendido; ASYM=pesos por signo; LEARNED=peso condicionado; LEARNED_ASYM=condicionado por signo. P1/P10 son sensibilidades fijas, no penalizaciones seleccionadas. Diseño inicial y enmienda previa a resultados deben leerse juntos.

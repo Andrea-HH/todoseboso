@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # F5 — Recomendación para la primera ejecución futura
 
 **Primer candidato: F5-01, GPR exacto Matérn3/2 con lluvia compacta + NDVI Sentinel de mayo2025.** Cuatroentradas, cuatrohiperparámetros dekernel: amplitud, longitud de lluvia compartida, longitud NDVI y ruido. Mantener C-T3ElasticNet como control de idénticas variables y F5-00-Ccomo ablación de lluvia. No sustituir NDVI de mayo por un índice anual ni comenzar con History15+TOPO25.

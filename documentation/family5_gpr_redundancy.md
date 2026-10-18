@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # F5 — Redundancia, soporte e identificabilidad
 
 Se calcularon únicamente relaciones entre covariables existentes de138 TRAIN. No se empleó Y para nuevos rankings, se usó PRED para seleccionar ni se ajustaron regresiones de reconstrucción nuevas. Las asociaciones conY citadas proceden de artefactos anteriores. `predictor_pearson_TRAIN138.csv` y `predictor_within_profile_pearson.csv` conservan las matrices; `high_redundancy_pairs.csv` identifica pares |r|≥0.9, criterio descriptivo, no eliminación supervisada automática.

@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Familia 4 — Sensibilidades condicionales y señales complementarias
 
 NDVI de mayo aporta una mejora local modesta; su percentil temporal bajo produce resultados parecidos y es muy redundante. La variabilidad de amplitud térmica añadida directamente a lluvia aporta una mejora espacial distinta. Las interacciones no ofrecen una ventaja general y ninguna prueba cumple todos los márgenes operativos previos. Estos resultados son exploratorios: las candidatas se eligieron retrospectivamente entre 1,473 variables usando las mismas 138 etiquetas.

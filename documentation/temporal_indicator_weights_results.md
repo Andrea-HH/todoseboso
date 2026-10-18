@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Indicadores y pesos continuos: resultados exploratorios
 
 Todos los hiperparámetros fijados antes de entrenamiento. Pesos aprendidos sobre candidatos cross-fitted; ruta por signo del candidato predicho. No son probabilidades calibradas de sobre/subestimación. C4_FIXED nuevo usa alpha=0.01, l1_ratio=0.5 y amplitud=0.5; C4previo P_RAW se conserva como benchmark distinto.

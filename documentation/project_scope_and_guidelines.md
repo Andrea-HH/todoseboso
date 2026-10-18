@@ -27,6 +27,6 @@ Documento: [Lineamientos y Guía de Registro de Proyectos](../docs/guidelines/Li
 
 ## Estado que debe comunicarse
 
-El repositorio contiene investigación extensa y una entrega histórica de C-T3/Champion/EQUAL3. La decisión explícita actual del responsable selecciona Reference26 y Compact14 como champions: precisión y simplificación, respectivamente. Su [ruta reproducible](current_champions_reproduction.md) incluyeC-T3 y B1 y excluyeL40. Esta selección no produce automáticamente un ajuste final138, nuevas59 predicciones ni publicación del reto. La receta de entrega, su archivo59 y el enlace demostrativo deben identificarse explícitamente al cerrar el proyecto.
+El repositorio contiene investigación extensa y una entrega histórica de C-T3/Champion/EQUAL3. La decisión explícita actual del responsable selecciona Reference26 y Compact14 como champions: precisión y simplificación, respectivamente. Su [ruta reproducible](current_champions_reproduction.md) incluye C-T3 y B1, sin reentrenar L40; L40 sí permanece en las tablas comparativas como referencia externa fuerte. Esta selección no produce automáticamente un ajuste final138, nuevas59 predicciones ni publicación del reto. La receta de entrega, su archivo59 y el enlace demostrativo deben identificarse explícitamente al cerrar el proyecto.
 
 No presentar un resultado OOF como error de 59 ni un banco nuevo de particiones sobre las mismas etiquetas como confirmación independiente. Las limitaciones de los modelos locales, la PCA transductiva de L40 y el soporte por municipio deben acompañar la interpretación.

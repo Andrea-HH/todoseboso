@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Sección J — Modelado incremental con topografía y edafología
 
 Se ejecutaron J0–J5 y una sensibilidad J6 Top-3 con Elastic Net, 138 etiquetas y los 65 folds congelados de H. No se reemplazó el Champion ni se generaron predicciones finales para los 59 casos sin etiqueta. Las columnas efectivas y reglas se fijaron antes de entrenar en `configuration.json` y `report/pretraining_audit.md`.

@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Ingeniería de señales: interpretación y decisión
 
 Se completaron14 recetas nuevas sobre65folds,910modelos externos, con las referencias CT3/J7 intactas. Cuatro pruebas automatizadas pasaron. La evaluación reproduce todos los modelos y verifica las exclusiones de entrenamiento. Es una investigación exploratoria: sus hipótesis proceden de errores observados en estos mismos datos.

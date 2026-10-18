@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Programa territorial intraperfil — Primera entrega: Etapa A
 
 La auditoría encontró una discrepancia de fuentes: `data/externo/chignahuapan/e14b13.tif` **es una carta topográfica**, no una carta edafológica. No se localizó la fuente edafológica histórica1:50,000 descrita en la solicitud. Se mantiene suspendida su comparación multiescala y clasificación por parcela. La carta geológico-minera suministrada es SGM1:50,000, primera edición de diciembre2017, no1996.

@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Etapa B — Aprendizaje de diferencias intraperfil y mezcla fija
 
 El objetivo intraperfil no produce una mejora defendible de predicción regional. B1 empeora la diferenciación equilibrada; B3 obtiene una mejora local pequeña, con un costo municipal importante. La mezcla fija Champion/F4-S1 mejora modestamente RMSE y MAE aleatorios. Son dos conclusiones independientes y exploratorias, no una confirmación de mejora en regiones nuevas.

@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Etapa D — Auditoría de integridad
 
 Estado: completa. Se verificaron 5108 archivos protegidos anteriores y 5 referencias directas a fuentes contra la procedencia deB. Incluye artefactosA–C/F4/F4-E, Champion, antecedentes, métricas, configuraciones y scripts. Los archivos previos permanecen intactos.

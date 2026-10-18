@@ -41,3 +41,5 @@ Este índice contiene solicitudes, no un registro de ejecución. Herramienta rec
 | P035 | Reorganizar documentación, versionar metadatos e inventariar IA | [Literal](prompts/P035_conversation.txt) | [Documento](../repository_organization.md) |
 | P036 | Seleccionar26/14 como champions y reproducir modelos propios excluyendoL40 | [Literal](prompts/P036_conversation.txt) | [Documento](../current_champions_reproduction.md) |
 | P037 | Actualizar navegación y estados a la etapa actual de champions | [Literal](prompts/P037_conversation.txt) | [Documento](../current_champions_reproduction.md) |
+| P038 | Documentar champions actuales, distinguir historial y explicar variables y origen de cada modelo | [Literal](prompts/P038_conversation.txt) | [Documento](../models/README.md) |
+| P039 | Consolidar26/14 y agregar sus59 predicciones a la comparación existente | [Literal](prompts/P039_conversation.txt) | [Documento](../models/README.md) |

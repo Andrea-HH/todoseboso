@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Geografía con el núcleo compacto: prueba acotada terminada
 
 **Sí hay una razón para continuar, pero en una línea pequeña.** La localidad se puede aprovechar con cuatro variables sin PCA. Sin embargo, la Ridge local pura conserva los problemas de transferencia de Local04D. La mezcla contraída hacia C-T3 es más equilibrada, con ganancias pequeñas; el control Ridge global mejora municipalmente sin usar geografía y debe mantenerse como referencia. No se promueve un ganador ni se cambian las59 predicciones finales.

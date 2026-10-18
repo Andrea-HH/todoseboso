@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-18",
+  "n_features": 2082,
+  "counts_by_layer": {
+    "base": 1397,
+    "agronomic": 350,
+    "empirical": 335
+  },
+  "method": "Original resolve_numeric_representation_features, original C4 policy, original nonempty/nonconstant filter; no PCA refit.",
+  "target_loaded": false,
+  "models_trained": 0,
+  "external_repository_modified": false,
+  "limitation": "Reconstructs original input names from current local source tables; not an independent re-audit of every upstream formula or the historical PCA loading matrix.",
+  "source_sha256": {
+    "configs/checkpoint04a.yaml": "2b185ad0149d483d3493b53601a097c99463c9e1b98c3407e373c7f4f71509c6",
+    "src/geocebada/evaluation/checkpoint04a.py": "a4f52e48c6b92a580b37b3fc4c89ebc3fb6e5e417489166b69cb90c97d7def51",
+    "data/processed/features_v1/parcel_features_all.csv": "bf27e28f01f1765319f5c9d60af3786039ebf0c93ba550d31f7e5ad917b03984",
+    "data/processed/features_v1/feature_manifest.json": "1eede316381c86d72a033cff2fa5e9772bac3d0c7dc11c830054610cdb5043f8",
+    "data/processed/agronomic_features_v1/parcel_agronomic_features.csv": "5a8fbf3daea5dd628ee12d68c35374e0595030dab14426e826a27fd0b2f6b1f6",
+    "data/processed/agronomic_features_v1/feature_manifest.json": "29f4e5cb6e661a0f1078da1dec03ece20336a96eea154e40929aed8db21dcaed",
+    "data/processed/empirical_features_v1/parcel_empirical_features.csv": "f2c3ebd33bb42e19d58b5966936231141e1239cf347927bf74f4c3057d47fc03",
+    "data/processed/empirical_features_v1/feature_manifest.json": "f3bea38f80ddc47167d3e36ea6d7ac31d0df93e62d78ecd90a653e4a81d5a943"
+  }
+}

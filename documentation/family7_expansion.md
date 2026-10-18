@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # F7 — Expansión controlada de CatBoost
 
 Se ejecutaron exclusivamente E1 historia NDVI2, E2 pendiente media y E3 ambos, con el modelo CatBoost y las ocho configuraciones previamente congeladas. Cada variante seleccionó dentro de cuatro particiones internas de cada entrenamiento externo. F7-00/F7-01 y todos los controles se recuperaron sin ajustes ni cambios.

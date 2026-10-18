@@ -187,6 +187,10 @@ scripts/520_validate_repository_documentation.py,scripts,execution helper / entr
 scripts/521_current_champions.py,scripts,execution helper / entry point,"Export/replay/refit the current CT3/26/14/B1 scope, without L40 or GeoC.",Not inferred from file existence
 scripts/522_finalize_current_champions.py,scripts,execution helper / entry point,Validate completed replay/cold-refit evidence and publish aggregate provenance.,Not inferred from file existence
 scripts/523_check_current_champions_exclusions.py,scripts,execution helper / entry point,Integration check: held-out targets cannot change a cold fold's predictions.,Not inferred from file existence
+scripts/524_document_current_models.py,scripts,execution helper / entry point,"Build current model cards and an explicit, non-destructive historical status map.",Not inferred from file existence
+scripts/525_inventory_l40_inputs.py,scripts,execution helper / entry point,Read-only reconstruction of GeoC C4 input names; no PCA fit or yields loaded.,Not inferred from file existence
+scripts/526_current_champions_final59.py,scripts,execution helper / entry point,"Fit frozen26/14 on138, append to existing59 comparison; no hidden targets.",Not inferred from file existence
+scripts/527_finalize_prediction_comparison.py,scripts,execution helper / entry point,Explain final59 disagreements and update status after526 completes; no fitting.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/00_preguntas_pequeñas.py,scripts,execution helper / entry point,,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/01_eda_temporal.py,scripts,execution helper / entry point,EDA inicial de las tablas maestras de AgroCebada.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/02_revision_eda_tablas_maestreas.py,scripts,execution helper / entry point,02 - Revision dirigida del EDA de tablas maestras.,Not inferred from file existence
@@ -583,6 +587,14 @@ documentation/learned_r3_weight_results.md,documentation,results / interpretatio
 documentation/m_historical_multisensor.md,documentation,documentation,M — Historical and Multisensor Satellite Signal Exploration,Not inferred from file existence
 documentation/model_comparison_convention.md,documentation,documentation,Convención de presentación de modelos,Not inferred from file existence
 documentation/model_registry.md,documentation,documentation,Registro de modelos y estados,Not inferred from file existence
+documentation/model_status_history.md,documentation,documentation,Estado de documentos históricos y vigentes,Not inferred from file existence
+documentation/models/B1/README.md,documentation,documentation,B1 — ficha del modelo,Not inferred from file existence
+documentation/models/Compact14/README.md,documentation,documentation,Compact14 — ficha del modelo,Not inferred from file existence
+documentation/models/CT3/README.md,documentation,documentation,CT3 — ficha del modelo,Not inferred from file existence
+documentation/models/historical_top20_top15/README.md,documentation,documentation,Champion histórico TOP20 → TOP15 → topografía,Not inferred from file existence
+documentation/models/L40/README.md,documentation,documentation,L40 — ficha del modelo,Not inferred from file existence
+documentation/models/README.md,documentation,documentation,Modelos de la comparación final,Not inferred from file existence
+documentation/models/Reference26/README.md,documentation,documentation,Reference26 — ficha del modelo,Not inferred from file existence
 documentation/neighbor_signal_contrasts_conclusions.md,documentation,results / interpretation,Contrastes vecinales: conclusiones de la batería de árboles,Not inferred from file existence
 documentation/neighbor_signal_contrasts_design.md,documentation,frozen design / proposal,Contrastes de señales respecto a vecinos: diseño congelado,Not inferred from file existence
 documentation/neighbor_signal_contrasts_results.md,documentation,results / interpretation,Contrastes de señales respecto a vecinos: resultados,Not inferred from file existence

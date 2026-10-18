@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Investigación de simplificación de J7 + R3
 
 Se congelaron seis nuevas ablaciones antes del entrenamiento: tres indicadores individuales, dos parejas faltantes y una corrección constante. Se recuperó la pareja persistencia + pendiente (R2) ya existente, sin reentrenarla. Cada variante conserva J7 exactamente y selecciona amplitud 0/.25/.5 con OOF internas completas, imputación/escalado dentro del entrenamiento, Elastic Net alpha .01 y l1_ratio .5 y límite final ±.25 t/ha. La comparación externa es exploratoria; no constituye confirmación independiente ni selección final.

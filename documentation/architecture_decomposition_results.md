@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Descomposición de bases: resultados exploratorios
 
 99 entradas sobre65 folds:48 bases × BASE/MASK y3 controles. Métricas por OOF completas de cada repetición, aleatoria media10. OFF retira corrector interno; ON transfiere sus hiperparámetros del FULL7 del mismo entrenamiento y reajusta coeficientes por cada composición. RAW usa10 proporciones; PCA2 conserva esas10 entradas pero reduce a2 dimensiones; GLOBAL elimina geología y aprende peso escalar. No se seleccionó un Champion con las evaluaciones externas.

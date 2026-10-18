@@ -1,6 +1,6 @@
 # Metadatos versionados de investigación
 
-La [etapa actual](current_stage.json) selecciona Reference26 y Compact14 como champions. Su ejecutor y bundle se describen en la [reproducción vigente](../documentation/current_champions_reproduction.md); C-T3 y B1 se conservan como control/sensibilidad yL40 queda fuera de esta entrega. Las copias históricas de diseños que siguen diciendo no cambiarChampion describen la decisión de su momento, no anulan la selección explícita posterior.
+La [etapa actual](current_stage.json) selecciona Reference26 y Compact14 como champions. Su ejecutor y bundle se describen en la [reproducción vigente](../documentation/current_champions_reproduction.md); C-T3 y B1 se conservan como control/sensibilidad y L40 queda fuera del bundle de reentrenamiento propio, pero figura como benchmark externo fuerte en la comparación. Las copias históricas de diseños que siguen diciendo no cambiarChampion describen la decisión de su momento, no anulan la selección explícita posterior.
 
 `.gitattributes` fija LF para estos metadatos y preserva los bytes de los prompts originales. Así, los hashes no cambian únicamente por conversiones de fin de línea entre Windows y Linux.
 

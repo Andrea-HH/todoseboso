@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Simplificación conjunta: experto7 y gate geológico reducido
 
 Se ejecutaron las cuatro configuraciones congeladas sobre las65 particiones externas e internas originales. La salida está en `outputs/modeling/joint_simplification/v1`. No se cambió el Champion, ningún resultado previo, GeoC, los138 rendimientos ni las59PRED; no hay nuevo entrenamiento final138.

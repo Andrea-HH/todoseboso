@@ -1,5 +1,7 @@
 # Mapa de documentación
 
+**Lectura vigente:** champions Reference26 y Compact14. [Fichas completas de los cinco modelos](models/README.md) · [Estado de la documentación histórica](model_status_history.md).
+
 Esta carpeta reúne la documentación propia. `../docs/guidelines/` conserva los lineamientos/diccionarios; `../docs/resources/` contiene fuentes externas locales excluidas de Git. Los documentos históricos conservan su fecha, alcance y nombres: no todos describen el estado actual del proyecto.
 
 ## Ruta de lectura

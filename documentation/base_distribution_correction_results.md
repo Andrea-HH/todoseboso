@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Simplificación de bases y corrección por distribución de vecinos: resultados
 
 48 entradas, mismos 65 folds. RMSE t/ha / R² por OOF completa de cada repetición; no media de folds. Exploración sobre validaciones usadas anteriormente, sin promoción de Champion ni PRED59.

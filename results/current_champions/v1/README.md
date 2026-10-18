@@ -1,6 +1,6 @@
 # Resultados actuales · Reference26 y Compact14
 
-Champions seleccionados por instrucción del responsable del proyecto: **Reference26** y **Compact14**. La entrega reproducible incluye además **CT3** como control y **B1** como sensibilidad. No incluyeL40/Local04D, sus componentesPCA ni sus predicciones. Los informes anteriores conL40 se conservan como historia.
+Champions seleccionados por instrucción del responsable del proyecto: **Reference26** y **Compact14**. La entrega reproducible incluye además **CT3** como control y **B1** como sensibilidad. No incluyeL40/Local04D, sus componentesPCA ni sus predicciones. L40 se conserva como benchmark externo fuerte en las tablas del README principal y en su ficha; este paquete reproduce únicamente los cuatro modelos propios. Los hashes de procedencia de esta auditoría corresponden a la revisión documental existente cuando se ejecutó, anterior a las nuevas fichas.
 
 ## Archivos de resultados
 

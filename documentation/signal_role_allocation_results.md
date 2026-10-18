@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Composición y reasignación de funciones en SMALL12
 
 Se completaron28 configuraciones fijas y2 selectores internos, sobre las65 particiones externas originales. Se congelaron las alternativas antes de entrenar. Salida: `outputs/modeling/signal_role_allocation/v1`. No se modifica ningún Champion, GeoC ni resultado anterior; no se ajusta un modelo final ni se generan nuevas59PRED.

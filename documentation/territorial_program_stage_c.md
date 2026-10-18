@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Etapa C — Agrupación parcial y representación climática para transferencia
 
 La representación compacta de lluvia con NDVI mejora la validación municipal, pero su ventaja espacial depende de un bloque. Añadir DTR y NDVI a las siete lluvias no combina automáticamente las fortalezas de las dos señales. La jerarquía de interceptos no supera el control estadísticamente emparejado; las ganancias frente al Elastic Net archivado pertenecen principalmente al cambio de regularización.

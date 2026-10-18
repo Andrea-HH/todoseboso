@@ -1,3 +1,5 @@
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+
 # Reproducción de las seis combinaciones
 
 **Documento histórico de la batería conL40.** La etapa actual selecciona26/14 como champions y utiliza la [ruta propia sinL40](current_champions_reproduction.md) para C-T3,26,14 yB1. Estas instrucciones se conservan para reproducir la investigación anterior, no son el punto de entrada actual.

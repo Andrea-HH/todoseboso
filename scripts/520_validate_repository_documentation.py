@@ -15,6 +15,8 @@ DOCS=['README.md','documentation/README.md','documentation/project_scope_and_gui
       'documentation/repository_organization.md','documentation/ai_usage.md','documentation/ai/README.md',
       'documentation/git_data_policy.md','configs/README.md','environments/README.md',
       'documentation/current_champions_reproduction.md','results/README.md','results/current_champions/v1/README.md']
+DOCS += ['documentation/model_status_history.md']
+DOCS += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'documentation/models').rglob('README.md'))]
 
 
 def sha(p):
@@ -30,6 +32,28 @@ def main():
     parser.add_argument('--local-sources',action='store_true',help='Also compare optional original design JSON hashes; no data loading.')
     args=parser.parse_args()
     checks=Counter()
+    inputs=read('configs/current_champions_inputs.json')['features']
+    import runpy
+    cards=runpy.run_path(str(ROOT/'scripts/524_document_current_models.py'))
+    assert [c for c,_ in cards['SETS']['Reference26']]==inputs
+    for name,size in [('CT3',4),('Reference26',26),('Compact14',14),('B1',26)]:
+        names=[c for c,_ in cards['SETS'][name]]
+        assert len(names)==len(set(names))==size
+        assert set(names)<=set(inputs)
+        text=(ROOT/f'documentation/models/{name}/README.md').read_text(encoding='utf-8')
+        assert all('`'+c+'`' in text for c in names)
+        checks['model_variable_inventories']+=1
+    with (ROOT/'documentation/models/L40/variables_C4_2082.csv').open(encoding='utf-8',newline='') as stream:
+        l40=list(csv.DictReader(stream))
+    assert len(l40)==len({r['variable'] for r in l40})==2082
+    assert Counter(r['layer'] for r in l40)==dict(base=1397,agronomic=350,empirical=335)
+    checks['external_input_names']=len(l40)
+    with (ROOT/'documentation/inventories/model_status_audit.csv').open(encoding='utf-8',newline='') as stream:
+        for record in csv.DictReader(stream):
+            assert sha(ROOT/record['document'])==record['sha256_after'],record['document']
+            if record['treatment'].startswith('frozen_design_preserved'):
+                assert record['sha256_before']==record['sha256_after']
+            checks['model_status_documents']+=1
     for name in DOCS:
         p=ROOT/name
         assert p.is_file(),name
@@ -87,6 +111,17 @@ def main():
     assert stage['champions']==['Reference26','Compact14']
     assert stage['included_models']==['CT3','Reference26','Compact14','B1']
     assert 'L40' in stage['excluded_from_current_delivery']
+    if stage.get('new_PRED59'):
+        assert stage['final_prediction_models']==['Reference26','Compact14']
+        final=read('results/current_champions_final/v1/prediction_audit.json')
+        assert final['n_predictions']==59 and final['saved_model_replay_exact']
+        assert final['old_columns_unchanged'] and final['historical_champion_unchanged']
+        assert final['internal_ledger_verified'] and not final['unknown_error_metrics_computed']
+        with (ROOT/'results/current_champions_final/v1/pairwise_disagreement.csv').open(encoding='utf-8',newline='') as stream:
+            pairs=list(csv.DictReader(stream))
+        assert len(pairs)==15 and all(int(row['n'])==59 for row in pairs)
+        assert not any('ID_POLIGONO' in row for row in pairs)
+        checks['final_prediction_pairs']=len(pairs)
     registered={m['id']:m for m in registry}
     assert all(registered[m]['status'].startswith('current_champion') for m in stage['champions'])
     with (ROOT/'results/current_champions/v1/metrics.csv').open(encoding='utf-8',newline='') as stream:
