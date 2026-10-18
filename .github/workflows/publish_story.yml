@@ -1,0 +1,71 @@
+name: Validate and publish model story
+
+on:
+  pull_request:
+    paths:
+      - "site/**"
+      - "scripts/sync_story_data.py"
+      - "tests/test_story_site.py"
+      - ".github/workflows/publish_story.yml"
+      - "results/current_champions/v1/metrics.csv"
+      - "results/comparison_97_41/v1/metrics.csv"
+      - "README.md"
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "scripts/sync_story_data.py"
+      - "tests/test_story_site.py"
+      - ".github/workflows/publish_story.yml"
+      - "results/current_champions/v1/metrics.csv"
+      - "results/comparison_97_41/v1/metrics.csv"
+      - "README.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: story-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact triggering revision
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify aggregate snapshot
+        run: python scripts/sync_story_data.py --check
+      - name: Check static site contract
+        run: python -m unittest discover -s tests -p 'test_story_site.py'
+      - name: Validate JavaScript syntax
+        run: node --check site/app.js
+
+  deploy:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout exact triggering revision
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload only public static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy site
+        id: deploy
+        uses: actions/deploy-pages@v4

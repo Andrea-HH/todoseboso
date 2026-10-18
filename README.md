@@ -1,4 +1,6 @@
 # AgroCebada FIRA 2026 · fira_nuria
+**Sitio interactivo de divulgación:** [La historia detrás de la predicción](https://heri-espino.github.io/todoseboso/) · [fuentes, límites y despliegue](site/README.md). Cuenta el camino C-T3 → experto local → Reference26/Compact14, con figuras didácticas y métricas agregadas bajo protocolos separados. La publicación requiere GitHub Pages habilitado.
+
 
 **El propósito del proyecto es desarrollar y validar un modelo que estime el rendimiento de cebada, en toneladas por hectárea, para las parcelas sin rendimiento conocido del Reto AgroCebada FIRA 2026.** La investigación de variables y algoritmos sirve para elegir y explicar esa solución; no es un objetivo independiente ni una búsqueda del menor error sin considerar su uso.
 
