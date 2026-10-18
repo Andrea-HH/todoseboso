@@ -197,6 +197,7 @@ scripts/530_report_core4_relevance.py,scripts,execution helper / entry point,"In
 scripts/531_recover_reference26_evidence.py,scripts,execution helper / entry point,"Recover archived component evidence for26; no fitting, new tests or PRED read.",Not inferred from file existence
 scripts/532_refresh_results_readmes.py,scripts,results / interpretation,Refresh current result presentations from existing26/14 validation and59 outputs.,Not inferred from file existence
 scripts/533_current_champion_naming.py,scripts,execution helper / entry point,Reserve current champion status for26/14; retain frozen and executable legacy IDs.,Not inferred from file existence
+scripts/534_reference26_distribution.py,scripts,execution helper / entry point,Descriptive comparison of59 predictions and138 observed yields; no error tests.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/00_preguntas_pequeñas.py,scripts,execution helper / entry point,,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/01_eda_temporal.py,scripts,execution helper / entry point,EDA inicial de las tablas maestras de AgroCebada.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/02_revision_eda_tablas_maestreas.py,scripts,execution helper / entry point,02 - Revision dirigida del EDA de tablas maestras.,Not inferred from file existence

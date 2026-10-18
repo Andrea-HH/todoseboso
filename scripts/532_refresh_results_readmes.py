@@ -76,6 +76,8 @@ Estas métricas son OOF de las138 parcelas conocidas, **no errores de las59**. S
         report+=f'| [{name}](../../../outputs/modeling/current_champions_final/v1/{name}) | {label} |\n'
     report+='\nEstos enlaces requieren la copia local: `outputs/` no se sube a Git. Su existencia no acredita envío al comité. Todavía no conocemos el error de las59.\n\n'
     report+='[Ficha26](../../../documentation/models/Reference26/README.md) · [Ficha14](../../../documentation/models/Compact14/README.md) · [Índice de resultados](../../README.md). Generación reproducible: `scripts/526_current_champions_final59.py`; descomposición: `scripts/527_finalize_prediction_comparison.py`; esta presentación se regenera con `scripts/532_refresh_results_readmes.py` sin entrenar modelos.\n'
+    if (ROOT/'results/reference26_distribution/v1/README.md').exists():
+        report+='\n[Descriptivos de26:59 estimaciones frente a138 rendimientos, por estado y municipio](../../reference26_distribution/v1/README.md).\n'
     write('results/current_champions_final/v1/README.md',report)
     path=ROOT/'results/current_champions/v1/README.md';text=path.read_text(encoding='utf-8')
     text=text.replace('# Resultados actuales · Reference26 y Compact14','# Validación OOF — Reference26 y Compact14')

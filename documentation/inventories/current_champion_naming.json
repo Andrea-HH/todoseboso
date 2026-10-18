@@ -46,5 +46,5 @@
   "legacy_policy": "Old raw IDs such as Champion_t_ha, CHAMPION, A_CURRENT_CH_H_T and source identifiers remain for reproducibility; they are not current champion declarations. Literal user prompts and frozen designs preserve their original wording.",
   "model_code_changed": false,
   "predictions_changed": false,
-  "repository_files_with_current_or_legacy_references": 339
+  "repository_files_with_current_or_legacy_references": 343
 }

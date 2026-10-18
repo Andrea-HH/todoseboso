@@ -222,6 +222,10 @@ Ya se realizaron contrastes exploratorios de asociación, ajustados por estado y
 
 [Reporte por función, con RMSE/R² y límites](../../../results/reference26_component_evidence/v1/README.md): siete señales locales,24 vecinos, corrector interno, compuerta geológica, R3 y combinaciones que dieron origen a14. Distingue retiradas de bloques, columnas y cambios conjuntos; conserva los ajustes múltiples originales y señala las pruebas aún faltantes. Incluye un inventario del respaldo disponible para cada una de las26 entradas. Se recuperaron11 contrastes arquitectónicos, sin entrenar modelos nuevos ni alterar las59 predicciones.
 
+## Distribución de las59 estimaciones
+
+[Comparación descriptiva con138 rendimientos observados](../../../results/reference26_distribution/v1/README.md): rangos, medias, medianas, desviaciones, cuantiles y composición estatal. La media global casi coincide, pero las estimaciones presentan colas más moderadas y menor dispersión dentro de estados. Son parcelas distintas; no se interpreta como medición de error ni se ajustan las predicciones para igualar distribuciones.
+
 ## Archivos y reproducción
 
 Implementación integrada: [src/current_champions.py](../../../src/current_champions.py). [Reproducción y alcance de la verificación](../../current_champions_reproduction.md). Entrada: `python scripts/521_current_champions.py replay`; reentrenamiento: subcomando `refit` según esa guía. Bundle privado: `data/processed/current_champions/v1/`; OOF: `outputs/research/current_champions/v1/`; [métricas públicas](../../../results/current_champions/v1/README.md). Las fichas no generan nuevos ajustes finales ni predicciones59.
