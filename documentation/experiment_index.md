@@ -59,6 +59,8 @@ Consultar primero [reproducción detallada](four_expert_combinations_reproductio
 
 ## Inventario completo y mantenimiento
 
+[Cuatro investigaciones finales](../results/four_final_checks/v1/README.md): scripts535–539; diseños y enmiendas en `configs/four_final_checks/v1`. Incluyen reproducción limpia de la entrega, soporte59, cobertura de intervalos y sensibilidad completa Reference25_NoHHI sobre65 folds. Conservan los champions26/14 y sus59 estimaciones originales. Esta candidata no se confunde con un nuevo champion ni con una predicción final.
+
 - [Inventario de archivos](inventories/repository_files.csv): ruta, área, función y título extraído de cada archivo. Los tipos se infieren del nombre/docstring y pueden requerir revisión; no son evidencia de ejecución.
 - [Manifiesto de diseños exportados](../configs/experiments/manifest.json):30 diseños locales recuperados inicialmente, incluidos estados no ejecutados; el total futuro lo determina el manifiesto.
 - `scripts/519_export_research_metadata.py`: actualiza los inventarios y exporta metadatos desde los artefactos locales, sin entrenamiento. No es un comando de arranque para un clon sin insumos.

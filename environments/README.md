@@ -18,3 +18,7 @@ python scripts/520_validate_repository_documentation.py
 Las bibliotecas geoespaciales pueden requerir binarios compatibles con la versión de Python y el sistema. La receta anterior no se ejecutó en un entorno nuevo durante esta reorganización. Si falla la resolución, revisar versiones/plataforma; no modificar hiperparámetros de modelos para resolver instalación. Los módulos listados como imports no resueltos pueden ser módulos locales o imports dinámicos y deben revisarse, no instalarse ciegamente conpip.
 
 Para reconstruir una etapa concreta, consultar su diseño y requisitos de datos. Clonar el código no instala los insumos privados ni descarga la representaciónGeoC. No cargar archivos `joblib/pickle` de fuentes desconocidas: los artefactos de este proyecto deben proceder de una fuente confiable y verificarse contra su procedencia.
+
+## Replay final26/14: instalación limpia verificada
+
+La auditoría posterior sí instaló desde cero las dependencias necesarias para reproducir las59 estimaciones congeladas. El venv no compartió paquetes del entorno original y el replay coincidió dentro de1e-10t/ha. [Auditoría](../results/four_final_checks/v1/clean_environment_audit.json) y [versiones fijadas](../configs/four_final_checks/v1/replay_requirements.txt). Este resultado cubre el replay final en Windows con la misma versión base de Python; no acredita todo el historial experimental ni otros sistemas operativos.

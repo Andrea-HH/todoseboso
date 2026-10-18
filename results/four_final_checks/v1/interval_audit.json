@@ -1,0 +1,20 @@
+{
+  "n_rows": 19600,
+  "models": [
+    "Reference26",
+    "Compact14"
+  ],
+  "levels": [
+    0.8,
+    0.9
+  ],
+  "primary": "random parcel_split; group-split diagnostic with group maxima",
+  "own_evaluation_labels_used_for_calibration": false,
+  "all_inner_halves_disjoint": true,
+  "point_model_selection": "Frozen before interval experiment; no tuning on coverage or width",
+  "grouped_protocol_limit": "Municipal/spatial heldout folds are split to calibrate/evaluate; calibration sees some labels of excluded territory. This is not strict territorial prediction with no labels there.",
+  "exchangeability_limit": "Empirical OOF coverage after historical model selection; no formal guarantee of future/conditional/state coverage. Infinite intervals retained when insufficient calibration units.",
+  "no_final138_interval_claim": true,
+  "no_59_targets_read": true,
+  "new_model_training": false
+}

@@ -1,0 +1,20 @@
+{
+  "performance_only": true,
+  "reason": "Keep transient inner expert fits in memory, same RoleFactory objective, grids, folds and ties; original implementation and completed checkpoints retained. Additional memory-engine full26 controls0 and63 passed exact historical OOF parity before sensitivity.",
+  "previous_sha256": {
+    "src/reference26_only.py": "318551b8669437dc82d04083fa401346f28d11a3a2582dee75a0a349d898c867",
+    "src/current_champions.py": "bb732085d65f62d8235dfa96b2bdd61459f8920981be41508dc2770710a5875e",
+    "scripts/535_no_hhi_reference26.py": "83901d04818233c65d0265f21c0edb09c9ecb6346dc7181a64af099566e74633"
+  },
+  "current_sha256": {
+    "src/reference26_only.py": "318551b8669437dc82d04083fa401346f28d11a3a2582dee75a0a349d898c867",
+    "src/current_champions.py": "bb732085d65f62d8235dfa96b2bdd61459f8920981be41508dc2770710a5875e",
+    "scripts/535_no_hhi_reference26.py": "83901d04818233c65d0265f21c0edb09c9ecb6346dc7181a64af099566e74633"
+  },
+  "control_indices": [
+    0,
+    63
+  ],
+  "max_allowed_difference": 1e-10,
+  "no_statistical_or_model_choice_change": true
+}

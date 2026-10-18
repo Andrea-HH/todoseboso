@@ -1,0 +1,16 @@
+{
+  "n": 59,
+  "R3_complete": 51,
+  "target_used": false,
+  "thresholds": "Training-only LOO q95 for geometry/features; known-parcel mean random OOF disagreement q95; descriptive not calibrated error risk",
+  "flags": [
+    "missing_R3",
+    "geo_above_training_q95",
+    "core4_above_training_q95",
+    "local7_above_training_q95",
+    "unseen_geology",
+    "disagreement_above_OOF_q95"
+  ],
+  "final_predictions_changed": false,
+  "imputed_feature_distances": "Missingness reported separately; no prediction interval inferred from distance"
+}

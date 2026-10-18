@@ -203,6 +203,9 @@ def prompts():
         ('porfavor checa que en todo el repositorio ya nos estemos refiriendo como champion a 26 y 14 nada ams','Reservar estado champion a26/14 y distinguir nombres heredados preservados','model_registry.md'),
         ('dame los rangos de las predicciones de 26 como platicamelos estadisticamente yu comparalos con la distribucion de los rendimeintos de las 138 parcelas por curiosisdad tmabiene stadisitcos desciptivos por estado y asi','Comparar distribución de59 predicciones26 con138 observaciones, global y por estado/municipio','models/Reference26/README.md'),
     ]
+    messages.append(('realiza las 4 investigaciones y presenta resultados',
+                     'Ejecutar auditoría de entrega, soporte59, cobertura de intervalos y sensibilidad completa de26 sin HHI; preservar champions26/14',
+                     'models/Reference26/README.md'))
     for j,(message,purpose,evidence) in enumerate(messages,len(rows)+1):
         target=ROOT/'documentation/ai/prompts'/f'P{j:03d}_conversation.txt'
         target.write_text(message,encoding='utf-8')

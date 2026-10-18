@@ -68,3 +68,7 @@ Implementación integrada: [src/current_champions.py](../../../src/current_champ
 ## Comparación final59 disponible
 
 Los champions26/14 ya tienen ajustes finales con138 y sus59 estimaciones se incorporaron a la comparación existente sin sobrescribir las anteriores. [Reporte de diferencias entre predicciones](../../../results/current_champions_final/v1/README.md). Archivo privado: `outputs/modeling/current_champions_final/v1/comparacion_predicciones59.xlsx`. Estas diferencias no son errores contra rendimientos observados.
+
+## Cuatro investigaciones finales
+
+[Auditoría de entrega, soporte59, intervalos y sensibilidad sin HHI](../../../results/four_final_checks/v1/README.md). Incluye reproducción con dependencias instaladas desde cero y65 folds de Reference25_NoHHI. Esta sensibilidad no es un nuevo champion ni tiene ajuste final/PRED. Los intervalos son una evaluación OOF con límites explícitos; no se garantizan intervalos para las59 estimaciones finales.
