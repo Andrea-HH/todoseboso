@@ -31,6 +31,18 @@ def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+def sha_portable(p, expected):
+    """Accept a historical source hash across checkout-only LF/CRLF changes.
+
+    Preserve frozen-design content: only newline bytes may differ. This does
+    not waive changed words, missing documentation, or label-bearing files.
+    """
+    data=p.read_bytes()
+    normalized=data.replace(b'\r\n',b'\n')
+    return expected in {hashlib.sha256(candidate).hexdigest() for candidate in (
+        data, normalized, normalized.replace(b'\n',b'\r\n'))}
+
+
 def read(relative):
     return json.loads((ROOT/relative).read_text(encoding='utf-8'))
 
@@ -58,7 +70,7 @@ def main():
     checks['external_input_names']=len(l40)
     with (ROOT/'documentation/inventories/model_status_audit.csv').open(encoding='utf-8',newline='') as stream:
         for record in csv.DictReader(stream):
-            assert sha(ROOT/record['document'])==record['sha256_after'],record['document']
+            assert sha_portable(ROOT/record['document'],record['sha256_after']),record['document']
             if record['treatment'].startswith('frozen_design_preserved'):
                 assert record['sha256_before']==record['sha256_after']
             checks['model_status_documents']+=1
