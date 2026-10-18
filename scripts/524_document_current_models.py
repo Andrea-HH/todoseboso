@@ -156,6 +156,9 @@ Pierde claramente en validación municipal y espacial de los 65 folds, con R² e
 
 def cards():
     for model, body in DETAILS.items():
+        if model=='Reference26':
+            details=(ROOT/'documentation/models/Reference26/blocks.md').read_text(encoding='utf-8')
+            body=body.replace('## En qué etapa surgió cada bloque',details+'\n\n## En qué etapa surgió cada bloque')
         text = '# ' + model + ' — ficha del modelo\n\n'
         text += 'Estado vigente: 2026-10-18. Champions actuales: **Reference26 y Compact14**. [Índice de modelos](../README.md).\n\n' + body
         if model in SETS:
@@ -290,7 +293,7 @@ def navigation():
         'configs/README.md': [('yL40 queda fuera de esta entrega.', 'y L40 queda fuera del bundle de reentrenamiento propio, pero figura como benchmark externo fuerte en la comparación.')],
         'documentation/project_scope_and_guidelines.md': [('e incluyeC-T3', 'e incluye C-T3'),('incluyeC-T3 y B1 y excluyeL40.', 'incluye C-T3 y B1, sin reentrenar L40; L40 sí permanece en las tablas comparativas como referencia externa fuerte.')],
         'documentation/reproducibility.md': [('junto aC-T3 y B1, excluyendoL40.', 'junto a C-T3 y B1, sin reentrenar L40. L40 sí permanece como benchmark externo fuerte en las tablas y en su ficha.')],
-        'documentation/ai_usage.md': [('**37 prompts**,21 adjuntos originales y16 mensajes', '**39 prompts**,21 adjuntos originales y18 mensajes'),('**38 prompts**,21 adjuntos originales y17 mensajes', '**39 prompts**,21 adjuntos originales y18 mensajes')],
+        'documentation/ai_usage.md': [('**37 prompts**,21 adjuntos originales y16 mensajes', '**40 prompts**,21 adjuntos originales y19 mensajes'),('**38 prompts**,21 adjuntos originales y17 mensajes', '**40 prompts**,21 adjuntos originales y19 mensajes'),('**39 prompts**,21 adjuntos originales y18 mensajes', '**40 prompts**,21 adjuntos originales y19 mensajes')],
     }
     for name,pairs in replacements.items():
         text=(ROOT/name).read_text(encoding='utf-8')

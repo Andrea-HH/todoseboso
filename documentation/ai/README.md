@@ -43,3 +43,4 @@ Este índice contiene solicitudes, no un registro de ejecución. Herramienta rec
 | P037 | Actualizar navegación y estados a la etapa actual de champions | [Literal](prompts/P037_conversation.txt) | [Documento](../current_champions_reproduction.md) |
 | P038 | Documentar champions actuales, distinguir historial y explicar variables y origen de cada modelo | [Literal](prompts/P038_conversation.txt) | [Documento](../models/README.md) |
 | P039 | Consolidar26/14 y agregar sus59 predicciones a la comparación existente | [Literal](prompts/P039_conversation.txt) | [Documento](../models/README.md) |
+| P040 | Ampliar documentación de26: origen C-T3, siete señales, vecinos, compuerta y correctorR3 | [Literal](prompts/P040_conversation.txt) | [Documento](../models/Reference26/README.md) |
