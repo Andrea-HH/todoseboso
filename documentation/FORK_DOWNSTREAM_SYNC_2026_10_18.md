@@ -11,11 +11,13 @@
 ## Exact tree audit
 
 The final upstream tree contains **829 regular files**. All 829 are present in
-the fork's synchronization branch. Only two corresponding paths differ:
-`README.md`, which intentionally preserves the link to the presentation,
-and `scripts/520_validate_repository_documentation.py`, which includes the
-fork-specific checkout-portability and private-artifact-link safeguards below.
-The 22 additional fork-only site and validation files are preserved.
+the fork's synchronization branch. Only four shared paths intentionally differ:
+`README.md` (fork website links), `scripts/520_validate_repository_documentation.py`
+(portable checks of historical sources and private links), `.gitattributes`
+(the binary PNG exception), and
+`results/reference26_distribution/v1/distribution_ECDF.png`
+(the CRC-verified repair detailed below). All upstream paths are present;
+the fork-only site/validation assets remain preserved.
 The actual model implementation under `src/`, original champions' 65-fold
 and 97/41 numeric results, and all hidden-target outputs were **not** edited
 by this synchronization.
@@ -51,6 +53,28 @@ checksum and then on a hyperlink into an intentionally private, gitignored
 The CI job now runs the comprehensive upstream validator, original website
 checks, new interpretation/figure source-parity checks, and JS syntax check.
 Do not claim cold refits or independent model validation from these tests.
+
+## Restoring a malformed upstream PNG
+
+GitHub Actions detected that the new ECDF image did not begin with the PNG
+signature. Upstream `.gitattributes` marked all `results/**` as LF text, which
+collapsed CRLF byte pairs **inside a binary image**, corrupting its PNG chunks.
+The image contained 139,177 bytes, where exactly three CR bytes had been
+removed: one from the eight-byte PNG signature and two in the first IDAT chunk.
+
+A CRC32 constrained search reconstructed the **unique** pair of missing IDAT
+positions (two among 197 candidate newline positions). After restoration,
+all seven PNG chunk CRCs and boundaries validate; the repaired image has
+139,180 bytes. The corrected original is retained under
+`results/reference26_distribution/v1/distribution_ECDF.png` and copied
+byte-for-byte to `site/media/distribution_ECDF.png`. A more specific binary
+attribute in `.gitattributes` prevents future LF conversion of PNG/JPEG files.
+The public site QA checks PNG signature, source-copy identity and figures'
+reported aggregate statistics.
+
+This is an artifact-format correction, not a model change or a fabricated
+ECDF curve. The upstream binary remains malformed as of the sourced snapshot;
+its maintainer may wish to adopt the same `.gitattributes` fix.
 
 ## Website publication
 
