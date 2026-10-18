@@ -17,6 +17,13 @@ def write(path, text):
     path.write_text(text, encoding='utf-8', newline='\n')
 
 
+def fresh_metrics():
+    path=ROOT/'results/comparison_97_41/v1/metrics.csv'
+    if not path.exists():return {}
+    with path.open(encoding='utf-8',newline='') as stream:
+        return {r['experiment']:r for r in csv.DictReader(stream)}
+
+
 CORE = [
     ('compact_precip_total', 'Precipitación acumulada abril–octubre de 2025; cantidad de lluvia.'),
     ('compact_early_fraction', 'Fracción de lluvia abril–junio respecto al total abril–octubre; distribución temprana.'),
@@ -171,6 +178,13 @@ def cards():
             text += '\nLas ventanas y agregaciones de las columnas heredadas se conservan tal como están en las tablas procesadas; su nombre no acredita por sí solo uniformidad de fechas entre sensores. Las tres fórmulas R3 se implementan en [temporal_indicator_weights.py](../../../src/temporal_indicator_weights.py). Las entradas derivadas y sus hashes constan en [el manifiesto de insumos](../../../configs/current_champions_inputs.json).\n'
         text += '\n## Resultados compatibles y lectura\n\nRMSE t/ha / R² / MAE t/ha. OOF completas por repetición y después promedio; mismos 65 folds, 138 parcelas.\n\n'
         text += '| Aleatoria | Perfil climático | Municipal | Espacial |\n|---|---|---|---|\n| ' + ' | '.join(METRICS[model]) + ' |\n'
+        fresh=fresh_metrics()
+        if model in fresh:
+            r=fresh[model]
+            text+='\n### Banco adicional97/41 — resultado separado\n\n'
+            text+='| RMSE t/ha | R² | MAE t/ha | Sesgo predicho−observado |\n|---|---|---|---|\n'
+            text+=f"| {float(r['rmse']):.4f} | {float(r['r2']):.4f} | {float(r['mae']):.4f} | {float(r['bias']):+.4f} |\n"
+            text+='\nMedia de las métricas de **16 particiones**, cada una con97 parcelas para entrenar y41 para evaluar. Reutiliza las mismas138 parcelas; no es muestra independiente ni error de las59 PRED. Se conserva separado de los cuatro protocolos anteriores. [Comparación completa y procedencia](../../../results/comparison_97_41/v1/README.md).\n'
         text += '\nSon resultados de validación exploratoria tras reutilización de etiquetas, no el error de las 59 desconocidas ni superioridad universal. Residuo = predicho − observado: positivo significa sobreestimación. El banco adicional 97/41 se interpreta por separado. No se presenta R² ajustado clásico para estas arquitecturas locales y calibradas.\n'
         text += '\n## Archivos y reproducción\n\n'
         if model != 'L40':
@@ -267,6 +281,18 @@ def navigation():
     if '| L40 / Local04D | .4930' not in text:
         text=text.replace('| C-T3 | .5116', '| L40 / Local04D | .4930 / .6619 | .5031 / .6481 | .7602 / .1964 | .9794 / −.3337 |\n| C-T3 | .5116')
     text=text.replace('Esta tabla compara los champions actuales, el control y la sensibilidad;', 'Esta tabla compara los champions actuales, el control, la sensibilidad y L40 sobre evaluación compatible;')
+    fresh=fresh_metrics()
+    if fresh:
+        start='<!-- comparison97:start -->';end='<!-- comparison97:end -->'
+        block=start+'\n### Banco adicional97/41 — comparación separada\n\n'
+        block+='**16 particiones con97 parcelas de entrenamiento y41 de evaluación**, sobre las mismas138 conocidas. Media de métricas por partición; no es una muestra independiente ni el error real de las59.\n\n'
+        block+='| Modelo | RMSE t/ha ↓ | R² ↑ | MAE t/ha ↓ |\n|---|---|---|---|\n'
+        for model in ['CT3','L40','Reference26','Compact14','B1']:
+            r=fresh[model];block+=f"| {model} | {float(r['rmse']):.4f} | {float(r['r2']):.4f} | {float(r['mae']):.4f} |\n"
+        block+='\n[Resultados de los10 modelos disponibles y metodología](results/comparison_97_41/v1/README.md). No se mezclan con la tabla de los65 folds originales ni con los checkpoints propios de GeoC.\n'+end+'\n\n'
+        if start in text:
+            text=text[:text.index(start)]+block+text[text.index(end)+len(end):].lstrip('\n')
+        else:text=text.replace('## Cómo leer y reproducir',block+'## Cómo leer y reproducir')
     write('README.md',text)
     for name in ['documentation/README.md','documentation/model_registry.md','documentation/current_champions_reproduction.md']:
         path=ROOT/name;text=path.read_text(encoding='utf-8')
@@ -298,6 +324,11 @@ def navigation():
     for name,pairs in replacements.items():
         text=(ROOT/name).read_text(encoding='utf-8')
         for old,new in pairs:text=text.replace(old,new)
+        if name=='documentation/ai_usage.md':
+            with (ROOT/'documentation/ai/prompt_inventory.csv').open(encoding='utf-8',newline='') as stream:
+                prompt_count=len(list(csv.DictReader(stream)))
+            text=re.sub(r'\*\*\d+ prompts\*\*,21 adjuntos originales y\d+ mensajes',
+                        f'**{prompt_count} prompts**,21 adjuntos originales y{prompt_count-21} mensajes',text)
         write(name,text)
 
 

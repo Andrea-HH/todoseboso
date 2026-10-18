@@ -191,6 +191,7 @@ scripts/524_document_current_models.py,scripts,execution helper / entry point,"B
 scripts/525_inventory_l40_inputs.py,scripts,execution helper / entry point,Read-only reconstruction of GeoC C4 input names; no PCA fit or yields loaded.,Not inferred from file existence
 scripts/526_current_champions_final59.py,scripts,execution helper / entry point,"Fit frozen26/14 on138, append to existing59 comparison; no hidden targets.",Not inferred from file existence
 scripts/527_finalize_prediction_comparison.py,scripts,execution helper / entry point,Explain final59 disagreements and update status after526 completes; no fitting.,Not inferred from file existence
+scripts/528_export_97_41_comparison.py,scripts,execution helper / entry point,"Publish existing97/41 aggregate metrics, without fitting or private rows.",Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/00_preguntas_pequeñas.py,scripts,execution helper / entry point,,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/01_eda_temporal.py,scripts,execution helper / entry point,EDA inicial de las tablas maestras de AgroCebada.,Not inferred from file existence
 scripts/data_uderstanding/tablas_agrocebada/02_revision_eda_tablas_maestreas.py,scripts,execution helper / entry point,02 - Revision dirigida del EDA de tablas maestras.,Not inferred from file existence

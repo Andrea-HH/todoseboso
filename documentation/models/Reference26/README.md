@@ -204,6 +204,14 @@ RMSE t/ha / R² / MAE t/ha. OOF completas por repetición y después promedio; m
 |---|---|---|---|
 | .4748 / .6865 / .3396 | .4774 / .6831 / .3342 | .5752 / .5400 / .4491 | .6333 / .4423 / .5004 |
 
+### Banco adicional97/41 — resultado separado
+
+| RMSE t/ha | R² | MAE t/ha | Sesgo predicho−observado |
+|---|---|---|---|
+| 0.4625 | 0.6971 | 0.3387 | +0.0016 |
+
+Media de las métricas de **16 particiones**, cada una con97 parcelas para entrenar y41 para evaluar. Reutiliza las mismas138 parcelas; no es muestra independiente ni error de las59 PRED. Se conserva separado de los cuatro protocolos anteriores. [Comparación completa y procedencia](../../../results/comparison_97_41/v1/README.md).
+
 Son resultados de validación exploratoria tras reutilización de etiquetas, no el error de las 59 desconocidas ni superioridad universal. Residuo = predicho − observado: positivo significa sobreestimación. El banco adicional 97/41 se interpreta por separado. No se presenta R² ajustado clásico para estas arquitecturas locales y calibradas.
 
 ## Archivos y reproducción

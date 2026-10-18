@@ -1,0 +1,11 @@
+{
+  "source": "outputs/modeling/four_expert_combinations/v1/tables/metrics.csv",
+  "source_sha256": "586556b88f75d1636d6fa10cdb9b8799958b5474e2c461da7dcc856ce7022981",
+  "rows": 10,
+  "partitions": 16,
+  "training_per_partition": 97,
+  "evaluation_per_partition": 41,
+  "new_fits": 0,
+  "aggregation": "mean of16 partition metrics; no pooled656-row score",
+  "private_rows_published": false
+}

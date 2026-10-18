@@ -56,6 +56,22 @@ La diferencia26–14 es pequeña y no demuestra equivalencia estadística. Ambos
 
 La evaluación es exploratoria después de amplia reutilización de las mismas etiquetas. El banco adicional97/41 se conserva separado: cambia las particiones, no aporta rendimientos independientes. Declarar champions expresa una decisión del proyecto y no una superioridad estadística universal.
 
+<!-- comparison97:start -->
+### Banco adicional97/41 — comparación separada
+
+**16 particiones con97 parcelas de entrenamiento y41 de evaluación**, sobre las mismas138 conocidas. Media de métricas por partición; no es una muestra independiente ni el error real de las59.
+
+| Modelo | RMSE t/ha ↓ | R² ↑ | MAE t/ha ↓ |
+|---|---|---|---|
+| CT3 | 0.4918 | 0.6571 | 0.3642 |
+| L40 | 0.4893 | 0.6621 | 0.3552 |
+| Reference26 | 0.4625 | 0.6971 | 0.3387 |
+| Compact14 | 0.4661 | 0.6933 | 0.3398 |
+| B1 | 0.4622 | 0.6975 | 0.3373 |
+
+[Resultados de los10 modelos disponibles y metodología](results/comparison_97_41/v1/README.md). No se mezclan con la tabla de los65 folds originales ni con los checkpoints propios de GeoC.
+<!-- comparison97:end -->
+
 ## Cómo leer y reproducir
 
 Empieza por el [mapa de documentación](documentation/README.md), el [índice de experimentos](documentation/experiment_index.md) y las [convenciones de evaluación](documentation/model_comparison_convention.md).

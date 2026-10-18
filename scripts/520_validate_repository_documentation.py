@@ -17,6 +17,8 @@ DOCS=['README.md','documentation/README.md','documentation/project_scope_and_gui
       'documentation/current_champions_reproduction.md','results/README.md','results/current_champions/v1/README.md']
 DOCS += ['documentation/model_status_history.md']
 DOCS += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'documentation/models').rglob('README.md'))]
+if (ROOT/'results/comparison_97_41/v1/README.md').exists():
+    DOCS.append('results/comparison_97_41/v1/README.md')
 
 
 def sha(p):
