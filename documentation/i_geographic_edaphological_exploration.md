@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Sección I — Exploración geográfica, topográfica y edafológica condicionada al clima
 
-Se construyó una representación cartográfica de suelo para las 197 parcelas usando el vector oficial nacional INEGI Serie III, WRB 2014, escala 1:250000. No se entrenó ningún modelo de rendimiento, no se generaron predicciones para los 59 casos ocultos y se preservaron E–H y el Champion mediante hashes.
+Se construyó una representación cartográfica de suelo para las 197 parcelas usando el vector oficial nacional INEGI Serie III, WRB 2014, escala 1:250000. No se entrenó ningún modelo de rendimiento, no se generaron predicciones para los 59 casos ocultos y se preservaron E–H y el modelo TOP20/TOP15 mediante hashes.
 
 ## Auditoría edafológica y productos A–D
 
@@ -86,7 +86,7 @@ Como primer bloque compacto de suelo para una prueba posterior, las diez cobertu
 
 ## Propuesta posterior I — no ejecutada
 
-Comparar solo lluvia, lluvia+altitud/pendiente, lluvia+suelo y lluvia+ambos. Mantener la misma lluvia, algoritmo base y folds congelados de E–H para atribuir incrementos; contrastar los resultados con Climate Current y Champion respetando sus arquitecturas y métrica. Preprocesamiento, selección por frecuencia, codificación y cualquier ajuste se aprenden dentro de cada entrenamiento interno; categorías nuevas tienen tratamiento explícito. No usar centrados calculados con las 197 parcelas como entrada aprendida a validación.
+Comparar solo lluvia, lluvia+altitud/pendiente, lluvia+suelo y lluvia+ambos. Mantener la misma lluvia, algoritmo base y folds congelados de E–H para atribuir incrementos; contrastar los resultados con Climate Current y modelo TOP20/TOP15 respetando sus arquitecturas y métrica. Preprocesamiento, selección por frecuencia, codificación y cualquier ajuste se aprenden dentro de cada entrenamiento interno; categorías nuevas tienen tratamiento explícito. No usar centrados calculados con las 197 parcelas como entrada aprendida a validación.
 
 Usar RMSE, MAE, R², sesgo y diferencias pareadas por fold, con validación aleatoria, por perfil, municipal y espacial. La integración requerirá mejora reproducible más allá del error de comparación, ausencia de deterioro material preespecificado en protocolos geográficos y soporte de categorías. Definir antes de ejecutar margen de no inferioridad de 0.01t/ha en RMSE y evaluar intervalos mediante repeticiones o grupos independientes, sin tratar folds correlacionados como muestras independientes. Si mejora aleatoria y empeora municipal/espacial, registrar asociación local sin generalización demostrada. Interacciones lluvia–suelo se estudiarían después, con unas pocas hipótesis respaldadas y soporte suficiente.
 

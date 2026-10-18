@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F5-S1 — Representación, suavidad y extrapolación
 
-Evaluación exploratoria de tres sensibilidades previamente congeladas, sobre las mismas 65 particiones y 138 rendimientos. Ninguna variante se selecciona mediante resultados espaciales; no hay promoción de Champion ni predicciones de las 59 parcelas.
+Evaluación exploratoria de tres sensibilidades previamente congeladas, sobre las mismas 65 particiones y 138 rendimientos. Ninguna variante se selecciona mediante resultados espaciales; no hay promoción de modelo TOP20/TOP15 ni predicciones de las 59 parcelas.
 
 ## RMSE OOF (t/ha)
 
@@ -19,7 +19,7 @@ Evaluación exploratoria de tres sensibilidades previamente congeladas, sobre la
 
 Métricas calculadas sobre las 138 OOF de cada repetición; aleatoria resume las diez repeticiones. Los resultados por fold son diagnósticos y no reemplazan esta agregación. A cambia solo Matérn 3/2 por RBF. B sustituye compact3 por siete lluvias mensuales, escaladas dentro de entrenamiento y divididas por √7. C ajusta Ridge con penalización n·α, intercepto libre y α∈{0.001,0.01,0.1,1}; selecciona por RMSE medio de cuatro folds internos del pipeline completo y reajusta tendencia y GP usando únicamente entrenamiento externo.
 
-La media lineal C es determinista estimada, no un kernel DotProduct: este último define covarianza aleatoria, otra distribución y otra inferencia. Los residuos de C se calculan dentro del mismo entrenamiento de la tendencia; no provienen del Champion ni de validación. El GP normaliza sus residuos dentro de entrenamiento. Esto también cambia la unidad cruda de los límites de amplitud y ruido, aunque conserva exactamente los límites estandarizados originales.
+La media lineal C es determinista estimada, no un kernel DotProduct: este último define covarianza aleatoria, otra distribución y otra inferencia. Los residuos de C se calculan dentro del mismo entrenamiento de la tendencia; no provienen del modelo TOP20/TOP15 ni de validación. El GP normaliza sus residuos dentro de entrenamiento. Esto también cambia la unidad cruda de los límites de amplitud y ruido, aunque conserva exactamente los límites estandarizados originales.
 
 Los intervalos son gaussianos observacionales de 90%, incluyen WhiteKernel y excluyen incertidumbre de hiperparámetros y cambio de dominio. C además omite incertidumbre de los coeficientes de la tendencia. Cobertura observada y amplitud se reportan por separado: mayor cobertura con intervalos más anchos no demuestra mejor calibración.
 

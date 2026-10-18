@@ -18,15 +18,15 @@
     {
       "id": "A_CURRENT_CH_H_T",
       "aliases": [
-        "Champion histórico",
-        "historical_champion"
+        "Modelo histórico TOP20/TOP15"
       ],
-      "status": "historical_champion_final59",
+      "status": "historical_model_final59",
       "documentation": "documentation/models/historical_top20_top15/README.md",
       "artifacts": "outputs/modeling/winner_predictions/v1",
       "legacy_aliases": [
         "Champion",
-        "CHAMPION"
+        "CHAMPION",
+        "historical_champion"
       ]
     },
     {

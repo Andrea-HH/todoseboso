@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Coherencia residual sobre C-T3: ejecución controlada
 
@@ -60,7 +60,7 @@ También existen calibraciones agrupadas pequeñas o con pocos perfiles. Es un l
 
 Se guardaron 8,970 nuevas OOF, 260 paquetes de modelos completos, selección interna, soporte de calibración, reglas, comparaciones pareadas, errores municipales/espaciales y omisiones de regiones. Se realizaron 14,548 ajustes de correctores y **cero nuevos ajustes de bases**. Se verificó la reproducción de los 260 predictores guardados y la integridad de todos los archivos consumidos.
 
-Cuatro pruebas pasaron, incluida una prueba del pipeline completo que altera en +10,000 los rendimientos externos y comprueba que predicciones, parámetros, amplitudes y selección interna permanecen iguales dentro de tolerancia numérica. No se ajustó modelo final de 138 etiquetas, no se modificó Champion y no se generaron predicciones PRED. Los correctores deterministas no tienen intervalos predictivos calibrados.
+Cuatro pruebas pasaron, incluida una prueba del pipeline completo que altera en +10,000 los rendimientos externos y comprueba que predicciones, parámetros, amplitudes y selección interna permanecen iguales dentro de tolerancia numérica. No se ajustó modelo final de 138 etiquetas, no se modificó modelo TOP20/TOP15 y no se generaron predicciones PRED. Los correctores deterministas no tienen intervalos predictivos calibrados.
 
 - [Diseño congelado](../outputs/modeling/ct3_residual_coherence/v1/report/frozen_design.md)
 - [OOF nuevas](../outputs/modeling/ct3_residual_coherence/v1/tables/oof_predictions.csv)

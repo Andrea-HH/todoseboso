@@ -7,7 +7,7 @@ Este índice conserva la historia sin mover ni renumerar archivos. Las filas agr
 | Línea | Pregunta / finalidad | Documentación principal | Implementación o scripts para localizarla |
 |---|---|---|---|
 | Datos y EDA | Integrar fuentes, series y diagnóstico de soporte | [Target](target_analysis.md), `documentation/eda/` | `scripts/data_uderstanding/`, `src/family_1/` |
-| RS y Champion histórico | Clima, historia y topografía residual | [Entrega histórica](winner_predictions_statistical_validation.md) | `scripts/data_uderstanding/tablas_agrocebada/207*`–`210*`; buscar Champion en inventario |
+| RS y modelo histórico TOP20/TOP15 | Clima, historia y topografía residual | [Entrega histórica](winner_predictions_statistical_validation.md) | `scripts/data_uderstanding/tablas_agrocebada/207*`–`210*`; buscar Champion en inventario |
 | Lluvia, PCA/PCR | Intensidad y distribución temporal de lluvia | [Lluvia](rainfall_yield_modeling.md) | `src/family_1/`; scripts de lluvia en inventario |
 | G/H y extensión | Complementariedad precipitación–Tmax | [G/H](g_h_climate_signal_exploration.md), [extensiónH](h_rain_tmax_extension.md) | Módulos climáticos de `src/family_1/` |
 | I/J/K | Aporte geográfico, suelo y topografía, directo/residual | [I](i_geographic_edaphological_exploration.md), [J](j_incremental_yield_modeling.md), [K](k_decision_summary.md) | `src/family_1/`; inventario por títulos |
@@ -22,7 +22,7 @@ Este índice conserva la historia sin mover ni renumerar archivos. Las filas agr
 | Residual condicional | Correcciones honestas sobreC-T3 | [Diseño](ct3_residual_conditional_design.md), [resultados](ct3_residual_conditional.md) | `src/ct3_residual_conditional/` |
 | Coherencia/ensambles/territorio | Estabilidad y mezclas sin reglas retrospectivas | [Coherencia](ct3_residual_coherence.md), [ensamble](compact_ensemble.md), [territorio](territorial_mixtures.md) | `src/ct3_residual_coherence.py`, `src/compact_ensemble.py` |
 | Calendario y nuevas variables | Ventanas2025, historia y anomalías | [Conjunto](agronomic_calendar_set.md), [modelado](agronomic_calendar_modeling_results.md), [expansión](agronomic_calendar_expansion_results.md) | `src/agronomic_calendar_features.py`, `src/calendar_modeling.py` |
-| Entrega histórica59 | Consolidación C-T3/Champion/EQUAL3 | [Entrega y validación](winner_predictions_statistical_validation.md) | `outputs/modeling/winner_predictions/v1/`; no equivale a entrega 26/14 |
+| Entrega histórica59 | Consolidación C-T3/modelo TOP20/TOP15/EQUAL3 | [Entrega y validación](winner_predictions_statistical_validation.md) | `outputs/modeling/winner_predictions/v1/`; no equivale a entrega 26/14 |
 | GeoC y L40 | Reproducir vecino local y comparar con C-T3 | [Puente](geoc_bridge_results.md), [auditoría variables](geoc_variable_signal_audit.md) | `src/geoc_bridge.py`, `src/geoc_local04d_snapshot.py` |
 | Local no climático | Separar representación local y señal global | [Resultados](nonclimatic_local_results.md) | `src/nonclimatic_local.py` |
 | Similitud/representación física | Vecinos y reducciones físicas | [Similitud](physical_similarity_results.md), [representación](physical_representation_results.md) | `src/physical_similarity.py`, `src/physical_representation.py` |

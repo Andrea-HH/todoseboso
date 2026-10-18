@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Indicadores y pesos continuos: resultados exploratorios
 
@@ -168,6 +168,6 @@ Todos los hiperparámetros fijados antes de entrenamiento. Pesos aprendidos sobr
 | J7_INDICATORS_DIRECT | J7_BOTH | random | 0.4959 | 0.8364 | -0.3406 | 0.4638 | 0.5362 |
 | J7_INDICATORS_DIRECT | J7_BOTH | spatial | 3.9464 | 4.2213 | -0.2749 | 0.4855 | 0.5145 |
 
-Las112pruebas pareadas, omisiones, regiones, sin35/sin10/sin171/015, intraperfil, soporte, pesos y coeficientes están en tablas/Excel. Son resultados exploratorios del banco reutilizado. No se selecciona un nuevo Champion ni se infiere causalidad.
+Las112pruebas pareadas, omisiones, regiones, sin35/sin10/sin171/015, intraperfil, soporte, pesos y coeficientes están en tablas/Excel. Son resultados exploratorios del banco reutilizado. No se selecciona un nuevo líder ni se infiere causalidad.
 
 Interpretaci?n y decisi?n: [temporal_indicator_weights_conclusions.md](temporal_indicator_weights_conclusions.md).

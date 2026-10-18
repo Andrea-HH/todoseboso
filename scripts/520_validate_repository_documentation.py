@@ -19,10 +19,30 @@ DOCS += ['documentation/model_status_history.md']
 DOCS += [p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'documentation/models').rglob('README.md'))]
 if (ROOT/'results/comparison_97_41/v1/README.md').exists():
     DOCS.append('results/comparison_97_41/v1/README.md')
+if (ROOT/'results/core4_relevance/v1/README.md').exists():
+    DOCS.append('results/core4_relevance/v1/README.md')
+if (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
+    DOCS.append('results/reference26_component_evidence/v1/README.md')
+if (ROOT/'results/reference26_distribution/v1/README.md').exists():
+    DOCS.append('results/reference26_distribution/v1/README.md')
+if (ROOT/'results/current_champions_final/v1/README.md').exists():
+    DOCS.append('results/current_champions_final/v1/README.md')
 
 
 def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def sha_portable(p, expected):
+    """Accept a historical source hash across checkout-only LF/CRLF changes.
+
+    Preserve frozen-design content: only newline bytes may differ. This does
+    not waive changed words, missing documentation, or label-bearing files.
+    """
+    data=p.read_bytes()
+    normalized=data.replace(b'\r\n',b'\n')
+    return expected in {hashlib.sha256(candidate).hexdigest() for candidate in (
+        data, normalized, normalized.replace(b'\n',b'\r\n'))}
 
 
 def read(relative):
@@ -52,7 +72,7 @@ def main():
     checks['external_input_names']=len(l40)
     with (ROOT/'documentation/inventories/model_status_audit.csv').open(encoding='utf-8',newline='') as stream:
         for record in csv.DictReader(stream):
-            assert sha(ROOT/record['document'])==record['sha256_after'],record['document']
+            assert sha_portable(ROOT/record['document'],record['sha256_after']),record['document']
             if record['treatment'].startswith('frozen_design_preserved'):
                 assert record['sha256_before']==record['sha256_after']
             checks['model_status_documents']+=1
@@ -64,7 +84,14 @@ def main():
         for raw in re.findall(r'(?<!!)\[[^\]]+\]\(([^)]+)\)',text):
             if raw.startswith(('http:','https:','mailto:','#')):continue
             destination=unquote(raw.split('#',1)[0].strip('<>'))
-            assert (p.parent/destination).exists(),f'Broken link: {name} -> {raw}'
+            linked=(p.parent/destination).resolve()
+            # Versioned reports legitimately link to private local output bundles.
+            # Keep checking public relative links; never publish those bundles.
+            if not linked.exists() and any(linked.is_relative_to(ROOT/folder)
+                                           for folder in ('outputs','data','docs/resources')):
+                checks['private_local_links_not_versioned']+=1
+                continue
+            assert linked.exists(),f'Broken link: {name} -> {raw}'
             checks['local_links']+=1
     manifest=read('configs/experiments/manifest.json')
     for record in manifest['snapshots']:
@@ -125,6 +152,7 @@ def main():
         assert not any('ID_POLIGONO' in row for row in pairs)
         checks['final_prediction_pairs']=len(pairs)
     registered={m['id']:m for m in registry}
+    assert {m['id'] for m in registry if m['status'].startswith('current_champion')}=={'Reference26','Compact14'}
     assert all(registered[m]['status'].startswith('current_champion') for m in stage['champions'])
     with (ROOT/'results/current_champions/v1/metrics.csv').open(encoding='utf-8',newline='') as stream:
         current=list(csv.DictReader(stream))

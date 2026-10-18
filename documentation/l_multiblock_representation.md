@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # L — Multiblock Representation and Residual Complementarity
 
@@ -13,7 +13,7 @@
 | L0_BASE | spatial | 0.7348 | 0.5620 | 0.2493 | 0.3023 |
 | L1_BASE | spatial | 0.9798 | 0.7796 | -0.3349 | 0.5015 |
 
-Las dos bases reproducen J0/H8 a tolerancia1e-8, mismos65folds. Climate Current48 no es TOP20 ni Champion. Es una comparación de representación completa, no un efecto exclusivo de temperatura.
+Las dos bases reproducen J0/H8 a tolerancia1e-8, mismos65folds. Climate Current48 no es TOP20 ni modelo TOP20/TOP15. Es una comparación de representación completa, no un efecto exclusivo de temperatura.
 
 | experiment | climate_profile | municipality | random | spatial |
 | --- | --- | --- | --- | --- |

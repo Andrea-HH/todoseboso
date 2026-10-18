@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # M — Historical and Multisensor Satellite Signal Exploration
 
@@ -47,7 +47,7 @@ La calidad retiene valores nativos finitos sin nuevo cutoffde nube. Sensibilidad
 
 Cross-fitting y selección interna de toda la base climática, sin OOFglobal usado para supervisar correctores. Residuos por etapa en tabla15 y14proveniencia; propuesta,eta,aplicación,final en tabla10. Coeficientes y estabilidad de signos/magnitudes, errores extremos, nubes/faltantes, perfiles, regiones, Chignahuapan y buffers en tablas20–31. Las parejas intraperfil solo usan un mismo modelo externo; distinguir parcelas no garantiza acertar diferencias de rendimiento.
 
-Asociaciones de suelo después de clima+satélite se reportan descriptivamente, no como validación de una tercera etapa. No se añade ninguna etapa al Champion; su historiaSentinel ya contenía resúmenes2022–24. M propone integración solo si la señal geográfica complementaria resulta consistente; folds/repeticiones superpuestos no son evidencia independiente.
+Asociaciones de suelo después de clima+satélite se reportan descriptivamente, no como validación de una tercera etapa. No se añade ninguna etapa al modelo TOP20/TOP15; su historiaSentinel ya contenía resúmenes2022–24. M propone integración solo si la señal geográfica complementaria resulta consistente; folds/repeticiones superpuestos no son evidencia independiente.
 
 ![RMSE](../outputs/modeling/family_1/m_historical_multisensor/v1/figures/RMSE_protocol.png)
 

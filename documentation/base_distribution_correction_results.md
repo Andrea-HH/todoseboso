@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Simplificación de bases y corrección por distribución de vecinos: resultados
 
-48 entradas, mismos 65 folds. RMSE t/ha / R² por OOF completa de cada repetición; no media de folds. Exploración sobre validaciones usadas anteriormente, sin promoción de Champion ni PRED59.
+48 entradas, mismos 65 folds. RMSE t/ha / R² por OOF completa de cada repetición; no media de folds. Exploración sobre validaciones usadas anteriormente, sin promoción de modelo TOP20/TOP15 ni PRED59.
 
 BASE=sin R3 final; GLOBAL_GLOBAL=R3 sin ponderación local; SUPPORT=más corrección al parecerse a sus vecinos; NOVELTY=más corrección al diferir de ellos. El peso depende de las tres variables R3 respecto a la mediana/MAD de vecinos definidos por GEO/PHYSICAL/SATELLITE. No usa rendimientos para calcular la semejanza. El signo de la corrección procede de R3, no de la distancia. k/amplitud se seleccionan dentro del entrenamiento de cada combinación.
 

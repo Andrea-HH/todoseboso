@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Calendarios, Sentinel e historia: resultados del modelado pendiente
 
@@ -133,4 +133,4 @@ Los modelos, búsquedas internas y auditorías permanecen separados en `expansio
 
 Scripts 397–404 y módulos `src/calendar_expansion.py` y `src/calendar_execution.py`. El diseño principal está en `documentation/agronomic_calendar_expansion_design.md`; cada batería conserva su JSON congelado.
 
-No se sobrescribieron Champion ni modelos anteriores, no se ajustó un modelo final con las 138 etiquetas y no se generaron predicciones PRED.
+No se sobrescribieron modelo TOP20/TOP15 ni modelos anteriores, no se ajustó un modelo final con las 138 etiquetas y no se generaron predicciones PRED.

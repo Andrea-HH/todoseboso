@@ -1,4 +1,4 @@
-# Champion histórico TOP20 → TOP15 → topografía
+# Modelo histórico — TOP20 → TOP15 → topografía
 
 **Estado: histórico. No es Reference26 ni Compact14, los dos champions actuales.** Identificador conservado: `A_CURRENT_CH_H_T`; alias antiguos `Champion` y `CHAMPION`. No se reasigna ese identificador a la receta de 26 entradas.
 

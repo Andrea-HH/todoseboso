@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Seis combinaciones: síntesis de evidencia
 
-Ninguna de las seis combinaciones reduce el RMSE en los cuatro protocolos originales frente a Reference26. Se conserva Reference26 como referencia; no se declara un nuevo Champion.
+Ninguna de las seis combinaciones reduce el RMSE en los cuatro protocolos originales frente a Reference26. Se conserva Reference26 como referencia; no se declara un nuevo líder.
 
 Ninguna combinación conserva simultáneamente el RMSE y percentil95 de Reference26 y la proporción dentro de ±.5 de C-T3 en aleatoria y espacial. No se ha resuelto por completo ese compromiso.
 
@@ -106,7 +106,7 @@ Las comparaciones son exploratorias tras amplia reutilización de las mismas eti
 
 ## Entrega y decisión
 
-Los resultados no autorizan cambios automáticos del Champion. Una ventaja pequeña o localizada debe valorarse junto con complejidad, pérdida por región, cuartiles e intraperfil. Antes de recomendar otra capa se debe comprobar su ganancia frente a la mezcla constante y su estabilidad territorial. Si no hay mejora consistente, priorizar cierre, interpretación y demostración del modelo existente sobre nuevas búsquedas.
+Los resultados no autorizan cambios automáticos del modelo TOP20/TOP15. Una ventaja pequeña o localizada debe valorarse junto con complejidad, pérdida por región, cuartiles e intraperfil. Antes de recomendar otra capa se debe comprobar su ganancia frente a la mezcla constante y su estabilidad territorial. Si no hay mejora consistente, priorizar cierre, interpretación y demostración del modelo existente sobre nuevas búsquedas.
 
 Se conservan los 138 rendimientos, modelos anteriores y las 59 parcelas PRED. No se entrenó modelo final con las 138 etiquetas ni se generaron predicciones para las 59 parcelas. Scripts 503–517, OOF, modelos, pesos, pruebas, Excel y auditorías están en la estructura del repositorio.
 

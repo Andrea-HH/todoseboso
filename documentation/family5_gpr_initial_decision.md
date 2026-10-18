@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F5 inicial — Síntesis para decisiones
 
-**F5-01 aporta una mejora municipal y por perfil frente a C-T3, pero empeora la transferencia espacial. No se propone un nuevo Champion.**
+**F5-01 aporta una mejora municipal y por perfil frente a C-T3, pero empeora la transferencia espacial. No se propone un nuevo líder.**
 
 | index | experiment | protocol | RMSE | MAE | bias | n | n_repeats |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -29,7 +29,7 @@ El costo espacial se concentra en el bloque3: allí F5-01 tiene sesgo+1.016142t/
 
 La prueba principal municipal cumple el margen de ganancia; la guarda global de costo no cumple; 3/5 folds municipales mejoran RMSE. La aceptación conjunta es False. Una mejora agregada no demuestra beneficio para la mayoría de parcelas ni estabilidad entre todas las regiones.
 
-**Recomendación:** conservar F5-01 como candidato exploratorio municipal y continuar únicamente mediante revisión de una sensibilidad acotada de representación/kernel que investigue el deterioro espacial. Posponer bloques históricos hasta entender ese límite. No ampliar automáticamente F5 ni modificar Champion. La suavidad conjunta recibe apoyo parcial; su extrapolación espacial bajo media constante no ofrece una ventaja general. No se rechaza la representación compacta —el control C-T3 sigue siendo útil— ni todos los Gaussian Processes.
+**Recomendación:** conservar F5-01 como candidato exploratorio municipal y continuar únicamente mediante revisión de una sensibilidad acotada de representación/kernel que investigue el deterioro espacial. Posponer bloques históricos hasta entender ese límite. No ampliar automáticamente F5 ni modificar modelo TOP20/TOP15. La suavidad conjunta recibe apoyo parcial; su extrapolación espacial bajo media constante no ofrece una ventaja general. No se rechaza la representación compacta —el control C-T3 sigue siendo útil— ni todos los Gaussian Processes.
 
 Intervalos90%: cobertura y amplitud por protocolo/perfil conocido/nuevo están en el reporte técnico. Son Gaussian plug-in, con parámetros estimados y ruido observado; no garantías de calibración bajo cambio de dominio. Las omisiones de bloques/casos reutilizan las mismas OOF, sin reentrenamiento.
 

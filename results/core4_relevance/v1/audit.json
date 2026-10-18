@@ -1,0 +1,15 @@
+{
+  "n_parcels": 138,
+  "n_profiles": 43,
+  "n_outer_folds": 65,
+  "ablation_rows": 12558,
+  "full4_matches_original_max_difference": 0.0,
+  "new_26_fits": 0,
+  "new_final_fits": 0,
+  "PRED_read": false,
+  "association_tests": 13,
+  "prediction_tests": 24,
+  "association_holm_significant": 12,
+  "ablation_holm_significant": 4,
+  "elapsed_seconds": 3.626208100002259
+}

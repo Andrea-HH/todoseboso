@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Tres líneas sobre el local sin clima + corrector compacto
 
@@ -8,7 +8,7 @@ Se ejecutaron las tres fases autorizadas sobre los 65 folds originales. La mezcl
 
 El candidato `P1_BOTH_clusters` combina C-T3 con la combinación anterior mediante pesos aprendidos por clusters de textura/fase y geología. Su RMSE aleatorio es 0.4852, municipal 0.5847 y espacial 0.6811. Mantiene buena parte de la precisión de la combinación anterior y reduce considerablemente su deterioro territorial, quedando cerca de los valores puntuales de C-T3 en municipal/espacial. Esto no demuestra equivalencia ni superioridad estadística.
 
-La mezcla por textura/fase sola obtiene el menor RMSE aleatorio de esta batería (0.4805) y perfil 0.4876, con más deterioro territorial. Ambos son candidatos exploratorios. No se declara nuevo Champion, no se ajusta modelo final ni se reemplazan las 59 predicciones.
+La mezcla por textura/fase sola obtiene el menor RMSE aleatorio de esta batería (0.4805) y perfil 0.4876, con más deterioro territorial. Ambos son candidatos exploratorios. No se declara nuevo líder, no se ajusta modelo final ni se reemplazan las 59 predicciones.
 
 ## Qué se ejecutó y cómo se protegió la evaluación
 
@@ -93,4 +93,4 @@ Se registraron cuatro advertencias del entorno OpenMP y ninguna advertencia de c
 
 Entregables: `outputs/modeling/conditional_local_phases/v1/resultados_tres_fases.xlsx`, tablas OOF, modelos, selecciones, pesos por parcela, intraperfil, errores regionales, omisiones y contrastes. Código: `src/conditional_local_phases.py`, scripts432/433/434 y pruebas correspondientes. Se conservan versiones anteriores. `outputs/` sigue excluido de Git; estos artefactos están en disco local.
 
-No se modificaron Champion, C-T3 ni resultados anteriores; no se entrenó modelo final sobre138, no se generaron nuevas PRED59 y no se hizo push de esta fase.
+No se modificaron modelo TOP20/TOP15, C-T3 ni resultados anteriores; no se entrenó modelo final sobre138, no se generaron nuevas PRED59 y no se hizo push de esta fase.

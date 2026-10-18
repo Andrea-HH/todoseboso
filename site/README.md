@@ -83,3 +83,48 @@ Expresiones como “la geología decide” significan mezcla predictiva aprendid
 no una intervención causal. Los valores ilustrativos siempre deben conservar
 su etiqueta sintética. La web no compara 0.4625 con la RMSE 0.481936 de un
 banco diferente. LOOCV 138-fold de modelos pares aún no está ejecutado.
+
+## Sincronización del 18 de octubre de 2026: interpretabilidad
+
+La sección «¿Qué señales realmente aportan?» usa tres CSV agregados versionados y
+controlados por `python scripts/check_story_evidence.py`:
+
+- `results/core4_relevance/v1/metrics.csv`: retirar por separado las cuatro
+  entradas de C-T3 y volver a ajustar, en cuatro protocolos distintos;
+- `results/reference26_component_evidence/v1/architecture_metrics.csv`:
+  Reference26 con y sin el bloque R3;
+- `results/reference26_component_evidence/v1/component_weights.csv`:
+  peso medio aprendido del experto local en Reference26.
+
+La copia pública `site/data/evidence.json` se audita por coincidencia numérica
+con cada fuente. No incluye rendimientos por parcela, localizaciones ni modelos.
+Las ablaciones de C-T3 no son importancias individuales dentro de Reference26.
+
+- HHI no demuestra un aporte robusto: quitarlo mejora el RMSE del protocolo
+  espacial de C-T3; no justifica retirarlo de Reference26 sin reajustarlo.
+- R3 mejora el RMSE descriptivo en los cuatro protocolos originales, pero eso
+  no prueba que sus tres indicadores sean indispensables por separado.
+- El peso del experto cambia según el protocolo; no se fija por municipio.
+- Holm corrige las comparaciones examinadas, no la selección histórica.
+
+## Dos implementaciones de página preservadas
+
+El fork ya tenía dos presentaciones estáticas: `site/` y `website/`.
+El publicador **canónico** es `.github/workflows/publish_story.yml`: monta
+`site/` en la raíz y conserva `website/` en `/alternate/`. El segundo workflow
+`publish_story_pages.yml` valida la presentación alternativa, sin otro deploy.
+No se eliminó ni reescribió el trabajo paralelo.
+
+GitHub Pages se debe activar desde Settings → Pages → Build and deployment →
+GitHub Actions. Intentar habilitar Pages desde un workflow falló por permisos;
+la web no se considera publicada hasta observar un deploy exitoso.
+
+Validación:
+
+```bash
+python scripts/sync_story_data.py --check
+python scripts/check_story_evidence.py
+python -m unittest discover -s tests -p test_story_site.py
+python scripts/529_check_story_site.py
+node --check site/app.js
+```

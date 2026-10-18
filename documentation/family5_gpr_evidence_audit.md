@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F5 — Auditoría transversal de evidencia para diseñar GPR
 
@@ -6,7 +6,7 @@ Estado: **propuesta para revisión; modelos F5 no ejecutados**. Se recuperan res
 
 ## Alcance y trazabilidad
 
-138 TRAIN, 59 PRED, 197 parcelas; 43 perfiles etiquetados, 12 repetidos y 53 en el universo completo. Se revisan lluvia E1–E8, G/H y extensión PCR, RS1–RS6, Champion, J/K/L/M, Familias 2/3, screening1473, F4/F4-E y A–D. Se reutilizan inventario de 228 series históricas y diagnósticos D; no se duplican sus pipelines. `audit/protected_inputs.csv` registra fuentes y hashes; `audit/technical_primary_sources.csv` documenta bibliografía técnica.
+138 TRAIN, 59 PRED, 197 parcelas; 43 perfiles etiquetados, 12 repetidos y 53 en el universo completo. Se revisan lluvia E1–E8, G/H y extensión PCR, RS1–RS6, modelo TOP20/TOP15, J/K/L/M, Familias 2/3, screening1473, F4/F4-E y A–D. Se reutilizan inventario de 228 series históricas y diagnósticos D; no se duplican sus pipelines. `audit/protected_inputs.csv` registra fuentes y hashes; `audit/technical_primary_sources.csv` documenta bibliografía técnica.
 
 El inventario anterior está en [Etapa D](../outputs/research/family_4/territorial_intraprofile_program/v1/stage_d/tables/model_inventory.csv). Los archivos se identifican mediante rutas desde la raíz y hashes en el inventario F5. Familias2/3 no justificaron mayor complejidad funcional/estructural; esas conclusiones no prueban que todos los kernels fallen. Suelo/geología250k aportan descripciones, sin contribución incremental estable; no entran al núcleo inicial. La cartografía local50k suspendida no se reabre.
 
@@ -27,7 +27,7 @@ Las cifras RS3/RS4 publicadas son medias de RMSE de folds y se preservan. Se rec
 | 15 | RS4 | TOP20_ENET_HISTORY15 | random | outputs/modeling/residual_signal_audit/stage4_champion_reconstruction/predictions/oof_predictions.parquet | 0.50111 | 0.35615 | -0.00632 | 138 | 10 |
 | 17 | RS6 | A_CURRENT_CH_H_T | random | outputs/modeling/residual_signal_audit/stage6_architecture_optimization/predictions/oof_predictions.parquet | 0.49813 | 0.35887 | 0.00183 | 138 | 10 |
 
-Los valores archivados de RS3 —incluidos total/timing/ventanas— permanecen en `archived_01_RS3.csv` y `archived_03_RS3.csv`. Una cifra distinta de la documentación puede deberse a agregación, no a cambio del modelo. RS6 Champion 0.486505 de mediafold y aproximadamente0.498127 de OOF completa son medidas diferentes.
+Los valores archivados de RS3 —incluidos total/timing/ventanas— permanecen en `archived_01_RS3.csv` y `archived_03_RS3.csv`. Una cifra distinta de la documentación puede deberse a agregación, no a cambio del modelo. RS6 modelo TOP20/TOP15 0.486505 de mediafold y aproximadamente0.498127 de OOF completa son medidas diferentes.
 
 Lluvia7, frente a total solo y alternativas agregadas, bajo los65 folds:
 

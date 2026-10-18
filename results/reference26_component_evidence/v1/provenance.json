@@ -1,0 +1,18 @@
+{
+  "source_sha256": {
+    "outputs/modeling/architecture_decomposition/v1/tables/metrics_summary.csv": "448e9f82dede5ead420837fb08123479f7164cdcab41e44e22cac34a90ac2b74",
+    "outputs/modeling/base_distribution_correction/v1/tables/metrics_summary.csv": "62857bf653f96a9ee9c8f141dd88798d9af5d4b32a8b3eb75845c4e36aac9add",
+    "outputs/modeling/indicator_neighborhoods/v1/tables/metrics_summary.csv": "35b1e4aa8d51152204bd0ea7de98a554ba7af6298188c931a6717c1ea9465aae",
+    "outputs/modeling/architecture_decomposition/v1/tables/component_weights.csv": "40edd0520c588b52a44c2ba1a81b1f9834d19942e368c24cc84ef94325dd8f40",
+    "outputs/modeling/architecture_decomposition/v1/tables/paired_tests.csv": "731bcd3273c808a3e2a2f129045216619225cab6e964ef1e354bd47e9817cae3",
+    "outputs/modeling/base_distribution_correction/v1/tables/paired_tests.csv": "6a41b8979a443435aaa56e55abfbc247bbe31c67be1917e58a4e2508273ddcea",
+    "outputs/modeling/indicator_neighborhoods/v1/tables/paired_tests.csv": "15cc8459b3c94f8c10244aa424a2607693eef27300ecd604f53bccc76c586d30",
+    "outputs/modeling/architecture_decomposition/v1/tables/MSE_interactions_summary.csv": "234dc4962f8c4f1d97736cc9f2849920d25025659ba1b16d38921b48b1d41ca3",
+    "outputs/modeling/architecture_decomposition/v1/tables/regions_summary.csv": "8d426c3c6d4e7dfc6682d14a3fe291a4367a0a877ea62f9c8f2c890e19677a8d",
+    "outputs/modeling/architecture_decomposition/v1/tables/omissions_summary.csv": "ad78c6b09aaeb02ebafc50b9e2d56f2253b795096c9097c598145b6470f19fe0",
+    "outputs/modeling/architecture_decomposition/v1/tables/complexity_inventory.csv": "20fa9f1e3adfbf5c8b8f5899dc1ec3aa08c635d79934ac905c813029d646e91f",
+    "results/current_champions/v1/metrics.csv": "f88b790f8900c3027a45a8d5032f994e238e4b4497754cead8b2ce3689396259"
+  },
+  "code_sha256": "5cd1e718feace9f7c988d0e6fde8d32a575e1bb17865a7d21120ea6ba6a81e94",
+  "code_hash_encoding": "CRLF normalized to LF; raw input bytes"
+}

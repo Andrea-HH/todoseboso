@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Etapa C — Agrupación parcial y representación climática para transferencia
 
@@ -179,7 +179,7 @@ Se mantienen soporte por parcela/perfil/parejas y perspectiva sin Chignahuapan. 
 
 `python scripts/344_stage_c_transfer_and_hierarchy.py` ejecuta C-T y su auditoría antes de C-H. Los modelos, transformaciones, controles, CV interna, IDs, coeficientes, grupos/effectos, varianzas y componentes predictivos quedan versionados. No se suspendió por problemas numéricos: las ecuaciones normales y matrices positivas se verifican; la limitación principal es empírica e identificabilidad de varianzas.
 
-Todas las conclusiones siguen siendo exploratorias por reutilización de las mismas 138 etiquetas. Nuevas campañas/regiones son necesarias para confirmación independiente. Las fuentes y los resultados anteriores se verifican por SHA-256. Etapa D no se ejecutó y no se cambió Champion, mezcla, A/B, familias anteriores ni etiquetas.
+Todas las conclusiones siguen siendo exploratorias por reutilización de las mismas 138 etiquetas. Nuevas campañas/regiones son necesarias para confirmación independiente. Las fuentes y los resultados anteriores se verifican por SHA-256. Etapa D no se ejecutó y no se cambió modelo TOP20/TOP15, mezcla, A/B, familias anteriores ni etiquetas.
 
 
 ## Figuras

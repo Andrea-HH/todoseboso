@@ -43,6 +43,10 @@ jobs:
         run: python scripts/sync_story_data.py --check
       - name: Check static site contract
         run: python -m unittest discover -s tests -p 'test_story_site.py'
+      - name: Verify recovered interpretability evidence
+        run: python scripts/check_story_evidence.py
+      - name: Audit repository documentation and frozen model provenance
+        run: python scripts/520_validate_repository_documentation.py
       - name: Validate JavaScript syntax
         run: node --check site/app.js
 
@@ -64,10 +68,15 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Upload only public static site
+      - name: Stage canonical site and alternate presentation
+        run: |
+          mkdir -p _pages/alternate
+          cp -a site/. _pages/
+          cp -a website/. _pages/alternate/
+      - name: Upload only public static sites
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: _pages
       - name: Deploy site
         id: deploy
         uses: actions/deploy-pages@v4

@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Complementariedad de C-T3, GPR y CatBoost compacto
 
@@ -25,7 +25,7 @@ RMSE en t/ha; menor es mejor. OOF completas de 138 parcelas por repetición y me
 | EQUAL3, promedio fijo | **0.4982** | 0.4979 | **0.5277** | 0.6709 |
 | BLEND3, pesos internos | 0.5024 | **0.4966** | 0.5683 | 0.6913 |
 
-EQUAL3 mejora frente a C-T3 en los cuatro protocolos: diferencias de RMSE −0.0134, −0.0227, −0.0536 y −0.0078. Su MAE también mejora en los cuatro. No supera espacialmente a CatBoost y la diferencia municipal entre ambos es muy pequeña. Su RMSE aleatorio es prácticamente igual al Champion compatible, 0.498127, sin demostrar superioridad.
+EQUAL3 mejora frente a C-T3 en los cuatro protocolos: diferencias de RMSE −0.0134, −0.0227, −0.0536 y −0.0078. Su MAE también mejora en los cuatro. No supera espacialmente a CatBoost y la diferencia municipal entre ambos es muy pequeña. Su RMSE aleatorio es prácticamente igual al modelo TOP20/TOP15 compatible, 0.498127, sin demostrar superioridad.
 
 BLEND3 mejora frente a C-T3 en tres protocolos, pero empeora espacialmente 0.0125 de RMSE y 0.0138 de MAE. Su sesgo municipal pasa de −0.0203 a +0.0488; el aumento de sesgo absoluto es 0.0285. No cumple los límites exploratorios congelados.
 
@@ -57,7 +57,7 @@ Las ganancias en rendimiento absoluto no deben interpretarse como mejor diferenc
 
 ## Recomendación
 
-Conservar EQUAL3 como **referencia exploratoria de combinación**, no como nuevo Champion. Detener la búsqueda de pesos libres en esta batería: no ofrece una ventaja consistente sobre el control simple. Si se autoriza una continuación, formular una sensibilidad pequeña de pesos fuertemente contraídos al promedio, elegida completamente dentro del entrenamiento, y exigir estabilidad frente a omisión de bloques y ausencia de daño intraperfil. No realizar selección externa de la pareja más favorable ni convertir el bloque 4 en una regla regional.
+Conservar EQUAL3 como **referencia exploratoria de combinación**, no como nuevo líder. Detener la búsqueda de pesos libres en esta batería: no ofrece una ventaja consistente sobre el control simple. Si se autoriza una continuación, formular una sensibilidad pequeña de pesos fuertemente contraídos al promedio, elegida completamente dentro del entrenamiento, y exigir estabilidad frente a omisión de bloques y ausencia de daño intraperfil. No realizar selección externa de la pareja más favorable ni convertir el bloque 4 en una regla regional.
 
 La prioridad para confirmar transferencia sigue siendo disponer de campañas o parcelas independientes, especialmente fuera del territorio dominante. Las etiquetas se han explorado repetidamente: no se declara superioridad estadística ni se interpretan estas mejoras como confirmación independiente.
 
@@ -67,7 +67,7 @@ Se reutilizaron todas las bases externas y las internas admisibles de C-T3/GPR; 
 
 Pasaron tres pruebas, incluyendo alterar los rendimientos externos en +10,000 y comprobar que predicciones, pesos y métricas de selección interna permanecen iguales. Se reprodujeron los tres controles externos y las 65 mezclas guardadas. Todos los archivos consumidos conservaron sus hashes. El runtime notificó coexistencia Intel/LLVM OpenMP; terminó sin interrupciones. Las advertencias de ajuste CatBoost se registran en cb_registry.csv.
 
-No se agregaron variables, no se ejecutaron correcciones residuales, no se ajustó un modelo final sobre 138 etiquetas, no se modificó Champion y no se generaron predicciones PRED. No se ofrecen intervalos de mezcla sin calibración.
+No se agregaron variables, no se ejecutaron correcciones residuales, no se ajustó un modelo final sobre 138 etiquetas, no se modificó modelo TOP20/TOP15 y no se generaron predicciones PRED. No se ofrecen intervalos de mezcla sin calibración.
 
 - [Diseño congelado](../outputs/modeling/compact_ensemble/v1/report/design.md)
 - [OOF](../outputs/modeling/compact_ensemble/v1/tables/oof_predictions.csv)

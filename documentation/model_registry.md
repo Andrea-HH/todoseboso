@@ -6,11 +6,11 @@ Estado documental al2026-10-18. Fuente estructurada: [configs/model_registry.jso
 
 ## Convención de estado
 
-**Champions actuales: Reference26 y Compact14**, por selección explícita del responsable. C-T3 es el control y B1 la sensibilidad. L40 se conserva en la comparación como benchmark externo fuerte; queda fuera del reentrenamiento propio. Consultar la [etapa vigente](../configs/current_stage.json), la [reproducción](current_champions_reproduction.md) y los [resultados](../results/current_champions/v1/README.md). La selección no genera automáticamente ajustes finales138 ni predicciones59.
+**Champions actuales: Reference26 y Compact14**, por selección explícita del responsable. C-T3 es el control y B1 la sensibilidad. L40 se conserva en la comparación como benchmark externo fuerte; queda fuera del reentrenamiento propio. Consultar la [etapa vigente](../configs/current_stage.json), la [reproducción](current_champions_reproduction.md) y los [resultados](../results/current_champions/v1/README.md). Ambos champions ya tienen ajuste final138 y59 predicciones; la selección y la generación no acreditan envío ni conocer su error real.
 
-- **Champion actual:** receta seleccionada explícitamente para esta etapa; Reference26 y Compact14. No implica nuevo ajuste final ni nuevas59.
+- **Champion actual:** receta seleccionada explícitamente para esta etapa; Reference26 y Compact14. Tiene ajuste final138 y59 estimaciones disponibles; su error real aún no se conoce.
 - **Control:** referencia reproducible para comparar, independientemente de que también tenga entrega histórica.
-- **Champion histórico:** identificador conservado de una receta seleccionada en una etapa anterior.
+- **modelo histórico TOP20/TOP15:** identificador conservado de una receta seleccionada en una etapa anterior.
 - **Candidato experimental:** receta evaluada con OOF; no implica ajuste final ni autorización para generar59.
 - **Entrega histórica59:** existe documentación de ajuste final y estimaciones; no acredita envío al comité ni conocer el error real de 59.
 - **Propuesta:** documento de diseño; no se interpreta como ejecución.
@@ -20,7 +20,7 @@ Estado documental al2026-10-18. Fuente estructurada: [configs/model_registry.jso
 | Identificador / alias | Composición y papel | Código / documentación | Artefactos locales | Estado |
 |---|---|---|---|---|
 | C-T3 / CT3 | Elastic Net sobre compact4: total de lluvia, fracción temprana, HHI y NDVI mayo | [`src/ct3_residual_conditional/models.py`](../src/ct3_residual_conditional/models.py), [evaluación](ct3_residual_conditional.md) | `outputs/modeling/ct3_residual_conditional/v1/`; entrega en `outputs/modeling/winner_predictions/v1/` | Control; entrega histórica59 |
-| Champion / `A_CURRENT_CH_H_T` | Clima TOP20 Elastic Net + historia TOP15 XGBoost + topografía Ridge 25; selecciones por entrenamiento | [Consolidación y entrega](winner_predictions_statistical_validation.md) | `outputs/modeling/winner_predictions/v1/` | Champion histórico; entrega59; no confundir con26 |
+| Modelo histórico TOP20/TOP15 / `A_CURRENT_CH_H_T` | Clima TOP20 Elastic Net + historia TOP15 XGBoost + topografía Ridge 25; selecciones por entrenamiento | [Consolidación y entrega](winner_predictions_statistical_validation.md) | `outputs/modeling/winner_predictions/v1/` | modelo histórico TOP20/TOP15; entrega59; no confundir con26 |
 | EQUAL3 | Promedio fijo de C-T3, GPR F5-01 y CatBoost F7-00 | [Entrega histórica](winner_predictions_statistical_validation.md) | `outputs/modeling/winner_predictions/v1/` | Ensamble histórico con59 |
 | F5-01 | GPR Matérn3/2 por bloques de lluvia compacta y NDVI mayo | [`src/family_5/`](../src/family_5/), [decisión](family5_gpr_initial_decision.md), [sensibilidadS1](family5_gpr_s1.md) | Rutas específicas en los informesF5 | Experimento; también componente deEQUAL3 |
 | F7-00 | CatBoost directo compact4; extensiones E1–E3 son otras recetas | [`src/family_7/`](../src/family_7/), [F7](family7_boosting.md), [expansión](family7_expansion.md) | Rutas específicas en informesF7 y entrega histórica | Experimento; también componente deEQUAL3 |

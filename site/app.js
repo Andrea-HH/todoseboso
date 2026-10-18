@@ -146,3 +146,104 @@ $$("[data-protocol]").forEach((button) => button.addEventListener("click", () =>
     $("#results-chart").textContent = "Las métricas están disponibles en los resultados versionados del repositorio.";
   }
 })();
+
+// Source-backed interpretability evidence. The four original protocols are
+// distinct from the later 97/41 benchmark and from parcel-level explanations.
+const EVIDENCE_NAMES = {
+  random: "Aleatoria", climate_profile: "Perfil", municipality: "Municipal", spatial: "Espacial"
+};
+const ABLATION_NOTES = {
+  random: "En aleatoria, retirar lluvia total, fracción temprana o NDVI eleva el RMSE. El cambio al retirar HHI es pequeño.",
+  climate_profile: "Cuando se retienen perfiles climáticos completos, el núcleo completo funciona mejor que las cuatro retiradas evaluadas.",
+  municipality: "Al excluir municipios, la fracción temprana aporta una diferencia descriptiva importante; no es una demostración causal.",
+  spatial: "Al excluir bloques espaciales, retirar HHI reduce el RMSE de C-T3. Esto NO autoriza eliminar HHI de Reference26 sin reajustar todas sus capas."
+};
+let componentProtocols = null;
+function evidenceElement(tag, className, content) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (content !== undefined) node.textContent = content;
+  return node;
+}
+function renderAblations(id) {
+  if (!componentProtocols) return;
+  const p = componentProtocols.find((row) => row.id === id);
+  if (!p) return;
+  $$("[data-ablation-protocol]").forEach((button) => {
+    const active = button.dataset.ablationProtocol === id;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  const chart = $("#ablation-chart");
+  chart.replaceChildren();
+  const max = Math.max(1.05, ...p.core4_ablations.map((x) => x.rmse));
+  p.core4_ablations.forEach((row) => {
+    const item = evidenceElement("div", "ablation-row" + (row.id === "FULL4" ? " incumbent" : ""));
+    const name = evidenceElement("span", "ablation-label", row.label);
+    const track = evidenceElement("div", "ablation-track");
+    const bar = evidenceElement("span", "ablation-fill");
+    bar.style.width = String(100 * row.rmse / max) + "%";
+    track.append(bar);
+    const score = evidenceElement("strong", "ablation-score", row.rmse.toFixed(4));
+    item.setAttribute("aria-label", row.label + ", RMSE " + row.rmse.toFixed(4) + " toneladas por hectárea");
+    item.append(name, track, score);
+    chart.append(item);
+  });
+  $("#ablation-insight").textContent = ABLATION_NOTES[id];
+}
+function renderComponentEvidence() {
+  const r3 = $("#r3-comparison");
+  const weights = $("#expert-weights");
+  r3.replaceChildren();
+  weights.replaceChildren();
+  componentProtocols.forEach((p) => {
+    const row = evidenceElement("div", "component-r3-row");
+    const name = evidenceElement("span", "r3-protocol", EVIDENCE_NAMES[p.id]);
+    const without = evidenceElement("span", "r3-without", p.reference26_r3.without_r3.toFixed(4));
+    const arrow = evidenceElement("span", "r3-arrow", "→");
+    const withR3 = evidenceElement("strong", "r3-with", p.reference26_r3.with_r3.toFixed(4));
+    row.setAttribute("aria-label", EVIDENCE_NAMES[p.id] + ", RMSE sin R3 " + without.textContent + ", con R3 " + withR3.textContent + " t/ha");
+    row.append(name, without, arrow, withR3);
+    r3.append(row);
+    const weight = evidenceElement("div", "expert-weight-row");
+    const label = evidenceElement("span", "weight-name", EVIDENCE_NAMES[p.id]);
+    const track = evidenceElement("div", "weight-track");
+    const expert = evidenceElement("span", "weight-expert");
+    expert.style.width = String(p.expert_weight * 100) + "%";
+    track.append(expert);
+    const percent = evidenceElement("strong", "weight-number", (p.expert_weight * 100).toFixed(1) + " %");
+    weight.setAttribute("aria-label", EVIDENCE_NAMES[p.id] + ", peso medio del experto local " + percent.textContent);
+    weight.append(label, track, percent);
+    weights.append(weight);
+  });
+}
+$$("[data-ablation-protocol]").forEach((button) => button.addEventListener("click", () => {
+  renderAblations(button.dataset.ablationProtocol);
+}));
+(async function loadComponentEvidence() {
+  const chart = $("#ablation-chart");
+  const r3 = $("#r3-comparison");
+  const weights = $("#expert-weights");
+  try {
+    const response = await fetch("./data/evidence.json", { cache: "no-store" });
+    if (!response.ok) throw Error("No se pudo cargar evidencia.json");
+    const data = await response.json();
+    if (data.schema_version !== 1 || !Array.isArray(data.protocols) || data.protocols.length !== 4) {
+      throw Error("Esquema de evidencia inesperado");
+    }
+    if (data.protocols.some((p) => !EVIDENCE_NAMES[p.id] || p.core4_ablations.length !== 5 ||
+      p.core4_ablations.some((x) => !Number.isFinite(x.rmse)) ||
+      !Number.isFinite(p.reference26_r3.without_r3) || !Number.isFinite(p.reference26_r3.with_r3) ||
+      !Number.isFinite(p.expert_weight) || p.expert_weight < 0 || p.expert_weight > 1)) {
+      throw Error("Datos de componentes incompletos");
+    }
+    componentProtocols = data.protocols;
+    renderAblations("random");
+    renderComponentEvidence();
+  } catch (error) {
+    console.error("No se cargó evidencia de componentes:", error);
+    for (const node of [chart, r3, weights]) {
+      node.textContent = "No se pudo cargar la evidencia. Consulta los CSV agregados en GitHub.";
+    }
+  }
+})();

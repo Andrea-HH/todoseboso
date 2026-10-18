@@ -1,10 +1,10 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Set histórico y actual guiado por calendarios FIRA
 
 ## Alcance
 
-Representación por parcela y año, con Sentinel como base satelital y el mismo clima mensual canónico del proyecto. Años2022,2023,2024,2025. No se leyeron rendimientos, no se entrenaron modelos ni se generaron predicciones PRED. Las197 geometrías/identificadores conservan atributos disponibles; los diagnósticos de variación y redundancia se limitan a los138 TRAIN. No se modificaron Champion, F5, F6, C-T3 ni sus folds.
+Representación por parcela y año, con Sentinel como base satelital y el mismo clima mensual canónico del proyecto. Años2022,2023,2024,2025. No se leyeron rendimientos, no se entrenaron modelos ni se generaron predicciones PRED. Las197 geometrías/identificadores conservan atributos disponibles; los diagnósticos de variación y redundancia se limitan a los138 TRAIN. No se modificaron modelo TOP20/TOP15, F5, F6, C-T3 ni sus folds.
 
 El diseño y hashes de los15 PDF y las dos tablas temporales se escriben antes de construir las variables en `outputs/research/agronomic_calendar_set/v1/frozen_design.json`. Este set es una propuesta representacional exploratoria informada por documentos; su valor predictivo sigue sin evaluar.
 

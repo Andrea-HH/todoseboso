@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F6 — Bagging y árboles aleatorizados
 
-**Estado: ejecución exploratoria; referencias intactas; sin promoción del Champion ni entrenamiento final/PRED.**
+**Estado: ejecución exploratoria; referencias intactas; sin promoción del modelo TOP20/TOP15 ni entrenamiento final/PRED.**
 
 ## Métricas primarias
 
@@ -14,7 +14,7 @@
 | F6-00 | 0.527190 | 0.608372 | 0.514005 | 0.762037 |
 | F6-01 | 0.512979 | 0.638586 | 0.506296 | 0.758923 |
 
-RMSE en t/ha:138 OOF completas por repetición, luego promedio de diez repeticiones aleatorias. No es media de RMSE por fold. Las repeticiones y folds comparten parcelas; su dispersión no equivale a un error estándar independiente ni a una prueba de significancia. MAE, sesgo, dispersión entre repeticiones y métricas territoriales están en las tablas. C-T3 y F5-01 son controles con los mismos cuatro predictores; Champion y sus etapas usan otras columnas y solo tienen cincuenta folds aleatorios compatibles. Sus comparaciones son contexto arquitectónico, no efecto aislado del algoritmo.
+RMSE en t/ha:138 OOF completas por repetición, luego promedio de diez repeticiones aleatorias. No es media de RMSE por fold. Las repeticiones y folds comparten parcelas; su dispersión no equivale a un error estándar independiente ni a una prueba de significancia. MAE, sesgo, dispersión entre repeticiones y métricas territoriales están en las tablas. C-T3 y F5-01 son controles con los mismos cuatro predictores; modelo TOP20/TOP15 y sus etapas usan otras columnas y solo tienen cincuenta folds aleatorios compatibles. Sus comparaciones son contexto arquitectónico, no efecto aislado del algoritmo.
 
 ## Criterio de continuación
 
@@ -32,7 +32,7 @@ Criterio congelado antes de ajustar: ganancia municipal RMSE≥0.01 frente a C-T
 **1. F6-00 frente a las referencias:** ΔRMSE versus C-T3 (aleatoria/perfil/municipal/espacial) = +0.00242, +0.00659, +0.02711, +0.08326 t/ha; versus F5-01 = +0.01000, +0.02743, +0.06416, +0.02724. Un resultado negativo favorece F6. La comparación pareada incluye todas las parcelas; no se elimina ningún caso influyente.
 **1. F6-01 frente a las referencias:** ΔRMSE versus C-T3 (aleatoria/perfil/municipal/espacial) = -0.00529, -0.00762, +0.05733, +0.08014 t/ha; versus F5-01 = +0.00229, +0.01322, +0.09438, +0.02413. Un resultado negativo favorece F6. La comparación pareada incluye todas las parcelas; no se elimina ningún caso influyente.
 
-Extra Trees conserva una fortaleza pequeña de MAE aleatoria: 0.356612, frente a 0.358869 del Champion. Su RMSE aleatorio es 0.506296, frente a 0.498127; esa diferencia de objetivos y arquitectura impide declarar que reemplaza al Champion.
+Extra Trees conserva una fortaleza pequeña de MAE aleatoria: 0.356612, frente a 0.358869 del modelo TOP20/TOP15. Su RMSE aleatorio es 0.506296, frente a 0.498127; esa diferencia de objetivos y arquitectura impide declarar que reemplaza al modelo TOP20/TOP15.
 
 **2. Transferencia territorial:** el RMSE espacial RF es 0.762037 y ET 0.758923; el municipal RF es 0.608372 y ET 0.638586. Esta comparación descriptiva no acredita superioridad estadística. Bloques, municipios, sesgo y omisiones sin reajuste permiten evaluar si existe una ventaja regionalmente consistente.
 

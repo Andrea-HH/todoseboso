@@ -1,0 +1,9 @@
+local,gate,protocol,interaction,delta_mse
+FULL7,GLOBAL,climate_profile,internal_x_gate,-0.0023064421080105
+FULL7,GLOBAL,municipality,internal_x_gate,-0.0381143568253165
+FULL7,GLOBAL,random,internal_x_gate,-0.000432108606936
+FULL7,GLOBAL,spatial,internal_x_gate,-0.0378932851986952
+FULL7,PCA2,climate_profile,internal_x_gate,2.3448710111673154e-06
+FULL7,PCA2,municipality,internal_x_gate,-0.0002750163419427
+FULL7,PCA2,random,internal_x_gate,-0.0003214632207585
+FULL7,PCA2,spatial,internal_x_gate,0.0147710074889625

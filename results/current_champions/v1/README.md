@@ -1,4 +1,6 @@
-# Resultados actuales · Reference26 y Compact14
+# Validación OOF — Reference26 y Compact14
+
+**Predicciones finales disponibles:** [resultados de las59 de26/14](../../current_champions_final/v1/README.md). Las tablas de esta página son errores OOF sobre138 conocidas; no errores de las59.
 
 Champions seleccionados por instrucción del responsable del proyecto: **Reference26** y **Compact14**. La entrega reproducible incluye además **CT3** como control y **B1** como sensibilidad. No incluyeL40/Local04D, sus componentesPCA ni sus predicciones. L40 se conserva como benchmark externo fuerte en las tablas del README principal y en su ficha; este paquete reproduce únicamente los cuatro modelos propios. Los hashes de procedencia de esta auditoría corresponden a la revisión documental existente cuando se ejecutó, anterior a las nuevas fichas.
 
@@ -23,7 +25,7 @@ Son65 folds originales:50aleatorios (10repeticiones),5por perfil,5municipales y5
 
 Error=predicho−observado: positivo sobreestimación, negativo subestimación. Los dos champions siguen siendo arquitecturas regulares/locales con varias etapas:14/26 no son números de coeficientes globales. No se publica un R² ajustado clásico usando esos conteos como grados de libertad. RMSE yMAE están en t/ha; R² no es porcentaje de aciertos.
 
-Esta es evidencia exploratoria de 138 parcelas; no conoce el error real de 59 ni demuestra superioridad universal. La selección de champions no implica que se hayan entrenado modelos finales con138 o generado una nueva entrega59.
+Esta es evidencia exploratoria de 138 parcelas; no conoce el error real de 59 ni demuestra superioridad universal. Ambos champions ya tienen ajuste final138 y59 predicciones. Esos archivos se presentan por separado; esta página conserva exclusivamente la evidencia de validación.
 
 <!-- CURRENT_METRICS_START -->
 ## Tabla de métricas reproducidas

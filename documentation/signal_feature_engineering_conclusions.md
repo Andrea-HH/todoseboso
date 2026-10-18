@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Ingeniería de señales: interpretación y decisión
 
@@ -63,4 +63,4 @@ Las correcciones se limitaron a±.25t/ha desplegadas. El resultado evalúa esta 
 
 **Recomendación:** conservar CT3 y J7 como referencias; no promover una variante ni combinar automáticamente todos los bloques. Retener J7_P_RAW como candidato exploratorio acotado por su mejora espacial fuera del top10, y dirigir una futura confirmación hacia estabilidad territorial/contracción de este corrector de cuatro entradas. Las anomalías históricas aisladas, la heterogeneidad aislada y los productos adicionales no justifican por ahora una expansión. Para una afirmación confirmatoria hace falta evidencia independiente del banco que hemos utilizado repetidamente.
 
-Fuentes: outputs/modeling/signal_feature_engineering/v1/tables y evaluacion_ingenieria_de_senales.xlsx. Scripts470preparación,471ejecución,472evaluación y473auditoría. Fuentes/modelos anteriores protegidos por hashes; sin entrenamiento final138, cambios Champion ni PRED59.
+Fuentes: outputs/modeling/signal_feature_engineering/v1/tables y evaluacion_ingenieria_de_senales.xlsx. Scripts470preparación,471ejecución,472evaluación y473auditoría. Fuentes/modelos anteriores protegidos por hashes; sin entrenamiento final138, cambios modelo TOP20/TOP15 ni PRED59.

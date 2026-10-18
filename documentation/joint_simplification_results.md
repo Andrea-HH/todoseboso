@@ -1,10 +1,10 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Simplificación conjunta: experto7 y gate geológico reducido
 
-Se ejecutaron las cuatro configuraciones congeladas sobre las65 particiones externas e internas originales. La salida está en `outputs/modeling/joint_simplification/v1`. No se cambió el Champion, ningún resultado previo, GeoC, los138 rendimientos ni las59PRED; no hay nuevo entrenamiento final138.
+Se ejecutaron las cuatro configuraciones congeladas sobre las65 particiones externas e internas originales. La salida está en `outputs/modeling/joint_simplification/v1`. No se cambió el modelo TOP20/TOP15, ningún resultado previo, GeoC, los138 rendimientos ni las59PRED; no hay nuevo entrenamiento final138.
 
-**Recomendación:** conservar **J7_BOTH** como nueva candidata de simplificación para revisión: cuatro compactas, siete entradas del experto, quince del gate y dos coordenadas,28 campos distintos. Mantiene el balance predictivo del control33 con cambios pequeños. No se declara superioridad estadística, equivalencia ni un nuevo Champion automático. Reducir simultáneamente el gate hasta23 campos empeora espacialmente y no es la primera opción si importa transferencia territorial.
+**Recomendación:** conservar **J7_BOTH** como nueva candidata de simplificación para revisión: cuatro compactas, siete entradas del experto, quince del gate y dos coordenadas,28 campos distintos. Mantiene el balance predictivo del control33 con cambios pequeños. No se declara superioridad estadística, equivalencia ni un nuevo líder automático. Reducir simultáneamente el gate hasta23 campos empeora espacialmente y no es la primera opción si importa transferencia territorial.
 
 ## RMSE y R² por protocolo
 

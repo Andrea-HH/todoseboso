@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # K — Resumen para decisiones
 
@@ -44,7 +44,7 @@ La inestabilidad numérica de coberturas estandarizadas se eliminó por construc
 
 Intraperfil y Chignahuapan: tablas27–29/35 usan parejas evaluadas por un mismo modelo externo; Chignahuapan es un subconjunto de71 etiquetas y no constituye validación independiente. Tabla25 mide correlaciones de correcciones fuera de muestra. Aumentar dispersión sin disminuir errores no justifica integración.
 
-Las comparaciones entre10 repeticiones y65 folds son descriptivas y correlacionadas. El margen .01t/ha de deterioro geográfico/MAE es exploratorio; no significancia estadística. No se modifica Champion ni se entrenan las59 parcelas sin etiqueta.
+Las comparaciones entre10 repeticiones y65 folds son descriptivas y correlacionadas. El margen .01t/ha de deterioro geográfico/MAE es exploratorio; no significancia estadística. No se modifica modelo TOP20/TOP15 ni se entrenan las59 parcelas sin etiqueta.
 
 Próximo paso justificable si queda señal local pero falla transferencia: evaluar en etiquetas de regiones externas y estudiar soporte temático de clases. No se abren nuevas arquitecturas ni ensayos retrospectivos dentro de K.
 
@@ -60,7 +60,7 @@ K5, pendiente residual, es la candidata más equilibrada entre los correctores: 
 
 Los dos estimadores Elastic Net siguen siendo lineales: sumar clima y corrector lineal no crea por sí mismo capacidad no lineal. Las diferencias provienen del ajuste por etapas, los objetivos cruzados, la regularización y eta; no de variables adicionales.
 
-La señal favorable de K5 es pequeña y exploratoria. Justifica conservarla como candidata de RMSE para validación externa, sin declarar una mejora confirmada ni reemplazar Champion. No cumple todos los criterios: el MAE por perfil aumenta .0114t/ha y el municipal .0122t/ha, por encima del margen exploratorio .01. K6 excede ligeramente el margen municipal de RMSE; K7/K8 no aportan una mejora geográficamente consistente. Ningún corrector cumple la pantalla completa de RMSE y MAE en todos los protocolos.
+La señal favorable de K5 es pequeña y exploratoria. Justifica conservarla como candidata de RMSE para validación externa, sin declarar una mejora confirmada ni reemplazar modelo TOP20/TOP15. No cumple todos los criterios: el MAE por perfil aumenta .0114t/ha y el municipal .0122t/ha, por encima del margen exploratorio .01. K6 excede ligeramente el margen municipal de RMSE; K7/K8 no aportan una mejora geográficamente consistente. Ningún corrector cumple la pantalla completa de RMSE y MAE en todos los protocolos.
 
 En Chignahuapan K5 reduce RMSE aleatorio .5764→.5685, pero eleva MAE .3896→.3969; por perfil, MAE .3863→.4092 y en espacial .3809→.4007. El beneficio en errores grandes no es una mejora uniforme por parcela. Las71 etiquetas locales pertenecen a los mismos OOF, no a una prueba independiente.
 

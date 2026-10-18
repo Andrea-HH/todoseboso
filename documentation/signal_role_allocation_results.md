@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Composición y reasignación de funciones en SMALL12
 
-Se completaron28 configuraciones fijas y2 selectores internos, sobre las65 particiones externas originales. Se congelaron las alternativas antes de entrenar. Salida: `outputs/modeling/signal_role_allocation/v1`. No se modifica ningún Champion, GeoC ni resultado anterior; no se ajusta un modelo final ni se generan nuevas59PRED.
+Se completaron28 configuraciones fijas y2 selectores internos, sobre las65 particiones externas originales. Se congelaron las alternativas antes de entrenar. Salida: `outputs/modeling/signal_role_allocation/v1`. No se modifica ningún modelo TOP20/TOP15, GeoC ni resultado anterior; no se ajusta un modelo final ni se generan nuevas59PRED.
 
 **Conclusión:** las candidatas para simplificar son retirar el MSI histórico del experto (queda con10 entradas), retirar sus tres SoilGrids (queda con9) o conservar las12 y reducir el gate a las10 proporciones geológicas. Son alternativas separadas: requieren31,30 y28 campos totales, respectivamente. Trasladar grupos al corrector o al cálculo de pesos no produce una mejora consistente en los cuatro protocolos. Los selectores automáticos entre muchas rutas perjudican municipal y espacialmente: más flexibilidad no resolvió la transferencia territorial.
 
@@ -14,7 +14,7 @@ La comparación nueva fija las12 entradas originales estandarizadas del experto,
 
 El control `BASE12_BOTH` no es el selector PCA/originales de la etapa anterior: es un control de representación fija. La reproducción de su experto coincide exactamente con `B_SMALL12_raw_COMPACT` anterior. Se recuperan las mezclas anteriores como referencias separadas.
 
-La ecuación es `predicción = C-T3 + peso(z)*(experto − C-T3)`, donde `experto = local + amplitud*corrector(residuos OOF del local)`. Trasladar al corrector significa añadir el bloque al Elastic Net que ya usa compact4 y reajustarlo conjuntamente, tras retirar ese bloque del local. No es una corrección añadida después de la mezcla ni utiliza residuos externos o del Champion. Trasladar al gate significa usar el bloque para formar grupos y aprender pesos, retirándolo del local.
+La ecuación es `predicción = C-T3 + peso(z)*(experto − C-T3)`, donde `experto = local + amplitud*corrector(residuos OOF del local)`. Trasladar al corrector significa añadir el bloque al Elastic Net que ya usa compact4 y reajustarlo conjuntamente, tras retirar ese bloque del local. No es una corrección añadida después de la mezcla ni utiliza residuos externos o del modelo TOP20/TOP15. Trasladar al gate significa usar el bloque para formar grupos y aprender pesos, retirándolo del local.
 
 ## Simplificación del experto
 

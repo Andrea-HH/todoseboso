@@ -1,0 +1,24 @@
+{
+  "source_only": true,
+  "new_training": 0,
+  "new_hypothesis_tests": 0,
+  "PRED_read": false,
+  "reference26_metric_parity": true,
+  "components_compared": 11,
+  "comparison_rows": 44,
+  "variables": 26,
+  "archived_families": {
+    "architecture": {
+      "tests": 412,
+      "significant_holm": 0
+    },
+    "base_distribution": {
+      "tests": 332,
+      "significant_holm": 0
+    },
+    "indicator_neighborhoods": {
+      "tests": 208,
+      "significant_holm": 0
+    }
+  }
+}

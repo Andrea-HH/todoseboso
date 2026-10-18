@@ -1,10 +1,10 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F5-00-C / F5-01 — Ejecución inicial controlada de GPR
 
 ## Resultado y alcance
 
-GPR Matérn3/2 mejora algunos escenarios respecto al Elastic Net de idénticas variables, con costo espacial material. El resultado fortalece parcialmente una respuesta no lineal compacta y el aporte de NDVI dentro de esta familia; no demuestra superioridad universal. Se mantiene Champion sin cambios y se dejan F5-02–06 y F5-00-M sin ejecutar.
+GPR Matérn3/2 mejora algunos escenarios respecto al Elastic Net de idénticas variables, con costo espacial material. El resultado fortalece parcialmente una respuesta no lineal compacta y el aporte de NDVI dentro de esta familia; no demuestra superioridad universal. Se mantiene modelo TOP20/TOP15 sin cambios y se dejan F5-02–06 y F5-00-M sin ejecutar.
 
 `frozen_execution_design.json` se escribió antes del primer ajuste. Se reutilizó `c_features_197_target_free.parquet`, 138 TRAIN y los65folds/particiones internas originales. PRED59 quedó sin predicciones ni etiquetas utilizadas. Se verificaron las fuentes protegidas del diseño y etapas anteriores antes de comenzar.
 
@@ -211,7 +211,7 @@ El entorno emitió una advertencia de threadpoolctl por coexistencia de runtimes
 
 Ganancia práctica municipal0.01: True; costo máximo global0.01: False; mejora en≥3/5foldsmunicipales: True (3/5). Aceptación conjunta: False. Estos márgenes y guardas son exploratorios, no un test de significancia ni utilidad económica validada.
 
-No se promueve Champion. NDVI tiene contribución positiva global frente aGPlluvia sola; se inspeccionan además sus costos locales y distribución porperfil. La representación compacta no queda rechazada porque el control con lasmismasvariables mantiene fortalezas. El resultado cuestiona una mejora general de la configuraciónMatérn agrupada/media constante, especialmente su extrapolación espacial, mientras respalda ventajas municipales/porperfil. No rechazaRBF, otras escalas/medias ni toda la familiaGP; esas opciones todavía no se ejecutaron.
+No se promueve modelo TOP20/TOP15. NDVI tiene contribución positiva global frente aGPlluvia sola; se inspeccionan además sus costos locales y distribución porperfil. La representación compacta no queda rechazada porque el control con lasmismasvariables mantiene fortalezas. El resultado cuestiona una mejora general de la configuraciónMatérn agrupada/media constante, especialmente su extrapolación espacial, mientras respalda ventajas municipales/porperfil. No rechazaRBF, otras escalas/medias ni toda la familiaGP; esas opciones todavía no se ejecutaron.
 
 Próximo paso recomendado: **revisión de sensibilidad acotada de representación/kernel antes de añadir historia**. Conservar estosresultados como referencia y estudiar si el costo espacial proviene de métrica agrupada, suavidad o media fuera delsoporte. No ajustar nuevoskernels ni límites enestaentrega. No hay evidencia suficiente para avanzar automáticamente aF5-03–06.
 

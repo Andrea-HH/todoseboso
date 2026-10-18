@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Local04D sin clima explícito y complementariedad con C-T3
 
@@ -82,4 +82,4 @@ Se guardaron 405 predictores de validación y 12,250 predicciones OOF nuevas. Ci
 - Predicciones: `tables/new_oof_predictions.parquet` y tabla con referencias archivadas.
 - Diseño, modelos y auditoría: `frozen_design.json`, `models/`, `manifest.json`.
 
-No se modificaron Champion, C-T3, GeoC ni resultados anteriores. No se entrenó un modelo final sobre las 138 parcelas ni se generaron nuevas predicciones para las 59 parcelas PRED.
+No se modificaron modelo TOP20/TOP15, C-T3, GeoC ni resultados anteriores. No se entrenó un modelo final sobre las 138 parcelas ni se generaron nuevas predicciones para las 59 parcelas PRED.

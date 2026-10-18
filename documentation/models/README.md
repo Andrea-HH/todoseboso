@@ -10,6 +10,6 @@
 | B1 | Sensibilidad | 26 | [README](B1/README.md) |
 | L40 | Benchmark externo | 2082 → PCA20 + geografía | [README](L40/README.md) |
 
-[Champion histórico TOP20/TOP15](historical_top20_top15/README.md). Los números 26/14 cuentan entradas distintas, no coeficientes ni componentes. Las entradas reutilizadas en varias capas se cuentan una sola vez.
+[modelo histórico TOP20/TOP15 TOP20/TOP15](historical_top20_top15/README.md). Los números 26/14 cuentan entradas distintas, no coeficientes ni componentes. Las entradas reutilizadas en varias capas se cuentan una sola vez.
 
 [Comparación final59 con ambos champions incorporados](../../results/current_champions_final/v1/README.md).

@@ -1,4 +1,4 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # F7 — Primera ejecución: CatBoost y XGBoost directos
 
@@ -14,7 +14,7 @@ Se ejecutaron únicamente F7-00 y F7-01. E1–E3 permanecen predefinidas para Ca
 | F5-01 | 0.504006 | 0.499759 | 0.544208 | 0.734797 |
 | F6-E0 | 0.506296 | 0.512979 | 0.638586 | 0.758923 |
 
-RMSE en t/ha: cada repetición tiene138 OOF completas; aleatoria promedia diez repeticiones. MAE, sesgo y diferencias pareadas están en las tablas. Champion solo se compara en aleatoria, con RMSE OOF completa 0.498127. No se reconstruye evaluación territorial del Champion.
+RMSE en t/ha: cada repetición tiene138 OOF completas; aleatoria promedia diez repeticiones. MAE, sesgo y diferencias pareadas están en las tablas. modelo TOP20/TOP15 solo se compara en aleatoria, con RMSE OOF completa 0.498127. No se reconstruye evaluación territorial del modelo TOP20/TOP15.
 
 ## Arquitectura y transferencia
 
@@ -76,7 +76,7 @@ Recomiendo continuar, tras revisión, con las ablaciones acotadas CatBoost E1/E2
 
 La evidencia apoya capacidad no lineal para corregir ciertos niveles regionales; debilita la hipótesis de superioridad general o mejora homogénea intraperfil del boosting compacto. No descarta otras regularizaciones o todos los modelos de boosting. Los límites se mantienen:300 árboles seleccionados con frecuencia y poca profundidad son resultados de una búsqueda acotada, no evidencia de óptimo global. No se amplían tras ver las OOF.
 
-El próximo residual propuesto, después de revisar las ablaciones, es una base C-T3 compacta más una corrección CatBoost pequeña sobre MayNDVI, historia NDVI2 y pendiente, con amplitud de corrección que pueda elegirse como cero mediante validación interna. Los targets de corrección deben generarse por cross-fitting del núcleo exclusivamente dentro de cada entrenamiento correspondiente; cada evaluación interna debe repetir la construcción sin ver sus etiquetas de validación. Posteriormente se reajusta el núcleo sobre todo ese entrenamiento y se suma la corrección. Esa construcción difiere de usar residuos ajustados sobre las mismas filas, de residuos OOF globales y de corregir el Champion. Se propone para preservar una tendencia lineal y estudiar señales locales; no se presupone mejor extrapolación y no se ejecuta ahora.
+El próximo residual propuesto, después de revisar las ablaciones, es una base C-T3 compacta más una corrección CatBoost pequeña sobre MayNDVI, historia NDVI2 y pendiente, con amplitud de corrección que pueda elegirse como cero mediante validación interna. Los targets de corrección deben generarse por cross-fitting del núcleo exclusivamente dentro de cada entrenamiento correspondiente; cada evaluación interna debe repetir la construcción sin ver sus etiquetas de validación. Posteriormente se reajusta el núcleo sobre todo ese entrenamiento y se suma la corrección. Esa construcción difiere de usar residuos ajustados sobre las mismas filas, de residuos OOF globales y de corregir el modelo TOP20/TOP15. Se propone para preservar una tendencia lineal y estudiar señales locales; no se presupone mejor extrapolación y no se ejecuta ahora.
 
 La ejecución se detiene aquí para revisión antes de E1–E3. CatBoost se asignó antes de las OOF, y cualquier cambio posterior de algoritmo motivado por resultados externos se documentará como exploratorio. No se ejecuta residual, no se promueve champion y no se generan59 PRED.
 

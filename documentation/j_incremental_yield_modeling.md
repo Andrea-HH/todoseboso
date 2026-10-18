@@ -1,8 +1,8 @@
-> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **champion histórico**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
+> **Estado de lectura (2026-10-18):** los champions actuales son **Reference26 y Compact14**; véanse sus [fichas vigentes](models/README.md). Este documento conserva la investigación y las decisiones de su etapa. Los nombres heredados `Champion`/`CHAMPION`/`A_CURRENT_CH_H_T` y la receta TOP20 → TOP15 → topografía corresponden al **modelo histórico TOP20/TOP15**, salvo que el texto identifique expresamente Reference26 o Compact14. Una frase de esta etapa como «no se promueve» no revoca la selección posterior de 26/14.
 
 # Sección J — Modelado incremental con topografía y edafología
 
-Se ejecutaron J0–J5 y una sensibilidad J6 Top-3 con Elastic Net, 138 etiquetas y los 65 folds congelados de H. No se reemplazó el Champion ni se generaron predicciones finales para los 59 casos sin etiqueta. Las columnas efectivas y reglas se fijaron antes de entrenar en `configuration.json` y `report/pretraining_audit.md`.
+Se ejecutaron J0–J5 y una sensibilidad J6 Top-3 con Elastic Net, 138 etiquetas y los 65 folds congelados de H. No se reemplazó el modelo TOP20/TOP15 ni se generaron predicciones finales para los 59 casos sin etiqueta. Las columnas efectivas y reglas se fijaron antes de entrenar en `configuration.json` y `report/pretraining_audit.md`.
 
 ## Reproducción y comparabilidad
 
@@ -26,7 +26,7 @@ J0 reproduce las 1794 predicciones OOF de H1: diferencia máxima 0, tolerancia 1
 
 Pendiente reduce RMSE aleatorio 0.52136→0.51542, por perfil 0.54435→0.51302 y municipal 0.69536→0.67549, pero espacial empeora 0.73479→0.97533. Por tanto, pendiente merece conservarse como señal local, sin transferencia espacial demostrada. Altitud adicional no resuelve este deterioro; las representaciones de suelo no mejoran el RMSE aleatorio de lluvia sola.
 
-En aleatorio, el MAE de pendiente es mayor que el de lluvia sola aunque su RMSE sea menor; por eso la mejora no es uniforme entre métricas. La tabla de contrastes incluye ambas. No hay una variante que justifique integración general al Champion bajo los criterios predefinidos. La recomendación es conservar pendiente para investigación local/controlada y reservar suelo como contexto mientras no se resuelvan soporte y transferencia.
+En aleatorio, el MAE de pendiente es mayor que el de lluvia sola aunque su RMSE sea menor; por eso la mejora no es uniforme entre métricas. La tabla de contrastes incluye ambas. No hay una variante que justifique integración general al modelo TOP20/TOP15 bajo los criterios predefinidos. La recomendación es conservar pendiente para investigación local/controlada y reservar suelo como contexto mientras no se resuelvan soporte y transferencia.
 
 | experiment | random_RMSE_improvement | random_repeat_win_fraction | worst_grouped_RMSE_improvement | geographic_margin_pass | classification |
 | --- | --- | --- | --- | --- | --- |
@@ -123,9 +123,9 @@ J5 y Top3 presentan un fracaso de estabilidad por perfil: RMSE cercano a 3.25t/h
 
 Esto limita **esta representación y pipeline**, no demuestra que el suelo carezca de influencia agronómica. La regularización y la eliminación de columnas constantes no garantizan estabilidad frente a una columna casi ausente en entrenamiento y abundante fuera. Si se reconsidera el suelo completo, primero habría que predefinir otra sensibilidad con soporte mínimo/agrupación aprendida dentro de cada entrenamiento, conservar masa desconocida y volver a evaluar exactamente los mismos protocolos. Esa sensibilidad no se ejecutó ni se utilizó para rescatar resultados de J.
 
-## Contexto de Familia 1 y Champion
+## Contexto de Familia 1 y modelo TOP20/TOP15
 
-Las predicciones del Champion fueron compatibles por ID, repetición y fold con J0 aleatorio. Se recalculan RMSE/MAE/R²/sesgo sobre las mismas OOF completas:
+Las predicciones del modelo TOP20/TOP15 fueron compatibles por ID, repetición y fold con J0 aleatorio. Se recalculan RMSE/MAE/R²/sesgo sobre las mismas OOF completas:
 
 | experiment | RMSE | MAE | R2 | bias_pred_minus_y |
 | --- | --- | --- | --- | --- |
@@ -139,10 +139,10 @@ Las predicciones del Champion fueron compatibles por ID, repetición y fold con 
 | J5_RAIN_SOIL_FULL | 0.5535 | 0.3951 | 0.5738 | -0.0019 |
 | J6_RAIN_SOIL_TOP3 | 0.5535 | 0.3951 | 0.5738 | -0.0019 |
 
-Climate Current usa el bloque climático original completo; Champion incorpora selección climática y correcciones residuales satelitales/topográficas. Cambian características y arquitectura: sus diferencias no se atribuyen exclusivamente a suelo o topografía. Se reutilizan resultados existentes y no se refitan esos benchmarks. No se extrapola este contraste contextual aleatorio a protocolos geográficos que no tienen predicciones comparables del Champion.
+Climate Current usa el bloque climático original completo; modelo TOP20/TOP15 incorpora selección climática y correcciones residuales satelitales/topográficas. Cambian características y arquitectura: sus diferencias no se atribuyen exclusivamente a suelo o topografía. Se reutilizan resultados existentes y no se refitan esos benchmarks. No se extrapola este contraste contextual aleatorio a protocolos geográficos que no tienen predicciones comparables del modelo TOP20/TOP15.
 
 ## Productos y siguiente decisión
 
 Matrices objetivo-libres en `data/processed/family_1/j_incremental_geographic_edaphological_yield/v1`, modelos por fold, búsqueda interna, OOF, métricas, errores, diagnósticos locales/intraperfil, incertidumbre y coeficientes en esta carpeta. Figuras muestran RMSE por protocolo, diferencias respecto de J0, observado/predicho, errores espaciales, perfiles, Chignahuapan y límites. Scripts 325 (auditoría) y 326 (ejecución) continúan la numeración existente.
 
-Las clasificaciones operativas son evidencia para una investigación posterior, no un nuevo ganador. Si las mejoras no sobreviven retención municipal/espacial o se concentran en categorías/parcelas inciertas, conservar la variable como señal local/contexto. Una integración residual al Champion y las interacciones lluvia–suelo requieren un experimento separado, pequeño y validado, no se ejecutan en J.
+Las clasificaciones operativas son evidencia para una investigación posterior, no un nuevo ganador. Si las mejoras no sobreviven retención municipal/espacial o se concentran en categorías/parcelas inciertas, conservar la variable como señal local/contexto. Una integración residual al modelo TOP20/TOP15 y las interacciones lluvia–suelo requieren un experimento separado, pequeño y validado, no se ejecutan en J.
