@@ -87,12 +87,13 @@ function showNeighbors(k) {
 $("#neighbor-k").addEventListener("input", (event) => showNeighbors(Number(event.target.value)));
 showNeighbors(24);
 
+// Usar nombres legibles en los resultados; conservar el identificador del repositorio debajo.
 const LABELS = {
-  "Reference26": ["Reference26", "Champion de referencia"],
-  "Compact14": ["Compact14", "Champion compacto"],
-  "B1": ["B1", "Sensibilidad"],
-  "L40": ["Local04D / L40", "Referencia GeoC"],
-  "CT3": ["C-T3", "Núcleo global"]
+  "Reference26": ["Clima, vecinos y geología", "Modelo principal · Reference26 · 26 indicadores"],
+  "Compact14": ["Clima y vecinos, sin geología", "Modelo simplificado · Compact14 · 14 indicadores"],
+  "B1": ["Clima combinado con el modelo principal", "Prueba de combinación · B1 · no seleccionado"],
+  "L40": ["Vecinos con información satelital amplia", "Modelo anterior · Local04D · 2,082 variables derivadas"],
+  "CT3": ["Lluvia y vegetación en mayo", "Punto de partida · C-T3 · 4 indicadores"]
 };
 const ORDER = ["Reference26", "Compact14", "B1", "L40", "CT3"];
 let protocols = null;
@@ -111,7 +112,7 @@ function setProtocol(id) {
   // A common 0-to-1 t/ha scale makes cross-protocol changes visually honest.
   ORDER.forEach((name) => {
     const metric = info.results.find((item) => item.id === name);
-    if (!metric) throw Error("Falta el modelo " + name);
+    if (!metric) throw Error("No hay resultados para " + name);
     const row = document.createElement("div");
     row.className = `result-row ${name === "Reference26" || name === "Compact14" ? "champion" : name === "L40" ? "reference" : ""}`;
     const label = document.createElement("div"); label.className = "result-label";
@@ -150,13 +151,13 @@ $$("[data-protocol]").forEach((button) => button.addEventListener("click", () =>
 // Source-backed interpretability evidence. The four original protocols are
 // distinct from the later 97/41 benchmark and from parcel-level explanations.
 const EVIDENCE_NAMES = {
-  random: "Aleatoria", climate_profile: "Perfil", municipality: "Municipal", spatial: "Espacial"
+  random: "Parcelas al azar", climate_profile: "Perfiles climáticos", municipality: "Municipios", spatial: "Bloques geográficos"
 };
 const ABLATION_NOTES = {
-  random: "En aleatoria, retirar lluvia total, fracción temprana o NDVI eleva el RMSE. El cambio al retirar HHI es pequeño.",
-  climate_profile: "Cuando se retienen perfiles climáticos completos, el núcleo completo funciona mejor que las cuatro retiradas evaluadas.",
-  municipality: "Al excluir municipios, la fracción temprana aporta una diferencia descriptiva importante; no es una demostración causal.",
-  spatial: "Al excluir bloques espaciales, retirar HHI reduce el RMSE de C-T3. Esto NO autoriza eliminar HHI de Reference26 sin reajustar todas sus capas."
+  random: "Con parcelas elegidas al azar, el error aumenta al quitar la lluvia total, la lluvia temprana o la vegetación de mayo. La concentración de lluvia cambia poco el resultado.",
+  climate_profile: "Al evaluar perfiles climáticos no utilizados para entrenar, el modelo con las cuatro señales obtiene menos error que cualquiera de las versiones reducidas.",
+  municipality: "Al evaluar municipios completos que quedaron fuera del entrenamiento, quitar la proporción de lluvia temprana aumenta bastante el error. No demuestra causalidad.",
+  spatial: "Al evaluar zonas geográficas que quedaron fuera del entrenamiento, quitar el indicador de concentración mensual de la lluvia reduce el error del primer modelo. Eso no basta para retirar HHI del modelo completo; hay que volver a ajustar y comprobar todas sus partes."
 };
 let componentProtocols = null;
 function evidenceElement(tag, className, content) {
