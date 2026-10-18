@@ -1,0 +1,49 @@
+{
+  "scope": "Exploratory retrospective core4 relevance; no claim of confirmatory post-selection p-values or causal effects",
+  "specs": {
+    "FULL4": [
+      "compact_precip_total",
+      "compact_early_fraction",
+      "compact_concentration_hhi",
+      "S2_ndvi_month_05"
+    ],
+    "DROP_compact_precip_total": [
+      "compact_early_fraction",
+      "compact_concentration_hhi",
+      "S2_ndvi_month_05"
+    ],
+    "DROP_compact_early_fraction": [
+      "compact_precip_total",
+      "compact_concentration_hhi",
+      "S2_ndvi_month_05"
+    ],
+    "DROP_compact_concentration_hhi": [
+      "compact_precip_total",
+      "compact_early_fraction",
+      "S2_ndvi_month_05"
+    ],
+    "DROP_S2_ndvi_month_05": [
+      "compact_precip_total",
+      "compact_early_fraction",
+      "compact_concentration_hhi"
+    ],
+    "NDVI_ONLY": [
+      "S2_ndvi_month_05"
+    ],
+    "TRAIN_MEAN": []
+  },
+  "outer_folds": 65,
+  "association_tests": 13,
+  "association_adjustment": "Holm all13; OLS cluster-profile t/F; global4 and state-adjusted4; NDVI within-profile limited to profiles with NDVI variation, X-only support rule",
+  "prediction_tests": 24,
+  "prediction_adjustment": "Holm all6 ablation/control contrasts x4 protocols; two-sided grouped loss signflip with symmetry assumption",
+  "grouping": "profile for random/profile; municipality for municipal; spatial block for spatial",
+  "random_repeats": "losses averaged per parcel before inference; no1380 independent parcels",
+  "interval": "no bootstrap confidence interval claimed; coefficient intervals marginal exploratory95percent",
+  "seed": 2026,
+  "permutations": 20000,
+  "new_PRED": false,
+  "new_Reference26_fit": false,
+  "caveat": "Ablations identify predictive value inside CT3, not effects of deleting those inputs in the whole26 architecture.",
+  "code_sha256": "d1625d5ec6de7bf8ee8b80d09948de8d9fbea42c15e85689d712679e687b5c9c"
+}

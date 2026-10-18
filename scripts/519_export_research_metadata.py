@@ -197,6 +197,7 @@ def prompts():
         ('incorpora las de los dos modelos champion a la comparacion exisitente','Consolidar26/14 y agregar sus59 predicciones a la comparación existente','models/README.md'),
         ('para 26 quiero una mejor pagina de documentacion quier especificos de los de 4 de climatico desde que modelo surgieron porque queson o minimo un linc a ct3 tambien las 7 varables del experto y como funcionan los usos de vecinos cunatos en que punto y tmabien los 3 variables de corrector expecificados','Ampliar documentación de26: origen C-T3, siete señales, vecinos, compuerta y correctorR3','models/Reference26/README.md'),
         ('quiero que ademas agregues esa metrica en los modelos donde los tengo disponibles ya sea en un  readme de comparacion global o dentro de las fichas especificas de los modelos','Incorporar el banco97/41 en comparación global y fichas disponibles','models/README.md'),
+        ('okay tambien ahora para ams metodologicamente tengo duda en la parte de mis 4 variables climatica se especifica que no p test was done can yu mahe a hipotheisis testing for relevance de esas varaibels o dodne le daria mayor credidbilidad a mi modleo 26','Contrastar relevancia del núcleo C-T3 y distinguir asociación de aporte predictivo y credibilidad de26','models/Reference26/README.md'),
     ]
     for j,(message,purpose,evidence) in enumerate(messages,len(rows)+1):
         target=ROOT/'documentation/ai/prompts'/f'P{j:03d}_conversation.txt'

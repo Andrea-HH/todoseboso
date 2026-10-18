@@ -214,6 +214,10 @@ Media de las métricas de **16 particiones**, cada una con97 parcelas para entre
 
 Son resultados de validación exploratoria tras reutilización de etiquetas, no el error de las 59 desconocidas ni superioridad universal. Residuo = predicho − observado: positivo significa sobreestimación. El banco adicional 97/41 se interpreta por separado. No se presenta R² ajustado clásico para estas arquitecturas locales y calibradas.
 
+## Evidencia de relevancia del núcleo: análisis posterior
+
+Ya se realizaron contrastes exploratorios de asociación, ajustados por estado y agrupados por perfil, y ablaciones reajustadas de C-T3 en los65 folds. Total de lluvia, fracción temprana y NDVI mantienen evidencia de asociación; HHI no después de ajustar por estado. Ninguna retirada individual supera Holm en los contrastes predictivos, y retirar HHI mejora el RMSE espacial de C-T3. Estos resultados no son p-valores de los coeficientes Elastic Net ni una prueba causal o confirmatoria. Las ablaciones corresponden a C-T3, no al26 completo; sus cuatro entradas intervienen en dos capas de26. [Informe, hipótesis, tablas y límites](../../../results/core4_relevance/v1/README.md).
+
 ## Archivos y reproducción
 
 Implementación integrada: [src/current_champions.py](../../../src/current_champions.py). [Reproducción y alcance de la verificación](../../current_champions_reproduction.md). Entrada: `python scripts/521_current_champions.py replay`; reentrenamiento: subcomando `refit` según esa guía. Bundle privado: `data/processed/current_champions/v1/`; OOF: `outputs/research/current_champions/v1/`; [métricas públicas](../../../results/current_champions/v1/README.md). Las fichas no generan nuevos ajustes finales ni predicciones59.

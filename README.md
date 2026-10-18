@@ -72,6 +72,8 @@ La evaluación es exploratoria después de amplia reutilización de las mismas e
 [Resultados de los10 modelos disponibles y metodología](results/comparison_97_41/v1/README.md). No se mezclan con la tabla de los65 folds originales ni con los checkpoints propios de GeoC.
 <!-- comparison97:end -->
 
+**Relevancia del núcleo C-T3:** [contrastes de asociación y ablaciones reajustadas](results/core4_relevance/v1/README.md). Evidencia exploratoria, con resultados favorables para algunas señales y límites explícitos para HHI; no certifica significancia de las26 entradas.
+
 ## Cómo leer y reproducir
 
 Empieza por el [mapa de documentación](documentation/README.md), el [índice de experimentos](documentation/experiment_index.md) y las [convenciones de evaluación](documentation/model_comparison_convention.md).
