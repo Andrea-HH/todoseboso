@@ -42,3 +42,24 @@ Este trabajo de organización no prueba disponibilidad de un PDF de bibliografí
 ## Mantenimiento
 
 Para nuevos usos, añadir una entrada con texto original o extracto explícitamente marcado, herramienta, versión sólo si consta, fecha conocida, finalidad, archivos afectados, verificaciones y resultado. No registrar credenciales, rendimientos privados o conversaciones ajenas sin autorización. El export519 depende de los adjuntos locales originales para regenerar este inventario; las copias versionadas ya pueden leerse y verificarse sin acceso a esos adjuntos.
+
+
+## 2026-10-18 · Sitio editorial independiente en GitHub Pages
+
+Una solicitud posterior del usuario pidió crear en este fork una web que narre
+el recorrido C-T3 → Reference26/Compact14, reutilizando sólo el lenguaje visual
+del antiguo sitio GeoCebada. **Herramienta:** ChatGPT (asistencia generativa en
+HTML, CSS, JavaScript, pruebas de sincronía y workflow Pages).
+**Entrada verificable:** solicitud en conversación de crear la página de forma
+independiente y el relato del modelo transmitido por el equipo; contraste con
+la ficha Reference26, Compact14, CT3 y tablas agregadas de este repositorio.
+**Salidas:** website/index.html, website/styles.css, website/app.js,
+website/data/, website/README.md, scripts/529_check_story_site.py y
+.github/workflows/publish_story_pages.yml.
+
+No se generaron rendimientos nuevos ni se entrenó el modelo para el sitio.
+Los datos de lluvia y vecinos del simulador son sintéticos; las métricas
+proceden de CSV públicos versionados, no de una ejecución nueva. Esta nueva
+solicitud **no forma parte del inventario recuperado de 41 prompts históricos**;
+se documenta separadamente y requiere revisión humana antes de su uso en la
+entrega final.

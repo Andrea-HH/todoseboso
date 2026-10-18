@@ -8,6 +8,18 @@ La finalidad práctica es apoyar la estimación de productividad y aportar infor
 
 **Etapa actual: champions Reference26 y Compact14**, con C-T3 como control y B1 como sensibilidad. L40 se conserva como benchmark fuerte del equipo; queda fuera del reentrenamiento propio, no de la comparación. [Resultados](results/current_champions/v1/README.md) · [Reproducción](documentation/current_champions_reproduction.md).
 
+## Sitio editorial independiente
+
+La [historia visual de los modelos](website/README.md) presenta la evolución desde
+C-T3 hasta Reference26 y Compact14, explica cada bloque, muestra un ejemplo
+climático y un vecindario sintético de24 parcelas, y permite comparar los
+protocolos originales con métricas agregadas del propio fork.
+
+El sitio se sirve desde `website/` mediante GitHub Pages (tras configurar
+Pages para GitHub Actions e integrar el cambio en main). No depende en
+tiempo de ejecución del repositorio GeoC; no publica rendimientos por parcela
+ni modifica modelos o predicciones.
+
 ## Propósito y entregables según los lineamientos
 
 Los [lineamientos del reto](docs/guidelines/Lineamientos%20y%20Gui%CC%81a%20de%20Registro%20de%20Proyectos_.pdf), páginas 3–4, piden explicar fuentes, preparación, variables, metodología, resultados, limitaciones y utilidad para el sector. También solicitan una demostración práctica, bibliografía, transparencia sobre IA generativa y una tabla final de identificador y rendimiento predicho por parcela. El README orienta la lectura; no reemplaza esos entregables ni acredita que el proyecto esté publicado.
