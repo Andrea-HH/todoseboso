@@ -1,0 +1,7 @@
+{
+  "global_mean_difference": 0.0010700098264417868,
+  "state_mix_component": -0.039237693343990285,
+  "within_state_mean_component": 0.04030770317043161,
+  "predicted_mean_reweighted_to_training_state_mix": 3.9954430046894425,
+  "caveat": "Arithmetic cohort decomposition, not a causal effect or model bias estimate. Distinct parcels; no hidden outcomes."
+}

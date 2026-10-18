@@ -1,0 +1,17 @@
+{
+  "n_observed": 138,
+  "n_predictions": 59,
+  "source_sha256": {
+    "data/processed/current_champions/v1/train138.parquet": "92aab75ab73e5ae32777f4b4c8a3fb3eb6e1e9cabfe0de7424f00d31f0c2149e",
+    "outputs/modeling/current_champions_final/v1/predictions59_comparison.csv": "f8e13f712696f715c93aed2c52a01024a7c315ca05dd52d4e349c10028757209",
+    "outputs/modeling/current_champions_final/v1/Reference26_predictions59.csv": "a58f8d715c75e53eab263f1eedc2e1052f30cf90743e04f14a5f8b8a9c7e87c8"
+  },
+  "code_sha256": "d73919a728c5440e1bfd79ab2465e08c4625c5d80b5f585ac585e69d4b80e94e",
+  "std": "sample ddof1",
+  "quantiles": "pandas linear interpolation",
+  "weighting": "equal weight per parcel, not hectares",
+  "target59_observed": false,
+  "new_training": 0,
+  "hypothesis_tests": 0,
+  "final_prediction_parity": true
+}

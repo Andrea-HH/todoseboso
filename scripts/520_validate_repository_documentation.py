@@ -25,6 +25,8 @@ if (ROOT/'results/reference26_component_evidence/v1/README.md').exists():
     DOCS.append('results/reference26_component_evidence/v1/README.md')
 if (ROOT/'results/current_champions_final/v1/README.md').exists():
     DOCS.append('results/current_champions_final/v1/README.md')
+if (ROOT/'results/reference26_distribution/v1/README.md').exists():
+    DOCS.append('results/reference26_distribution/v1/README.md')
 
 
 def sha(p):

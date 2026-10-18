@@ -68,3 +68,5 @@ La descomposición por parcela comprueba la suma de C-T3, mezcla local, correcto
 Estos enlaces requieren la copia local: `outputs/` no se sube a Git. Su existencia no acredita envío al comité. Todavía no conocemos el error de las59.
 
 [Ficha26](../../../documentation/models/Reference26/README.md) · [Ficha14](../../../documentation/models/Compact14/README.md) · [Índice de resultados](../../README.md). Generación reproducible: `scripts/526_current_champions_final59.py`; descomposición: `scripts/527_finalize_prediction_comparison.py`; esta presentación se regenera con `scripts/532_refresh_results_readmes.py` sin entrenar modelos.
+
+[Descriptivos de26:59 estimaciones frente a138 rendimientos, por estado y municipio](../../reference26_distribution/v1/README.md).

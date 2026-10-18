@@ -201,6 +201,7 @@ def prompts():
         ('realiza estos reportes como dices durante el modelado ya fueron explradas combinaciones existentes recura eso y presenta la manera en que cada factor fuede ser relevante o cumplor la funcion que se le dio','Recuperar ablaciones y evidencia existente por componente de26 sin duplicar modelado','models/Reference26/README.md'),
         ('las presentaciones de rewusltados si estan sobre las predicciones de 14 y 26 si no reggenra esos read me','Regenerar presentaciones vigentes de resultados y predicciones26/14','models/README.md'),
         ('porfavor checa que en todo el repositorio ya nos estemos refiriendo como champion a 26 y 14 nada ams','Reservar estado champion a26/14 y distinguir nombres heredados preservados','model_registry.md'),
+        ('dame los rangos de las predicciones de 26 como platicamelos estadisticamente yu comparalos con la distribucion de los rendimeintos de las 138 parcelas por curiosisdad tmabiene stadisitcos desciptivos por estado y asi','Comparar distribución de59 predicciones26 con138 observaciones, global y por estado/municipio','models/Reference26/README.md'),
     ]
     for j,(message,purpose,evidence) in enumerate(messages,len(rows)+1):
         target=ROOT/'documentation/ai/prompts'/f'P{j:03d}_conversation.txt'
