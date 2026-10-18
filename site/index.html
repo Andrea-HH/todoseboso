@@ -118,62 +118,62 @@
     <section class="section new-evidence" id="componentes" aria-labelledby="component-title">
       <div class="shell">
         <div class="section-heading">
-          <div><p class="eyebrow">04 / NUEVA EVIDENCIA DE COMPONENTES</p><h2 id="component-title">¿Qué señales <em>realmente aportan?</em></h2></div>
-          <p>Las pruebas recientes del repositorio permiten evaluar partes de la arquitectura, sin convertir correlaciones en explicaciones causales ni inventar importancia individual.</p>
+          <div><p class="eyebrow">QUÉ CAMBIÓ AL QUITAR DATOS</p><h2 id="component-title">¿Qué información ayuda <em>a reducir el error?</em></h2></div>
+          <p>Comparamos versiones de los modelos a las que retiramos algunas medidas o correcciones. Así comprobamos cuánto cambia su error y en qué situaciones esas diferencias son más claras.</p>
         </div>
         <div class="evidence-context">
-          <strong>Dos preguntas distintas.</strong> Una ablación del núcleo C-T3 muestra qué cambia al retirar una de sus cuatro entradas; una ablación del modelo26 mide el efecto de retirar el corrector R3. No son experimentos intercambiables.
+          <strong>Son dos pruebas diferentes.</strong> En la primera quitamos una medida de lluvia o vegetación del modelo inicial y lo volvemos a entrenar. En la segunda comparamos el modelo completo con y sin su corrección final.
         </div>
         <div class="evidence-dashboard">
           <article class="evidence-study">
-            <span class="evidence-kicker">ESTUDIO 01 · NÚCLEO C-T3</span>
-            <h3>¿Qué sucede al retirar una señal?</h3>
-            <p>Para cada alternativa se vuelve a ajustar la Elastic Net. Las barras comparan RMSE dentro del <strong>mismo protocolo</strong>. Un valor más bajo significa menor error.</p>
+            <span class="evidence-kicker">CUATRO MEDIDAS DE LLUVIA Y VEGETACIÓN</span>
+            <h3>¿Qué pasa si quitamos una medida del primer modelo?</h3>
+            <p>Cada vez que quitamos una medida, volvemos a entrenar el modelo con las restantes. Las barras muestran el error obtenido en el mismo tipo de prueba. <strong>Cuanto menor es el valor, mejor predijo.</strong></p>
             <div class="evidence-tabs" role="group" aria-label="Protocolo para ablaciones del núcleo">
               <button type="button" class="evidence-tab active" data-ablation-protocol="random" aria-pressed="true">Aleatoria</button>
               <button type="button" class="evidence-tab" data-ablation-protocol="climate_profile" aria-pressed="false">Perfil climático</button>
               <button type="button" class="evidence-tab" data-ablation-protocol="municipality" aria-pressed="false">Municipio</button>
               <button type="button" class="evidence-tab" data-ablation-protocol="spatial" aria-pressed="false">Espacial</button>
             </div>
-            <div class="ablation-chart" id="ablation-chart" aria-live="polite">Cargando evidencia reproducible…</div>
-            <p class="evidence-insight" id="ablation-insight" aria-live="polite">Los cambios individuales deben interpretarse junto con las limitaciones estadísticas.</p>
-            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/core4_relevance/v1/README.md" target="_blank" rel="noopener noreferrer">Metodología, asociaciones y contrastes corregidos ↗</a>
+            <div class="ablation-chart" id="ablation-chart" aria-live="polite">Cargando los resultados de las pruebas…</div>
+            <p class="evidence-insight" id="ablation-insight" aria-live="polite">Un cambio en el error no basta por sí solo para demostrar que una variable es indispensable.</p>
+            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/core4_relevance/v1/README.md" target="_blank" rel="noopener noreferrer">Consultar las pruebas estadísticas originales ↗</a>
           </article>
           <article class="evidence-study">
-            <span class="evidence-kicker">ESTUDIO 02 · SISTEMA REFERENCE26</span>
-            <h3>¿Qué añade la corrección residual?</h3>
-            <p>El componente R3 utiliza tres indicadores derivados y está limitado a ±0.25 t/ha. La comparación recupera la misma familia del modelo con y sin R3; no atribuye ganancias a una sola variable.</p>
+            <span class="evidence-kicker">LA CORRECCIÓN FINAL DEL MODELO COMPLETO</span>
+            <h3>¿Corrige errores que antes quedaban sin explicar?</h3>
+            <p>La última etapa utiliza tres indicadores y puede modificar la estimación hasta 0.25 t/ha en cualquier dirección. Comparamos el mismo modelo con esa etapa y sin ella para ver si reduce el error.</p>
             <div id="r3-comparison" class="r3-comparison" aria-live="polite">Cargando métricas de componentes…</div>
-            <p class="evidence-label">EL MODELO AJUSTA CUÁNTO ESCUCHAR AL EXPERTO LOCAL</p>
+            <p class="evidence-label">CUÁNTO PESÓ LA INFORMACIÓN DE PARCELAS CERCANAS</p>
             <div id="expert-weights" class="expert-weights" aria-live="polite">Cargando los pesos aprendidos…</div>
-            <p class="evidence-insight">Los pesos se estiman mediante entrenamiento y validación interna. No son porcentajes fijados por municipio ni prueban que los vecinos causen la productividad.</p>
-            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_component_evidence/v1/README.md" target="_blank" rel="noopener noreferrer">Ablaciones, pesos y documentación del modelo ↗</a>
+            <p class="evidence-insight">Esos porcentajes son promedios aprendidos por el modelo en cada evaluación. No son reglas fijas por municipio ni porcentajes de influencia causal sobre las cosechas.</p>
+            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_component_evidence/v1/README.md" target="_blank" rel="noopener noreferrer">Consultar las pruebas de cada componente ↗</a>
           </article>
         </div>
-        <div class="evidence-takeaway"><div><span>QUÉ PODEMOS AFIRMAR</span><strong>Las capas tienen funciones medibles.</strong><p>Las retiradas de R3 empeoran el RMSE en los cuatro protocolos documentados; el corrector interno también muestra aportes condicionales. La geología ayuda en ciertas configuraciones, y las siete señales locales pueden ser parcialmente redundantes.</p></div><div><span>QUÉ NO PODEMOS AFIRMAR</span><strong>Las 26 entradas no están demostradas como indispensables.</strong><p>HHI es el caso más claro: quitarla de C-T3 mejora el RMSE espacial, aunque perjudica otros protocolos. Ninguna retirada individual de C-T3 superó el ajuste Holm en la familia de 24 contrastes. Estos estudios reutilizan las 138 etiquetas conocidas.</p></div></div>
-        <p class="small-note evidence-bottom">Análisis exploratorio retrospectivo; no es confirmación externa, LOOCV ni evaluación de las 59 parcelas de rendimiento oculto. Los resultados del núcleo no demuestran relevancia individual dentro de Reference26 completo. <a href="https://github.com/heri-espino/todoseboso/tree/main/results" target="_blank" rel="noopener noreferrer">Ver fuentes agregadas originales ↗</a></p>
+        <div class="evidence-takeaway"><div><span>QUÉ MEJORÓ EN ESTAS PRUEBAS</span><strong>La corrección final redujo el error en las cuatro evaluaciones.</strong><p>Al quitar la corrección final, el error aumentó en las cuatro formas de evaluar que se estudiaron. La corrección interna también ayudó en algunas comparaciones. La utilidad de la geología cambió según la evaluación; algunas medidas locales aportan información parecida.</p></div><div><span>LO QUE TODAVÍA NO SE HA DEMOSTRADO</span><strong>No sabemos si cada una de las 26 medidas es necesaria.</strong><p>La concentración mensual de la lluvia es un ejemplo: quitarla del primer modelo mejoró una prueba por zonas, pero empeoró otras. Tras corregir por comparaciones múltiples, ninguna retirada individual aportó evidencia estadística suficiente.</p></div></div>
+        <p class="small-note evidence-bottom">Estas pruebas vuelven a utilizar las 138 cosechas conocidas. No constituyen una evaluación independiente ni revelan el error de las 59 cosechas desconocidas. Lo que ocurre al quitar una medida del primer modelo no necesariamente ocurre al quitarla del modelo completo. <a href="https://github.com/heri-espino/todoseboso/tree/main/results" target="_blank" rel="noopener noreferrer">Ver fuentes agregadas originales ↗</a></p>
       </div>
     </section>
 
 
     <section class="section understanding" id="de-donde-sale" aria-labelledby="calculo-title">
       <div class="shell">
-        <div class="section-heading"><div><p class="eyebrow">UN EJEMPLO PARA ENTENDER EL CÁLCULO</p><h2 id="calculo-title">¿De dónde sale <em>una estimación?</em></h2></div><p>Reference26 parte de una estimación climática, la contrasta con parcelas cercanas y ajusta el resultado según la composición geológica y los errores que aprendió a corregir.</p></div>
+        <div class="section-heading"><div><p class="eyebrow">PRUEBA TÚ MISMO CÓMO SE COMBINAN LOS RESULTADOS</p><h2 id="calculo-title">¿De dónde sale <em>una estimación?</em></h2></div><p>Primero calculamos dos estimaciones: una basada en lluvia y vegetación y otra basada en parcelas cercanas. Después el modelo las combina y, cuando tiene los datos necesarios, añade una corrección pequeña.</p></div>
         <div class="calc-layout">
           <div class="calc-explanation">
-            <p><strong>Imagina una parcela:</strong> el clima sugiere 4.0 t/ha y las parcelas cercanas, 4.8 t/ha. ¿A cuál hacemos más caso?</p>
-            <p>El modelo aprende un peso entre 0 y 1 para combinar ambas estimaciones. Después puede añadir una corrección pequeña si existen las tres señales necesarias.</p>
-            <p class="small-note">Los valores 4.0 y 4.8 son inventados para explicar la cuenta. Este control <strong>no predice parcelas reales</strong> y los pesos que mueves no son los aprendidos para una parcela determinada.</p>
-            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/Reference26/README.md" target="_blank" rel="noopener noreferrer">Ver cómo se entrena cada componente ↗</a>
+            <p><strong>Un ejemplo con números inventados:</strong> una estimación climática da 4.0 toneladas por hectárea y la estimación local da 4.8. ¿Cómo cambia el resultado al dar más peso a una u otra?</p>
+            <p>Mueve los dos controles para comprobar el efecto del peso local y de la corrección. El modelo real aprende esos valores utilizando las parcelas conocidas.</p>
+            <p class="small-note">Este ejemplo no utiliza parcelas del estudio y <strong>no genera predicciones reales</strong>. Sirve exclusivamente para entender la operación aritmética.</p>
+            <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/Reference26/README.md" target="_blank" rel="noopener noreferrer">Consultar las ecuaciones del modelo ↗</a>
           </div>
           <div class="calc-workshop" aria-label="Ejemplo interactivo de mezcla de modelos">
             <div class="calc-endpoints"><span>Estimación climática <strong>4.00</strong> t/ha</span><span>Estimación local <strong>4.80</strong> t/ha</span></div>
-            <label for="geo-blend">¿Qué peso le damos a los vecinos? <output id="geo-blend-value" for="geo-blend">50 %</output></label>
+            <label for="geo-blend">¿Cuánto influye la estimación de parcelas cercanas? <output id="geo-blend-value" for="geo-blend">50 %</output></label>
             <input id="geo-blend" type="range" min="0" max="100" value="50" step="5">
             <div class="weight-preview" role="img" aria-label="Mitad de peso climático y mitad local" id="weight-preview"><span id="weight-climate" style="width:50%"></span><span id="weight-local" style="width:50%"></span></div>
-            <label for="error-correction">Corrección final de ejemplo <output id="error-correction-value" for="error-correction">+0.00 t/ha</output></label>
+            <label for="error-correction">Ajuste adicional a la estimación <output id="error-correction-value" for="error-correction">+0.00 t/ha</output></label>
             <input id="error-correction" type="range" min="-25" max="25" value="0" step="5">
-            <div class="calc-result"><div><span>RESULTADO DE ESTE EJEMPLO</span><strong id="calc-result">4.40</strong><small>t/ha</small></div><p id="calc-equation">4.00 + 0.50 × (4.80 − 4.00) + 0.00 = 4.40</p></div>
+            <div class="calc-result"><div><span>ESTIMACIÓN ILUSTRATIVA</span><strong id="calc-result">4.40</strong><small>t/ha</small></div><p id="calc-equation">4.00 + 0.50 × (4.80 − 4.00) + 0.00 = 4.40</p></div>
           </div>
         </div>
       </div>
@@ -181,34 +181,34 @@
 
     <section class="section significance" id="significancia" aria-labelledby="significance-title">
       <div class="shell">
-        <div class="section-heading"><div><p class="eyebrow">¿QUÉ RESPALDAN LAS PRUEBAS?</p><h2 id="significance-title">Una mejora en el RMSE <em>no lo demuestra todo.</em></h2></div><p>La investigación distingue tres preguntas: si una señal se relaciona con el rendimiento, si quitarla afecta las predicciones y si esa diferencia resiste una prueba estadística.</p></div>
+        <div class="section-heading"><div><p class="eyebrow">¿QUÉ RESPALDAN LAS PRUEBAS?</p><h2 id="significance-title">Una mejora en el RMSE <em>no lo demuestra todo.</em></h2></div><p>Una relación con el rendimiento no es lo mismo que una mejora predictiva. Por eso estudiamos las asociaciones, volvemos a entrenar modelos sin algunas medidas y contrastamos estadísticamente las diferencias.</p></div>
         <div class="question-panels">
-          <article><span>RELACIÓN OBSERVADA</span><h3>¿La lluvia y la vegetación se asocian con el rendimiento?</h3><p>Se usó una regresión de diagnóstico ajustada por estado. Aquí sí hay pruebas de asociación para algunas señales; los coeficientes no son los del modelo Reference26 ni describen causas.</p></article>
-          <article><span>UTILIDAD PARA PREDECIR</span><h3>¿Qué sucede si quitamos una variable o un componente?</h3><p>Se vuelve a ajustar el modelo sin esa entrada y se comparan los errores sobre las mismas particiones. El cambio de RMSE describe desempeño; por sí solo no indica significancia.</p></article>
-          <article><span>INCERTIDUMBRE ESTADÍSTICA</span><h3>¿La diferencia es suficientemente clara?</h3><p>Los contrastes pareados y la corrección de Holm consideran las comparaciones de una familia. No corrigen por completo los cientos de experimentos previos ni convierten el resultado en confirmación externa.</p></article>
+          <article><span>RELACIÓN CON LA COSECHA</span><h3>¿La lluvia y el verdor están relacionados con lo que se cosecha?</h3><p>Al considerar las diferencias entre estados, la lluvia acumulada, la proporción de lluvia temprana y el verdor de mayo mantienen asociaciones estadísticas. Eso no significa que hayan causado las cosechas observadas.</p></article>
+          <article><span>CAMBIO EN EL ERROR</span><h3>¿El modelo se equivoca más cuando retiramos información?</h3><p>Volvemos a entrenar el modelo sin esa medida y comparamos su error con el de la versión original. No basta con que un error sea menor: hay que evaluar qué tan estable es la diferencia.</p></article>
+          <article><span>QUÉ TAN CONVINCENTE ES LA DIFERENCIA</span><h3>¿Podemos distinguir una mejora real de la variación entre pruebas?</h3><p>Comparamos los errores obtenidos en las mismas particiones y ajustamos los valores p cuando se hacen varias pruebas. Como ya se ensayaron muchos modelos con las mismas cosechas, seguimos tratando estos resultados con cautela.</p></article>
         </div>
         <div class="significance-lab">
-          <div class="significance-title-row"><div><h3>Cuatro señales del modelo climático</h3><p>Asociación parcial en una OLS diagnóstica, controlando estado y agrupando errores por perfil climático. Se muestran valores <em>p</em> ajustados por Holm en una familia de 13 pruebas.</p></div><div class="significance-legend"><span class="sig-key"></span> p ajustada inferior a 0.05</div></div>
+          <div class="significance-title-row"><div><h3>La relación de cuatro medidas con la cosecha</h3><p>El gráfico corresponde a una regresión estadística de diagnóstico que considera el estado y agrupa las observaciones por perfil climático. Muestra valores <em>p</em> corregidos por Holm, no la importancia de cada medida dentro del modelo final.</p></div><div class="significance-legend"><span class="sig-key"></span> p corregida menor que 0.05</div></div>
           <div id="association-chart" class="association-chart" aria-live="polite">Cargando los contrastes documentados…</div>
-          <div class="sig-interpretation"><span>OJO CON ESTA DISTINCIÓN</span><p>Hay evidencia de asociación para lluvia total, proporción temprana y NDVI de mayo. Para la concentración mensual HHI, la evidencia es insuficiente al ajustar por estado. <strong>Eso no prueba que las otras tres sean indispensables en Reference26.</strong> Tampoco que más lluvia reduzca causalmente la cosecha: los coeficientes negativos son asociaciones condicionadas a estas variables.</p></div>
+          <div class="sig-interpretation"><span>QUÉ SIGNIFICAN ESTOS RESULTADOS</span><p>Las primeras dos medidas de lluvia y el verdor de mayo conservan evidencia de asociación. Para la concentración mensual de lluvia (HHI), no hay evidencia suficiente después de considerar el estado. <strong>Una asociación estadística no demuestra que esa medida sea imprescindible para predecir, ni que la lluvia cause los cambios observados.</strong></p></div>
         </div>
         <div class="significance-findings">
-          <div class="significance-number"><span>BATERÍAS HISTÓRICAS DE ARQUITECTURA</span><strong id="holm-zero">0 / 952</strong><p>contrastes que superaron su corrección de Holm en tres familias archivadas de 412, 332 y 208 pruebas.</p></div>
-          <div class="significance-number"><span>REFERENCE26 FRENTE A C-T3</span><strong>0.0253</strong><p>p ajustada por Holm en la comparación aleatoria anterior. En perfil, municipio y espacio no se conservó significancia tras el ajuste.</p></div>
-          <div class="significance-number"><span>PRUEBAS DE RETIRADA EN C-T3</span><strong>0 / 16</strong><p>retiradas individuales con resultado significativo tras corregir las 24 comparaciones. Las diferencias contra controles sencillos sí aportaron evidencia.</p></div>
+          <div class="significance-number"><span>PRUEBAS ENTRE VERSIONES DEL MODELO</span><strong id="holm-zero">0 / 952</strong><p>comparaciones que superaron la corrección por pruebas múltiples en tres grupos de 412, 332 y 208 contrastes. Una prueba no concluyente no demuestra igualdad entre modelos.</p></div>
+          <div class="significance-number"><span>MODELO COMPLETO FRENTE AL PRIMER MODELO CLIMÁTICO</span><strong>0.0253</strong><p>Valor p corregido en las particiones aleatorias: allí hay evidencia a favor del modelo completo frente al modelo climático inicial. Las demás formas de evaluación no dieron evidencia suficiente tras el ajuste.</p></div>
+          <div class="significance-number"><span>QUITAR UNA MEDIDA DEL MODELO CLIMÁTICO</span><strong>0 / 16</strong><p>retiradas individuales que conservaron significancia al ajustar la familia de 24 comparaciones. Las diferencias frente a modelos mucho más sencillos sí aportaron evidencia en ciertas evaluaciones.</p></div>
         </div>
-        <p class="small-note">Que una prueba no resulte significativa <strong>no significa que el componente no sirva</strong>. Las comparaciones por municipio tienen nueve grupos y las espaciales sólo cinco. Los datos ya se usaron para elegir modelos: estos valores p deben leerse como evidencia exploratoria, no como confirmación independiente.</p>
+        <p class="small-note">No encontrar una diferencia estadísticamente clara <strong>no significa que dos modelos sean iguales</strong>. Sólo hay nueve grupos municipales y cinco bloques geográficos para algunas pruebas. Además, utilizamos estas mismas 138 cosechas para desarrollar los modelos; falta una comprobación verdaderamente independiente.</p>
         <div class="research-links"><a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/core4_relevance/v1/README.md" target="_blank" rel="noopener noreferrer">Pruebas de las cuatro señales ↗</a><a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_component_evidence/v1/README.md" target="_blank" rel="noopener noreferrer">Pruebas de los componentes de Reference26 ↗</a></div>
       </div>
     </section>
 
     <section class="section hhi-study" id="retirar-hhi" aria-labelledby="hhi-title">
       <div class="shell">
-        <div class="section-heading"><div><p class="eyebrow">UNA PREGUNTA QUE CAMBIÓ EL MODELO EXPERIMENTAL</p><h2 id="hhi-title">¿Y si quitamos la concentración de lluvia <em>de toda la arquitectura?</em></h2></div><p>La nueva variante Reference25 quita HHI tanto del núcleo climático como del corrector interno. Las demás capas se mantienen y se recalibran dentro del entrenamiento.</p></div>
+        <div class="section-heading"><div><p class="eyebrow">QUÉ PASA SI OMITIMOS UNA MEDIDA DE LA LLUVIA</p><h2 id="hhi-title">¿Mejora la predicción si quitamos <em>la concentración mensual de la lluvia?</em></h2></div><p>Probamos otra versión del modelo principal sin el índice HHI, que resume qué tan concentrada estuvo la lluvia en determinados meses. Lo retiramos de las dos partes que lo utilizan, volvimos a ajustar los modelos y comparamos sus errores.</p></div>
         <div class="hhi-layout">
           <div class="hhi-selector">
-            <h3>Elige qué dejamos fuera de la validación</h3>
-            <p>Las barras muestran el RMSE en t/ha. Menos es mejor. No compares barras de distintas particiones como si fueran un solo experimento.</p>
+            <h3>Cambia el grupo de parcelas que dejamos para evaluar</h3>
+            <p>El error cambia según qué parcelas se dejen fuera del entrenamiento. Compara las dos barras dentro de cada prueba; un RMSE menor significa menos error cuadrático.</p>
             <div class="hhi-buttons" role="group" aria-label="Tipo de validación del experimento sin HHI">
               <button type="button" class="hhi-button active" data-hhi-protocol="random" aria-pressed="true">Parcelas al azar</button>
               <button type="button" class="hhi-button" data-hhi-protocol="climate_profile" aria-pressed="false">Perfiles climáticos</button>
@@ -218,19 +218,19 @@
             <p class="hhi-observation" id="hhi-observation" aria-live="polite">El tipo de exclusión cambia la respuesta.</p>
           </div>
           <div class="hhi-results">
-            <p class="chart-eyebrow" id="hhi-caption">VALIDACIÓN ALEATORIA</p>
-            <div class="hhi-score-row"><span>Reference26, con HHI</span><div class="hhi-track"><span id="hhi-bar-26"></span></div><strong id="hhi-rmse-26">—</strong></div>
-            <div class="hhi-score-row"><span>Reference25, sin HHI</span><div class="hhi-track"><span id="hhi-bar-25"></span></div><strong id="hhi-rmse-25">—</strong></div>
-            <div class="hhi-difference"><span>DIFERENCIA: SIN HHI − CON HHI</span><strong id="hhi-delta">—</strong></div>
+            <p class="chart-eyebrow" id="hhi-caption">PARCELAS ELEGIDAS AL AZAR</p>
+            <div class="hhi-score-row"><span>Modelo completo, con concentración de lluvia</span><div class="hhi-track"><span id="hhi-bar-26"></span></div><strong id="hhi-rmse-26">—</strong></div>
+            <div class="hhi-score-row"><span>Versión sin concentración de lluvia</span><div class="hhi-track"><span id="hhi-bar-25"></span></div><strong id="hhi-rmse-25">—</strong></div>
+            <div class="hhi-difference"><span>CAMBIO EN EL ERROR AL QUITAR LA CONCENTRACIÓN</span><strong id="hhi-delta">—</strong></div>
             <div class="ci-scale"><span>−0.30</span><span>0</span><span>+0.30</span></div>
             <div class="ci-track" role="img" id="hhi-ci-description" aria-label="Intervalo de la diferencia de RMSE"><i class="ci-zero"></i><span id="hhi-ci"></span><b id="hhi-ci-point"></b></div>
             <p class="ci-note" id="hhi-ci-values">Intervalo del 95 % obtenido al remuestrear grupos sobre las predicciones de validación fijas.</p>
-            <div class="hhi-statistical"><span>p ajustada por Holm (4 pruebas)</span><strong id="hhi-p">—</strong><small id="hhi-significance">Sin conclusión todavía</small></div>
+            <div class="hhi-statistical"><span>Valor p corregido por 4 comparaciones</span><strong id="hhi-p">—</strong><small id="hhi-significance">Sin conclusión todavía</small></div>
           </div>
         </div>
-        <p class="hhi-warning"><strong>Qué encontramos:</strong> el RMSE espacial baja aproximadamente 0.10 t/ha sin HHI, pero el municipal empeora. Ningún contraste de esta batería supera Holm y los intervalos incluyen cero. La mejora espacial se concentra en ciertos bloques: no demuestra una ventaja generalizable. <strong>Reference26 y Compact14 siguen siendo los modelos elegidos.</strong></p>
-        <figure class="hhi-original-figure"><img src="./media/NoHHI_delta_RMSE.png" loading="lazy" alt="Figura original del experimento: cambios de RMSE de la variante sin HHI frente a Reference26 bajo validaciones aleatoria, por perfil, municipio y bloque espacial; intervalos de confianza del 95 por ciento que cruzan cero."><figcaption>Figura original de la sensibilidad sin HHI, recuperada del repositorio de investigación. Las diferencias son descriptivas y sus intervalos no excluyen cero.</figcaption></figure>
-        <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/four_final_checks/v1/README.md" target="_blank" rel="noopener noreferrer">Revisar los 65 folds, intervalos, grupos y pruebas pareadas ↗</a>
+        <p class="hhi-warning"><strong>El resultado depende de la región que se excluya.</strong> Sin HHI, el error baja 0.10 t/ha en una prueba por bloques geográficos, pero sube cuando dejamos fuera municipios completos. Los intervalos incluyen cero y ninguna diferencia superó la corrección estadística. Por ahora mantenemos tanto el modelo completo como su versión simplificada.</p>
+        <figure class="hhi-original-figure"><img src="./media/NoHHI_delta_RMSE.png" loading="lazy" alt="Figura original del experimento: cambios de RMSE de la variante sin HHI frente a Reference26 bajo validaciones aleatoria, por perfil, municipio y bloque espacial; intervalos de confianza del 95 por ciento que cruzan cero."><figcaption>Cambios de error al retirar la concentración mensual de lluvia, según el tipo de validación. Las líneas de incertidumbre incluyen cero.</figcaption></figure>
+        <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/four_final_checks/v1/README.md" target="_blank" rel="noopener noreferrer">Ver las particiones y las pruebas estadísticas originales ↗</a>
       </div>
     </section>
 
