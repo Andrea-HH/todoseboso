@@ -6,9 +6,11 @@ con una comparación reproducible de las arquitecturas Reference26, Compact14,
 B1, L40/Local04D y C-T3.
 
 El micrositio se aloja en `site/`, sin npm, librerías remotas, recopilación de
-visitas ni servicios predictivos. Es independiente de las matrices privadas,
-las 59 estimaciones y los modelos `joblib` originales. No se han modificado
-modelos, documentación histórica ni el resultado de la competición.
+visitas ni servicios predictivos. La presentación científica utiliza métricas
+agregadas, mientras que el explorador permite consultar individualmente los
+138 rendimientos observados autorizados y las 59 estimaciones de Reference26.
+No se publican las matrices privadas completas ni los modelos `joblib`
+originales. No se han modificado modelos ni resultados de la competición.
 
 ## Probarlo localmente
 
@@ -34,7 +36,9 @@ públicas de este repositorio:
 - La fila `L40 / Local04D` de la tabla «Comparación reciente compatible»
   en `README.md` — comparador externo en los cuatro protocolos originales.
 
-No hay datos falsos ni estimaciones de las 59 parcelas en `site/data`.
+No hay datos inventados: `site/data` conserva las métricas agregadas y
+`site/explorador/data/` contiene los 138 rendimientos observados autorizados
+y las 59 estimaciones individuales disponibles en el mapa.
 Se calculan y muestran las métricas promediadas por protocolo, **no** una
 RMSE conjunta entre experimentos diferentes. Referencias26 y14 son champions
 según la decisión del proyecto, aunque B1 alcance un RMSE marginalmente menor
@@ -53,9 +57,10 @@ información parcelaria.
 
 ## Publicación
 
-`.github/workflows/publish_story.yml` valida el sitio en las propuestas
-(pull requests) y, tras integrar los cambios en `main`, sube **únicamente**
-`site/` a GitHub Pages. También admite ejecución manual. En
+`.github/workflows/publish_story.yml` valida el sitio en propuestas
+(pull requests) y permite publicar desde `main` o `paginAndrea` con GitHub
+Actions. Publica `site/` como sitio principal y `website/` bajo `/alternate/`.
+También admite ejecución manual. En
 **Settings → Pages → Build and deployment**, seleccionar **GitHub Actions**
 como fuente de publicación. GitHub Pages debe estar habilitado para este fork;
 si no lo está, la validación puede pasar aunque el despliegue falle hasta
@@ -63,11 +68,12 @@ activarlo.
 
 La URL esperada del proyecto, una vez desplegado y activado Pages, es:
 
-`https://heri-espino.github.io/todoseboso/`
+`https://andrea-hh.github.io/todoseboso/`
 
 Se preserva el subdirectorio del proyecto usando todas las rutas relativas.
 No se ejecuta entrenamiento, Python científico, generación de imágenes,
-PDFs, trabajos pesados ni publicación de resultados individuales en CI.
+PDFs ni trabajos pesados en CI. La publicación incluye las 138 observaciones
+y las 59 estimaciones individuales autorizadas, sin subir las matrices privadas completas.
 
 ## Contrato científico
 
@@ -233,7 +239,8 @@ node --test tests/test_svg_charts.cjs
 Estas pruebas comprueban la coincidencia numérica de los agregados,
 los intervalos de confianza, las cantidades representadas en los SVG,
 los textos alternativos y la existencia de todos los elementos de la página.
-No se entrenan modelos ni se publican las 59 predicciones individuales.
+No se entrenan modelos en el sitio. Las 59 predicciones individuales sí se
+publican en el explorador; las figuras de esta sección son agregadas.
 
 
 ## Explorador: rendimientos observados autorizados (octubre de 2026)
