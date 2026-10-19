@@ -11,7 +11,7 @@
   const crossSection={
     recorrido:"modelo",ensamble:"modelo",datos:"modelo",variables:"modelo",
     preparacion:"modelo","datos-reales":"modelo",arquitectura:"modelo",geologia:"modelo",faltantes:"modelo",ajuste:"modelo",
-    "predicciones-59":"resultados",resultados:"resultados",pruebas:"resultados","mapa-interactivo":"resultados",
+    "predicciones-59":"resultados",resultados:"resultados",pruebas:"resultados",
     "estadisticas-finales":"confianza",limites:"confianza",preguntas:"preguntas"
   };
   function groupFor(id){
@@ -26,6 +26,7 @@
   function routeHash(){
     const id=decodeURIComponent(location.hash.slice(1));
     if(!id)return;
+    if(id==="mapa-interactivo"){location.replace("../index.html#mapa-interactivo");return;}
     const group=groupFor(id);
     if(group&&group!==view){
       location.replace("./investigacion.html?vista="+group+"#"+encodeURIComponent(id));return;
