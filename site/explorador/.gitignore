@@ -1,0 +1,19 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+node_modules/
+*.log
+.ipynb_checkpoints/
+
+# Geometría oficial y datos de parcelas solo en la computadora, no publicados
+/data/private/
+/data/parcelas.geojson
+/data/official_parcels.geojson
