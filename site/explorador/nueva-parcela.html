@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e34">
+  <meta name="description" content="GeoCebada: plataforma de inteligencia agrícola para explorar 59 estimaciones verificadas de rendimiento de cebada y comprender el método Local04D.">
+  <title>Registrar nueva parcela | GeoCebada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="announcement"><span class="announcement-dot" aria-hidden="true"></span> INVESTIGACIÓN APLICADA · RETO AGROCEBADA FIRA 2026 <span class="announcement-right">CICLO AGRÍCOLA 2025</span></div>
+  <header class="header" id="inicio">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="GeoCebada, volver al inicio">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M17 29V11M17 21c-8 0-10-4-10-11 7 0 10 3 10 11Zm0-5c0-8 3-12 10-12 0 7-3 12-10 12Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>geo<span class="brand-accent">cebada</span><small>FIELD INTELLIGENCE</small></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <a href="./index.html" data-page="mapa">Mapa satelital</a>
+        <details class="nav-research">
+          <summary>Investigación <span class="nav-research-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="nav-research-panel">
+            <span class="nav-research-kicker">CONOCE EL PROYECTO</span>
+            <a href="./reto.html" data-page="reto"><span class="nav-research-num">01</span><span>El reto<small>Problema y fuentes</small></span></a>
+            <a href="./solucion.html" data-page="solucion"><span class="nav-research-num">02</span><span>Cómo se desarrolló<small>Método y validación</small></span></a>
+            <a href="./resultados.html" data-page="resultados"><span class="nav-research-num">03</span><span>Resultados<small>Evidencia y conclusiones</small></span></a>
+          </div>
+        </details>
+        <a href="./dashboard.html" data-page="dashboard">Dashboard</a>
+        <a class="nav-button" href="./nueva-parcela.html" data-page="nueva-parcela" aria-current="page">Nueva parcela <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="new-section section" id="nueva-parcela">
+      <div class="shell">
+        <div class="section-heading split-heading"><div><div class="kicker"><span class="kicker-line"></span> 02 / LABORATORIO DE NUEVAS PARCELAS</div><h2>¿Y si queremos estudiar <em>otra parcela?</em></h2></div><p>Prepara un nuevo registro georreferenciado y reúne información de entrada para una futura inferencia. Este formulario aún no genera predicciones nuevas de Local04D.</p></div>
+        <div class="new-grid">
+          <div class="form-card"><div class="form-title-row"><div><span class="overline">REGISTRO · NUEVA PARCELA</span><h3>Datos de la unidad agrícola</h3></div><span class="form-phase">FASE 1 / CAPTURA</span></div>
+            <form id="new-parcel-form">
+              <div class="form-row"><div class="form-field"><label for="new-id">Identificador <span>*</span></label><input id="new-id" name="id_poligono" required placeholder="Ej. NUEVA_001" maxlength="64" autocomplete="off"></div><div class="form-field"><label for="new-state">Estado <span>*</span></label><select id="new-state" name="estado" required><option value="">Selecciona un estado</option><option value="Hidalgo">Hidalgo</option><option value="Puebla">Puebla</option><option value="Tlaxcala">Tlaxcala</option></select></div></div>
+              <p class="state-note" id="state-coverage-note">Cobertura permitida: <strong>Hidalgo, Puebla y Tlaxcala</strong>. También se verificará que las coordenadas coincidan con el estado seleccionado. Si no coinciden, el registro se rechaza.</p>
+              <div class="form-row"><div class="form-field"><label for="new-municipality">Municipio <span>*</span></label><input id="new-municipality" name="municipio" required placeholder="Ej. Apan" maxlength="100"></div><div class="form-field"><label for="new-area">Superficie (hectáreas) <span>*</span></label><input id="new-area" name="area_ha" type="number" min="0.000001" step="any" required placeholder="Ej. 2.5"></div></div>
+              <div class="form-row"><div class="form-field"><label for="new-lat">Latitud (WGS84) <span>*</span></label><input id="new-lat" name="latitud" type="number" step="any" min="-90" max="90" required placeholder="Ej. 19.70"></div><div class="form-field"><label for="new-lon">Longitud (WGS84) <span>*</span></label><input id="new-lon" name="longitud" type="number" step="any" min="-180" max="180" required placeholder="Ej. -98.45"></div></div>
+              <div class="form-row"><div class="form-field"><label for="new-cycle">Ciclo agrícola <span>*</span></label><select id="new-cycle" name="ciclo" required><option value="2025">2025 (comparable al reto)</option><option value="2026">2026 (requiere validación adicional)</option><option value="otro">Otro (requiere validación adicional)</option></select></div><div class="form-field"><label for="new-water">Modalidad de cultivo</label><select id="new-water" name="modalidad"><option value="">No especificada</option><option value="Temporal">Temporal</option><option value="Riego">Riego</option><option value="Desconocida">Desconocida</option></select></div></div>
+              <details class="form-more"><summary>Indicadores agroclimáticos opcionales <span aria-hidden="true">+</span></summary><p>Estas variables son un ejemplo de datos observables que conviene recopilar. <strong>No forman por sí solas el vector completo de Local04D.</strong></p><div class="form-row"><div class="form-field"><label for="new-ndvi">NDVI promedio (si se dispone)</label><input id="new-ndvi" type="number" min="-1" max="1" step="any" placeholder="Ej. 0.62"></div><div class="form-field"><label for="new-rain">Precipitación acumulada (mm)</label><input id="new-rain" type="number" min="0" step="any" placeholder="Ej. 480"></div></div><div class="form-row"><div class="form-field"><label for="new-temp">Temperatura media (°C)</label><input id="new-temp" type="number" step="any" placeholder="Ej. 16.2"></div><div class="form-field"><label for="new-elevation">Elevación (m s. n. m.)</label><input id="new-elevation" type="number" step="any" placeholder="Ej. 2500"></div></div></details>
+              <div class="form-field upload-field"><label for="feature-file">Archivo de características (CSV o JSON, opcional)</label><input id="feature-file" type="file" accept=".csv,.json,text/csv,application/json"><small id="feature-feedback">Opcional: una fila con características. Hasta 128 KB. No se envía a ningún servidor.</small></div>
+              <p class="form-disclaimer">La validación geográfica usa límites estatales de referencia que se consultan al registrar; requiere conexión a internet. Si no se pueden verificar las coordenadas, la solicitud se bloquea. El registro no genera todavía una predicción: para ello se necesita un servicio de inferencia validado con las características completas de Local04D.</p>
+              <div class="form-actions"><button class="btn btn-deep" type="submit">Validar y preparar solicitud <span aria-hidden="true">↗</span></button><button class="text-button" type="reset">Limpiar datos</button></div>
+              <div id="form-feedback" class="form-feedback" aria-live="polite" role="status"></div>
+              <button id="download-request" type="button" class="btn btn-outline" hidden>Descargar registro validado JSON <span aria-hidden="true">↓</span></button>
+            </form>
+          </div>
+          <aside class="pipeline-card"><span class="overline">RUTA HACIA LA PREDICCIÓN</span><h3>Del terreno al <em>rendimiento.</em></h3><p>Por ahora se valida que la parcela esté en Hidalgo, Puebla o Tlaxcala y se genera un registro local. La inferencia de nuevas parcelas será una fase posterior.</p><ol class="pipeline-list"><li class="done"><span>01</span><div><strong>Capturar y verificar</strong><small>Estado autorizado y ubicación dentro de sus límites geográficos de referencia.</small></div></li><li><span>02</span><div><strong>Reunir las características</strong><small>Datos disponibles de vegetación, clima, suelo y topografía. Pendiente de completar C4.</small></div></li><li><span>03</span><div><strong>Conectar el motor</strong><small>Extender y validar Local04D para un objetivo fuera de las 59 parcelas originales.</small></div></li><li><span>04</span><div><strong>Mostrar la estimación</strong><small>Únicamente después de obtener una respuesta real y verificada del modelo.</small></div></li></ol><div class="pipeline-status"><i></i><div><strong>Predicción para nuevas parcelas: pendiente</strong><span>Sin API genérica de Local04D en el repositorio fuente.</span></div></div><a href="https://github.com/heri-espino/GeoC/blob/main/models/README.md" target="_blank" rel="noopener noreferrer" class="pipeline-source">Consultar contrato del modelo ↗</a></aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="footer"><div class="shell footer-inner"><div><a class="footer-brand" href="./index.html">geo<span>cebada</span></a><p>Propuesta independiente de interfaz para el Reto AgroCebada FIRA 2026.</p><small>Los resultados científicos y las predicciones provienen del proyecto GeoCebada original.</small></div><div><strong>EXPLORAR</strong><a href="./index.html">Mapa satelital</a><a href="./reto.html">El reto</a><a href="./solucion.html">Cómo se desarrolló</a><a href="./resultados.html">Resultados</a><a href="./dashboard.html">Dashboard</a><a href="./nueva-parcela.html">Nueva parcela</a></div><div><strong>FUENTES</strong><a href="https://github.com/heri-espino/GeoC" target="_blank" rel="noopener noreferrer">Repositorio científico ↗</a><a href="https://github.com/Andrea-HH/GeoCebada-Frontend-Andrea" target="_blank" rel="noopener noreferrer">Frontend independiente ↗</a><a href="./docs/FUENTES_Y_LIMITACIONES.md">Fuentes y limitaciones ↗</a></div></div><div class="shell footer-bottom"><span>© 2026 GeoCebada · Propuesta de frontend independiente</span><span>HECHO CON CIENCIA DE DATOS Y RESPETO POR EL TERRITORIO</span></div></footer>
+</body>
+</html>
