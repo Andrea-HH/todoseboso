@@ -105,3 +105,48 @@
  .result-label small{font-size:9px}
  .hero-tag{min-width:190px}
 }
+
+
+/* GEOCEBADA-ANDREA: integración del mapa debajo de la pregunta; sin modificar los demás módulos. */
+.site-header{position:sticky;top:0;z-index:1000;background:#faf9f3;color:#214b3c;border-bottom:1px solid #dbe2d6;box-shadow:0 4px 18px rgba(24,58,47,.06)}
+.site-header .brand{color:#215342}
+.site-header .brand>span:nth-child(2)>span{color:#839c65}
+.site-header .brand-icon{color:#779a6f}
+.site-header .brand small{color:#718774;border-left-color:#ced9c7}
+.site-header .nav-links a{color:#305c4a}
+.site-header .nav-links a:hover{color:#64864c}
+.site-header .nav-report{color:#295441;border-color:#b9cbb6;border-radius:11px}
+.site-header .nav-report:hover{background:#e8eee3}
+.site-header .menu-toggle{color:#295441}
+.hero{background:linear-gradient(128deg,#f4f5ec 0%,#e8eddf 100%);color:#214b3c;overflow:visible}
+.hero-grid{display:block;min-height:0;padding-top:58px;padding-bottom:34px}
+.hero-content{max-width:1060px;padding-bottom:0}
+.hero h1{color:#214b3c;font-size:clamp(41px,5.3vw,73px);max-width:1050px;line-height:1.09;margin-bottom:23px}
+.hero h1 em{color:#789067}
+.hero-eyebrow{color:#708966}
+.hero .eyebrow-line{background:#cba75d}
+.hero-description{max-width:850px;color:#5e776a;font-size:clamp(15px,1.5vw,18px);line-height:1.66}
+.hero-actions{margin:25px 0 24px}
+.hero .primary-cta{background:#e0bb79;color:#214b3c;border-radius:10px}
+.hero .primary-cta:hover{background:#efd29a}
+.hero .secondary-cta{color:#315a46;border-bottom-color:#9aaf91}
+.hero-metadata{color:#728973}
+.hero-metadata i{background:#a4b39a}
+.hero-visual{display:none!important}
+.hero-baseline{padding:14px 0 19px;border-top-color:#d5dfce;color:#5d7768}
+.hero-baseline span:first-child{color:#65855c}
+.geoc-andrea-map{width:100%;background:#eaece5;overflow:hidden}
+.geoc-andrea-map iframe{display:block;width:100%;height:1000px;border:0}
+@media(max-width:860px){
+  .hero-grid{padding-top:44px;padding-bottom:27px}
+  .hero-content{max-width:100%}
+  .hero h1{font-size:clamp(36px,7vw,58px)}
+  .hero-actions{gap:17px}
+  .site-header .nav-links{background:#faf9f3;border-color:#dbe2d6}
+}
+@media(max-width:600px){
+  .hero-grid{padding-top:32px;padding-bottom:23px}
+  .hero h1{font-size:clamp(32px,9vw,45px)}
+  .hero-baseline{flex-wrap:wrap}
+  .geoc-andrea-map iframe{height:910px}
+}
