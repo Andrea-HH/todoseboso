@@ -278,7 +278,6 @@ html[data-geo-vista]:not([data-geo-vista="inicio"]) .geo-view-heading{display:bl
  border:1px solid #b8ccb7;border-radius:11px;padding:11px 16px;white-space:nowrap;background:#f8faf4}
 .geo-back-home:hover{background:#fff}
 .nav-links a[aria-current="page"]{color:#2d634e;font-weight:820;text-decoration:underline;text-underline-offset:8px;text-decoration-color:#a1bd88}
-html[data-geo-vista="inicio"] .site-footer{display:none!important}
 @media(max-width:680px){
  .geo-view-heading-inner{padding-top:25px;padding-bottom:25px;align-items:flex-start;flex-direction:column;gap:12px}
  .geo-back-home{font-size:12px;padding:8px 12px}

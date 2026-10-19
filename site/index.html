@@ -59,12 +59,12 @@
           <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
           <!-- Controles originales del explorador junto a la pregunta, sin duplicarlos debajo. -->
           <div class="hero-parcel-tools" aria-label="Filtros y selección de parcelas">
-            <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="eager"></iframe>
+            <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="lazy"></iframe>
           </div>
         </div>
         <!-- Vista del mapa en el lugar de la ilustración original; la ilustración queda oculta. -->
         <div class="hero-map-preview" aria-label="Mapa interactivo de las parcelas">
-          <iframe id="geoc-andrea-hero-frame" src="./explorador/mapa.html?vista=mapa" title="Mapa satelital interactivo GeoCebada" loading="eager"></iframe>
+          <iframe id="geoc-andrea-hero-frame" src="./explorador/mapa.html?vista=mapa" title="Mapa satelital interactivo GeoCebada" loading="lazy"></iframe>
         </div>
         <div class="hero-visual" role="img" aria-label="Ilustración conceptual de parcelas agrícolas, lluvia y vegetación. No representa datos ni ubicaciones reales.">
           <div class="visual-header"><span><span class="status-dot"></span> LLUVIA, CULTIVO Y UBICACIÓN</span><span>01 — 04</span></div>
@@ -103,7 +103,7 @@
     <!-- Panel de exploración: se mantiene un solo mapa visible, a la derecha de la pregunta. -->
     <section class="geoc-andrea-map" id="mapa-interactivo" aria-label="Explorador geográfico: filtros y fichas de parcelas">
       <div class="geoc-andrea-panel-container">
-        <iframe id="geoc-andrea-panel-frame" title="Explorador geográfico: filtrar y consultar parcelas" src="./explorador/mapa.html?vista=fichas" loading="eager"></iframe>
+        <iframe id="geoc-andrea-panel-frame" title="Explorador geográfico: filtrar y consultar parcelas" src="./explorador/mapa.html?vista=fichas" loading="lazy"></iframe>
       </div>
     </section>
     <script>
