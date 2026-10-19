@@ -39,7 +39,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         research=Document()
         original.feed((SOURCE/"index.html").read_text(encoding="utf-8"))
         research.feed((SOURCE/"investigacion.html").read_text(encoding="utf-8"))
-        self.assertEqual(set(original.sections)-{"mapa-interactivo"},set(research.sections))
+        self.assertEqual((set(original.sections)-{"mapa-interactivo","recorrido"})|{"datos-reales"},set(research.sections))
         self.assertEqual(len(original.sections)-1,len(research.sections))
         for indicator in ("pred59-plot","pred59-rows","real-rainfall","real-ndvi",
                           "cluster-list","feature-rows","performance-chart",
@@ -55,6 +55,12 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertNotIn("geo-heri-disclosure",text)
         self.assertNotIn("browser_inference.js",text)
         self.assertIn("research-59-archive.js",text)
+        self.assertNotIn("predictions59.js",text)
+        self.assertNotIn('id="recorrido"',text)
+        self.assertNotIn("ÍNDICE DE LA INVESTIGACIÓN",text)
+        self.assertIn('data-research-intro="sabemos"',text)
+        self.assertIn('id="datos-reales"',text)
+        self.assertIn('href="./investigacion.html?vista=sabemos"',text)
         self.assertNotIn('class="hero model-hero"',text)
         self.assertNotIn('id="mapa-interactivo"',text)
         self.assertNotIn("native_map.js",text)
@@ -63,9 +69,9 @@ class ResearchIntegrityTest(unittest.TestCase):
 
     def test_routes_cover_all_original_chapters(self):
         style=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
-        for item in ("modelo","resultados","confianza","preguntas"):
+        for item in ("sabemos","modelo","resultados","confianza","preguntas"):
             self.assertIn('data-research-vista="'+item+'"',style)
-        for id_ in ("recorrido","ensamble","datos","variables","preparacion",
+        for id_ in ("ensamble","datos","variables","datos-reales","preparacion",
                     "arquitectura","geologia","faltantes","ajuste","resultados",
                     "pruebas","limites","preguntas","estadisticas-finales"):
             self.assertIn("#"+id_,style)
@@ -73,7 +79,9 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('id="geoc-andrea-hero-frame"',original)
         self.assertIn('id="geoc-andrea-controls-frame"',original)
         self.assertIn('id="geoc-andrea-panel-frame"',original)
+        self.assertIn("fuente-heri/investigacion.html?vista=sabemos",original)
         self.assertIn("fuente-heri/investigacion.html?vista=modelo",original)
+        self.assertIn("¿Qué sabemos?",original)
         self.assertIn("fuente-heri/investigacion.html?vista=resultados",original)
 
     def test_original_59_estimates_not_recomputed(self):
@@ -89,6 +97,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn("../explorador/data/mapa_publico.json.gz",script)
         self.assertIn("No publicado en el CSV",script)
         self.assertNotIn("Math.random(",script)
+        self.assertNotIn("!window.GeoCebadaPredictions",script)
 
 if __name__=="__main__":
     unittest.main()
