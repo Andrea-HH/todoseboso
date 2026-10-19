@@ -243,3 +243,43 @@
 @media(max-width:680px){
   .brand .brand-wheat-mark{flex-basis:35px;width:35px;height:47px;padding:3px 5px;border-radius:10px}
 }
+
+
+/* GEOCEBADA — VISTAS INDEPENDIENTES: una experiencia, seis temas accesibles.
+   El HTML, los resultados y las visualizaciones originales permanecen en el DOM.
+   La franja redundante de estadísticas se oculta en todas las vistas. */
+html[data-geo-vista] #contenido > section{display:none!important}
+html[data-geo-vista="inicio"] #contenido > section.hero,
+html[data-geo-vista="inicio"] #contenido > section.geoc-andrea-map{display:block!important}
+html[data-geo-vista="historia"] #contenido > section.problem,
+html[data-geo-vista="historia"] #contenido > section.narrative,
+html[data-geo-vista="historia"] #contenido > section.rain-section,
+html[data-geo-vista="historia"] #contenido > section.architecture,
+html[data-geo-vista="historia"] #contenido > section.neighbor-section,
+html[data-geo-vista="historia"] #contenido > section.new-evidence{display:block!important}
+html[data-geo-vista="calculo"] #contenido > section.understanding{display:block!important}
+html[data-geo-vista="pruebas"] #contenido > section.significance,
+html[data-geo-vista="pruebas"] #contenido > section.comparison,
+html[data-geo-vista="pruebas"] #contenido > section.alternative,
+html[data-geo-vista="pruebas"] #contenido > section.distribution-section{display:block!important}
+html[data-geo-vista="hhi"] #contenido > section.hhi-study{display:block!important}
+html[data-geo-vista="parcelas"] #contenido > section.delivery,
+html[data-geo-vista="parcelas"] #contenido > section.limits{display:block!important}
+html[data-geo-vista="preguntas"] #contenido > section.technical-questions{display:block!important}
+.geo-view-heading{display:none;background:#eaf0e3;border-bottom:1px solid #d8e4d5}
+html[data-geo-vista]:not([data-geo-vista="inicio"]) .geo-view-heading{display:block}
+.geo-view-heading-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding-top:35px;padding-bottom:35px;
+}
+.geo-view-eyebrow{font-size:10px;letter-spacing:.2em;font-weight:800;color:#648466;margin:0 0 6px}
+.geo-view-heading h1{font-family:var(--serif);font-size:clamp(29px,3.4vw,48px);font-weight:600;letter-spacing:-.035em;line-height:1.15;color:#204d3e;margin:0}
+.geo-back-home{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:750;color:#244f3f;
+ border:1px solid #b8ccb7;border-radius:11px;padding:11px 16px;white-space:nowrap;background:#f8faf4}
+.geo-back-home:hover{background:#fff}
+.nav-links a[aria-current="page"]{color:#2d634e;font-weight:820;text-decoration:underline;text-underline-offset:8px;text-decoration-color:#a1bd88}
+html[data-geo-vista="inicio"] .site-footer{display:none!important}
+@media(max-width:680px){
+ .geo-view-heading-inner{padding-top:25px;padding-bottom:25px;align-items:flex-start;flex-direction:column;gap:12px}
+ .geo-back-home{font-size:12px;padding:8px 12px}
+}
