@@ -15,7 +15,7 @@
   const byAnchor = Object.freeze({
     'mapa-interactivo':'inicio',
     universo:'inicio',pregunta:'inicio',
-    historia:'modelo','variables-detalle':'modelo','preparacion-datos':'modelo','datos-reales':'modelo',lluvia:'modelo',vecinos:'modelo',arquitectura:'modelo','entrenamiento-modelo':'modelo','mezcla-geologica':'modelo','datos-faltantes':'modelo',
+    historia:'modelo','variables-detalle':'modelo','preparacion-datos':'modelo',lluvia:'modelo',vecinos:'modelo',arquitectura:'modelo','entrenamiento-modelo':'modelo','datos-faltantes':'modelo',
     'de-donde-sale':'modelo',
     evidencia:'resultados',significancia:'resultados',componentes:'resultados',
     'retirar-hhi':'resultados','modelo-compacto':'resultados',distribucion:'resultados','predicciones-detalle':'resultados','diagnostico-residuos':'resultados',

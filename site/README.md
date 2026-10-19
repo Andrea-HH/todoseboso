@@ -317,3 +317,11 @@ Los nuevos estilos se limitan a `site/technical-details.css`, heredando colores 
 - **Resultados → Diagnóstico LOOCV:** gráficos para magnitud, barra apilada de influencia, Moran I y Geary C por tamaño de vecindario, semivariograma de puntos con distancias observadas y bandas del bootstrap espacial. Las tablas completas conservan los valores p y sus correcciones, en desplegables. Los agregados corresponden a `Reference26_mean`; las 59 predicciones pertenecen al modelo histórico con mediana.
 
 Las visualizaciones nuevas están en `site/scientific-charts.js`, con CSS aislado dentro de `site/technical-details.css`. **No se modificaron las hojas de estilo originales ni la interfaz del mapa.** Las figuras que Heri no publica por falta de datos individuales, como histogramas de residuos y Q–Q exactos, no se inventan. El agregado `real_charts.json` incluye `loocv_models: []`: por tanto, no se atribuyen a esa fuente comparaciones por parcela que no contiene.
+
+## Contenido original íntegro de Heri (octubre de 2026)
+
+Se conserva en `site/fuente-heri/index.html` el HTML original de Heri y sus hojas de estilo, scripts, tablas y ocho archivos públicos de datos, sin rehacer gráficos ni cambiar las cifras. Solo se añadió una capa cromática de la paleta de GeoCebada y un selector de secciones para permitir cargar la fuente íntegra dentro de las cinco vistas del sitio mediante desplegables. Los recursos multimedia originales se referencian directamente al repositorio público original.
+
+**Se retiraron** las visualizaciones nuevas creadas manualmente para el apartado de las 59 predicciones y para los diagnósticos; se muestran los componentes y dibujos de `site/fuente-heri` ejecutados por los scripts originales de Heri. Sus restricciones originales permanecen: si un archivo necesario para las predicciones históricas no está publicado en `site/data`, no se reemplazan las visualizaciones ausentes con datos reconstruidos. El mapa de Andrea sigue mostrando las 59 estimaciones publicadas de manera autorizada.
+
+Los 15 apartados documentados se presentan íntegros mediante acordeones. La fuente original completa se abre en `/todoseboso/fuente-heri/index.html`. CSS original de Andrea y código del mapa intactos.

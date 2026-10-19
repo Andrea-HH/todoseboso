@@ -1,0 +1,15 @@
+/* Acordeones integrados: solo color y tipografía existentes de Andrea. */
+.geo-heri-integrated{margin-top:35px;padding-top:24px;border-top:1px solid var(--rule)}
+.geo-heri-integrated .eyebrow{margin:0 0 18px;color:var(--jade)}
+.geo-heri-disclosure{border:1px solid var(--rule);background:var(--geo-fondo-papel);margin:10px 0}
+.geo-heri-disclosure>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;cursor:pointer;list-style:none;color:var(--forest);font-size:14px;font-weight:750}
+.geo-heri-disclosure>summary::-webkit-details-marker{display:none}
+.geo-heri-disclosure>summary span{font-size:20px;color:var(--jade)}
+.geo-heri-disclosure[open]>summary{border-bottom:1px solid var(--rule);background:var(--geo-fondo-trigo)}
+.geo-heri-disclosure>summary:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+.geo-heri-body{padding:12px 15px 22px}
+.geo-heri-note{color:var(--muted);font-size:12px;line-height:1.8}
+.geo-heri-note a{color:var(--forest);text-decoration:underline;text-underline-offset:3px}
+.geo-heri-frame-slot{width:100%;max-width:100%;min-width:0}
+.geo-heri-native-frame{width:100%;border:0;display:block;height:500px;min-height:300px;background:var(--geo-fondo-crema)}
+@media(max-width:750px){.geo-heri-disclosure>summary{padding:15px}.geo-heri-body{padding:6px 5px 17px}}
