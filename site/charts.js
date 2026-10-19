@@ -201,6 +201,23 @@
     note.textContent = "Verde: con corrección final. Mostaza: sin corrección. El punto final derecho muestra el RMSE con corrección; el eje empieza en 0.42 t/ha.";
     target.append(note);
   }
+  function expertWeights(target, rows) {
+    dotRows(target, {
+      title: "Peso medio de la estimación local en cuatro evaluaciones",
+      rows: rows.map((row) => ({
+        label: row.label,
+        value: row.weight,
+        color: palette().jade,
+        subtitle: "Peso medio aprendido",
+        format: (x) => fmt(x * 100, 1) + " %",
+        detail: row.label + ": peso medio del modelo basado en parcelas cercanas " +
+          fmt(row.weight * 100, 2) + " por ciento."
+      })),
+      domain: [0, 1], ticks: [0, 0.25, 0.5, 0.75, 1],
+      axisFormat: (x) => fmt(x * 100, 0) + "%",
+      note: "No representa cuánto del rendimiento causa la cercanía. Es el peso medio de mezcla aprendido en cada evaluación."
+    });
+  }
   function coefficients(target, entries) {
     const {canvas, tip, colors} = start(target, "Asociaciones ajustadas por estado con los rendimientos", 380);
     const domain = [-0.42, 0.42], xr = [385, 833], zero = interpolate(0, domain, xr);
@@ -339,5 +356,5 @@
       textNode(canvas, months[i], x + 36, 251, {size: 12, anchor: "middle"});
     });
   }
-  global.GeoCharts = Object.freeze({models, ablations, r3, coefficients, forest, intervals, distribution, rainfall});
+  global.GeoCharts = Object.freeze({models, ablations, r3, expertWeights, coefficients, forest, intervals, distribution, rainfall});
 })(window);
