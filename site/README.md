@@ -195,3 +195,42 @@ node --check site/preguntas.js
 Los resultados se versionan con sus protocolos originales. No agregar números
 al sitio si su figura o su afirmación no pueden verificarse contra una tabla
 pública concreta.
+
+## Figuras estadísticas interactivas
+
+El sitio usa SVG accesible sin Plotly ni dependencias CDN. El motor
+`site/charts.js` y `site/charts.css` toman la tipografía y paleta de
+las variables CSS de la página. Los gráficos permiten inspeccionar
+cada valor con el cursor o mediante Tab y son desplazables en móvil.
+
+- RMSE de cinco modelos: gráfico de puntos ordenado dentro de un protocolo.
+- Ablaciones del núcleo climático: cinco puntos y RMSE original señalado.
+- Corrección residual R3: cuatro pares de RMSE con y sin corrector.
+- Mezcla con experto local: pesos de 0 a 100 por ciento por protocolo.
+- Asociación climática: coeficientes firmados y valores p Holm separados;
+  un valor p no se dibuja como una importancia predictiva.
+- Sensibilidad sin HHI: diferencias, cuatro IC95 % publicados y línea cero.
+- Cobertura: puntos de cobertura empírica frente al nivel nominal, con anchuras.
+- Lluvia mensual: barras SVG con dos escenarios inventados de igual total.
+- Distribución por región: medianas, percentiles 10/25/75/90 y grupos
+  observados/estimados. Se coteja contra
+  `results/reference26_distribution/v1/descriptive_global_state.csv`
+  y **no** se reconstruye una ECDF sin observaciones individuales.
+
+Se conservan las figuras originales PNG en desplegables, accesibles
+para contrastar con los nuevos gráficos. Se señala expresamente cuando
+el eje de puntos no comienza en cero: no se usan longitudes de barras
+truncadas que exageren visualmente cambios pequeños.
+
+Verificaciones nuevas:
+
+```bash
+python scripts/check_site_charts.py
+node --check site/charts.js
+node --test tests/test_svg_charts.cjs
+```
+
+Estas pruebas comprueban la coincidencia numérica de los agregados,
+los intervalos de confianza, las cantidades representadas en los SVG,
+los textos alternativos y la existencia de todos los elementos de la página.
+No se entrenan modelos ni se publican las 59 predicciones individuales.
