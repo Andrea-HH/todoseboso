@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e34">
+  <meta name="description" content="GeoCebada: plataforma de inteligencia agrícola para explorar 59 estimaciones verificadas de rendimiento de cebada y comprender el método Local04D.">
+  <title>Dashboard de predicciones | GeoCebada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="announcement"><span class="announcement-dot" aria-hidden="true"></span> INVESTIGACIÓN APLICADA · RETO AGROCEBADA FIRA 2026 <span class="announcement-right">CICLO AGRÍCOLA 2025</span></div>
+  <header class="header" id="inicio">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="GeoCebada, volver al inicio">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M17 29V11M17 21c-8 0-10-4-10-11 7 0 10 3 10 11Zm0-5c0-8 3-12 10-12 0 7-3 12-10 12Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>geo<span class="brand-accent">cebada</span><small>FIELD INTELLIGENCE</small></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <a href="./index.html" data-page="mapa">Mapa satelital</a>
+        <details class="nav-research">
+          <summary>Investigación <span class="nav-research-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="nav-research-panel">
+            <span class="nav-research-kicker">CONOCE EL PROYECTO</span>
+            <a href="./reto.html" data-page="reto"><span class="nav-research-num">01</span><span>El reto<small>Problema y fuentes</small></span></a>
+            <a href="./solucion.html" data-page="solucion"><span class="nav-research-num">02</span><span>Cómo se desarrolló<small>Método y validación</small></span></a>
+            <a href="./resultados.html" data-page="resultados"><span class="nav-research-num">03</span><span>Resultados<small>Evidencia y conclusiones</small></span></a>
+          </div>
+        </details>
+        <a href="./dashboard.html" data-page="dashboard" aria-current="page">Dashboard</a>
+        <a class="nav-button" href="./nueva-parcela.html" data-page="nueva-parcela">Nueva parcela <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="dashboard-section section" id="explorador">
+      <div class="shell">
+        <div class="dash-head"><div><div class="kicker kicker-light"><span class="kicker-line"></span> 01 / PANEL DE INTELIGENCIA AGRÍCOLA</div><h2>Explora los <em>rendimientos estimados.</em></h2><p>Selecciona una de las 59 parcelas del reto. Los valores provienen del archivo oficial de predicciones de Local04D.</p></div><a class="mini-link" href="./data/predictions.csv" download="GeoCebada_59_predicciones_Local04D.csv">Descargar datos CSV <span aria-hidden="true">↓</span></a></div>
+        <div class="dash-metrics">
+          <div class="metric"><span>PARCELAS TOTALES</span><strong>197</strong><small>Universo estudiado</small></div>
+          <div class="metric"><span>CON RENDIMIENTO OBSERVADO</span><strong>138</strong><small>Etiquetas de entrenamiento</small></div>
+          <div class="metric"><span>PARCELAS POR ESTIMAR</span><strong>59</strong><small>Valores de referencia ocultos</small></div>
+          <div class="metric accent"><span>PROMEDIO ESTIMADO</span><strong id="predictions-mean">—</strong><small>Entre las 59 predicciones</small></div>
+        </div>
+        <div class="dash-grid">
+          <div class="panel parcel-panel"><div class="panel-overline">EXPLORADOR DE PARCELAS <span class="green-pip"></span></div><h3>Consulta por identificador</h3><p>Busca una parcela del conjunto <code>PREDICCION</code>, sin modificar el modelo.</p>
+            <label for="parcel-search">Buscar ID_POLIGONO</label><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="parcel-search" type="search" placeholder="Ej. AGC_003" autocomplete="off"></div>
+            <label for="parcel-select">O seleccionar de la lista</label><select id="parcel-select"><option>Cargando datos...</option></select>
+            <div class="yield-card"><small>RENDIMIENTO ESTIMADO</small><div class="yield-number"><strong id="prediction-value">—</strong><span>t/ha</span></div><p id="prediction-id">ID_POLIGONO: —</p></div>
+            <div class="tiny-warning">Estimación del modelo; el rendimiento real de esta parcela permanece oculto.</div>
+          </div>
+          <div class="panel distribution-panel"><div class="panel-overline">ANÁLISIS DE DISTRIBUCIÓN</div><h3>¿Cómo se distribuyen las estimaciones?</h3><p>Histograma de los 59 rendimientos predichos por Local04D.</p>
+            <div class="histogram" id="histogram" aria-label="Histograma de rendimientos estimados"></div><div class="hist-axis"><span id="hist-min">—</span><span>TONELADAS POR HECTÁREA</span><span id="hist-max">—</span></div>
+            <div class="distribution-stats"><div><span>Mediana</span><strong id="predictions-median">—</strong></div><div><span>Mínimo</span><strong id="predictions-min">—</strong></div><div><span>Máximo</span><strong id="predictions-max">—</strong></div></div>
+          </div>
+        </div>
+        <div class="panel table-panel"><div class="table-heading"><div><div class="panel-overline">BASE DE PREDICCIONES</div><h3>Consulta las 59 parcelas</h3></div><div class="table-tools"><span id="table-count">Cargando...</span><button class="text-button" id="reset-filter" type="button">Limpiar búsqueda ↺</button></div></div>
+          <div class="table-scroll"><table><thead><tr><th scope="col">Identificador</th><th scope="col">Rendimiento estimado (t/ha)</th><th scope="col">Tipo</th></tr></thead><tbody id="predictions-table"><tr><td colspan="3">Cargando registros…</td></tr></tbody></table></div>
+        </div>
+        <div class="dashboard-note" role="status" id="data-status">Cargando predicciones verificadas…</div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="footer"><div class="shell footer-inner"><div><a class="footer-brand" href="./index.html">geo<span>cebada</span></a><p>Propuesta independiente de interfaz para el Reto AgroCebada FIRA 2026.</p><small>Los resultados científicos y las predicciones provienen del proyecto GeoCebada original.</small></div><div><strong>EXPLORAR</strong><a href="./index.html">Mapa satelital</a><a href="./reto.html">El reto</a><a href="./solucion.html">Cómo se desarrolló</a><a href="./resultados.html">Resultados</a><a href="./dashboard.html">Dashboard</a><a href="./nueva-parcela.html">Nueva parcela</a></div><div><strong>FUENTES</strong><a href="https://github.com/heri-espino/GeoC" target="_blank" rel="noopener noreferrer">Repositorio científico ↗</a><a href="https://github.com/Andrea-HH/GeoCebada-Frontend-Andrea" target="_blank" rel="noopener noreferrer">Frontend independiente ↗</a><a href="./docs/FUENTES_Y_LIMITACIONES.md">Fuentes y limitaciones ↗</a></div></div><div class="shell footer-bottom"><span>© 2026 GeoCebada · Propuesta de frontend independiente</span><span>HECHO CON CIENCIA DE DATOS Y RESPETO POR EL TERRITORIO</span></div></footer>
+</body>
+</html>
