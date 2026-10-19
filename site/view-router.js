@@ -31,6 +31,14 @@
     : requested && Object.hasOwn(aliases,requested) ? aliases[requested]
     : !requested && Object.hasOwn(byAnchor,fragment) ? byAnchor[fragment]
     : 'inicio';
+  // La portada de Andrea permanece intacta. Las otras cuatro rutas muestran
+  // todos los apartados originales de Heri, organizados en la misma identidad visual.
+  if(view!=='inicio'){
+    const path='./fuente-heri/investigacion.html?vista='+encodeURIComponent(view)+
+      (window.location.hash||'');
+    window.location.replace(path);
+    return;
+  }
   document.documentElement.dataset.geoVista=view;
   if(view!=='inicio') document.title=labels[view]+' · GeoCebada';
   document.addEventListener('DOMContentLoaded',function(){
