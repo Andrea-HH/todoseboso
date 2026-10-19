@@ -5,7 +5,7 @@
   const labels = Object.freeze({
     problema: '¿Qué problema queremos resolver?',
     modelo: '¿Cómo funciona el modelo?',
-    resultados: '¿Qué tan bien predice?',
+    resultados: 'Resultados',
     confianza: '¿Qué tanta confianza merece?',
     preguntas: 'Preguntas frecuentes'
   });

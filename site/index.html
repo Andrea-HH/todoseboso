@@ -32,7 +32,7 @@
           <a href="./index.html">Inicio · Explorar parcelas</a>
           <a href="./index.html?vista=problema">¿Qué problema queremos resolver?</a>
           <a href="./index.html?vista=modelo">¿Cómo funciona el modelo?</a>
-          <a href="./index.html?vista=resultados">¿Qué tan bien predice?</a>
+          <a href="./index.html?vista=resultados">Resultados</a>
           <a href="./index.html?vista=confianza">¿Qué tanta confianza merece?</a>
           <a href="./index.html?vista=preguntas">Preguntas frecuentes</a>
         </nav>
@@ -216,7 +216,7 @@
     </section>
 
         <nav class="geo-chapter-end" data-geo-page="modelo" aria-label="Continuar explorando GeoCebada">
-      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./index.html?vista=resultados">¿Qué tan bien predice? <span aria-hidden="true">→</span></a></div>
+      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./index.html?vista=resultados">Resultados <span aria-hidden="true">→</span></a></div>
     </nav>
     <nav class="geo-subnav" data-geo-page="resultados" aria-label="Índice de los resultados">
       <div class="shell geo-subnav-inner"><span class="geo-subnav-label">EN ESTA PÁGINA</span>
@@ -228,7 +228,7 @@
         <a href="#distribucion">Distribución de estimaciones</a>
       </div>
     </nav>
-<section class="section comparison" id="evidencia" aria-labelledby="evidence-title"><div class="shell"><div class="section-heading"><div><p class="eyebrow">QUÉ TAN BIEN PREDIJERON LOS MODELOS</p><h2 id="evidence-title">¿Qué modelo se equivocó menos <em>en las parcelas reservadas para evaluar?</em></h2></div><p>Comparamos los errores de cinco formas de hacer la estimación. Usamos el RMSE: la raíz del promedio de los errores elevados al cuadrado. Se mide en toneladas por hectárea; <strong>cuanto menor, mejor</strong>. Cambia la prueba para ver cómo varía el resultado.</p></div>
+<section class="section comparison" id="evidencia" aria-labelledby="evidence-title"><div class="shell"><div class="section-heading"><div><p class="eyebrow">QUÉ TAN BIEN PREDIJERON LOS MODELOS</p><h2 id="evidence-title">¿Qué modelo logró las predicciones más precisas <em>en las parcelas reservadas para evaluación?</em></h2></div><p>Comparamos los errores de cinco formas de hacer la estimación. Usamos el RMSE: la raíz del promedio de los errores elevados al cuadrado. Se mide en toneladas por hectárea; <strong>cuanto menor, mejor</strong>. Cambia la prueba para ver cómo varía el resultado.</p></div>
       <div class="result-hero"><div><span>CLIMA, VECINOS Y GEOLOGÍA · PRUEBA 97/41</span><strong>0.4625<small> t/ha</small></strong><p>Error cuadrático medio, expresado como RMSE (t/ha)</p></div><div><span>R² DEL MODELO COMPLETO</span><strong>0.6971</strong><p>Medida estadística de ajuste en las mismas particiones; no significa 69.71 % de cosechas acertadas.</p></div><div class="result-context"><span>CÓMO SE EVALUÓ</span><p>En 16 pruebas distintas utilizamos <strong>97 parcelas conocidas para entrenar y 41 para evaluar</strong>. Calculamos el RMSE en cada prueba y promediamos sus resultados. No sabemos todavía el error de las 59 parcelas con cosecha desconocida.</p></div></div>
       <div class="protocol-box"><div class="protocol-head"><div><span>COMPARA CINCO FORMAS DE PREDECIR</span><h3>¿Cambia el modelo que funciona mejor según qué parcelas dejemos fuera?</h3></div><p>Elige cómo se separaron las parcelas para entrenar y evaluar. En cada pantalla se comparan los cinco modelos con las mismas reglas.</p></div><div class="protocol-tabs" id="protocol-tabs" role="group" aria-label="Elegir protocolo de validación"><button class="protocol active" type="button" data-protocol="fresh_97_41" aria-pressed="true">97 para entrenar, 41 para evaluar</button><button class="protocol" type="button" data-protocol="random" aria-pressed="false">Parcelas al azar</button><button class="protocol" type="button" data-protocol="climate_profile" aria-pressed="false">Perfiles de clima</button><button class="protocol" type="button" data-protocol="municipality" aria-pressed="false">Municipios completos</button><button class="protocol" type="button" data-protocol="spatial" aria-pressed="false">Zonas geográficas</button></div>
         <div class="protocol-caption" id="protocol-caption" aria-live="polite">Cargando los resultados de las comparaciones…</div><div class="results-chart" id="results-chart" aria-live="polite"><p>Si los resultados no aparecen, puedes consultar las tablas de investigación.</p></div><div class="protocol-foot"><span>Las barras muestran el RMSE en t/ha. Son promedios de las evaluaciones, no errores calculados sobre todas las predicciones reunidas.</span><a href="https://github.com/heri-espino/todoseboso/tree/main/results" target="_blank" rel="noopener noreferrer">Consultar las tablas con los resultados ↗</a></div>

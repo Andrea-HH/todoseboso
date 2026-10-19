@@ -883,3 +883,72 @@ html[data-geo-vista="preguntas"] #contenido>.section.technical-questions{
 }
 /* Sólo en problema se muestran las cuatro cifras originales; Inicio no las duplica. */
 html[data-geo-vista="problema"] #contenido>.stat-band{display:block!important}
+
+/* Resultados · tipografía totalmente legible sobre el panel verde oscuro. */
+#contenido>.section.comparison .result-hero{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;
+  height:auto;
+  min-height:0;
+  overflow:visible;
+  color:#F8F7EC;
+}
+#contenido>.section.comparison .result-hero>div{
+  min-width:0;
+  min-height:0;
+  height:auto;
+  padding:clamp(22px,2.6vw,35px);
+  overflow-wrap:anywhere;
+}
+#contenido>.section.comparison .result-hero>div>span{
+  display:block;
+  font-size:clamp(10px,.87vw,12px);
+  line-height:1.55;
+  letter-spacing:.12em;
+  color:#D4E5C5!important;
+}
+#contenido>.section.comparison .result-hero>div>strong{
+  display:block;
+  color:#FFFDF0!important;
+  font-size:clamp(34px,4.2vw,57px);
+  line-height:1.15;
+  letter-spacing:-.045em;
+  overflow-wrap:normal;
+  white-space:normal;
+}
+#contenido>.section.comparison .result-hero>div>strong small{
+  font-size:clamp(12px,1vw,15px);
+  letter-spacing:0;
+  color:#F4EEDA!important;
+}
+#contenido>.section.comparison .result-hero>div>p{
+  display:block;
+  margin:14px 0 0;
+  color:#F0F2E6!important;
+  font-size:clamp(12px,1.05vw,14px);
+  line-height:1.75;
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+  overflow-wrap:break-word;
+}
+#contenido>.section.comparison .result-hero .result-context p strong{
+  display:inline;
+  font:inherit;
+  font-weight:800;
+  color:#FFFDF0!important;
+}
+@media(max-width:930px){
+  #contenido>.section.comparison .result-hero{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #contenido>.section.comparison .result-hero .result-context{grid-column:span 2}
+}
+@media(max-width:620px){
+  #contenido>.section.comparison .result-hero{grid-template-columns:minmax(0,1fr)}
+  #contenido>.section.comparison .result-hero .result-context{grid-column:auto}
+  #contenido>.section.comparison .result-hero>div{
+    padding:23px 20px;
+    border-right:0;
+    border-bottom:1px solid rgba(245,249,231,.22);
+  }
+  #contenido>.section.comparison .result-hero>div:last-child{border-bottom:0}
+}

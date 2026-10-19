@@ -187,3 +187,9 @@
 @media(max-width:760px){
   #contenido>.section.technical-questions .geo-faq-groups{grid-template-columns:minmax(0,1fr)}
 }
+
+/* En cada categoría FAQ solo queda la línea dorada del título:
+   se quita el segundo borde situado encima de la primera pregunta. */
+#contenido>.section.technical-questions .geo-faq-groups .geo-faq-group>details:first-of-type{
+  border-top:0;
+}
