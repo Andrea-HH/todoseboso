@@ -432,6 +432,27 @@ html.geo-controles-solo .geo-panel-controls{background:transparent}
  .geo-map .leaflet-control-attribution{font-size:10px!important}
 }
 
+/* Presionado y deshabilitado: jerarquía visible en controles con identificador. */
+.geo-map-bottom #map-lite-toggle[aria-pressed="true"],
+.geo-map-actions #map-toggle-pins[aria-pressed="true"],
+.geo-zoom-guide button[aria-pressed="true"]{
+  background:#FFF2CC;color:#244936;border-color:#FFF2CC;
+}
+.geo-map-bottom #map-lite-toggle[aria-pressed="false"],
+.geo-map-actions #map-toggle-pins[aria-pressed="false"],
+.geo-zoom-guide button[aria-pressed="false"]{
+  background:#26553F;color:#FFFDF4;border-color:#A2C49A;
+  opacity:1;
+}
+.geo-map-bottom #map-lite-toggle[aria-pressed="false"]:hover:not(:disabled),
+.geo-map-actions #map-toggle-pins[aria-pressed="false"]:hover:not(:disabled){
+  background:#38734F;border-color:#E1EDCF;color:#FFFDF4;
+}
+.geo-map-bottom #map-lite-toggle:disabled,
+.geo-map-actions #map-toggle-pins:disabled{
+  background:#26553F;color:#FFFDF4;opacity:.62;
+}
+
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
