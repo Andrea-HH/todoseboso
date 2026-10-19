@@ -39,13 +39,13 @@ class ResearchIntegrityTest(unittest.TestCase):
         research=Document()
         original.feed((SOURCE/"index.html").read_text(encoding="utf-8"))
         research.feed((SOURCE/"investigacion.html").read_text(encoding="utf-8"))
-        self.assertEqual(set(original.sections),set(research.sections))
-        self.assertEqual(len(original.sections),len(research.sections))
+        self.assertEqual(set(original.sections)-{"mapa-interactivo"},set(research.sections))
+        self.assertEqual(len(original.sections)-1,len(research.sections))
         for indicator in ("pred59-plot","pred59-rows","real-rainfall","real-ndvi",
                           "cluster-list","feature-rows","performance-chart",
                           "r3-comparison","association-chart","distribution-quantiles",
                           "r26-moran-chart","r26-geary-chart","r26-variogram-chart",
-                          "r26-bootstrap-chart","geo-leaflet-map"):
+                          "r26-bootstrap-chart"):
             self.assertIn(indicator,research.ids)
         self.assertEqual(len(research.ids),len(set(research.ids)))
         for relative in research.assets:
@@ -55,6 +55,11 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertNotIn("geo-heri-disclosure",text)
         self.assertNotIn("browser_inference.js",text)
         self.assertIn("research-59-archive.js",text)
+        self.assertNotIn('class="hero model-hero"',text)
+        self.assertNotIn('id="mapa-interactivo"',text)
+        self.assertNotIn("native_map.js",text)
+        self.assertIn('class="research-original-diagram"',text)
+        self.assertIn("24 parcelas cercanas",text)
 
     def test_routes_cover_all_original_chapters(self):
         style=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
@@ -62,8 +67,7 @@ class ResearchIntegrityTest(unittest.TestCase):
             self.assertIn('data-research-vista="'+item+'"',style)
         for id_ in ("recorrido","ensamble","datos","variables","preparacion",
                     "arquitectura","geologia","faltantes","ajuste","resultados",
-                    "pruebas","limites","preguntas","estadisticas-finales",
-                    "mapa-interactivo"):
+                    "pruebas","limites","preguntas","estadisticas-finales"):
             self.assertIn("#"+id_,style)
         original=(SITE/"index.html").read_text(encoding="utf-8")
         self.assertIn('id="geoc-andrea-hero-frame"',original)
