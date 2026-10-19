@@ -69,8 +69,7 @@ async function init(){
   const card=el('div','pred59-summary-item');
   card.append(el('span','',label),el('strong','',value),el('small','',extra));stats.append(card);
  }
- // Las tres referencias y los 59 puntos son informativos; no abren fichas
- // individuales ni generan nuevas estimaciones.
+ // Tres referencias auténticas del CSV, sin gráficos ni fichas de parcelas individuales.
  const examples=get('pred59-examples');examples.replaceChildren();
  for(const [label,r] of [['Menor estimación',sorted[0]],['Estimación mediana',sorted[29]],['Mayor estimación',sorted[58]]]){
   const card=el('div','pred59-example pred59-example-static');
@@ -80,38 +79,6 @@ async function init(){
    el('small','',haveGeography?r.state+' · '+r.municipality:'Rendimiento estimado'));
   examples.append(card);
  }
- const makePoint=(r,cls)=>{
-  const mark=el('span',cls);
-  mark.title=r.id+' · '+fmt(r.value,4)+' t/ha (estimación, no cosecha observada)';
-  mark.setAttribute('aria-label',mark.title);
-  mark.setAttribute('role','img');
-  return mark;
- };
- const plot=get('pred59-plot');plot.replaceChildren();
- const minimum=Math.floor(sorted[0].value*2)/2,maximum=Math.ceil(sorted[58].value*2)/2;
- const upper=maximum>minimum?maximum:minimum+1;
- const offset=value=>2+(value-minimum)/(upper-minimum)*96;
- const groups=haveGeography?['Hidalgo','Puebla','Tlaxcala']:['Las 59 parcelas'];
- for(const [i,state] of groups.entries()){
-  const row=el('div','pred59-plot-row'),label=el('span','pred59-plot-state',state);
-  const track=el('div','pred59-track');
-  const matches=all.filter(r=>!haveGeography||r.state===state).sort((a,b)=>a.value-b.value);
-  matches.forEach((r,j)=>{
-   const dot=makePoint(r,'pred59-dot tone-'+i%3);
-   dot.style.left=fmt(offset(r.value),4)+'%';
-   dot.style.top=(14+(j%3)*19)+'px';
-   track.append(dot);
-  });
-  row.append(label,track);plot.append(row);
- }
- const axis=el('div','pred59-axis');axis.append(el('span','pred59-plot-state',''));
- const ticks=el('div','pred59-ticks');
- for(let i=0;i<=4;i++){
-  const tick=el('span','',fmt(minimum+(upper-minimum)*i/4,2));
-  tick.style.left=fmt(2+i*24,1)+'%';ticks.append(tick);
- }
- axis.append(ticks);plot.append(axis);
- plot.append(el('p','pred59-axis-name','Rendimiento estimado (t/ha). Cada punto representa una de las 59 parcelas sin rendimiento observado.'));
  root.hidden=false;
  status.textContent=haveGeography?
   '59 estimaciones y estados verificados contra los datos públicos autorizados. Ninguna representa una cosecha observada.':
