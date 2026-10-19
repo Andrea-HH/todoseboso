@@ -132,35 +132,6 @@
       research.intervals.filter((entry) => entry.level === level), level);
   }
   qa("[data-interval]").forEach((button) => {
-      const active = Number(button.dataset.interval) === level;
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", String(active));
-    });
-    const root = q("#interval-results");
-    root.replaceChildren();
-    const headline = element("p", "interval-explanation",
-      "Nivel nominal " + Math.round(level * 100) + " %. Cobertura observada durante la validación:");
-    root.append(headline);
-    for (const model of ["Reference26", "Compact14"]) {
-      const row = research.intervals.find((x) => x.model === model && x.level === level);
-      if (!row) continue;
-      const container = element("div", "interval-row");
-      const heading = element("div", "interval-heading");
-      heading.append(element("strong", "", model), element("span", "", percent(row.coverage)));
-      const track = element("div", "interval-track");
-      const fill = element("span", "interval-fill");
-      fill.style.width = (100 * row.coverage) + "%";
-      const nominal = element("i", "interval-nominal");
-      nominal.style.left = (level * 100) + "%";
-      track.append(fill, nominal);
-      const width = element("p", "interval-width",
-        "Anchura media de los intervalos finitos: " + number(row.width, 3) + " t/ha");
-      container.append(heading, track, width);
-      root.append(container);
-    }
-    root.append(element("p", "chart-help", "La marca vertical indica el nivel nominal; la barra muestra la cobertura observada. Intervalos más anchos no implican predicciones puntuales más precisas."));
-  }
-  qa("[data-interval]").forEach((button) => {
     button.addEventListener("click", () => drawIntervals(Number(button.dataset.interval)));
   });
 
