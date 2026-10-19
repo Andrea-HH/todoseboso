@@ -1,0 +1,53 @@
+/* Gráficas documentadas integradas: tipografía, colores y espacios heredados de Andrea. */
+.geo-verificado{margin-top:30px}
+.geo-verificado .geo-graficas-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.geo-verificado .geo-grafica,.geo-estimaciones .geo-grafica,.geo-residuos .geo-grafica{background:var(--geo-fondo-papel,#fffdf8);border:1px solid var(--rule,#cfd4c5);padding:24px;min-width:0}
+.geo-verificado h3,.geo-estimaciones h3,.geo-residuos h3{color:var(--forest,#234c3d);font-size:clamp(17px,2vw,22px);margin:0 0 9px}
+.geo-verificado p,.geo-estimaciones p,.geo-residuos p{color:var(--muted,#626b60);font-size:13px;line-height:1.75}
+.geo-grafica svg{display:block;width:100%;height:auto;overflow:visible}
+.geo-grafica svg text{font-family:inherit;fill:var(--muted,#626b60);font-size:10px}
+.geo-grafica .geo-eje{stroke:var(--rule,#aeb5a8);stroke-width:1}
+.geo-grafica .geo-rejilla{stroke:var(--rule,#aeb5a8);stroke-width:.7;opacity:.55}
+.geo-grafica .geo-rango{stroke:#c3ae77;stroke-width:10;stroke-linecap:round;opacity:.50}
+.geo-grafica .geo-curva{fill:none;stroke:var(--jade,#527d58);stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}
+.geo-grafica .geo-punto{fill:var(--forest,#234c3d);stroke:var(--geo-fondo-papel,#fff);stroke-width:1}
+.geo-grafica .geo-referencia{stroke:#b08c55;stroke-dasharray:4 4}
+.geo-grafica .geo-leyenda{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0;color:var(--muted,#626b60);font-size:12px}
+.geo-grafica .geo-leyenda i{display:inline-block;width:13px;height:4px;vertical-align:middle;margin-right:4px;background:var(--forest,#234c3d)}
+.geo-grafica .geo-leyenda i.rango{height:9px;background:#dfcfab}
+.geo-pie-grafica{font-size:11px;color:var(--muted,#626b60);line-height:1.6;margin-top:10px}
+.geo-estimaciones .geo-datos-clave,.geo-residuos .geo-datos-clave{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0 24px}
+.geo-dato{border:1px solid var(--rule,#cfd4c5);background:var(--geo-fondo-papel,#fffdf8);padding:16px}
+.geo-dato span{font-size:10px;letter-spacing:.065em;color:var(--jade,#527d58);font-weight:800;display:block}
+.geo-dato strong{color:var(--forest,#234c3d);font-family:var(--serif,Georgia,serif);font-size:clamp(21px,2.9vw,30px);display:block;margin:8px 0}
+.geo-dato small{font-size:11px;line-height:1.5;color:var(--muted,#626b60)}
+.geo-estimaciones .geo-barra-estimaciones{display:flex;flex-wrap:wrap;align-items:flex-end;gap:3px;min-height:190px;border-bottom:1px solid var(--rule,#cfd4c5);padding-bottom:8px}
+.geo-barra-estimaciones button{appearance:none;border:0;background:var(--jade,#527d58);height:14px;width:10px;min-width:8px;flex:1;opacity:.7;cursor:pointer;position:relative}
+.geo-barra-estimaciones button:hover,.geo-barra-estimaciones button:focus-visible{background:var(--forest,#234c3d);opacity:1;outline:2px solid var(--forest,#234c3d);outline-offset:2px}
+.geo-barra-estimaciones button:after{content:"";position:absolute;bottom:100%;left:50%;height:var(--geo-altura,10%);border-left:2px solid currentColor;color:var(--jade,#527d58);opacity:.75}
+.geo-grafica .geo-viz-ejes{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted,#626b60);margin-top:12px}
+.geo-estimaciones .geo-explorar{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin:22px 0 12px}
+.geo-estimaciones .geo-explorar label{display:grid;gap:7px;font-size:12px;font-weight:800;color:var(--forest,#234c3d);flex:1 1 220px}
+.geo-estimaciones input,.geo-estimaciones select,.geo-residuos select{font:inherit;border:1px solid var(--rule,#bfc8b9);background:var(--geo-fondo-papel,#fffdf8);border-radius:0;padding:11px 14px;width:100%;color:var(--ink,#27352f)}
+.geo-estimaciones .geo-tabla-wrap,.geo-residuos .geo-tabla-wrap{overflow:auto;max-height:370px;border:1px solid var(--rule,#cfd4c5);background:var(--geo-fondo-papel,#fffdf8)}
+.geo-estimaciones table,.geo-residuos table{width:100%;border-collapse:collapse;font-size:13px}
+.geo-estimaciones th,.geo-residuos th{position:sticky;top:0;background:var(--geo-fondo-trigo,#f5ebd7);color:var(--forest,#234c3d);z-index:1}
+.geo-estimaciones th,.geo-estimaciones td,.geo-residuos th,.geo-residuos td{padding:10px 14px;border-bottom:1px solid var(--rule,#cfd4c5);text-align:left;white-space:nowrap}
+.geo-estimaciones td:last-child,.geo-residuos td:last-child{font-variant-numeric:tabular-nums}
+.geo-estimaciones .geo-ejemplos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.geo-estimaciones .geo-ejemplo{border:1px solid var(--rule,#cfd4c5);padding:15px;background:var(--geo-fondo-papel,#fffdf8);font-size:12px}
+.geo-estimaciones .geo-ejemplo span,.geo-estimaciones .geo-ejemplo small{display:block;color:var(--muted,#626b60)}
+.geo-estimaciones .geo-ejemplo strong{display:block;color:var(--forest,#234c3d);font-size:24px;font-family:var(--serif,Georgia,serif);margin:7px 0}
+.geo-residuos .geo-pestanas{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.geo-residuos .geo-pestanas button{font:inherit;font-size:12px;font-weight:750;background:var(--geo-fondo-papel,#fffdf8);color:var(--forest,#234c3d);padding:11px 14px;border:1px solid var(--rule,#cfd4c5);cursor:pointer}
+.geo-residuos .geo-pestanas button[aria-selected="true"]{background:var(--forest,#234c3d);color:#fff}
+.geo-residuos .geo-paneles>div[hidden]{display:none}
+.geo-residuos .geo-paneles .geo-grafica{margin:0 0 12px}
+.geo-residuos details{padding:15px 17px;border:1px solid var(--rule,#cfd4c5);background:var(--geo-fondo-papel,#fffdf8);margin-top:15px}
+.geo-residuos summary{cursor:pointer;font-size:13px;font-weight:800;color:var(--forest,#234c3d)}
+.geo-residuos .geo-banda{display:grid;grid-template-columns:160px minmax(0,1fr) 100px;gap:14px;align-items:center;margin:13px 0;font-size:12px}
+.geo-residuos .geo-banda-track{height:14px;background:var(--geo-fondo-oliva,#eef1e6);position:relative}
+.geo-residuos .geo-banda-rango{height:100%;background:#d2c095;position:absolute;left:var(--desde);width:var(--hasta)}
+.geo-residuos .geo-banda-valor{height:100%;width:3px;background:var(--forest,#234c3d);position:absolute;left:var(--valor);top:0}
+.geo-integracion-aviso{font-size:12px;color:var(--muted,#626b60);line-height:1.7;margin:12px 0}
+@media(max-width:760px){.geo-verificado .geo-graficas-grid{grid-template-columns:1fr}.geo-estimaciones .geo-datos-clave,.geo-residuos .geo-datos-clave{grid-template-columns:repeat(2,minmax(0,1fr))}.geo-estimaciones .geo-ejemplos{grid-template-columns:1fr}.geo-residuos .geo-banda{grid-template-columns:1fr;gap:4px}.geo-verificado .geo-grafica,.geo-estimaciones .geo-grafica,.geo-residuos .geo-grafica{padding:17px}}
