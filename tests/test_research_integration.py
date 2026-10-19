@@ -41,7 +41,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         research.feed((SOURCE/"investigacion.html").read_text(encoding="utf-8"))
         self.assertEqual((set(original.sections)-{"mapa-interactivo","recorrido"})|{"datos-reales","predicciones-59"},set(research.sections))
         self.assertEqual(len(original.sections),len(research.sections))
-        for indicator in ("pred59-plot","pred59-detail","real-rainfall","real-ndvi",
+        for indicator in ("pred59-plot","pred59-examples","real-rainfall","real-ndvi",
                           "cluster-list","feature-rows","performance-chart",
                           "r3-comparison","association-chart","distribution-quantiles",
                           "r26-moran-chart","r26-geary-chart","r26-variogram-chart",
@@ -69,6 +69,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('href="../assets/favicon-trigo.png"',text)
         self.assertNotIn('class="pred59-explorer"',text)
         self.assertNotIn('id="pred59-rows"',text)
+        self.assertNotIn('id="pred59-detail"',text)
         self.assertNotIn('id="pred59-search"',text)
         self.assertNotIn('id="pred59-state"',text)
         self.assertNotIn("Consultar las 59 predicciones",text)
@@ -87,6 +88,32 @@ class ResearchIntegrityTest(unittest.TestCase):
                     "arquitectura","geologia","faltantes","ajuste","resultados",
                     "pruebas","limites","preguntas","estadisticas-finales","predicciones-59"):
             self.assertIn("#"+id_,style)
+        self.assertIn('html[data-research-vista="modelo"] #contenido>section#variables',style)
+        self.assertNotIn('html[data-research-vista="sabemos"] #contenido>section#variables',style)
+        self.assertIn('--cream:#F4EEE4',style)
+        self.assertIn('background:#EFE3D0',style)
+        research=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        self.assertIn('vista=modelo#variables',research)
+        self.assertNotIn('vista=sabemos#variables',research)
+        routes=[
+            ("sabemos","modelo"),
+            ("modelo","resultados"),
+            ("resultados","confianza"),
+            ("confianza","preguntas"),
+        ]
+        for current,next_view in routes:
+            self.assertIn(
+                f'<div data-next-view="{current}"><span>SIGUIENTE PÁGINA</span>'
+                f'<a href="./investigacion.html?vista={next_view}">',
+                research)
+        self.assertIn(
+            '<div data-next-view="preguntas"><span>SIGUIENTE PÁGINA</span>'
+            '<a href="../index.html">',research)
+        self.assertEqual(research.count('SIGUIENTE PÁGINA'),5)
+        self.assertNotIn('id="pred59-detail"',research)
+        prediction_js=(SOURCE/"research-59-archive.js").read_text(encoding="utf-8")
+        self.assertNotIn("get('pred59-detail')",prediction_js)
+        self.assertIn("role','img'",prediction_js)
         original=(SITE/"index.html").read_text(encoding="utf-8")
         self.assertIn('id="geoc-andrea-hero-frame"',original)
         self.assertIn('id="geoc-andrea-controls-frame"',original)
@@ -94,6 +121,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn("fuente-heri/investigacion.html?vista=sabemos",original)
         self.assertIn("fuente-heri/investigacion.html?vista=modelo",original)
         self.assertIn("¿Qué sabemos?",original)
+        self.assertIn('<span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=sabemos">',original)
         self.assertIn("fuente-heri/investigacion.html?vista=resultados",original)
 
     def test_original_59_estimates_not_recomputed(self):
