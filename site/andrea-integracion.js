@@ -152,6 +152,16 @@ function drawMoran(target,arr,metric,title){
   const min=Math.min(...values),max=Math.max(...values),span=Math.max(.06,max-min);
   plot(target,rows,{xmin:4,xmax:24,ymin:min-span*.25,ymax:max+span*.25,zero:metric==='C'?1:0,xDecimals:0,decimals:3,label:title});
 }
+
+function detailTable(parent,title,headers,records){
+ const d=element('details');d.append(element('summary','',title));
+ const wrap=element('div','geo-tabla-wrap'),t=element('table'),thead=element('thead'),tr=element('tr');
+ headers.forEach(header=>tr.append(element('th','',header)));
+ thead.append(tr);t.append(thead);
+ const body=element('tbody');
+ records.forEach(row=>{const r=element('tr');row.forEach(value=>r.append(element('td','',value)));body.append(r)});
+ t.append(body);wrap.append(t);d.append(wrap);parent.append(d);
+}
 async function showResiduals(){
  const main=$('geo-residuos-datos'),tabs=$('geo-residuos-pestanas'),panels=$('geo-residuos-paneles');
  if(!main||!tabs||!panels)return;
@@ -210,19 +220,31 @@ async function showResiduals(){
       stat('KOENKER–BP','p = '+fmt(v.koenker_bp_p,4),'Prueba de dispersión variable'),
       stat('BROWN–FORSYTHE','p = '+fmt(v.brown_forsythe_p,4),'Prueba de dispersión por grupos'));
     box.append(grid);
-    note(box,'Los contrastes de normalidad rechazan la hipótesis de normalidad. No rechazar las pruebas de heterocedasticidad no demuestra varianza constante. Los valores p son exploratorios porque las particiones LOOCV comparten entrenamientos.');
+    note(box,'La prueba Anderson–Darling también rechaza normalidad al 5 %. Los contrastes de normalidad rechazan la hipótesis de normalidad. No rechazar las pruebas de heterocedasticidad no demuestra varianza constante. Los valores p son exploratorios porque las particiones LOOCV comparten entrenamientos.');
   });
   addView('moran','Moran I',(box)=>{
     box.append(element('h3','','¿Los errores parecidos están cerca?'));
     const target=element('div');box.append(target);
     drawMoran(target,data.spatial.signed_residual_moran,'I','Moran I de los errores con signo para vecinos k = 4, 8, 12 y 24');
     note(box,'Referencia: I = 0. Los valores p ajustados por Holm de esta serie son '+data.spatial.signed_residual_moran.map(x=>fmt(x.p_holm_all,3)).join(' / ')+'. La falta de significación no prueba independencia espacial.');
+    const all=[
+      ['Error con signo',data.spatial.signed_residual_moran],
+      ['Error absoluto',data.spatial.absolute_error_moran],
+      ['Error al cuadrado',data.spatial.squared_error_moran]
+    ];
+    detailTable(box,'Ver los 12 resultados de Moran y sus valores p',
+      ['Medida','Vecinos k','I','p (dos colas)','p Holm','p FDR–BH'],
+      all.flatMap(([name,rows])=>rows.map(r=>[name,r.k,fmt(r.I,5),fmt(r.p_two_sided,4),fmt(r.p_holm_all,4),fmt(r.p_fdr_bh_all,4)])));
   });
   addView('geary','Geary C',(box)=>{
     box.append(element('h3','','¿Hay similitud espacial de los residuos?'));
     const target=element('div');box.append(target);
     drawMoran(target,data.spatial.geary_c.filter(x=>x.spatial_variable==='signed_residual'),'C','Geary C de los errores con signo para vecinos k = 4, 8, 12 y 24');
     note(box,'Referencia aproximada: C = 1. Se trata de una prueba espacial exploratoria sobre las exclusiones LOOCV.');
+    const names={signed_residual:'Error con signo',absolute_error:'Error absoluto',squared_error:'Error al cuadrado'};
+    detailTable(box,'Ver los 12 resultados de Geary y sus valores p',
+      ['Medida','Vecinos k','C','p (dos colas)','p Holm','p FDR–BH'],
+      data.spatial.geary_c.map(r=>[names[r.spatial_variable]||r.spatial_variable,r.k,fmt(r.C,5),fmt(r.p_two_sided,4),fmt(r.p_holm_all,4),fmt(r.p_fdr_bh_all,4)]));
   });
   addView('semivariograma','Distancia',(box)=>{
     box.append(element('h3','','¿Cómo cambia la diferencia de errores con la distancia?'));
@@ -230,6 +252,9 @@ async function showResiduals(){
     const rows=data.spatial.semivariogram.map(x=>({x:x.distance_km,y:x.semivariance_t2_ha2,label:fmt(x.distance_km,1)+' km, '+x.pairs+' pares'}));
     plot(target,rows,{xmin:0,xmax:Math.ceil(Math.max(...rows.map(x=>x.x))/10)*10,ymin:0,ymax:.38,xDecimals:0,decimals:3,label:'Semivariograma empírico de 138 residuos LOOCV'});
     note(box,'Cada punto representa pares de parcelas agrupados por distancia. Es un diagnóstico descriptivo, no un semivariograma teórico ajustado. Unidad vertical: (t/ha)².');
+    detailTable(box,'Ver distancias, pares y semivarianzas de los 6 intervalos',
+      ['Intervalo','Pares','Distancia media (km)','Mín. (km)','Máx. (km)','Semivarianza (t/ha)²'],
+      data.spatial.semivariogram.map(r=>[r.bin,r.pairs,fmt(r.distance_km,3),fmt(r.distance_min_km,3),fmt(r.distance_max_km,3),fmt(r.semivariance_t2_ha2,5)]));
   });
   addView('bootstrap','Robustez territorial',(box)=>{
     box.append(element('h3','','¿Cuánto cambia el RMSE al remuestrear zonas?'));
@@ -244,6 +269,15 @@ async function showResiduals(){
       track.append(band,val);row.append(track,element('span','',fmt(r.low,3)+' – '+fmt(r.high,3)));box.append(row);
     });
     note(box,fmt(data.spatial_bootstrap.replicates,0)+' réplicas archivadas. Rango exploratorio de percentiles 2.5–97.5, no cobertura calibrada. Las cuadrículas con menos de 8 grupos no se calcularon.');
+    detailTable(box,'Ver todas las configuraciones, incluidas las no calculadas',
+      ['Configuración','Grupos','Estado','Límite inferior','Límite superior'],
+      data.spatial_bootstrap.groups.map(g=>[
+        g.id==='municipality'?'Municipios':g.label,
+        g.n_groups,
+        g.status==='computed'?'Calculado':'No calculado: menos de 8 grupos',
+        g.rmse_t_ha?fmt(g.rmse_t_ha.low,5):'—',
+        g.rmse_t_ha?fmt(g.rmse_t_ha.high,5):'—'
+      ]));
   });
   const detail=element('details');const summary=element('summary','','Ver valores y procedencia del diagnóstico');
   detail.append(summary);
