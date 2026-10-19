@@ -100,48 +100,7 @@ function setProtocol(id) {
   if (!protocols) return;
   const info = protocols.find((item) => item.id === id);
   if (!info) return;
-  $$("[data-protocol]").forEach((button) => {
-    const active = button.dataset.protocol === id;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
-  $("#protocol-caption").textContent = info.description;
-  window.GeoCharts.models($("#results-chart"),
-    ORDER.map((name) => {
-      const metric = info.results.find((entry) => entry.id === name);
-      if (!metric) throw Error("Faltan resultados de " + name);
-      return metric;
-    }), LABELS);
-}
-$$("[data-protocol]").forEach((button) => {
-    const active = button.dataset.protocol === id;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
-  $("#protocol-caption").textContent = info.description;
-  const chart = $("#results-chart");
-  chart.replaceChildren();
-  // A common 0-to-1 t/ha scale makes cross-protocol changes visually honest.
-  ORDER.forEach((name) => {
-    const metric = info.results.find((item) => item.id === name);
-    if (!metric) throw Error("No hay resultados para " + name);
-    const row = document.createElement("div");
-    row.className = `result-row ${name === "Reference26" || name === "Compact14" ? "champion" : name === "L40" ? "reference" : ""}`;
-    const label = document.createElement("div"); label.className = "result-label";
-    const title = document.createElement("span"); title.textContent = LABELS[name][0];
-    const sub = document.createElement("small"); sub.textContent = LABELS[name][1];
-    label.append(title, sub);
-    const track = document.createElement("div"); track.className = "result-track";
-    const fill = document.createElement("span"); fill.className = "result-fill";
-    fill.style.width = `${Math.min(100, metric.rmse * 100).toFixed(3)}%`;
-    track.append(fill);
-    const value = document.createElement("span"); value.className = "result-value";
-    value.textContent = metric.rmse.toFixed(4);
-    row.setAttribute("aria-label", `${LABELS[name][0]}, RMSE ${metric.rmse.toFixed(4)} toneladas por hectárea`);
-    row.append(label, track, value); chart.append(row);
-  });
-}
-$$("[data-protocol]").forEach((button) => button.addEventListener("click", () => setProtocol(button.dataset.protocol)));
+  $$("[data-protocol]").forEach((button) => button.addEventListener("click", () => setProtocol(button.dataset.protocol)));
 (async function loadEvidence() {
   try {
     const response = await fetch("./data/results.json", {cache: "no-store"});
