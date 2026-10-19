@@ -90,16 +90,34 @@ class ResearchIntegrityTest(unittest.TestCase):
             self.assertIn("#"+id_,style)
         self.assertIn('html[data-research-vista="modelo"] #contenido>section#variables',style)
         self.assertNotIn('html[data-research-vista="sabemos"] #contenido>section#variables',style)
-        self.assertIn('--cream:#FCF8F0',style)
-        self.assertIn('.research-chapter-heading{background:#F3EFE7;',style)
-        self.assertIn('html[data-research-vista] #research-chapter-heading{background-color:#F3EFE7!important}',style)
-        self.assertIn('andrea-research.css?v=crema-neutro-20261019', (SOURCE/"investigacion.html").read_text(encoding="utf-8"))
-        self.assertIn('#research-chapter-heading.research-chapter-heading{background:#F3EFE7!important;', (SOURCE/"investigacion.html").read_text(encoding="utf-8"))
-        # Ni la portada ni los paneles del estudio adquieren ese color de encabezado.
-        self.assertNotIn('background:#F3EFE7',style.split('/* Contraste limitado a la introducción')[0].split('.research-chapter-heading{')[0])
-        self.assertIn('background:#F5EBD7!important',style)
-        self.assertNotIn('background:#EFE3D0',style)
+        # Colores muestreados directamente de las dos imágenes enviadas.
+        self.assertIn('--geo-header:#F3EBD9;--geo-alternate:#FBF8F1',style)
+        self.assertIn('--cream:#FBF8F1',style)
+        self.assertIn('.research-chapter-heading{background:var(--geo-header);',style)
+        self.assertIn('html[data-research-vista] #research-chapter-heading{background-color:var(--geo-header)!important}',style)
+        self.assertIn('alternancia-capturas-20261019',(SOURCE/"investigacion.html").read_text(encoding="utf-8"))
+        self.assertIn('#research-chapter-heading.research-chapter-heading{background:#F3EBD9!important;', (SOURCE/"investigacion.html").read_text(encoding="utf-8"))
+        self.assertNotIn('background:#F5EBD7!important',style)
+        self.assertNotIn('nth-of-type(even){background:',style)
         self.assertNotIn('html[data-research-vista] body{background:',style)
+        # La alternancia debe respetar cada página visible, no el orden de
+        # secciones ocultas en el documento común.
+        backgrounds = style.split('/* Alternancia validada con las dos muestras exactas de la usuaria. */')[1]
+        light, dark = backgrounds.split('{background:var(--geo-alternate)!important}',1)
+        dark = dark.split('{background:var(--geo-header)!important}',1)[0]
+        order = {
+            "sabemos": ("datos","datos-reales"),
+            "modelo": ("ensamble","variables","preparacion","arquitectura","geologia","faltantes","ajuste"),
+            "resultados": ("predicciones-59","resultados","pruebas"),
+            "confianza": ("limites","estadisticas-finales"),
+            "preguntas": ("preguntas",)
+        }
+        for vista, ids in order.items():
+            for number,id_ in enumerate(ids):
+                selector=f'html[data-research-vista="{vista}"] #contenido > section#{id_}'
+                self.assertIn(selector,light if number % 2 == 0 else dark)
+                self.assertNotIn(selector,dark if number % 2 == 0 else light)
+
         research=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         self.assertIn('vista=modelo#variables',research)
         self.assertNotIn('vista=sabemos#variables',research)
