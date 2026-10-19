@@ -96,7 +96,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('--cream:#FBF8F1',style)
         self.assertIn('.research-chapter-heading{background:var(--geo-header);',style)
         self.assertIn('html[data-research-vista] #research-chapter-heading{background-color:var(--geo-header)!important}',style)
-        self.assertIn('alternancia-capturas-20261019',(SOURCE/"investigacion.html").read_text(encoding="utf-8"))
+        self.assertIn('alternancia-uniforme-20261019-1611',(SOURCE/"investigacion.html").read_text(encoding="utf-8"))
         self.assertIn('#research-chapter-heading.research-chapter-heading{background:#F3EBD9!important;', (SOURCE/"investigacion.html").read_text(encoding="utf-8"))
         self.assertNotIn('background:#F5EBD7!important',style)
         self.assertNotIn('nth-of-type(even){background:',style)
@@ -148,6 +148,18 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('id="geoc-andrea-hero-frame"',original)
         self.assertIn('id="geoc-andrea-controls-frame"',original)
         self.assertIn('id="geoc-andrea-panel-frame"',original)
+        self.assertIn('id="geo-paleta-portada"',original)
+        self.assertIn('section.hero {\n      background: #F3EBD9 !important;',original)
+        self.assertIn('section.geoc-andrea-map {\n      background: #FBF8F1 !important;',original)
+        research_html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        self.assertIn('id="geo-header-color"',research_html)
+        for view,ids in order.items():
+            for i,id_ in enumerate(ids):
+                fragment=f'html[data-research-vista="{view}"] #contenido > section#{id_}'
+                desired='#FBF8F1' if i%2==0 else '#F3EBD9'
+                color_rule=research_html.split(fragment)[1].split('}',1)[0]
+                # La regla final puede agrupar varios selectores.
+                self.assertIn(desired,color_rule)
         self.assertIn("fuente-heri/investigacion.html?vista=sabemos",original)
         self.assertIn("fuente-heri/investigacion.html?vista=modelo",original)
         self.assertIn("¿Qué sabemos?",original)
