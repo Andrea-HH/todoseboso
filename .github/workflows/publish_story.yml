@@ -61,6 +61,7 @@ jobs:
           node --check site/charts.js
           node --check site/app.js
           node --check site/preguntas.js
+          node --check site/andrea-integracion.js
 
   deploy:
     needs: validate
