@@ -156,6 +156,7 @@
         <a href="#entrenamiento-modelo">Entrenamiento</a>
         <a href="#datos-faltantes">Datos incompletos</a>
         <a href="#de-donde-sale">El cálculo final</a>
+        <a href="#geo-modelo-ejemplo">Ejemplos reales</a>
       </div>
     </nav>
 <section class="section narrative" id="historia" aria-labelledby="story-title"><div class="shell">
@@ -216,7 +217,13 @@
         </div>
       </div>
     
-<div class="shell" style="margin-top:24px"><p class="geo-tech-note"><strong>¿Quieres ver los valores obtenidos?</strong> El modelo ya generó 59 estimaciones para parcelas cuya cosecha todavía no conocemos. En <a href="./index.html?vista=resultados#predicciones-detalle">Resultados: las 59 estimaciones ↗</a> puedes consultar el gráfico y cada ID con su rendimiento estimado en t/ha.</p></div>
+<div class="shell geo-modelo-ejemplo" id="geo-modelo-ejemplo">
+  <div class="section-heading"><div><p class="eyebrow">DEL MÉTODO A LAS ESTIMACIONES REALES</p><h2>Tres parcelas, <em>tres resultados de Reference26.</em></h2></div><p>A diferencia de la calculadora anterior, estos números sí proceden de las 59 predicciones archivadas. Las parcelas se eligen por el valor estimado más bajo, el central y el más alto, no por su cosecha real.</p></div>
+  <div class="geo-datos-clave" id="geo-modelo-resumen" aria-live="polite"><p>Cargando cifras de Reference26…</p></div>
+  <div class="geo-ejemplos" id="geo-modelo-ejemplos" aria-live="polite"></div>
+  <p class="geo-integracion-aviso">Estas cifras no permiten comparar el acierto con la cosecha: aún no se conocen los rendimientos observados de estas 59 parcelas. La descomposición por parcela en clima, vecinos y corrección no está disponible en el CSV público; no se fabrican esos componentes.</p>
+  <a class="source-link" href="./index.html?vista=resultados#predicciones-detalle">Explorar la gráfica y las 59 estimaciones por identificador ↗</a>
+</div>
 </section>
 
         <nav class="geo-chapter-end" data-geo-page="modelo" aria-label="Continuar explorando GeoCebada">
@@ -376,17 +383,20 @@
   <div class="shell">
     <div class="section-heading"><div><p class="eyebrow">REFERENCE26 · RESULTADOS POR PARCELA</p><h2 id="predicciones-detalle-title">Las 59 estimaciones, <em>una a una.</em></h2></div><p>Consulta los rendimientos estimados del modelo Reference26 histórico con imputación por mediana. Cada cifra corresponde a una parcela que aún no tiene cosecha observada. Los valores se leen del archivo autorizado, sin recomputar predicciones.</p></div>
     <div id="geo-59-resumen" class="geo-datos-clave" aria-live="polite"><p>Cargando resumen de las 59 parcelas…</p></div>
-    <div class="geo-grafica"><h3>¿Cómo se distribuyen los rendimientos estimados?</h3><p>Un punto por parcela, ordenados por valor para facilitar la lectura.</p><div id="geo-59-grafica" aria-live="polite"><p>Cargando gráfica de las 59 estimaciones…</p></div><div class="geo-viz-ejes"><span>Rendimiento estimado (t/ha)</span><span>No es rendimiento observado</span></div></div>
+    <div class="geo-grafica"><h3>¿Cómo se distribuyen los rendimientos estimados?</h3><p>Cada punto corresponde a una parcela. Cuando se dispone de sus metadatos públicos, aparecen agrupadas por estado; el eje horizontal siempre indica t/ha.</p><div id="geo-59-grafica" aria-live="polite"><p>Cargando gráfica de las 59 estimaciones…</p></div><div class="geo-viz-ejes"><span>Rendimiento estimado (t/ha)</span><span>No es rendimiento observado</span></div></div>
     <h3 style="margin-top:24px">Tres referencias para comprender el rango</h3>
     <div class="geo-ejemplos" id="geo-59-ejemplos"><p>Cargando ejemplos reales…</p></div>
     <h3>Busca tu parcela en la lista</h3>
     <p>La tabla contiene los 59 identificadores y sus estimaciones finales. También puedes localizar sus polígonos y consultar factores agroclimáticos en el <a href="./index.html#mapa-interactivo">mapa interactivo de Inicio ↗</a>.</p>
     <div class="geo-explorar">
-      <label>Identificador de parcela<input type="search" id="geo-59-buscar" placeholder="Ej. AGC_003" autocomplete="off"></label>
+      <label>Identificador o municipio<input type="search" id="geo-59-buscar" placeholder="Ej. AGC_003 o municipio" autocomplete="off"></label>
+      <label>Estado<select id="geo-59-estado"><option value="all">Todos los estados</option></select></label>
       <label>Ordenar por<select id="geo-59-orden"><option value="id">Identificador</option><option value="asc">Menor estimación primero</option><option value="desc">Mayor estimación primero</option></select></label>
     </div>
     <p id="geo-59-cuenta" aria-live="polite">Cargando tabla…</p>
-    <div class="geo-tabla-wrap"><table id="geo-59-tabla"><thead><tr><th scope="col">ID de parcela</th><th scope="col">Rendimiento estimado (t/ha)</th><th scope="col">Tipo de valor</th></tr></thead><tbody></tbody></table></div>
+    <div class="geo-tabla-wrap"><table id="geo-59-tabla"><thead><tr><th scope="col">ID de parcela</th><th scope="col">Estado y municipio</th><th scope="col">Rendimiento estimado (t/ha)</th><th scope="col">Consulta</th></tr></thead><tbody></tbody></table></div>
+    <div id="geo-59-detalle" class="geo-59-detalle" aria-live="polite"><p>Selecciona una parcela de la tabla o la gráfica para consultar su estimación.</p></div>
+    <a class="source-link" href="./explorador/data/predictions.csv" download="reference26_59_estimaciones.csv">Descargar las 59 estimaciones originales (CSV) ↗</a>
     <p class="geo-tech-note"><strong>Interpretación:</strong> no es posible calcular el error de estas 59 predicciones porque todavía se desconocen sus rendimientos reales. Las métricas de validación se calcularon con las 138 parcelas conocidas.</p>
     <p class="geo-tech-source">Valores originales del equipo en <a href="https://github.com/Andrea-HH/todoseboso/blob/paginAndrea/site/explorador/data/PROCEDENCIA.md" target="_blank" rel="noopener noreferrer">procedencia del mapa y CSV de Reference26 ↗</a>.</p>
   </div>
