@@ -29,7 +29,7 @@ class Document(HTMLParser):
         if tag=="script" and a.get("src"):
             self.assets.append(a["src"])
         if tag=="link" and a.get("href","").startswith("./"):
-            self.assets.append(a["href"])
+            self.assets.append(a["href"].split("?",1)[0])
         if tag=="a" and a.get("href","").startswith("./investigacion.html?"):
             self.links.append(a["href"])
 
