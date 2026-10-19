@@ -87,6 +87,82 @@ html.geo-panel-solo .geo-legend{margin-top:15px}
  html.geo-panel-solo .geo-counter span{font-size:.63rem;overflow-wrap:anywhere}
 }
 
+/* Distribución de explorador a ancho completo: filtros a la izquierda y ficha a la derecha. */
+.geo-panel-controls,.geo-panel-results{display:contents}
+.geo-panel-instruction{display:none}
+html.geo-panel-solo .geo-sidebar{
+  display:grid;
+  grid-template-columns:minmax(310px,.85fr) minmax(0,1.15fr);
+  gap:0;
+  align-items:stretch;
+  padding:0;
+  max-height:none;
+  min-height:0;
+  height:auto;
+  overflow:visible;
+  background:#f8f7f0;
+}
+html.geo-panel-solo .geo-panel-controls,
+html.geo-panel-solo .geo-panel-results{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  min-width:0;
+  padding:32px clamp(22px,3vw,46px);
+}
+html.geo-panel-solo .geo-panel-results{
+  border-left:1px solid #dce5d9;
+  background:#fffefa;
+}
+html.geo-panel-solo .geo-panel-heading h2{font-size:clamp(27px,2.4vw,38px);margin:9px 0 10px}
+html.geo-panel-solo .geo-panel-heading p{font-size:14px;line-height:1.65}
+html.geo-panel-solo .geo-panel-heading .geo-panel-instruction{
+  display:block;
+  padding:12px 15px;
+  margin:15px 0 0;
+  border-left:3px solid #9caf81;
+  background:#edf1e4;
+  color:#385d47;
+  font-size:13px;
+  line-height:1.6;
+  border-radius:0 8px 8px 0;
+}
+html.geo-panel-solo .geo-quick-stats{width:100%;max-width:none}
+html.geo-panel-solo .geo-counter{padding:13px 11px}
+html.geo-panel-solo .geo-counter span{font-size:12px}
+html.geo-panel-solo .geo-counter strong{font-size:clamp(25px,2.5vw,38px)}
+html.geo-panel-solo .geo-filters{gap:10px}
+html.geo-panel-solo .geo-filters label{font-size:13px}
+html.geo-panel-solo .geo-filters select{min-height:46px;font-size:14px}
+html.geo-panel-solo .geo-filter-count{padding:13px 16px;font-size:13px}
+html.geo-panel-solo .geo-detail{border-top:0;padding-top:0;min-height:0}
+html.geo-panel-solo .geo-detail>span{font-size:11px}
+html.geo-panel-solo .geo-detail h3{font-size:clamp(25px,2.5vw,36px);margin:11px 0}
+html.geo-panel-solo .geo-detail p,html.geo-panel-solo .geo-detail dt,html.geo-panel-solo .geo-detail dd{font-size:14px}
+html.geo-panel-solo .geo-detail dl{max-width:650px}
+html.geo-panel-solo .geo-climate{padding-top:22px}
+html.geo-panel-solo .geo-climate h3{font-size:26px}
+html.geo-panel-solo .geo-climate-status{font-size:13px}
+html.geo-panel-solo .geo-climate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html.geo-panel-solo .geo-climate-metric{padding:15px;gap:5px}
+html.geo-panel-solo .geo-climate-metric span{font-size:12px}
+html.geo-panel-solo .geo-climate-metric strong{font-size:19px}
+html.geo-panel-solo .geo-climate-metric small{font-size:11px}
+html.geo-panel-solo .geo-legend{margin-top:auto;padding-top:17px}
+@media(max-width:920px){
+ html.geo-panel-solo .geo-sidebar{grid-template-columns:1fr}
+ html.geo-panel-solo .geo-panel-controls,html.geo-panel-solo .geo-panel-results{padding:25px 24px;gap:18px}
+ html.geo-panel-solo .geo-panel-results{border-left:0;border-top:1px solid #dce5d9}
+}
+@media(max-width:560px){
+ html.geo-panel-solo .geo-panel-controls,html.geo-panel-solo .geo-panel-results{padding:20px 16px;gap:16px}
+ html.geo-panel-solo .geo-quick-stats{gap:6px}
+ html.geo-panel-solo .geo-counter{padding:10px 7px}
+ html.geo-panel-solo .geo-counter span{font-size:11px}
+ html.geo-panel-solo .geo-counter strong{font-size:26px}
+ html.geo-panel-solo .geo-climate-grid{grid-template-columns:1fr}
+}
+
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
@@ -102,8 +178,9 @@ html.geo-panel-solo .geo-legend{margin-top:15px}
 <section class="geo-workspace" id="mapa" aria-label="Explorador satelital GeoCebada">
 
       <div class="geo-shell shell">
-        <aside class="geo-sidebar" aria-label="Filtros del mapa">
-          <div class="geo-panel-heading"><span class="geo-eyebrow">01 / EXPLORADOR GEOGRÁFICO</span><h2>Parcelas de cebada</h2><p>Selecciona una parcela o filtra el conjunto que quieras consultar.</p></div>
+        <aside class="geo-sidebar" aria-label="Explorador geográfico de parcelas">
+          <div class="geo-panel-controls">
+          <div class="geo-panel-heading"><span class="geo-eyebrow">01 / EXPLORADOR GEOGRÁFICO</span><h2>Parcelas de cebada</h2><p>Selecciona una parcela o filtra el conjunto que quieras consultar.</p><p class="geo-panel-instruction">Elige un estado y una parcela aquí, o toca un pin en el mapa superior. La ficha mostrará sus datos.</p></div>
           <div class="geo-quick-stats" aria-label="Cantidad de parcelas por conjunto">
             <button class="geo-counter active" type="button" data-map-split="TODOS"><span>Todas</span><strong id="map-total">197</strong></button>
             <button class="geo-counter" type="button" data-map-split="ENTRENAMIENTO"><span>Entrenamiento</span><strong id="map-training">138</strong></button>
@@ -116,6 +193,8 @@ html.geo-panel-solo .geo-legend{margin-top:15px}
             <select id="map-parcel-select"><option value="">Cargando parcelas...</option></select>
           </div>
           <div class="geo-filter-count" id="map-visible-count" aria-live="polite">Aún sin geometrías cargadas</div>
+          </div>
+          <div class="geo-panel-results">
           <div class="geo-detail" id="map-selected-detail" aria-live="polite"><span>PARCELA SELECCIONADA</span><h3>Selecciona una parcela</h3><p>Al seleccionar un polígono podrás ver su identificador, estado, municipio y rendimiento estimado si pertenece al conjunto de predicción.</p></div>
           <section class="geo-climate" id="map-climate" aria-label="Factores climáticos de la parcela seleccionada">
             <span class="geo-eyebrow">CONDICIONES AGROCLIMÁTICAS</span>
@@ -124,6 +203,7 @@ html.geo-panel-solo .geo-legend{margin-top:15px}
             <div id="map-climate-metrics" class="geo-climate-grid" aria-live="polite"></div>
           </section>
           <div class="geo-legend"><span><i class="geo-legend-pip trained"></i> Entrenamiento</span><span><i class="geo-legend-pip predicted"></i> Predicción</span></div>
+          </div>
         </aside>
         <div class="geo-map-wrap">
           <div class="geo-map-toolbar"><span class="geo-map-label"><span class="geo-satellite-icon">◉</span> VISTA SATELITAL</span><span>HIDALGO · PUEBLA · TLAXCALA</span></div>
