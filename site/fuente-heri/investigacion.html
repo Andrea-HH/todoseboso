@@ -7,7 +7,7 @@
 <title>GeoCebada · Reference26 y análisis de residuos</title>
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./model.css"><link rel="stylesheet" href="./charts.css"><link rel="stylesheet" href="./predictor.css"><link rel="stylesheet" href="./predictions59.css"><link rel="stylesheet" href="./reference26_residuals.css">
-<script src="./navigation.js" defer></script><script src="./scroll_motion.js" defer></script><script src="./native_map.js" defer></script><script src="./charts.js" defer></script><script src="./model.js" defer></script><script src="./field_charts.js" defer></script>
+<script src="./navigation.js" defer></script><script src="./scroll_motion.js" defer></script><script src="./charts.js" defer></script><script src="./model.js" defer></script><script src="./field_charts.js" defer></script>
 <script src="./reference26_engine.js" defer></script>
 <script src="./predictions59.js" defer></script>
 
@@ -58,7 +58,7 @@
    <p>Consulta las 59 estimaciones históricas y los resultados de las evaluaciones. Las cosechas reales de esas 59 parcelas siguen siendo desconocidas.</p>
    <nav class="research-topic-links" aria-label="Contenido de Resultados">
     <a href="./investigacion.html?vista=resultados#predicciones-59">59 estimaciones</a><a href="./investigacion.html?vista=resultados#resultados">Métricas de evaluación</a>
-    <a href="./investigacion.html?vista=resultados#pruebas">Pruebas estadísticas</a><a href="./investigacion.html?vista=resultados#mapa-interactivo">Explorador geográfico</a>
+    <a href="./investigacion.html?vista=resultados#pruebas">Pruebas estadísticas</a><a href="../index.html">Mapa de parcelas de Inicio</a>
    </nav>
   </div>
   <div data-research-intro="confianza" class="research-intro">
@@ -76,27 +76,8 @@
  </div>
 </div>
 <main id="contenido">
-<section class="hero model-hero"><div class="shell hero-grid">
-<div class="hero-content">
-<p class="eyebrow hero-eyebrow">GEOCEBADA · RETO AGROCEBADA FIRA 2026</p>
-<h1>Estimación del rendimiento <em>de cebada.</em></h1>
-<p class="hero-description">Estudiamos 197 parcelas agrícolas en Hidalgo, Puebla y Tlaxcala. Conocemos el rendimiento reportado de 138 y estimamos el de las 59 restantes. Reference26 combina clima, vegetación satelital, geología e información espacial.</p>
-<p class="hero-description minor-intro">El modelo seleccionado es <strong>Reference26 (Regresión local con mezcla geológica)</strong>. Presentamos sus datos, arquitectura y diagnósticos estadísticos de residuos en evaluación LOOCV.</p>
-<div class="hero-actions"><a class="primary-cta" href="./investigacion.html?vista=modelo#recorrido">Leer el índice</a><a class="secondary-cta" href="./investigacion.html?vista=confianza#estadisticas-finales">Ver residuos y pruebas</a></div>
-<p class="hero-metadata">HIDALGO · PUEBLA · TLAXCALA · CICLO 2025</p>
-</div>
-<div class="hero-visual model-visual" aria-label="Esquema de etapas del modelo"><div class="visual-header"><span>INTERIOR DE REFERENCE26 · PRIMER COMPONENTE</span><span>t/ha</span></div>
-<svg viewBox="0 0 580 440" role="img" aria-label="La lluvia y vegetación producen una estimación; las parcelas cercanas producen otra; la geología las mezcla y un corrector residual ajusta el resultado.">
-<path d="M124 99 H290 V174 M455 99 H290 V174" stroke="#aecda8" stroke-width="3" fill="none"/>
-<rect x="18" y="43" width="218" height="92" rx="9" fill="#235848" stroke="#92bc8d"/><text x="127" y="77" text-anchor="middle" font-size="15" fill="#e2eebd">Lluvia + vegetación</text><text x="127" y="104" text-anchor="middle" font-size="12" fill="#c2d9ca">Elastic Net</text>
-<rect x="343" y="43" width="218" height="92" rx="9" fill="#235848" stroke="#92bc8d"/><text x="453" y="77" text-anchor="middle" font-size="15" fill="#e2eebd">24 parcelas cercanas</text><text x="453" y="104" text-anchor="middle" font-size="12" fill="#c2d9ca">Ridge local</text>
-<rect x="165" y="172" width="250" height="93" rx="9" fill="#e7edcc"/><text x="290" y="202" text-anchor="middle" font-size="15" fill="#10372f">Mezcla según geología</text><text x="290" y="229" text-anchor="middle" font-size="12" fill="#436550">K-means + pesos aprendidos</text>
-<path d="M290 265 V307" stroke="#e7edcc" stroke-width="3"/><rect x="170" y="307" width="240" height="70" rx="9" fill="#2c6752" stroke="#92bc8d"/><text x="290" y="335" text-anchor="middle" font-size="15" fill="#f7f7ef">Corrección residual</text><text x="290" y="356" text-anchor="middle" font-size="12" fill="#d6e8d5">Máximo ±0.25 t/ha</text><path d="M290 377 V407" stroke="#e7edcc" stroke-width="3"/>
-</svg>
-<div class="visual-foot"><span>26 indicadores en cinco grupos</span><span>MODELO ENTRENADO CON 138 COSECHAS</span></div>
-</div>
-</div></section>
-<div class="stat-band"><div class="shell stats-grid"><div class="stat-item"><strong>197</strong><span>parcelas del estudio</span></div><div class="stat-item"><strong>138</strong><span>con rendimiento conocido</span></div><div class="stat-item"><strong>59</strong><span>sin rendimiento conocido</span></div><div class="stat-item"><strong>26</strong><span>indicadores del modelo</span></div></div></div>
+
+
 
 <section class="reading-guide" id="recorrido" aria-labelledby="recorrido-title"><div class="shell">
 <div class="reading-guide-head">
@@ -138,7 +119,7 @@
 <ul class="chapter-subsections">
 <li><a href="./investigacion.html?vista=resultados#predicciones-59">Las 59 estimaciones</a><span>Predicciones verificadas de Reference26; los rendimientos reales siguen desconocidos.</span></li>
 
-<li><a href="./investigacion.html?vista=resultados#mapa-interactivo">Distribución geográfica</a><span>Ubicación y atributos registrados de las 197 parcelas, con procedencia de Andrea-HH.</span></li>
+<li><a href="../index.html">Distribución geográfica</a><span>Ubicación y atributos registrados de las 197 parcelas, con procedencia de Andrea-HH.</span></li>
 </ul></article>
 </div>
 <p class="reading-guide-foot">A continuación se encuentra el contenido íntegro de la investigación. El índice no sustituye las explicaciones, las pruebas ni las visualizaciones.</p>
@@ -230,6 +211,16 @@
 
 <section class="section section-dark" id="arquitectura"><div class="shell">
 <div class="section-heading"><div><p class="eyebrow">04 · EL ALGORITMO</p><h2>Una predicción pasa por <em>cuatro cálculos.</em></h2></div><p>Los rendimientos no salen directamente de K-means. El agrupamiento sólo determina qué mezcla de dos estimaciones se usa.</p></div>
+<div class="research-original-diagram" aria-label="Diagrama original de los cuatro componentes de Reference26"><div class="hero-visual model-visual" aria-label="Esquema de etapas del modelo"><div class="visual-header"><span>INTERIOR DE REFERENCE26 · PRIMER COMPONENTE</span><span>t/ha</span></div>
+<svg viewBox="0 0 580 440" role="img" aria-label="La lluvia y vegetación producen una estimación; las parcelas cercanas producen otra; la geología las mezcla y un corrector residual ajusta el resultado.">
+<path d="M124 99 H290 V174 M455 99 H290 V174" stroke="#aecda8" stroke-width="3" fill="none"/>
+<rect x="18" y="43" width="218" height="92" rx="9" fill="#235848" stroke="#92bc8d"/><text x="127" y="77" text-anchor="middle" font-size="15" fill="#e2eebd">Lluvia + vegetación</text><text x="127" y="104" text-anchor="middle" font-size="12" fill="#c2d9ca">Elastic Net</text>
+<rect x="343" y="43" width="218" height="92" rx="9" fill="#235848" stroke="#92bc8d"/><text x="453" y="77" text-anchor="middle" font-size="15" fill="#e2eebd">24 parcelas cercanas</text><text x="453" y="104" text-anchor="middle" font-size="12" fill="#c2d9ca">Ridge local</text>
+<rect x="165" y="172" width="250" height="93" rx="9" fill="#e7edcc"/><text x="290" y="202" text-anchor="middle" font-size="15" fill="#10372f">Mezcla según geología</text><text x="290" y="229" text-anchor="middle" font-size="12" fill="#436550">K-means + pesos aprendidos</text>
+<path d="M290 265 V307" stroke="#e7edcc" stroke-width="3"/><rect x="170" y="307" width="240" height="70" rx="9" fill="#2c6752" stroke="#92bc8d"/><text x="290" y="335" text-anchor="middle" font-size="15" fill="#f7f7ef">Corrección residual</text><text x="290" y="356" text-anchor="middle" font-size="12" fill="#d6e8d5">Máximo ±0.25 t/ha</text><path d="M290 377 V407" stroke="#e7edcc" stroke-width="3"/>
+</svg>
+<div class="visual-foot"><span>26 indicadores en cinco grupos</span><span>MODELO ENTRENADO CON 138 COSECHAS</span></div>
+</div></div>
 <div class="math-proof model-formula">
 <p class="math-label">Notación matemática</p>
 <div class="math-scroll" role="img" aria-label="El rendimiento estimado es la estimación climática más el peso geológico multiplicado por la diferencia entre estimación local y climática, más la corrección residual si hay datos completos.">
@@ -441,38 +432,7 @@
 </div>
 </section>
 
-<section class="section section-soft collaborator-map" id="mapa-interactivo" aria-labelledby="collaborator-map-title">
-<div class="shell">
-<div class="section-heading collaborator-map-heading"><div>
-<p class="eyebrow">14 · EXPLORACIÓN GEOGRÁFICA</p>
-<h2 id="collaborator-map-title">Distribución espacial de <em>las 197 parcelas.</em></h2>
-</div><p>Explore las parcelas de Hidalgo, Puebla y Tlaxcala. El visor distingue los 138 registros de entrenamiento y las 59 parcelas por estimar; permite seleccionar polígonos y consultar las variables ambientales disponibles.</p></div>
-<div id="geoc-native-map" class="geoc-native-map" aria-label="Explorador geográfico integrado">
-  <div class="geo-topline"><span>LOCALIZACIÓN Y RESULTADOS POR PARCELA</span><a href="https://andrea-hh.github.io/todoseboso/explorador/mapa.html" target="_blank" rel="noopener noreferrer">Abrir versión original</a></div>
-  <div class="geo-native-layout">
-    <aside class="geo-native-sidebar" aria-label="Filtros y descripción de parcelas">
-      <div class="geo-native-counters" aria-label="Distribución de parcelas">
-        <div><strong>197</strong><span>Total</span></div><div><strong>138</strong><span>Entrenamiento</span></div><div><strong>59</strong><span>Por estimar</span></div>
-      </div>
-      <div class="geo-native-controls">
-        <label for="geo-state">Estado</label>
-        <select id="geo-state" disabled><option value="all">Todos los estados</option><option value="Hidalgo">Hidalgo</option><option value="Puebla">Puebla</option><option value="Tlaxcala">Tlaxcala</option></select>
-        <label for="geo-parcel">Identificador de parcela</label>
-        <select id="geo-parcel" disabled><option value="">Seleccionar parcela</option></select>
-        <p id="geo-visible" class="geo-native-count">197 parcelas en el estudio</p>
-      </div>
-      <div class="geo-native-detail"><p class="geo-native-kicker">FICHA DE PARCELA</p><div id="geo-details" aria-live="polite"><p class="geo-muted">Seleccione una parcela para consultar sus características.</p></div></div>
-      <p class="geo-legend" id="geo-legend">Entrenamiento y parcelas por estimar</p>
-    </aside>
-    <div class="geo-native-mapcolumn">
-      <div class="geo-map-controls"><div class="geo-map-base" aria-label="Capa cartográfica"><button type="button" data-geo-base="light" aria-pressed="true">Cartografía</button><button type="button" data-geo-base="satellite" aria-pressed="false">Satélite</button></div><button type="button" id="geo-reset">Vista general</button></div>
-      <div id="geo-leaflet-map" role="region" aria-label="Mapa interactivo con 197 parcelas; seleccione los marcadores o utilice los filtros."></div>
-      <p id="geo-status" role="status" aria-live="polite">Preparando geometrías y factores ambientales…</p>
-    </div>
-  </div>
-</div>
-<p class="small-note collaborator-map-credit" id="collaborator-map-credit">Fuente cartográfica y de datos: <a href="https://github.com/Andrea-HH/todoseboso/tree/paginAndrea/site/explorador" target="_blank" rel="noopener noreferrer">Andrea-HH</a>, versión documentada de los 197 polígonos, 138 rendimientos reportados y 59 predicciones archivadas de Reference26. Este visor dispone de una interfaz propia; el rendimiento real de las 59 parcelas permanece desconocido. <a href="https://andrea-hh.github.io/todoseboso/explorador/mapa.html" target="_blank" rel="noopener noreferrer">Consultar el explorador original.</a></p>
-</div></section>
+
 
 </main><footer class="model-footer"><div class="shell"><strong>GeoCebada · AgroCebada FIRA 2026</strong><span>Reference26 · Diagnóstico LOOCV · Investigación retrospectiva de 2025</span><a href="../index.html">Volver al inicio ↑</a></div></footer>
 
