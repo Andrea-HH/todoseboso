@@ -116,7 +116,7 @@
         <div class="story-timeline">
           <article class="story-step">
             <div class="story-index"><span>01</span><i></i></div>
-            <div class="story-body"><p class="step-overline">EL PUNTO DE PARTIDA</p><h3>Resumir el clima sin perderlo todo.</h3><p>C-T3 reúne tres propiedades de la lluvia de abril a octubre de 2025: total, fracción temprana y concentración mensual. Suma el NDVI de mayo, una medida satelital del estado de la vegetación. Con esas cuatro entradas ajusta una Elastic Net global.</p><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/CT3/README.md" target="_blank" rel="noopener noreferrer">Ficha del núcleo C-T3 ↗</a></div>
+            <div class="story-body"><p class="step-overline">EL PUNTO DE PARTIDA</p><h3>Resumir el clima sin perderlo todo.</h3><p>Nuestro primer modelo reúne tres medidas de la lluvia de abril a octubre de 2025: cuánto llovió, qué parte cayó al principio y qué tan concentrada estuvo entre los meses. Además utiliza el verdor observado por satélite en mayo (NDVI).</p><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/CT3/README.md" target="_blank" rel="noopener noreferrer">Consultar las cuatro medidas del modelo inicial ↗</a></div>
             <div class="story-visual stage-climate"><span>CLIMA + VEGETACIÓN</span><div class="four-grid"><b>∑ P</b><b>P<sub>temprana</sub></b><b>HHI</b><b>NDVI<sub>mayo</sub></b></div><small>4 entradas · una predicción global</small></div>
           </article>
           <article class="story-step">
@@ -126,7 +126,7 @@
           </article>
           <article class="story-step">
             <div class="story-index"><span>03</span><i></i></div>
-            <div class="story-body"><p class="step-overline">APRENDER DEL ENTORNO</p><h3>Los vecinos dan contexto, no respuestas copiadas.</h3><p>Latitud y longitud permiten identificar las 24 parcelas <strong>etiquetadas</strong> más próximas. Se ajusta un Ridge local ponderado por distancia para cada parcela consultada. La composición geológica agrupa contextos físicos y modula cuánto confiar en ese experto frente a C-T3.</p><a href="#vecinos">Explorar el diagrama de vecinos ↓</a></div>
+            <div class="story-body"><p class="step-overline">APRENDER DEL ENTORNO</p><h3>Los vecinos dan contexto, no respuestas copiadas.</h3><p>La ubicación nos permite encontrar las 24 parcelas conocidas más cercanas. Con sus datos ajustamos una regresión local que da más peso a los vecinos próximos. La geología ayuda a decidir cuánto influye esa estimación frente a la del clima.</p><a href="#vecinos">Explorar el diagrama de vecinos ↓</a></div>
             <div class="story-visual stage-local"><span>RIGOR ESPACIAL</span><div class="local-icon"><strong>24</strong><span>vecinos por consulta</span></div><small>Las coordenadas no son un mapa público</small></div>
           </article>
           <article class="story-step">
@@ -136,7 +136,7 @@
           </article>
           <article class="story-step last">
             <div class="story-index"><span>05</span></div>
-            <div class="story-body"><p class="step-overline">SIMPLIFICAR Y CONTRASTAR</p><h3>Dos soluciones, dos prioridades.</h3><p>Reference26 conserva las siete señales locales, la compuerta geológica y el corrector interno; Compact14 reduce las entradas y prescinde de Planet y de la compuerta geológica. Ambas recetas se conservan como champions, con un compromiso distinto entre precisión y simplicidad.</p><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/architecture_decomposition_conclusions.md" target="_blank" rel="noopener noreferrer">Estudio de simplificación ↗</a></div>
+            <div class="story-body"><p class="step-overline">SIMPLIFICAR Y CONTRASTAR</p><h3>Dos soluciones, dos prioridades.</h3><p>Conservamos dos modelos: uno combina clima, parcelas cercanas y geología; el otro utiliza menos medidas y no requiere la información geológica. Sus errores fueron parecidos en las pruebas, pero cada uno necesita datos distintos.</p><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/architecture_decomposition_conclusions.md" target="_blank" rel="noopener noreferrer">Estudio de simplificación ↗</a></div>
             <div class="story-visual stage-outcome"><span>DECISIÓN FINAL</span><div class="outcome-split"><b>26</b><span>o</span><b>14</b></div><small>Entradas derivadas, no número de coeficientes</small></div>
           </article>
         </div>
@@ -148,7 +148,7 @@
         <div>
           <p class="eyebrow">03 / ENTENDER LA REPRESENTACIÓN</p>
           <h2>No basta saber<br><em>cuánto llovió.</em></h2>
-          <p>Dos ciclos pueden acumular la misma lluvia, pero distribuirla en meses diferentes. C-T3 registra el total, la fracción que cae de abril a junio y la concentración mensual mediante el índice HHI.</p>
+          <p>Dos años pueden tener la misma lluvia total y meses muy diferentes. Por eso el primer modelo registra la cantidad acumulada, la parte que cayó entre abril y junio y cuánto se concentró entre los meses.</p>
           <p>Elige un escenario para explorar el cálculo. Son <strong>datos inventados con fines didácticos</strong>; no representan una parcela ni los datos reales del proyecto.</p>
           <div class="scenario-controls" role="group" aria-label="Distribución simulada de lluvia">
             <button type="button" class="scenario active" data-scenario="uniform" aria-pressed="true">Repartida</button>
@@ -169,13 +169,13 @@
 
     <section class="section architecture-section dark-section" id="arquitectura">
       <div class="shell">
-        <div class="section-heading"><div><p class="eyebrow light">04 / LA ARQUITECTURA</p><h2>Una predicción.<br><em>Varias perspectivas.</em></h2></div><p>Reference26 usa 26 entradas distribuidas en funciones diferentes. No es una regresión lineal con 26 pesos fijos.</p></div>
+        <div class="section-heading"><div><p class="eyebrow light">04 / LA ARQUITECTURA</p><h2>Una predicción.<br><em>Varias perspectivas.</em></h2></div><p>El modelo completo utiliza 26 medidas que cumplen distintas funciones: estimar a partir del clima, consultar parcelas cercanas, combinar resultados y corregir diferencias.</p></div>
         <div class="feature-strip" aria-label="Composición de las 26 entradas">
           <div><b>4</b><span>Base agroclimática</span></div><div><b>7</b><span>Experto satelital / físico</span></div><div><b>2</b><span>Coordenadas</span></div><div><b>10</b><span>Composición geológica</span></div><div><b>3</b><span>Corrector R3</span></div>
         </div>
         <div class="architecture-flow" aria-label="Flujo de predicción Reference26">
           <div class="flow-columns">
-            <article class="flow-panel"><small>01 · ESTIMACIÓN GLOBAL</small><h3>C-T3</h3><p>Elastic Net con cuatro señales del ciclo. Genera la estimación base <strong>C(x)</strong>.</p></article>
+            <article class="flow-panel"><small>01 · ESTIMACIÓN GLOBAL</small><h3>Lluvia y vegetación</h3><p>Cuatro medidas del ciclo agrícola producen la primera estimación <strong>C(x)</strong>.</p></article>
             <article class="flow-panel"><small>02 · ESTIMACIÓN LOCAL</small><h3>Ridge + 24 vecinos</h3><p>Siete señales locales, vecinos por coordenadas y corrección interna. Genera el experto <strong>E(x)</strong>.</p></article>
             <article class="flow-panel"><small>03 · COMBINACIÓN</small><h3>Compuerta geológica</h3><p>Pesos entre 0 y 1, regularizados y aprendidos con entrenamiento: <strong>g(x)</strong>.</p></article>
             <article class="flow-panel"><small>04 · ÚLTIMO AJUSTE</small><h3>Corrector R3</h3><p>Corrección residual <strong>δ(x)</strong> limitada y condicionada a soporte completo.</p></article>
