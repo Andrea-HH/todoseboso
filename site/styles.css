@@ -150,3 +150,49 @@
   .hero-baseline{flex-wrap:wrap}
   .geoc-andrea-map iframe{height:910px}
 }
+
+
+/* GEOCEBADA-ANDREA: hero en dos columnas, mapa real donde estaba la ilustración. */
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,0.99fr) minmax(0,1.01fr);
+  align-items:center;
+  gap:clamp(22px,3.1vw,52px);
+  padding-top:clamp(33px,4vw,56px);
+  padding-bottom:36px;
+  min-height:0;
+}
+.hero-content{max-width:none;min-width:0}
+.hero h1{
+  max-width:none;
+  font-size:clamp(37px,3.9vw,58px);
+  line-height:1.1;
+  letter-spacing:-.056em;
+  margin-bottom:23px;
+}
+.hero-description{max-width:590px;font-size:clamp(14px,1.21vw,17px);line-height:1.7}
+.hero-actions{margin:25px 0 22px;gap:20px}
+.hero .primary-cta{gap:13px}
+.hero-metadata{flex-wrap:wrap}
+.hero-map-preview{
+  min-width:0;
+  height:clamp(480px,41vw,570px);
+  border-radius:18px;
+  overflow:hidden;
+  background:#244b41;
+  box-shadow:0 22px 56px rgba(24,58,47,.16);
+  border:1px solid #cbd8c7;
+}
+.hero-map-preview iframe{display:block;border:0;width:100%;height:100%}
+.hero-visual{display:none!important}
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:28px;padding-top:34px;padding-bottom:26px}
+  .hero h1{max-width:850px;font-size:clamp(39px,6vw,64px)}
+  .hero-description{max-width:850px}
+  .hero-map-preview{height:460px}
+}
+@media(max-width:600px){
+  .hero-grid{grid-template-columns:1fr;gap:23px;padding-top:30px;padding-bottom:24px}
+  .hero h1{font-size:clamp(34px,8vw,49px)}
+  .hero-map-preview{height:385px;border-radius:12px}
+}

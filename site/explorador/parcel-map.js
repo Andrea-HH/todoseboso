@@ -252,14 +252,13 @@
     let pinsVisible = true;
     pinsButton.disabled = true; // Los pines no existen hasta cargar geometrías.
     pinsButton.setAttribute('aria-disabled','true');
-    const state=$('map-state'), search=$('map-search'), select=$('map-parcel-select');
+    const state=$('map-state'), select=$('map-parcel-select');
     state.disabled=true;
     state.title='Para filtrar por estado es necesario disponer de las ubicaciones geográficas.';
     const controls=[...document.querySelectorAll('[data-map-split]')];
     const match=(r)=>{
       if(activeSplit!=='TODOS'&&r.split!==activeSplit)return false;
       if(state.value!=='TODOS'&&r.estado!==state.value)return false;
-      if(search.value.trim()&&!r.id.includes(search.value.trim().toUpperCase()))return false;
       return true;
     };
 
@@ -369,10 +368,28 @@
       const layer=layerById.get(id);
       if(layer && match(r)){map.fitBounds(layer.getBounds(),{maxZoom:14,padding:[50,50],animate:false});layer.bringToFront();}
       else if(!hasGeometry){info('Rendimiento disponible. La ubicación de esta parcela no está disponible en esta sesión.');}
+      if(document.documentElement.classList.contains('geo-mapa-solo') && layer){
+        const infoBox=document.createElement('div');
+        const name=document.createElement('strong');
+        name.textContent=r.id;
+        const location=document.createElement('p');
+        location.textContent=[r.municipio,r.estado].filter(Boolean).join(', ');
+        location.style.margin='5px 0';
+        const estimated=document.createElement('p');
+        estimated.style.margin='5px 0 0';
+        estimated.textContent=r.pred!==undefined
+          ? 'Reference26: '+number(r.pred)+' t/ha estimadas'
+          : 'Parcela de entrenamiento';
+        infoBox.append(name,location,estimated);
+        L.popup({maxWidth:260})
+          .setLatLng(layer.getBounds().getCenter())
+          .setContent(infoBox)
+          .openOn(map);
+      }
     };
     resetViewButton.addEventListener('click',()=>{
       currentId=null;focusedOnly=false;activeSplit='TODOS';
-      state.value='TODOS';search.value='';
+      state.value='TODOS';
       // Regresar al mapa completo siempre vuelve a activar los pines auténticos.
       pinsVisible=true;
       pinsButton.setAttribute('aria-pressed','true');
@@ -390,11 +407,6 @@
       map.fitBounds(frame,{maxZoom:polygonLayers?12:9,padding:[38,38],animate:false});
     });
     select.addEventListener('change',()=>{if(select.value)pick(select.value)});
-    let searchDelay;
-    search.addEventListener('input',()=>{
-      clearTimeout(searchDelay);
-      searchDelay=setTimeout(redraw,160);
-    });
     state.addEventListener('change',()=>{currentId=null;focusedOnly=false;updateClimate(null);redraw();});
     controls.forEach(btn=>btn.addEventListener('click',()=>{activeSplit=btn.dataset.mapSplit;currentId=null;focusedOnly=false;updateClimate(null);redraw();}));
     // Las mediciones locales se integran sin botones ni subida de datos a otros servicios.

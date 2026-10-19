@@ -9,7 +9,27 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./vendor/leaflet.css">
   <link rel="stylesheet" href="./styles.css">
-  <style>.geo-workspace{padding:26px 0 33px}</style>
+  <style>
+.geo-workspace{padding:26px 0 33px}
+html.geo-mapa-solo,html.geo-mapa-solo body,html.geo-mapa-solo main{height:100%;margin:0;overflow:hidden}
+html.geo-mapa-solo .geo-workspace{height:100%;min-height:0;padding:0;overflow:hidden}
+html.geo-mapa-solo .geo-topline,
+html.geo-mapa-solo .geo-title-grid,
+html.geo-mapa-solo .geo-sidebar{display:none!important}
+html.geo-mapa-solo .geo-shell{display:block;width:100%;max-width:none;margin:0;height:100%;min-height:0;border-radius:0;box-shadow:none;overflow:hidden}
+html.geo-mapa-solo .geo-map-wrap{height:100%;min-height:0}
+html.geo-mapa-solo .geo-map{height:100%;min-height:0}
+html.geo-mapa-solo .geo-map-toolbar{top:12px;left:12px;right:12px}
+html.geo-mapa-solo .geo-map-toolbar>span:last-child{display:none}
+html.geo-mapa-solo .geo-map-bottom{min-height:48px;padding:8px 12px}
+html.geo-mapa-solo #map-mode-label{display:none}
+html.geo-mapa-solo .geo-map-actions{display:flex;flex-wrap:wrap;gap:5px}
+html.geo-mapa-solo .geo-map-actions button{padding:7px 8px;font-size:11px}
+</style>
+<script>
+  if(new URLSearchParams(window.location.search).get('vista')==='mapa')
+    document.documentElement.classList.add('geo-mapa-solo');
+</script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
   <script src="./parcel-map.js" defer></script>
 </head>
@@ -36,10 +56,8 @@
           <div class="geo-filters">
             <label for="map-state">Estado</label>
             <select id="map-state"><option value="TODOS">Todos los estados</option><option value="Hidalgo">Hidalgo</option><option value="Puebla">Puebla</option><option value="Tlaxcala">Tlaxcala</option></select>
-            <label for="map-search">Buscar parcela</label>
-            <input id="map-search" type="search" placeholder="Ej. AGC_003" autocomplete="off">
-            <label for="map-parcel-select">O elige por identificador</label>
-            <select id="map-parcel-select"><option value="">Cargando estimaciones...</option></select>
+            <label for="map-parcel-select">Buscar parcela</label>
+            <select id="map-parcel-select"><option value="">Cargando parcelas...</option></select>
           </div>
           <div class="geo-filter-count" id="map-visible-count" aria-live="polite">Aún sin geometrías cargadas</div>
           <div class="geo-detail" id="map-selected-detail" aria-live="polite"><span>PARCELA SELECCIONADA</span><h3>Selecciona una parcela</h3><p>Al seleccionar un polígono podrás ver su identificador, estado, municipio y rendimiento estimado si pertenece al conjunto de predicción.</p></div>
