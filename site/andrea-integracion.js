@@ -82,6 +82,29 @@ async function showObservations(){
     }
   }catch(e){[rain,ndvi].filter(Boolean).forEach(root=>note(root,'No se pudieron cargar los agregados observados: '+e.message));}
 }
+async function showGeologyWeights(){
+  const target=$('geo-geologia-pesos');
+  if(!target)return;
+  try{
+    const data=await loadJson('./fuente-heri/data/model.json');
+    const cfg=data?.final_fit;
+    if(data.code_name!=='Reference26'||!cfg||cfg.local_neighbors!==24||cfg.geologic_groups!==4||
+       !Array.isArray(cfg.cluster_weights)||cfg.cluster_weights.length!==4||
+       cfg.cluster_weights.some(x=>!Number.isFinite(x)||x<0||x>1))
+       throw Error('No coincide la estructura del ajuste final');
+    target.replaceChildren();
+    cfg.cluster_weights.forEach((weight,index)=>{
+      const line=element('div','geo-tech-barrow');
+      const top=element('div','geo-tech-bartop');
+      top.append(element('strong','','Grupo '+index),element('span','',fmt(weight*100,2)+' % del experto local'));
+      const track=element('div','geo-tech-track');
+      const bar=element('span','geo-tech-fill');
+      bar.style.width=weight*100+'%';
+      track.append(bar);line.append(top,track);target.append(line);
+    });
+    note(target,'Los porcentajes son pesos de combinación, no porcentajes de acierto. Para las 59 estimaciones históricas se mantuvo la receta final con imputación por mediana.');
+  }catch(e){target.replaceChildren();note(target,'No se pudo verificar el archivo de pesos geológicos: '+e.message)}
+}
 async function showPredictions(){
   const summary=$('geo-59-resumen'),chart=$('geo-59-grafica'),table=$('geo-59-tabla'),examples=$('geo-59-ejemplos'),search=$('geo-59-buscar'),order=$('geo-59-orden');
   if(!summary||!chart||!table)return;
@@ -290,5 +313,5 @@ async function showResiduals(){
  }catch(e){note(main,'No se pudieron cargar los diagnósticos archivados: '+e.message);}
 }
 function vfmt(v){return v<0.0001?Number(v).toExponential(2):fmt(v,4)}
-document.addEventListener('DOMContentLoaded',()=>{showObservations();showPredictions();showResiduals()});
+document.addEventListener('DOMContentLoaded',()=>{showObservations();showGeologyWeights();showPredictions();showResiduals()});
 })();
