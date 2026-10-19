@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e34">
+  <meta name="description" content="GeoCebada: plataforma de inteligencia agrícola para explorar 59 estimaciones verificadas de rendimiento de cebada y comprender el método Local04D.">
+  <title>Resultados del proyecto | GeoCebada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="announcement"><span class="announcement-dot" aria-hidden="true"></span> INVESTIGACIÓN APLICADA · RETO AGROCEBADA FIRA 2026 <span class="announcement-right">CICLO AGRÍCOLA 2025</span></div>
+  <header class="header" id="inicio">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="GeoCebada, volver al inicio">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M17 29V11M17 21c-8 0-10-4-10-11 7 0 10 3 10 11Zm0-5c0-8 3-12 10-12 0 7-3 12-10 12Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>geo<span class="brand-accent">cebada</span><small>FIELD INTELLIGENCE</small></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <a href="./index.html" data-page="mapa">Mapa satelital</a>
+        <details class="nav-research" data-active="true">
+          <summary>Investigación <span class="nav-research-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="nav-research-panel">
+            <span class="nav-research-kicker">CONOCE EL PROYECTO</span>
+            <a href="./reto.html" data-page="reto"><span class="nav-research-num">01</span><span>El reto<small>Problema y fuentes</small></span></a>
+            <a href="./solucion.html" data-page="solucion"><span class="nav-research-num">02</span><span>Cómo se desarrolló<small>Método y validación</small></span></a>
+            <a href="./resultados.html" data-page="resultados" aria-current="page"><span class="nav-research-num">03</span><span>Resultados<small>Evidencia y conclusiones</small></span></a>
+          </div>
+        </details>
+        <a href="./dashboard.html" data-page="dashboard">Dashboard</a>
+        <a class="nav-button" href="./nueva-parcela.html" data-page="nueva-parcela">Nueva parcela <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+<main id="contenido" class="ret-main chapter-main" data-story="resultados"><section class="chapter-hero"><div class="shell chapter-hero-layout"><div class="chapter-hero-copy">
+<span class="chapter-eyebrow">03 / INVESTIGACIÓN APLICADA · AGROCEBADA FIRA 2026</span><h1>Qué muestran los resultados <em>y cómo interpretarlos.</em></h1><p>Comparamos la regla seleccionada con otras configuraciones usando las métricas originales de los checkpoints 07 y 08 y considerando los límites del experimento.</p>
+</div><div class="chapter-hero-mark" aria-hidden="true"><small>GEOCEBADA</small><strong>RESULTADOS</strong><span>DATOS · TERRITORIO · EVIDENCIA</span></div></div></section><nav class="chapter-progress" aria-label="Capítulos de la investigación"><div class="shell chapter-progress-list">
+<a href="./reto.html" data-chapter="reto"><span>01</span><strong>El reto</strong></a>
+<a href="./solucion.html" data-chapter="solucion"><span>02</span><strong>Cómo se desarrolló</strong></a>
+<a href="./resultados.html" data-chapter="resultados"><span>03</span><strong>Resultados</strong></a></div></nav><section class="ret-section" id="rendimiento">
+      <div class="shell">
+        <div class="ret-intro-row"><div><span class="ret-kicker">05 / DESEMPEÑO DE LOS MODELOS</span><h2>Comparación con evidencia reproducible.</h2></div><p>Local04D obtuvo el RMSE pooled más bajo entre los modelos analizados en cada banco. Un RMSE menor indica menos error respecto a los rendimientos disponibles para evaluación.</p></div>
+        <div class="ret-results-top">
+          <div><small>MODELO FINAL</small><strong>Local04D</strong><span>Regresión Ridge local con vecindad geográfica · parámetros congelados.</span></div>
+          <div><small>CHECKPOINT 07 · DESARROLLO</small><strong>0,495741</strong><span>RMSE pooled · t/ha · 125 parcelas únicas</span></div>
+          <div><small>CHECKPOINT 08 · CONFIRMACIÓN</small><strong>0,481936</strong><span>RMSE pooled · t/ha · 132 parcelas únicas</span></div>
+        </div>
+        <p class="ret-evidence-note"><strong>Interpretación:</strong> los bancos 07 y 08 se basan en divisiones distintas. Sus cifras <strong>no son una mejora antes/después</strong> ni corresponden al error de las 59 parcelas ocultas.</p>
+        <div class="ret-results-links"><a class="ret-button ret-button-primary" href="./dashboard.html">Consultar las 59 estimaciones ↗</a><a class="ret-button ret-button-ghost" href="./validacion.html">Ver gráficas de validación ↗</a></div>
+      </div>
+    </section><section class="ret-section ret-section-warm" id="comparacion"><div class="shell"><span class="ret-kicker">06 / EVALUACIÓN</span><h2>Comparación completa de modelos.</h2><p class="ret-annex-lede">Abre los resultados de cada checkpoint para explorar todas las alternativas y sus errores. Los dos bancos se construyeron con particiones distintas.</p>
+<details class="ret-disclosure">
+          <summary><span>A / CHECKPOINT 07</span> Modelos individuales y ensambles <span aria-hidden="true">⌄</span></summary>
+          <div class="ret-disclosure-content"><p>Se compararon <strong>13 configuraciones</strong> en el mismo conjunto de 16 particiones. Nueve mezclas combinaron Local04D con alternativas usando pesos de 10 %, 25 % y 50 %. Ninguna mezcla obtuvo un RMSE pooled inferior al de la regla local original.</p>
+            <div class="ret-table-scroll"><table class="ret-table"><thead><tr><th>#</th><th>Modelo</th><th>RMSE conjunto</th><th>Media por split</th><th>Peor split</th></tr></thead><tbody><tr class="ret-main-model"><td>1</td><td><code>Local04D</code></td><td>0.495741</td><td>0.487845</td><td>0.694700</td></tr>
+<tr><td>2</td><td><code>Local04D_plus_Local07_w0.10</code></td><td>0.496387</td><td>0.488477</td><td>0.694174</td></tr>
+<tr><td>3</td><td><code>Local04D_plus_Prithvi07_w0.10</code></td><td>0.496391</td><td>0.488610</td><td>0.694036</td></tr>
+<tr><td>4</td><td><code>Local04D_plus_catboost_w0.10</code></td><td>0.496591</td><td>0.488606</td><td>0.696274</td></tr>
+<tr><td>5</td><td><code>Local04D_plus_Local07_w0.25</code></td><td>0.498252</td><td>0.490357</td><td>0.694352</td></tr>
+<tr><td>6</td><td><code>Local04D_plus_Prithvi07_w0.25</code></td><td>0.499773</td><td>0.492254</td><td>0.694471</td></tr>
+<tr><td>7</td><td><code>Local04D_plus_catboost_w0.25</code></td><td>0.500403</td><td>0.492314</td><td>0.699169</td></tr>
+<tr><td>8</td><td><code>Local04D_plus_Local07_w0.50</code></td><td>0.503715</td><td>0.495939</td><td>0.697223</td></tr>
+<tr><td>9</td><td><code>Local04D_plus_Prithvi07_w0.50</code></td><td>0.511663</td><td>0.504758</td><td>0.698998</td></tr>
+<tr><td>10</td><td><code>Local04D_plus_catboost_w0.50</code></td><td>0.513328</td><td>0.505067</td><td>0.705401</td></tr>
+<tr><td>11</td><td><code>Local07</code></td><td>0.523081</td><td>0.515800</td><td>0.712418</td></tr>
+<tr><td>12</td><td><code>Prithvi07</code></td><td>0.556672</td><td>0.551219</td><td>0.721866</td></tr>
+<tr><td>13</td><td><code>catboost</code></td><td>0.561325</td><td>0.551931</td><td>0.750689</td></tr></tbody></table></div>
+            <p class="ret-table-note">16 splits · 656 predicciones repetidas · 125 parcelas únicas · RMSE en toneladas por hectárea. Se conserva el nombre técnico de cada configuración.</p>
+            <a class="ret-inline-link" href="https://github.com/heri-espino/GeoC/blob/main/website/data/checkpoint07_summary.csv" target="_blank" rel="noopener noreferrer">CSV original del banco 07 ↗</a>
+          </div>
+        </details>
+<details class="ret-disclosure">
+          <summary><span>B / CHECKPOINT 08</span> Confirmación anidada e incertidumbre <span aria-hidden="true">⌄</span></summary>
+          <div class="ret-disclosure-content"><p>La referencia Local04D se mantuvo fija. Las otras dos configuraciones pasaron por una selección interna de hiperparámetros; se evaluaron con 16 divisiones nuevas y 132 parcelas únicas en total.</p>
+            <div class="ret-table-scroll"><table class="ret-table"><thead><tr><th>#</th><th>Modelo</th><th>RMSE conjunto</th><th>Media por split</th><th>Peor split</th></tr></thead><tbody><tr class="ret-main-model"><td>1</td><td><code>Local04D_frozen</code></td><td>0.481936</td><td>0.477557</td><td>0.581761</td></tr>
+<tr><td>2</td><td><code>Local04D_nested</code></td><td>0.493943</td><td>0.488551</td><td>0.653956</td></tr>
+<tr><td>3</td><td><code>Local07_nested</code></td><td>0.510070</td><td>0.506025</td><td>0.608748</td></tr></tbody></table></div>
+            <h3>Diferencia de MSE respecto a Local04D fijo</h3><p>El procedimiento bootstrap reagrupó por parcela en <strong>1.000 remuestreos</strong>. Los intervalos mostrados describen este experimento; un valor positivo de diferencia indica un error cuadrático mayor para el rival.</p>
+            <div class="ret-table-scroll"><table class="ret-table"><thead><tr><th>Modelo alternativo</th><th>Δ MSE</th><th>Límite 95 % inferior</th><th>Límite 95 % superior</th></tr></thead><tbody><tr><td><code>Local04D_nested</code></td><td>0.011718</td><td>0.003461</td><td>0.020479</td></tr>
+<tr><td><code>Local07_nested</code></td><td>0.027909</td><td>0.008857</td><td>0.048316</td></tr></tbody></table></div>
+            <a class="ret-inline-link" href="https://github.com/heri-espino/GeoC/blob/main/website/data/checkpoint08_bootstrap.csv" target="_blank" rel="noopener noreferrer">Datos de los intervalos originales ↗</a>
+          </div>
+        </details></div></section><section class="ret-section" id="limites"><div class="shell ret-section-grid"><div class="ret-aside"><span>07 / INTERPRETACIÓN</span><strong>Lo que podemos afirmar</strong></div><div class="ret-prose"><h2>Los límites también importan.</h2>
+            <p>La validación se apoya en los rendimientos de las 138 parcelas etiquetadas. Los valores reales de las 59 parcelas objetivo siguen desconocidos. Repetir una parcela en varias divisiones o re-muestrearla mediante bootstrap no elimina la dependencia espacial.</p>
+            <p>Las predicciones publicadas son <strong>consultas fijas de 59 identificadores</strong>. Local04D no debe describirse como un predictor genérico validado para parcelas totalmente nuevas ni para otros ciclos. La falta de mejora observada para una alternativa en esta muestra no demuestra que dicha técnica sea inútil en otro escenario agronómico.</p>
+            <div class="ret-evidence-note"><strong>Importante:</strong> el mapa de esta plataforma sí usa polígonos geográficos auténticos cuando se dispone de las geometrías locales; los diagramas explicativos del sitio de origen no representan coordenadas o distancias reales.</div>
+          </div></div></section><section class="ret-section" id="consultas">
+      <div class="shell ret-section-grid">
+        <div class="ret-aside"><span>07 / CONSULTA DEL RESULTADO</span><strong>59 estimaciones finales</strong></div>
+        <div class="ret-prose"><h2>De la teoría a las parcelas.</h2>
+          <p>El archivo final de Local04D contiene una predicción numérica por <code>ID_POLIGONO</code> para las 59 parcelas de destino. La consulta no vuelve a entrenar el modelo y no incluye los 59 rendimientos observados.</p>
+          <div class="ret-destination-list">
+            <a href="./index.html"><span>01</span><strong>Mapa de las parcelas</strong><small>Explora las geometrías reales, los pines y las fichas de cada parcela.</small><b>Ver mapa ↗</b></a>
+            <a href="./dashboard.html"><span>02</span><strong>Dashboard de predicción</strong><small>Busca identificadores, examina la distribución y consulta las estimaciones congeladas.</small><b>Ir al dashboard ↗</b></a>
+          </div>
+        </div>
+      </div>
+    </section><section class="ret-section ret-section-last" id="fuentes">
+      <div class="shell">
+        <span class="ret-kicker">08 / DOCUMENTACIÓN Y TRANSPARENCIA</span>
+        <h2>Consulta la evidencia original.</h2>
+        <p>Este apartado reorganiza y explica los contenidos de la presentación oficial del equipo con diseño y estructura propios. Las cifras, reglas metodológicas y límites se atribuyen al repositorio científico de GeoCebada.</p>
+        <div class="ret-source-links">
+          <a href="https://heri-espino.github.io/GeoC/#reto" target="_blank" rel="noopener noreferrer"><span>FUENTE PRINCIPAL</span><strong>Sitio original del equipo</strong><small>Presentación del reto, datos, solución y anexos ↗</small></a>
+          <a href="https://github.com/heri-espino/GeoC/blob/main/docs/METODOLOGIA_Y_RESULTADOS.md" target="_blank" rel="noopener noreferrer"><span>EVIDENCIA TÉCNICA</span><strong>Metodología y resultados</strong><small>Documentación de checkpoints y limitaciones ↗</small></a>
+          <a href="https://github.com/heri-espino/GeoC/blob/main/website/resumen.html" target="_blank" rel="noopener noreferrer"><span>LECTURA RÁPIDA</span><strong>Resumen ejecutivo</strong><small>Versión sintética de una página ↗</small></a>
+          <a href="https://github.com/heri-espino/GeoC/blob/main/docs/TRANSDUCTIVE_OBJECTIVE.md" target="_blank" rel="noopener noreferrer"><span>CONTRATO DE DATOS</span><strong>Objetivo transductivo</strong><small>Qué datos pueden y no pueden usarse ↗</small></a>
+        </div>
+        <p class="ret-citation">El contenido científico es propiedad del proyecto GeoCebada original. Esta página es una reorganización explicativa y no modifica sus resultados. Sus gráficos y tablas no representan acceso a las 59 etiquetas ocultas.</p>
+      </div>
+    </section><div class="shell chapter-attribution"><span>INFORMACIÓN TRAZABLE</span><p>Datos y metodología adaptados de la <a href="https://heri-espino.github.io/GeoC/#reto" target="_blank" rel="noopener noreferrer">presentación original del equipo GeoCebada ↗</a>.</p></div></main>  <footer class="footer"><div class="shell footer-inner"><div><a class="footer-brand" href="./index.html">geo<span>cebada</span></a><p>Propuesta independiente de interfaz para el Reto AgroCebada FIRA 2026.</p><small>Los resultados científicos y las predicciones provienen del proyecto GeoCebada original.</small></div><div><strong>EXPLORAR</strong><a href="./index.html">Mapa satelital</a><a href="./reto.html">El reto</a><a href="./solucion.html">Cómo se desarrolló</a><a href="./resultados.html">Resultados</a><a href="./dashboard.html">Dashboard</a><a href="./nueva-parcela.html">Nueva parcela</a></div><div><strong>FUENTES</strong><a href="https://github.com/heri-espino/GeoC" target="_blank" rel="noopener noreferrer">Repositorio científico ↗</a><a href="https://github.com/Andrea-HH/GeoCebada-Frontend-Andrea" target="_blank" rel="noopener noreferrer">Frontend independiente ↗</a><a href="./docs/FUENTES_Y_LIMITACIONES.md">Fuentes y limitaciones ↗</a></div></div><div class="shell footer-bottom"><span>© 2026 GeoCebada · Propuesta de frontend independiente</span><span>HECHO CON CIENCIA DE DATOS Y RESPETO POR EL TERRITORIO</span></div></footer>
+</body>
+</html>
