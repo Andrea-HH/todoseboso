@@ -33,7 +33,7 @@ La prueba scripts/529_check_story_site.py valida paridad byte a byte de los dos 
 
 Banco adicional: 16 particiones de 97/41, media de métricas por partición. Reference26 RMSE 0.4625 t/ha y R² 0.6971; Compact14 0.4661/0.6933; L40 0.4893/0.6621. El banco original de 65 folds incluye 50 aleatorios, 5 por perfil climático, 5 municipales y 5 espaciales: métricas calculadas sobre OOF completas por repetición, después promediadas.
 
-**Limitaciones:** las 138 etiquetas se reutilizaron ampliamente en la investigación, hay dependencia espacial y optimismo posible por selección histórica. No es LOOCV, confirmación independiente, ni evaluación de los rendimientos ocultos de las 59 parcelas. La inclusión de señales no demuestra causas agronómicas.
+**Limitaciones:** las 138 etiquetas se reutilizaron ampliamente en la investigación, hay dependencia espacial y optimismo posible por selección histórica. No es confirmación independiente ni evaluación de los rendimientos ocultos de las 59 parcelas. La inclusión de señales no demuestra causas agronómicas.
 
 Los ejemplos de lluvia y los puntos del diagrama de vecinos son **sintéticos**: no son mediciones, posiciones ni predicciones reales. No se publican IDs ni rendimientos individuales.
 

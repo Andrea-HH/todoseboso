@@ -82,7 +82,7 @@ Para cambios en arquitectura o copy revisar las fichas y resultados:
 Expresiones como “la geología decide” significan mezcla predictiva aprendida,
 no una intervención causal. Los valores ilustrativos siempre deben conservar
 su etiqueta sintética. La web no compara 0.4625 con la RMSE 0.481936 de un
-banco diferente. LOOCV 138-fold de modelos pares aún no está ejecutado.
+banco diferente. 
 
 ## Sincronización del 18 de octubre de 2026: interpretabilidad
 
@@ -136,8 +136,8 @@ La portada cuenta la historia de la predicción en lenguaje cotidiano. El
 apartado «¿De dónde sale una estimación?» permite modificar, con números
 **ficticios**, el peso del experto y la magnitud acotada de R3. El apartado
 «Qué respaldan las pruebas» separa asociaciones estadísticas, ablaciones
-reajustadas y contrastes pareados. Las preguntas al final documentan las
-diferencias entre evaluación aleatoria, espacial, 97/41 y LOOCV.
+reajustadas y contrastes pareados. Las preguntas al final aclaran las diferencias entre evaluación aleatoria,
+espacial y las particiones de 97 parcelas para entrenar y 41 para evaluar.
 
 Los nuevos recursos son:
 

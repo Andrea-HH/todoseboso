@@ -319,3 +319,14 @@ tr.is-champion td:first-child{color:#277460;font-weight:760}
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+/* Los nombres legibles son los títulos; los IDs internos sólo aparecen como detalle. */
+.chart-row{grid-template-columns:minmax(245px,1.2fr) minmax(70px,1fr) 66px;align-items:center;gap:13px}
+.chart-label{display:flex;flex-direction:column;min-width:0;gap:5px;line-height:1.3}
+.chart-label strong{font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.chart-label small{font-size:10px;line-height:1.5;font-weight:450;color:#58766e}
+.choice-card h3{font-size:clamp(22px,2.9vw,34px);letter-spacing:-.04em;line-height:1.2;overflow-wrap:anywhere}
+.choice-card>small{display:block;font-size:12px;margin:-5px 0 15px;color:#5c756d}
+.protocol-tabs{flex-wrap:wrap}
+.protocol{white-space:normal;line-height:1.4}
+@media(max-width:740px){.chart-row{grid-template-columns:minmax(135px,1.25fr) minmax(50px,.9fr) 61px;gap:8px}.chart-label strong{font-size:11px}.chart-label small{font-size:9px}}

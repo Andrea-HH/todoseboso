@@ -81,3 +81,27 @@
 .distribution-section .small-note a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:850px){.distribution-lessons{grid-template-columns:1fr;gap:0}.distribution-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.distribution-stat:nth-child(2){border-right:0}.distribution-stat:nth-child(n+3){border-top:1px solid var(--rule)}}
 @media(max-width:480px){.distribution-stat{padding:16px 8px 16px 0}.distribution-stat:not(:first-child){padding-left:12px}.distribution-stat strong{font-size:35px}.distribution-figure{padding:8px}}
+
+/* Nombres comprensibles: el título debe leerse antes del código del modelo. */
+.result-row{grid-template-columns:minmax(255px,1.15fr) minmax(105px,1fr) 74px;gap:16px}
+.result-label{min-width:0;line-height:1.35;font-size:13px}
+.result-label>span{display:block;font-weight:750;overflow-wrap:anywhere}
+.result-label small{display:block;margin-top:5px;line-height:1.45;font-size:11px;color:#526d5e}
+.model-compare-row>div{min-width:0;max-width:390px}
+.model-compare-row strong{line-height:1.25;font-size:clamp(18px,2vw,24px)}
+.hero-tag{min-width:230px;max-width:315px}
+.hero-tag strong{font-size:clamp(21px,2.2vw,29px);line-height:1.18;letter-spacing:-.5px;margin:9px 0}
+.hero-tag small{line-height:1.45;letter-spacing:0;font-size:11px}
+.protocol-tabs{flex-wrap:wrap}
+.protocol{white-space:normal;line-height:1.35}
+@media(max-width:760px){
+ .result-row{grid-template-columns:minmax(125px,1.2fr) minmax(60px,1fr) 65px;gap:9px}
+ .result-label{font-size:12px}
+ .result-label small{font-size:10px}
+}
+@media(max-width:480px){
+ .result-row{grid-template-columns:minmax(120px,1.15fr) minmax(35px,.7fr) 64px;gap:7px}
+ .result-label{font-size:11px}
+ .result-label small{font-size:9px}
+ .hero-tag{min-width:190px}
+}

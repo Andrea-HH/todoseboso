@@ -66,7 +66,7 @@ def main() -> None:
     for item in ("ablation-chart", "r3-comparison", "expert-weights"):
         assert "id=\"" + item + "\"" in html
     assert "./data/evidence.json" in js
-    assert "Ninguna retirada individual" in html
+    assert "ninguna retirada individual aportó evidencia estadística suficiente" in html.lower()
     assert "ID_POLIGONO" not in out.read_text(encoding="utf-8")
 
     # Distribution evidence is public, aggregated and historically frozen.
@@ -86,7 +86,7 @@ def main() -> None:
     assert (hashlib.sha256(original_figure.read_bytes()).digest()
             == hashlib.sha256(copied_figure.read_bytes()).digest())
     assert "./media/distribution_ECDF.png" in html
-    assert "no conocemos los 59 valores verdaderos" in html
+    assert "las 59 cosechas reales todavía se desconocen" in html
 
     print("Public interpretation snapshot PASS: matched three upstream CSVs, four protocols.")
 
