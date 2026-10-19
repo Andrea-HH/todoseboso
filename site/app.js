@@ -7,7 +7,7 @@ const $$ = (selector) => [...document.querySelectorAll(selector)];
 // El menú de secciones usa <details>: accesible con teclado en escritorio y móvil.
 const navigation = $("#nav-links");
 const menu = $("#nav-dropdown");
-$("#nav-links a").forEach(link => link.addEventListener("click", () => {
+$$("#nav-links a").forEach(link => link.addEventListener("click", () => {
   menu.open = false;
 }));
 document.addEventListener("pointerdown", event => {
