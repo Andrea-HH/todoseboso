@@ -386,6 +386,52 @@ html.geo-controles-solo .geo-panel-controls{background:transparent}
 .geo-map-actions #map-toggle-pins{background:rgba(51,110,77,.9);border-color:rgba(187,217,176,.65)}
 .geo-map-actions #map-toggle-pins:hover{background:#417658}
 
+/* WCAG: opaque controls and readable attribution over satellite imagery. */
+.geo-map-bottom{background:#102F29;color:#FFF9EB}
+.geo-map-bottom button,.geo-map-bottom #map-lite-toggle,
+.geo-map-actions #map-toggle-pins{
+ background:#26553F;color:#FFFDF4;border:1.5px solid #A2C49A;
+ font-weight:750;text-shadow:none;opacity:1;
+}
+.geo-map-bottom button:hover:not(:disabled),
+.geo-map-bottom #map-lite-toggle:hover:not(:disabled),
+.geo-map-actions #map-toggle-pins:hover:not(:disabled){
+ background:#38734F;border-color:#E1EDCF;
+}
+.geo-map-bottom button:focus-visible,
+.geo-zoom-guide button:focus-visible{outline:3px solid #F8D38A;outline-offset:3px}
+.geo-map-bottom button[aria-pressed="true"]{
+ background:#FFF5DB;color:#244D38;border-color:#FFF5DB;
+}
+.geo-map-bottom button:disabled,
+.geo-map-actions #map-toggle-pins:disabled{
+ opacity:.62;background:#26553F;cursor:not-allowed;
+}
+.geo-zoom-guide{background:#173E34;color:#FFF9EB}
+.geo-zoom-guide button{background:#26553F;color:#FFFDF4;border-color:#A2C49A}
+.geo-zoom-guide button:hover:not(:disabled){background:#38734F}
+.geo-map-toolbar span{background:#173E34;color:#FFF9EB;border-color:#90AB86}
+.geo-map .leaflet-bottom.leaflet-right{bottom:60px;right:6px}
+.geo-map .leaflet-control-attribution{
+ display:block!important;background:#FFF9EC!important;color:#243F30!important;
+ font-size:11px!important;line-height:1.45!important;font-weight:700!important;
+ padding:3px 7px!important;border:1px solid #D7DCC8;border-radius:4px;
+ text-shadow:none!important;box-shadow:0 1px 4px rgba(0,0,0,.16);
+}
+.geo-map .leaflet-control-attribution a{
+ color:#214A35!important;text-decoration:underline!important;text-underline-offset:2px;
+}
+.geo-map .leaflet-control-attribution a:focus-visible{
+ outline:3px solid #B46C10;outline-offset:2px;
+}
+.geo-map .leaflet-parcel-pin-pane path{
+ stroke:#FFFDF4!important;filter:drop-shadow(0 0 2px rgba(2,18,14,.92));
+}
+@media(max-width:720px){
+ .geo-map .leaflet-bottom.leaflet-right{bottom:60px}
+ .geo-map .leaflet-control-attribution{font-size:10px!important}
+}
+
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');

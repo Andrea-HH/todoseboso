@@ -44,3 +44,13 @@
 .hhi-results > .hhi-score-row,.hhi-results > .ci-scale,
 .hhi-results > .ci-track{display:none}
 #hhi-forest{border-top:1px solid var(--rule);padding-top:14px}
+
+/* Texto de ejes y lecturas con contraste AA, foco perceptible. */
+.research-svg text{font-weight:600}
+.rain-demo .research-svg text{fill:#455B4B}
+.rain-demo .research-svg text[font-weight="740"]{fill:#294C3A}
+.figure-axis-note,.chart-explain{color:#50634F!important}
+.figure-reading{color:#254636!important}
+.research-svg .figure-point:focus-visible{
+ stroke:#102E24;stroke-width:4;filter:drop-shadow(0 1px 4px rgba(16,45,31,.4));
+}

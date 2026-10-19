@@ -483,3 +483,79 @@ body{background:#fbf8ef;color:var(--ink)}
   .site-header .geo-repo-external{padding:7px 8px}
   .site-header .nav-dropdown-trigger{padding:7px 9px;gap:6px}
 }
+
+/* WCAG AA · Contrast audit. Forest, olive, cream and gold retained. */
+:root{--jade:#4D6639;--muted:#50634F;--gold:#C39045}
+.site-header .nav-dropdown{order:1;margin-left:auto;margin-right:0}
+.site-header .geo-repo-external{order:2;margin-left:0;margin-right:0}
+.site-header .nav-dropdown .nav-links a{color:#294D39}
+.site-header .nav-dropdown .nav-links a[aria-current="page"]{background:#DBE4CF;color:#204832}
+.site-header .nav-dropdown-trigger:focus-visible,
+.site-header .geo-repo-external:focus-visible,
+button:focus-visible,[role="button"]:focus-visible,summary:focus-visible,a:focus-visible{
+ outline:3px solid #B46C10;outline-offset:3px;
+}
+button:disabled,[role="button"][aria-disabled="true"]{opacity:.63;cursor:not-allowed}
+.section .eyebrow,.section .story-index{color:#4D6639}
+.section p,.hero-description{color:#50634F}
+.section .small-note,.small-note{color:#50634F!important}
+.hero .hero-eyebrow{color:#4D6639}
+.hero h1 em,.section h2 em{color:#4D6639}
+.section.architecture .architecture-board{
+ background:#F6EFDF;color:#294C39;border:1px solid #DFD9C7;
+}
+.architecture-board .route-label{color:#2D5036}
+.architecture-board .route-card,
+.architecture-board .route-mix{
+ background:#173E34;border:1px solid #62866D;color:#FFF9EB;
+}
+.section.architecture .route-card h3,
+.section.architecture .route-mix strong{color:#FFF9EB}
+.section.architecture .route-card p,
+.section.architecture .route-mix p{color:#F2F4E7}
+.section.architecture .route-card>span,
+.section.architecture .route-mix>span{color:#F2F4E7}
+.architecture-board .route-card strong,
+.architecture-board .route-mix code{color:#F2E1B4}
+.architecture-board .route-arrow{color:#526A38;font-weight:750}
+.architecture-board .route-final{
+ background:#E8EBD8;border:1px solid #C9D1B8;color:#294B37;
+}
+.architecture-board .route-final strong,
+.architecture-board .route-final code,
+.architecture-board .route-final>span{color:#294B37}
+.section.architecture .architecture-disclaimer{
+ color:#36523E!important;font-size:12px!important;line-height:1.7;
+}
+.rain-section .rain-copy>p:not(.eyebrow){color:#50634F}
+.rain-section .small-note{color:#50634F!important}
+.rain-demo{background:#F7F2E7;border-color:#DDD8C5}
+.rain-demo .demo-top,.rain-demo .rain-metrics span,
+.rain-demo .rain-plot small,.rain-demo .rain-formula,
+.rain-demo .figure-axis-note{color:#455B4B!important}
+.rain-demo .rain-metrics strong{color:#254636}
+.rain-switch .choice{
+ background:#FFFCF7;color:#254C37;border:1.5px solid #658066;
+}
+.rain-switch .choice:hover:not(:disabled){
+ background:#E9EEDF;border-color:#385940;color:#183E2B;
+}
+.rain-switch .choice[aria-pressed="true"],
+.rain-switch .choice.active{
+ background:#204D40;color:#FFF9EB;border-color:#204D40;
+ box-shadow:inset 0 -3px 0 #C6D8AC;
+}
+.rain-switch .choice[aria-pressed="true"]:hover:not(:disabled){background:#173E34}
+.rain-switch .choice:focus-visible{outline:3px solid #B46C10;outline-offset:3px}
+.rain-switch .choice:disabled{opacity:.63;cursor:not-allowed}
+.evidence-tab.active,.evidence-tab[aria-pressed="true"]{
+ background:#204D40;color:#FFF9EB;border-color:#204D40;
+}
+.evidence-tab:hover:not(:disabled),.choice:hover:not(:disabled){border-color:#385940}
+.evidence-tab:focus-visible,.protocol-switch button:focus-visible{
+ outline:3px solid #B46C10;outline-offset:3px;
+}
+@media(max-width:600px){
+ .site-header .nav-dropdown{margin-left:auto;order:1}
+ .site-header .geo-repo-external{margin-left:0;order:2}
+}

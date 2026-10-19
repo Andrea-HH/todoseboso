@@ -326,7 +326,7 @@
         else if(!show && mounted)pinLayers.removeLayer(marker);
         const selected=id===currentId;
         if(show && marker._pinSelected!==selected)
-          marker.setStyle({radius:selected?9:6,weight:selected?3:2,fillOpacity:selected?1:.93});
+          marker.setStyle({radius:selected?10.5:7.5,weight:selected?4.2:3.6,fillOpacity:selected?1:.97});
         marker._pinSelected=selected;
       });
     };
@@ -527,7 +527,7 @@
         const position=layer.getCenter();
         const predicted=rec.split==='PREDICCION';
         const pin=L.circleMarker(position,{
-          renderer:pinRenderer,radius:6,color:'#ffffff',weight:2,
+          renderer:pinRenderer,radius:7.5,color:'#ffffff',weight:3.6,
           fillColor:predicted?'#d7a647':'#15976e',
           fillOpacity:.93,interactive:true,bubblingMouseEvents:false
         });
