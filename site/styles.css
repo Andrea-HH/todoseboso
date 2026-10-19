@@ -345,120 +345,141 @@ html[data-geo-vista]:not([data-geo-vista="inicio"]) .geo-view-heading{display:bl
   .site-header .nav-inner{gap:9px}
 }
 
-
-/* GeoCebada — identidad trigo y cebada: pergamino, paja, miel y tierra.
-   Solo cambia la presentación; no altera escalas ni series de los gráficos. */
+/* GeoCebada · paleta definitiva de la cebada.
+   Crema de fondo, encabezado beige y controles verde olivo.
+   No se modifican datos, gráficas ni colores de las clases del mapa. */
 :root{
-  --forest:#4d3b28;
-  --forest2:#675034;
-  --pine:#795b36;
-  --jade:#ad7c3e;
-  --lime:#efd49a;
-  --gold:#d6a656;
-  --cream:#fcf8ee;
-  --paper:#fffdf8;
-  --mist:#f4ead4;
-  --ink:#443628;
-  --muted:#72634f;
-  --rule:#e5d8bc;
+  --forest:#244d39;
+  --forest2:#315b43;
+  --pine:#35634a;
+  --jade:#71894b;
+  --lime:#e4d5a7;
+  --gold:#d6b26c;
+  --cream:#fbf8ef;
+  --paper:#fbf8ef;
+  --mist:#f5f0e5;
+  --ink:#254636;
+  --muted:#617064;
+  --rule:#e2dfd2;
 }
-body{background:var(--cream);color:var(--ink)}
+body{background:#fbf8ef;color:var(--ink)}
+/* Beige exacto de la primera captura, aplicado al encabezado fijo. */
 .site-header{
-  background:#fffaf0;
-  color:#4b3927;
-  border-bottom:1px solid #e7dbc2;
-  box-shadow:0 4px 18px rgba(88,62,32,.07);
+  background:#efe3c7;
+  color:#244936;
+  border-bottom:1px solid #decda7;
+  box-shadow:0 3px 14px rgba(41,65,42,.07);
 }
-.site-header .brand{color:#4a3926}
-.site-header .brand>span:nth-child(2)>span{color:#b88c4f}
-.site-header .brand small{color:#8c785b;border-left-color:#e0cfb1}
+.site-header .brand{color:#244936}
+.site-header .brand>span:nth-child(2)>span{color:#78864d}
+.site-header .brand small{color:#607455;border-left-color:#c9c6a3}
 .brand .brand-wheat-mark{
-  background:linear-gradient(145deg,#fff5d9,#f2dfae);
-  box-shadow:inset 0 0 0 1px rgba(194,151,83,.25);
+  background:#fbf8ef;
+  box-shadow:inset 0 0 0 1px rgba(99,120,81,.16);
 }
+/* Ambos accesos son independientes y permanecen juntos a la derecha. */
+.site-header .nav-inner{gap:10px}
 .site-header .geo-repo-external{
-  display:inline-flex!important;align-items:center;justify-content:center;gap:9px;
-  margin-left:auto;margin-right:0;padding:10px 15px;
-  border:1px solid #cdb88f;border-radius:11px;
-  background:#fff8e6;color:#594024;
+  order:1;
+  display:inline-flex!important;
+  align-items:center;justify-content:center;gap:9px;
+  margin-left:auto;margin-right:0;
+  min-height:42px;padding:10px 15px;
+  background:#355a42;color:#fffaf1;
+  border:1px solid #355a42;border-radius:10px;
   font-size:12px;font-weight:760;white-space:nowrap;line-height:1.35;
+  transition:background .15s,border-color .15s;
 }
-.site-header .geo-repo-external:hover{background:#f9eac9;border-color:#b89a64}
+.site-header .geo-repo-external:hover,
+.site-header .geo-repo-external:focus-visible{
+  background:#244b36;color:#fffaf1;border-color:#244b36;
+}
 .site-header .geo-repo-short{display:none}
-.site-header .nav-dropdown{margin-left:0;z-index:1200}
+.site-header .nav-dropdown{
+  order:2;position:relative;flex:0 0 auto;
+  margin-left:0;margin-right:0;z-index:1200;
+}
 .site-header .nav-dropdown-trigger{
-  background:#f3e2bc;border-color:#d9bd83;color:#513a20;
-  box-shadow:0 2px 3px rgba(75,47,17,.04);
+  min-height:42px;display:flex;align-items:center;justify-content:center;
+  gap:12px;padding:10px 17px;
+  background:#476641;color:#fffaf0;
+  border:1px solid #476641;border-radius:10px;
+  font-size:13px;font-weight:760;line-height:1.2;
+  transition:background .15s,border-color .15s;
 }
 .site-header .nav-dropdown-trigger:hover,
 .site-header .nav-dropdown[open] .nav-dropdown-trigger{
-  background:#ead09b;border-color:#bf9652;color:#3c2c1c;
+  background:#334f32;border-color:#334f32;color:#fffaf0;
 }
 .site-header .nav-dropdown[open] .nav-links{
-  background:#fffcf5;border-color:#eadbbd;
-  box-shadow:0 18px 44px rgba(66,45,24,.18);
-  color:#4d3a27;
+  background:#fbf8ef;color:#244936;
+  border:1px solid #e1dac6;
+  box-shadow:0 18px 44px rgba(42,67,46,.15);
 }
-.site-header .nav-dropdown .nav-links a{color:#58442c}
+.site-header .nav-dropdown .nav-links a{color:#30553d}
 .site-header .nav-dropdown .nav-links a:hover,
 .site-header .nav-dropdown .nav-links a:focus-visible{
-  background:#f9ebcd;color:#4c351d;
+  background:#edeccf;color:#244936;
 }
 .site-header .nav-dropdown .nav-links a[aria-current="page"]{
-  background:#efdaad;color:#4c351d;
+  background:#e4e7ce;color:#244936;
 }
-.hero{
-  background:radial-gradient(ellipse at 82% 20%,#f1e3c6 0%,#fbf6e9 47%,#f6ead2 100%);
-  color:#4d3a29;
+/* Todos los fondos amplios de la web son crema, sin bloques cafés. */
+#contenido > section,
+#contenido > section.section,
+#contenido > section.hero,
+#contenido > section.geoc-andrea-map,
+.geo-view-heading,
+.site-footer{
+  background:#fbf8ef;
 }
-.hero h1{color:#493726}
-.hero h1 em{color:#9e763f}
-.hero .hero-eyebrow{color:#97713e}
-.hero .eyebrow-line{background:#d1a357}
-.hero-description{color:#70624f}
-.hero-map-preview{border-color:#d7c7a6;box-shadow:0 20px 50px rgba(74,53,28,.15)}
-.hero .primary-cta{background:#dfb66e;color:#4b3520}
-.hero .primary-cta:hover{background:#edcc90}
-.hero .secondary-cta{color:#674c2e;border-bottom-color:#c9a365}
-.hero .hero-metadata{color:#8b7654}
-.geoc-andrea-map{background:#f4eedf}
+.geo-view-heading{border-bottom:1px solid #e4dfd0}
+.geo-view-heading h1{color:#244936}
+.hero{color:#244936}
+.hero h1{color:#244936}
+.hero h1 em{color:#71894b}
+.hero .hero-eyebrow{color:#71894b}
+.hero .eyebrow-line{background:#c8a65f}
+.hero-description{color:#617064}
+.hero-map-preview{
+  border-color:#d4d2b9;
+  box-shadow:0 17px 47px rgba(35,73,48,.13);
+}
 .geoc-andrea-panel-container{
-  background:#fdf9f0;
-  border-color:#e2d4b8;
-  box-shadow:0 16px 36px rgba(83,59,25,.08);
+  background:#fbf8ef;
+  border-color:#e2dfd2;
+  box-shadow:0 14px 32px rgba(35,73,48,.07);
 }
-.geo-view-heading{background:#f2e3c4;border-bottom:1px solid #ddc598}
-.geo-view-heading h1{color:#513922}
-.section h2{color:#493726}
-.section h2 em{color:#ad7c3e}
-.section h3{color:#4d3926}
-.section .eyebrow,.section .story-index{color:#9d713a}
+.section h2{color:#244936}
+.section h2 em{color:#71894b}
+.section h3{color:#2b4c3a}
+.section .eyebrow,.section .story-index{color:#71894b}
 .section p{color:var(--muted)}
-.narrative,.architecture,.new-evidence,.comparison,.limits{background:#f5edda}
-.rain-section,.neighbor-section,.alternative,.distribution-section{background:#fffcf5}
-.problem,.understanding,.significance,.hhi-study,.delivery,.technical-questions{background:#fcf8ee}
-.stat-band{background:#f2e5c8;border-color:#e3d1ae}
-.story-list,.story-step{border-color:#decba9}
-.evidence-study,.evidence-context{background:#fffcf5;border-color:#e3d5b7}
-.architecture-board{background:#5a4329;color:#f8ebce}
-.architecture-count b,.stat-item strong{color:#624727}
-.architecture-count.total b{color:#a87535}
-.evidence-tab.active{background:#6e512f;border-color:#6e512f;color:#fffaf0}
-.site-footer{background:#453525;color:#faedcf}
-.footer-main p{color:#e1cfab}
-.footer-links{color:#f2dfb8}
-.footer-bottom{border-top-color:#765e3b;color:#ddc49b}
+/* Tarjetas y esquemas también toman tonos crema. */
+.architecture-board{background:#efe9d7;color:#294c3b}
+.architecture-board p,.architecture-board small{color:#526d59}
+.architecture-count b,.stat-item strong{color:#315541}
+.architecture-count.total b{color:#698548}
+.evidence-study,.evidence-context{background:#fffcf5;border-color:#e2dfd2}
+.evidence-tab.active{background:#355b42;border-color:#355b42;color:#fffaf0}
+.site-footer{color:#254636;border-top:1px solid #e4dfd0}
+.footer-main p,.footer-links,.footer-bottom{color:#617064}
+.footer-brand span{color:#71894b}
+.footer-bottom{border-top-color:#e4dfd0}
+/* Botones secundarios y detalles activos en verde, no en café. */
+.choice.active,.protocol-switch .active{background:#355b42;color:#fffaf0;border-color:#355b42}
 @media(max-width:860px){
-  .site-header .nav-links{background:#fffcf5;border-color:#eadbbd}
-  .site-header .geo-repo-external{margin-left:auto}
+  .site-header .nav-links{background:#fbf8ef;border-color:#e1dac6}
+  .site-header .nav-dropdown[open] .nav-links{right:0;left:auto}
 }
 @media(max-width:600px){
   .site-header .geo-repo-long{display:none}
   .site-header .geo-repo-short{display:inline}
-  .site-header .geo-repo-external{padding:8px 10px;gap:5px;font-size:11px;min-height:38px}
+  .site-header .geo-repo-external{min-height:38px;padding:8px 10px;gap:5px;font-size:11px}
+  .site-header .nav-dropdown-trigger{min-height:38px;padding:8px 12px;font-size:12px}
 }
-@media(max-width:390px){
+@media(max-width:400px){
   .site-header .nav-inner{gap:6px}
   .site-header .geo-repo-external{padding:7px 8px}
-  .site-header .nav-dropdown-trigger{padding:8px 10px}
+  .site-header .nav-dropdown-trigger{padding:7px 9px;gap:6px}
 }

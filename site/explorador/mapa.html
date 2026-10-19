@@ -322,57 +322,69 @@ html.geo-fichas-solo .geo-legend{display:none!important}
  html.geo-fichas-solo .geo-climate-grid{grid-template-columns:1fr}
 }
 
-/* Complemento visual cálido para los tres visores (mapa, filtros y fichas).
-   Conserva los colores semánticos de pines de entrenamiento y predicción. */
+/* Colores del mapa: verdes originales para acciones; cremas para paneles.
+   Los pines de entrenamiento/predicción conservan sus colores originales. */
 :root{
- --forest:#4d3b28;
- --forest-deep:#3e3024;
- --olive:#8e784c;
- --sage:#c4ac7e;
- --wheat:#dfb46a;
- --wheat-light:#f5dfad;
- --cream:#faf5e9;
- --ivory:#fffaf0;
- --ink:#4c3927;
- --muted:#796c5a;
- --line:#e6d8bd;
+  --forest:#173e34;--forest-deep:#0d2925;
+  --olive:#6d835c;--sage:#a3b18a;
+  --wheat:#e7c98b;--wheat-light:#f1dfae;
+  --cream:#fbf8ef;--ivory:#fbf8ef;
+  --ink:#254636;--muted:#617064;--line:#e2dfd2;
 }
-body{background:#fdf8ef;color:#4d3a26}
-.geo-workspace{background:#f5eddf;color:#4b3927}
-.geo-shell{background:#fdf8ed;box-shadow:0 17px 54px rgba(75,53,29,.09)}
-.geo-sidebar{background:#fbf5e9}
-.geo-eyebrow{color:#98733f}
-.geo-panel-heading h2,.geo-detail h3,.geo-climate h3{color:#523c26}
-.geo-panel-heading p{color:#796d58}
-.geo-counter{background:#f7edda;border-color:#e4d3b1;color:#523d28}
-.geo-counter:hover,.geo-counter:focus-visible{background:#edd9b3}
-.geo-counter.active{background:#88612f;border-color:#88612f;color:#fffaf0}
-.geo-filters label{color:#6d5337}
-.geo-filters select{background:#fffdf7;color:#49392a;border-color:#d8c39f}
-.geo-filters select:focus-visible{outline-color:#c79a50}
-.geo-filter-count{background:#f4e7ca;color:#72572e}
-.geo-detail>span{color:#a17942}
-.geo-detail p,.geo-detail dd,.geo-detail dt{color:#76664d}
-.geo-detail dd{color:#563e24}
-.geo-detail .geo-yield{background:#f2e2bd}
-.geo-detail .geo-yield b{color:#6b491f}
-.geo-climate-metric{background:#f5e9cf;border-color:#e6d5b3}
-.geo-climate-metric span{color:#715632}
-.geo-climate-metric strong{color:#553d24}
-.geo-climate-metric small{color:#857354}
-.geo-climate-status{color:#81705a}
-html.geo-panel-solo .geo-panel-controls{background:#faf4e7}
-html.geo-panel-solo .geo-panel-results{background:#fffaf1;border-top-color:#e8d8bb}
-html.geo-panel-solo .geo-legend{background:#f5ead5;border-top-color:#e7d7b7}
-html.geo-fichas-solo .geo-panel-results{background:#fffaf1}
-html.geo-fichas-solo .geo-climate{border-left-color:#e2d3b7}
+body{background:#fbf8ef;color:#254636}
+.geo-workspace{background:#fbf8ef;color:#254636}
+.geo-shell,.geo-sidebar{background:#fbf8ef}
+.geo-shell{box-shadow:0 15px 45px rgba(35,73,48,.08)}
+.geo-eyebrow{color:#71894b}
+.geo-panel-heading h2,.geo-detail h3,.geo-climate h3{color:#244936}
+.geo-panel-heading p,.geo-detail p,.geo-detail dt{color:#617064}
+.geo-counter{
+  background:#f4f0e5;border-color:#dedcc9;color:#31533e;
+}
+.geo-counter:hover,.geo-counter:focus-visible{background:#e9ead8}
+.geo-counter.active{
+  background:#204d40;color:#fffaf0;border-color:#204d40;
+}
+.geo-filters label{color:#47624d}
+.geo-filters select{
+  background:#fffcf7;color:#2d4b3a;border-color:#d8ddcc;
+}
+.geo-filters select:focus-visible{outline-color:#7e9c6d}
+.geo-filter-count{background:#e9efdf;color:#43674c}
+.geo-detail>span{color:#71894b}
+.geo-detail dd{color:#294d3b}
+.geo-detail .geo-yield{background:#e8eedc}
+.geo-detail .geo-yield b{color:#27563e}
+.geo-climate-metric{background:#edf0e4;border-color:#dce2d4}
+.geo-climate-metric span,.geo-climate-metric small{color:#627c66}
+.geo-climate-metric strong{color:#294d3b}
+.geo-climate-status{color:#617064}
+html.geo-panel-solo .geo-panel-controls{background:#fbf8ef}
+html.geo-panel-solo .geo-panel-results,
+html.geo-fichas-solo .geo-panel-results{
+  background:#fbf8ef;border-top-color:#e2dfd2;
+}
+html.geo-panel-solo .geo-legend{background:#fbf8ef;border-top-color:#e2dfd2}
+html.geo-fichas-solo .geo-climate{border-left-color:#e2dfd2}
 html.geo-controles-solo .geo-sidebar,
 html.geo-controles-solo .geo-panel-controls{background:transparent}
-.geo-map-toolbar span{background:rgba(66,47,27,.88);border-color:rgba(244,219,164,.26)}
-.geo-zoom-guide{background:rgba(71,51,31,.92);border-color:rgba(244,219,164,.35)}
-.geo-zoom-guide button{background:#f2d69b;color:#47301b;border-color:#dfba78}
-.geo-map-bottom{background:linear-gradient(0deg,rgba(54,37,24,.94),rgba(54,37,24,.62));color:#fff0cf}
-.geo-map-bottom button{border-color:rgba(246,217,163,.45)}
+.geo-map-toolbar span{background:rgba(23,62,52,.96);border-color:rgba(183,216,178,.3)}
+.geo-zoom-guide{background:rgba(23,62,52,.96);border-color:rgba(183,216,178,.35)}
+.geo-zoom-guide button{
+  background:#355b42;color:#fffaf0;border-color:#77977a;
+}
+.geo-zoom-guide button:hover{background:#254937;color:#fffaf0}
+.geo-map-bottom{
+  background:linear-gradient(0deg,rgba(12,42,34,.95),rgba(19,59,48,.68));
+  color:#f4f7e9;
+}
+.geo-map-bottom button{
+  background:rgba(46,96,71,.90);
+  color:#fffaf0;border-color:rgba(188,218,185,.5);
+}
+.geo-map-bottom button:hover{background:#417658;color:#fffaf0}
+.geo-map-actions #map-toggle-pins{background:rgba(51,110,77,.9);border-color:rgba(187,217,176,.65)}
+.geo-map-actions #map-toggle-pins:hover{background:#417658}
 
 </style>
 <script>
