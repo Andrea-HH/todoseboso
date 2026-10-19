@@ -752,3 +752,121 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
 #contenido>.section.delivery .delivery-panel:nth-child(2) h3{color:#234A36}
 #contenido>.section.delivery .delivery-panel:nth-child(2)>p,
 #contenido>.section.delivery .delivery-panel:nth-child(2) .interval-explanation{color:#52614A!important}
+
+/* Pie de página: marca idéntica a la cabecera y enlaces en la zona central. */
+.site-footer{
+  padding-top:clamp(24px,3vw,46px);
+  padding-bottom:18px;
+}
+.site-footer .footer-main{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);
+  align-items:center;
+  justify-content:initial;
+  gap:clamp(25px,4vw,74px);
+  padding-bottom:clamp(25px,3vw,46px);
+}
+.site-footer .footer-identity-wrap{min-width:0}
+.site-footer .footer-identity{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:#FFF9EB!important;
+  text-decoration:none;
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:clamp(23px,2.1vw,32px);
+  font-weight:780;
+  letter-spacing:-.055em;
+  line-height:1;
+}
+.site-footer .footer-identity .brand-wheat-mark{
+  flex:0 0 42px;
+  width:42px;
+  height:58px;
+  background:#FBF8EF;
+  padding:3px 6px;
+  border-radius:12px;
+}
+.site-footer .footer-identity .brand-wheat-mark img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.site-footer .footer-identity .footer-name{
+  font-family:var(--sans);
+  font-style:normal;
+  letter-spacing:-.055em;
+  color:#FFF9EB!important;
+  font-weight:780;
+}
+.site-footer .footer-identity .footer-name>span{
+  font-family:inherit;
+  font-style:normal;
+  font-weight:inherit;
+  color:#E6BB69!important;
+}
+.site-footer .footer-identity small{
+  color:#E8E9D4;
+  border-left:1px solid rgba(255,249,235,.36);
+  padding-left:14px;
+  margin-left:4px;
+  font-size:11px;
+  font-weight:750;
+  line-height:1.2;
+  letter-spacing:.17em;
+  white-space:nowrap;
+}
+.site-footer .footer-links{
+  justify-self:start;
+  align-self:center;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin:0;
+  padding:0;
+  color:#E9EBDD!important;
+  font-size:13px;
+  line-height:1.4;
+}
+.site-footer .footer-links a{
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
+  min-height:28px;
+  color:#E9EBDD!important;
+  text-decoration:none;
+}
+.site-footer .footer-links a:hover{
+  color:#F5D594!important;
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+@media(max-width:900px){
+  .site-footer .footer-main{grid-template-columns:1fr;gap:19px}
+  .site-footer .footer-links{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:9px 22px;
+  }
+}
+@media(max-width:530px){
+  .site-footer .footer-identity{font-size:24px;gap:8px;flex-wrap:wrap}
+  .site-footer .footer-identity .brand-wheat-mark{
+    flex-basis:35px;width:35px;height:48px;padding:3px 5px;
+  }
+  .site-footer .footer-identity small{
+    font-size:9px;
+    letter-spacing:.12em;
+    padding-left:8px;
+    margin-left:0;
+  }
+  .site-footer .footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    align-items:flex-start;
+  }
+}
