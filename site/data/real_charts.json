@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "kind": "real_chart_aggregates",
+  "scope": "2025 retrospective field data; unknown yields never used",
+  "privacy": "Only cross-parcel monthly statistics and binned OOF residuals; no IDs or coordinates",
+  "rainfall": {
+    "variable": "precipitation",
+    "unit": "mm/month",
+    "year": 2025,
+    "population": "197 study parcels, available per-month observations",
+    "aggregation": "One monthly value per parcel, then descriptive statistics across parcels. Monthly precipitation values kept in their recorded units.",
+    "months": [
+      {
+        "month": 4,
+        "label": "Abr",
+        "n": 197,
+        "mean": 12.162281350321994,
+        "median": 11.679719924926758,
+        "p10": 9.67740535736084,
+        "p90": 15.882710937661985
+      },
+      {
+        "month": 5,
+        "label": "May",
+        "n": 197,
+        "mean": 137.9180944474855,
+        "median": 126.60689544677734,
+        "p10": 103.76583099365234,
+        "p90": 193.8399290613783
+      },
+      {
+        "month": 6,
+        "label": "Jun",
+        "n": 197,
+        "mean": 245.93620944023715,
+        "median": 237.6761016845703,
+        "p10": 195.0574951171875,
+        "p90": 357.91552734375
+      },
+      {
+        "month": 7,
+        "label": "Jul",
+        "n": 197,
+        "mean": 148.5290757935665,
+        "median": 151.62359944090093,
+        "p10": 124.6748046875,
+        "p90": 185.3767547607422
+      },
+      {
+        "month": 8,
+        "label": "Ago",
+        "n": 197,
+        "mean": 131.91439454920743,
+        "median": 129.18540954589844,
+        "p10": 108.9525146484375,
+        "p90": 183.63304562820562
+      },
+      {
+        "month": 9,
+        "label": "Sep",
+        "n": 197,
+        "mean": 161.9873909071821,
+        "median": 147.45968627929688,
+        "p10": 116.88858795166016,
+        "p90": 258.9954833984375
+      },
+      {
+        "month": 10,
+        "label": "Oct",
+        "n": 197,
+        "mean": 124.1667479212903,
+        "median": 134.71368408203125,
+        "p10": 78.17564392089844,
+        "p90": 149.81637573242188
+      }
+    ]
+  },
+  "ndvi": {
+    "variable": "ndvi",
+    "unit": "NDVI",
+    "year": 2025,
+    "population": "197 study parcels, available per-month observations",
+    "aggregation": "One monthly value per parcel, then descriptive statistics across parcels. Satellite acquisitions reduced to parcel-month median first.",
+    "months": [
+      {
+        "month": 4,
+        "label": "Abr",
+        "n": 197,
+        "mean": 0.15076649746192894,
+        "median": 0.145,
+        "p10": 0.127,
+        "p90": 0.184
+      },
+      {
+        "month": 5,
+        "label": "May",
+        "n": 197,
+        "mean": 0.14421065989847712,
+        "median": 0.14,
+        "p10": 0.11779999999999999,
+        "p90": 0.1763
+      },
+      {
+        "month": 6,
+        "label": "Jun",
+        "n": 197,
+        "mean": 0.2031243654822335,
+        "median": 0.192,
+        "p10": 0.1405,
+        "p90": 0.28080000000000005
+      },
+      {
+        "month": 7,
+        "label": "Jul",
+        "n": 197,
+        "mean": 0.47002791878172584,
+        "median": 0.471,
+        "p10": 0.29319999999999996,
+        "p90": 0.6519
+      },
+      {
+        "month": 8,
+        "label": "Ago",
+        "n": 197,
+        "mean": 0.5372868020304569,
+        "median": 0.55,
+        "p10": 0.33880000000000005,
+        "p90": 0.692
+      },
+      {
+        "month": 9,
+        "label": "Sep",
+        "n": 197,
+        "mean": 0.5507081218274111,
+        "median": 0.5449999999999999,
+        "p10": 0.45640000000000003,
+        "p90": 0.657
+      },
+      {
+        "month": 10,
+        "label": "Oct",
+        "n": 197,
+        "mean": 0.4683477157360406,
+        "median": 0.4665,
+        "p10": 0.33030000000000004,
+        "p90": 0.6123000000000001
+      }
+    ]
+  },
+  "loocv_models": [],
+  "sources": [
+    {
+      "file": "monthly_inputs_apr_oct.parquet",
+      "size_bytes": 119808,
+      "sha256": "971bdac1808036e7ca9be3260faa7608e82e2530ef0285a0c0f432a6fae2d635",
+      "records": 5516,
+      "distinct_parcels": 197,
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    }
+  ]
+}
