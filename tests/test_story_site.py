@@ -49,6 +49,9 @@ class StorySiteTest(unittest.TestCase):
             self.assertTrue((SITE / asset).is_file(), asset)
         self.assertIn("simulación educativa", html)
         self.assertIn("no es", html.lower())
+        self.assertNotIn("LOOCV", html)
+        self.assertIn("Clima, vecinos y geología", (SITE / "app.js").read_text(encoding="utf-8"))
+        self.assertIn("Clima y vecinos, sin geología", html)
         self.assertNotIn("outputs/", html)
         self.assertNotIn("train138.parquet", html)
 
@@ -72,8 +75,8 @@ class StorySiteTest(unittest.TestCase):
     def test_illustrations_are_explicitly_synthetic(self):
         html = (SITE / "index.html").read_text(encoding="utf-8")
         js = (SITE / "app.js").read_text(encoding="utf-8")
-        self.assertIn("Puntos ficticios", html)
-        self.assertIn("valores inventados", html)
+        self.assertIn("Las ubicaciones del dibujo son inventadas", html)
+        self.assertIn("números inventados", html)
         self.assertIn("uniform: [30, 30, 30, 30, 30, 30, 30]", js)
         self.assertIn("showNeighbors(24)", js)
         self.assertIn("aria-pressed", js)
