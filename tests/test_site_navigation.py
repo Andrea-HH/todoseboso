@@ -1,4 +1,4 @@
-"""Regression tests for GeoCebada's six static views, links and 13 FAQs."""
+"""Regression tests for GeoCebada's five static views, links and 13 FAQs."""
 import re
 import unittest
 from html.parser import HTMLParser
@@ -6,9 +6,8 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 SITE = Path(__file__).resolve().parents[1] / "site"
-PAGES = ("inicio", "problema", "modelo", "resultados", "confianza", "preguntas")
+PAGES = ("inicio", "modelo", "resultados", "confianza", "preguntas")
 GROUPS = {
-    "problema": ("stat-band", "problem"),
     "modelo": ("narrative", "rain-section", "neighbor-section", "architecture", "understanding"),
     "resultados": ("comparison", "significance", "new-evidence", "hhi-study", "alternative", "distribution-section"),
     "confianza": ("delivery", "limits"),
@@ -60,8 +59,8 @@ class NavigationTests(unittest.TestCase):
         cls.page.feed(cls.html)
 
     def test_all_sections_visible_on_their_respective_pages(self):
-        self.assertEqual(len(self.page.sections), 18)
-        self.assertEqual(len(set(self.page.sections)), 18)
+        self.assertEqual(len(self.page.sections), 16)
+        self.assertEqual(len(set(self.page.sections)), 16)
         for page, sections in GROUPS.items():
             for section in sections:
                 name = section if section == "stat-band" else "section " + section
@@ -87,7 +86,7 @@ class NavigationTests(unittest.TestCase):
 
     def test_legacy_page_urls_still_resolve(self):
         for old, new in (
-            ("historia", "modelo"), ("calculo", "modelo"),
+            ("problema", "inicio"), ("historia", "modelo"), ("calculo", "modelo"),
             ("pruebas", "resultados"), ("hhi", "resultados"),
             ("parcelas", "confianza")
         ):
@@ -101,8 +100,8 @@ class NavigationTests(unittest.TestCase):
             "Interpretar los resultados", "Validación y rigor"
         ):
             self.assertIn(">" + label + "</h3>", self.html)
-        self.assertEqual(self.page.tocs, ["problema", "modelo", "resultados", "confianza"])
-        self.assertEqual(sorted(self.page.nexts), sorted(PAGES[1:]))
+        self.assertEqual(self.page.tocs, ["modelo", "resultados", "confianza"])
+        self.assertEqual(sorted(self.page.nexts), sorted(PAGES))
         self.assertEqual(self.page.iframes, 3)
 
     def test_comparisons_appear_before_technical_tests(self):

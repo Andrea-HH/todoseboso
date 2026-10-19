@@ -1,21 +1,20 @@
-/* GeoCebada · seis vistas centradas en preguntas reales del visitante.
+/* GeoCebada · cinco vistas centradas en preguntas reales del visitante.
    Los datos, gráficos y secciones históricas originales permanecen intactos. */
 (function () {
   'use strict';
   const labels = Object.freeze({
-    problema: '¿Qué problema queremos resolver?',
     modelo: '¿Cómo funciona el modelo?',
     resultados: 'Resultados',
     confianza: '¿Qué tanta confianza merece?',
     preguntas: 'Preguntas frecuentes'
   });
   const aliases = Object.freeze({
-    historia:'modelo',calculo:'modelo',pruebas:'resultados',
+    problema:'inicio',historia:'modelo',calculo:'modelo',pruebas:'resultados',
     hhi:'resultados',parcelas:'confianza'
   });
   const byAnchor = Object.freeze({
     'mapa-interactivo':'inicio',
-    universo:'problema',pregunta:'problema',
+    universo:'inicio',pregunta:'inicio',
     historia:'modelo',lluvia:'modelo',vecinos:'modelo',arquitectura:'modelo',
     'de-donde-sale':'modelo',
     evidencia:'resultados',significancia:'resultados',componentes:'resultados',

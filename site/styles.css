@@ -249,8 +249,6 @@
 html[data-geo-vista] #contenido > section{display:none!important}
 html[data-geo-vista="inicio"] #contenido > section.hero,
 html[data-geo-vista="inicio"] #contenido > section.geoc-andrea-map,
-html[data-geo-vista="problema"] #contenido > section.stat-band,
-html[data-geo-vista="problema"] #contenido > section.problem,
 html[data-geo-vista="modelo"] #contenido > section.narrative,
 html[data-geo-vista="modelo"] #contenido > section.rain-section,
 html[data-geo-vista="modelo"] #contenido > section.neighbor-section,
@@ -838,11 +836,10 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
 
 /* Índices de sección y continuidad: navegación sencilla, sin modificar contenidos. */
 .geo-subnav,.geo-chapter-end{display:none}
-html[data-geo-vista="problema"] .geo-subnav[data-geo-page="problema"],
 html[data-geo-vista="modelo"] .geo-subnav[data-geo-page="modelo"],
 html[data-geo-vista="resultados"] .geo-subnav[data-geo-page="resultados"],
 html[data-geo-vista="confianza"] .geo-subnav[data-geo-page="confianza"]{display:block}
-html[data-geo-vista="problema"] .geo-chapter-end[data-geo-page="problema"],
+html[data-geo-vista="inicio"] .geo-chapter-end[data-geo-page="inicio"],
 html[data-geo-vista="modelo"] .geo-chapter-end[data-geo-page="modelo"],
 html[data-geo-vista="resultados"] .geo-chapter-end[data-geo-page="resultados"],
 html[data-geo-vista="confianza"] .geo-chapter-end[data-geo-page="confianza"],
@@ -881,8 +878,7 @@ html[data-geo-vista="confianza"] #contenido>.section.delivery,
 html[data-geo-vista="preguntas"] #contenido>.section.technical-questions{
   background:#FBF8EF!important;
 }
-/* Sólo en problema se muestran las cuatro cifras originales; Inicio no las duplica. */
-html[data-geo-vista="problema"] #contenido>.stat-band{display:block!important}
+/* La información esencial de las parcelas permanece en la portada. */
 
 /* Resultados · tipografía totalmente legible sobre el panel verde oscuro. */
 #contenido>.section.comparison .result-hero{
@@ -954,7 +950,7 @@ html[data-geo-vista="problema"] #contenido>.stat-band{display:block!important}
 }
 
 
-/* Fondos GeoCebada · alternancia exclusiva de crema y dorado tenue en las seis vistas. */
+/* Fondos GeoCebada · alternancia exclusiva de crema y dorado tenue en las cinco vistas. */
 :root{
   --geo-fondo-crema:#FBF8EF;
   --geo-fondo-trigo:#F6F0E4;
@@ -970,13 +966,6 @@ html[data-geo-vista="inicio"] #contenido>section.hero{
 }
 html[data-geo-vista="inicio"] #contenido>section.geoc-andrea-map{
   background:var(--geo-fondo-trigo)!important;
-}
-/* Problema: cifras en dorado tenue y explicación sobre crema. */
-html[data-geo-vista="problema"] #contenido>section.stat-band{
-  background:var(--geo-fondo-trigo)!important;
-}
-html[data-geo-vista="problema"] #contenido>section.problem{
-  background:var(--geo-fondo-crema)!important;
 }
 /* Modelo: variaciones suaves entre investigación, explicación y demostraciones. */
 html[data-geo-vista="modelo"] #contenido>section.narrative{
