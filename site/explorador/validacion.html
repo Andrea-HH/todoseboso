@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e34">
+  <meta name="description" content="GeoCebada: plataforma de inteligencia agrícola para explorar 59 estimaciones verificadas de rendimiento de cebada y comprender el método Local04D.">
+  <title>Validación del modelo | GeoCebada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="announcement"><span class="announcement-dot" aria-hidden="true"></span> INVESTIGACIÓN APLICADA · RETO AGROCEBADA FIRA 2026 <span class="announcement-right">CICLO AGRÍCOLA 2025</span></div>
+  <header class="header" id="inicio">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="GeoCebada, volver al inicio">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M17 29V11M17 21c-8 0-10-4-10-11 7 0 10 3 10 11Zm0-5c0-8 3-12 10-12 0 7-3 12-10 12Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>geo<span class="brand-accent">cebada</span><small>FIELD INTELLIGENCE</small></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <a href="./index.html" data-page="mapa">Mapa satelital</a>
+        <details class="nav-research">
+          <summary>Investigación <span class="nav-research-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="nav-research-panel">
+            <span class="nav-research-kicker">CONOCE EL PROYECTO</span>
+            <a href="./reto.html" data-page="reto"><span class="nav-research-num">01</span><span>El reto<small>Problema y fuentes</small></span></a>
+            <a href="./solucion.html" data-page="solucion"><span class="nav-research-num">02</span><span>Cómo se desarrolló<small>Método y validación</small></span></a>
+            <a href="./resultados.html" data-page="resultados"><span class="nav-research-num">03</span><span>Resultados<small>Evidencia y conclusiones</small></span></a>
+          </div>
+        </details>
+        <a href="./dashboard.html" data-page="dashboard">Dashboard</a>
+        <a class="nav-button" href="./nueva-parcela.html" data-page="nueva-parcela">Nueva parcela <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="validation-section section" id="validacion"><div class="shell"><div class="section-heading split-heading"><div><div class="kicker"><span class="kicker-line"></span> 04 / EVIDENCIA CIENTÍFICA</div><h2>Una decisión basada <em>en validación.</em></h2></div><p>El rendimiento real de las 59 parcelas permanece oculto. Por eso se evalúa con parcelas etiquetadas reservadas temporalmente en experimentos reproducibles.</p></div><div class="validation-grid"><article class="validation-card"><div class="validation-card-top"><span>CHECKPOINT 07</span><span>DESARROLLO</span></div><h3>Comparación de modelos</h3><p>16 particiones target-matched (97 para entrenar y 41 pseudo-objetivos por partición).</p><div class="comparison-chart" id="chart07"></div><small>RMSE pooled en t/ha · menor es mejor.</small></article><article class="validation-card"><div class="validation-card-top"><span>CHECKPOINT 08</span><span>CONFIRMACIÓN</span></div><h3>Validación adicional</h3><p>16 nuevas particiones, con otro conjunto de pseudo-objetivos; comparación dentro del mismo banco.</p><div class="comparison-chart" id="chart08"></div><small>RMSE pooled en t/ha · menor es mejor.</small></article></div><p class="validation-warning"><strong>Nota de interpretación:</strong> 07 y 08 usan bancos distintos. Sus RMSE no deben interpretarse como una mejora temporal del modelo; tampoco miden el error real de las 59 parcelas ocultas.</p></div></section>
+
+  </main>
+  <footer class="footer"><div class="shell footer-inner"><div><a class="footer-brand" href="./index.html">geo<span>cebada</span></a><p>Propuesta independiente de interfaz para el Reto AgroCebada FIRA 2026.</p><small>Los resultados científicos y las predicciones provienen del proyecto GeoCebada original.</small></div><div><strong>EXPLORAR</strong><a href="./index.html">Mapa satelital</a><a href="./reto.html">El reto</a><a href="./solucion.html">Cómo se desarrolló</a><a href="./resultados.html">Resultados</a><a href="./dashboard.html">Dashboard</a><a href="./nueva-parcela.html">Nueva parcela</a></div><div><strong>FUENTES</strong><a href="https://github.com/heri-espino/GeoC" target="_blank" rel="noopener noreferrer">Repositorio científico ↗</a><a href="https://github.com/Andrea-HH/GeoCebada-Frontend-Andrea" target="_blank" rel="noopener noreferrer">Frontend independiente ↗</a><a href="./docs/FUENTES_Y_LIMITACIONES.md">Fuentes y limitaciones ↗</a></div></div><div class="shell footer-bottom"><span>© 2026 GeoCebada · Propuesta de frontend independiente</span><span>HECHO CON CIENCIA DE DATOS Y RESPETO POR EL TERRITORIO</span></div></footer>
+</body>
+</html>
