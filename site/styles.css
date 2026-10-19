@@ -206,33 +206,16 @@
  .geoc-andrea-map{padding:20px 0}
 }
 
-
-/* Ajuste de densidad: portada y explorador legibles a zoom normal, sin espacio fantasma. */
-.site-header .nav-inner{height:64px}
-.hero-grid{
-  padding-top:18px;
-  padding-bottom:20px;
-  gap:clamp(18px,2.4vw,35px);
-  align-items:center;
-}
-.hero .hero-eyebrow{margin-bottom:11px}
-.hero h1{font-size:clamp(32px,3vw,49px);line-height:1.07;margin-bottom:14px}
-.hero-description{font-size:clamp(12px,1.05vw,15px);line-height:1.55;max-width:640px}
-.hero-actions{margin:18px 0 14px}
-.hero .primary-cta{padding:11px 14px}
-.hero-metadata{font-size:9px}
-.hero-map-preview{height:clamp(305px,27vw,385px)}
-.geoc-andrea-map{padding:12px 0 19px}
-.geoc-andrea-panel-container{border-radius:14px}
+/* Contadores y filtros en el lugar de los botones de la portada. */
+.hero .hero-actions,.hero .hero-metadata{display:none!important}
+.hero-parcel-tools{width:100%;height:210px;max-width:620px;margin-top:22px;min-width:0}
+.hero-parcel-tools iframe{display:block;width:100%;height:100%;border:0;background:transparent}
+.geoc-andrea-map{padding:18px 0 25px}
+.geoc-andrea-panel-container{border-radius:16px}
+.geoc-andrea-map .geoc-andrea-panel-container iframe{height:540px}
 @media(max-width:980px){
- .hero-grid{padding-top:20px;padding-bottom:18px;gap:17px}
- .hero h1{font-size:clamp(32px,5vw,48px)}
- .hero-map-preview{height:330px}
+ .hero-parcel-tools{height:220px;margin-top:18px}
 }
-@media(max-width:600px){
- .site-header .nav-inner{height:64px}
- .hero-grid{padding-top:14px;padding-bottom:15px}
- .hero h1{font-size:clamp(30px,8vw,43px)}
- .hero-map-preview{height:305px}
- .hero-actions{margin:14px 0}
+@media(max-width:460px){
+ .hero-parcel-tools{height:290px}
 }

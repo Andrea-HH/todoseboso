@@ -45,6 +45,10 @@
           <p class="hero-description">Con los rendimientos de 138 parcelas y datos del clima, los satélites y el terreno, desarrollamos modelos para estimar la cosecha de otras 59 parcelas de Hidalgo, Puebla y Tlaxcala. Aquí explicamos cómo funcionan y qué tan bien resultaron en las pruebas.</p>
           <div class="hero-actions"><a class="primary-cta" href="#historia">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="#evidencia">Ver los resultados <span aria-hidden="true">→</span></a></div>
           <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
+          <!-- Controles originales del explorador junto a la pregunta, sin duplicarlos debajo. -->
+          <div class="hero-parcel-tools" aria-label="Filtros y selección de parcelas">
+            <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="eager"></iframe>
+          </div>
         </div>
         <!-- Vista del mapa en el lugar de la ilustración original; la ilustración queda oculta. -->
         <div class="hero-map-preview" aria-label="Mapa interactivo de las parcelas">
@@ -87,36 +91,41 @@
     <!-- Panel de exploración: se mantiene un solo mapa visible, a la derecha de la pregunta. -->
     <section class="geoc-andrea-map" id="mapa-interactivo" aria-label="Explorador geográfico: filtros y fichas de parcelas">
       <div class="geoc-andrea-panel-container">
-        <iframe id="geoc-andrea-panel-frame" title="Explorador geográfico: filtrar y consultar parcelas" src="./explorador/mapa.html?vista=panel" loading="eager"></iframe>
+        <iframe id="geoc-andrea-panel-frame" title="Explorador geográfico: filtrar y consultar parcelas" src="./explorador/mapa.html?vista=fichas" loading="eager"></iframe>
       </div>
     </section>
     <script>
+      // Las tres vistas comparten la misma selección; no hay modelos ni datos duplicados.
       (function () {
-        const panel = document.getElementById('geoc-andrea-panel-frame');
-        const mapa = document.getElementById('geoc-andrea-hero-frame');
+        const controls = document.getElementById('geoc-andrea-controls-frame');
+        const map = document.getElementById('geoc-andrea-hero-frame');
+        const details = document.getElementById('geoc-andrea-panel-frame');
+        const frames = [controls,map,details];
         const ready = new Set();
-        let lastSync = null;
-        window.addEventListener('message', function (evento) {
-          if (evento.origin !== window.location.origin) return;
-          const fromPanel = evento.source === panel.contentWindow;
-          const fromMap = evento.source === mapa.contentWindow;
-          if (!fromPanel && !fromMap) return;
-          const datos = evento.data;
-          if (!datos || typeof datos !== 'object') return;
-          if (datos.tipo === 'geocebada-andrea-altura' && fromPanel && Number.isFinite(datos.altura)) {
-            panel.style.height = Math.max(300, Math.min(2500, datos.altura + 2)) + 'px';
+        let lastCommand = null;
+        window.addEventListener('message', function (event) {
+          if (event.origin !== window.location.origin) return;
+          const sender = frames.find(frame=>frame.contentWindow===event.source);
+          if (!sender || !event.data || typeof event.data!=='object') return;
+          const data = event.data;
+          if (data.tipo==='geocebada-andrea-altura' && sender===details &&
+              Number.isFinite(data.altura)) {
+            details.style.height = Math.max(190,Math.min(3200,data.altura+2))+'px';
           }
-          if (datos.tipo === 'geocebada-andrea-listo') {
-            ready.add(evento.source);
-            if (lastSync && lastSync.source !== evento.source) {
-              evento.source.postMessage(lastSync.data, window.location.origin);
+          if (data.tipo==='geocebada-andrea-listo') {
+            ready.add(sender);
+            if (lastCommand && lastCommand.source!==sender && sender.contentWindow) {
+              sender.contentWindow.postMessage(lastCommand.data,window.location.origin);
             }
           }
-          if (datos.tipo === 'geocebada-andrea-sincronizar' &&
-              ['seleccionar', 'filtrar', 'reiniciar'].includes(datos.accion)) {
-            lastSync = { source: evento.source, data: datos };
-            const destino = fromPanel ? mapa.contentWindow : panel.contentWindow;
-            if (ready.has(destino)) destino.postMessage(datos, window.location.origin);
+          if (data.tipo==='geocebada-andrea-sincronizar' &&
+              ['seleccionar','filtrar','reiniciar'].includes(data.accion)) {
+            lastCommand={source:sender,data};
+            for (const frame of frames) {
+              if (frame!==sender && ready.has(frame) && frame.contentWindow) {
+                frame.contentWindow.postMessage(data,window.location.origin);
+              }
+            }
           }
         });
       })();

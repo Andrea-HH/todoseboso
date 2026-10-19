@@ -261,33 +261,65 @@ html.geo-mapa-solo .geo-map-bottom button{font-size:10px;padding:6px 8px}
   html.geo-panel-solo .geo-climate-grid{grid-template-columns:1fr}
   html.geo-panel-solo .geo-legend{padding:14px 16px}
 }
-/* Ajustes de altura y claridad del explorador a zoom 100 %. */
-html.geo-panel-solo .geo-panel-controls{padding:18px clamp(18px,2.4vw,32px);gap:11px 22px}
-html.geo-panel-solo .geo-panel-heading h2{font-size:clamp(26px,2vw,35px);margin:4px 0 5px}
-html.geo-panel-solo .geo-panel-heading p{font-size:12px;line-height:1.42}
-html.geo-panel-solo .geo-panel-heading .geo-panel-instruction{display:none}
-html.geo-panel-solo .geo-counter{min-height:64px;padding:8px 11px;gap:2px}
-html.geo-panel-solo .geo-counter span{font-size:11px}
-html.geo-panel-solo .geo-counter strong{font-size:clamp(23px,2.2vw,32px)}
-html.geo-panel-solo .geo-filters{gap:4px 16px}
-html.geo-panel-solo .geo-filters label{font-size:12px}
-html.geo-panel-solo .geo-filters select{min-height:37px;padding:6px 10px;font-size:13px}
-html.geo-panel-solo .geo-filter-count{padding:8px 12px;font-size:12px}
-html.geo-panel-solo .geo-detail{min-height:0;padding:20px clamp(18px,2.5vw,35px)}
-html.geo-panel-solo .geo-detail h3{font-size:clamp(24px,2.2vw,34px)}
-html.geo-panel-solo .geo-detail .geo-yield{margin-top:15px;padding:12px}
-html.geo-panel-solo .geo-climate{padding:20px clamp(18px,2.5vw,35px)}
-html.geo-panel-solo .geo-climate h3{font-size:clamp(21px,2vw,28px)}
-html.geo-panel-solo .geo-climate-grid{gap:8px}
-html.geo-panel-solo .geo-climate-metric{padding:9px 11px;gap:2px}
-html.geo-panel-solo .geo-climate-metric strong{font-size:16px}
-html.geo-panel-solo .geo-legend{padding:10px clamp(18px,2.5vw,35px)}
-@media(max-width:1040px){
- html.geo-panel-solo .geo-panel-controls{gap:12px}
+
+/* Controles de las 197 parcelas, integrados bajo la pregunta. */
+html.geo-controles-solo,html.geo-controles-solo body,
+html.geo-controles-solo main{height:100%;margin:0;background:transparent;overflow:hidden}
+html.geo-controles-solo .geo-workspace{padding:0;background:transparent;height:100%;min-height:0;overflow:hidden}
+html.geo-controles-solo .geo-shell{display:block;height:100%;min-height:0;max-width:none;width:100%;margin:0;background:transparent;border:0;border-radius:0;box-shadow:none;overflow:hidden}
+html.geo-controles-solo .geo-sidebar{display:block;height:100%;max-height:none;min-height:0;overflow:visible;padding:0;background:transparent}
+html.geo-controles-solo .geo-panel-controls{display:flex;flex-direction:column;gap:12px;align-items:stretch;padding:0;background:transparent}
+html.geo-controles-solo .geo-panel-heading,
+html.geo-controles-solo .geo-panel-results,
+html.geo-controles-solo .geo-filter-count{display:none!important}
+html.geo-controles-solo .geo-quick-stats{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:none;gap:8px;
 }
-@media(max-width:560px){
- html.geo-panel-solo .geo-panel-controls{padding:14px 13px}
- html.geo-panel-solo .geo-detail,html.geo-panel-solo .geo-climate{padding:17px 13px}
+html.geo-controles-solo .geo-counter{min-width:0;min-height:86px;padding:10px 12px;gap:4px}
+html.geo-controles-solo .geo-counter span{min-height:0;font-size:11px;line-height:1.2;overflow-wrap:anywhere}
+html.geo-controles-solo .geo-counter strong{font-size:clamp(24px,2.2vw,34px)}
+html.geo-controles-solo .geo-filters{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ grid-template-areas:"state-label parcel-label" "state-select parcel-select";
+ align-items:end;gap:6px 12px;min-width:0;
+}
+html.geo-controles-solo .geo-filters label{margin:0;font-size:12px}
+html.geo-controles-solo .geo-filters label[for="map-state"]{grid-area:state-label}
+html.geo-controles-solo .geo-filters label[for="map-parcel-select"]{grid-area:parcel-label}
+html.geo-controles-solo #map-state{grid-area:state-select}
+html.geo-controles-solo #map-parcel-select{grid-area:parcel-select}
+html.geo-controles-solo .geo-filters select{min-height:42px;min-width:0;font-size:12px;padding:8px 10px}
+html.geo-controles-solo .geo-map-wrap,
+html.geo-fichas-solo .geo-map-wrap{
+ position:absolute!important;left:-10000px!important;top:0!important;
+ width:680px!important;height:650px!important;min-height:650px!important;
+ visibility:hidden!important;pointer-events:none!important
+}
+/* Debajo del mapa únicamente la ficha seleccionada y sus condiciones climáticas. */
+html.geo-fichas-solo .geo-workspace{padding:0}
+html.geo-fichas-solo .geo-shell{width:100%;max-width:none;margin:0;box-shadow:none}
+html.geo-fichas-solo .geo-sidebar{max-height:none;min-height:0;height:auto;padding:0;overflow:visible}
+html.geo-fichas-solo .geo-panel-controls{display:none!important}
+html.geo-fichas-solo .geo-panel-results{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ grid-template-areas:"detail climate";align-items:start;min-width:0;
+ background:#fffefa;border:0;
+}
+html.geo-fichas-solo .geo-detail{grid-area:detail;min-height:0;padding:clamp(24px,3vw,42px);border:0}
+html.geo-fichas-solo .geo-climate{grid-area:climate;min-width:0;padding:clamp(24px,3vw,42px);border-top:0;border-left:1px solid #dce5d9}
+html.geo-fichas-solo .geo-climate-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html.geo-fichas-solo .geo-legend{display:none!important}
+@media(max-width:820px){
+ html.geo-fichas-solo .geo-panel-results{grid-template-columns:1fr;grid-template-areas:"detail" "climate"}
+ html.geo-fichas-solo .geo-climate{border-left:0;border-top:1px solid #dce5d9}
+}
+@media(max-width:420px){
+ html.geo-controles-solo .geo-counter{padding:8px 6px;min-height:78px}
+ html.geo-controles-solo .geo-counter strong{font-size:26px}
+ html.geo-controles-solo .geo-filters{grid-template-columns:1fr;grid-template-areas:"state-label" "state-select" "parcel-label" "parcel-select"}
+ html.geo-controles-solo .geo-filters select{min-height:40px}
+ html.geo-fichas-solo .geo-detail,html.geo-fichas-solo .geo-climate{padding:22px 16px}
+ html.geo-fichas-solo .geo-climate-grid{grid-template-columns:1fr}
 }
 
 </style>
@@ -296,6 +328,8 @@ html.geo-panel-solo .geo-legend{padding:10px clamp(18px,2.5vw,35px)}
   if(vista==='mapa') document.documentElement.classList.add('geo-mapa-solo');
   if(vista==='mini-explorador') document.documentElement.classList.add('geo-mini-explorador');
   if(vista==='panel') document.documentElement.classList.add('geo-panel-solo');
+  if(vista==='controles') document.documentElement.classList.add('geo-panel-solo','geo-controles-solo');
+  if(vista==='fichas') document.documentElement.classList.add('geo-panel-solo','geo-fichas-solo');
 </script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
   <script src="./parcel-map.js" defer></script>
