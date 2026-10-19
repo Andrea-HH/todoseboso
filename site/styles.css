@@ -691,3 +691,64 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
 @media(max-width:740px){
   .site-header .nav-current-view{font-size:13px;letter-spacing:.12em}
 }
+
+/* GeoCebada · contraste bosque y acentos trigo, sin rediseñar el sitio. */
+.site-footer{
+  background:#173E34!important;
+  color:#FFF9EB!important;
+  border-top:1px solid #406755;
+}
+.site-footer .footer-brand,
+.site-footer .footer-main a,
+.site-footer .footer-links a,
+.site-footer .footer-bottom a{color:#FFF9EB!important}
+.site-footer .footer-brand span{color:#E6BB69!important}
+.site-footer .footer-main p,
+.site-footer .footer-bottom,
+.site-footer .footer-links{color:#E9EBDD!important}
+.site-footer .footer-bottom{border-top-color:rgba(250,244,222,.27)!important}
+.site-footer a:hover{text-decoration-color:#E6BB69}
+.site-footer a:focus-visible{outline:3px solid #E6BB69;outline-offset:3px}
+/* Dorado tenue en superficies informativas. */
+#contenido>.section.technical-questions{background:#F5EBCD!important}
+#contenido>.section.delivery{background:#FBF4E5!important}
+#contenido>.section.delivery .delivery-warning{
+  background:#F4E6C6;border:1px solid #DFC897;
+  border-left:4px solid #A98031;padding:19px 22px;color:#31513C;
+}
+#contenido>.section.delivery .delivery-panel:first-child{
+  background:#173E34;color:#FFF9EB;border:1px solid #315C48;
+  border-radius:17px;
+  box-shadow:0 15px 32px rgba(22,57,43,.10);
+}
+#contenido>.section.delivery .delivery-panel:first-child h3,
+#contenido>.section.delivery .delivery-panel:first-child>p,
+#contenido>.section.delivery .delivery-panel:first-child .support-top strong,
+#contenido>.section.delivery .delivery-panel:first-child .support-label,
+#contenido>.section.delivery .delivery-panel:first-child .delivery-control{
+  color:#FFF9EB!important;
+}
+#contenido>.section.delivery .delivery-panel:first-child .support-top span,
+#contenido>.section.delivery .delivery-panel:first-child .small-note{
+  color:#E5E9D6!important;
+}
+#contenido>.section.delivery .delivery-panel:first-child .support-track,
+#contenido>.section.delivery .delivery-panel:first-child .support-mini-track{
+  background:rgba(255,249,235,.19);
+}
+#contenido>.section.delivery .delivery-panel:first-child .support-track span,
+#contenido>.section.delivery .delivery-panel:first-child .support-mini-track span{
+  background:#E6BB69;
+}
+#contenido>.section.delivery .delivery-panel:first-child #state-support{
+  background:#FFF9EB;color:#214531;border:1px solid #C1C9B2;border-radius:9px;
+}
+#contenido>.section.delivery .delivery-panel:first-child #state-support:focus-visible{
+  outline:3px solid #E6BB69;outline-offset:3px;
+}
+#contenido>.section.delivery .delivery-panel:nth-child(2){
+  background:#F3E6CA;border:1px solid #DDC693;border-radius:17px;
+}
+#contenido>.section.delivery .delivery-panel:nth-child(2) h3{color:#234A36}
+#contenido>.section.delivery .delivery-panel:nth-child(2)>p,
+#contenido>.section.delivery .delivery-panel:nth-child(2) .interval-explanation{color:#52614A!important}

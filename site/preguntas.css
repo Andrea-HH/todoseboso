@@ -129,3 +129,41 @@
 .hhi-original-figure{margin:12px 0 25px;background:#fff;padding:12px;border:1px solid var(--rule)}
 .hhi-original-figure img{display:block;max-width:100%;height:auto;margin:0 auto}
 .hhi-original-figure figcaption{font-size:12px;color:var(--muted);line-height:1.7;padding:12px 8px 4px}
+
+/* Preguntas como tarjetas suaves de cebada. Conservan todos los contenidos. */
+#contenido>.section.technical-questions .faq-columns{gap:clamp(22px,3vw,52px)}
+#contenido>.section.technical-questions .faq-columns>div{
+  background:#FFF9EC;border:1px solid #E3D4B1;border-radius:16px;
+  padding:clamp(18px,2.4vw,31px);
+  box-shadow:0 9px 26px rgba(61,59,30,.05);
+}
+#contenido>.section.technical-questions .faq-columns h3{
+  color:#234A36;border-bottom:2px solid #D7B974;
+  padding-bottom:15px;margin:0 0 10px;
+}
+#contenido>.section.technical-questions .faq-columns details{
+  border-top:1px solid #E7D6AE;
+  transition:background .17s;
+}
+#contenido>.section.technical-questions .faq-columns details:nth-of-type(even){
+  background:#FBF0D5;
+}
+#contenido>.section.technical-questions .faq-columns details:hover{
+  background:#F7E9C7;
+}
+#contenido>.section.technical-questions .faq-columns details[open]{
+  background:#F5E5BE;
+}
+#contenido>.section.technical-questions .faq-columns summary{
+  padding:20px 38px 20px 12px;color:#234A36;
+}
+#contenido>.section.technical-questions .faq-columns summary:after{right:14px;color:#466137}
+#contenido>.section.technical-questions .faq-columns details p{
+  padding:0 16px 21px 12px;color:#4D604B;
+}
+#contenido>.section.technical-questions .faq-columns summary:focus-visible{
+  outline:3px solid #98671E;outline-offset:-3px;border-radius:5px;
+}
+@media(max-width:600px){
+ #contenido>.section.technical-questions .faq-columns>div{padding:17px 12px}
+}

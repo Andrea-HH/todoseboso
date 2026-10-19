@@ -1,6 +1,6 @@
-/* Explorador espacial GeoCebada: geometrías auténticas y clima público autorizado.
- * Las 59 estimaciones originales de Reference26 proceden del proyecto FIRA_AgroCebada de Nuria.
- * Ningún rendimiento observado de entrenamiento se incorpora al visor.
+/* Explorador espacial GeoCebada: geometrías auténticas, clima y etiquetas autorizadas.
+ * Las 59 estimaciones de Reference26 provienen del proyecto FIRA_AgroCebada de Nuria.
+ * Los 138 rendimientos observados se cargan por separado y jamás se confunden con predicciones.
  */
 (() => {
   'use strict';
@@ -65,14 +65,41 @@
     return map;
   }
 
-  function recordsForMap(doc, predictions) {
+
+  // Mínimo conjunto público autorizado: solo ID y rendimiento real de las 138 parcelas.
+  async function loadObservedYields() {
+    const res=await fetch('./data/training_yields.csv',{cache:'no-store'});
+    if(!res.ok)throw new Error('No se pudieron consultar los 138 rendimientos observados.');
+    const lines=(await res.text()).trim().split(/\r?\n/);
+    const header=lines.shift()?.replace(/^\uFEFF/,'').trim();
+    if(header!=='ID_POLIGONO,RENDIMIENTO_T_HA')
+      throw new Error('Encabezados inesperados en rendimientos observados.');
+    const observed=new Map();
+    for(const row of lines){
+      const fields=row.trim().split(',');
+      if(fields.length!==2)throw new Error('Fila observada con columnas inesperadas.');
+      const [id,raw]=fields;
+      const value=Number(raw);
+      if(!/^AGC_\d+$/.test(id)||observed.has(id)||!raw||!Number.isFinite(value)||value<=0)
+        throw new Error('Rendimiento observado inválido o identificador duplicado.');
+      observed.set(id,value);
+    }
+    if(observed.size!==138)throw new Error('Se esperaban 138 rendimientos observados.');
+    return observed;
+  }
+
+  function recordsForMap(doc, predictions, observedYields = new Map()) {
     return doc.features.map(f => {
       const p = f.properties;
       const pred = predictions.get(p.ID_POLIGONO);
-      if ((p.CONJUNTO === 'PREDICCION') !== (pred !== undefined)) throw new Error(`Conjunto de ${p.ID_POLIGONO} incompatible con las 59 predicciones finales.`);
+      const observed = observedYields.get(p.ID_POLIGONO);
+      if ((p.CONJUNTO === 'PREDICCION') !== (pred !== undefined))
+        throw new Error(`Conjunto de ${p.ID_POLIGONO} incompatible con las 59 predicciones finales.`);
+      if(observedYields.size && (p.CONJUNTO === 'ENTRENAMIENTO') !== (observed !== undefined))
+        throw new Error(`Conjunto de ${p.ID_POLIGONO} incompatible con los 138 rendimientos observados.`);
       const rawArea = p['área_ha'] ?? p.area_ha ?? p.AREA_HA;
       const area = rawArea == null || rawArea === '' ? null : Number(rawArea);
-      return {id:p.ID_POLIGONO, split:p.CONJUNTO, estado:p.Estado, municipio:String(p.Municipio ?? p.municipio ?? 'No disponible'), area:Number.isFinite(area) ? area : null, pred, feature:f};
+      return {id:p.ID_POLIGONO, split:p.CONJUNTO, estado:p.Estado, municipio:String(p.Municipio ?? p.municipio ?? 'No disponible'), area:Number.isFinite(area) ? area : null, pred, observed, feature:f};
     });
   }
 
@@ -232,9 +259,14 @@
       }).addTo(map);
     }).catch(()=>{});
 
-    let predictions;
-    try {predictions=await loadOfficialPredictions();}
-    catch(e){info('Error en el CSV de predicciones: '+e.message);return;}
+    let predictions,observedYields;
+    try {
+      [predictions,observedYields]=await Promise.all([
+        loadOfficialPredictions(),loadObservedYields()
+      ]);
+      if([...observedYields.keys()].some(id=>predictions.has(id)))
+        throw new Error('Las parcelas de entrenamiento y predicción no deben tener IDs compartidos.');
+    }catch(e){info('Error al cargar los rendimientos del visor: '+e.message);return;}
 
     let records=[...predictions].map(([id,pred])=>({id,pred,split:'PREDICCION',estado:null,municipio:null,area:null,feature:null})).sort((a,b)=>a.id.localeCompare(b.id));
     let hasGeometry=false, polygonLayers=null, layerById=new Map(), currentId=null, activeSplit='TODOS';
@@ -304,15 +336,21 @@
         dt.textContent=name;dd.textContent=value;dl.append(dt,dd);
       }
       el.append(dl);
-      if(r.pred!==undefined){
-        const block=document.createElement('div');block.className='geo-yield';
+      if(r.split==='PREDICCION' && r.pred!==undefined){
+        const block=document.createElement('div');block.className='geo-yield geo-yield-pred';
         const caption=document.createElement('span');caption.textContent='RENDIMIENTO ESTIMADO';
         const figure=document.createElement('strong');figure.textContent=number(r.pred)+' t/ha';
-        const note=document.createElement('small');note.textContent='Estimación del modelo Reference26 · no es rendimiento observado.';
+        const note=document.createElement('small');note.textContent='Predicción Reference26 · aún no es una cosecha observada.';
+        block.append(caption,figure,note);el.append(block);
+      }else if(r.split==='ENTRENAMIENTO' && r.observed!==undefined){
+        const block=document.createElement('div');block.className='geo-yield geo-yield-train';
+        const caption=document.createElement('span');caption.textContent='RENDIMIENTO OBSERVADO';
+        const figure=document.createElement('strong');figure.textContent=number(r.observed)+' t/ha';
+        const note=document.createElement('small');note.textContent='Cosecha registrada para esta parcela de entrenamiento. No es una estimación.';
         block.append(caption,figure,note);el.append(block);
       }else{
         const note=document.createElement('p');note.className='geo-yield-explain';
-        note.textContent='Parcela de entrenamiento. Este visor no publica su rendimiento observado.';
+        note.textContent='Rendimiento no disponible en los archivos autorizados.';
         el.append(note);
       }
       updateClimate(r.id);
@@ -492,7 +530,7 @@
 
     function renderGeometry(raw){
       const doc=parseOfficialGeoJSON(raw);
-      const mapped=recordsForMap(doc,predictions);
+      const mapped=recordsForMap(doc,predictions,observedYields);
       // Reemplazar solo después de validar todos los registros.
       if(polygonLayers)map.removeLayer(polygonLayers);
       pinLayers.clearLayers();pinById.clear();layerById.clear();
@@ -551,7 +589,7 @@
     }
     notice.hidden=true;redraw();
     // El archivo público autorizado conserva coordenadas de la fuente original
-    // y solo las columnas climáticas mostradas en la ficha (sin rendimientos observados).
+    // y solo las columnas climáticas mostradas en la ficha; rendimientos por separado.
     async function loadPublicGeometryAndClimate(){
       const res=await fetch('./data/mapa_publico.json.gz',{cache:'no-store'});
       if(!res.ok)throw new Error('No se encontró la capa pública de parcelas.');

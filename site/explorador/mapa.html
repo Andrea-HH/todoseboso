@@ -489,6 +489,32 @@ html.geo-controles-solo .geo-panel-controls{background:transparent}
 .geo-legend-pip.trained{background:#526B36}
 .geo-legend-pip.predicted{background:#D8A63F}
 
+/* Rendimientos en el explorador: entrenamiento oliva, predicción trigo dorado. */
+html.geo-fichas-solo .geo-detail .geo-yield,
+html.geo-panel-solo .geo-detail .geo-yield{display:flex;flex-direction:column;gap:7px;padding:18px 20px;border-radius:13px}
+html.geo-fichas-solo .geo-detail .geo-yield>span,
+html.geo-panel-solo .geo-detail .geo-yield>span{font-size:11px;font-weight:800;letter-spacing:.13em}
+html.geo-fichas-solo .geo-detail .geo-yield>strong,
+html.geo-panel-solo .geo-detail .geo-yield>strong{font-size:clamp(28px,2.8vw,42px);letter-spacing:-.035em;line-height:1.2}
+html.geo-fichas-solo .geo-detail .geo-yield>small,
+html.geo-panel-solo .geo-detail .geo-yield>small{font-size:12px;line-height:1.65}
+html.geo-fichas-solo .geo-detail .geo-yield-train,
+html.geo-panel-solo .geo-detail .geo-yield-train{background:#E6EEDB;border:1px solid #BFCFA9}
+html.geo-fichas-solo .geo-detail .geo-yield-train>span,
+html.geo-panel-solo .geo-detail .geo-yield-train>span{color:#405B2D}
+html.geo-fichas-solo .geo-detail .geo-yield-train>strong,
+html.geo-panel-solo .geo-detail .geo-yield-train>strong{color:#234A34}
+html.geo-fichas-solo .geo-detail .geo-yield-train>small,
+html.geo-panel-solo .geo-detail .geo-yield-train>small{color:#4E613F}
+html.geo-fichas-solo .geo-detail .geo-yield-pred,
+html.geo-panel-solo .geo-detail .geo-yield-pred{background:#F3E4BE;border:1px solid #E0C78A}
+html.geo-fichas-solo .geo-detail .geo-yield-pred>span,
+html.geo-panel-solo .geo-detail .geo-yield-pred>span{color:#76521D}
+html.geo-fichas-solo .geo-detail .geo-yield-pred>strong,
+html.geo-panel-solo .geo-detail .geo-yield-pred>strong{color:#4E3B1D}
+html.geo-fichas-solo .geo-detail .geo-yield-pred>small,
+html.geo-panel-solo .geo-detail .geo-yield-pred>small{color:#66502C}
+
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
