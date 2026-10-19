@@ -113,7 +113,7 @@ class ResearchIntegrityTest(unittest.TestCase):
             "confianza": ("limites","estadisticas-finales"),
             "preguntas": ("preguntas",)
         }
-        pattern=r'html\\[data-research-vista="([^"]+)"\\] #contenido > section#([\\w-]+)'
+        pattern=r'html\[data-research-vista="([^"]+)"\] #contenido > section#([\w-]+)'
         light_pairs=set(re.findall(pattern,light))
         dark_pairs=set(re.findall(pattern,dark))
         for vista, ids in order.items():
