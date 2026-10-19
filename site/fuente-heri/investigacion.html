@@ -49,10 +49,9 @@
   <p class="research-kicker">GEOCEBADA · INVESTIGACIÓN APLICADA · CICLO 2025</p>
   <div data-research-intro="sabemos" class="research-intro">
     <h1>¿Qué <em>sabemos?</em></h1>
-    <p>Qué información tenemos de las 197 parcelas, cuáles rendimientos se conocen y qué observamos en clima y vegetación. Los datos, variables y gráficas originales están reunidos aquí.</p>
+    <p>Qué información tenemos de las 197 parcelas, cuáles rendimientos se conocen y qué observamos en clima y vegetación. Las mediciones y gráficas originales están reunidas aquí.</p>
     <nav class="research-topic-links" aria-label="Contenido de Qué sabemos">
      <a href="./investigacion.html?vista=sabemos#datos">Parcelas y objetivo</a>
-     <a href="./investigacion.html?vista=sabemos#variables">Las 26 variables</a>
      <a href="./investigacion.html?vista=sabemos#datos-reales">Lluvia y NDVI observados</a>
     </nav>
    </div>
@@ -60,7 +59,7 @@
    <h1>¿Cómo funciona <em>Reference26?</em></h1>
    <p>Cómo se preparan las variables, se seleccionan los vecinos y se combinan las predicciones con geología y correcciones. Incluye la metodología y los ajustes originales.</p>
    <nav class="research-topic-links" aria-label="Contenido de Modelo">
-    <a href="./investigacion.html?vista=modelo#datos">Datos</a><a href="./investigacion.html?vista=modelo#variables">26 variables</a><a href="./investigacion.html?vista=modelo#preparacion">Preparación</a>
+    <a href="./investigacion.html?vista=modelo#ensamble">Modelo Reference26</a><a href="./investigacion.html?vista=modelo#variables">Las 26 variables</a><a href="./investigacion.html?vista=modelo#preparacion">Preparación</a>
     <a href="./investigacion.html?vista=modelo#arquitectura">Arquitectura</a><a href="./investigacion.html?vista=modelo#geologia">Geología</a><a href="./investigacion.html?vista=modelo#ajuste">Entrenamiento</a>
    </nav>
   </div>
@@ -110,7 +109,7 @@
 <div class="pred59-summary" id="pred59-summary" aria-label="Resumen de las 59 estimaciones"></div>
 <div class="pred59-highlights"><div><h3>Tres parcelas como ejemplo</h3><p>Ejemplos del mínimo, valor central y máximo de las estimaciones históricas, sin representar cosechas observadas.</p></div><div id="pred59-examples" class="pred59-example-grid"></div></div>
 <div class="pred59-viz"><div class="pred59-viz-top"><div><h3>¿Cómo se distribuyen las estimaciones?</h3><p>Cada punto representa una parcela. La posición horizontal indica el rendimiento estimado, en toneladas por hectárea. Selecciona un punto para ver el identificador y su rendimiento estimado; no se muestra otra tabla de parcelas.</p></div></div><div id="pred59-plot" class="pred59-plot" role="group" aria-label="Predicciones de las parcelas por estado"></div></div>
-<div id="pred59-detail" class="pred59-detail" aria-live="polite"><p>Selecciona un punto de la gráfica para ver la estimación correspondiente. No es una cosecha observada.</p></div>
+
 
 <p class="small-note"><strong>Procedencia:</strong> resultado histórico de Reference26 con imputación por mediana calculado con 138 rendimientos de entrenamiento. Las 59 cifras y sus identificadores se leen del archivo histórico autorizado; su media se compara con el promedio documentado. La descomposición individual y el indicador R3 no se publican en este CSV, por lo que no se presentan como si estuvieran disponibles. Los rendimientos reales de estas 59 parcelas son desconocidos.</p>
 </div></div>
@@ -118,6 +117,15 @@
 </div>
 </div>
 </section>
+
+<section class="section section-soft" id="variables"><div class="shell">
+<div class="section-heading"><div><p class="eyebrow">02 · LAS ENTRADAS</p><h2>¿Qué contienen exactamente <em>las 26 variables?</em></h2></div><p>No son 26 coeficientes de una regresión. Son 26 entradas con cinco trabajos diferentes. Selecciona un grupo para leer las variables, cómo se calculan y qué significa cada una.</p></div>
+<div class="input-sum"><span><strong>4</strong> lluvia y vegetación</span><span><strong>7</strong> señales locales</span><span><strong>2</strong> coordenadas</span><span><strong>10</strong> geología</span><span><strong>3</strong> corrección</span></div>
+<div id="feature-tabs" class="feature-tabs" role="group" aria-label="Grupo de variables"><button type="button" data-feature="clima" aria-pressed="true" class="active">Lluvia y NDVI · 4</button><button type="button" data-feature="local" aria-pressed="false">Satélites y relieve · 7</button><button type="button" data-feature="ubicacion" aria-pressed="false">Coordenadas · 2</button><button type="button" data-feature="geologia" aria-pressed="false">Geología · 10</button><button type="button" data-feature="correccion" aria-pressed="false">Corrección · 3</button></div>
+<div class="feature-intro"><h3 id="feature-title">Lluvia y vegetación del ciclo</h3><p id="feature-why">Una estimación general del rendimiento a partir del ciclo de 2025.</p></div>
+<div class="feature-table-wrap"><table class="feature-table"><thead><tr><th>Variable</th><th>Cómo se obtiene</th><th>Cómo interpretarla</th></tr></thead><tbody id="feature-rows"></tbody></table></div>
+<p class="small-note">Cada variable conserva debajo su identificador exacto del código. Las categorías geológicas son códigos cartográficos, no etiquetas de calidad agrícola. <a href="https://github.com/heri-espino/todoseboso/blob/main/configs/current_champions_inputs.json" target="_blank" rel="noopener noreferrer">Inventario fuente de las 26 entradas ↗</a></p>
+</div></section>
 
 <section class="section" id="datos"><div class="shell">
 <div class="section-heading"><div><p class="eyebrow">CONTEXTO · LOS DATOS</p><h2>Sabemos lo que cosecharon 138 parcelas. <em>¿Y las otras 59?</em></h2></div><p>El rendimiento se mide en toneladas de cebada por hectárea (t/ha). Un valor de 4 t/ha significa cuatro toneladas por cada hectárea, sin importar el tamaño de la parcela.</p></div>
@@ -131,14 +139,7 @@
 </div>
 </div></section>
 
-<section class="section section-soft" id="variables"><div class="shell">
-<div class="section-heading"><div><p class="eyebrow">02 · LAS ENTRADAS</p><h2>¿Qué contienen exactamente <em>las 26 variables?</em></h2></div><p>No son 26 coeficientes de una regresión. Son 26 entradas con cinco trabajos diferentes. Selecciona un grupo para leer las variables, cómo se calculan y qué significa cada una.</p></div>
-<div class="input-sum"><span><strong>4</strong> lluvia y vegetación</span><span><strong>7</strong> señales locales</span><span><strong>2</strong> coordenadas</span><span><strong>10</strong> geología</span><span><strong>3</strong> corrección</span></div>
-<div id="feature-tabs" class="feature-tabs" role="group" aria-label="Grupo de variables"><button type="button" data-feature="clima" aria-pressed="true" class="active">Lluvia y NDVI · 4</button><button type="button" data-feature="local" aria-pressed="false">Satélites y relieve · 7</button><button type="button" data-feature="ubicacion" aria-pressed="false">Coordenadas · 2</button><button type="button" data-feature="geologia" aria-pressed="false">Geología · 10</button><button type="button" data-feature="correccion" aria-pressed="false">Corrección · 3</button></div>
-<div class="feature-intro"><h3 id="feature-title">Lluvia y vegetación del ciclo</h3><p id="feature-why">Una estimación general del rendimiento a partir del ciclo de 2025.</p></div>
-<div class="feature-table-wrap"><table class="feature-table"><thead><tr><th>Variable</th><th>Cómo se obtiene</th><th>Cómo interpretarla</th></tr></thead><tbody id="feature-rows"></tbody></table></div>
-<p class="small-note">Cada variable conserva debajo su identificador exacto del código. Las categorías geológicas son códigos cartográficos, no etiquetas de calidad agrícola. <a href="https://github.com/heri-espino/todoseboso/blob/main/configs/current_champions_inputs.json" target="_blank" rel="noopener noreferrer">Inventario fuente de las 26 entradas ↗</a></p>
-</div></section>
+
 
 <section class="section section-soft" id="datos-reales" aria-label="Lluvia y vegetación observadas en las 197 parcelas"><div class="shell"><div class="observed-data-panel">
 <div class="real-data-figure" >
@@ -397,6 +398,14 @@
 
 
 
-</main><footer class="model-footer"><div class="shell"><strong>GeoCebada · AgroCebada FIRA 2026</strong><span>Reference26 · Diagnóstico LOOCV · Investigación retrospectiva de 2025</span><a href="../index.html">Volver al inicio ↑</a></div></footer>
+</main>
+<nav class="research-next" aria-label="Navegación entre páginas"><div class="shell">
+ <div data-next-view="sabemos"><span>SIGUIENTE PÁGINA</span><a href="./investigacion.html?vista=modelo">¿Cómo funciona el modelo? <span aria-hidden="true">→</span></a></div>
+ <div data-next-view="modelo"><span>SIGUIENTE PÁGINA</span><a href="./investigacion.html?vista=resultados">Resultados <span aria-hidden="true">→</span></a></div>
+ <div data-next-view="resultados"><span>SIGUIENTE PÁGINA</span><a href="./investigacion.html?vista=confianza">¿Qué tanta confianza merece? <span aria-hidden="true">→</span></a></div>
+ <div data-next-view="confianza"><span>SIGUIENTE PÁGINA</span><a href="./investigacion.html?vista=preguntas">Preguntas frecuentes <span aria-hidden="true">→</span></a></div>
+ <div data-next-view="preguntas"><span>SIGUIENTE PÁGINA</span><a href="../index.html">Volver al inicio · Explorar parcelas <span aria-hidden="true">→</span></a></div>
+</div></nav>
+<footer class="model-footer"><div class="shell"><strong>GeoCebada · AgroCebada FIRA 2026</strong><span>Reference26 · Diagnóstico LOOCV · Investigación retrospectiva de 2025</span><a href="../index.html">Volver al inicio ↑</a></div></footer>
 
 </body></html>
