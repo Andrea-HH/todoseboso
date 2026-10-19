@@ -39,9 +39,9 @@ class ResearchIntegrityTest(unittest.TestCase):
         research=Document()
         original.feed((SOURCE/"index.html").read_text(encoding="utf-8"))
         research.feed((SOURCE/"investigacion.html").read_text(encoding="utf-8"))
-        self.assertEqual((set(original.sections)-{"mapa-interactivo","recorrido"})|{"datos-reales"},set(research.sections))
-        self.assertEqual(len(original.sections)-1,len(research.sections))
-        for indicator in ("pred59-plot","pred59-rows","real-rainfall","real-ndvi",
+        self.assertEqual((set(original.sections)-{"mapa-interactivo","recorrido"})|{"datos-reales","predicciones-59"},set(research.sections))
+        self.assertEqual(len(original.sections),len(research.sections))
+        for indicator in ("pred59-plot","pred59-detail","real-rainfall","real-ndvi",
                           "cluster-list","feature-rows","performance-chart",
                           "r3-comparison","association-chart","distribution-quantiles",
                           "r26-moran-chart","r26-geary-chart","r26-variogram-chart",
@@ -66,6 +66,18 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertNotIn("native_map.js",text)
         self.assertIn('class="research-original-diagram"',text)
         self.assertIn("24 parcelas cercanas",text)
+        self.assertIn('href="../assets/favicon-trigo.png"',text)
+        self.assertNotIn('class="pred59-explorer"',text)
+        self.assertNotIn('id="pred59-rows"',text)
+        self.assertNotIn('id="pred59-search"',text)
+        self.assertNotIn('id="pred59-state"',text)
+        self.assertNotIn("Consultar las 59 predicciones",text)
+        self.assertEqual(text.count('id="predicciones-59"'),1)
+        for plot in ("parcel-coverage","real-rainfall","real-ndvi",
+                     "performance-chart","association-chart","r3-comparison",
+                     "distribution-quantiles","r26-moran-chart","r26-geary-chart",
+                     "r26-variogram-chart","r26-bootstrap-chart"):
+            self.assertEqual(text.count('id="'+plot+'"'),1,plot)
 
     def test_routes_cover_all_original_chapters(self):
         style=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
@@ -73,7 +85,7 @@ class ResearchIntegrityTest(unittest.TestCase):
             self.assertIn('data-research-vista="'+item+'"',style)
         for id_ in ("ensamble","datos","variables","datos-reales","preparacion",
                     "arquitectura","geologia","faltantes","ajuste","resultados",
-                    "pruebas","limites","preguntas","estadisticas-finales"):
+                    "pruebas","limites","preguntas","estadisticas-finales","predicciones-59"):
             self.assertIn("#"+id_,style)
         original=(SITE/"index.html").read_text(encoding="utf-8")
         self.assertIn('id="geoc-andrea-hero-frame"',original)
@@ -95,7 +107,10 @@ class ResearchIntegrityTest(unittest.TestCase):
         script=(SOURCE/"research-59-archive.js").read_text(encoding="utf-8")
         self.assertIn("../explorador/data/predictions.csv",script)
         self.assertIn("../explorador/data/mapa_publico.json.gz",script)
-        self.assertIn("No publicado en el CSV",script)
+        self.assertIn("desglose individual de clima",script)
+        self.assertNotIn("pred59-rows",script)
+        self.assertNotIn("pred59-state",script)
+        self.assertNotIn("pred59-search",script)
         self.assertNotIn("Math.random(",script)
         self.assertNotIn("!window.GeoCebadaPredictions",script)
 
