@@ -234,3 +234,33 @@ Estas pruebas comprueban la coincidencia numérica de los agregados,
 los intervalos de confianza, las cantidades representadas en los SVG,
 los textos alternativos y la existencia de todos los elementos de la página.
 No se entrenan modelos ni se publican las 59 predicciones individuales.
+
+
+## Explorador: rendimientos observados autorizados (octubre de 2026)
+
+La presentación científica original de `site/data/` sigue utilizando los mismos
+agregados. El explorador integrado se encuentra en `site/explorador/` y tiene
+dos conjuntos **diferentes** de valores por `ID_POLIGONO`:
+
+- `data/training_yields.csv`: **138 rendimientos observados** (t/ha) extraídos
+  sin transformar del archivo original `data/private/parcel_features_competition.csv`
+  incluido en `GeoCebada-Frontend-Andrea 2.zip`. Se publican con autorización
+  de su titular únicamente las columnas `ID_POLIGONO,RENDIMIENTO_T_HA`.
+  No se incluye el resto de las variables privadas.
+- `data/predictions.csv`: las **59 estimaciones originales de Reference26**,
+  sin alterar sus valores. Son estimaciones; no se conocen todavía las
+  cosechas reales de esas 59 parcelas.
+
+Los dos CSV tienen IDs disjuntos y se cruzan exclusivamente por
+`ID_POLIGONO` con las 197 geometrías del mapa. El visor muestra
+**RENDIMIENTO OBSERVADO** para entrenamiento y **RENDIMIENTO ESTIMADO** para
+predicción. No se entrena un modelo ni se calcula una nueva predicción.
+
+Para comprobar que la publicación solo incluye estos campos, y que ninguna
+etiqueta se mezcla con el conjunto de predicción:
+
+```bash
+python -m unittest discover -s tests -p 'test_public_map_yields.py'
+```
+
+Fuente y límites: [PROCEDENCIA.md](explorador/data/PROCEDENCIA.md).
