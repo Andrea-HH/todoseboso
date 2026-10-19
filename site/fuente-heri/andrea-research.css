@@ -2,7 +2,7 @@
    Solo presentación: NO modifica datos, gráficos, parámetros ni cálculos. */
 :root{
  --forest:#173E34;--forest2:#214C3C;--pine:#245848;--jade:#526E4B;
- --gold:#E6BA62;--cream:#FCF8F0;--paper:#FFFDF8;--mist:#EEF1E6;
+ --gold:#E6BA62;--cream:#F4EEE4;--paper:#FFFDF8;--mist:#EEF1E6;
  --ink:#223D33;--muted:#60705F;--rule:#E4D9C9;--max:1200px;
  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
  --sans:"Aptos","Inter","Segoe UI",Arial,sans-serif;
@@ -47,9 +47,9 @@ html[data-research-vista="preguntas"] [data-research-intro="preguntas"]{display:
 html[data-research-vista] #contenido>section{display:none!important}
 html[data-research-vista] #contenido>.stat-band{display:none!important}
 html[data-research-vista="sabemos"] #contenido>section#datos,
-html[data-research-vista="sabemos"] #contenido>section#variables,
 html[data-research-vista="sabemos"] #contenido>section#datos-reales,
 html[data-research-vista="modelo"] #contenido>section#ensamble,
+html[data-research-vista="modelo"] #contenido>section#variables,
 html[data-research-vista="modelo"] #contenido>section#preparacion,
 html[data-research-vista="modelo"] #contenido>section#arquitectura,
 html[data-research-vista="modelo"] #contenido>section#geologia,
@@ -67,7 +67,7 @@ html[data-research-vista="resultados"] #contenido>section#predicciones-59{paddin
 #contenido #predicciones-59 .pred59-viz{background:var(--paper)!important}
 #contenido>section.section{padding-top:75px;padding-bottom:77px;scroll-margin-top:95px}
 #contenido>section.section:nth-of-type(odd){background:var(--cream)!important}
-#contenido>section.section:nth-of-type(even){background:#F5EBD7!important}
+#contenido>section.section:nth-of-type(even){background:#EFE3D0!important}
 #contenido #arquitectura,#contenido #estadisticas-finales{background:var(--cream)!important;color:var(--ink)!important}
 #contenido #arquitectura h2,#contenido #arquitectura h3,#contenido #arquitectura p,#contenido #arquitectura strong,#contenido #arquitectura .section-heading p{color:var(--forest)}
 #contenido #arquitectura .math-scroll{color:var(--ink)}
@@ -107,7 +107,7 @@ html[data-research-vista="resultados"] #contenido>section#predicciones-59{paddin
 #contenido #estadisticas-finales .r26-tab[aria-selected="true"]{background:var(--forest);color:#fff}
 #contenido .pred59-summary-item,#contenido .pred59-detail,#contenido .pred59-viz{background:var(--paper)!important}
 #contenido #predicciones-59{background:var(--cream)!important}
-#contenido .pred59-example{border-color:#cabda7;background:#fcf8ef}
+#contenido .pred59-example{border-color:#cabda7;background:#faf4e9}
 #contenido .pred59-dot.tone-0{background:#2d604d}
 #contenido .pred59-dot.tone-1{background:#bd8f4b}
 #contenido .pred59-dot.tone-2{background:#698150}
@@ -155,3 +155,27 @@ html[data-research-vista="resultados"] #contenido>section#predicciones-59{paddin
 html[data-research-vista="sabemos"] #contenido>section#datos-reales{background:var(--cream)!important}
 #contenido #datos-reales .observed-data-panel{margin:0}
 #contenido #datos-reales .real-data-figure{margin:0}
+
+/* Fondo ligeramente más cálido y oscuro en las cinco vistas de investigación. */
+html[data-research-vista] body{background:var(--cream)!important}
+html[data-research-vista] .research-chapter-heading{background:var(--cream)!important}
+#contenido>section.section-soft{background:#EFE3D0}
+#contenido #variables{background:#EFE3D0!important}
+#contenido #predicciones-59{background:var(--cream)!important}
+/* Los ejemplos y puntos dejan de fingir que abren la ficha eliminada. */
+#contenido #predicciones-59 .pred59-example-static{cursor:default}
+#contenido #predicciones-59 .pred59-example-static:hover{background:#faf4e9;border-color:#cabda7}
+#contenido #predicciones-59 .pred59-dot{cursor:help}
+#contenido #predicciones-59 .pred59-dot:hover{width:16px;height:16px;border-width:2px}
+/* Enlace visible y coherente a la siguiente página de cada vista. */
+.research-next{background:#EDE0CB;border-top:1px solid #d6c6a9;border-bottom:1px solid #d6c6a9;padding:19px 0}
+.research-next [data-next-view]{display:none}
+html[data-research-vista="sabemos"] .research-next [data-next-view="sabemos"],
+html[data-research-vista="modelo"] .research-next [data-next-view="modelo"],
+html[data-research-vista="resultados"] .research-next [data-next-view="resultados"],
+html[data-research-vista="confianza"] .research-next [data-next-view="confianza"],
+html[data-research-vista="preguntas"] .research-next [data-next-view="preguntas"]{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.research-next [data-next-view]>span{font-size:10px;letter-spacing:1.6px;font-weight:800;color:var(--jade)}
+.research-next [data-next-view]>a{font-weight:750;color:var(--forest);font-size:15px;text-decoration:none}
+.research-next [data-next-view]>a:hover{text-decoration:underline;text-underline-offset:4px}
+.research-next [data-next-view]>a:focus-visible{outline:2px solid var(--forest);outline-offset:4px}
