@@ -709,8 +709,8 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
 .site-footer a:hover{text-decoration-color:#E6BB69}
 .site-footer a:focus-visible{outline:3px solid #E6BB69;outline-offset:3px}
 /* Dorado tenue en superficies informativas. */
-#contenido>.section.technical-questions{background:#F5EBCD!important}
-#contenido>.section.delivery{background:#FBF4E5!important}
+#contenido>.section.technical-questions{background:#FBF8EF!important}
+#contenido>.section.delivery{background:#FBF8EF!important}
 #contenido>.section.delivery .delivery-warning{
   background:#F4E6C6;border:1px solid #DFC897;
   border-left:4px solid #A98031;padding:19px 22px;color:#31513C;
@@ -873,6 +873,13 @@ html[data-geo-vista="preguntas"] .geo-chapter-end[data-geo-page="preguntas"]{dis
   .geo-subnav a{font-size:11px;min-height:32px}
   .geo-chapter-end>.shell{flex-direction:column;align-items:flex-start;gap:9px}
   .geo-chapter-end a{text-align:left}
+}
+/* Las vistas Confianza y Preguntas comparten el mismo crema de toda la web.
+   Los paneles dorados y verdes internos mantienen sus acentos informativos. */
+html[data-geo-vista="confianza"] #contenido>.section.limits,
+html[data-geo-vista="confianza"] #contenido>.section.delivery,
+html[data-geo-vista="preguntas"] #contenido>.section.technical-questions{
+  background:#FBF8EF!important;
 }
 /* Sólo en problema se muestran las cuatro cifras originales; Inicio no las duplica. */
 html[data-geo-vista="problema"] #contenido>.stat-band{display:block!important}
