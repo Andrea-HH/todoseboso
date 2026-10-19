@@ -3,8 +3,8 @@
 (function () {
   'use strict';
   const labels = Object.freeze({
-    historia: 'Cómo llegamos aquí',
-    calculo: 'Cómo se calcula',
+    historia: '¿Cómo llegamos aquí?',
+    calculo: '¿Cómo se calcula?',
     pruebas: 'Qué muestran las pruebas',
     hhi: 'El experimento sin HHI',
     parcelas: 'Las 59 parcelas',

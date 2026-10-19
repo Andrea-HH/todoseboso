@@ -25,16 +25,20 @@
   <header class="site-header" id="inicio">
     <div class="shell nav-inner">
       <a href="./index.html" class="brand" aria-label="GeoCebada, ir al inicio"><span class="brand-icon brand-wheat-mark" aria-hidden="true"><img src="./assets/logo-trigo.png" alt="" width="42" height="58"></span><span>Geo<span>Cebada</span></span><small>FIRA / 2026</small></a>
-      <button class="menu-toggle" type="button" id="menu-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Abrir menú">Menú <span aria-hidden="true">☰</span></button>
-      <nav class="nav-links" id="nav-links" aria-label="Secciones del sitio">
-        <a href="./index.html?vista=historia">Cómo llegamos aquí</a>
-        <a href="./index.html?vista=calculo">Cómo se calcula</a>
-        <a href="./index.html?vista=pruebas">Qué muestran las pruebas</a>
-        <a href="./index.html?vista=hhi">El experimento sin HHI</a>
-        <a href="./index.html?vista=parcelas">Las 59 parcelas</a>
-        <a href="./index.html?vista=preguntas">Preguntas</a>
-      </nav>
-      <a class="nav-report" href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer">Ver repositorio <span aria-hidden="true">↗</span></a>
+      <details class="nav-dropdown" id="nav-dropdown">
+        <summary class="nav-dropdown-trigger">Menú <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span></summary>
+        <nav class="nav-links" id="nav-links" aria-label="Secciones del sitio">
+          <a href="./index.html">Inicio · Mapa interactivo</a>
+          <a href="./index.html?vista=historia">¿Cómo llegamos aquí?</a>
+          <a href="./index.html?vista=calculo">¿Cómo se calcula?</a>
+          <a href="./index.html?vista=pruebas">Qué muestran las pruebas</a>
+          <a href="./index.html?vista=hhi">El experimento sin HHI</a>
+          <a href="./index.html?vista=parcelas">Las 59 parcelas</a>
+          <a href="./index.html?vista=preguntas">Preguntas</a>
+          <div class="nav-dropdown-separator" role="separator"></div>
+          <a class="nav-dropdown-repository" href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer">Ver repositorio <span aria-hidden="true">↗</span></a>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -42,7 +46,7 @@
     <!-- Navegación entre vistas: el contenido de investigación original permanece intacto. -->
     <div class="geo-view-heading" role="group" aria-labelledby="geo-view-name">
       <div class="shell geo-view-heading-inner">
-        <h1 id="geo-view-name">Cómo llegamos aquí</h1>
+        <h1 id="geo-view-name">¿Cómo llegamos aquí?</h1>
       </div>
     </div>
     <section class="hero" aria-labelledby="hero-title">

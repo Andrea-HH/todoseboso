@@ -4,17 +4,21 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
+// El menú de secciones usa <details>: accesible con teclado en escritorio y móvil.
 const navigation = $("#nav-links");
-const menu = $("#menu-toggle");
-menu.addEventListener("click", () => {
-  const expanded = menu.getAttribute("aria-expanded") === "true";
-  menu.setAttribute("aria-expanded", String(!expanded));
-  navigation.classList.toggle("open", !expanded);
-});
-$$("#nav-links a").forEach((link) => link.addEventListener("click", () => {
-  navigation.classList.remove("open");
-  menu.setAttribute("aria-expanded", "false");
+const menu = $("#nav-dropdown");
+$("#nav-links a").forEach(link => link.addEventListener("click", () => {
+  menu.open = false;
 }));
+document.addEventListener("pointerdown", event => {
+  if (menu.open && !menu.contains(event.target)) menu.open = false;
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && menu.open) {
+    menu.open = false;
+    menu.querySelector("summary").focus();
+  }
+});
 
 let progressQueued = false;
 window.addEventListener("scroll", () => {
