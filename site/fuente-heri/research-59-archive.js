@@ -69,42 +69,24 @@ async function init(){
   const card=el('div','pred59-summary-item');
   card.append(el('span','',label),el('strong','',value),el('small','',extra));stats.append(card);
  }
- let chosen=sorted[29].id;
- const detail=get('pred59-detail');
- const choose=id=>{
-  const row=all.find(r=>r.id===id);
-  if(!row)return;
-  chosen=id;
-  const loc=haveGeography?row.state+(row.municipality?' · '+row.municipality:''):'Ubicación no verificada para esta gráfica';
-  detail.replaceChildren();
-  const headline=el('div','pred59-detail-head');
-  const title=el('div');
-  title.append(el('span','pred59-eyebrow','ESTIMACIÓN HISTÓRICA · COSECHA NO OBSERVADA'),el('h4','',row.id),el('p','',loc));
-  const val=el('div','pred59-yield');val.append(el('strong','',fmt(row.value,4)),el('span','','t/ha estimadas'));
-  headline.append(title,val);
-  detail.append(headline,el('p','pred59-detail-note','El desglose individual de clima, vecinos, geología y corrección no está en el CSV. El error de esta parcela no puede determinarse sin conocer su cosecha real.'));
-  document.querySelectorAll('[data-pred59-id]').forEach(b=>{
-   const active=b.dataset.pred59Id===id;
-   b.classList.toggle('active',active);
-   b.setAttribute('aria-pressed',String(active));
-  });
- };
- const makeButton=(r,cls)=>{
-  const b=el('button',cls);b.type='button';b.dataset.pred59Id=r.id;
-  b.title=r.id+' · '+fmt(r.value,4)+' t/ha (estimado)';
-  b.setAttribute('aria-label',b.title);
-  b.addEventListener('click',()=>choose(r.id));
-  return b;
- };
+ // Las tres referencias y los 59 puntos son informativos; no abren fichas
+ // individuales ni generan nuevas estimaciones.
  const examples=get('pred59-examples');examples.replaceChildren();
  for(const [label,r] of [['Menor estimación',sorted[0]],['Estimación mediana',sorted[29]],['Mayor estimación',sorted[58]]]){
-  const card=makeButton(r,'pred59-example');
+  const card=el('div','pred59-example pred59-example-static');
   card.append(el('span','pred59-eyebrow',label),
    el('strong','',fmt(r.value,3)+' t/ha'),
-   el('span','',r.id),el('small','',haveGeography?r.state+' · '+r.municipality:'Rendimiento estimado'),
-   el('span','pred59-example-link','Ver estimación →'));
+   el('span','',r.id),
+   el('small','',haveGeography?r.state+' · '+r.municipality:'Rendimiento estimado'));
   examples.append(card);
  }
+ const makePoint=(r,cls)=>{
+  const mark=el('span',cls);
+  mark.title=r.id+' · '+fmt(r.value,4)+' t/ha (estimación, no cosecha observada)';
+  mark.setAttribute('aria-label',mark.title);
+  mark.setAttribute('role','img');
+  return mark;
+ };
  const plot=get('pred59-plot');plot.replaceChildren();
  const minimum=Math.floor(sorted[0].value*2)/2,maximum=Math.ceil(sorted[58].value*2)/2;
  const upper=maximum>minimum?maximum:minimum+1;
@@ -115,7 +97,7 @@ async function init(){
   const track=el('div','pred59-track');
   const matches=all.filter(r=>!haveGeography||r.state===state).sort((a,b)=>a.value-b.value);
   matches.forEach((r,j)=>{
-   const dot=makeButton(r,'pred59-dot tone-'+i%3);
+   const dot=makePoint(r,'pred59-dot tone-'+i%3);
    dot.style.left=fmt(offset(r.value),4)+'%';
    dot.style.top=(14+(j%3)*19)+'px';
    track.append(dot);
@@ -130,7 +112,6 @@ async function init(){
  }
  axis.append(ticks);plot.append(axis);
  plot.append(el('p','pred59-axis-name','Rendimiento estimado (t/ha). Cada punto representa una de las 59 parcelas sin rendimiento observado.'));
- choose(chosen);
  root.hidden=false;
  status.textContent=haveGeography?
   '59 estimaciones y estados verificados contra los datos públicos autorizados. Ninguna representa una cosecha observada.':
