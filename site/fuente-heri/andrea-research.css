@@ -55,17 +55,16 @@ html[data-research-vista="modelo"] #contenido>section#arquitectura,
 html[data-research-vista="modelo"] #contenido>section#geologia,
 html[data-research-vista="modelo"] #contenido>section#faltantes,
 html[data-research-vista="modelo"] #contenido>section#ajuste,
-html[data-research-vista="resultados"] #contenido>section#ensamble,
+html[data-research-vista="resultados"] #contenido>section#predicciones-59,
 html[data-research-vista="resultados"] #contenido>section#resultados,
 html[data-research-vista="resultados"] #contenido>section#pruebas,
 html[data-research-vista="confianza"] #contenido>section#estadisticas-finales,
 html[data-research-vista="confianza"] #contenido>section#limites,
 html[data-research-vista="preguntas"] #contenido>section#preguntas{display:block!important}
-html[data-research-vista="modelo"] #ensamble #reference26-view{display:none!important}
-html[data-research-vista="resultados"] #ensamble>.shell{display:none!important}
-html[data-research-vista="resultados"] #ensamble{padding:0!important}
-html[data-research-vista="resultados"] #ensamble #reference26-view{display:block!important}
-html[data-research-vista="resultados"] #predicciones-59{padding-top:53px!important}
+html[data-research-vista="resultados"] #contenido>section#predicciones-59{padding-top:53px!important}
+#contenido #predicciones-59 .pred59-detail{margin:24px 0 6px;padding:18px 22px;border:1px solid var(--rule);background:var(--paper)}
+#contenido #predicciones-59 .pred59-detail-head{align-items:center}
+#contenido #predicciones-59 .pred59-viz{background:var(--paper)!important}
 #contenido>section.section{padding-top:75px;padding-bottom:77px;scroll-margin-top:95px}
 #contenido>section.section:nth-of-type(odd){background:var(--cream)!important}
 #contenido>section.section:nth-of-type(even){background:#F5EBD7!important}
@@ -106,7 +105,7 @@ html[data-research-vista="resultados"] #predicciones-59{padding-top:53px!importa
 #contenido #estadisticas-finales .r26-chart,#contenido #estadisticas-finales .r26-panel{background:var(--paper)}
 #contenido #estadisticas-finales .r26-eyebrow{color:var(--jade)}
 #contenido #estadisticas-finales .r26-tab[aria-selected="true"]{background:var(--forest);color:#fff}
-#contenido .pred59-summary-item,#contenido .pred59-detail,#contenido .pred59-viz,#contenido .pred59-explorer{background:var(--paper)!important}
+#contenido .pred59-summary-item,#contenido .pred59-detail,#contenido .pred59-viz{background:var(--paper)!important}
 #contenido #predicciones-59{background:var(--cream)!important}
 #contenido .pred59-example{border-color:#cabda7;background:#fcf8ef}
 #contenido .pred59-dot.tone-0{background:#2d604d}
