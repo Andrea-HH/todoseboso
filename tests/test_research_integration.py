@@ -1,0 +1,90 @@
+"""Comprueba integridad: contenido Heri + portada Andrea + datos originales.
+
+Esta batería no altera ni vuelve a entrenar ningún modelo.
+"""
+import csv
+import io
+import json
+from html.parser import HTMLParser
+from pathlib import Path
+import unittest
+
+ROOT=Path(__file__).resolve().parents[1]
+SITE=ROOT/"site"
+SOURCE=SITE/"fuente-heri"
+
+class Document(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids=[]
+        self.assets=[]
+        self.links=[]
+        self.sections=[]
+    def handle_starttag(self,tag,attributes):
+        a=dict(attributes)
+        if a.get("id"):
+            self.ids.append(a["id"])
+            if tag=="section":
+                self.sections.append(a["id"])
+        if tag=="script" and a.get("src"):
+            self.assets.append(a["src"])
+        if tag=="link" and a.get("href","").startswith("./"):
+            self.assets.append(a["href"])
+        if tag=="a" and a.get("href","").startswith("./investigacion.html?"):
+            self.links.append(a["href"])
+
+class ResearchIntegrityTest(unittest.TestCase):
+    def test_full_original_sections_and_figures_are_preserved(self):
+        original=Document()
+        research=Document()
+        original.feed((SOURCE/"index.html").read_text(encoding="utf-8"))
+        research.feed((SOURCE/"investigacion.html").read_text(encoding="utf-8"))
+        self.assertEqual(set(original.sections),set(research.sections))
+        self.assertEqual(len(original.sections),len(research.sections))
+        for indicator in ("pred59-plot","pred59-rows","real-rainfall","real-ndvi",
+                          "cluster-list","feature-rows","performance-chart",
+                          "r3-comparison","association-chart","distribution-quantiles",
+                          "r26-moran-chart","r26-geary-chart","r26-variogram-chart",
+                          "r26-bootstrap-chart","geo-leaflet-map"):
+            self.assertIn(indicator,research.ids)
+        self.assertEqual(len(research.ids),len(set(research.ids)))
+        for relative in research.assets:
+            self.assertTrue((SOURCE/relative).is_file(),relative)
+        text=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        self.assertNotIn("FUENTE ORIGINAL · CONTENIDO ÍNTEGRO",text)
+        self.assertNotIn("geo-heri-disclosure",text)
+        self.assertNotIn("browser_inference.js",text)
+        self.assertIn("research-59-archive.js",text)
+
+    def test_routes_cover_all_original_chapters(self):
+        style=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
+        for item in ("modelo","resultados","confianza","preguntas"):
+            self.assertIn('data-research-vista="'+item+'"',style)
+        for id_ in ("recorrido","ensamble","datos","variables","preparacion",
+                    "arquitectura","geologia","faltantes","ajuste","resultados",
+                    "pruebas","limites","preguntas","estadisticas-finales",
+                    "mapa-interactivo"):
+            self.assertIn("#"+id_,style)
+        original=(SITE/"index.html").read_text(encoding="utf-8")
+        self.assertIn('id="geoc-andrea-hero-frame"',original)
+        self.assertIn('id="geoc-andrea-controls-frame"',original)
+        self.assertIn('id="geoc-andrea-panel-frame"',original)
+        self.assertIn("fuente-heri/investigacion.html?vista=modelo",original)
+        self.assertIn("fuente-heri/investigacion.html?vista=resultados",original)
+
+    def test_original_59_estimates_not_recomputed(self):
+        csv_content=(SITE/"explorador/data/predictions.csv").read_text(encoding="utf-8")
+        rows=list(csv.DictReader(io.StringIO(csv_content)))
+        self.assertEqual(len(rows),59)
+        ids=[r["ID_POLIGONO"] for r in rows]
+        self.assertEqual(len(set(ids)),59)
+        values=[float(r["RENDIMIENTO_T_HA"]) for r in rows]
+        self.assertAlmostEqual(sum(values)/59,3.956432328667021,places=7)
+        script=(SOURCE/"research-59-archive.js").read_text(encoding="utf-8")
+        self.assertIn("../explorador/data/predictions.csv",script)
+        self.assertIn("../explorador/data/mapa_publico.json.gz",script)
+        self.assertIn("No publicado en el CSV",script)
+        self.assertNotIn("Math.random(",script)
+
+if __name__=="__main__":
+    unittest.main()
