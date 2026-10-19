@@ -14,7 +14,7 @@ on:
       - "results/comparison_97_41/v1/metrics.csv"
       - "README.md"
   push:
-    branches: [main]
+    branches: [main, paginAndrea]
     paths:
       - "site/**"
       - "scripts/sync_story_data.py"
@@ -64,7 +64,7 @@ jobs:
 
   deploy:
     needs: validate
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/paginAndrea') && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
