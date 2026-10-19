@@ -1,4 +1,4 @@
-/* Archivo histórico Reference26: gráfico de Heri sin tabla duplicada.
+/* Archivo histórico Reference26: resumen y ejemplos numéricos sin gráfica ni tabla.
    CSV auténtico, valores desconocidos nunca representados como observaciones.
    Las 59 estimaciones originales no se reentrenan ni recalculan. */
 (function(){
