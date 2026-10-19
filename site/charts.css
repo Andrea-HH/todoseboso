@@ -37,3 +37,10 @@
 @media(prefers-reduced-motion:reduce){
  .research-svg .figure-point{transition:none}
 }
+
+/* The interval estimates now appear in the interactive forest plot.
+   Keep their numeric source values in the DOM for the existing protocol state
+   and accessible text, but do not display competing progress-bar graphics. */
+.hhi-results > .hhi-score-row,.hhi-results > .ci-scale,
+.hhi-results > .ci-track{display:none}
+#hhi-forest{border-top:1px solid var(--rule);padding-top:14px}
