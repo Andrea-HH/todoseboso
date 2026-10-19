@@ -1,43 +1,52 @@
-/* GeoCebada: rutas de las seis ventanas dentro del mismo sitio.
-   No altera datos, textos, gráficas ni métodos de cálculo de Heri. */
+/* GeoCebada · seis vistas centradas en preguntas reales del visitante.
+   Los datos, gráficos y secciones históricas originales permanecen intactos. */
 (function () {
   'use strict';
   const labels = Object.freeze({
-    historia: '¿Cómo llegamos aquí?',
-    calculo: '¿Cómo se calcula?',
-    pruebas: '¿Qué muestran las pruebas?',
-    hhi: 'El experimento sin HHI',
-    parcelas: 'Las 59 parcelas',
-    preguntas: 'Preguntas'
+    problema: '¿Qué problema queremos resolver?',
+    modelo: '¿Cómo funciona el modelo?',
+    resultados: '¿Qué tan bien predice?',
+    confianza: '¿Qué tanta confianza merece?',
+    preguntas: 'Preguntas frecuentes'
   });
-  // Compatibilidad con enlaces antiguos a secciones de una sola página.
+  const aliases = Object.freeze({
+    historia:'modelo',calculo:'modelo',pruebas:'resultados',
+    hhi:'resultados',parcelas:'confianza'
+  });
   const byAnchor = Object.freeze({
-    pregunta:'historia',historia:'historia',arquitectura:'historia',componentes:'historia',
-    'de-donde-sale':'calculo',
-    significancia:'pruebas',evidencia:'pruebas',distribucion:'pruebas',
-    'retirar-hhi':'hhi',
-    cobertura:'parcelas',limites:'parcelas',
-    'preguntas-tecnicas':'preguntas'
+    'mapa-interactivo':'inicio',
+    universo:'problema',pregunta:'problema',
+    historia:'modelo',lluvia:'modelo',vecinos:'modelo',arquitectura:'modelo',
+    'de-donde-sale':'modelo',
+    evidencia:'resultados',significancia:'resultados',componentes:'resultados',
+    'retirar-hhi':'resultados','modelo-compacto':'resultados',distribucion:'resultados',
+    cobertura:'confianza',limites:'confianza',
+    'preguntas-tecnicas':'preguntas',
+    'faq-consulta':'preguntas','faq-modelo':'preguntas',
+    'faq-resultados':'preguntas','faq-validacion':'preguntas'
   });
-  const params = new URLSearchParams(window.location.search);
-  const requested = params.get('vista');
-  const fragment = decodeURIComponent(window.location.hash.slice(1));
-  const view = Object.hasOwn(labels,requested) ? requested
+  const search=new URLSearchParams(window.location.search);
+  const requested=search.get('vista');
+  const fragment=decodeURIComponent(window.location.hash.slice(1));
+  const view=requested && Object.hasOwn(labels,requested) ? requested
+    : requested && Object.hasOwn(aliases,requested) ? aliases[requested]
     : !requested && Object.hasOwn(byAnchor,fragment) ? byAnchor[fragment]
     : 'inicio';
-  document.documentElement.dataset.geoVista = view;
-  if (view !== 'inicio') {
-    // No cargar los tres mapas ocultos en páginas que solo contienen investigación.
-    // Los navegadores respetan loading=lazy para iframes ocultos.
-    document.title = labels[view] + ' · GeoCebada';
-  }
+  document.documentElement.dataset.geoVista=view;
+  if(view!=='inicio') document.title=labels[view]+' · GeoCebada';
   document.addEventListener('DOMContentLoaded',function(){
     const heading=document.getElementById('geo-view-name');
-    if (heading && labels[view]) heading.textContent=labels[view];
+    if(heading && labels[view]) heading.textContent=labels[view];
     document.querySelectorAll('#nav-links a').forEach(function(anchor){
-      const target=new URL(anchor.href,window.location.href).searchParams.get('vista');
-      if (target===view) anchor.setAttribute('aria-current','page');
+      const link=new URL(anchor.href,window.location.href);
+      const target=link.searchParams.get('vista')||'inicio';
+      if(target===view) anchor.setAttribute('aria-current','page');
       else anchor.removeAttribute('aria-current');
     });
+    // Restituye la posición al ancla incluso con CSS de rutas cargado inicialmente.
+    if(fragment){
+      const section=document.getElementById(fragment);
+      if(section) requestAnimationFrame(()=>section.scrollIntoView({block:'start'}));
+    }
   });
 })();

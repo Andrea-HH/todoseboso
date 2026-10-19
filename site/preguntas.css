@@ -167,3 +167,23 @@
 @media(max-width:600px){
  #contenido>.section.technical-questions .faq-columns>div{padding:17px 12px}
 }
+
+/* Cuatro categorías, conservando íntegras las 13 respuestas originales. */
+#contenido>.section.technical-questions .geo-faq-toc{
+  display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:2px 0 25px;
+}
+#contenido>.section.technical-questions .geo-faq-toc a{
+  color:#244937;background:#FFF9EC;border:1px solid #D8C497;border-radius:8px;
+  font-size:12px;font-weight:720;text-decoration:none;padding:9px 12px;
+}
+#contenido>.section.technical-questions .geo-faq-toc a:hover{background:#E6EDDA}
+#contenido>.section.technical-questions .geo-faq-groups{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 26px;
+}
+#contenido>.section.technical-questions .geo-faq-groups .geo-faq-group{
+  scroll-margin-top:150px;
+}
+#contenido>.section.technical-questions .geo-faq-group h3{font-size:clamp(19px,2vw,25px)}
+@media(max-width:760px){
+  #contenido>.section.technical-questions .geo-faq-groups{grid-template-columns:minmax(0,1fr)}
+}
