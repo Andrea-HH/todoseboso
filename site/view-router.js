@@ -15,10 +15,10 @@
   });
   const byAnchor = Object.freeze({
     'mapa-interactivo':'inicio',
-    'datos':'sabemos','variables':'sabemos','datos-reales':'sabemos',
+    'datos':'sabemos','variables':'modelo','datos-reales':'sabemos',
     universo:'inicio',pregunta:'inicio',
     historia:'modelo','variables-detalle':'modelo','preparacion-datos':'modelo',lluvia:'modelo',vecinos:'modelo',arquitectura:'modelo','entrenamiento-modelo':'modelo','datos-faltantes':'modelo',
-    'de-donde-sale':'modelo','datos-reales':'modelo',
+    'de-donde-sale':'modelo',
     evidencia:'resultados',significancia:'resultados',componentes:'resultados',
     'retirar-hhi':'resultados','modelo-compacto':'resultados',distribucion:'resultados','predicciones-detalle':'resultados','diagnostico-residuos':'resultados',
     cobertura:'confianza',limites:'confianza',
