@@ -619,3 +619,57 @@ button:disabled,[role="button"][aria-disabled="true"]{opacity:.63;cursor:not-all
   .site-header .nav-dropdown{order:1;margin-left:auto}
   .site-header .geo-repo-external{order:2;margin-left:0}
 }
+
+/* Título de vista dentro de la barra verde. Serif cursiva, distinto del logo. */
+.site-header .nav-current-view{
+  display:none;
+  flex:1 1 0;
+  min-width:0;
+  margin:0;
+  padding:0 12px;
+  color:#F4E2B6;
+  font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+  font-style:italic;
+  font-size:clamp(18px,1.65vw,27px);
+  font-weight:500;
+  letter-spacing:-.025em;
+  line-height:1.19;
+  text-align:center;
+  text-wrap:balance;
+}
+html[data-geo-vista]:not([data-geo-vista="inicio"]) .site-header .nav-current-view{display:block}
+html[data-geo-vista]:not([data-geo-vista="inicio"]) .site-header .nav-dropdown{margin-left:0}
+html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
+.site-header .nav-dropdown-trigger{gap:0;cursor:pointer}
+@media(max-width:900px){
+  .site-header .nav-current-view{font-size:clamp(17px,2.2vw,21px);padding:0 5px}
+}
+@media(max-width:740px){
+  .site-header .nav-inner{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto auto;
+    align-items:center;
+    column-gap:8px;
+    row-gap:6px;
+    height:auto;
+    min-height:70px;
+    padding-top:9px;
+    padding-bottom:9px;
+  }
+  .site-header .brand{grid-column:1;grid-row:1;min-width:0;max-width:100%}
+  .site-header .nav-dropdown{grid-column:2;grid-row:1;margin-left:0}
+  .site-header .geo-repo-external{grid-column:3;grid-row:1}
+  .site-header .nav-current-view{
+    grid-column:1 / -1;
+    grid-row:2;
+    width:100%;
+    padding:2px 0 3px;
+    font-size:clamp(18px,4vw,22px);
+    line-height:1.25;
+    text-align:center;
+  }
+}
+@media(max-width:390px){
+  .site-header .nav-inner{column-gap:5px}
+  .site-header .nav-current-view{font-size:18px}
+}
