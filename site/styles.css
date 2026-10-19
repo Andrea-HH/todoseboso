@@ -559,3 +559,63 @@ button:disabled,[role="button"][aria-disabled="true"]{opacity:.63;cursor:not-all
  .site-header .nav-dropdown{margin-left:auto;order:1}
  .site-header .geo-repo-external{margin-left:0;order:2}
 }
+
+/* GeoCebada · cabecera verde bosque, menú dorado y repositorio verde olivo. */
+.site-header{
+  background:#173E34;
+  color:#FFF9EB;
+  border-bottom:1px solid #426655;
+  box-shadow:0 3px 16px rgba(14,50,37,.16);
+}
+.site-header .brand{color:#FFF9EB}
+.site-header .brand>span:nth-child(2)>span{color:#E6BB69}
+.site-header .brand small{
+  color:#F2EBD5;
+  border-left-color:rgba(255,249,235,.32);
+}
+.site-header .brand-wheat-mark{
+  background:#FBF8EF;
+  box-shadow:inset 0 0 0 1px rgba(255,249,235,.25);
+}
+/* Orden visual: primero Menú, después Ver repositorio, juntos a la derecha. */
+.site-header .nav-dropdown{
+  order:1;
+  margin-left:auto;
+  margin-right:0;
+}
+.site-header .geo-repo-external{
+  order:2;
+  margin-left:0;
+  margin-right:0;
+  background:#526B36;
+  color:#FFF9EB;
+  border-color:#526B36;
+}
+.site-header .geo-repo-external:hover,
+.site-header .geo-repo-external:focus-visible{
+  background:#405C37;
+  color:#FFF9EB;
+  border-color:#405C37;
+}
+.site-header .nav-dropdown-trigger{
+  background:#E6BB69;
+  color:#263D29;
+  border-color:#E6BB69;
+}
+.site-header .nav-dropdown-trigger:hover,
+.site-header .nav-dropdown[open] .nav-dropdown-trigger{
+  background:#D5A750;
+  color:#263D29;
+  border-color:#D5A750;
+}
+/* El foco de teclado debe ser perceptible sobre el verde oscuro. */
+.site-header .nav-dropdown-trigger:focus-visible,
+.site-header .geo-repo-external:focus-visible,
+.site-header .brand:focus-visible{
+  outline:3px solid #FFDEA0;
+  outline-offset:3px;
+}
+@media(max-width:600px){
+  .site-header .nav-dropdown{order:1;margin-left:auto}
+  .site-header .geo-repo-external{order:2;margin-left:0}
+}
