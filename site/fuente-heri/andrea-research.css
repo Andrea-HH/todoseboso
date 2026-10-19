@@ -29,7 +29,7 @@ body{background:var(--cream)!important;color:var(--ink)!important;font-family:va
 .andrea-nav-items a:hover,.andrea-nav-items a[aria-current="page"]{background:#e5eace;color:#193d2f!important}
 .andrea-repo{display:inline-block;background:#596d33;color:#fff9de!important;padding:11px 16px;border-radius:10px;font-size:12px;font-weight:750;text-decoration:none}
 .andrea-repo:hover{background:#6c8145}
-.research-chapter-heading{background:#E7D4BA;padding:49px 0 30px;border-bottom:1px solid var(--rule)}
+.research-chapter-heading{background:#F3EFE7;padding:49px 0 30px;border-bottom:1px solid var(--rule)}
 .research-kicker{font-size:10px;font-weight:830;color:var(--jade);letter-spacing:2.15px;margin:0 0 15px}
 .research-intro{max-width:1050px}
 .research-intro h1{font-size:clamp(35px,4.1vw,58px);font-weight:600;letter-spacing:-.05em;line-height:1.1;color:var(--forest);margin:0 0 14px}
@@ -177,4 +177,4 @@ html[data-research-vista="preguntas"] .research-next [data-next-view="preguntas"
 
 /* Contraste limitado a la introducción (título, descripción y atajos).
  * El cuerpo y todas las secciones conservan los fondos originales. */
-html[data-research-vista] #research-chapter-heading{background-color:#E7D4BA!important}
+html[data-research-vista] #research-chapter-heading{background-color:#F3EFE7!important}
