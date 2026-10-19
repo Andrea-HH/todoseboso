@@ -11,6 +11,8 @@
   <title>¿Cuánto puede producir una parcela? · GeoCebada</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./charts.css">
+  <script src="./charts.js" defer></script>
   <script src="./app.js" defer></script>
   <script src="./preguntas.js" defer></script>
   <link rel="stylesheet" href="./preguntas.css">
@@ -103,7 +105,7 @@
 
     <section class="section rain-section" aria-labelledby="rain-title"><div class="shell rain-grid">
       <div class="rain-copy"><p class="eyebrow">PRUEBA INTERACTIVA: LA MISMA LLUVIA, DISTINTOS MESES</p><h2 id="rain-title">No sólo importa <em>cuánto llueve.</em></h2><p>Dos ciclos con la misma lluvia acumulada pueden distribuirla de forma distinta. C-T3 resume esa diferencia con la fracción de lluvia temprana y un índice de concentración mensual (HHI).</p><p class="small-note">El gráfico es una <strong>simulación educativa</strong> con valores inventados; no representa mediciones de parcelas ni coeficientes estimados.</p><div class="rain-switch" role="group" aria-label="Distribución de lluvia ilustrativa"><button type="button" class="choice active" data-rain="uniform" aria-pressed="true">Lluvia repartida</button><button type="button" class="choice" data-rain="concentrated" aria-pressed="false">Lluvia concentrada</button></div></div>
-      <div class="rain-demo"><div class="demo-top"><span>ABR → OCT · 2025</span><span>VALORES SIMULADOS</span></div><div class="rain-bars" id="rain-bars" role="img" aria-label="Distribución ilustrativa de lluvia mensual"><div class="rain-plot" data-month="ABR"><span class="bar" style="--height:57%"></span><small>ABR</small></div><div class="rain-plot" data-month="MAY"><span class="bar" style="--height:57%"></span><small>MAY</small></div><div class="rain-plot" data-month="JUN"><span class="bar" style="--height:57%"></span><small>JUN</small></div><div class="rain-plot" data-month="JUL"><span class="bar" style="--height:57%"></span><small>JUL</small></div><div class="rain-plot" data-month="AGO"><span class="bar" style="--height:57%"></span><small>AGO</small></div><div class="rain-plot" data-month="SEP"><span class="bar" style="--height:57%"></span><small>SEP</small></div><div class="rain-plot" data-month="OCT"><span class="bar" style="--height:57%"></span><small>OCT</small></div></div><div class="rain-metrics"><div><span>LLUVIA TOTAL</span><strong id="rain-total">210 mm</strong></div><div><span>FRACCIÓN TEMPRANA</span><strong id="rain-early">42.9 %</strong></div><div><span>CONCENTRACIÓN HHI</span><strong id="rain-hhi">0.143</strong></div></div><p class="rain-formula">HHI = Σ (lluvia mensual / lluvia total)². Cuanto más concentrada esté la precipitación, mayor será el índice.</p></div>
+      <div class="rain-demo"><div class="demo-top"><span>ABR → OCT · 2025</span><span>VALORES SIMULADOS</span></div><div class="rain-bars" id="rain-bars" aria-live="polite">Selecciona cómo distribuir la lluvia para ver la gráfica.</div><div class="rain-metrics"><div><span>LLUVIA TOTAL</span><strong id="rain-total">210 mm</strong></div><div><span>FRACCIÓN TEMPRANA</span><strong id="rain-early">42.9 %</strong></div><div><span>CONCENTRACIÓN HHI</span><strong id="rain-hhi">0.143</strong></div></div><p class="rain-formula">HHI = Σ (lluvia mensual / lluvia total)². Cuanto más concentrada esté la precipitación, mayor será el índice.</p></div>
     </div></section>
 
     <section class="section architecture" id="arquitectura" aria-labelledby="architecture-title"><div class="shell">
@@ -219,6 +221,7 @@
           </div>
           <div class="hhi-results">
             <p class="chart-eyebrow" id="hhi-caption">PARCELAS ELEGIDAS AL AZAR</p>
+            <div id="hhi-forest" aria-live="polite">Cargando la comparación de cuatro pruebas e intervalos de confianza…</div>
             <div class="hhi-score-row"><span>Modelo completo, con concentración de lluvia</span><div class="hhi-track"><span id="hhi-bar-26"></span></div><strong id="hhi-rmse-26">—</strong></div>
             <div class="hhi-score-row"><span>Versión sin concentración de lluvia</span><div class="hhi-track"><span id="hhi-bar-25"></span></div><strong id="hhi-rmse-25">—</strong></div>
             <div class="hhi-difference"><span>CAMBIO EN EL ERROR AL QUITAR LA CONCENTRACIÓN</span><strong id="hhi-delta">—</strong></div>
@@ -229,7 +232,9 @@
           </div>
         </div>
         <p class="hhi-warning"><strong>El resultado depende de la región que se excluya.</strong> Sin HHI, el error baja 0.10 t/ha en una prueba por bloques geográficos, pero sube cuando dejamos fuera municipios completos. Los intervalos incluyen cero y ninguna diferencia superó la corrección estadística. Por ahora mantenemos tanto el modelo completo como su versión simplificada.</p>
+        <details class="distribution-original"><summary>Ver la figura original de la comparación sin HHI</summary>
         <figure class="hhi-original-figure"><img src="./media/NoHHI_delta_RMSE.png" loading="lazy" alt="Figura original del experimento: cambios de RMSE de la variante sin HHI frente a Reference26 bajo validaciones aleatoria, por perfil, municipio y bloque espacial; intervalos de confianza del 95 por ciento que cruzan cero."><figcaption>Cambios de error al retirar la concentración mensual de lluvia, según el tipo de validación. Las líneas de incertidumbre incluyen cero.</figcaption></figure>
+        </details>
         <a class="source-link" href="https://github.com/heri-espino/todoseboso/blob/main/results/four_final_checks/v1/README.md" target="_blank" rel="noopener noreferrer">Ver las particiones y las pruebas estadísticas originales ↗</a>
       </div>
     </section>
@@ -253,10 +258,15 @@
           <div class="distribution-stat"><span>SD OBSERVADA</span><strong>0.8512</strong><small>t/ha</small></div>
           <div class="distribution-stat"><span>SD PREDICHA</span><strong>0.6976</strong><small>t/ha</small></div>
         </div>
+        <p class="chart-explain">Compara las medianas y los intervalos centrales de las cosechas conocidas con los de las estimaciones, tanto en el conjunto completo como en cada estado. Las curvas acumuladas originales se conservan debajo para consulta.</p>
+        <div id="distribution-quantiles" aria-live="polite">Cargando resumen estadístico por estado…</div>
+        <div class="figure-key"><span><i class="green"></i> Cosechas conocidas</span><span><i class="gold"></i> Estimaciones de otras parcelas</span></div>
+        <details class="distribution-original"><summary>Ver las curvas acumuladas originales del estudio</summary>
         <figure class="distribution-figure">
           <img src="./media/distribution_ECDF.png" loading="lazy" width="1400" alt="Curvas de distribución acumulada, globales y por estado, de 138 rendimientos observados frente a 59 estimaciones de Reference26; los grupos tienen parcelas diferentes y la figura no compara errores individuales.">
           <figcaption>Figura recuperada del análisis upstream, sin recalcular ni inventar curvas. Cada curva muestra qué proporción de parcelas tiene un rendimiento menor o igual a un valor. Los dos conjuntos contienen parcelas distintas; el gráfico no dice cuánto se equivoca cada predicción.</figcaption>
         </figure>
+        </details>
         <div class="distribution-lessons">
           <article><span>LAS MEDIAS</span><h3>Los dos promedios son casi iguales.</h3><p>El promedio de las 59 estimaciones y el de las 138 cosechas conocidas difieren en aproximadamente 0.0011 t/ha. Esa cercanía <strong>no demuestra que las predicciones sean correctas</strong>, porque no son las mismas parcelas.</p></article>
           <article><span>LOS VALORES EXTREMOS</span><h3>Hay menos valores muy altos o muy bajos.</h3><p>Las 59 estimaciones van de 2.760 a 4.820 t/ha; las cosechas conocidas, de 2.000 a 5.590. Los modelos de regresión suelen acercar los pronósticos a valores centrales, aunque aquí también cambian las parcelas.</p></article>

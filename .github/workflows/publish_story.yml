@@ -5,6 +5,8 @@ on:
     paths:
       - "site/**"
       - "scripts/sync_story_data.py"
+      - "scripts/check_site_charts.py"
+      - "tests/test_svg_charts.cjs"
       - "scripts/check_new_research.py"
       - "tests/test_story_site.py"
       - ".github/workflows/publish_story.yml"
@@ -50,8 +52,13 @@ jobs:
         run: python scripts/520_validate_repository_documentation.py
       - name: Verify the expanded statistical explanations
         run: python scripts/check_new_research.py
+      - name: Verify published chart data
+        run: python scripts/check_site_charts.py
+      - name: Validate SVG chart rendering and data fidelity
+        run: node --test tests/test_svg_charts.cjs
       - name: Validate JavaScript syntax
         run: |
+          node --check site/charts.js
           node --check site/app.js
           node --check site/preguntas.js
 

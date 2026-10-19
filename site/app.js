@@ -38,11 +38,10 @@ function showRainfall(kind) {
   const sum = values.reduce((a, b) => a + b, 0);
   const early = values.slice(0, 3).reduce((a, b) => a + b, 0) / sum;
   const hhi = values.reduce((acc, v) => acc + (v / sum) ** 2, 0);
-  $$("#rain-bars .bar").forEach((bar, i) => bar.style.setProperty("--height", `${values[i] / 150 * 100}%`));
-  $("#rain-total").textContent = `${sum} mm`;
-  $("#rain-early").textContent = `${(early * 100).toFixed(1)} %`;
+  window.GeoCharts.rainfall($("#rain-bars"), values);
+  $("#rain-total").textContent = sum + " mm";
+  $("#rain-early").textContent = (early * 100).toFixed(1) + " %";
   $("#rain-hhi").textContent = hhi.toFixed(3);
-  $("#rain-bars").setAttribute("aria-label", `Lluvia simulada de abril a octubre: ${values.join(", ")} mm`);
   $$("[data-rain]").forEach((button) => {
     const active = button.dataset.rain === kind;
     button.classList.toggle("active", active);
@@ -107,27 +106,12 @@ function setProtocol(id) {
     button.setAttribute("aria-pressed", String(active));
   });
   $("#protocol-caption").textContent = info.description;
-  const chart = $("#results-chart");
-  chart.replaceChildren();
-  // A common 0-to-1 t/ha scale makes cross-protocol changes visually honest.
-  ORDER.forEach((name) => {
-    const metric = info.results.find((item) => item.id === name);
-    if (!metric) throw Error("No hay resultados para " + name);
-    const row = document.createElement("div");
-    row.className = `result-row ${name === "Reference26" || name === "Compact14" ? "champion" : name === "L40" ? "reference" : ""}`;
-    const label = document.createElement("div"); label.className = "result-label";
-    const title = document.createElement("span"); title.textContent = LABELS[name][0];
-    const sub = document.createElement("small"); sub.textContent = LABELS[name][1];
-    label.append(title, sub);
-    const track = document.createElement("div"); track.className = "result-track";
-    const fill = document.createElement("span"); fill.className = "result-fill";
-    fill.style.width = `${Math.min(100, metric.rmse * 100).toFixed(3)}%`;
-    track.append(fill);
-    const value = document.createElement("span"); value.className = "result-value";
-    value.textContent = metric.rmse.toFixed(4);
-    row.setAttribute("aria-label", `${LABELS[name][0]}, RMSE ${metric.rmse.toFixed(4)} toneladas por hectárea`);
-    row.append(label, track, value); chart.append(row);
+  const rows = ORDER.map((name) => {
+    const metric = info.results.find((entry) => entry.id === name);
+    if (!metric) throw Error("Faltan resultados de " + name);
+    return metric;
   });
+  window.GeoCharts.models($("#results-chart"), rows, LABELS);
 }
 $$("[data-protocol]").forEach((button) => button.addEventListener("click", () => setProtocol(button.dataset.protocol)));
 (async function loadEvidence() {
@@ -175,48 +159,17 @@ function renderAblations(id) {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
-  const chart = $("#ablation-chart");
-  chart.replaceChildren();
-  const max = Math.max(1.05, ...p.core4_ablations.map((x) => x.rmse));
-  p.core4_ablations.forEach((row) => {
-    const item = evidenceElement("div", "ablation-row" + (row.id === "FULL4" ? " incumbent" : ""));
-    const name = evidenceElement("span", "ablation-label", row.label);
-    const track = evidenceElement("div", "ablation-track");
-    const bar = evidenceElement("span", "ablation-fill");
-    bar.style.width = String(100 * row.rmse / max) + "%";
-    track.append(bar);
-    const score = evidenceElement("strong", "ablation-score", row.rmse.toFixed(4));
-    item.setAttribute("aria-label", row.label + ", RMSE " + row.rmse.toFixed(4) + " toneladas por hectárea");
-    item.append(name, track, score);
-    chart.append(item);
-  });
+  window.GeoCharts.ablations($("#ablation-chart"), p.core4_ablations);
   $("#ablation-insight").textContent = ABLATION_NOTES[id];
 }
 function renderComponentEvidence() {
-  const r3 = $("#r3-comparison");
-  const weights = $("#expert-weights");
-  r3.replaceChildren();
-  weights.replaceChildren();
-  componentProtocols.forEach((p) => {
-    const row = evidenceElement("div", "component-r3-row");
-    const name = evidenceElement("span", "r3-protocol", EVIDENCE_NAMES[p.id]);
-    const without = evidenceElement("span", "r3-without", p.reference26_r3.without_r3.toFixed(4));
-    const arrow = evidenceElement("span", "r3-arrow", "→");
-    const withR3 = evidenceElement("strong", "r3-with", p.reference26_r3.with_r3.toFixed(4));
-    row.setAttribute("aria-label", EVIDENCE_NAMES[p.id] + ", RMSE sin R3 " + without.textContent + ", con R3 " + withR3.textContent + " t/ha");
-    row.append(name, without, arrow, withR3);
-    r3.append(row);
-    const weight = evidenceElement("div", "expert-weight-row");
-    const label = evidenceElement("span", "weight-name", EVIDENCE_NAMES[p.id]);
-    const track = evidenceElement("div", "weight-track");
-    const expert = evidenceElement("span", "weight-expert");
-    expert.style.width = String(p.expert_weight * 100) + "%";
-    track.append(expert);
-    const percent = evidenceElement("strong", "weight-number", (p.expert_weight * 100).toFixed(1) + " %");
-    weight.setAttribute("aria-label", EVIDENCE_NAMES[p.id] + ", peso medio del experto local " + percent.textContent);
-    weight.append(label, track, percent);
-    weights.append(weight);
-  });
+  const rows = componentProtocols.map((p) => ({
+    id: p.id, label: EVIDENCE_NAMES[p.id],
+    without: p.reference26_r3.without_r3, with: p.reference26_r3.with_r3,
+    weight: p.expert_weight
+  }));
+  window.GeoCharts.r3($("#r3-comparison"), rows);
+  window.GeoCharts.expertWeights($("#expert-weights"), rows);
 }
 $$("[data-ablation-protocol]").forEach((button) => button.addEventListener("click", () => {
   renderAblations(button.dataset.ablationProtocol);
@@ -246,5 +199,20 @@ $$("[data-ablation-protocol]").forEach((button) => button.addEventListener("clic
     for (const node of [chart, r3, weights]) {
       node.textContent = "No se pudo cargar la evidencia. Consulta los CSV agregados en GitHub.";
     }
+  }
+})();
+
+(async function loadPublishedDistributions() {
+  const target = $("#distribution-quantiles");
+  if (!target) return;
+  try {
+    const response = await fetch("./data/distribution.json", {cache: "no-store"});
+    if (!response.ok) throw Error("No se cargó el resumen de rendimientos");
+    const data = await response.json();
+    if (data.schema_version !== 1 || data.rows.length !== 8) throw Error("Resumen estadístico incompleto");
+    window.GeoCharts.distribution(target, data.rows);
+  } catch (error) {
+    console.error("No fue posible dibujar la distribución:", error);
+    target.textContent = "Consulta la figura original y sus estadísticas en el repositorio.";
   }
 })();

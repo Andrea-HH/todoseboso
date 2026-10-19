@@ -46,26 +46,7 @@
   let research = null;
 
   function drawAssociations() {
-    const target = q("#association-chart");
-    target.replaceChildren();
-    for (const f of research.associations) {
-      const row = element("div", "association-row" + (f.p_holm < 0.05 ? " passes" : " uncertain"));
-      const title = element("span", "association-label", f.label);
-      const track = element("div", "association-track");
-      const bar = element("span", "association-fill");
-      // Eje -log10(p) truncado a 5: únicamente visualiza la fuerza de asociación.
-      bar.style.width = Math.min(100, Math.max(0, -Math.log10(f.p_holm) / 5 * 100)) + "%";
-      track.append(bar);
-      const p = element("strong", "association-p", f.p_holm < 0.001 ?
-        f.p_holm.toExponential(2).replace("e-", " × 10⁻") :
-        number(f.p_holm, 4));
-      row.append(title, track, p);
-      row.setAttribute("aria-label", f.label + ", p ajustada por Holm " + f.p_holm);
-      target.append(row);
-    }
-    const tip = element("p", "chart-help",
-      "Barras más largas indican valores p menores. El umbral de referencia es 0.05; ninguna barra representa una importancia causal o un porcentaje de rendimiento.");
-    target.append(tip);
+    window.GeoCharts.coefficients(q("#association-chart"), research.associations);
     const testFamilies = research.architecture_tests;
     const total = Object.values(testFamilies).reduce((acc, x) => acc + x.tests, 0);
     const detected = Object.values(testFamilies).reduce((acc, x) => acc + x.significant_holm, 0);
@@ -101,6 +82,7 @@
       " t/ha. Intervalo entre " + sign(low) + " y " + sign(high) +
       " t/ha; contiene cero.");
     q("#hhi-p").textContent = number(row.p_holm, 4);
+    window.GeoCharts.forest(q("#hhi-forest"), research.protocols, id);
     q("#hhi-significance").textContent = row.p_holm < 0.05 ?
       "Supera el umbral de 0.05 de esta familia; sigue siendo exploratorio." :
       "No supera el umbral de 0.05 después de ajustar por Holm.";
@@ -146,29 +128,8 @@
       button.classList.toggle("active", active);
       button.setAttribute("aria-pressed", String(active));
     });
-    const root = q("#interval-results");
-    root.replaceChildren();
-    const headline = element("p", "interval-explanation",
-      "Nivel nominal " + Math.round(level * 100) + " %. Cobertura observada durante la validación:");
-    root.append(headline);
-    for (const model of ["Reference26", "Compact14"]) {
-      const row = research.intervals.find((x) => x.model === model && x.level === level);
-      if (!row) continue;
-      const container = element("div", "interval-row");
-      const heading = element("div", "interval-heading");
-      heading.append(element("strong", "", model), element("span", "", percent(row.coverage)));
-      const track = element("div", "interval-track");
-      const fill = element("span", "interval-fill");
-      fill.style.width = (100 * row.coverage) + "%";
-      const nominal = element("i", "interval-nominal");
-      nominal.style.left = (level * 100) + "%";
-      track.append(fill, nominal);
-      const width = element("p", "interval-width",
-        "Anchura media de los intervalos finitos: " + number(row.width, 3) + " t/ha");
-      container.append(heading, track, width);
-      root.append(container);
-    }
-    root.append(element("p", "chart-help", "La marca vertical indica el nivel nominal; la barra muestra la cobertura observada. Intervalos más anchos no implican predicciones puntuales más precisas."));
+    window.GeoCharts.intervals(q("#interval-results"),
+      research.intervals.filter((entry) => entry.level === level), level);
   }
   qa("[data-interval]").forEach((button) => {
     button.addEventListener("click", () => drawIntervals(Number(button.dataset.interval)));
