@@ -1,0 +1,149 @@
+/* Investigación de Heri reordenada, identidad visual de Andrea.
+   Solo presentación: NO modifica datos, gráficos, parámetros ni cálculos. */
+:root{
+ --forest:#173E34;--forest2:#214C3C;--pine:#245848;--jade:#526E4B;
+ --gold:#E6BA62;--cream:#FCF8F0;--paper:#FFFDF8;--mist:#EEF1E6;
+ --ink:#223D33;--muted:#60705F;--rule:#E4D9C9;--max:1200px;
+ --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+ --sans:"Aptos","Inter","Segoe UI",Arial,sans-serif;
+ --r26-ink:#223D33;--r26-muted:#60705F;--r26-line:#E4D9C9;--r26-paper:#FFFDF8;--r26-green:#173E34;
+}
+html{scroll-padding-top:110px;scroll-behavior:smooth}
+body{background:var(--cream)!important;color:var(--ink)!important;font-family:var(--sans)!important;line-height:1.7}
+.shell{width:min(calc(100% - 70px),1200px);max-width:1200px}
+.site-header.andrea-header{position:sticky;top:0;z-index:300;background:var(--forest)!important;border-bottom:1px solid #d4d7c81c;box-shadow:0 5px 17px #0d2f2517;color:#fffdf7}
+.andrea-nav-inner{height:73px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.andrea-brand{display:inline-flex;align-items:center;gap:9px;color:#fff!important;text-decoration:none;font-size:22px;font-weight:760;letter-spacing:-1px;white-space:nowrap}
+.andrea-logo{width:40px;height:54px;background:#fcfaf2;border-radius:10px;display:grid;place-items:center;overflow:hidden}
+.andrea-logo img{display:block;width:40px;height:54px;object-fit:contain}
+.andrea-brand-name>span{color:var(--gold);font-weight:540}
+.andrea-brand small{letter-spacing:1.8px;font-size:8px;font-weight:750;border-left:1px solid #86a18c;padding-left:14px;margin-left:9px;color:#d8e2cf}
+.andrea-actions{display:flex;gap:9px;align-items:center;margin-left:auto}
+.andrea-nav-dropdown{position:relative;border:0;background:none;padding:0}
+.andrea-nav-dropdown>summary{list-style:none;cursor:pointer;color:#183a30;background:var(--gold);border:1px solid #dba84f;border-radius:10px;padding:11px 18px;font-size:12px;font-weight:800;min-width:68px;text-align:center}
+.andrea-nav-dropdown>summary::-webkit-details-marker{display:none}
+.andrea-nav-dropdown>summary:hover{background:#efc979}
+.andrea-nav-items{position:absolute;right:0;top:calc(100% + 12px);min-width:min(335px,calc(100vw - 32px));background:var(--paper);border:1px solid var(--rule);box-shadow:0 14px 35px #162d2531;padding:8px;display:flex;flex-direction:column;gap:0;border-radius:10px;z-index:500}
+.andrea-nav-dropdown:not([open]) .andrea-nav-items{display:none}
+.andrea-nav-items a{color:var(--forest)!important;padding:13px 14px;border-radius:7px;font-size:13px;font-weight:650;letter-spacing:0;text-decoration:none}
+.andrea-nav-items a:hover,.andrea-nav-items a[aria-current="page"]{background:#e5eace;color:#193d2f!important}
+.andrea-repo{display:inline-block;background:#596d33;color:#fff9de!important;padding:11px 16px;border-radius:10px;font-size:12px;font-weight:750;text-decoration:none}
+.andrea-repo:hover{background:#6c8145}
+.research-chapter-heading{background:var(--cream);padding:49px 0 30px;border-bottom:1px solid var(--rule)}
+.research-kicker{font-size:10px;font-weight:830;color:var(--jade);letter-spacing:2.15px;margin:0 0 15px}
+.research-intro{max-width:1050px}
+.research-intro h1{font-size:clamp(35px,4.1vw,58px);font-weight:600;letter-spacing:-.05em;line-height:1.1;color:var(--forest);margin:0 0 14px}
+.research-intro h1 em{font-family:var(--serif);font-weight:400}
+.research-intro>p{color:var(--muted);font-size:15px;line-height:1.8;margin:0 0 24px;max-width:850px}
+.research-topic-links{display:flex;gap:9px;flex-wrap:wrap}
+.research-topic-links a{border:1px solid #d7ceb6;background:#fffdf7;color:var(--forest);padding:8px 15px;font-size:12px;font-weight:720;border-radius:7px;text-decoration:none}
+.research-topic-links a:hover,.research-topic-links a:focus-visible{background:#e8edda;outline-color:var(--forest)}
+html[data-research-vista] .research-intro{display:none!important}
+html[data-research-vista="modelo"] [data-research-intro="modelo"],
+html[data-research-vista="resultados"] [data-research-intro="resultados"],
+html[data-research-vista="confianza"] [data-research-intro="confianza"],
+html[data-research-vista="preguntas"] [data-research-intro="preguntas"]{display:block!important}
+html[data-research-vista] #contenido>section{display:none!important}
+html[data-research-vista] #contenido>.stat-band{display:none!important}
+html[data-research-vista="modelo"] #contenido>section.model-hero,
+html[data-research-vista="modelo"] #contenido>section#recorrido,
+html[data-research-vista="modelo"] #contenido>section#ensamble,
+html[data-research-vista="modelo"] #contenido>section#datos,
+html[data-research-vista="modelo"] #contenido>section#variables,
+html[data-research-vista="modelo"] #contenido>section#preparacion,
+html[data-research-vista="modelo"] #contenido>section#arquitectura,
+html[data-research-vista="modelo"] #contenido>section#geologia,
+html[data-research-vista="modelo"] #contenido>section#faltantes,
+html[data-research-vista="modelo"] #contenido>section#ajuste,
+html[data-research-vista="resultados"] #contenido>section#ensamble,
+html[data-research-vista="resultados"] #contenido>section#resultados,
+html[data-research-vista="resultados"] #contenido>section#pruebas,
+html[data-research-vista="resultados"] #contenido>section#mapa-interactivo,
+html[data-research-vista="confianza"] #contenido>section#estadisticas-finales,
+html[data-research-vista="confianza"] #contenido>section#limites,
+html[data-research-vista="preguntas"] #contenido>section#preguntas{display:block!important}
+html[data-research-vista="modelo"] #contenido>.stat-band{display:block!important}
+html[data-research-vista="modelo"] #ensamble #reference26-view{display:none!important}
+html[data-research-vista="resultados"] #ensamble>.shell{display:none!important}
+html[data-research-vista="resultados"] #ensamble{padding:0!important}
+html[data-research-vista="resultados"] #ensamble #reference26-view{display:block!important}
+html[data-research-vista="resultados"] #predicciones-59{padding-top:53px!important}
+#contenido>section.section{padding-top:75px;padding-bottom:77px;scroll-margin-top:95px}
+#contenido>section.section:nth-of-type(odd){background:var(--cream)!important}
+#contenido>section.section:nth-of-type(even){background:#F5EBD7!important}
+#contenido #arquitectura,#contenido #estadisticas-finales{background:var(--cream)!important;color:var(--ink)!important}
+#contenido #arquitectura h2,#contenido #arquitectura h3,#contenido #arquitectura p,#contenido #arquitectura strong,#contenido #arquitectura .section-heading p{color:var(--forest)}
+#contenido #arquitectura .math-scroll{color:var(--ink)}
+#contenido .section h2,.section-heading h2{color:var(--forest);font-size:clamp(28px,3.4vw,46px);letter-spacing:-.045em;line-height:1.2}
+#contenido .section h3,#contenido .section h4{color:var(--forest)}
+#contenido .section p{color:var(--muted)}
+#contenido .section strong{color:var(--forest)}
+#contenido .section .eyebrow{color:var(--jade)}
+#contenido .section .section-heading{margin-bottom:35px;gap:25px}
+#contenido .section .small-note{color:var(--muted)}
+#contenido .section .note-inline,#contenido .section .chart-explain{background:#e9edde;color:var(--forest);border-color:#bccbb4}
+#contenido .section .note-inline strong{color:var(--forest)}
+#contenido .section .detail-pair>div,#contenido .section .feature-panel,#contenido .section .technical-stage,
+#contenido .section .missing-item,#contenido .section .pred59-summary-item,
+#contenido .section .r26-panel,#contenido .section .r26-card{background:var(--paper);border-color:var(--rule)}
+#contenido .section table{font-variant-numeric:tabular-nums}
+#contenido .section table th{background:#ede6d4;color:var(--forest)}
+#contenido .section table td{background:var(--paper);color:var(--ink)}
+#contenido a{color:var(--forest)}
+#contenido a:hover{text-decoration:underline;text-underline-offset:4px}
+#contenido button:focus-visible,#contenido a:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+#contenido button,.pred59-filters select,.pred59-filters input{font-family:var(--sans)}
+#contenido .cluster-choice.active,#contenido .feature-tab.active,#contenido .protocol.active{background:var(--forest)!important;color:#fff!important}
+#contenido .cluster-choice.active *{color:#fff!important}
+#contenido .model-hero{background:var(--cream)!important;color:var(--forest)!important;overflow:visible;padding-bottom:40px}
+#contenido .model-hero h1,#contenido .model-hero p{color:var(--forest)}
+#contenido .model-hero .hero-eyebrow{color:var(--jade)}
+#contenido .model-hero .hero-grid{min-height:400px;gap:32px;padding-top:25px;padding-bottom:25px}
+#contenido .model-hero .hero-visual{background:#1a4639;border:1px solid #b4c3ae;box-shadow:0 12px 32px #1d473126}
+#contenido .model-hero .hero-content{padding:0}
+#contenido .model-hero .hero-content h1{font-size:clamp(32px,3.6vw,55px)}
+#contenido .model-hero .hero-description{color:var(--muted)}
+#contenido .model-hero .primary-cta{background:var(--gold);color:var(--forest)}
+#contenido .model-hero .secondary-cta{color:var(--forest);border-color:#bdcbb6}
+#contenido #recorrido{padding-top:60px;background:#f5ebd7!important}
+#contenido #recorrido .chapter-card{background:var(--paper);border:1px solid var(--rule)}
+#contenido #recorrido .reading-guide-foot{color:var(--muted)}
+#contenido #estadisticas-finales .r26-chart,#contenido #estadisticas-finales .r26-panel{background:var(--paper)}
+#contenido #estadisticas-finales .r26-eyebrow{color:var(--jade)}
+#contenido #estadisticas-finales .r26-tab[aria-selected="true"]{background:var(--forest);color:#fff}
+#contenido .pred59-summary-item,#contenido .pred59-detail,#contenido .pred59-viz,#contenido .pred59-explorer{background:var(--paper)!important}
+#contenido #predicciones-59{background:var(--cream)!important}
+#contenido .pred59-example{border-color:#cabda7;background:#fcf8ef}
+#contenido .pred59-dot.tone-0{background:#2d604d}
+#contenido .pred59-dot.tone-1{background:#bd8f4b}
+#contenido .pred59-dot.tone-2{background:#698150}
+#contenido #mapa-interactivo{background:var(--cream)!important}
+#contenido #mapa-interactivo .geoc-native-map{border-color:var(--rule)}
+#contenido #mapa-interactivo .geo-native-map{border-color:var(--rule)}
+.model-footer{background:var(--forest)!important;color:#f4f4e9;padding:25px 0;margin:0}
+.model-footer .shell{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.model-footer .shell strong,.model-footer .shell span,.model-footer .shell a{color:#f4f4e9}
+.model-footer a{margin-left:auto;text-decoration:underline}
+@media(max-width:900px){
+ .shell{width:min(calc(100% - 38px),1200px)}
+ .andrea-nav-inner{height:68px}
+ .research-chapter-heading{padding:38px 0 28px}
+ #contenido .model-hero .hero-grid{display:block}
+ #contenido .model-hero .hero-visual{margin-top:25px}
+ #contenido .section .section-heading{display:block}
+ #contenido .section .section-heading>p{max-width:none}
+}
+@media(max-width:600px){
+ .shell{width:calc(100% - 28px)}
+ .andrea-brand{font-size:18px}
+ .andrea-brand small{display:none}
+ .andrea-logo{width:34px;height:46px}
+ .andrea-logo img{width:34px;height:46px}
+ .andrea-repo{font-size:10px;padding:10px}
+ .andrea-nav-dropdown>summary{padding:10px 12px}
+ .research-topic-links a{font-size:11px;padding:7px 11px}
+ #contenido>section.section{padding-top:42px;padding-bottom:43px}
+ .model-footer .shell{display:block}
+ .model-footer a{display:block;margin-top:10px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
