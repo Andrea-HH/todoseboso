@@ -60,7 +60,8 @@ class StorySiteTest(unittest.TestCase):
     def test_reference26_enrichment_is_documented(self):
         html = (SITE / "index.html").read_text(encoding="utf-8")
         for anchor in ("variables-detalle", "preparacion-datos", "entrenamiento-modelo",
-                       "datos-faltantes", "diagnostico-residuos"):
+                       "datos-faltantes", "diagnostico-residuos", "predicciones-detalle",
+                       "datos-reales", "mezcla-geologica"):
             self.assertIn('id="' + anchor + '"', html)
         features = json.loads((SITE / "data/reference26_features.json").read_text(encoding="utf-8"))
         self.assertEqual(len(features["features"]), 5)
@@ -73,6 +74,14 @@ class StorySiteTest(unittest.TestCase):
         self.assertEqual(len(residuals["spatial"]["geary_c"]), 12)
         self.assertIn("mediana", html)
         self.assertIn("media", html)
+        data = json.loads((SITE / "data/real_charts.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["kind"], "real_chart_aggregates")
+        self.assertEqual(len(data["rainfall"]["months"]), 7)
+        self.assertEqual(len(data["ndvi"]["months"]), 7)
+        self.assertEqual(len((SITE / "explorador/data/predictions.csv").read_text(encoding="utf-8").splitlines()), 60)
+        js = (SITE / "scientific-charts.js").read_text(encoding="utf-8")
+        for name in ("monthly", "geology", "stackedInfluence", "magnitude", "spatialCharts", "semivariogram", "bootstrap", "predictions"):
+            self.assertIn("function " + name, js)
 
     def test_protocol_comparison_is_sourced(self):
         subprocess.run(

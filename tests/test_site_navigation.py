@@ -59,8 +59,8 @@ class NavigationTests(unittest.TestCase):
         cls.page.feed(cls.html)
 
     def test_all_sections_visible_on_their_respective_pages(self):
-        self.assertEqual(len(self.page.sections), 21)
-        self.assertEqual(len(set(self.page.sections)), 21)
+        self.assertEqual(len(self.page.sections), 22)
+        self.assertEqual(len(set(self.page.sections)), 22)
         for page, sections in GROUPS.items():
             for section in sections:
                 name = section if section == "stat-band" else "section " + section
@@ -69,7 +69,7 @@ class NavigationTests(unittest.TestCase):
                     'html[data-geo-vista="' + page + '"] #contenido > section.' + section,
                     self.css
                 )
-        additions = {"modelo": ("geo-tech-variables", "geo-tech-preparation", "geo-tech-training", "geo-tech-missing"), "resultados": ("geo-tech-residuals",)}
+        additions = {"modelo": ("geo-tech-variables", "geo-tech-preparation", "geo-tech-training", "geo-tech-missing"), "resultados": ("geo-tech-residuals", "geo-extra-predictions")}
         ext = (SITE / "technical-details.css").read_text(encoding="utf-8")
         for page, new_sections in additions.items():
             for section in new_sections:
