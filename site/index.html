@@ -20,6 +20,25 @@
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <div class="read-progress" id="read-progress" aria-hidden="true"></div>
+  <!-- GEOCEBADA-ANDREA: EXPLORADOR AL PRINCIPIO, contenido original preservado -->
+  <section class="geoc-andrea-map" aria-label="Explorador satelital GeoCebada" style="background:#e8ece4;width:100%;overflow:hidden;">
+    <iframe id="geoc-andrea-map-frame" title="GeoCebada — explorador de parcelas satelital" src="./explorador/mapa.html" loading="eager" style="display:block;width:100%;height:1110px;border:0;" allowfullscreen></iframe>
+  </section>
+  <script>
+    // Ajuste de tamaño aislado del explorador; no modifica datos ni programas científicos.
+    (function () {
+      const marco = document.getElementById('geoc-andrea-map-frame');
+      window.addEventListener('message', function (evento) {
+        if (evento.origin !== window.location.origin || evento.source !== marco.contentWindow) return;
+        const datos = evento.data;
+        if (datos && datos.tipo === 'geocebada-andrea-altura' && Number.isFinite(datos.altura)) {
+          marco.style.height = Math.max(650, Math.min(7000, datos.altura + 4)) + 'px';
+        }
+      });
+    })();
+  </script>
+  <!-- FIN DEL EXPLORADOR DE ANDREA -->
+
   <header class="site-header" id="inicio">
     <div class="shell nav-inner">
       <a href="#inicio" class="brand" aria-label="GeoCebada, ir al inicio"><span class="brand-icon" aria-hidden="true">✳</span><span>Geo<span>Cebada</span></span><small>FIRA / 2026</small></a>
