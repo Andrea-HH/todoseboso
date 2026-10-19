@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "model": "Reference26_mean",
+  "public_name": "Reference26",
+  "n_labeled": 138,
+  "n_unknown": 59,
+  "protocol": {
+    "name": "fresh_138_leave_one_parcel_out",
+    "training_labels_per_fold": 137,
+    "holdout_per_fold": 1,
+    "imputation": "mean_training_only",
+    "local_neighbours": 24,
+    "local_ridge_alpha": 30,
+    "source": "GeoC experiment/nuria-champions-loocv; VM report and 2026-10-19 inferential_sensitivity transcription",
+    "label": "2026-10-19",
+    "new_59_targets_scored": false
+  },
+  "metrics": {
+    "rmse_t_ha": 0.468138,
+    "mae_t_ha": 0.333786,
+    "r2_cv": 0.695292,
+    "bias_t_ha": 0.001466,
+    "median_absolute_error_t_ha": 0.244645,
+    "p95_absolute_error_t_ha": 0.779618,
+    "max_absolute_error_t_ha": 2.139958,
+    "sse_t2_ha2": 30.243156,
+    "mse_t2_ha2": 0.219153,
+    "wape_pct": 8.438822,
+    "adjusted_r2": null
+  },
+  "diagnostics": {
+    "normality": {
+      "shapiro_w": 0.910171,
+      "shapiro_p": 1.401988e-07,
+      "dagostino_p": 8.411629e-12,
+      "anderson_reject_at_5pct": true,
+      "warning": "Exploratory p values: LOOCV training sets overlap and errors may be dependent."
+    },
+    "variance": {
+      "koenker_bp_lm": 0.705933,
+      "koenker_bp_p": 0.400797,
+      "brown_forsythe_p": 0.929793,
+      "warning": "Non-rejection does not establish constant variance."
+    }
+  },
+  "spatial": {
+    "graph": "Haversine geographic directed kNN with equal 1/k weights per row; no self-neighbors",
+    "permutations": 1999,
+    "two_sided": true,
+    "multiplicity_family": "all model x k x residual definition x Moran/Geary tests in original GeoC analysis",
+    "signed_residual_moran": [
+      {
+        "k": 4,
+        "I": -0.05586384188315004,
+        "p_two_sided": 0.3455,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.5922857142857142
+      },
+      {
+        "k": 8,
+        "I": -0.07686050092993227,
+        "p_two_sided": 0.063,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.324
+      },
+      {
+        "k": 12,
+        "I": -0.06297566497171632,
+        "p_two_sided": 0.064,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.324
+      },
+      {
+        "k": 24,
+        "I": -0.04180173136301144,
+        "p_two_sided": 0.0645,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.324
+      }
+    ],
+    "absolute_error_moran": [
+      {
+        "k": 4,
+        "I": 0.04451244100032722,
+        "p_two_sided": 0.283,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.5362105263157894
+      },
+      {
+        "k": 8,
+        "I": 0.02218937509256973,
+        "p_two_sided": 0.4225,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.6333061224489795
+      },
+      {
+        "k": 12,
+        "I": 0.00542123450268348,
+        "p_two_sided": 0.6345,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.7859076923076923
+      },
+      {
+        "k": 24,
+        "I": 0.003551237352929704,
+        "p_two_sided": 0.565,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.7218947368421054
+      }
+    ],
+    "squared_error_moran": [
+      {
+        "k": 4,
+        "I": 0.03747584942206698,
+        "p_two_sided": 0.205,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.423
+      },
+      {
+        "k": 8,
+        "I": 0.003531515451092406,
+        "p_two_sided": 0.6825,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.7859076923076923
+      },
+      {
+        "k": 12,
+        "I": -0.01119772535883692,
+        "p_two_sided": 0.848,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.8929014084507041
+      },
+      {
+        "k": 24,
+        "I": -0.00684198408679372,
+        "p_two_sided": 0.985,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.985
+      }
+    ],
+    "geary_c": [
+      {
+        "k": 4,
+        "C": 0.9509974198418076,
+        "p_two_sided": 0.526,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.7086666666666667,
+        "spatial_variable": "signed_residual"
+      },
+      {
+        "k": 8,
+        "C": 1.096535441339143,
+        "p_two_sided": 0.0735,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.324,
+        "spatial_variable": "signed_residual"
+      },
+      {
+        "k": 12,
+        "C": 1.137146403285878,
+        "p_two_sided": 0.0065,
+        "p_holm_all": 0.468,
+        "p_fdr_bh_all": 0.27,
+        "spatial_variable": "signed_residual"
+      },
+      {
+        "k": 24,
+        "C": 1.09992780817394,
+        "p_two_sided": 0.0245,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.324,
+        "spatial_variable": "signed_residual"
+      },
+      {
+        "k": 4,
+        "C": 0.8662193621237807,
+        "p_two_sided": 0.118,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.3539999999999999,
+        "spatial_variable": "absolute_error"
+      },
+      {
+        "k": 8,
+        "C": 1.024451951478592,
+        "p_two_sided": 0.705,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.7859076923076923,
+        "spatial_variable": "absolute_error"
+      },
+      {
+        "k": 12,
+        "C": 1.103673726033137,
+        "p_two_sided": 0.1095,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.3427826086956522,
+        "spatial_variable": "absolute_error"
+      },
+      {
+        "k": 24,
+        "C": 1.062020059007513,
+        "p_two_sided": 0.322,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.5796,
+        "spatial_variable": "absolute_error"
+      },
+      {
+        "k": 4,
+        "C": 0.8095144004600247,
+        "p_two_sided": 0.2115,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.423,
+        "spatial_variable": "squared_error"
+      },
+      {
+        "k": 8,
+        "C": 1.101072817983436,
+        "p_two_sided": 0.383,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.6248,
+        "spatial_variable": "squared_error"
+      },
+      {
+        "k": 12,
+        "C": 1.232021064169616,
+        "p_two_sided": 0.0515,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.324,
+        "spatial_variable": "squared_error"
+      },
+      {
+        "k": 24,
+        "C": 1.156217791872918,
+        "p_two_sided": 0.18,
+        "p_holm_all": 1.0,
+        "p_fdr_bh_all": 0.423,
+        "spatial_variable": "squared_error"
+      }
+    ],
+    "semivariogram": [
+      {
+        "bin": 1,
+        "pairs": 946,
+        "distance_km": 1.585448521315157,
+        "distance_min_km": 0.0382733722762011,
+        "distance_max_km": 2.433655119079454,
+        "semivariance_t2_ha2": 0.3073156302629753
+      },
+      {
+        "bin": 2,
+        "pairs": 945,
+        "distance_km": 3.269495444074868,
+        "distance_min_km": 2.433655119079454,
+        "distance_max_km": 4.0686229438813,
+        "semivariance_t2_ha2": 0.2765718783232667
+      },
+      {
+        "bin": 3,
+        "pairs": 1890,
+        "distance_km": 5.903091494563419,
+        "distance_min_km": 4.0686229438813,
+        "distance_max_km": 9.98055672463608,
+        "semivariance_t2_ha2": 0.2083333301086777
+      },
+      {
+        "bin": 4,
+        "pairs": 1891,
+        "distance_km": 17.01956328370762,
+        "distance_min_km": 9.98055672463608,
+        "distance_max_km": 22.60006641945755,
+        "semivariance_t2_ha2": 0.215855213178082
+      },
+      {
+        "bin": 5,
+        "pairs": 1890,
+        "distance_km": 41.10609866605093,
+        "distance_min_km": 22.60006641945755,
+        "distance_max_km": 44.56152299849422,
+        "semivariance_t2_ha2": 0.1637452483009159
+      },
+      {
+        "bin": 6,
+        "pairs": 1891,
+        "distance_km": 47.57789437646028,
+        "distance_min_km": 44.56152299849422,
+        "distance_max_km": 57.683997217201,
+        "semivariance_t2_ha2": 0.2238316165045624
+      }
+    ],
+    "reason_missing": "Only confidential parcel-level histogram/QQ data remain unpublished. All public spatial tests and semivariogram are verified aggregates.",
+    "expanded_from_private_geoc_aggregate_report": true
+  },
+  "influence": {
+    "full_rmse_t_ha": 0.468138,
+    "rmse_without_largest_t_ha": 0.432812,
+    "rmse_without_largest_two_t_ha": 0.399583,
+    "share_sse_largest": 0.15142,
+    "share_sse_largest_two": 0.281996,
+    "refitted": false,
+    "private_ids_published": false
+  },
+  "spatial_bootstrap": {
+    "replicates": 3000,
+    "seed": 20261019,
+    "minimum_groups": 8,
+    "refitted": false,
+    "confidence_label": "Exploratory 2.5–97.5% percentile range, not calibrated confidence coverage.",
+    "groups": [
+      {
+        "id": "municipality",
+        "label": "Municipalities",
+        "n_groups": 9,
+        "status": "computed",
+        "rmse_t_ha": {
+          "point": 0.468138,
+          "low": 0.323249,
+          "high": 0.522608
+        }
+      },
+      {
+        "id": "grid_15km_shift_0.0",
+        "label": "15 km unshifted",
+        "n_groups": 6,
+        "status": "skipped",
+        "reason": "Fewer than 8 spatial groups"
+      },
+      {
+        "id": "grid_15km_shift_0.5",
+        "label": "15 km half-cell shift",
+        "n_groups": 9,
+        "status": "computed",
+        "rmse_t_ha": {
+          "point": 0.468138,
+          "low": 0.339719,
+          "high": 0.551087
+        }
+      },
+      {
+        "id": "grid_30km_shift_0.0",
+        "label": "30 km unshifted",
+        "n_groups": 4,
+        "status": "skipped",
+        "reason": "Fewer than 8 spatial groups"
+      },
+      {
+        "id": "grid_30km_shift_0.5",
+        "label": "30 km half-cell shift",
+        "n_groups": 3,
+        "status": "skipped",
+        "reason": "Fewer than 8 spatial groups"
+      },
+      {
+        "id": "grid_50km_shift_0.0",
+        "label": "50 km unshifted",
+        "n_groups": 2,
+        "status": "skipped",
+        "reason": "Fewer than 8 spatial groups"
+      },
+      {
+        "id": "grid_50km_shift_0.5",
+        "label": "50 km half-cell shift",
+        "n_groups": 4,
+        "status": "skipped",
+        "reason": "Fewer than 8 spatial groups"
+      }
+    ]
+  },
+  "sources": {
+    "interpretation": "https://github.com/heri-espino/GeoC/blob/experiment/nuria-champions-loocv/results/peer_models/REFERENCE26_COMPACT14_STATISTICAL_INTERPRETATION_138_2026-10-19.md",
+    "implementation": "https://github.com/heri-espino/GeoC/blob/analysis/reference26-inferential-sensitivity-20261019/docs/REFERENCE26_INFERENTIAL_SENSITIVITY.md"
+  },
+  "caveats": [
+    "No causal coefficient interpretation",
+    "No adjusted R² because model has no unique effective parameter count",
+    "No out-of-region inference or guaranteed intervals for unknown 59",
+    "The existing 59 browser predictions are an archived median-imputed Reference26 fit, not the fresh mean-imputed LOOCV run"
+  ]
+}

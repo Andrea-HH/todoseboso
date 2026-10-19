@@ -1,0 +1,52 @@
+/* Extensión técnica de GeoCebada. Estilos aislados: no cambian la apariencia existente. */
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-variables,
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-preparation,
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-training,
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-missing,
+html[data-geo-vista="resultados"] #contenido > section.geo-tech-residuals{display:block!important}
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-variables,
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-training,
+html[data-geo-vista="resultados"] #contenido > section.geo-tech-residuals{background:var(--geo-fondo-trigo)!important}
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-preparation,
+html[data-geo-vista="modelo"] #contenido > section.geo-tech-missing{background:var(--geo-fondo-crema)!important}
+.geo-tech-section{color:var(--ink);scroll-margin-top:100px}
+.geo-tech-section .section-heading{margin-bottom:32px}
+.geo-tech-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.geo-tech-card,.geo-tech-accordion-list details,.geo-tech-panel{background:var(--geo-fondo-papel);border:1px solid var(--rule);padding:24px;min-width:0}
+.geo-tech-card>span,.geo-tech-counts span,.geo-tech-metrics span{font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--jade)}
+.geo-tech-card h3{font-size:21px;margin:11px 0}
+.geo-tech-card p,.geo-tech-panel p,.geo-tech-accordion-list p{font-size:13px;line-height:1.8;color:var(--muted)}
+.geo-tech-card details{margin-top:17px;border-top:1px solid var(--rule);padding-top:12px}
+.geo-tech-disclosure{background:var(--geo-fondo-papel);border:1px solid var(--rule);padding:20px 24px;margin-top:18px}
+.geo-tech-section summary{cursor:pointer;font-size:13px;font-weight:750;line-height:1.65;color:var(--forest)}
+.geo-tech-section summary:focus-visible,.geo-tech-tabs button:focus-visible,.geo-tech-panel select:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.geo-tech-section details[open]>summary{margin-bottom:12px}
+.geo-tech-section details p{font-size:13px;line-height:1.8}
+.geo-tech-counts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:22px}
+.geo-tech-counts span{display:flex;align-items:center;flex-direction:column;gap:7px;padding:18px 12px;background:var(--geo-fondo-papel);border:1px solid var(--rule);text-align:center}
+.geo-tech-counts strong{font-family:var(--serif);font-size:32px;color:var(--forest);line-height:1}
+.geo-tech-accordion-list{display:grid;gap:12px}
+.geo-tech-table-wrap{width:100%;overflow-x:auto}
+.geo-tech-table{width:100%;min-width:620px;border-collapse:collapse;font-size:12px}
+.geo-tech-table th,.geo-tech-table td{text-align:left;padding:11px;border-bottom:1px solid var(--rule);vertical-align:top}
+.geo-tech-table th{background:var(--geo-fondo-trigo);color:var(--forest);font-weight:800}
+.geo-tech-table code{font-size:11px;display:block;margin-top:6px;overflow-wrap:anywhere}
+.geo-tech-note{padding:19px 22px;background:var(--geo-fondo-oliva);border-left:3px solid var(--olive);color:var(--forest);margin:22px 0;font-size:13px;line-height:1.8}
+.geo-tech-source{font-size:11px;color:var(--muted);margin-top:22px;line-height:1.65}
+.geo-tech-source a{color:var(--forest);text-decoration:underline;text-underline-offset:3px}
+.geo-tech-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:25px 0}
+.geo-tech-metrics>div{background:var(--forest);color:white;padding:21px}
+.geo-tech-metrics span{display:block;color:#e1e8d6}
+.geo-tech-metrics strong{display:block;font-family:var(--serif);font-size:clamp(28px,4vw,39px);font-variant-numeric:tabular-nums;color:#fff4d8;margin:10px 0 4px}
+.geo-tech-tabs{display:flex;overflow-x:auto;gap:8px;padding-bottom:10px;margin-bottom:12px}
+.geo-tech-tabs button{flex:none;cursor:pointer;padding:12px 14px;border:1px solid var(--rule);background:var(--geo-fondo-papel);color:var(--forest);font-size:12px;font-weight:750}
+.geo-tech-tabs button[aria-selected="true"]{background:var(--forest);border-color:var(--forest);color:white}
+.geo-tech-panel{min-height:220px}
+.geo-tech-panel h3{margin:0 0 13px;font-size:24px;color:var(--forest)}
+.geo-tech-panel label{font-size:12px;font-weight:800;color:var(--forest)}
+.geo-tech-panel select{background:var(--geo-fondo-papel);padding:9px 12px;margin-left:12px;border:1px solid var(--rule);font:inherit;max-width:100%}
+.geo-tech-barrow{margin:18px 0}
+.geo-tech-bartop{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink)}
+.geo-tech-track{height:13px;background:var(--geo-fondo-oliva);margin-top:5px}
+.geo-tech-fill{height:100%;display:block;min-width:2px;background:var(--olive)}
+@media(max-width:750px){.geo-tech-counts{grid-template-columns:repeat(3,minmax(0,1fr))}.geo-tech-metrics{grid-template-columns:1fr}.geo-tech-panel select{display:block;margin:10px 0 0}.geo-tech-card,.geo-tech-accordion-list details,.geo-tech-panel{padding:18px}}
