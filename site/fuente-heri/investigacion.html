@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./model.css"><link rel="stylesheet" href="./charts.css"><link rel="stylesheet" href="./predictor.css"><link rel="stylesheet" href="./predictions59.css"><link rel="stylesheet" href="./reference26_residuals.css">
 <script src="./navigation.js" defer></script><script src="./scroll_motion.js" defer></script><script src="./charts.js" defer></script><script src="./model.js" defer></script><script src="./field_charts.js" defer></script>
 <script src="./reference26_engine.js" defer></script>
-<script src="./predictions59.js" defer></script>
+
 
 <script src="./reference26_residuals.js" defer></script>
 <script src="./research-59-archive.js" defer></script>
@@ -32,6 +32,7 @@
     <summary>Menú</summary>
     <nav class="andrea-nav-items" aria-label="Secciones de GeoCebada" id="nav-links">
      <a href="../index.html">Inicio · Explorar parcelas</a>
+     <a href="./investigacion.html?vista=sabemos">¿Qué sabemos?</a>
      <a href="./investigacion.html?vista=modelo">¿Cómo funciona el modelo?</a>
      <a href="./investigacion.html?vista=resultados">Resultados</a>
      <a href="./investigacion.html?vista=confianza">¿Qué tanta confianza merece?</a>
@@ -45,9 +46,18 @@
 <div class="research-chapter-heading" id="research-chapter-heading">
  <div class="shell">
   <p class="research-kicker">GEOCEBADA · INVESTIGACIÓN APLICADA · CICLO 2025</p>
-  <div data-research-intro="modelo" class="research-intro">
+  <div data-research-intro="sabemos" class="research-intro">
+    <h1>¿Qué <em>sabemos?</em></h1>
+    <p>Qué información tenemos de las 197 parcelas, cuáles rendimientos se conocen y qué observamos en clima y vegetación. Los datos, variables y gráficas originales están reunidos aquí.</p>
+    <nav class="research-topic-links" aria-label="Contenido de Qué sabemos">
+     <a href="./investigacion.html?vista=sabemos#datos">Parcelas y objetivo</a>
+     <a href="./investigacion.html?vista=sabemos#variables">Las 26 variables</a>
+     <a href="./investigacion.html?vista=sabemos#datos-reales">Lluvia y NDVI observados</a>
+    </nav>
+   </div>
+   <div data-research-intro="modelo" class="research-intro">
    <h1>¿Cómo funciona <em>Reference26?</em></h1>
-   <p>Desde las parcelas y sus variables hasta el entrenamiento y la combinación de estimaciones. Conservamos las explicaciones, las tablas y las figuras originales del estudio.</p>
+   <p>Cómo se preparan las variables, se seleccionan los vecinos y se combinan las predicciones con geología y correcciones. Incluye la metodología y los ajustes originales.</p>
    <nav class="research-topic-links" aria-label="Contenido de Modelo">
     <a href="./investigacion.html?vista=modelo#datos">Datos</a><a href="./investigacion.html?vista=modelo#variables">26 variables</a><a href="./investigacion.html?vista=modelo#preparacion">Preparación</a>
     <a href="./investigacion.html?vista=modelo#arquitectura">Arquitectura</a><a href="./investigacion.html?vista=modelo#geologia">Geología</a><a href="./investigacion.html?vista=modelo#ajuste">Entrenamiento</a>
@@ -79,51 +89,7 @@
 
 
 
-<section class="reading-guide" id="recorrido" aria-labelledby="recorrido-title"><div class="shell">
-<div class="reading-guide-head">
-<div><p class="eyebrow">ÍNDICE DE LA INVESTIGACIÓN</p><h2 id="recorrido-title">De las observaciones a las estimaciones.</h2></div>
-<p>Esta es la ruta de lectura completa. Cada apartado resume qué estudiamos y por qué importa. Puedes leer la página de principio a fin o ir directamente al análisis detallado.</p>
-</div>
-<div class="index-introduction">
-<p>Partimos de <strong>197 parcelas</strong>: 138 con rendimientos reportados y 59 sin una cosecha conocida. Estudiamos sus variables ambientales y geográficas, construimos modelos predictivos y examinamos su error fuera de muestra. El modelo final es Reference26, con evaluación residual LOOCV por media de entrenamiento y 59 estimaciones históricas por mediana.</p>
-</div>
-<div class="chapter-grid">
-<article class="chapter-card">
-<div class="chapter-intro"><span class="chapter-number">01 / DATOS</span><h3>El estudio</h3><p>Qué información tenemos, cómo se recogió y qué limitaciones hay antes de entrenar un modelo.</p><a class="chapter-readmore" href="./investigacion.html?vista=modelo#datos">Leer el estudio</a></div>
-<ul class="chapter-subsections">
-<li><a href="./investigacion.html?vista=modelo#datos">Parcelas y objetivo</a><span>Qué significan los 138 rendimientos conocidos y las 59 parcelas por estimar.</span></li>
-<li><a href="./investigacion.html?vista=modelo#variables">Variables explicativas</a><span>Los 26 indicadores de Reference26 y su papel agrícola y espacial.</span></li>
-<li><a href="./investigacion.html?vista=modelo#preparacion">Preparación de datos</a><span>Agregaciones, valores faltantes y transformaciones previas a cada ajuste.</span></li>
-<li><a href="./investigacion.html?vista=modelo#datos-reales">Lluvia y NDVI observados</a><span>Gráficas de 2025 basadas en mediciones de las parcelas, no en ejemplos.</span></li>
-</ul></article>
-<article class="chapter-card">
-<div class="chapter-intro"><span class="chapter-number">02 / MÉTODOS</span><h3>Reference26</h3><p>Cómo funciona la combinación interna de expertos, geología y corrección residual.</p><a class="chapter-readmore" href="./investigacion.html?vista=modelo#ensamble">Ver el modelo</a></div>
-<ul class="chapter-subsections">
-<li><a href="./investigacion.html?vista=modelo#ensamble">Modelo Reference26</a><span>Reference26, sus variables, arquitectura y diagnóstico de residuos.</span></li>
-<li><a href="./investigacion.html?vista=modelo#arquitectura">Arquitectura de Reference26</a><span>Regresión climática, experto geográfico y corrección residual.</span></li>
-<li><a href="./investigacion.html?vista=modelo#geologia">Geología y pesos</a><span>Cómo los grupos geológicos modifican la mezcla de predicciones.</span></li>
-<li><a href="./investigacion.html?vista=modelo#faltantes">Información incompleta</a><span>Cómo se manejan variables ausentes sin inventar cosechas.</span></li>
-<li><a href="./investigacion.html?vista=modelo#ajuste">Entrenamiento</a><span>Hiperparámetros, separación de datos y calibración interna.</span></li>
-</ul></article>
-<article class="chapter-card">
-<div class="chapter-intro"><span class="chapter-number">03 / EVIDENCIA</span><h3>Resultados y límites</h3><p>Qué tan precisas son las estimaciones y qué conclusiones resisten los diagnósticos.</p><a class="chapter-readmore" href="./investigacion.html?vista=resultados#resultados">Examinar resultados</a></div>
-<ul class="chapter-subsections">
-<li><a href="./investigacion.html?vista=resultados#resultados">Desempeño predictivo</a><span>RMSE, MAE, R² y protocolos diferentes de validación.</span></li>
-<li><a href="./investigacion.html?vista=resultados#pruebas">Pruebas originales: asociaciones</a><span>Regresiones diagnósticas y contrastes de arquitectura; se mantienen en su apartado histórico.</span></li>
-<li class="chapter-residual-link"><a href="./investigacion.html?vista=confianza#estadisticas-finales">Análisis NUEVO de residuos de Reference26 ↗</a><span>Normalidad, heterocedasticidad, Moran, Geary, semivariograma, observaciones influyentes y bootstrap espacial.</span></li>
-<li><a href="./investigacion.html?vista=confianza#limites">Limitaciones</a><span>Calidad de las etiquetas, falta de cosechas verificadas y alcance del estudio.</span></li>
-<li><a href="./investigacion.html?vista=preguntas#preguntas">Preguntas frecuentes</a><span>Interpretación correcta de las cifras y de las partes del modelo.</span></li>
-</ul></article>
-<article class="chapter-card">
-<div class="chapter-intro"><span class="chapter-number">04 / PARCELAS</span><h3>Resultados por parcela</h3><p>Consultar las estimaciones verificadas de Reference26 y localizar las parcelas en el mapa.</p><a class="chapter-readmore" href="./investigacion.html?vista=resultados#predicciones-59">Consultar estimaciones</a></div>
-<ul class="chapter-subsections">
-<li><a href="./investigacion.html?vista=resultados#predicciones-59">Las 59 estimaciones</a><span>Predicciones verificadas de Reference26; los rendimientos reales siguen desconocidos.</span></li>
 
-<li><a href="../index.html">Distribución geográfica</a><span>Ubicación y atributos registrados de las 197 parcelas, con procedencia de Andrea-HH.</span></li>
-</ul></article>
-</div>
-<p class="reading-guide-foot">A continuación se encuentra el contenido íntegro de la investigación. El índice no sustituye las explicaciones, las pruebas ni las visualizaciones.</p>
-</div></section>
 
 <section class="section ensemble-story" id="ensamble">
 <div class="shell">
@@ -179,6 +145,18 @@
 <p class="small-note">Cada variable conserva debajo su identificador exacto del código. Las categorías geológicas son códigos cartográficos, no etiquetas de calidad agrícola. <a href="https://github.com/heri-espino/todoseboso/blob/main/configs/current_champions_inputs.json" target="_blank" rel="noopener noreferrer">Inventario fuente de las 26 entradas ↗</a></p>
 </div></section>
 
+<section class="section section-soft" id="datos-reales" aria-label="Lluvia y vegetación observadas en las 197 parcelas"><div class="shell"><div class="observed-data-panel">
+<div class="real-data-figure" >
+<h3>El clima y la vegetación observados en 2025</h3>
+<p class="chart-explain">Las gráficas utilizan las series originales de las 197 parcelas en 2025. La línea representa la mediana mensual de las observaciones disponibles; los segmentos muestran los percentiles 10 y 90, que describen la variación entre parcelas y no intervalos predictivos.</p>
+<p id="real-chart-status" role="status">Verificando si ya se han publicado los agregados observacionales…</p>
+<div class="detail-pair real-chart-pair">
+<div><h4>Precipitación mensual · 2025</h4><div id="real-rainfall"></div></div>
+<div><h4>NDVI satelital · 2025</h4><div id="real-ndvi"></div></div>
+</div>
+<p class="small-note">El número de observaciones válidas se informa por mes; los datos ausentes no se sustituyen con valores creados para la visualización. Fuente: series mensuales originales de 2025 publicadas como agregados verificables.</p>
+</div></div></div></section>
+
 <section class="section" id="preparacion"><div class="shell">
 <div class="section-heading"><div><p class="eyebrow">03 · DEL DATO A LA VARIABLE</p><h2>Antes de ajustar una regresión, <em>preparamos los datos.</em></h2></div><p>Las transformaciones dependen de la función de cada columna. No sustituimos todos los valores faltantes por cero ni normalizamos indiscriminadamente.</p></div>
 <div class="process-grid">
@@ -197,17 +175,7 @@
 <div class="math-item"><strong>Imputación y escala</strong><div class="math-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>z</mi><mi>j</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>x</mi><mi>j</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>j</mi></msub></mrow><msub><mi>σ</mi><mi>j</mi></msub></mfrac></mrow></math></div><p>La media y escala se calculan únicamente en entrenamiento; antes se imputan los faltantes numéricos.</p></div>
 <div class="math-item"><strong>Peso por distancia</strong><div class="math-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>∝</mo><mfrac><mn>1</mn><mrow><msub><mi>d</mi><mi>i</mi></msub><mo>+</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></mfrac></mrow></math></div><p>En igualdad de lo demás, un vecino próximo tiene mayor peso.</p></div>
 </div></details>
-<div class="observed-data-panel">
-<div class="real-data-figure" id="datos-reales">
-<h3>El clima y la vegetación observados en 2025</h3>
-<p class="chart-explain">Las gráficas utilizan las series originales de las 197 parcelas en 2025. La línea representa la mediana mensual de las observaciones disponibles; los segmentos muestran los percentiles 10 y 90, que describen la variación entre parcelas y no intervalos predictivos.</p>
-<p id="real-chart-status" role="status">Verificando si ya se han publicado los agregados observacionales…</p>
-<div class="detail-pair real-chart-pair">
-<div><h4>Precipitación mensual · 2025</h4><div id="real-rainfall"></div></div>
-<div><h4>NDVI satelital · 2025</h4><div id="real-ndvi"></div></div>
-</div>
-<p class="small-note">El número de observaciones válidas se informa por mes; los datos ausentes no se sustituyen con valores creados para la visualización. Fuente: series mensuales originales de 2025 publicadas como agregados verificables.</p>
-</div></div></div></section>
+</div></section>
 
 <section class="section section-dark" id="arquitectura"><div class="shell">
 <div class="section-heading"><div><p class="eyebrow">04 · EL ALGORITMO</p><h2>Una predicción pasa por <em>cuatro cálculos.</em></h2></div><p>Los rendimientos no salen directamente de K-means. El agrupamiento sólo determina qué mezcla de dos estimaciones se usa.</p></div>
