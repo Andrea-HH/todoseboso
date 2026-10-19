@@ -952,3 +952,83 @@ html[data-geo-vista="problema"] #contenido>.stat-band{display:block!important}
   }
   #contenido>.section.comparison .result-hero>div:last-child{border-bottom:0}
 }
+
+
+/* Fondos de lectura GeoCebada · alternancia suave para las seis vistas. */
+:root{
+  --geo-fondo-crema:#FBF8EF;
+  --geo-fondo-salvia:#EEF2E8;
+  --geo-fondo-trigo:#F6F0E4;
+  --geo-fondo-papel:#FFFDF6;
+  --geo-fondo-separador:rgba(79,104,76,.10);
+}
+html[data-geo-vista] #contenido{
+  background:var(--geo-fondo-crema);
+}
+/* Inicio: superficie cálida para la introducción y salvia alrededor del mapa. */
+html[data-geo-vista="inicio"] #contenido>section.hero{
+  background:var(--geo-fondo-crema)!important;
+}
+html[data-geo-vista="inicio"] #contenido>section.geoc-andrea-map{
+  background:var(--geo-fondo-salvia)!important;
+}
+/* Problema: cifras en verde salvia y explicación sobre crema. */
+html[data-geo-vista="problema"] #contenido>section.stat-band{
+  background:var(--geo-fondo-salvia)!important;
+}
+html[data-geo-vista="problema"] #contenido>section.problem{
+  background:var(--geo-fondo-crema)!important;
+}
+/* Modelo: variaciones suaves entre investigación, explicación y demostraciones. */
+html[data-geo-vista="modelo"] #contenido>section.narrative{
+  background:var(--geo-fondo-crema)!important;
+}
+html[data-geo-vista="modelo"] #contenido>section.rain-section{
+  background:var(--geo-fondo-trigo)!important;
+}
+html[data-geo-vista="modelo"] #contenido>section.neighbor-section{
+  background:var(--geo-fondo-salvia)!important;
+}
+html[data-geo-vista="modelo"] #contenido>section.architecture{
+  background:var(--geo-fondo-crema)!important;
+}
+html[data-geo-vista="modelo"] #contenido>section.understanding{
+  background:var(--geo-fondo-trigo)!important;
+}
+/* Resultados: el contraste procede del fondo, no de las cifras o las gráficas. */
+html[data-geo-vista="resultados"] #contenido>section.comparison{
+  background:var(--geo-fondo-crema)!important;
+}
+html[data-geo-vista="resultados"] #contenido>section.significance{
+  background:var(--geo-fondo-salvia)!important;
+}
+html[data-geo-vista="resultados"] #contenido>section.new-evidence{
+  background:var(--geo-fondo-crema)!important;
+}
+html[data-geo-vista="resultados"] #contenido>section.hhi-study{
+  background:var(--geo-fondo-trigo)!important;
+}
+html[data-geo-vista="resultados"] #contenido>section.alternative{
+  background:var(--geo-fondo-salvia)!important;
+}
+html[data-geo-vista="resultados"] #contenido>section.distribution-section{
+  background:var(--geo-fondo-crema)!important;
+}
+/* Confianza: alternar intervalos y límites, conservando las tarjetas de color. */
+html[data-geo-vista="confianza"] #contenido>section.delivery{
+  background:var(--geo-fondo-crema)!important;
+}
+html[data-geo-vista="confianza"] #contenido>section.limits{
+  background:var(--geo-fondo-salvia)!important;
+}
+/* Preguntas: fondo trigo muy tenue, con respuestas en papel claro. */
+html[data-geo-vista="preguntas"] #contenido>section.technical-questions{
+  background:var(--geo-fondo-trigo)!important;
+}
+html[data-geo-vista="preguntas"] #contenido .geo-faq-groups>.geo-faq-group{
+  background:var(--geo-fondo-papel);
+}
+/* Transiciones entre capítulos sin introducir bloques oscuros adicionales. */
+html[data-geo-vista] #contenido>section.section+section.section{
+  border-top:1px solid var(--geo-fondo-separador);
+}
