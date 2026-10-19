@@ -3,6 +3,7 @@
 (function () {
   'use strict';
   const labels = Object.freeze({
+    sabemos: '¿Qué sabemos?',
     modelo: '¿Cómo funciona el modelo?',
     resultados: 'Resultados',
     confianza: '¿Qué tanta confianza merece?',
@@ -14,6 +15,7 @@
   });
   const byAnchor = Object.freeze({
     'mapa-interactivo':'inicio',
+    'datos':'sabemos','variables':'sabemos','datos-reales':'sabemos',
     universo:'inicio',pregunta:'inicio',
     historia:'modelo','variables-detalle':'modelo','preparacion-datos':'modelo',lluvia:'modelo',vecinos:'modelo',arquitectura:'modelo','entrenamiento-modelo':'modelo','datos-faltantes':'modelo',
     'de-donde-sale':'modelo','datos-reales':'modelo',
