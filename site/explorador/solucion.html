@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173e34">
+  <meta name="description" content="GeoCebada: plataforma de inteligencia agrícola para explorar 59 estimaciones verificadas de rendimiento de cebada y comprender el método Local04D.">
+  <title>Cómo se desarrolló la solución | GeoCebada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="announcement"><span class="announcement-dot" aria-hidden="true"></span> INVESTIGACIÓN APLICADA · RETO AGROCEBADA FIRA 2026 <span class="announcement-right">CICLO AGRÍCOLA 2025</span></div>
+  <header class="header" id="inicio">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="GeoCebada, volver al inicio">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M17 29V11M17 21c-8 0-10-4-10-11 7 0 10 3 10 11Zm0-5c0-8 3-12 10-12 0 7-3 12-10 12Z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>geo<span class="brand-accent">cebada</span><small>FIELD INTELLIGENCE</small></span>
+      </a>
+      <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <a href="./index.html" data-page="mapa">Mapa satelital</a>
+        <details class="nav-research" data-active="true">
+          <summary>Investigación <span class="nav-research-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="nav-research-panel">
+            <span class="nav-research-kicker">CONOCE EL PROYECTO</span>
+            <a href="./reto.html" data-page="reto"><span class="nav-research-num">01</span><span>El reto<small>Problema y fuentes</small></span></a>
+            <a href="./solucion.html" data-page="solucion" aria-current="page"><span class="nav-research-num">02</span><span>Cómo se desarrolló<small>Método y validación</small></span></a>
+            <a href="./resultados.html" data-page="resultados"><span class="nav-research-num">03</span><span>Resultados<small>Evidencia y conclusiones</small></span></a>
+          </div>
+        </details>
+        <a href="./dashboard.html" data-page="dashboard">Dashboard</a>
+        <a class="nav-button" href="./nueva-parcela.html" data-page="nueva-parcela">Nueva parcela <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+<main id="contenido" class="ret-main chapter-main" data-story="solucion"><section class="chapter-hero"><div class="shell chapter-hero-layout"><div class="chapter-hero-copy">
+<span class="chapter-eyebrow">02 / INVESTIGACIÓN APLICADA · AGROCEBADA FIRA 2026</span><h1>La solución se construyó <em>paso a paso.</em></h1><p>Un modelo local por parcela, vecinos cercanos, ponderación espacial y una validación que oculta rendimientos conocidos para evaluar sin mirar las respuestas finales.</p>
+</div><div class="chapter-hero-mark" aria-hidden="true"><small>GEOCEBADA</small><strong>SOLUCIÓN</strong><span>DATOS · TERRITORIO · EVIDENCIA</span></div></div></section><nav class="chapter-progress" aria-label="Capítulos de la investigación"><div class="shell chapter-progress-list">
+<a href="./reto.html" data-chapter="reto"><span>01</span><strong>El reto</strong></a>
+<a href="./solucion.html" data-chapter="solucion"><span>02</span><strong>Cómo se desarrolló</strong></a>
+<a href="./resultados.html" data-chapter="resultados"><span>03</span><strong>Resultados</strong></a></div></nav><section class="ret-section" id="modelo">
+      <div class="shell ret-section-grid">
+        <div class="ret-aside"><span>03 / PROPUESTA SELECCIONADA</span><strong>Regresión localizada</strong></div>
+        <div class="ret-prose">
+          <h2>Local04D: aprender a partir del entorno cercano</h2>
+          <p>En lugar de aplicar una ecuación global a toda la región, Local04D ajusta un modelo específico para cada parcela de destino, utilizando referencias vecinas cuyo rendimiento sí es conocido.</p>
+          <div class="ret-steps">
+            <div><span>01</span><div><h3>Ubicar referencias cercanas</h3><p>Seleccionar las <strong>24 parcelas etiquetadas</strong> más próximas por distancia geográfica.</p></div></div>
+            <div><span>02</span><div><h3>Representar sus características</h3><p>Emplear la representación <strong>C4 determinista</strong> construida a partir de observaciones permitidas.</p></div></div>
+            <div><span>03</span><div><h3>Ponderar y regularizar</h3><p>Asignar pesos mayores a referencias próximas y ajustar una <strong>regresión Ridge local</strong> con regularización.</p></div></div>
+            <div><span>04</span><div><h3>Estimar el rendimiento</h3><p>Calcular la producción esperada por superficie en <strong>toneladas por hectárea</strong> para el ID objetivo, sin conocer su respuesta real.</p></div></div>
+          </div>
+          <div class="ret-parameter-grid"><div><span>VECINOS</span><strong>k = 24</strong></div><div><span>RIDGE</span><strong>α = 30</strong></div><div><span>PESO ESPACIAL</span><strong>p = 1</strong></div></div>
+          <p class="ret-math-description">Conceptualmente, el ajuste minimiza errores cuadrados ponderados por distancia, más una penalización Ridge para los coeficientes. Para la ponderación espacial se utiliza una relación inversa a la distancia geográfica con un término de estabilidad.</p>
+          <a class="ret-inline-link" href="https://github.com/heri-espino/GeoC/blob/main/docs/METODOLOGIA_Y_RESULTADOS.md" target="_blank" rel="noopener noreferrer">Fundamento completo de Local04D ↗</a>
+        </div>
+      </div>
+    </section><section class="ret-section ret-section-dark" id="protocolo">
+      <div class="shell">
+        <span class="ret-kicker ret-kicker-light">04 / ESTRATEGIA DE VALIDACIÓN</span>
+        <h2>Evaluar sin conocer los rendimientos finales.</h2>
+        <p class="ret-on-dark">La evaluación crea problemas semejantes al de las 59 parcelas de destino utilizando las 138 que sí cuentan con una respuesta reportada. Cada repetición es una división externa con rendimientos temporalmente ocultos.</p>
+        <div class="ret-split-graphic">
+          <div class="ret-split-green" style="flex:97"><strong>97 parcelas</strong><span>Se permite entrenar</span></div>
+          <div class="ret-split-gold" style="flex:41"><strong>41 parcelas</strong><span>Pseudo-objetivos reservados</span></div>
+        </div>
+        <div class="ret-split-bottom"><span>138 etiquetas disponibles</span><span>16 particiones por banco</span><span>656 evaluaciones repetidas</span></div>
+        <p class="ret-on-dark">Las 41 respuestas externas se revelan únicamente para calcular los errores después de producir las predicciones. Las variables X observadas de esas parcelas pueden ser conocidas según el protocolo transductivo.</p>
+        <div class="ret-validation-grid">
+          <article>
+            <span>BANCO 07 / DESARROLLO</span>
+            <h3>Pseudo-objetivos semejantes al conjunto destino</h3>
+            <ol>
+              <li>Diseñar perfiles geográficos, agronómicos, temporales y de similitud usando solo características observadas.</li>
+              <li>Distribuir los 41 casos por estado mediante cuotas Hamilton y considerar la estructura municipal.</li>
+              <li>Examinar <strong>80 máscaras candidatas por repetición</strong>; escoger diversidad y similitud al objetivo con control Jaccard.</li>
+              <li>Conservar <strong>16 particiones</strong> de 97/41 para comparar candidatos sobre los mismos casos.</li>
+            </ol>
+            <div class="ret-validation-data"><b>125</b><small>IDs únicos evaluados</small></div>
+          </article>
+          <article>
+            <span>BANCO 08 / CONFIRMACIÓN</span>
+            <h3>Nuevas máscaras y ajuste interno independiente</h3>
+            <ol>
+              <li>Recrear la selección a partir de información observable, con cuotas territoriales y <strong>160 candidatos</strong> por repetición.</li>
+              <li>Reducir el solapamiento de máscaras respecto de las seleccionadas y evaluadas anteriormente.</li>
+              <li>Ajustar dos familias competidoras con <strong>Optuna: 96 ensayos por familia y split</strong>, usando validación interna de <strong>3 folds</strong> sobre las 97 etiquetas.</li>
+              <li>Reentrenar con las 97 y medir el error en las 41 reservadas; conservar Local04D fijo sin reajustarlo.</li>
+            </ol>
+            <div class="ret-validation-data"><b>132</b><small>IDs únicos evaluados</small></div>
+          </article>
+        </div>
+        <div class="ret-validation-note"><strong>Evitar fugas de información.</strong> Elegir hiperparámetros ocurre dentro de los 97 datos de entrenamiento; el conjunto externo de 41 queda fuera de ese proceso. Aunque cada banco suma 16 × 41 = 656 predicciones, existen parcelas repetidas, por lo que no son 656 unidades agrícolas independientes.</div>
+      </div>
+    </section><section class="ret-section ret-section-warm" id="trayectoria"><div class="shell"><span class="ret-kicker">05 / ITERACIONES</span><h2>Cómo fue evolucionando el trabajo.</h2>
+<div class="chapter-timeline"><div class="ret-history">
+            <div><b>02–03</b><p>Auditoría de datos, preparación de variables y comparación inicial de modelos globales (PLS, Ridge, CatBoost y mezclas).</p></div>
+            <div><b>04</b><p>Ensayos con proximidad espacial, pseudo-objetivos, grafos y vecinos; Local04D emerge como la opción seleccionada.</p></div>
+            <div><b>05–06</b><p>Evaluación de combinaciones, correcciones de residuos y estrategias enfocadas en rendimientos extremos, sin evidencia suficiente para reemplazar la regla fija.</p></div>
+            <div><b>07</b><p>Incorporación experimental de HLS/SMAP y modelos rivales como Local07, CatBoost y Prithvi07, con comparación en un mismo banco de desarrollo.</p></div>
+            <div><b>08</b><p>Banco nuevo de confirmación, búsqueda interna de hiperparámetros para rivales y mantenimiento de Local04D como referencia estable.</p></div>
+          </div></div><div class="chapter-links"><a href="./metodologia.html">Metodología detallada ↗</a><a href="./validacion.html">Validación visual ↗</a></div></div></section><section class="chapter-next"><div class="shell"><div><span>SIGUIENTE CAPÍTULO</span><h2>Resultados del proyecto</h2><p>Comprende las métricas, comparaciones y principales conclusiones.</p></div><a href="./resultados.html">Continuar ↗</a></div></section><div class="shell chapter-attribution"><span>INFORMACIÓN TRAZABLE</span><p>Datos y metodología adaptados de la <a href="https://heri-espino.github.io/GeoC/#reto" target="_blank" rel="noopener noreferrer">presentación original del equipo GeoCebada ↗</a>.</p></div></main>  <footer class="footer"><div class="shell footer-inner"><div><a class="footer-brand" href="./index.html">geo<span>cebada</span></a><p>Propuesta independiente de interfaz para el Reto AgroCebada FIRA 2026.</p><small>Los resultados científicos y las predicciones provienen del proyecto GeoCebada original.</small></div><div><strong>EXPLORAR</strong><a href="./index.html">Mapa satelital</a><a href="./reto.html">El reto</a><a href="./solucion.html">Cómo se desarrolló</a><a href="./resultados.html">Resultados</a><a href="./dashboard.html">Dashboard</a><a href="./nueva-parcela.html">Nueva parcela</a></div><div><strong>FUENTES</strong><a href="https://github.com/heri-espino/GeoC" target="_blank" rel="noopener noreferrer">Repositorio científico ↗</a><a href="https://github.com/Andrea-HH/GeoCebada-Frontend-Andrea" target="_blank" rel="noopener noreferrer">Frontend independiente ↗</a><a href="./docs/FUENTES_Y_LIMITACIONES.md">Fuentes y limitaciones ↗</a></div></div><div class="shell footer-bottom"><span>© 2026 GeoCebada · Propuesta de frontend independiente</span><span>HECHO CON CIENCIA DE DATOS Y RESPETO POR EL TERRITORIO</span></div></footer>
+</body>
+</html>
