@@ -42,7 +42,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         research.feed((SOURCE/"investigacion.html").read_text(encoding="utf-8"))
         self.assertEqual((set(original.sections)-{"mapa-interactivo","recorrido"})|{"datos-reales","predicciones-59"},set(research.sections))
         self.assertEqual(len(original.sections),len(research.sections))
-        for indicator in ("pred59-plot","pred59-examples","real-rainfall","real-ndvi",
+        for indicator in ("pred59-summary","pred59-examples","real-rainfall","real-ndvi",
                           "cluster-list","feature-rows","performance-chart",
                           "r3-comparison","association-chart","distribution-quantiles",
                           "r26-moran-chart","r26-geary-chart","r26-variogram-chart",
@@ -71,6 +71,9 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertNotIn('class="pred59-explorer"',text)
         self.assertNotIn('id="pred59-rows"',text)
         self.assertNotIn('id="pred59-detail"',text)
+        self.assertNotIn('id="pred59-plot"',text)
+        self.assertNotIn('class="pred59-viz"',text)
+        self.assertNotIn("¿Cómo se distribuyen las estimaciones?",text)
         self.assertNotIn('id="pred59-search"',text)
         self.assertNotIn('id="pred59-state"',text)
         self.assertNotIn("Consultar las 59 predicciones",text)
@@ -150,7 +153,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('id="geoc-andrea-panel-frame"',original)
         self.assertIn('id="geo-paleta-portada"',original)
         self.assertIn('section.hero {\n      background: #F3EBD9 !important;',original)
-        self.assertIn('section.geoc-andrea-map {\n      background: #FBF8F1 !important;',original)
+        self.assertIn('section.geoc-andrea-map {\n      background: #F3EBD9 !important;',original)
         research_html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         self.assertIn('id="geo-header-color"',research_html)
         for view,ids in order.items():
@@ -181,6 +184,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertNotIn("pred59-detail",script)
         self.assertNotIn("pred59-rows",script)
         self.assertNotIn("pred59-state",script)
+        self.assertNotIn("pred59-plot",script)
         self.assertNotIn("pred59-search",script)
         self.assertNotIn("Math.random(",script)
         self.assertNotIn("!window.GeoCebadaPredictions",script)
