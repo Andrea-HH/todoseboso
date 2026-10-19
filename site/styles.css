@@ -753,7 +753,7 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
 #contenido>.section.delivery .delivery-panel:nth-child(2)>p,
 #contenido>.section.delivery .delivery-panel:nth-child(2) .interval-explanation{color:#52614A!important}
 
-/* Pie de página: marca idéntica a la cabecera y enlaces en la zona central. */
+/* Pie de página: GeoCebada solo en texto; enlaces en la zona central. */
 .site-footer{
   padding-top:clamp(24px,3vw,46px);
   padding-bottom:18px;
@@ -780,20 +780,6 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
   letter-spacing:-.055em;
   line-height:1;
 }
-.site-footer .footer-identity .brand-wheat-mark{
-  flex:0 0 42px;
-  width:42px;
-  height:58px;
-  background:#FBF8EF;
-  padding:3px 6px;
-  border-radius:12px;
-}
-.site-footer .footer-identity .brand-wheat-mark img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
 .site-footer .footer-identity .footer-name{
   font-family:var(--sans);
   font-style:normal;
@@ -806,17 +792,6 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
   font-style:normal;
   font-weight:inherit;
   color:#E6BB69!important;
-}
-.site-footer .footer-identity small{
-  color:#E8E9D4;
-  border-left:1px solid rgba(255,249,235,.36);
-  padding-left:14px;
-  margin-left:4px;
-  font-size:11px;
-  font-weight:750;
-  line-height:1.2;
-  letter-spacing:.17em;
-  white-space:nowrap;
 }
 .site-footer .footer-links{
   justify-self:start;
@@ -854,15 +829,6 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
 }
 @media(max-width:530px){
   .site-footer .footer-identity{font-size:24px;gap:8px;flex-wrap:wrap}
-  .site-footer .footer-identity .brand-wheat-mark{
-    flex-basis:35px;width:35px;height:48px;padding:3px 5px;
-  }
-  .site-footer .footer-identity small{
-    font-size:9px;
-    letter-spacing:.12em;
-    padding-left:8px;
-    margin-left:0;
-  }
   .site-footer .footer-links{
     display:flex;
     flex-direction:column;
