@@ -6,32 +6,38 @@ const MODELS = ["Reference26", "Compact14", "B1", "CT3", "L40"];
 const PROTOCOLS = {
   fresh_97_41: {
     label: "97/41",
-    description: "16 particiones de 97 parcelas de entrenamiento y 41 retenidas. Media de RMSE/R² por partición; no es LOOCV ni equivale al banco 08 del otro repositorio."
+    description: "En 16 pruebas se usan 97 parcelas para entrenar y 41 para evaluar. Los resultados son promedios de esas pruebas sobre 138 cosechas conocidas."
   },
   random: {
     label: "Aleatoria",
-    description: "50 pliegues repartidos en 10 repeticiones. Predicciones fuera de muestra completas por repetición; después se promedian las métricas."
+    description: "Se repite la evaluación con parcelas elegidas al azar. Cada una se evalúa separada del grupo utilizado para entrenar el modelo."
   },
   climate_profile: {
     label: "Perfil climático",
-    description: "Cinco pliegues agrupados por perfil climático. Se evalúa transferencia entre perfiles; dificultad distinta de una partición aleatoria."
+    description: "En cada prueba dejamos fuera grupos con condiciones climáticas similares y evaluamos las predicciones para esos grupos."
   },
   municipality: {
     label: "Municipal",
-    description: "Cinco pliegues con agrupación municipal. Prueba transferencia a territorios no observados en entrenamiento."
+    description: "Dejamos municipios completos fuera del entrenamiento para comprobar cómo funcionan las estimaciones en municipios que el modelo no utilizó al entrenar."
   },
   spatial: {
     label: "Espacial",
-    description: "Cinco pliegues de bloques espaciales. Es una prueba de extrapolación territorial, no el mismo problema que reconstruir parcelas próximas."
+    description: "Separamos las parcelas por zonas geográficas y dejamos algunas zonas fuera del entrenamiento."
   }
 };
 const LABELS = {
-  Reference26: "Reference26", Compact14: "Compact14",
-  B1: "B1 · sensibilidad", CT3: "C-T3 · control", L40: "L40 / Local04D"
+  Reference26: "Clima, vecinos y geología",
+  Compact14: "Clima y vecinos, sin geología",
+  B1: "Clima combinado con el modelo principal",
+  CT3: "Lluvia y vegetación en mayo",
+  L40: "Vecinos con información satelital amplia"
 };
 const ROLES = {
-  Reference26: "Champion", Compact14: "Champion compacto",
-  B1: "Sensibilidad", CT3: "Control", L40: "Referencia externa"
+  Reference26: "Seleccionado · 26 indicadores · Reference26",
+  Compact14: "Seleccionado · 14 indicadores · Compact14",
+  B1: "Combinación adicional · B1",
+  CT3: "Primer modelo · 4 indicadores · C-T3",
+  L40: "Modelo anterior · Local04D"
 };
 const $ = selector => document.querySelector(selector);
 const $$ = selector => Array.from(document.querySelectorAll(selector));
@@ -218,7 +224,9 @@ async function initComparison() {
         const fill = element("div", "chart-fill");
         fill.style.width = (Math.min(100, Number(row.rmse) / 1.05 * 100)).toFixed(2) + "%";
         track.append(fill);
-        barRow.append(element("span", "chart-label", LABELS[name]), track, element("span", "chart-value", fmt(row.rmse)));
+        const label = element("div", "chart-label");
+        label.append(element("strong", "", LABELS[name]), element("small", "", ROLES[name]));
+        barRow.append(label, track, element("span", "chart-value", fmt(row.rmse)));
         chart.append(barRow);
 
         const tr = document.createElement("tr");
