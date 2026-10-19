@@ -82,8 +82,51 @@ async function showObservations(){
     }
   }catch(e){[rain,ndvi].filter(Boolean).forEach(root=>note(root,'No se pudieron cargar los agregados observados: '+e.message));}
 }
+
+function showModelPreview(sorted,mean){
+  const summary=$('geo-modelo-resumen'),examples=$('geo-modelo-ejemplos');
+  if(!summary||!examples)return;
+  summary.replaceChildren(
+    stat('PARCELAS DE REFERENCIA','138','Cosechas conocidas utilizadas por el modelo'),
+    stat('PARCELAS ESTIMADAS','59','No conocemos sus cosechas'),
+    stat('PROMEDIO ESTIMADO',fmt(mean,3)+' t/ha','Promedio de las 59 estimaciones históricas')
+  );
+  examples.replaceChildren();
+  for(const [label,r] of [['La menor estimación',sorted[0]],['La estimación central',sorted[29]],['La mayor estimación',sorted[58]]]){
+    const card=element('article','geo-ejemplo');
+    card.append(element('span','',label),element('strong','',fmt(r.value,3)+' t/ha'),element('small','',r.id+' · Predicción, no cosecha observada'));
+    examples.append(card);
+  }
+}
+async function addPublicGeography(rows){
+  if(!('DecompressionStream' in window))throw Error('El navegador no admite la descompresión de la capa pública.');
+  const res=await fetch('./explorador/data/mapa_publico.json.gz',{cache:'no-store'});
+  if(!res.ok||!res.body)throw Error('La capa pública del mapa no se pudo consultar.');
+  const doc=JSON.parse(await new Response(res.body.pipeThrough(new DecompressionStream('gzip'))).text());
+  if(doc.schema!=='geocebada-map-public-1'||!Array.isArray(doc.geometry?.features)||doc.geometry.features.length!==197)
+    throw Error('Los metadatos geográficos no corresponden a las 197 parcelas.');
+  const byId=new Map();
+  const counts={Hidalgo:0,Puebla:0,Tlaxcala:0};
+  for(const feature of doc.geometry.features){
+    const p=feature.properties||{},id=String(p.ID_POLIGONO||p.ID_POLIGON||'').trim().toUpperCase();
+    const state=String(p.Estado||p.estado||'').trim();
+    const split=String(p.CONJUNTO||p.conjunto||'').trim().toUpperCase();
+    if(!/^AGC_\d+$/.test(id)||byId.has(id)||!Object.hasOwn(counts,state)||!['PREDICCION','ENTRENAMIENTO'].includes(split))
+      throw Error('La capa contiene identificadores, estados o conjuntos inconsistentes.');
+    const municipality=String(p.Municipio||p.municipio||'').trim();
+    byId.set(id,{state,municipality,split});
+    if(split==='PREDICCION')counts[state]++;
+  }
+  if(byId.size!==197||counts.Hidalgo!==15||counts.Puebla!==29||counts.Tlaxcala!==15)
+    throw Error('La distribución geográfica no coincide con los resultados archivados.');
+  if(rows.some(r=>byId.get(r.id)?.split!=='PREDICCION'))throw Error('Las 59 parcelas no coinciden con la capa pública.');
+  for(const row of rows){
+    const loc=byId.get(row.id);row.state=loc.state;row.municipality=loc.municipality||'No disponible';
+  }
+}
 async function showPredictions(){
-  const summary=$('geo-59-resumen'),chart=$('geo-59-grafica'),table=$('geo-59-tabla'),examples=$('geo-59-ejemplos'),search=$('geo-59-buscar'),order=$('geo-59-orden');
+  const summary=$('geo-59-resumen'),chart=$('geo-59-grafica'),table=$('geo-59-tabla'),examples=$('geo-59-ejemplos');
+  const search=$('geo-59-buscar'),order=$('geo-59-orden'),stateFilter=$('geo-59-estado'),detail=$('geo-59-detalle');
   if(!summary||!chart||!table)return;
   try{
     const response=await fetch('./explorador/data/predictions.csv',{cache:'no-store'});
@@ -92,11 +135,13 @@ async function showPredictions(){
     if(lines[0]!=='ID_POLIGONO,RENDIMIENTO_T_HA')throw Error('Encabezado distinto del archivo autorizado');
     const data=lines.slice(1).filter(Boolean).map(line=>{
       const parts=line.split(',');
-      return {id:parts[0],value:Number(parts[1])};
+      if(parts.length!==2||!parts[1].trim())throw Error('Fila del CSV con formato incorrecto');
+      return {id:parts[0],value:Number(parts[1]),state:null,municipality:null};
     });
     const ids=new Set(data.map(d=>d.id));
-    if(data.length!==59||ids.size!==59||data.some(d=>!/^AGC_\d+$/.test(d.id)||!Number.isFinite(d.value)))throw Error('La lista de 59 ID y rendimientos no supera la validación');
-    const mean=data.reduce((s,d)=>s+d.value,0)/data.length;
+    if(data.length!==59||ids.size!==59||data.some(d=>!/^AGC_\d+$/.test(d.id)||!Number.isFinite(d.value)||d.value<=0))
+      throw Error('La lista de 59 ID y rendimientos no supera la validación');
+    const mean=data.reduce((sum,d)=>sum+d.value,0)/data.length;
     if(Math.abs(mean-3.956432328667021)>1e-7)throw Error('La media no coincide con el expediente archivado');
     const sorted=[...data].sort((a,b)=>a.value-b.value);
     summary.replaceChildren();
@@ -106,45 +151,103 @@ async function showPredictions(){
       stat('MÍNIMO',fmt(sorted[0].value,3)+' t/ha',sorted[0].id),
       stat('MÁXIMO',fmt(sorted[58].value,3)+' t/ha',sorted[58].id)
     );
+    showModelPreview(sorted,mean);
     examples.replaceChildren();
     [['Menor',sorted[0]],['Mediana',sorted[29]],['Mayor',sorted[58]]].forEach(([title,row])=>{
       const c=element('div','geo-ejemplo');
       c.append(element('span','',title+' estimación'),element('strong','',fmt(row.value,3)+' t/ha'),element('small','',row.id));
       examples.append(c);
     });
-    const svg=svgEl('svg',{viewBox:'0 0 620 230',role:'img','aria-label':'Los 59 rendimientos estimados ordenados de menor a mayor; cada punto corresponde a una parcela'});
-    const low=Math.floor(sorted[0].value*2)/2, high=Math.ceil(sorted[58].value*2)/2;
-    const X=v=>45+(v-low)/(high-low)*545;
-    for(let i=0;i<=4;i++){
-      const x=45+(545*i/4);
-      svg.append(svgEl('line',{x1:x,y1:22,x2:x,y2:192,class:'geo-rejilla'}));
-      svg.append(svgEl('text',{x,y:212,'text-anchor':'middle'},fmt(low+(high-low)*i/4,2)));
+    let selectedId=sorted[29].id;
+    function choose(id,focus=false){
+      const row=data.find(x=>x.id===id);if(!row)return;
+      selectedId=id;
+      detail.replaceChildren();
+      detail.append(element('span','geo-59-etiqueta','PARCELA DEL ESTUDIO · COSECHA AÚN DESCONOCIDA'));
+      detail.append(element('h3','',row.id+' · '+fmt(row.value,4)+' t/ha estimadas'));
+      detail.append(element('p','',row.state?row.state+' · '+row.municipality:'Información geográfica en el mapa de Inicio'));
+      detail.append(element('p','', 'Esta cifra procede de Reference26 histórico y no representa una cosecha comprobada. Las contribuciones individuales de clima, vecinos, geología y corrección no están publicadas en el CSV de 59 estimaciones.'));
+      const link=element('a','source-link','Consultar las parcelas en el mapa ↗');
+      link.href='./index.html#mapa-interactivo';detail.append(link);
+      table.querySelectorAll('tbody tr').forEach(tr=>tr.classList.toggle('geo-seleccionada',tr.dataset.parcelId===id));
+      chart.querySelectorAll('circle[data-parcel-id]').forEach(c=>c.classList.toggle('geo-seleccionada',c.dataset.parcelId===id));
+      if(focus)detail.scrollIntoView({block:'nearest',behavior:'smooth'});
     }
-    sorted.forEach((r,i)=>{
-      const y=30+(i%10)*16;
-      const circle=svgEl('circle',{cx:X(r.value),cy:y,r:4.7,class:'geo-punto'});
-      circle.append(svgEl('title',{},r.id+' · '+fmt(r.value,4)+' t/ha'));
-      svg.append(circle);
-    });
-    chart.replaceChildren(svg);
-    note(chart,'Cada círculo representa una parcela; el eje horizontal es t/ha. La altura sólo separa visualmente los puntos: no representa otra variable.');
+    function paintChart(){
+      chart.replaceChildren();
+      const allStates=data.every(d=>d.state);
+      const svg=svgEl('svg',{viewBox:'0 0 660 260',role:'img','aria-label':'Diagrama de dispersión de los 59 rendimientos estimados en t/ha'+(allStates?', agrupados por estado':'')});
+      const low=Math.floor(sorted[0].value*2)/2, high=Math.ceil(sorted[58].value*2)/2;
+      const L=92,R=24,W=660, X=v=>L+(v-low)/(high-low)*(W-L-R);
+      const baseline=218, states=['Hidalgo','Puebla','Tlaxcala'];
+      for(let i=0;i<=5;i++){
+        const x=L+(W-L-R)*i/5;
+        svg.append(svgEl('line',{x1:x,y1:20,x2:x,y2:baseline,class:'geo-rejilla'}));
+        svg.append(svgEl('text',{x,y:245,'text-anchor':'middle'},fmt(low+(high-low)*i/5,2)));
+      }
+      if(allStates){
+        const ys={Hidalgo:45,Puebla:116,Tlaxcala:187};
+        for(const state of states)svg.append(svgEl('text',{x:8,y:ys[state]+3},state));
+        data.forEach((row,i)=>{
+          // La dispersión vertical mínima sólo evita superposición de los puntos.
+          const offset=((Number(row.id.slice(4))%7)-3)*3.4;
+          const circle=svgEl('circle',{cx:X(row.value),cy:ys[row.state]+offset,r:5,class:'geo-punto geo-pred-'+row.state.toLowerCase(),tabindex:'0',role:'button','aria-label':row.id+', '+fmt(row.value,4)+' toneladas por hectárea estimadas', 'data-parcel-id':row.id});
+          circle.append(svgEl('title',{},row.id+' · '+row.state+' · '+fmt(row.value,4)+' t/ha'));
+          circle.addEventListener('click',()=>choose(row.id,true));
+          circle.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(row.id,true)}});
+          svg.append(circle);
+        });
+      }else sorted.forEach((row,i)=>{
+        const y=24+(i%11)*16;
+        const circle=svgEl('circle',{cx:X(row.value),cy:y,r:4.7,class:'geo-punto',tabindex:'0',role:'button','aria-label':row.id+', '+fmt(row.value,4)+' toneladas por hectárea estimadas','data-parcel-id':row.id});
+        circle.append(svgEl('title',{},row.id+' · '+fmt(row.value,4)+' t/ha'));
+        circle.addEventListener('click',()=>choose(row.id,true));
+        circle.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(row.id,true)}});
+        svg.append(circle);
+      });
+      chart.append(svg);
+      note(chart,allStates?'Las filas agrupan parcelas por estado y cada círculo es una predicción seleccionable. La variación vertical pequeña sólo evita superposiciones: no mide rendimiento ni incertidumbre.':'Un círculo por parcela. La altura es únicamente una separación visual; no representa una segunda variable.');
+      chart.querySelectorAll('circle[data-parcel-id]').forEach(c=>c.classList.toggle('geo-seleccionada',c.dataset.parcelId===selectedId));
+    }
     const tbody=table.querySelector('tbody');
     const repaint=()=>{
-      const query=(search?.value||'').trim().toUpperCase();
-      const how=order?.value||'id';
-      const visible=data.filter(d=>d.id.includes(query)).sort((a,b)=>how==='asc'?a.value-b.value:how==='desc'?b.value-a.value:a.id.localeCompare(b.id));
+      const query=(search?.value||'').trim().toLocaleLowerCase('es');
+      const state=stateFilter?.value||'all',how=order?.value||'id';
+      const visible=data.filter(d=>(d.id.toLocaleLowerCase('es').includes(query)||d.municipality?.toLocaleLowerCase('es').includes(query)||d.state?.toLocaleLowerCase('es').includes(query))&&(state==='all'||d.state===state))
+        .sort((a,b)=>how==='asc'?a.value-b.value:how==='desc'?b.value-a.value:a.id.localeCompare(b.id));
       tbody.replaceChildren();
       visible.forEach(row=>{
-        const tr=element('tr');
-        tr.append(element('td','',row.id),element('td','',fmt(row.value,4)),element('td','','Estimación, cosecha no observada'));
+        const tr=element('tr');tr.dataset.parcelId=row.id;tr.classList.toggle('geo-seleccionada',row.id===selectedId);
+        const action=element('button','geo-ver-pred','Ver detalle');action.type='button';
+        action.addEventListener('click',()=>choose(row.id,true));
+        const cell=element('td');cell.append(action);
+        tr.append(element('td','',row.id),element('td','',row.state?row.state+' · '+row.municipality:'Consultar en mapa'),
+          element('td','',fmt(row.value,4)),cell);
         tbody.append(tr);
       });
+      if(!visible.length){const tr=element('tr'),td=element('td','','No se encontraron parcelas con esos filtros.');td.colSpan=4;tr.append(td);tbody.append(tr)}
       const count=$('geo-59-cuenta');if(count)count.textContent='Se muestran '+visible.length+' de 59 parcelas.';
     };
     search?.addEventListener('input',repaint);
+    stateFilter?.addEventListener('change',repaint);
     order?.addEventListener('change',repaint);
-    repaint();
-  }catch(e){note(summary,'No se pudo mostrar la tabla de 59 estimaciones verificadas: '+e.message);}
+    paintChart();repaint();choose(selectedId);
+    try{
+      await addPublicGeography(data);
+      stateFilter?.replaceChildren();
+      for(const name of ['Todos los estados','Hidalgo','Puebla','Tlaxcala']){
+        const option=element('option','',name);option.value=name==='Todos los estados'?'all':name;
+        stateFilter?.append(option);
+      }
+      paintChart();repaint();choose(selectedId);
+    }catch(error){
+      if(stateFilter){stateFilter.disabled=true;stateFilter.title='No se pudieron validar los metadatos de estados';}
+      note(chart,'El filtro geográfico no se activó: '+error.message+' Las 59 cifras del CSV siguen disponibles por ID.');
+    }
+  }catch(e){
+    note(summary,'No se pudo mostrar la tabla de 59 estimaciones verificadas: '+e.message);
+    const model=$('geo-modelo-resumen');if(model)note(model,'Las estimaciones no se pudieron comprobar: '+e.message);
+  }
 }
 function drawMoran(target,arr,metric,title){
   const rows=arr.map(r=>({x:r.k,y:r[metric],label:'k='+r.k}));
