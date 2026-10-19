@@ -14,5 +14,5 @@ function table(group){
 fetch('./data/reference26_features.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('archivo de variables no disponible');return r.json()}).then(data=>{
  if(data.schema_version!==1||data.features.length!==5||data.features.reduce((n,g)=>n+g.features.length,0)!==26)throw Error('datos incompatibles');
  target.replaceChildren();data.features.forEach((g,i)=>{const detail=node('details');if(i===0)detail.open=true;detail.append(node('summary',g.count+' · '+g.title),node('p',g.why),table(g));target.append(detail)});
-}).catch(err=>target.replaceChildren(node('p','El inventario no se pudo cargar: '+err.message+'. Puedes abrir la sección original de Heri desde el desplegable siguiente.')));
+}).catch(err=>target.replaceChildren(node('p','El inventario no se pudo cargar: '+err.message+'. Comprueba los archivos técnicos disponibles desde el enlace de procedencia.')));
 })();
