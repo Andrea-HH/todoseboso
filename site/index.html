@@ -48,7 +48,7 @@
         </div>
         <!-- Vista del mapa en el lugar de la ilustración original; la ilustración queda oculta. -->
         <div class="hero-map-preview" aria-label="Mapa interactivo de las parcelas">
-          <iframe src="./explorador/mapa.html?vista=mini-explorador" title="Mapa satelital interactivo GeoCebada" loading="eager" scrolling="no"></iframe>
+          <iframe id="geoc-andrea-hero-frame" src="./explorador/mapa.html?vista=mapa" title="Mapa satelital interactivo GeoCebada" loading="eager"></iframe>
         </div>
         <div class="hero-visual" role="img" aria-label="Ilustración conceptual de parcelas agrícolas, lluvia y vegetación. No representa datos ni ubicaciones reales.">
           <div class="visual-header"><span><span class="status-dot"></span> LLUVIA, CULTIVO Y UBICACIÓN</span><span>01 — 04</span></div>
@@ -85,18 +85,39 @@
       <div class="shell hero-baseline"><span>LA IDEA</span><span>La lluvia por sí sola no describe todo lo que ocurre en una parcela.</span><span aria-hidden="true">↓</span></div>
     </section>
 
-    <!-- Solo el mapa de Andrea; el contenido científico de Heri continúa intacto. -->
-    <section class="geoc-andrea-map" id="mapa-interactivo" aria-label="Explorador satelital GeoCebada">
-      <iframe id="geoc-andrea-map-frame" title="GeoCebada: mapa satelital y datos de las parcelas" src="./explorador/mapa.html" loading="eager"></iframe>
+    <!-- Panel de exploración: se mantiene un solo mapa visible, a la derecha de la pregunta. -->
+    <section class="geoc-andrea-map" id="mapa-interactivo" aria-label="Explorador geográfico: filtros y fichas de parcelas">
+      <div class="geoc-andrea-panel-container">
+        <iframe id="geoc-andrea-panel-frame" title="Explorador geográfico: filtrar y consultar parcelas" src="./explorador/mapa.html?vista=panel" loading="eager"></iframe>
+      </div>
     </section>
     <script>
       (function () {
-        const marco = document.getElementById('geoc-andrea-map-frame');
+        const panel = document.getElementById('geoc-andrea-panel-frame');
+        const mapa = document.getElementById('geoc-andrea-hero-frame');
+        const ready = new Set();
+        let lastSync = null;
         window.addEventListener('message', function (evento) {
-          if (evento.origin !== window.location.origin || evento.source !== marco.contentWindow) return;
+          if (evento.origin !== window.location.origin) return;
+          const fromPanel = evento.source === panel.contentWindow;
+          const fromMap = evento.source === mapa.contentWindow;
+          if (!fromPanel && !fromMap) return;
           const datos = evento.data;
-          if (datos && datos.tipo === 'geocebada-andrea-altura' && Number.isFinite(datos.altura)) {
-            marco.style.height = Math.max(650, Math.min(7000, datos.altura + 4)) + 'px';
+          if (!datos || typeof datos !== 'object') return;
+          if (datos.tipo === 'geocebada-andrea-altura' && fromPanel && Number.isFinite(datos.altura)) {
+            panel.style.height = Math.max(450, Math.min(5000, datos.altura + 8)) + 'px';
+          }
+          if (datos.tipo === 'geocebada-andrea-listo') {
+            ready.add(evento.source);
+            if (lastSync && lastSync.source !== evento.source) {
+              evento.source.postMessage(lastSync.data, window.location.origin);
+            }
+          }
+          if (datos.tipo === 'geocebada-andrea-sincronizar' &&
+              ['seleccionar', 'filtrar', 'reiniciar'].includes(datos.accion)) {
+            lastSync = { source: evento.source, data: datos };
+            const destino = fromPanel ? mapa.contentWindow : panel.contentWindow;
+            if (ready.has(destino)) destino.postMessage(datos, window.location.origin);
           }
         });
       })();

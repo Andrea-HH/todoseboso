@@ -71,11 +71,28 @@ html.geo-mini-explorador .geo-map-notice{max-width:90%;padding:10px;font-size:.7
  html.geo-mini-explorador .geo-filters select{min-height:28px}
  html.geo-mini-explorador .geo-filter-count,html.geo-mini-explorador .geo-detail,html.geo-mini-explorador .geo-climate,html.geo-mini-explorador .geo-legend{display:none}
 }
+/* Panel de fichas debajo del encabezado: sin segundo mapa visible. */
+html.geo-panel-solo,html.geo-panel-solo body{overflow-x:hidden}
+html.geo-panel-solo .geo-workspace{padding:0;background:transparent;min-height:0}
+html.geo-panel-solo .geo-shell{display:block;width:100%;max-width:none;min-height:0;overflow:visible;box-shadow:none;background:transparent;border-radius:0;margin:0}
+html.geo-panel-solo .geo-sidebar{max-height:none;min-height:0;height:auto;overflow:visible;box-shadow:none;border-radius:0;background:#f8f7f0;padding:24px 26px;gap:17px}
+html.geo-panel-solo .geo-map-wrap{position:absolute!important;left:-10000px!important;top:0;width:680px!important;height:650px!important;min-height:650px!important;visibility:hidden;pointer-events:none}
+html.geo-panel-solo .geo-quick-stats{max-width:600px}
+html.geo-panel-solo .geo-detail{min-height:0}
+html.geo-panel-solo .geo-climate{max-width:none}
+html.geo-panel-solo .geo-legend{margin-top:15px}
+@media(max-width:650px){
+ html.geo-panel-solo .geo-sidebar{padding:19px 16px;gap:15px}
+ html.geo-panel-solo .geo-counter{padding:9px 6px}
+ html.geo-panel-solo .geo-counter span{font-size:.63rem;overflow-wrap:anywhere}
+}
+
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
   if(vista==='mapa') document.documentElement.classList.add('geo-mapa-solo');
   if(vista==='mini-explorador') document.documentElement.classList.add('geo-mini-explorador');
+  if(vista==='panel') document.documentElement.classList.add('geo-panel-solo');
 </script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
   <script src="./parcel-map.js" defer></script>
