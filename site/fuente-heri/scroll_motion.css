@@ -1,0 +1,93 @@
+/* Subtle motion only: one fade/vertical reveal on downward scroll,
+   small interaction responses, no bouncing and no bright shadows. */
+@media (prefers-reduced-motion: no-preference){
+ .scroll-reveal-pending{
+   opacity:0;
+   transform:translate3d(0,34px,0);
+ }
+ .scroll-reveal-visible{
+   animation:editorial-reveal 1.3s cubic-bezier(.19,1,.22,1) both;
+ }
+ @keyframes editorial-reveal{
+   from{opacity:0;transform:translate3d(0,34px,0)}
+   to{opacity:1;transform:translate3d(0,0,0)}
+ }
+ .chapter-readmore,.model-hero .primary-cta,.model-hero .secondary-cta,
+ .nav-links>a,.nav-group>summary,.ensemble-selector button,
+ .ensemble-see-reference,.feature-tabs button,.buttonset button,
+ .prediction-mode button,.own-actions button,.fictional-choice,
+ .pred59-example,.cluster-choice{
+   transition:transform .7s cubic-bezier(.22,1,.36,1),
+              border-color .27s ease,background-color .27s ease,
+              color .27s ease,opacity .27s ease!important;
+   transform-origin:center center;
+ }
+ .chapter-readmore:hover,.model-hero .primary-cta:hover,
+ .model-hero .secondary-cta:hover,.ensemble-selector button:hover,
+ .ensemble-see-reference:hover,.feature-tabs button:hover,
+ .buttonset button:hover,.prediction-mode button:hover,
+ .own-actions button:hover,.fictional-choice:hover{
+   transform:scale(1.06);
+ }
+ .chapter-readmore:active,.model-hero .primary-cta:active,
+ .model-hero .secondary-cta:active,.ensemble-selector button:active{
+   transform:scale(.985);
+ }
+ .chapter-card,.chapter-subsections li,
+ .pred59-example,.cluster-choice,.process-grid article,
+ .math-item,.ensemble-flow-card,.tech-intro article,
+ .loocv-panel,.pred59-viz,.real-data-figure,
+ .figure-host,.model-visual,.model-formula{
+   transition:transform .8s cubic-bezier(.22,1,.36,1),
+              border-color .31s ease,background-color .31s ease;
+   transform-origin:center center;
+ }
+ .chapter-card:hover{transform:scale(1.024)!important}
+ .chapter-subsections li:hover{transform:translateX(2px)}
+ .pred59-example:hover,.cluster-choice:hover,.process-grid article:hover,
+ .math-item:hover,.ensemble-flow-card:hover,.tech-intro article:hover{
+   transform:translate3d(0,-4px,0) scale(1.028);
+   border-color:#bac9ba;
+ }
+ .loocv-panel:hover,.pred59-viz:hover,.real-data-figure:hover,
+ .figure-host:hover,.model-visual:hover,.model-formula:hover{
+   transform:scale(1.03);
+ }
+ /* A moving frame can interfere with Leaflet dragging: change only border. */
+ .collaborator-map-frame{
+   transition:border-color .3s ease;
+ }
+ .collaborator-map-frame:hover{border-color:#aebfaf}
+ .nav-links>a:hover,.nav-group>summary:hover{transform:translateY(-1px)}
+}
+@media (prefers-reduced-motion: reduce){
+ .scroll-reveal-pending,.scroll-reveal-visible{
+   opacity:1!important;transform:none!important;animation:none!important;
+ }
+ .chapter-card,.chapter-subsections li,
+ .chapter-readmore,.model-hero .primary-cta,.model-hero .secondary-cta,
+ .pred59-example,.figure-host,.model-formula,.model-visual,
+ .ensemble-selector button,.collaborator-map-frame{transition:none!important}
+}
+
+@media(prefers-reduced-motion:no-preference){
+ .chapter-card,.pred59-example,.cluster-choice,.process-grid article,.math-item,
+ .ensemble-flow-card,.tech-intro article,.loocv-panel,.pred59-viz,
+ .real-data-figure,.figure-host,.model-visual,.model-formula,.geo-interactive,.missing-demo{
+   transition:transform 0.82s cubic-bezier(.22,1,.36,1),
+     box-shadow 0.82s cubic-bezier(.22,1,.36,1),border-color .55s ease!important;
+ }
+ .chapter-card:hover,.pred59-example:hover,.cluster-choice:hover,
+ .process-grid article:hover,.math-item:hover,.ensemble-flow-card:hover,
+ .tech-intro article:hover,.loocv-panel:hover,.pred59-viz:hover,
+ .real-data-figure:hover,.figure-host:hover,.model-visual:hover,
+ .model-formula:hover,.geo-interactive:hover,.missing-demo:hover{
+   box-shadow:0 16px 32px rgba(30,45,35,.095)!important;
+ }
+ .geo-interactive:hover,.missing-demo:hover{transform:scale(1.028)}
+ /* The native Leaflet surface must remain static for reliable interaction. */
+ .geoc-native-map,.geo-native-mapcolumn,#geo-leaflet-map{transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .geo-interactive,.missing-demo{transform:none!important;box-shadow:none!important}
+}

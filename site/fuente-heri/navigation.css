@@ -1,0 +1,67 @@
+/* Chapter navigation: small, dependency-free additions to the existing editorial design. */
+:root{--navigation-height:78px}
+html{scroll-padding-top:calc(var(--navigation-height) + 24px)}
+.section[id],.reading-guide[id],.real-data-figure[id]{scroll-margin-top:calc(var(--navigation-height) + 24px)}
+.site-header{background:#10372f;box-shadow:0 1px 0 rgba(247,247,239,.08)}
+.nav-inner{height:var(--navigation-height);gap:24px}
+.nav-links{display:flex;align-items:center;gap:5px;margin-left:auto;font-size:13px;line-height:1.3;font-weight:660}
+.nav-links>a,.nav-group>summary{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 13px;border:1px solid transparent;border-radius:10px;color:#e3ebdc;cursor:pointer;white-space:nowrap;list-style:none;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.nav-group{position:relative}
+.nav-group>summary::-webkit-details-marker{display:none}
+.nav-group>summary::marker{content:""}
+.nav-links>a:hover,.nav-group>summary:hover,.nav-group[open]>summary,.nav-group.is-active>summary{color:#f5f8e6;background:rgba(235,244,224,.10)}
+.nav-links .nav-home[aria-current="location"]{background:rgba(235,244,224,.10);color:#e0edb5}
+.nav-chevron{font-size:17px;color:#a8c9ac;line-height:0;transition:transform .18s}
+.nav-group[open] .nav-chevron{transform:rotate(180deg)}
+.nav-links .nav-action{background:#dfecb6;color:#173b2f;font-weight:790;margin-left:10px;padding:12px 16px}
+.nav-links .nav-action:hover{background:#f2f7d6;color:#173b2f}
+.nav-popover{position:absolute;top:calc(100% + 13px);left:50%;transform:translateX(-50%);width:min(294px,calc(100vw - 40px));padding:12px;background:#fffef9;border:1px solid #dce5d8;border-radius:15px;box-shadow:0 18px 55px rgba(12,38,31,.24);display:grid;gap:3px;color:#173b2f;z-index:110}
+.nav-popover::before{content:"";position:absolute;left:0;right:0;top:-13px;height:13px}
+.nav-popover-label{font-size:10px;letter-spacing:1.35px;font-weight:830;color:#607c6b;padding:10px 12px 8px;margin:0}
+.nav-popover a{color:#234339;display:block;padding:10px 12px;border-radius:8px;line-height:1.35;font-size:13px;font-weight:620}
+.nav-popover a:hover,.nav-popover a[aria-current="location"]{background:#eaf0e2;color:#12382b}
+.nav-popover a[aria-current="location"]{box-shadow:inset 3px 0 0 #5e9370}
+.menu-toggle{display:none}
+.reading-guide{padding:88px 0 96px;background:#f4f5ed;border-bottom:1px solid #d6e0d4}
+.reading-guide-head{display:flex;align-items:end;justify-content:space-between;gap:52px;margin-bottom:34px}
+.reading-guide-head .eyebrow{margin:0 0 14px}
+.reading-guide-head h2{font-weight:540;letter-spacing:-.055em;line-height:1.14;font-size:clamp(34px,4vw,57px);margin:0}
+.reading-guide-head h2 em{color:#39765e}
+.reading-guide-head>p{max-width:360px;color:#62776a;font-size:14px;line-height:1.75;margin:0 0 4px}
+.chapter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.chapter-card{display:flex;flex-direction:column;min-width:0;background:#fffef9;border:1px solid #d9e2d7;border-radius:15px;padding:26px 24px 23px;transition:border-color .18s,box-shadow .18s,transform .18s}
+.chapter-card:hover{border-color:#a5bdac;box-shadow:0 16px 30px rgba(22,61,45,.07);transform:translateY(-2px)}
+.chapter-number{color:#477b60;letter-spacing:1.4px;font-size:10px;font-weight:850}
+.chapter-card h3{margin:20px 0 12px;letter-spacing:-.045em;line-height:1.18;font-size:clamp(21px,2.2vw,29px);font-weight:640}
+.chapter-card h3 a{display:flex;justify-content:space-between;gap:10px}
+.chapter-card h3 a span{font-size:18px;color:#649876;line-height:1.25}
+.chapter-card>p{margin:0 0 22px;color:#64766d;line-height:1.65;font-size:13px}
+.chapter-subsections{list-style:none;margin:auto 0 0;padding:15px 0 0;border-top:1px solid #dfe6d9;display:grid;gap:3px}
+.chapter-subsections li a{display:block;padding:7px 0;color:#315749;font-size:12px;font-weight:670;line-height:1.45}
+.chapter-subsections li a::before{content:"↗";padding-right:9px;color:#789d85}
+.chapter-subsections li a:hover{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:1120px){
+.nav-inner{gap:12px}.nav-links{gap:0}.nav-links>a,.nav-group>summary{padding:11px 10px}.nav-links .nav-action{padding:11px 12px;margin-left:3px}
+.brand small{display:none}.chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+:root{--navigation-height:70px}
+.nav-inner{height:var(--navigation-height)}
+.menu-toggle{display:inline-flex;align-items:center;gap:12px;margin-left:auto;background:transparent;color:#f5f8e8;border:1px solid rgba(240,246,228,.42);border-radius:10px;padding:11px 14px;font-size:13px;font-weight:730}
+.menu-toggle:hover,.menu-toggle[aria-expanded="true"]{background:rgba(240,246,228,.12)}
+.nav-links{display:none;position:absolute;top:100%;left:12px;right:12px;margin:0;padding:16px;background:#10372f;border:1px solid rgba(227,242,220,.25);border-radius:0 0 16px 16px;box-shadow:0 24px 50px rgba(7,31,22,.34);flex-direction:column;align-items:stretch;gap:3px;max-height:calc(100vh - var(--navigation-height) - 12px);max-height:calc(100dvh - var(--navigation-height) - 12px);overflow-y:auto;overscroll-behavior:contain}
+.nav-links.open{display:flex}
+.nav-links>a,.nav-group>summary{display:flex;width:100%;justify-content:space-between;text-align:left;padding:14px 15px;border-radius:9px;font-size:14px}
+.nav-group{width:100%}.nav-popover{position:static;transform:none;width:100%;box-shadow:none;margin:4px 0 10px;padding:8px;border:0;border-radius:10px}
+.nav-popover::before{display:none}
+.nav-popover-label{padding:9px 10px 6px}
+.nav-links .nav-action{margin:10px 0 0;text-align:center;justify-content:center}
+.reading-guide{padding:68px 0 72px}.reading-guide-head{display:block}.reading-guide-head>p{margin:19px 0 0;max-width:640px}
+}
+@media(max-width:560px){
+.reading-guide{padding:52px 0 60px}
+.chapter-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+.chapter-card{padding:24px 22px}.chapter-card h3{font-size:27px;margin:14px 0 9px}
+.reading-guide-head{margin-bottom:27px}.reading-guide-head h2{font-size:clamp(32px,9vw,44px)}
+}
+@media(prefers-reduced-motion:reduce){.nav-chevron,.nav-links>a,.nav-group>summary,.chapter-card{transition:none!important}.chapter-card:hover{transform:none}}
