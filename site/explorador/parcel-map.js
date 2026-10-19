@@ -1,5 +1,6 @@
-/* Explorador espacial GeoCebada: geometría auténtica local; sin fabricar localizaciones.
- * Los rendimientos de las 59 parcelas se leen de la tabla canónica de Local04D.
+/* Explorador espacial GeoCebada: geometrías auténticas y clima público autorizado.
+ * Las 59 estimaciones originales de Reference26 proceden del proyecto FIRA_AgroCebada de Nuria.
+ * Ningún rendimiento observado de entrenamiento se incorpora al visor.
  */
 (() => {
   'use strict';
@@ -287,7 +288,7 @@
       const label=document.createElement('span');label.textContent='PARCELA SELECCIONADA';
       const title=document.createElement('h3');title.textContent=r.id;
       const type=document.createElement('p');type.className='geo-detail-type';
-      type.textContent=r.split==='PREDICCION'?'Predicción · Local04D':'Entrenamiento · parcela de referencia';
+      type.textContent=r.split==='PREDICCION'?'Predicción · Reference26':'Entrenamiento · parcela de referencia';
       el.append(label,title,type);
       const dl=document.createElement('dl');
       const info=[['Estado',r.estado||'No disponible'],
@@ -302,7 +303,7 @@
         const block=document.createElement('div');block.className='geo-yield';
         const caption=document.createElement('span');caption.textContent='RENDIMIENTO ESTIMADO';
         const figure=document.createElement('strong');figure.textContent=number(r.pred)+' t/ha';
-        const note=document.createElement('small');note.textContent='Estimación del modelo Local04D · no es rendimiento observado.';
+        const note=document.createElement('small');note.textContent='Estimación del modelo Reference26 · no es rendimiento observado.';
         block.append(caption,figure,note);el.append(block);
       }else{
         const note=document.createElement('p');note.className='geo-yield-explain';
@@ -479,19 +480,36 @@
       redraw();
     }
     notice.hidden=true;redraw();
-    // Se usan las geometrías privadas locales cuando están disponibles en desarrollo.
-    // Únicamente servidor de desarrollo local; jamás cargar geometría privada en GitHub Pages.
-    if(['localhost','127.0.0.1'].includes(window.location.hostname)){
-      fetch('./data/private/parcelas.geojson',{cache:'no-store'})
-        .then(r=>r.ok?r.json():null)
-        .then(doc=>{
-          if(!doc||hasGeometry)return;
-          try{renderGeometry(doc);}
-          catch(e){
-            emptyNote.textContent='No se pudo visualizar la capa geográfica de esta versión.';
-            console.warn('GeoJSON local no válido:',e);
-          }
-        }).catch(()=>{});
+    // El archivo público autorizado conserva coordenadas de la fuente original
+    // y solo las columnas climáticas mostradas en la ficha (sin rendimientos observados).
+    async function loadPublicGeometryAndClimate(){
+      const res=await fetch('./data/mapa_publico.json.gz',{cache:'no-store'});
+      if(!res.ok)throw new Error('No se encontró la capa pública de parcelas.');
+      if(!res.body || typeof DecompressionStream==='undefined')
+        throw new Error('Tu navegador no admite la descompresión de esta capa. Actualízalo.');
+      const decompressed=res.body.pipeThrough(new DecompressionStream('gzip'));
+      const packageData=JSON.parse(await new Response(decompressed).text());
+      if(packageData.schema!=='geocebada-map-public-1')
+        throw new Error('Formato de capa pública no reconocido.');
+      const climate=parseClimateDataset(packageData.climate);
+      if(climate.size!==197)throw new Error('Las mediciones climáticas no cubren las 197 parcelas.');
+      renderGeometry(packageData.geometry);
+      climateValues.clear();
+      climate.forEach((measurements,id)=>climateValues.set(id,measurements));
+      updateClimate(currentId);
+    }
+    try{
+      await loadPublicGeometryAndClimate();
+    }catch(error){
+      info('No se pudo cargar la capa de parcelas: '+error.message);
+      console.warn('Capa de parcelas no disponible:',error);
+      // Compatibilidad de desarrollo con los archivos locales originales.
+      if(['localhost','127.0.0.1'].includes(window.location.hostname)){
+        fetch('./data/private/parcelas.geojson',{cache:'no-store'})
+          .then(r=>r.ok?r.json():null)
+          .then(doc=>{if(doc&&!hasGeometry)renderGeometry(doc);})
+          .catch(e=>console.warn('No hay geometrías locales disponibles:',e));
+      }
     }
     setTimeout(()=>map.invalidateSize({pan:false,animate:false}),250);
   }
