@@ -79,7 +79,7 @@
 
   // El foco muestra exclusivamente el contorno sin sombrear la fotografía.
   function parcelVisualStyle(rec, included, selected, focused){
-    const color=rec.split==='PREDICCION'?'#f0bc56':'#39b790';
+    const color=rec.split==='PREDICCION'?'#E6BB69':'#A6BE70';
     if(focused){
       return selected&&included
         ? {color,weight:4.5,opacity:1,fillColor:color,fillOpacity:0,interactive:true}
@@ -500,8 +500,8 @@
       byId.clear();mapped.forEach(r=>byId.set(r.id,r));
       polygonLayers=L.geoJSON(doc,{
         style:f=>({
-          color:f.properties.CONJUNTO==='PREDICCION'?'#eec475':'#6fe5bd',
-          weight:2.2,fillColor:f.properties.CONJUNTO==='PREDICCION'?'#d4ab5b':'#1ca77a',
+          color:f.properties.CONJUNTO==='PREDICCION'?'#E6BB69':'#A6BE70',
+          weight:2.2,fillColor:f.properties.CONJUNTO==='PREDICCION'?'#D8A63F':'#526B36',
           fillOpacity:.24
         }),
         onEachFeature:(feature,layer)=>{
@@ -528,7 +528,7 @@
         const predicted=rec.split==='PREDICCION';
         const pin=L.circleMarker(position,{
           renderer:pinRenderer,radius:7.5,color:'#ffffff',weight:3.6,
-          fillColor:predicted?'#d7a647':'#15976e',
+          fillColor:predicted?'#D8A63F':'#526B36',
           fillOpacity:.93,interactive:true,bubblingMouseEvents:false
         });
         pin.bindTooltip(rec.id+' · '+(predicted?'Predicción':'Entrenamiento'),{direction:'top',offset:[0,-10]});

@@ -673,3 +673,21 @@ html[data-geo-vista="inicio"] .site-header .nav-dropdown{margin-left:auto}
   .site-header .nav-inner{column-gap:5px}
   .site-header .nav-current-view{font-size:18px}
 }
+
+/* GeoCebada · tipografía de FIRA para título activo. */
+.site-header .nav-current-view{
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:clamp(12px,1.23vw,17px);
+  font-weight:720;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  line-height:1.4;
+  color:#F2EBD5;
+}
+@media(max-width:900px){
+  .site-header .nav-current-view{font-size:clamp(12px,1.6vw,15px);letter-spacing:.12em}
+}
+@media(max-width:740px){
+  .site-header .nav-current-view{font-size:13px;letter-spacing:.12em}
+}

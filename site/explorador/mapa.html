@@ -453,6 +453,42 @@ html.geo-controles-solo .geo-panel-controls{background:transparent}
   background:#26553F;color:#FFFDF4;opacity:.62;
 }
 
+/* GeoCebada · entrenamiento oliva, predicción dorada. */
+/* Colores semánticos: TODOS neutral, ENTRENAMIENTO verde olivo, PREDICCION dorado.
+   Conservan estados activo/inactivo y el mismo significado en el mapa. */
+.geo-counter[data-map-split="ENTRENAMIENTO"]{
+  background:#E5EBD4;border-color:#BAC89C;color:#344626;
+}
+.geo-counter[data-map-split="ENTRENAMIENTO"]:hover:not(:disabled),
+.geo-counter[data-map-split="ENTRENAMIENTO"]:focus-visible{
+  background:#D7E2BE;border-color:#84965C;color:#344626;
+}
+.geo-counter[data-map-split="ENTRENAMIENTO"].active{
+  background:#526B36;border-color:#526B36;color:#FFF9EB;
+}
+.geo-counter[data-map-split="ENTRENAMIENTO"].active:hover:not(:disabled){
+  background:#405C37;border-color:#405C37;color:#FFF9EB;
+}
+.geo-counter[data-map-split="PREDICCION"]{
+  background:#F9EBD0;border-color:#D9B970;color:#64491A;
+}
+.geo-counter[data-map-split="PREDICCION"]:hover:not(:disabled),
+.geo-counter[data-map-split="PREDICCION"]:focus-visible{
+  background:#F2DBA4;border-color:#B9904B;color:#523912;
+}
+.geo-counter[data-map-split="PREDICCION"].active{
+  background:#E6BB69;border-color:#B78935;color:#263D29;
+}
+.geo-counter[data-map-split="PREDICCION"].active:hover:not(:disabled){
+  background:#D5A750;border-color:#AC7D2A;color:#263D29;
+}
+.geo-counter[data-map-split="ENTRENAMIENTO"]:focus-visible,
+.geo-counter[data-map-split="PREDICCION"]:focus-visible{
+  outline:3px solid #B46C10;outline-offset:3px;
+}
+.geo-legend-pip.trained{background:#526B36}
+.geo-legend-pip.predicted{background:#D8A63F}
+
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
