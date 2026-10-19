@@ -45,7 +45,8 @@ jobs:
       - name: Verify aggregate snapshot
         run: python scripts/sync_story_data.py --check
       - name: Check static site contract
-        run: python -m unittest discover -s tests -p 'test_story_site.py'
+        run: |
+          python -m unittest discover -s tests -p 'test_story_site.py'
           python -m unittest discover -s tests -p 'test_research_integration.py'
       - name: Verify recovered interpretability evidence
         run: python scripts/check_story_evidence.py
