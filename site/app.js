@@ -100,7 +100,20 @@ function setProtocol(id) {
   if (!protocols) return;
   const info = protocols.find((item) => item.id === id);
   if (!info) return;
-  $$("[data-protocol]").forEach((button) => button.addEventListener("click", () => setProtocol(button.dataset.protocol)));
+  $$("[data-protocol]").forEach((button) => {
+    const active = button.dataset.protocol === id;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  $("#protocol-caption").textContent = info.description;
+  const rows = ORDER.map((name) => {
+    const metric = info.results.find((entry) => entry.id === name);
+    if (!metric) throw Error("Faltan resultados de " + name);
+    return metric;
+  });
+  window.GeoCharts.models($("#results-chart"), rows, LABELS);
+}
+$$("[data-protocol]").forEach((button) => button.addEventListener("click", () => setProtocol(button.dataset.protocol)));
 (async function loadEvidence() {
   try {
     const response = await fetch("./data/results.json", {cache: "no-store"});
