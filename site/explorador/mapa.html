@@ -261,6 +261,34 @@ html.geo-mapa-solo .geo-map-bottom button{font-size:10px;padding:6px 8px}
   html.geo-panel-solo .geo-climate-grid{grid-template-columns:1fr}
   html.geo-panel-solo .geo-legend{padding:14px 16px}
 }
+/* Ajustes de altura y claridad del explorador a zoom 100 %. */
+html.geo-panel-solo .geo-panel-controls{padding:18px clamp(18px,2.4vw,32px);gap:11px 22px}
+html.geo-panel-solo .geo-panel-heading h2{font-size:clamp(26px,2vw,35px);margin:4px 0 5px}
+html.geo-panel-solo .geo-panel-heading p{font-size:12px;line-height:1.42}
+html.geo-panel-solo .geo-panel-heading .geo-panel-instruction{display:none}
+html.geo-panel-solo .geo-counter{min-height:64px;padding:8px 11px;gap:2px}
+html.geo-panel-solo .geo-counter span{font-size:11px}
+html.geo-panel-solo .geo-counter strong{font-size:clamp(23px,2.2vw,32px)}
+html.geo-panel-solo .geo-filters{gap:4px 16px}
+html.geo-panel-solo .geo-filters label{font-size:12px}
+html.geo-panel-solo .geo-filters select{min-height:37px;padding:6px 10px;font-size:13px}
+html.geo-panel-solo .geo-filter-count{padding:8px 12px;font-size:12px}
+html.geo-panel-solo .geo-detail{min-height:0;padding:20px clamp(18px,2.5vw,35px)}
+html.geo-panel-solo .geo-detail h3{font-size:clamp(24px,2.2vw,34px)}
+html.geo-panel-solo .geo-detail .geo-yield{margin-top:15px;padding:12px}
+html.geo-panel-solo .geo-climate{padding:20px clamp(18px,2.5vw,35px)}
+html.geo-panel-solo .geo-climate h3{font-size:clamp(21px,2vw,28px)}
+html.geo-panel-solo .geo-climate-grid{gap:8px}
+html.geo-panel-solo .geo-climate-metric{padding:9px 11px;gap:2px}
+html.geo-panel-solo .geo-climate-metric strong{font-size:16px}
+html.geo-panel-solo .geo-legend{padding:10px clamp(18px,2.5vw,35px)}
+@media(max-width:1040px){
+ html.geo-panel-solo .geo-panel-controls{gap:12px}
+}
+@media(max-width:560px){
+ html.geo-panel-solo .geo-panel-controls{padding:14px 13px}
+ html.geo-panel-solo .geo-detail,html.geo-panel-solo .geo-climate{padding:17px 13px}
+}
 
 </style>
 <script>
@@ -279,7 +307,7 @@ html.geo-mapa-solo .geo-map-bottom button{font-size:10px;padding:6px 8px}
       <div class="geo-shell shell">
         <aside class="geo-sidebar" aria-label="Explorador geográfico de parcelas">
           <div class="geo-panel-controls">
-          <div class="geo-panel-heading"><span class="geo-eyebrow">01 / EXPLORADOR GEOGRÁFICO</span><h2>Parcelas de cebada</h2><p>Selecciona una parcela o filtra el conjunto que quieras consultar.</p><p class="geo-panel-instruction">Elige un estado y una parcela aquí, o toca un pin en el mapa superior. La ficha mostrará sus datos.</p></div>
+          <div class="geo-panel-heading"><span class="geo-eyebrow">EXPLORADOR GEOGRÁFICO</span><h2>Parcelas de cebada</h2><p>Selecciona una parcela o filtra el conjunto que quieras consultar.</p></div>
           <div class="geo-quick-stats" aria-label="Cantidad de parcelas por conjunto">
             <button class="geo-counter active" type="button" data-map-split="TODOS"><span>Todas</span><strong id="map-total">197</strong></button>
             <button class="geo-counter" type="button" data-map-split="ENTRENAMIENTO"><span>Entrenamiento</span><strong id="map-training">138</strong></button>
@@ -324,13 +352,24 @@ html.geo-mapa-solo .geo-map-bottom button{font-size:10px;padding:6px 8px}
 </main>
 <script>
 (function () {
-  const report = () => window.parent.postMessage(
-    {tipo:'geocebada-andrea-altura',altura:Math.ceil(document.documentElement.scrollHeight)},
-    window.location.origin
-  );
+  // En la vista panel, medir solamente el contenido real. Medir el alto total
+  // del iframe provocaba realimentación y una enorme zona vacía.
+  if (!document.documentElement.classList.contains('geo-panel-solo')) return;
+  const content = document.querySelector('.geo-sidebar');
+  if (!content) return;
+  let prevHeight = 0;
+  const report = () => {
+    const height = Math.ceil(content.getBoundingClientRect().height + 2);
+    if (height === prevHeight || !Number.isFinite(height)) return;
+    prevHeight = height;
+    if (window.parent !== window)
+      window.parent.postMessage({tipo:'geocebada-andrea-altura',altura:height},window.location.origin);
+  };
+  document.addEventListener('DOMContentLoaded',report);
   window.addEventListener('load',report);
   window.addEventListener('resize',report);
-  if ('ResizeObserver' in window) new ResizeObserver(report).observe(document.body);
+  if ('ResizeObserver' in window) new ResizeObserver(report).observe(content);
+  report();
 })();
 </script>
 </body>

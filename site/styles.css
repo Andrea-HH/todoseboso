@@ -200,8 +200,39 @@
 /* Una sola vista satelital arriba; únicamente filtros y fichas debajo. */
 .geoc-andrea-map{padding:30px 0 38px;background:#eaece5}
 .geoc-andrea-panel-container{width:calc(100% - 80px);max-width:none;margin-inline:auto;background:#f8f7f0;border-radius:18px;overflow:hidden;border:1px solid #d8e2d2;box-shadow:0 15px 40px rgba(24,58,47,.08)}
-.geoc-andrea-map .geoc-andrea-panel-container iframe{width:100%;height:950px;border:0;display:block}
+.geoc-andrea-map .geoc-andrea-panel-container iframe{width:100%;height:680px;border:0;display:block}
 @media(max-width:780px){
  .geoc-andrea-panel-container{width:calc(100% - 32px);margin:0 16px}
  .geoc-andrea-map{padding:20px 0}
+}
+
+
+/* Ajuste de densidad: portada y explorador legibles a zoom normal, sin espacio fantasma. */
+.site-header .nav-inner{height:64px}
+.hero-grid{
+  padding-top:18px;
+  padding-bottom:20px;
+  gap:clamp(18px,2.4vw,35px);
+  align-items:center;
+}
+.hero .hero-eyebrow{margin-bottom:11px}
+.hero h1{font-size:clamp(32px,3vw,49px);line-height:1.07;margin-bottom:14px}
+.hero-description{font-size:clamp(12px,1.05vw,15px);line-height:1.55;max-width:640px}
+.hero-actions{margin:18px 0 14px}
+.hero .primary-cta{padding:11px 14px}
+.hero-metadata{font-size:9px}
+.hero-map-preview{height:clamp(305px,27vw,385px)}
+.geoc-andrea-map{padding:12px 0 19px}
+.geoc-andrea-panel-container{border-radius:14px}
+@media(max-width:980px){
+ .hero-grid{padding-top:20px;padding-bottom:18px;gap:17px}
+ .hero h1{font-size:clamp(32px,5vw,48px)}
+ .hero-map-preview{height:330px}
+}
+@media(max-width:600px){
+ .site-header .nav-inner{height:64px}
+ .hero-grid{padding-top:14px;padding-bottom:15px}
+ .hero h1{font-size:clamp(30px,8vw,43px)}
+ .hero-map-preview{height:305px}
+ .hero-actions{margin:14px 0}
 }

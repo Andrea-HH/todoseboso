@@ -104,7 +104,7 @@
           const datos = evento.data;
           if (!datos || typeof datos !== 'object') return;
           if (datos.tipo === 'geocebada-andrea-altura' && fromPanel && Number.isFinite(datos.altura)) {
-            panel.style.height = Math.max(450, Math.min(5000, datos.altura + 8)) + 'px';
+            panel.style.height = Math.max(300, Math.min(2500, datos.altura + 2)) + 'px';
           }
           if (datos.tipo === 'geocebada-andrea-listo') {
             ready.add(evento.source);
