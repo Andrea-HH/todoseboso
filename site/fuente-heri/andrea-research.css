@@ -45,7 +45,6 @@ html[data-research-vista="confianza"] [data-research-intro="confianza"],
 html[data-research-vista="preguntas"] [data-research-intro="preguntas"]{display:block!important}
 html[data-research-vista] #contenido>section{display:none!important}
 html[data-research-vista] #contenido>.stat-band{display:none!important}
-html[data-research-vista="modelo"] #contenido>section.model-hero,
 html[data-research-vista="modelo"] #contenido>section#recorrido,
 html[data-research-vista="modelo"] #contenido>section#ensamble,
 html[data-research-vista="modelo"] #contenido>section#datos,
@@ -58,7 +57,6 @@ html[data-research-vista="modelo"] #contenido>section#ajuste,
 html[data-research-vista="resultados"] #contenido>section#ensamble,
 html[data-research-vista="resultados"] #contenido>section#resultados,
 html[data-research-vista="resultados"] #contenido>section#pruebas,
-html[data-research-vista="resultados"] #contenido>section#mapa-interactivo,
 html[data-research-vista="confianza"] #contenido>section#estadisticas-finales,
 html[data-research-vista="confianza"] #contenido>section#limites,
 html[data-research-vista="preguntas"] #contenido>section#preguntas{display:block!important}
@@ -117,9 +115,6 @@ html[data-research-vista="resultados"] #predicciones-59{padding-top:53px!importa
 #contenido .pred59-dot.tone-0{background:#2d604d}
 #contenido .pred59-dot.tone-1{background:#bd8f4b}
 #contenido .pred59-dot.tone-2{background:#698150}
-#contenido #mapa-interactivo{background:var(--cream)!important}
-#contenido #mapa-interactivo .geoc-native-map{border-color:var(--rule)}
-#contenido #mapa-interactivo .geo-native-map{border-color:var(--rule)}
 .model-footer{background:var(--forest)!important;color:#f4f4e9;padding:25px 0;margin:0}
 .model-footer .shell{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .model-footer .shell strong,.model-footer .shell span,.model-footer .shell a{color:#f4f4e9}
@@ -147,3 +142,15 @@ html[data-research-vista="resultados"] #predicciones-59{padding-top:53px!importa
  .model-footer a{display:block;margin-top:10px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Diagrama científico original de Heri, sin su encabezado redundante. */
+.research-original-diagram{max-width:790px;margin:8px auto 40px}
+.research-original-diagram .hero-visual{
+ display:block;max-width:790px;margin:0 auto;padding:18px 22px;
+ border:1px solid #bdcbb6;border-radius:13px;
+ background:#183e33;color:#fffdf3;box-shadow:0 11px 25px #153a2e16
+}
+.research-original-diagram svg{display:block;width:100%;height:auto}
+.research-original-diagram .visual-header,
+.research-original-diagram .visual-foot{color:#f2efdd}
+@media(max-width:640px){.research-original-diagram{margin:6px 0 25px}.research-original-diagram .hero-visual{padding:12px}}
