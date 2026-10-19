@@ -215,7 +215,8 @@
       failedTiles += 1;
       if (failedTiles >= 6 && !lightMode) setLightMode(true, true);
     });
-    map.addLayer(imagery);
+    // El panel inferior no necesita descargar imágenes: el único mapa visible está arriba.
+    if (!document.documentElement.classList.contains('geo-panel-solo')) map.addLayer(imagery);
     toggleTiles.addEventListener('click', () => {
       failedTiles = 0;
       setLightMode(!lightMode);
@@ -237,6 +238,11 @@
 
     let records=[...predictions].map(([id,pred])=>({id,pred,split:'PREDICCION',estado:null,municipio:null,area:null,feature:null})).sort((a,b)=>a.id.localeCompare(b.id));
     let hasGeometry=false, polygonLayers=null, layerById=new Map(), currentId=null, activeSplit='TODOS';
+    let pendingSync=null, applyingSync=false;
+    const notifyParent=(accion,extra={})=>{
+      if(applyingSync || window.parent===window)return;
+      window.parent.postMessage({tipo:'geocebada-andrea-sincronizar',accion,...extra},window.location.origin);
+    };
     let focusedOnly=false;
     const climateValues=new Map();
     const byId = new Map(records.map(r=>[r.id,r]));
@@ -368,6 +374,7 @@
       const layer=layerById.get(id);
       if(layer && match(r)){map.fitBounds(layer.getBounds(),{maxZoom:14,padding:[50,50],animate:false});layer.bringToFront();}
       else if(!hasGeometry){info('Rendimiento disponible. La ubicación de esta parcela no está disponible en esta sesión.');}
+      notifyParent('seleccionar',{id});
       if((document.documentElement.classList.contains('geo-mapa-solo') || document.documentElement.classList.contains('geo-mini-explorador')) && layer){
         const infoBox=document.createElement('div');
         const name=document.createElement('strong');
@@ -405,10 +412,61 @@
       redraw();
       const frame=polygonLayers?polygonLayers.getBounds():bounds;
       map.fitBounds(frame,{maxZoom:polygonLayers?12:9,padding:[38,38],animate:false});
+      notifyParent('reiniciar');
     });
     select.addEventListener('change',()=>{if(select.value)pick(select.value)});
-    state.addEventListener('change',()=>{currentId=null;focusedOnly=false;updateClimate(null);redraw();});
-    controls.forEach(btn=>btn.addEventListener('click',()=>{activeSplit=btn.dataset.mapSplit;currentId=null;focusedOnly=false;updateClimate(null);redraw();}));
+    state.addEventListener('change',()=>{
+      currentId=null;focusedOnly=false;updateClimate(null);redraw();
+      notifyParent('filtrar',{estado:state.value,conjunto:activeSplit});
+    });
+    controls.forEach(btn=>btn.addEventListener('click',()=>{
+      activeSplit=btn.dataset.mapSplit;currentId=null;focusedOnly=false;updateClimate(null);redraw();
+      notifyParent('filtrar',{estado:state.value,conjunto:activeSplit});
+    }));
+    function clearSyncedDetail(){
+      const detail=$('map-selected-detail');
+      detail.replaceChildren();
+      const heading=document.createElement('h3');heading.textContent='Selecciona una parcela';
+      const hint=document.createElement('p');hint.textContent='Elige una parcela para consultar su ficha.';
+      detail.append(heading,hint);
+      updateClimate(null);
+    }
+    function applySync(command){
+      if (!command || !['seleccionar','filtrar','reiniciar'].includes(command.accion))return;
+      applyingSync=true;
+      try {
+        if(command.accion==='seleccionar'){
+          const id=typeof command.id==='string'?command.id:'';
+          if (!byId.has(id))return;
+          const r=byId.get(id);
+          if(!match(r)){activeSplit='TODOS';state.value='TODOS';}
+          pick(id);
+        }else{
+          currentId=null;focusedOnly=false;
+          if(command.accion==='reiniciar'){
+            activeSplit='TODOS';state.value='TODOS';
+            pinsVisible=true;
+            pinsButton.setAttribute('aria-pressed','true');
+            pinsButton.textContent='Ocultar pines';
+          }else{
+            if(['TODOS','ENTRENAMIENTO','PREDICCION'].includes(command.conjunto))
+              activeSplit=command.conjunto;
+            if(['TODOS',...STATES].includes(command.estado))
+              state.value=command.estado;
+          }
+          clearSyncedDetail();
+          redraw();
+          if(hasGeometry)map.fitBounds(polygonLayers.getBounds(),{maxZoom:12,padding:[38,38],animate:false});
+        }
+      }finally{applyingSync=false;}
+    }
+    window.addEventListener('message',event=>{
+      if(event.origin!==window.location.origin || event.source!==window.parent)return;
+      const command=event.data;
+      if(!command || command.tipo!=='geocebada-andrea-sincronizar')return;
+      if(!hasGeometry){pendingSync=command;return;}
+      applySync(command);
+    });
     // Las mediciones locales se integran sin botones ni subida de datos a otros servicios.
     async function receiveClimateText(text,filename){
       const rows=filename.toLowerCase().endsWith('.json')
@@ -509,6 +567,9 @@
       climateValues.clear();
       climate.forEach((measurements,id)=>climateValues.set(id,measurements));
       updateClimate(currentId);
+      if(pendingSync){const command=pendingSync;pendingSync=null;applySync(command);}
+      if(window.parent!==window)
+        window.parent.postMessage({tipo:'geocebada-andrea-listo'},window.location.origin);
     }
     try{
       await loadPublicGeometryAndClimate();
