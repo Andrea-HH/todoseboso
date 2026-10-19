@@ -46,26 +46,7 @@
   let research = null;
 
   function drawAssociations() {
-    const target = q("#association-chart");
-    target.replaceChildren();
-    for (const f of research.associations) {
-      const row = element("div", "association-row" + (f.p_holm < 0.05 ? " passes" : " uncertain"));
-      const title = element("span", "association-label", f.label);
-      const track = element("div", "association-track");
-      const bar = element("span", "association-fill");
-      // Eje -log10(p) truncado a 5: únicamente visualiza la fuerza de asociación.
-      bar.style.width = Math.min(100, Math.max(0, -Math.log10(f.p_holm) / 5 * 100)) + "%";
-      track.append(bar);
-      const p = element("strong", "association-p", f.p_holm < 0.001 ?
-        f.p_holm.toExponential(2).replace("e-", " × 10⁻") :
-        number(f.p_holm, 4));
-      row.append(title, track, p);
-      row.setAttribute("aria-label", f.label + ", p ajustada por Holm " + f.p_holm);
-      target.append(row);
-    }
-    const tip = element("p", "chart-help",
-      "Barras más largas indican valores p menores. El umbral de referencia es 0.05; ninguna barra representa una importancia causal o un porcentaje de rendimiento.");
-    target.append(tip);
+    window.GeoCharts.coefficients(q("#association-chart"), research.associations);
     const testFamilies = research.architecture_tests;
     const total = Object.values(testFamilies).reduce((acc, x) => acc + x.tests, 0);
     const detected = Object.values(testFamilies).reduce((acc, x) => acc + x.significant_holm, 0);
@@ -101,6 +82,7 @@
       " t/ha. Intervalo entre " + sign(low) + " y " + sign(high) +
       " t/ha; contiene cero.");
     q("#hhi-p").textContent = number(row.p_holm, 4);
+    window.GeoCharts.forest(q("#hhi-forest"), research.protocols, id);
     q("#hhi-significance").textContent = row.p_holm < 0.05 ?
       "Supera el umbral de 0.05 de esta familia; sigue siendo exploratorio." :
       "No supera el umbral de 0.05 después de ajustar por Holm.";
@@ -142,6 +124,14 @@
   function drawIntervals(level) {
     if (!research) return;
     qa("[data-interval]").forEach((button) => {
+      const active = Number(button.dataset.interval) === level;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+    window.GeoCharts.intervals(q("#interval-results"),
+      research.intervals.filter((entry) => entry.level === level), level);
+  }
+  qa("[data-interval]").forEach((button) => {
       const active = Number(button.dataset.interval) === level;
       button.classList.toggle("active", active);
       button.setAttribute("aria-pressed", String(active));
