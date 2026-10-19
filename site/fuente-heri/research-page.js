@@ -1,16 +1,16 @@
 /* Navegación de capítulos. Los datos y las gráficas originales no se alteran. */
 (function(){
   "use strict";
-  const supported=["modelo","resultados","confianza","preguntas"];
+  const supported=["sabemos","modelo","resultados","confianza","preguntas"];
   const params=new URLSearchParams(window.location.search);
   let view=params.get("vista");
   if(!supported.includes(view))view="modelo";
   document.documentElement.dataset.researchVista=view;
   document.documentElement.lang="es";
-  document.title=({modelo:"¿Cómo funciona el modelo?",resultados:"Resultados",confianza:"¿Qué tanta confianza merece?",preguntas:"Preguntas frecuentes"})[view]+" · GeoCebada";
+  document.title=({sabemos:"¿Qué sabemos?",modelo:"¿Cómo funciona el modelo?",resultados:"Resultados",confianza:"¿Qué tanta confianza merece?",preguntas:"Preguntas frecuentes"})[view]+" · GeoCebada";
   const crossSection={
-    recorrido:"modelo",ensamble:"modelo",datos:"modelo",variables:"modelo",
-    preparacion:"modelo","datos-reales":"modelo",arquitectura:"modelo",geologia:"modelo",faltantes:"modelo",ajuste:"modelo",
+    datos:"sabemos",variables:"sabemos","datos-reales":"sabemos",
+    ensamble:"modelo",preparacion:"modelo",arquitectura:"modelo",geologia:"modelo",faltantes:"modelo",ajuste:"modelo",
     "predicciones-59":"resultados",resultados:"resultados",pruebas:"resultados",
     "estadisticas-finales":"confianza",limites:"confianza",preguntas:"preguntas"
   };
@@ -27,6 +27,7 @@
     const id=decodeURIComponent(location.hash.slice(1));
     if(!id)return;
     if(id==="mapa-interactivo"){location.replace("../index.html#mapa-interactivo");return;}
+    if(id==="recorrido"){location.replace("./investigacion.html?vista=sabemos#datos");return;}
     const group=groupFor(id);
     if(group&&group!==view){
       location.replace("./investigacion.html?vista="+group+"#"+encodeURIComponent(id));return;
