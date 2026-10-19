@@ -74,12 +74,22 @@ class StorySiteTest(unittest.TestCase):
         self.assertIn('id="real-rainfall"', original)
         self.assertIn('reference26_residuals.js', original)
         self.assertNotIn('scientific-charts.js', html)
-        expected = ("recorrido", "ensamble", "datos", "variables", "preparacion",
-                    "arquitectura", "geologia", "faltantes", "ajuste", "resultados",
-                    "pruebas", "limites", "preguntas", "estadisticas-finales",
-                    "mapa-interactivo")
-        for anchor in expected:
-            self.assertIn('data-geo-heri-section="' + anchor + '"', html)
+        # La documentación de Heri permanece archivada, pero la presentación
+        # de resultados se integra en las secciones de Andrea.
+        self.assertNotIn("FUENTE ORIGINAL · CONTENIDO ÍNTEGRO", html)
+        self.assertNotIn("data-geo-heri-section=", html)
+        self.assertNotIn("geo-heri-disclosure", html)
+        self.assertNotIn("geo-fuente-embed.js", html)
+        for anchor in ("datos-reales", "geo-lluvia-real", "geo-ndvi-real",
+                       "geo-59-grafica", "geo-59-tabla",
+                       "geo-residuos-paneles"):
+            self.assertIn('id="' + anchor + '"', html)
+        self.assertIn("andrea-integracion.js", html)
+        self.assertIn("andrea-integracion.css", html)
+        script = (SITE / "andrea-integracion.js").read_text(encoding="utf-8")
+        self.assertIn("data/reference26_residuals.json", script)
+        self.assertIn("explorador/data/predictions.csv", script)
+        self.assertIn("data/real_charts.json", script)
 
     def test_protocol_comparison_is_sourced(self):
         subprocess.run(
