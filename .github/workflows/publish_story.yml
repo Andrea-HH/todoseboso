@@ -46,6 +46,7 @@ jobs:
         run: python scripts/sync_story_data.py --check
       - name: Check static site contract
         run: python -m unittest discover -s tests -p 'test_story_site.py'
+          python -m unittest discover -s tests -p 'test_research_integration.py'
       - name: Verify recovered interpretability evidence
         run: python scripts/check_story_evidence.py
       - name: Audit repository documentation and frozen model provenance
@@ -62,6 +63,8 @@ jobs:
           node --check site/app.js
           node --check site/preguntas.js
           node --check site/andrea-integracion.js
+          node --check site/fuente-heri/research-page.js
+          node --check site/fuente-heri/research-59-archive.js
 
   deploy:
     needs: validate
