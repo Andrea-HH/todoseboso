@@ -51,3 +51,6 @@
 .geo-residuos .geo-banda-valor{height:100%;width:3px;background:var(--forest,#234c3d);position:absolute;left:var(--valor);top:0}
 .geo-integracion-aviso{font-size:12px;color:var(--muted,#626b60);line-height:1.7;margin:12px 0}
 @media(max-width:760px){.geo-verificado .geo-graficas-grid{grid-template-columns:1fr}.geo-estimaciones .geo-datos-clave,.geo-residuos .geo-datos-clave{grid-template-columns:repeat(2,minmax(0,1fr))}.geo-estimaciones .geo-ejemplos{grid-template-columns:1fr}.geo-residuos .geo-banda{grid-template-columns:1fr;gap:4px}.geo-verificado .geo-grafica,.geo-estimaciones .geo-grafica,.geo-residuos .geo-grafica{padding:17px}}
+
+/* Mostrar las 59 predicciones únicamente en la vista Resultados, sin cambiar las reglas generales. */
+html[data-geo-vista="resultados"] #contenido > section.geo-extra-predictions{display:block!important;background:var(--geo-fondo-crema,#fcf8f0)!important}
