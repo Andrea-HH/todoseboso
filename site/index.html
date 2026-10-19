@@ -34,10 +34,10 @@
         <summary class="nav-dropdown-trigger">Menú</summary>
         <nav class="nav-links" id="nav-links" aria-label="Secciones del sitio">
           <a href="./index.html">Inicio · Explorar parcelas</a>
-          <a href="./index.html?vista=modelo">¿Cómo funciona el modelo?</a>
-          <a href="./index.html?vista=resultados">Resultados</a>
-          <a href="./index.html?vista=confianza">¿Qué tanta confianza merece?</a>
-          <a href="./index.html?vista=preguntas">Preguntas frecuentes</a>
+          <a href="./fuente-heri/investigacion.html?vista=modelo">¿Cómo funciona el modelo?</a>
+          <a href="./fuente-heri/investigacion.html?vista=resultados">Resultados</a>
+          <a href="./fuente-heri/investigacion.html?vista=confianza">¿Qué tanta confianza merece?</a>
+          <a href="./fuente-heri/investigacion.html?vista=preguntas">Preguntas frecuentes</a>
         </nav>
       </details>
       <a class="nav-report geo-repo-external" href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer" aria-label="Ver repositorio de GeoCebada en GitHub">
@@ -53,7 +53,7 @@
           <p class="eyebrow hero-eyebrow"><span class="eyebrow-line"></span> INVESTIGACIÓN APLICADA · CICLO 2025</p>
           <h1 id="hero-title">¿Cuánta cebada puede producir una parcela?</h1>
           <p class="hero-description">Con los rendimientos de 138 parcelas y datos del clima, los satélites y el terreno, desarrollamos modelos para estimar la cosecha de otras 59 parcelas de Hidalgo, Puebla y Tlaxcala. Aquí explicamos cómo funcionan y qué tan bien resultaron en las pruebas.</p>
-          <div class="hero-actions"><a class="primary-cta" href="./index.html?vista=modelo#historia">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="./index.html?vista=resultados#evidencia">Ver los resultados <span aria-hidden="true">→</span></a></div>
+          <div class="hero-actions"><a class="primary-cta" href="./fuente-heri/investigacion.html?vista=modelo#ensamble">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="./fuente-heri/investigacion.html?vista=resultados#resultados">Ver los resultados <span aria-hidden="true">→</span></a></div>
           <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
           <!-- Controles originales del explorador junto a la pregunta, sin duplicarlos debajo. -->
           <div class="hero-parcel-tools" aria-label="Filtros y selección de parcelas">
@@ -142,7 +142,7 @@
     </script>
 
     <nav class="geo-chapter-end" data-geo-page="inicio" aria-label="Continuar explorando GeoCebada">
-      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./index.html?vista=modelo">¿Cómo funciona el modelo? <span aria-hidden="true">→</span></a></div>
+      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=modelo">¿Cómo funciona el modelo? <span aria-hidden="true">→</span></a></div>
     </nav>
     <nav class="geo-subnav" data-geo-page="modelo" aria-label="Índice de el modelo">
       <div class="shell geo-subnav-inner"><span class="geo-subnav-label">EN ESTA PÁGINA</span>
@@ -226,7 +226,7 @@
 </section>
 
         <nav class="geo-chapter-end" data-geo-page="modelo" aria-label="Continuar explorando GeoCebada">
-      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./index.html?vista=resultados">Resultados <span aria-hidden="true">→</span></a></div>
+      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=resultados">Resultados <span aria-hidden="true">→</span></a></div>
     </nav>
     <nav class="geo-subnav" data-geo-page="resultados" aria-label="Índice de los resultados">
       <div class="shell geo-subnav-inner"><span class="geo-subnav-label">EN ESTA PÁGINA</span>
@@ -410,7 +410,7 @@
   </div>
 </section>
 <nav class="geo-chapter-end" data-geo-page="resultados" aria-label="Continuar explorando GeoCebada">
-      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./index.html?vista=confianza">¿Qué tanta confianza merece? <span aria-hidden="true">→</span></a></div>
+      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=confianza">¿Qué tanta confianza merece? <span aria-hidden="true">→</span></a></div>
     </nav>
     <nav class="geo-subnav" data-geo-page="confianza" aria-label="Índice de la confianza">
       <div class="shell geo-subnav-inner"><span class="geo-subnav-label">EN ESTA PÁGINA</span>
@@ -445,7 +445,7 @@
 
     <section class="section limits" id="limites" aria-labelledby="limits-title"><div class="shell limits-grid"><div><p class="eyebrow">QUÉ FALTA COMPROBAR</p><h2 id="limits-title">Las estimaciones son útiles para estudiar las parcelas, <em>pero todavía tienen límites.</em></h2></div><div><div class="limit-item"><span>01</span><div><h3>Todavía desconocemos las 59 cosechas reales.</h3><p>El modelo ya produjo estimaciones para esas parcelas y puedes consultarlas individualmente en el mapa de Inicio. Todavía no podemos medir su error porque no conocemos la cantidad realmente cosechada.</p></div></div><div class="limit-item"><span>02</span><div><h3>Las 138 cosechas se han usado en muchos experimentos.</h3><p>Aunque cada evaluación reserve parcelas, las mismas 138 cosechas han servido para estudiar y elegir modelos. Necesitamos resultados nuevos para comprobar qué tan bien se comportan fuera de este conjunto. El diagnóstico LOOCV nuevo utiliza otra regla de imputación y debe leerse por separado de las 59 estimaciones históricas.</p></div></div><div class="limit-item"><span>03</span><div><h3>Una relación estadística no demuestra una causa.</h3><p>El modelo encuentra patrones entre lluvia, vegetación, terreno y cosecha; no demuestra que cambiar una de esas características produzca un cambio específico en el rendimiento.</p></div></div><div class="limit-item"><span>04</span><div><h3>Los intervalos de las pruebas no son garantías para nuevas parcelas.</h3><p>Calculamos cobertura y anchura de intervalos en evaluaciones anteriores, pero no está validado que esos intervalos cubran con la misma frecuencia las 59 cosechas desconocidas.</p></div></div></div></div></section>
       <nav class="geo-chapter-end" data-geo-page="confianza" aria-label="Continuar explorando GeoCebada">
-      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./index.html?vista=preguntas">Preguntas frecuentes <span aria-hidden="true">→</span></a></div>
+      <div class="shell"><span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=preguntas">Preguntas frecuentes <span aria-hidden="true">→</span></a></div>
     </nav>
 <section class="section technical-questions" id="preguntas-tecnicas" aria-labelledby="questions-title">
       <div class="shell">
@@ -491,6 +491,6 @@
       <div class="shell"><span>SIGUIENTE TEMA</span><a href="./index.html">Volver al mapa interactivo <span aria-hidden="true">→</span></a></div>
     </nav>
 </main>
-  <footer class="site-footer"><div class="shell footer-main"><div class="footer-identity-wrap"><a class="footer-brand footer-identity" href="./index.html" aria-label="GeoCebada, ir al inicio"><span class="footer-name">Geo<span>Cebada</span></span></a></div><div class="footer-links"><a href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer">Investigación y datos técnicos ↗</a><a href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer">Código y documentación ↗</a><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/current_champions_reproduction.md" target="_blank" rel="noopener noreferrer">Reproducibilidad ↗</a><a href="https://github.com/heri-espino/GeoC" target="_blank" rel="noopener noreferrer">Proyecto GeoC ↗</a></div></div><div class="shell footer-bottom"><span>AGROCEBADA · FIRA 2026 · ESTUDIO DE PREDICCIÓN DEL RENDIMIENTO DE CEBADA</span><span>SOLO DATOS PARCELARIOS AUTORIZADOS · <a href="./index.html?vista=confianza#limites">LIMITACIONES</a></span></div></footer>
+  <footer class="site-footer"><div class="shell footer-main"><div class="footer-identity-wrap"><a class="footer-brand footer-identity" href="./index.html" aria-label="GeoCebada, ir al inicio"><span class="footer-name">Geo<span>Cebada</span></span></a></div><div class="footer-links"><a href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer">Investigación y datos técnicos ↗</a><a href="https://github.com/heri-espino/todoseboso" target="_blank" rel="noopener noreferrer">Código y documentación ↗</a><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/current_champions_reproduction.md" target="_blank" rel="noopener noreferrer">Reproducibilidad ↗</a><a href="https://github.com/heri-espino/GeoC" target="_blank" rel="noopener noreferrer">Proyecto GeoC ↗</a></div></div><div class="shell footer-bottom"><span>AGROCEBADA · FIRA 2026 · ESTUDIO DE PREDICCIÓN DEL RENDIMIENTO DE CEBADA</span><span>SOLO DATOS PARCELARIOS AUTORIZADOS · <a href="./fuente-heri/investigacion.html?vista=confianza#limites">LIMITACIONES</a></span></div></footer>
 </body>
 </html>
