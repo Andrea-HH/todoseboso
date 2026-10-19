@@ -340,19 +340,9 @@
     const {canvas, tip, colors} = start(target, "Distribución ficticia de 210 mm de lluvia entre abril y octubre", 290, 610);
     const months = ["Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct"];
     const domain = [0, 150], bottom = 233, top = 26;
-    // Alto contraste y trama: la distinción no depende solo del color.
+    // Barras de color liso: verde bosque y dorado tostado; las cifras
+    // y etiquetas hacen que el gráfico se interprete sin depender del color.
     const earlyColor = "#173E34", lateColor = "#B9771D";
-    const defs = svg("defs");
-    const hatch = svg("pattern", {
-      id: "geo-rain-hatch", patternUnits: "userSpaceOnUse",
-      width: 10, height: 10, patternTransform: "rotate(45)"
-    });
-    hatch.appendChild(svg("line", {
-      x1: 0, y1: 0, x2: 0, y2: 10,
-      stroke: "#F7F2E7", "stroke-width": 3
-    }));
-    defs.appendChild(hatch);
-    canvas.appendChild(defs);
     for(const mm of [0, 50, 100, 150]) {
       const y = interpolate(mm, domain, [bottom, top]);
       line(canvas, 83, y, 958, y, {color: colors.rule});
@@ -364,10 +354,6 @@
       const bar = svg("rect", {x, y, width: 72, height, rx: 4,
         fill: i < 3 ? earlyColor : lateColor});
       canvas.append(bar);
-      if (i >= 3) canvas.appendChild(svg("rect", {
-        x, y, width: 72, height, rx: 4,
-        fill: "url(#geo-rain-hatch)", "pointer-events": "none"
-      }));
       interactive(bar, months[i] + ": " + value + " mm de lluvia ficticia.", tip);
       textNode(canvas, value + " mm", x + 36, Math.max(y - 10, 12), {size: 12, weight: 740, anchor: "middle"});
       textNode(canvas, months[i], x + 36, 251, {size: 12, anchor: "middle"});
