@@ -1031,3 +1031,21 @@ html[data-geo-vista="preguntas"] #contenido .geo-faq-groups>.geo-faq-group{
 html[data-geo-vista] #contenido>section.section+section.section{
   border-top:1px solid var(--geo-fondo-separador);
 }
+
+/* Paleta final aprobada: crema y trigo alternados; oliva muy claro solo en notas. */
+:root{
+  --geo-fondo-crema:#FCF8F0;
+  --geo-fondo-trigo:#F5EBD7;
+  --geo-fondo-papel:#FFFDF8;
+  --geo-fondo-oliva:#EEF1E6;
+}
+html[data-geo-vista] #contenido>.section.significance .sig-interpretation,
+html[data-geo-vista] #contenido>.section.hhi-study .hhi-observation{
+  background:var(--geo-fondo-oliva);
+  border-left-color:#728954;
+  color:#40583F!important;
+}
+html[data-geo-vista] #contenido>.section.significance .sig-interpretation p,
+html[data-geo-vista] #contenido>.section.hhi-study .hhi-observation p{
+  color:#40583F!important;
+}
