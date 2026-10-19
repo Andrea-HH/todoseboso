@@ -53,7 +53,7 @@ async function attachLocations(rows){
 }
 async function init(){
  const data=$("pred59-data"),status=$("pred59-status");
- if(!data||!status||!window.GeoCebadaPredictions)return;
+ if(!data||!status)return;
  // No reemplazar las cifras que pudiera haber verificado el runtime exacto.
  if(!data.hidden)return;
  let all;
