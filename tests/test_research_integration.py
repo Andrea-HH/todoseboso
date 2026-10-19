@@ -5,6 +5,7 @@ Esta batería no altera ni vuelve a entrenar ningún modelo.
 import csv
 import io
 import json
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 import unittest
@@ -112,11 +113,14 @@ class ResearchIntegrityTest(unittest.TestCase):
             "confianza": ("limites","estadisticas-finales"),
             "preguntas": ("preguntas",)
         }
+        pattern=r'html\\[data-research-vista="([^"]+)"\\] #contenido > section#([\\w-]+)'
+        light_pairs=set(re.findall(pattern,light))
+        dark_pairs=set(re.findall(pattern,dark))
         for vista, ids in order.items():
             for number,id_ in enumerate(ids):
-                selector=f'html[data-research-vista="{vista}"] #contenido > section#{id_}'
-                self.assertIn(selector,light if number % 2 == 0 else dark)
-                self.assertNotIn(selector,dark if number % 2 == 0 else light)
+                pair=(vista,id_)
+                self.assertIn(pair,light_pairs if number % 2 == 0 else dark_pairs)
+                self.assertNotIn(pair,dark_pairs if number % 2 == 0 else light_pairs)
 
         research=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         self.assertIn('vista=modelo#variables',research)
