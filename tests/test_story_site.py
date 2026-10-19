@@ -90,6 +90,20 @@ class StorySiteTest(unittest.TestCase):
         self.assertIn("data/reference26_residuals.json", script)
         self.assertIn("explorador/data/predictions.csv", script)
         self.assertIn("data/real_charts.json", script)
+        # La vista sigue siendo la de Andrea: no hay controles nuevos sin datos.
+        self.assertNotIn('id="geo-modelo-ejemplo"', html)
+        self.assertNotIn('id="geo-59-estado"', html)
+        self.assertNotIn('id="geo-59-detalle"', html)
+        self.assertIn('id="geo-geologia-pesos"', html)
+        self.assertIn("fuente-heri/data/model.json", script)
+        archived = json.loads((SITE / "fuente-heri/data/model.json").read_text(encoding="utf-8"))
+        final = archived["final_fit"]
+        self.assertEqual(final["geologic_groups"], 4)
+        self.assertEqual(final["local_neighbors"], 24)
+        self.assertEqual(len(final["cluster_weights"]), 4)
+        self.assertTrue(all(0 <= x <= 1 for x in final["cluster_weights"]))
+        csv = (SITE / "explorador/data/predictions.csv").read_text(encoding="utf-8").splitlines()
+        self.assertEqual(len(csv), 60)  # encabezado más 59 estimaciones originales
 
     def test_protocol_comparison_is_sourced(self):
         subprocess.run(
