@@ -2,7 +2,8 @@
    Solo presentación: NO modifica datos, gráficos, parámetros ni cálculos. */
 :root{
  --forest:#173E34;--forest2:#214C3C;--pine:#245848;--jade:#526E4B;
- --gold:#E6BA62;--cream:#FCF8F0;--paper:#FFFDF8;--mist:#EEF1E6;
+ --gold:#E6BA62;--cream:#FBF8F1;--paper:#FFFDF8;--mist:#EEF1E6;
+ --geo-header:#F3EBD9;--geo-alternate:#FBF8F1;
  --ink:#223D33;--muted:#60705F;--rule:#E4D9C9;--max:1200px;
  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
  --sans:"Aptos","Inter","Segoe UI",Arial,sans-serif;
@@ -29,7 +30,7 @@ body{background:var(--cream)!important;color:var(--ink)!important;font-family:va
 .andrea-nav-items a:hover,.andrea-nav-items a[aria-current="page"]{background:#e5eace;color:#193d2f!important}
 .andrea-repo{display:inline-block;background:#596d33;color:#fff9de!important;padding:11px 16px;border-radius:10px;font-size:12px;font-weight:750;text-decoration:none}
 .andrea-repo:hover{background:#6c8145}
-.research-chapter-heading{background:#F3EFE7;padding:49px 0 30px;border-bottom:1px solid var(--rule)}
+.research-chapter-heading{background:var(--geo-header);padding:49px 0 30px;border-bottom:1px solid var(--rule)}
 .research-kicker{font-size:10px;font-weight:830;color:var(--jade);letter-spacing:2.15px;margin:0 0 15px}
 .research-intro{max-width:1050px}
 .research-intro h1{font-size:clamp(35px,4.1vw,58px);font-weight:600;letter-spacing:-.05em;line-height:1.1;color:var(--forest);margin:0 0 14px}
@@ -66,9 +67,8 @@ html[data-research-vista="resultados"] #contenido>section#predicciones-59{paddin
 #contenido #predicciones-59 .pred59-detail-head{align-items:center}
 #contenido #predicciones-59 .pred59-viz{background:var(--paper)!important}
 #contenido>section.section{padding-top:75px;padding-bottom:77px;scroll-margin-top:95px}
-#contenido>section.section:nth-of-type(odd){background:var(--cream)!important}
-#contenido>section.section:nth-of-type(even){background:#F5EBD7!important}
-#contenido #arquitectura,#contenido #estadisticas-finales{background:var(--cream)!important;color:var(--ink)!important}
+/* La alternancia se calcula por el orden visible de cada vista, no por el orden oculto en el DOM. */
+#contenido #arquitectura,#contenido #estadisticas-finales{color:var(--ink)!important}
 #contenido #arquitectura h2,#contenido #arquitectura h3,#contenido #arquitectura p,#contenido #arquitectura strong,#contenido #arquitectura .section-heading p{color:var(--forest)}
 #contenido #arquitectura .math-scroll{color:var(--ink)}
 #contenido .section h2,.section-heading h2{color:var(--forest);font-size:clamp(28px,3.4vw,46px);letter-spacing:-.045em;line-height:1.2}
@@ -106,7 +106,7 @@ html[data-research-vista="resultados"] #contenido>section#predicciones-59{paddin
 #contenido #estadisticas-finales .r26-eyebrow{color:var(--jade)}
 #contenido #estadisticas-finales .r26-tab[aria-selected="true"]{background:var(--forest);color:#fff}
 #contenido .pred59-summary-item,#contenido .pred59-detail,#contenido .pred59-viz{background:var(--paper)!important}
-#contenido #predicciones-59{background:var(--cream)!important}
+
 #contenido .pred59-example{border-color:#cabda7;background:#fcf8ef}
 #contenido .pred59-dot.tone-0{background:#2d604d}
 #contenido .pred59-dot.tone-1{background:#bd8f4b}
@@ -152,7 +152,7 @@ html[data-research-vista="resultados"] #contenido>section#predicciones-59{paddin
 @media(max-width:640px){.research-original-diagram{margin:6px 0 25px}.research-original-diagram .hero-visual{padding:12px}}
 
 /* ¿Qué sabemos?: los datos y los gráficos observacionales originales, en su página propia. */
-html[data-research-vista="sabemos"] #contenido>section#datos-reales{background:var(--cream)!important}
+
 #contenido #datos-reales .observed-data-panel{margin:0}
 #contenido #datos-reales .real-data-figure{margin:0}
 
@@ -177,4 +177,25 @@ html[data-research-vista="preguntas"] .research-next [data-next-view="preguntas"
 
 /* Contraste limitado a la introducción (título, descripción y atajos).
  * El cuerpo y todas las secciones conservan los fondos originales. */
-html[data-research-vista] #research-chapter-heading{background-color:#F3EFE7!important}
+html[data-research-vista] #research-chapter-heading{background-color:var(--geo-header)!important}
+
+/* Alternancia validada con las dos muestras exactas de la usuaria. */
+/* Muestra 1: RGB(243,235,217), #F3EBD9 en todos los encabezados. */
+html[data-research-vista] #research-chapter-heading.research-chapter-heading{background:var(--geo-header)!important}
+/* Muestra 2: RGB(251,248,241), #FBF8F1 inmediatamente después del encabezado. */
+html[data-research-vista="sabemos"] #contenido > section#datos,
+html[data-research-vista="modelo"] #contenido > section#ensamble,
+html[data-research-vista="modelo"] #contenido > section#preparacion,
+html[data-research-vista="modelo"] #contenido > section#geologia,
+html[data-research-vista="modelo"] #contenido > section#ajuste,
+html[data-research-vista="resultados"] #contenido > section#predicciones-59,
+html[data-research-vista="resultados"] #contenido > section#pruebas,
+html[data-research-vista="confianza"] #contenido > section#limites,
+html[data-research-vista="preguntas"] #contenido > section#preguntas{background:var(--geo-alternate)!important}
+/* A partir de ahí: muestra 1, muestra 2, muestra 1... */
+html[data-research-vista="sabemos"] #contenido > section#datos-reales,
+html[data-research-vista="modelo"] #contenido > section#variables,
+html[data-research-vista="modelo"] #contenido > section#arquitectura,
+html[data-research-vista="modelo"] #contenido > section#faltantes,
+html[data-research-vista="resultados"] #contenido > section#resultados,
+html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{background:var(--geo-header)!important}
