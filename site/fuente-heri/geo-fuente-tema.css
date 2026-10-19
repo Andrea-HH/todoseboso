@@ -1,0 +1,16 @@
+/* Fuente de Heri conservada íntegramente, usando solo colores de GeoCebada. */
+:root{--forest:#173E34;--forest2:#22523e;--pine:#225b4b;--jade:#526E4B;--gold:#D6AB70;--cream:#FCF8F0;--paper:#FFFDF8;--mist:#EEF1E6;--ink:#223D33;--muted:#60705F;--rule:#E4D9C9}
+body{background:#FCF8F0;color:var(--ink);font-family:var(--sans)}
+body:not(.geo-heri-embed) main>section:nth-of-type(even){background:#F5EBD7}
+.reference26-residuals{background:#FCF8F0;--r26-ink:#223D33;--r26-muted:#60705F;--r26-line:#E3DBC9;--r26-paper:#FFFDF8;--r26-green:#173E34}
+.reference26-residuals .r26-panel{background:#FFFDF8}
+.reference26-residuals .r26-influence-chunk:nth-child(1){background:#AF6D53}
+.reference26-residuals .r26-influence-chunk:nth-child(2){background:#D6AB70}
+.reference26-residuals .r26-influence-chunk:nth-child(3){background:#BFD2C4}
+html.geo-heri-embed body{margin:0!important;background:#FCF8F0!important;overflow-x:hidden}
+html.geo-heri-embed .site-header,html.geo-heri-embed .model-footer,html.geo-heri-embed .skip-link,html.geo-heri-embed #read-progress{display:none!important}
+html.geo-heri-embed main{padding:0!important;margin:0!important;max-width:none}
+html.geo-heri-embed main>section{padding-top:25px!important;padding-bottom:25px!important;margin:0!important;border:0!important}
+html.geo-heri-embed main .shell{width:min(calc(100% - 38px),1140px);max-width:1140px}
+html.geo-heri-embed .reference26-residuals{padding-top:25px!important}
+@media(max-width:650px){html.geo-heri-embed main .shell{width:calc(100% - 26px)}}
