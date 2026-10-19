@@ -181,7 +181,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         script=(SOURCE/"research-59-archive.js").read_text(encoding="utf-8")
         self.assertIn("../explorador/data/predictions.csv",script)
         self.assertIn("../explorador/data/mapa_publico.json.gz",script)
-        self.assertIn("sin tabla duplicada",script)
+        self.assertIn("resumen y ejemplos numéricos sin gráfica ni tabla",script)
         self.assertNotIn("pred59-detail",script)
         self.assertNotIn("pred59-rows",script)
         self.assertNotIn("pred59-state",script)
