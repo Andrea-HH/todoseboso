@@ -300,3 +300,11 @@ Validación de navegación:
 ```bash
 python -m unittest discover -s tests -p 'test_site_navigation.py'
 ```
+
+## Integración científica de Reference26 (19 de octubre de 2026)
+
+Se integraron en las cinco vistas actuales, **sin modificar `site/styles.css`, `site/preguntas.css` ni el explorador**, cuatro nuevas secciones de Modelo (inventario de 26 variables, preparación, entrenamiento e hiperparámetros, tratamiento de faltantes) y una nueva sección de Resultados con siete perspectivas del diagnóstico LOOCV (magnitud, influencia, normalidad y varianza, Moran y Geary, semivariograma, bootstrap espacial e interpretación). Las preguntas frecuentes pasan de 13 a 18; se conservaron las trece originales.
+
+**Fuentes y límites:** el inventario `site/data/reference26_features.json` deriva del [modelo documentado](https://github.com/heri-espino/todoseboso/blob/main/site/data/model.json) de Heri. Los diagnósticos de `site/data/reference26_residuals.json` son sus [agregados originales](https://github.com/heri-espino/todoseboso/blob/main/site/data/reference26_residuals.json), sin rendimientos, IDs o residuos privados por parcela. El nuevo LOOCV usa **Reference26 con media** dentro del entrenamiento. Las 59 predicciones conservadas en el mapa se generaron con **Reference26 histórico con mediana**: no se reemplazan ni se declaran evaluadas con el protocolo nuevo.
+
+Los nuevos estilos se limitan a `site/technical-details.css`, heredando colores y tipografía. La interacción `site/technical-details.js` solo lee agregados; no genera predicciones en línea. El propio menú y las vistas permanecen iguales.

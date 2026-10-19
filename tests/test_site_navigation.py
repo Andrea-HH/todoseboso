@@ -1,4 +1,4 @@
-"""Regression tests for GeoCebada's five static views, links and 13 FAQs."""
+"""Regression tests for GeoCebada's five static views, links and 18 FAQs."""
 import re
 import unittest
 from html.parser import HTMLParser
@@ -32,7 +32,7 @@ class Reader(HTMLParser):
             self.sections.append(d.get("class", ""))
         if tag == "iframe":
             self.iframes += 1
-        if tag == "details" and d.get("id") != "nav-dropdown":
+        if tag == "details" and d.get("id") != "nav-dropdown" and "geo-tech-" not in d.get("class", ""):
             self.faqs += 1
         if tag == "nav":
             if "geo-subnav" in d.get("class", ""):
@@ -59,8 +59,8 @@ class NavigationTests(unittest.TestCase):
         cls.page.feed(cls.html)
 
     def test_all_sections_visible_on_their_respective_pages(self):
-        self.assertEqual(len(self.page.sections), 16)
-        self.assertEqual(len(set(self.page.sections)), 16)
+        self.assertEqual(len(self.page.sections), 21)
+        self.assertEqual(len(set(self.page.sections)), 21)
         for page, sections in GROUPS.items():
             for section in sections:
                 name = section if section == "stat-band" else "section " + section
@@ -69,6 +69,12 @@ class NavigationTests(unittest.TestCase):
                     'html[data-geo-vista="' + page + '"] #contenido > section.' + section,
                     self.css
                 )
+        additions = {"modelo": ("geo-tech-variables", "geo-tech-preparation", "geo-tech-training", "geo-tech-missing"), "resultados": ("geo-tech-residuals",)}
+        ext = (SITE / "technical-details.css").read_text(encoding="utf-8")
+        for page, new_sections in additions.items():
+            for section in new_sections:
+                self.assertIn("section geo-tech-section " + section, self.page.sections)
+                self.assertIn('html[data-geo-vista="' + page + '"] #contenido > section.' + section, ext)
         for section in ("hero", "geoc-andrea-map"):
             self.assertIn(section, self.page.sections)
             self.assertIn('html[data-geo-vista="inicio"] #contenido > section.' + section, self.css)
@@ -93,8 +99,8 @@ class NavigationTests(unittest.TestCase):
             self.assertIn(old + ":'" + new + "'", self.router)
         self.assertIn('src="./view-router.js"', self.html)
 
-    def test_thirteen_unchanged_questions_in_four_groups(self):
-        self.assertEqual(self.page.faqs, 13)
+    def test_eighteen_questions_in_four_groups(self):
+        self.assertEqual(self.page.faqs, 18)
         for label in (
             "Consultar parcelas", "Entender el modelo",
             "Interpretar los resultados", "Validación y rigor"

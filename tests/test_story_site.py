@@ -55,6 +55,23 @@ class StorySiteTest(unittest.TestCase):
         self.assertNotIn("outputs/", html)
         self.assertNotIn("train138.parquet", html)
 
+    def test_reference26_enrichment_is_documented(self):
+        html = (SITE / "index.html").read_text(encoding="utf-8")
+        for anchor in ("variables-detalle", "preparacion-datos", "entrenamiento-modelo",
+                       "datos-faltantes", "diagnostico-residuos"):
+            self.assertIn('id="' + anchor + '"', html)
+        features = json.loads((SITE / "data/reference26_features.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(features["features"]), 5)
+        self.assertEqual(sum(len(g["features"]) for g in features["features"]), 26)
+        residuals = json.loads((SITE / "data/reference26_residuals.json").read_text(encoding="utf-8"))
+        self.assertEqual(residuals["protocol"]["imputation"], "mean_training_only")
+        self.assertEqual(residuals["n_labeled"], 138)
+        self.assertEqual(residuals["n_unknown"], 59)
+        self.assertEqual(len(residuals["spatial"]["semivariogram"]), 6)
+        self.assertEqual(len(residuals["spatial"]["geary_c"]), 12)
+        self.assertIn("mediana", html)
+        self.assertIn("media", html)
+
     def test_protocol_comparison_is_sourced(self):
         subprocess.run(
             [sys.executable, str(ROOT / "scripts/sync_story_data.py"), "--check"],
