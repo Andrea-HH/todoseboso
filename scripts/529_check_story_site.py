@@ -101,9 +101,13 @@ def check_page() -> None:
     for name in ("resultados", "historia", "arquitectura", "vecinos", "clima", "limitaciones", "fuentes"):
         if name not in audit.ids:
             raise ValueError(f"Missing story section: {name}")
-    for value in ("0.4625", "0.6971", "97/41", "No son resultados de LOOCV"):
+    for value in ("0.4625", "0.6971", "97/41", "no miden el error de las 59 parcelas"):
         if value not in html:
             raise ValueError(f"Missing required qualification: {value}")
+    if "LOOCV" in html:
+        raise ValueError("An unrequested validation topic remains in the public page")
+    if "Clima, vecinos y geología" not in html or "Clima y vecinos, sin geología" not in html:
+        raise ValueError("Descriptive model labels missing in alternate page")
     if re.search(r"(?:src|href)=['\"]https?://[^'\"]+\.(?:js|css)['\"]", html):
         raise ValueError("Third-party JS/CSS dependency is forbidden")
 
