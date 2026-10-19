@@ -38,11 +38,10 @@ function showRainfall(kind) {
   const sum = values.reduce((a, b) => a + b, 0);
   const early = values.slice(0, 3).reduce((a, b) => a + b, 0) / sum;
   const hhi = values.reduce((acc, v) => acc + (v / sum) ** 2, 0);
-  $$("#rain-bars .bar").forEach((bar, i) => bar.style.setProperty("--height", `${values[i] / 150 * 100}%`));
-  $("#rain-total").textContent = `${sum} mm`;
-  $("#rain-early").textContent = `${(early * 100).toFixed(1)} %`;
+  window.GeoCharts.rainfall($("#rain-bars"), values);
+  $("#rain-total").textContent = sum + " mm";
+  $("#rain-early").textContent = (early * 100).toFixed(1) + " %";
   $("#rain-hhi").textContent = hhi.toFixed(3);
-  $("#rain-bars").setAttribute("aria-label", `Lluvia simulada de abril a octubre: ${values.join(", ")} mm`);
   $$("[data-rain]").forEach((button) => {
     const active = button.dataset.rain === kind;
     button.classList.toggle("active", active);
@@ -102,6 +101,19 @@ function setProtocol(id) {
   const info = protocols.find((item) => item.id === id);
   if (!info) return;
   $$("[data-protocol]").forEach((button) => {
+    const active = button.dataset.protocol === id;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  $("#protocol-caption").textContent = info.description;
+  window.GeoCharts.models($("#results-chart"),
+    ORDER.map((name) => {
+      const metric = info.results.find((entry) => entry.id === name);
+      if (!metric) throw Error("Faltan resultados de " + name);
+      return metric;
+    }), LABELS);
+}
+$$("[data-protocol]").forEach((button) => {
     const active = button.dataset.protocol === id;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
@@ -175,48 +187,17 @@ function renderAblations(id) {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
-  const chart = $("#ablation-chart");
-  chart.replaceChildren();
-  const max = Math.max(1.05, ...p.core4_ablations.map((x) => x.rmse));
-  p.core4_ablations.forEach((row) => {
-    const item = evidenceElement("div", "ablation-row" + (row.id === "FULL4" ? " incumbent" : ""));
-    const name = evidenceElement("span", "ablation-label", row.label);
-    const track = evidenceElement("div", "ablation-track");
-    const bar = evidenceElement("span", "ablation-fill");
-    bar.style.width = String(100 * row.rmse / max) + "%";
-    track.append(bar);
-    const score = evidenceElement("strong", "ablation-score", row.rmse.toFixed(4));
-    item.setAttribute("aria-label", row.label + ", RMSE " + row.rmse.toFixed(4) + " toneladas por hectárea");
-    item.append(name, track, score);
-    chart.append(item);
-  });
+  window.GeoCharts.ablations($("#ablation-chart"), p.core4_ablations);
   $("#ablation-insight").textContent = ABLATION_NOTES[id];
 }
 function renderComponentEvidence() {
-  const r3 = $("#r3-comparison");
-  const weights = $("#expert-weights");
-  r3.replaceChildren();
-  weights.replaceChildren();
-  componentProtocols.forEach((p) => {
-    const row = evidenceElement("div", "component-r3-row");
-    const name = evidenceElement("span", "r3-protocol", EVIDENCE_NAMES[p.id]);
-    const without = evidenceElement("span", "r3-without", p.reference26_r3.without_r3.toFixed(4));
-    const arrow = evidenceElement("span", "r3-arrow", "→");
-    const withR3 = evidenceElement("strong", "r3-with", p.reference26_r3.with_r3.toFixed(4));
-    row.setAttribute("aria-label", EVIDENCE_NAMES[p.id] + ", RMSE sin R3 " + without.textContent + ", con R3 " + withR3.textContent + " t/ha");
-    row.append(name, without, arrow, withR3);
-    r3.append(row);
-    const weight = evidenceElement("div", "expert-weight-row");
-    const label = evidenceElement("span", "weight-name", EVIDENCE_NAMES[p.id]);
-    const track = evidenceElement("div", "weight-track");
-    const expert = evidenceElement("span", "weight-expert");
-    expert.style.width = String(p.expert_weight * 100) + "%";
-    track.append(expert);
-    const percent = evidenceElement("strong", "weight-number", (p.expert_weight * 100).toFixed(1) + " %");
-    weight.setAttribute("aria-label", EVIDENCE_NAMES[p.id] + ", peso medio del experto local " + percent.textContent);
-    weight.append(label, track, percent);
-    weights.append(weight);
-  });
+  const rows = componentProtocols.map((p) => ({
+    id: p.id, label: EVIDENCE_NAMES[p.id],
+    without: p.reference26_r3.without_r3, with: p.reference26_r3.with_r3,
+    weight: p.expert_weight
+  }));
+  window.GeoCharts.r3($("#r3-comparison"), rows);
+  window.GeoCharts.expertWeights($("#expert-weights"), rows);
 }
 $$("[data-ablation-protocol]").forEach((button) => button.addEventListener("click", () => {
   renderAblations(button.dataset.ablationProtocol);
@@ -246,5 +227,20 @@ $$("[data-ablation-protocol]").forEach((button) => button.addEventListener("clic
     for (const node of [chart, r3, weights]) {
       node.textContent = "No se pudo cargar la evidencia. Consulta los CSV agregados en GitHub.";
     }
+  }
+})();
+
+(async function loadPublishedDistributions() {
+  const target = $("#distribution-quantiles");
+  if (!target) return;
+  try {
+    const response = await fetch("./data/distribution.json", {cache: "no-store"});
+    if (!response.ok) throw Error("No se cargó el resumen de rendimientos");
+    const data = await response.json();
+    if (data.schema_version !== 1 || data.rows.length !== 8) throw Error("Resumen estadístico incompleto");
+    window.GeoCharts.distribution(target, data.rows);
+  } catch (error) {
+    console.error("No fue posible dibujar la distribución:", error);
+    target.textContent = "Consulta la figura original y sus estadísticas en el repositorio.";
   }
 })();
