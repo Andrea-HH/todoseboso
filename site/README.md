@@ -264,3 +264,29 @@ python -m unittest discover -s tests -p 'test_public_map_yields.py'
 ```
 
 Fuente y límites: [PROCEDENCIA.md](explorador/data/PROCEDENCIA.md).
+
+
+## Navegación por preguntas (paginAndrea)
+
+El sitio estático usa seis vistas de `index.html`: **Inicio**, **Problema**,
+**Modelo**, **Resultados**, **Confianza** y **Preguntas frecuentes**.
+El menú enlaza con `?vista=problema`, `?vista=modelo`,
+`?vista=resultados`, `?vista=confianza` y `?vista=preguntas`.
+
+El recorrido conserva todas las secciones y gráficos originales, junto con
+las 13 respuestas completas. El modelo reúne lluvia, vecinos, geología y
+cálculo ilustrativo. Los resultados comienzan con la comparación de errores
+y agrupan pruebas de significancia, componentes, el experimento sin HHI,
+Compact14 y distribuciones. Confianza presenta intervalos, avisos de soporte
+y limitaciones. Los subíndices permiten saltar entre temas y seguir al
+siguiente capítulo.
+
+`site/view-router.js` mantiene compatibilidad con las antiguas rutas
+`historia`, `calculo`, `pruebas`, `hhi` y `parcelas`.
+Los datos, modelos y métricas originales no se modifican con la navegación.
+
+Validación de navegación:
+
+```bash
+python -m unittest discover -s tests -p 'test_site_navigation.py'
+```
