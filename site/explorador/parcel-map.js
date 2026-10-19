@@ -368,7 +368,7 @@
       const layer=layerById.get(id);
       if(layer && match(r)){map.fitBounds(layer.getBounds(),{maxZoom:14,padding:[50,50],animate:false});layer.bringToFront();}
       else if(!hasGeometry){info('Rendimiento disponible. La ubicación de esta parcela no está disponible en esta sesión.');}
-      if(document.documentElement.classList.contains('geo-mapa-solo') && layer){
+      if((document.documentElement.classList.contains('geo-mapa-solo') || document.documentElement.classList.contains('geo-mini-explorador')) && layer){
         const infoBox=document.createElement('div');
         const name=document.createElement('strong');
         name.textContent=r.id;

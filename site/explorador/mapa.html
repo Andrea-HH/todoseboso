@@ -25,10 +25,57 @@ html.geo-mapa-solo .geo-map-bottom{min-height:48px;padding:8px 12px}
 html.geo-mapa-solo #map-mode-label{display:none}
 html.geo-mapa-solo .geo-map-actions{display:flex;flex-wrap:wrap;gap:5px}
 html.geo-mapa-solo .geo-map-actions button{padding:7px 8px;font-size:11px}
+
+/* La portada incluye el mismo explorador real, compacto, sin duplicar datos. */
+html.geo-mini-explorador,html.geo-mini-explorador body,html.geo-mini-explorador main{height:100%;margin:0;overflow:hidden}
+html.geo-mini-explorador .geo-workspace{height:100%;min-height:0;padding:0;overflow:hidden}
+html.geo-mini-explorador .geo-topline,html.geo-mini-explorador .geo-title-grid{display:none!important}
+html.geo-mini-explorador .geo-shell{display:grid;grid-template-columns:minmax(190px,38%) minmax(0,1fr);width:100%;max-width:none;margin:0;height:100%;min-height:0;border-radius:0;box-shadow:none;overflow:hidden}
+html.geo-mini-explorador .geo-sidebar{height:100%;min-height:0;max-height:none;overflow:auto;padding:15px 12px;gap:12px}
+html.geo-mini-explorador .geo-eyebrow{font-size:9px;letter-spacing:.08em}
+html.geo-mini-explorador .geo-panel-heading h2{font-size:1.35rem;margin:5px 0}
+html.geo-mini-explorador .geo-panel-heading p{font-size:.72rem;line-height:1.45}
+html.geo-mini-explorador .geo-quick-stats{gap:4px}
+html.geo-mini-explorador .geo-counter{padding:7px 5px;min-width:0}
+html.geo-mini-explorador .geo-counter span{font-size:.57rem;line-height:1.2;min-height:2.4em;overflow-wrap:anywhere}
+html.geo-mini-explorador .geo-counter strong{font-size:1.22rem}
+html.geo-mini-explorador .geo-filters{gap:5px}
+html.geo-mini-explorador .geo-filters label{font-size:.7rem}
+html.geo-mini-explorador .geo-filters select{font-size:.72rem;min-height:34px;padding:5px 6px}
+html.geo-mini-explorador .geo-filter-count{padding:7px;font-size:.65rem}
+html.geo-mini-explorador .geo-detail{padding-top:10px;min-height:0}
+html.geo-mini-explorador .geo-detail h3{font-size:1.12rem}
+html.geo-mini-explorador .geo-detail p,html.geo-mini-explorador .geo-detail dt,html.geo-mini-explorador .geo-detail dd{font-size:.7rem}
+html.geo-mini-explorador .geo-climate{display:none}
+html.geo-mini-explorador .geo-legend{font-size:.65rem}
+html.geo-mini-explorador .geo-map-wrap{height:100%;min-height:0}
+html.geo-mini-explorador .geo-map{height:100%;min-height:0}
+html.geo-mini-explorador .geo-map-toolbar{top:10px;left:10px;right:10px}
+html.geo-mini-explorador .geo-map-toolbar span{font-size:.56rem;padding:6px 8px}
+html.geo-mini-explorador .geo-map-toolbar>span:last-child{display:none}
+html.geo-mini-explorador .geo-zoom-guide{display:none}
+html.geo-mini-explorador .geo-map-bottom{min-height:44px;padding:7px 9px}
+html.geo-mini-explorador #map-mode-label{display:none}
+html.geo-mini-explorador .geo-map-actions{display:flex;flex-wrap:wrap;gap:3px}
+html.geo-mini-explorador .geo-map-actions button{padding:5px 6px;font-size:9px}
+html.geo-mini-explorador .geo-map-notice{max-width:90%;padding:10px;font-size:.72rem}
+@media(max-width:560px){
+ html.geo-mini-explorador .geo-shell{grid-template-columns:1fr;grid-template-rows:174px minmax(0,1fr)}
+ html.geo-mini-explorador .geo-sidebar{display:grid;grid-template-columns:1fr 1.2fr;align-items:start;gap:8px;padding:8px 10px}
+ html.geo-mini-explorador .geo-panel-heading{grid-column:1/-1}
+ html.geo-mini-explorador .geo-panel-heading p{display:none}
+ html.geo-mini-explorador .geo-panel-heading h2{font-size:1.2rem;margin:2px 0}
+ html.geo-mini-explorador .geo-quick-stats{align-self:center}
+ html.geo-mini-explorador .geo-filters{gap:2px}
+ html.geo-mini-explorador .geo-filters label{margin:0}
+ html.geo-mini-explorador .geo-filters select{min-height:28px}
+ html.geo-mini-explorador .geo-filter-count,html.geo-mini-explorador .geo-detail,html.geo-mini-explorador .geo-climate,html.geo-mini-explorador .geo-legend{display:none}
+}
 </style>
 <script>
-  if(new URLSearchParams(window.location.search).get('vista')==='mapa')
-    document.documentElement.classList.add('geo-mapa-solo');
+  const vista = new URLSearchParams(window.location.search).get('vista');
+  if(vista==='mapa') document.documentElement.classList.add('geo-mapa-solo');
+  if(vista==='mini-explorador') document.documentElement.classList.add('geo-mini-explorador');
 </script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
   <script src="./parcel-map.js" defer></script>
@@ -37,14 +84,6 @@ html.geo-mapa-solo .geo-map-actions button{padding:7px 8px;font-size:11px}
 <main>
 <section class="geo-workspace" id="mapa" aria-label="Explorador satelital GeoCebada">
 
-      <div class="geo-topline shell">
-        
-        <span class="geo-archive">CEBADA · CICLO AGRÍCOLA 2025</span>
-      </div>
-      <div class="shell geo-title-grid">
-        <div><h1>Conoce el campo, <em>parcela por parcela.</em></h1><p>Combinamos observaciones satelitales, clima y geografía para estimar el rendimiento de cebada en parcelas cuyo resultado se desconoce.</p></div>
-        <div class="geo-total-block"><span>UNIVERSO DEL RETO</span><strong>197</strong><small>138 entrenamiento · 59 predicción</small></div>
-      </div>
       <div class="geo-shell shell">
         <aside class="geo-sidebar" aria-label="Filtros del mapa">
           <div class="geo-panel-heading"><span class="geo-eyebrow">01 / EXPLORADOR GEOGRÁFICO</span><h2>Parcelas de cebada</h2><p>Selecciona una parcela o filtra el conjunto que quieras consultar.</p></div>
