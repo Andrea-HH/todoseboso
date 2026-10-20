@@ -12,7 +12,7 @@
   <link rel="icon" href="./assets/favicon-trigo.png" type="image/png" sizes="256x256">
   <link rel="apple-touch-icon" href="./assets/favicon-trigo.png">
   <script src="./view-router.js"></script>
-  <link rel="stylesheet" href="./styles.css?v=portada-mapa-ampliado-20261020">
+  <link rel="stylesheet" href="./styles.css?v=portada-video-independiente-20261020">
   <link rel="stylesheet" href="./charts.css">
   <script src="./charts.js" defer></script>
   <script src="./app.js" defer></script>
@@ -73,21 +73,30 @@
           <div class="hero-parcel-tools" aria-label="Filtrar parcelas por conjunto, estado e identificador">
             <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles&v=portada-balanceada-20261020" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="eager"></iframe>
           </div>
-          <div class="hero-actions"><a class="primary-cta" href="./fuente-heri/investigacion.html?vista=modelo#ensamble">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="./fuente-heri/investigacion.html?vista=resultados#resultados">Ver los resultados <span aria-hidden="true">→</span></a></div>
-          <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
-
-        </div>
-        <div class="hero-map-column" aria-label="Explorar parcelas y consultar el mapa">
-          <div class="hero-validation-metrics" aria-label="Métricas del modelo fijo elegido para las 59 parcelas, 138 exclusiones LOOCV">
+          <div class="hero-validation-metrics hero-validation-metrics--quiet" aria-label="Métricas del modelo fijo elegido para las 59 parcelas, 138 exclusiones LOOCV">
               <div class="hero-validation-metric"><strong>0.462418</strong><span>RMSE · regla final fija · t/ha</span></div>
               <div class="hero-validation-metric"><strong>0.332019</strong><span>MAE · regla final fija · t/ha</span></div>
               <div class="hero-validation-metric"><strong>0.702693</strong><span>R² predictivo · regla final fija</span></div>
               <div class="hero-validation-metric"><strong>138</strong><span>parcelas LOOCV</span></div>
             </div>
+          <div class="hero-actions"><a class="primary-cta" href="./fuente-heri/investigacion.html?vista=modelo#ensamble">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="./fuente-heri/investigacion.html?vista=resultados#resultados">Ver los resultados <span aria-hidden="true">→</span></a></div>
+          <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
+
+        </div>
+        <div class="hero-map-column" aria-label="Explorar parcelas y consultar el mapa">
 
           <div class="hero-map-preview" aria-label="Mapa interactivo de las parcelas">
             <iframe id="geoc-andrea-hero-frame" src="./explorador/mapa.html?vista=mapa" title="Mapa satelital interactivo GeoCebada" loading="eager"></iframe>
           </div>
+          <section class="hero-video-card" aria-labelledby="hero-video-title">
+            <span class="hero-video-kicker">DEMOSTRACIÓN EN VIDEO</span>
+            <h3 id="hero-video-title">GeoCebada en acción</h3>
+            <video controls playsinline preload="metadata" aria-label="Demostración de GeoCebada, FIRA 2026">
+              <source src="./media/GeoCebada-FIRA-2026.mp4" type="video/mp4">
+              Tu navegador no admite la reproducción de este video.
+            </video>
+            <p>Recorrido por el proyecto · 3 min 57 s</p>
+          </section>
         </div>
         <div class="hero-visual" role="img" aria-label="Ilustración conceptual de parcelas agrícolas, lluvia y vegetación. No representa datos ni ubicaciones reales.">
           <div class="visual-header"><span><span class="status-dot"></span> LLUVIA, CULTIVO Y UBICACIÓN</span><span>01 — 04</span></div>
