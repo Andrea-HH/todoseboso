@@ -1104,132 +1104,204 @@ html[data-geo-vista] #contenido>.section.hhi-study .hhi-observation p{
   .hero-validation-metric span{font-size:11px}
 }
 
-/* Portada GeoCebada · composición compacta y balanceada.
-   Pantalla amplia: indicadores en banda; filtros legibles sobre mapa.
-   Las vistas de investigación y el explorador completo no se modifican. */
+/* Portada GeoCebada: filtros debajo de la explicación, métricas compactas
+   encima de un mapa ampliado. Los tres iframes conservan sus IDs y sincronización. */
 html[data-geo-vista="inicio"] .hero-grid{
   display:grid;
-  grid-template-columns:minmax(0,0.98fr) minmax(0,1.02fr);
-  gap:clamp(22px,2.6vw,43px);
+  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
   align-items:start;
+  gap:clamp(24px,2.5vw,42px);
   min-height:0;
-  padding-top:clamp(18px,2vw,28px);
-  padding-bottom:clamp(18px,2.4vw,30px);
+  padding-top:clamp(20px,2.4vw,34px);
+  padding-bottom:clamp(22px,2.7vw,38px);
 }
 html[data-geo-vista="inicio"] .hero-content{
-  min-width:0;max-width:none;padding:0;
+  min-width:0;
+  max-width:none;
+  padding:0;
 }
 html[data-geo-vista="inicio"] .hero-eyebrow{
   margin:0 0 clamp(13px,1.5vw,20px);
 }
 html[data-geo-vista="inicio"] .hero h1{
-  font-size:clamp(36px,3.45vw,56px);
+  font-size:clamp(36px,3.55vw,56px);
   line-height:1.065;
   letter-spacing:-.058em;
-  margin:0 0 clamp(13px,1.7vw,22px);
+  margin:0 0 clamp(14px,1.8vw,24px);
   max-width:760px;
 }
 html[data-geo-vista="inicio"] .hero-model-summary{
-  max-width:760px;margin:0;
+  max-width:750px;
+  margin:0;
 }
 html[data-geo-vista="inicio"] .hero-model-summary p{
-  font-size:clamp(13px,.98vw,15.5px);
-  line-height:1.58;
-  margin:0 0 clamp(8px,1vw,12px);
+  font-size:clamp(13px,1vw,16px);
+  line-height:1.62;
+  margin:0 0 clamp(11px,1vw,15px);
   text-wrap:pretty;
 }
-/* KPIs en una línea en monitores grandes; sin inventar ni ocultar cifras. */
-html[data-geo-vista="inicio"] .hero-validation-metrics{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  max-width:none;
-  gap:8px;margin:clamp(14px,1.4vw,19px) 0 0;
+/* Se reutiliza intacto el explorador de 197 parcelas en la columna izquierda. */
+html[data-geo-vista="inicio"] .hero-content .hero-parcel-tools{
+  display:block;
+  width:100%;
+  max-width:750px;
+  height:158px;
+  min-height:0;
+  padding:0;
+  margin:clamp(22px,3vw,42px) 0 0;
 }
-html[data-geo-vista="inicio"] .hero-validation-metric{
-  min-width:0;min-height:88px;
-  padding:clamp(11px,1vw,14px) clamp(10px,1vw,15px);
-  border-radius:11px;
-  display:flex;flex-direction:column;justify-content:center;
-  box-shadow:0 3px 10px #203e3020;
+html[data-geo-vista="inicio"] .hero-content .hero-parcel-tools iframe{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  background:transparent;
 }
-html[data-geo-vista="inicio"] .hero-validation-metric strong{
-  font-size:clamp(19px,1.56vw,26px);
-  line-height:1.13;
-  letter-spacing:-.032em;
-  overflow-wrap:normal;
-  font-variant-numeric:tabular-nums;
-}
-html[data-geo-vista="inicio"] .hero-validation-metric span{
-  font-size:clamp(10px,.73vw,12px);
-  line-height:1.3;
-  margin-top:6px;
-}
-/* Se aprovecha el espacio vertical real, no el alto vacío del iframe. */
 html[data-geo-vista="inicio"] .hero-map-column{
-  width:100%;min-width:0;
-  display:flex;flex-direction:column;
-  gap:clamp(8px,1vw,13px);
+  display:flex;
+  width:100%;
+  min-width:0;
+  flex-direction:column;
+  gap:clamp(12px,1.1vw,17px);
   align-self:start;
 }
-html[data-geo-vista="inicio"] .hero-map-column .hero-parcel-tools{
-  height:148px;min-height:0;max-width:none;
-  width:100%;margin:0;padding:0;
+/* Cuatro métricas conservadas, en una fila de tarjetas pequeñas encima del mapa. */
+html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metrics{
+  display:grid;
+  width:100%;
+  max-width:none;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(7px,.8vw,11px);
+  margin:0;
 }
-html[data-geo-vista="inicio"] .hero-map-column .hero-parcel-tools iframe{
-  display:block;width:100%;height:100%;
-  border:0;background:transparent;
+html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:0;
+  min-height:78px;
+  padding:9px clamp(8px,.75vw,12px);
+  border-radius:11px;
+  box-shadow:0 3px 10px #203e3020;
 }
+html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric strong{
+  font-size:clamp(19px,1.45vw,25px);
+  line-height:1.12;
+  letter-spacing:-.032em;
+  font-variant-numeric:tabular-nums;
+  overflow-wrap:normal;
+}
+html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric span{
+  font-size:clamp(10px,.72vw,12px);
+  line-height:1.3;
+  margin-top:5px;
+}
+/* El mapa gana anchura gracias a la rejilla y bastante más altura. */
 html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{
-  height:clamp(365px,47vh,465px);
-  min-width:0;width:100%;
-  border-radius:15px;
+  width:100%;
+  min-width:0;
+  height:clamp(540px,43vw,680px);
   overflow:hidden;
-  box-shadow:0 12px 28px #17412e20;
+  border-radius:16px;
+  box-shadow:0 14px 30px #17412e27;
 }
-/* Cuando la columna izquierda se estrecha se recuperan los KPIs 2×2. */
-@media(min-width:981px) and (max-width:1370px){
-  html[data-geo-vista="inicio"] .hero-validation-metrics{
+html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview iframe{
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
+}
+@media(min-width:981px) and (max-width:1310px){
+  html[data-geo-vista="inicio"] .hero h1{
+    font-size:clamp(36px,3.6vw,47px);
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metrics{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
-  html[data-geo-vista="inicio"] .hero-validation-metric{min-height:70px;padding:10px 13px}
-  html[data-geo-vista="inicio"] .hero h1{font-size:clamp(35px,3.6vw,48px)}
-  html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{height:clamp(340px,45vh,425px)}
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric{
+    min-height:62px;
+    padding:7px 11px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric strong{
+    font-size:21px;
+  }
+  html[data-geo-vista="inicio"] .hero-content .hero-parcel-tools{
+    height:210px;
+  }
 }
 @media(max-width:980px){
   html[data-geo-vista="inicio"] .hero-grid{
     grid-template-columns:1fr;
-    gap:clamp(20px,3vw,30px);
-    padding-top:22px;
-    padding-bottom:25px;
+    gap:clamp(22px,3vw,32px);
+    padding-top:23px;
+    padding-bottom:27px;
   }
   html[data-geo-vista="inicio"] .hero h1{
-    max-width:840px;font-size:clamp(37px,5.7vw,54px);
+    max-width:840px;
+    font-size:clamp(37px,5.7vw,54px);
   }
-  html[data-geo-vista="inicio"] .hero-model-summary{max-width:840px}
-  html[data-geo-vista="inicio"] .hero-model-summary p{font-size:clamp(14px,1.7vw,16px)}
-  html[data-geo-vista="inicio"] .hero-validation-metrics{max-width:840px}
-  html[data-geo-vista="inicio"] .hero-validation-metric{min-height:78px}
-  html[data-geo-vista="inicio"] .hero-map-column .hero-parcel-tools{height:148px}
-  html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{height:440px}
+  html[data-geo-vista="inicio"] .hero-model-summary{
+    max-width:840px;
+  }
+  html[data-geo-vista="inicio"] .hero-model-summary p{
+    font-size:clamp(14px,1.7vw,16px);
+  }
+  html[data-geo-vista="inicio"] .hero-content .hero-parcel-tools{
+    height:158px;
+    max-width:840px;
+    margin-top:23px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{
+    height:clamp(495px,65vw,630px);
+  }
 }
 @media(max-width:620px){
-  html[data-geo-vista="inicio"] .hero-grid{padding-top:19px;gap:22px}
-  html[data-geo-vista="inicio"] .hero h1{font-size:clamp(33px,8.3vw,45px);margin-bottom:14px}
-  html[data-geo-vista="inicio"] .hero-model-summary p{font-size:14px;line-height:1.58}
-  html[data-geo-vista="inicio"] .hero-validation-metrics{
-    grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px;
+  html[data-geo-vista="inicio"] .hero-grid{
+    padding-top:20px;
+    gap:23px;
   }
-  html[data-geo-vista="inicio"] .hero-validation-metric{min-height:77px;padding:10px 12px}
-  html[data-geo-vista="inicio"] .hero-validation-metric strong{font-size:clamp(20px,5.1vw,26px)}
-  html[data-geo-vista="inicio"] .hero-validation-metric span{font-size:11px}
-  html[data-geo-vista="inicio"] .hero-map-column .hero-parcel-tools{height:148px}
-  html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{height:355px;border-radius:13px}
+  html[data-geo-vista="inicio"] .hero h1{
+    font-size:clamp(33px,8.3vw,45px);
+    margin-bottom:15px;
+  }
+  html[data-geo-vista="inicio"] .hero-model-summary p{
+    font-size:14px;
+    line-height:1.58;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metrics{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric{
+    min-height:69px;
+    padding:9px 12px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric strong{
+    font-size:clamp(19px,4.6vw,25px);
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric span{
+    font-size:11px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{
+    height:445px;
+    border-radius:13px;
+  }
 }
 @media(max-width:480px){
-  html[data-geo-vista="inicio"] .hero-map-column .hero-parcel-tools{height:212px}
-  html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{height:335px}
-  html[data-geo-vista="inicio"] .hero-validation-metrics{gap:7px}
-  html[data-geo-vista="inicio"] .hero-validation-metric{padding:9px 10px;min-height:73px}
-  html[data-geo-vista="inicio"] .hero-validation-metric strong{font-size:clamp(18px,5vw,23px)}
-  html[data-geo-vista="inicio"] .hero-validation-metric span{font-size:10px;line-height:1.35}
+  html[data-geo-vista="inicio"] .hero-content .hero-parcel-tools{
+    height:226px;
+    margin-top:20px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{
+    height:385px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metrics{
+    gap:8px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric{
+    min-height:66px;
+    padding:9px 10px;
+  }
+  html[data-geo-vista="inicio"] .hero-map-column .hero-validation-metric span{
+    font-size:10px;
+  }
 }
