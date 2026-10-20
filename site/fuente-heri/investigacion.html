@@ -352,6 +352,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 </div>
 
 <div class="final-extended-metrics">
+<div class="final-extended-heading"><p class="eyebrow">MÉTRICAS LOOCV · 138 PARCELAS</p><h4>Error, extremos e incertidumbre</h4><p>Resultados adicionales del selector anidado. Los errores se evaluaron sobre las mismas 138 cosechas conocidas excluidas una a una.</p></div>
 <details class="final-metrics-details" open><summary>Explorar las 12 métricas del selector anidado · magnitud, colas y sesgo</summary>
 <p>Todas corresponden a las mismas 138 cosechas reales excluidas mediante LOOCV. Los valores publicados se conservan con seis decimales; no se estiman errores para las 59 parcelas pendientes.</p>
 <div class="final-metric-tables">
@@ -390,7 +391,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 </details>
 <p class="final-study-source">Ejecución completa de 138 exclusiones LOOCV, 19 de octubre de 2026. <a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_TOP5_NESTED_LOOCV.md" target="_blank" rel="noopener noreferrer">Metodología del selector anidado ↗</a></p>
 </div>
-<p class="final-experiment-scope"><strong>138 LOOCV auténticas · 59 estimaciones finales · selección interna completada.</strong> Los RMSE 0.462418 (corrección fija) y 0.462892 (selección anidada) se evaluaron sobre las 138 cosechas conocidas; no son errores medidos en las 59 parcelas desconocidas. La selección inicial de cinco candidatos fue post-hoc. Las pruebas históricas de residuos corresponden al ensamble base, no automáticamente a la corrección final.</p>
+<p class="final-experiment-scope"><strong>Distinción técnica:</strong> la corrección fija seleccionada retrospectivamente obtuvo RMSE 0.462418 t/ha y R² 0.702693, mientras que la política anidada de cuatro folds obtuvo los indicadores principales mostrados arriba. Son evaluaciones distintas.</p>
 <p class="final-experiment-links"><a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md" target="_blank" rel="noopener noreferrer">Metodología y cierre reproducible ↗</a><a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones ↓</a></p>
 </div>
 <div class="previous-validation-heading"><p class="eyebrow">08 · PRUEBAS HISTÓRICAS DEL ENSAMBLE NATIVO</p><h3>¿Cuánto se equivoca <em>la regresión local con mezcla geológica?</em></h3>
