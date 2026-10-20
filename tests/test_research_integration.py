@@ -240,6 +240,42 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertAlmostEqual(residual["diagnostics"]["normality"]["shapiro_p"],1.401988e-7,places=12)
         self.assertAlmostEqual(residual["diagnostics"]["variance"]["koenker_bp_p"],0.400797,places=6)
 
+    def test_results_nested_metrics_and_history_are_in_place_once(self):
+        html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        css=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
+        extended=json.loads((SOURCE/"data/reference26_analog_extended_metrics.json").read_text(encoding="utf-8"))
+        manifest=json.loads((SOURCE/"data/final_model.json").read_text(encoding="utf-8"))
+        parser=Document()
+        parser.feed(html)
+        self.assertEqual(len(parser.ids),len(set(parser.ids)))
+        for elem in ("resultados","final-method-heading","final-strategies",
+                     "final-selection-bars","predicciones-59","pruebas"):
+            self.assertEqual(parser.ids.count(elem),1,elem)
+        for section in ("resultados","predicciones-59","pruebas"):
+            self.assertEqual(parser.sections.count(section),1)
+        self.assertEqual(html.count("Explorar las 12 métricas del selector anidado"),1)
+        self.assertEqual(html.count('class="final-extended-metrics"'),1)
+        self.assertEqual(html.count('class="historical-loocv"'),1)
+        self.assertEqual(html.count("552 ajustes internos de Reference26"),1)
+        self.assertEqual(html.count("Pérdida Huber · δ = 0.5 t/ha"),1)
+        self.assertIn("La entrega definitiva de las 59 estimaciones corregidas ya está publicada",html)
+        self.assertIn("0.468186",html)  # LOOCV histórico con mediana, no mezclar
+        self.assertIn("0.462418",html)  # Corrección fija, separada del selector
+        metrics=extended["metrics"]
+        self.assertEqual(extended["evaluation"]["original_labeled_heldouts"],138)
+        self.assertEqual(manifest["train_labels"],138)
+        for key in ("rmse_t_ha","mae_t_ha","r2_cv","bias_t_ha","mse_t_ha2",
+                    "l1_t_ha","l2_t_ha","linf_t_ha","p95_absolute_error_t_ha",
+                    "p99_absolute_error_t_ha","wape_pct","huber_mean_delta_0p5"):
+            formatted=f"{abs(metrics[key]):.6f}"
+            self.assertIn(formatted,html,key)
+        self.assertEqual(sum(manifest["selection_4fold_counts"].values()),138)
+        self.assertIn("1 %",html)
+        self.assertIn("bootstrap_95ci_7.csv",html)
+        self.assertIn(".final-method-grid",css)
+        self.assertIn(".final-metric-tables",css)
+        self.assertIn(".historical-loocv",css)
+
     def test_historical_59_is_preserved_and_final_59_is_verified(self):
         csv_content=(SITE/"explorador/data/predictions.csv").read_text(encoding="utf-8")
         rows=list(csv.DictReader(io.StringIO(csv_content)))
