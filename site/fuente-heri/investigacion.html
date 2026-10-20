@@ -350,22 +350,75 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <article class="final-experiment-card"><h4>Qué decidió la selección interna · 138 folds</h4><p>Cuatro folds internos de selección para cada parcela excluida. Las barras muestran frecuencia de elección, no precisión predictiva ni las 59 cosechas pendientes.</p><div id="final-selection-bars" aria-label="Frecuencia de selección interna por variante"></div>
 <p>La variante dominante fue robusta en 26 variables, con tres análogos y mezcla 0.25. Las otras cinco exclusiones seleccionaron PCA8 y cinco dejaron intacta la predicción nativa.</p></article>
 </div>
+
+<div class="final-extended-metrics">
+<details class="final-metrics-details" open><summary>Explorar las 12 métricas del selector anidado · magnitud, colas y sesgo</summary>
+<p>Todas corresponden a las mismas 138 cosechas reales excluidas mediante LOOCV. Los valores publicados se conservan con seis decimales; no se estiman errores para las 59 parcelas pendientes.</p>
+<div class="final-metric-tables">
+<div><h4>Magnitud del error</h4>
+<div class="final-metric-scroll"><table><thead><tr><th scope="col">Métrica</th><th scope="col">Valor</th></tr></thead><tbody>
+<tr><th scope="row">RMSE</th><td>0.462892 t/ha</td></tr>
+<tr><th scope="row">MAE</th><td>0.331956 t/ha</td></tr>
+<tr><th scope="row">MSE</th><td>0.214269 (t/ha)²</td></tr>
+<tr><th scope="row">Norma L₁</th><td>45.809975 t/ha</td></tr>
+<tr><th scope="row">Norma L₂</th><td>5.437752 t/ha</td></tr>
+<tr><th scope="row">Norma L∞ · error máximo absoluto</th><td>2.119565 t/ha</td></tr>
+</tbody></table></div></div>
+<div><h4>Colas, ajuste y sesgo</h4>
+<div class="final-metric-scroll"><table><thead><tr><th scope="col">Métrica</th><th scope="col">Valor</th></tr></thead><tbody>
+<tr><th scope="row">P95 del error absoluto</th><td>0.782014 t/ha</td></tr>
+<tr><th scope="row">P99 del error absoluto</th><td>1.687373 t/ha</td></tr>
+<tr><th scope="row">R² predictivo</th><td>0.702083</td></tr>
+<tr><th scope="row">Sesgo · estimación menos real</th><td>−0.005062 t/ha</td></tr>
+<tr><th scope="row">WAPE</th><td>8.392565 %</td></tr>
+<tr><th scope="row">Pérdida Huber · δ = 0.5 t/ha</th><td>0.082625 (t/ha)²</td></tr>
+</tbody></table></div></div></div>
+<p class="small-note">L₁ suma errores absolutos; L₂ es la raíz de su suma de cuadrados; L∞ es el error absoluto máximo. P95 y P99 son cuantiles de |estimación − cosecha|. WAPE divide la suma de errores absolutos entre la suma de cosechas observadas. No se informa R² ajustado porque el predictor compuesto no tiene un número único de parámetros justificable. <a href="./data/reference26_analog_extended_metrics.json" target="_blank" rel="noopener noreferrer">Valores y procedencia de las 12 métricas ↗</a></p>
+</details>
+<div class="final-uncertainty"><h4>Intervalos de confianza y límites de inferencia</h4>
+<p>El selector se evaluó con 138 cosechas conocidas. Para informar un <strong>intervalo bootstrap del RMSE absoluto</strong> todavía falta el archivo agregado <code>bootstrap_95ci_7.csv</code> con sus límites numéricos; no los inferimos a partir del RMSE puntual. La preselección histórica de cinco recetas y la posible dependencia espacial limitan también la interpretación de un bootstrap ordinario.</p>
+<p><strong>Los 59 rendimientos ocultos continúan sin observarse</strong>; ninguna métrica anterior cuantifica su error real.</p></div>
+<details class="final-metric-definitions"><summary>Detalle de fórmulas, entrenamiento final y alcance</summary>
+<div class="final-detail-stack">
+<div><h5>Fórmula del promedio local y del factor de confianza</h5>
+<p>Los tres rendimientos observados reciben pesos inversamente proporcionales a la distancia entre sus 26 variables escaladas robustamente: <code>wⱼ ∝ 1 / max(dⱼ, 10⁻⁵)</code>. Después, los pesos se normalizan para sumar uno.</p>
+<p>El filtro se expresa como <code>g(x) = exp[−½(dₘᵢₙ/s)²] / [1 + (σᵥₑc/σₑₙₜ)²]</code>: <strong>s</strong> es la mediana de la distancia al vecino más próximo en entrenamiento, <strong>σᵥₑc</strong> la dispersión ponderada del rendimiento de los análogos y <strong>σₑₙₜ</strong> la desviación estándar del rendimiento de entrenamiento. Si los vecinos quedan lejos o discrepan, se reduce la corrección.</p></div>
+<div><h5>Definiciones estadísticas del selector</h5><p>Con residuo firmado <code>eᵢ = estimaciónᵢ − cosechaᵢ</code>, <strong>RMSE</strong> es la raíz de la media de <code>eᵢ²</code>, <strong>MAE</strong> la media de <code>|eᵢ|</code> y <strong>sesgo</strong> la media de <code>eᵢ</code>. El <strong>R² predictivo</strong> se calcula como <code>1 − Σeᵢ² / Σ(cosechaᵢ − media observada)²</code>. RMSE, MAE y sesgo se miden en t/ha; R² es adimensional.</p></div>
+<div><h5>Entrenamiento final y las 59 parcelas</h5><p>Reference26 se ajusta sobre las 138 cosechas conocidas; cuatro folds internos seleccionan entre cinco correcciones y la opción sin corrección, exigiendo una mejora relativa mínima del 1 % del MSE. <strong>La entrega definitiva de las 59 estimaciones corregidas ya está publicada en esta web</strong> y se verifica contra el CSV de GeoC. No se conocen todavía sus cosechas reales, por lo que no se pueden calcular errores para esas parcelas. <a href="./investigacion.html?vista=resultados#predicciones-59">Consultar las 59 predicciones finales ↗</a></p></div>
+<div><h5>Por qué la evaluación es anidada de forma condicional</h5><p>El rendimiento de la parcela externa no participa en el entrenamiento ni en la selección interna de su exclusión. Sin embargo, las cinco recetas candidatas se escogieron antes utilizando estas mismas 138 etiquetas. El procedimiento evalúa una política sobre una familia preseleccionada, <strong>no confirma independientemente toda la búsqueda</strong>.</p></div>
+</div>
+</details>
+<p class="final-study-source">Ejecución completa de 138 exclusiones LOOCV, 19 de octubre de 2026. <a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_TOP5_NESTED_LOOCV.md" target="_blank" rel="noopener noreferrer">Metodología del selector anidado ↗</a></p>
+</div>
 <p class="final-experiment-scope"><strong>138 LOOCV auténticas · 59 estimaciones finales · selección interna completada.</strong> Los RMSE 0.462418 (corrección fija) y 0.462892 (selección anidada) se evaluaron sobre las 138 cosechas conocidas; no son errores medidos en las 59 parcelas desconocidas. La selección inicial de cinco candidatos fue post-hoc. Las pruebas históricas de residuos corresponden al ensamble base, no automáticamente a la corrección final.</p>
 <p class="final-experiment-links"><a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md" target="_blank" rel="noopener noreferrer">Metodología y cierre reproducible ↗</a><a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones ↓</a></p>
 </div>
-<div class="previous-validation-heading"><h3>Validaciones anteriores (otra configuración, no el modelo final)</h3><p>Por trazabilidad conservamos el experimento anterior de 16 particiones, con 97 parcelas para entrenar y 41 para evaluar. Sus cifras, gráficas y comparaciones de componentes <strong>no reemplazan</strong> los 138 LOOCV definitivos mostrados arriba.</p></div>
+<div class="previous-validation-heading"><p class="eyebrow">08 · PRUEBAS HISTÓRICAS DEL ENSAMBLE NATIVO</p><h3>¿Cuánto se equivoca <em>la regresión local con mezcla geológica?</em></h3>
+<p>Conservamos las validaciones anteriores como antecedentes, pero <strong>no sustituyen</strong> la evaluación del selector corregido. Los valores de Reference26 con mediana y los residuos de Reference26 con media pertenecen a configuraciones diferentes.</p></div>
+<div class="historical-loocv">
+<p class="eyebrow">RESULTADOS ANTERIORES · ENSAMBLE BASE CON MEDIANA</p><h4>138 parcelas evaluadas, una a la vez</h4>
+<p>En cada turno LOOCV se entrena con 137 cosechas y se predice una parcela apartada. El archivo histórico informa las siguientes métricas agregadas.</p>
+<div class="historical-loocv-values">
+<div><span>Parcelas evaluadas</span><strong>138</strong><small>Una excluida en cada turno</small></div>
+<div><span>RMSE</span><strong>0.468186</strong><small>t/ha · ≈ 468.186 kg/ha</small></div>
+<div><span>R² aproximado</span><strong>0.6952</strong><small>No es porcentaje de aciertos</small></div>
+</div>
+<p>Un RMSE de 0.468186 t/ha equivale a <strong>468.186 kg por hectárea</strong>, pero no significa ese error en cada parcela. Frente a la media conocida de 3.9554 t/ha, equivale a aproximadamente <strong>11.84 % de esa media</strong>, una comparación de escalas, no MAPE. R² de 0.6952 expresa una reducción aproximada del 69.52 % de la suma de errores cuadrados frente al predictor de media constante, <strong>no 69.52 % de parcelas acertadas</strong>.</p>
+<p class="small-note">Procedencia: Reference26 archivado con mediana, 138 turnos LOOCV. Las predicciones individuales de ese protocolo no están disponibles en el repositorio público; no se reconstruyen sus errores individuales a partir del RMSE. Los diagnósticos de residuos con imputación por media se presentan en el capítulo de Confianza.</p>
+</div>
+<div class="previous-validation-heading historical-additional"><h4>Otra evaluación utilizada durante el desarrollo</h4><p>Se conservan por separado las 16 particiones con 97 parcelas para entrenar y 41 para evaluar, así como las pruebas por municipios, perfiles climáticos y bloques espaciales. Sus métricas no se intercambian con los LOOCV anidados.</p></div>
 <div class="scoreline"><div><span>RMSE · 16 evaluaciones 97/41</span><strong>0.4625</strong><small>t/ha</small></div><div><span>Error absoluto medio, MAE</span><strong>0.3387</strong><small>t/ha</small></div><div><span>R² de esas evaluaciones</span><strong>0.6971</strong><small>no es un porcentaje de aciertos</small></div></div>
 <p class="chart-explain">En estas 16 evaluaciones históricas se entrenó con 97 rendimientos y se midió el error en 41 parcelas reservadas. Las métricas se promedian por partición. También se probó la configuración anterior dejando fuera perfiles climáticos, municipios y bloques geográficos completos.</p>
 <div id="performance-chart" aria-live="polite">Cargando los resultados originales…</div><div class="real-data-figure">
-<h3>Errores reales, parcela por parcela</h3>
-<p class="chart-explain">La tabla se activa únicamente cuando se reciben las 138 predicciones reservadas de una ejecución LOOCV auténtica. Sin esos datos no es correcto inferir MAE, sesgo o error máximo a partir del RMSE.</p>
+<h3>Predicciones individuales del experimento histórico</h3>
+<p class="chart-explain">Las predicciones reservadas del antiguo Reference26 con mediana no están publicadas individualmente. El archivo del selector actual aporta 12 métricas agregadas verificadas arriba, pero no suministra por sí solo la tabla histórica de residuos por parcela; ésta no se reconstruye.</p>
 <div id="real-loocv">Falta el archivo de predicciones individuales LOOCV.</div>
 </div><details class="math-details"><summary>Notación matemática de RMSE, MAE y R²</summary><p>Primero: el RMSE mide el tamaño de los errores con mayor penalización para los errores grandes; el MAE promedia magnitudes absolutas; R² compara el error del modelo con el de una predicción constante de referencia.</p><div class="math-grid">
 <div class="math-item"><strong>Raíz del error cuadrático medio</strong><div class="math-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>RMSE</mi><mo>=</mo><msqrt><mfrac><mn>1</mn><mi>n</mi></mfrac><munder><mo>∑</mo><mi>i</mi></munder><msup><mrow><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo>^</mo></mover><mi>i</mi></msub><mo>)</mo></mrow><mn>2</mn></msup></msqrt></mrow></math></div><p>La raíz devuelve el error a las mismas unidades que el rendimiento: toneladas por hectárea.</p></div>
 <div class="math-item"><strong>Error absoluto medio</strong><div class="math-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>MAE</mi><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munder><mo>∑</mo><mi>i</mi></munder><mo>|</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo>^</mo></mover><mi>i</mi></msub><mo>|</mo></mrow></math></div><p>Promedia el tamaño de cada error sin conservar su signo.</p></div>
 <div class="math-item"><strong>Coeficiente de determinación</strong><div class="math-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo>^</mo></mover><mi>i</mi></msub><mo>)</mo></mrow><mn>2</mn></msup></mrow><mrow><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup></mrow></mfrac></mrow></math></div><p>Se compara el error cuadrático del modelo con el de usar la media observada.</p></div>
 </div></details>
-<div class="detail-pair"><div><h3>¿Qué ocurre al añadir la última corrección?</h3><p>En las cuatro validaciones archivadas comparamos este mismo procedimiento con y sin corrección final. No son pruebas de significancia individuales de sus tres indicadores.</p><div id="r3-comparison"></div></div><div><h3>¿Cuánto se apoyó en los vecinos?</h3><p>El peso medio de la estimación local cambió cuando se dejaron fuera regiones o perfiles completos. No es el porcentaje de rendimiento causado por la cercanía.</p><div id="expert-weights"></div></div></div>
+<div class="detail-pair"><div><h3>¿Qué ocurre con la corrección R3 histórica?</h3><p>En cuatro validaciones originales se comparó Reference26 con y sin su corrector interno R3. <strong>No es la corrección posterior por tres parcelas análogas</strong> ni una prueba de significancia individual de sus tres indicadores.</p><div id="r3-comparison"></div></div><div><h3>¿Cuánto se apoyó en los 24 vecinos geográficos?</h3><p>El peso medio del experto Ridge local cambió cuando se reservaron regiones o perfiles completos. No describe los tres análogos del corrector definitivo ni indica qué porcentaje del rendimiento causa la cercanía.</p><div id="expert-weights"></div></div></div>
 <p class="small-note">El error en las 59 parcelas desconocidas no puede calcularse sin sus cosechas reales. <a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/Reference26/README.md" target="_blank" rel="noopener noreferrer">Ficha de métricas y configuración ↗</a></p>
 </div></section>
 
