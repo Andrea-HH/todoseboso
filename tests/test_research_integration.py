@@ -170,6 +170,44 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('<span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=sabemos">',original)
         self.assertIn("fuente-heri/investigacion.html?vista=resultados",original)
 
+    def test_model_chapters_04_to_07_are_updated_in_place(self):
+        html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        style=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
+        original=(SOURCE/"index.html").read_text(encoding="utf-8")
+        from html.parser import HTMLParser
+        class SectionIDs(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.ids=[]
+            def handle_starttag(self,tag,attrs):
+                if tag=="section":
+                    d=dict(attrs)
+                    if d.get("id"):self.ids.append(d["id"])
+        current=SectionIDs();current.feed(html)
+        reference=SectionIDs();reference.feed(original)
+        for key in ("arquitectura","geologia","faltantes","ajuste"):
+            self.assertEqual(current.ids.count(key),1,key)
+            self.assertEqual(reference.ids.count(key),1,key)
+        self.assertIn("ENSAMBLE AGROESPACIAL · ETAPA DE EXPERTOS",html)
+        self.assertIn("K = 4 grupos geológicos",html)
+        self.assertIn("k = 24 vecinos geográficos",html)
+        self.assertIn('id="cluster-list"',html)
+        self.assertIn("0.372869, 0.855580, 0.816305 y 0.866107",html)
+        self.assertIn("Imputación con media",html)
+        self.assertIn("media de cada columna del entrenamiento",html)
+        self.assertNotIn("Se calcula la mediana de la columna dentro de las parcelas de entrenamiento.",html)
+        self.assertNotIn("Las medianas, escalas, coeficientes",html)
+        self.assertIn("ajuste por <strong>tres parcelas análogas</strong>",html)
+        self.assertIn("El límite de ±0.25 t/ha del esquema pertenece únicamente a R3",html)
+        self.assertIn("desplazamiento limitado a ±0.5 t/ha",html)
+        self.assertIn("cuatro folds internos",html)
+        self.assertIn(".model-final-equation",style)
+        self.assertIn("No se mezclan modelos externos",html)
+        self.assertEqual(html.count('id="arquitectura"'),1)
+        self.assertEqual(html.count('id="geologia"'),1)
+        self.assertEqual(html.count('id="faltantes"'),1)
+        self.assertEqual(html.count('id="ajuste"'),1)
+
     def test_public_dataset_audit_is_integrated_without_duplication(self):
         research=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         stylesheet=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
