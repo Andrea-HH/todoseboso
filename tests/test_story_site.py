@@ -46,7 +46,7 @@ class StorySiteTest(unittest.TestCase):
         for anchor in parser.anchors:
             self.assertIn(anchor, parser.ids)
         for asset in parser.assets:
-            self.assertTrue((SITE / asset).is_file(), asset)
+            self.assertTrue((SITE / asset.split("?", 1)[0].split("#", 1)[0]).is_file(), asset)
         self.assertIn("simulación educativa", html)
         self.assertIn("no es", html.lower())
         self.assertIn("LOOCV", html)
