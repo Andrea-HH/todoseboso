@@ -99,7 +99,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('--cream:#FBF8F1',style)
         self.assertIn('.research-chapter-heading{background:var(--geo-header);',style)
         self.assertIn('html[data-research-vista] #research-chapter-heading{background-color:var(--geo-header)!important}',style)
-        self.assertIn('alternancia-uniforme-20261019-1611',(SOURCE/"investigacion.html").read_text(encoding="utf-8"))
+        self.assertIn('tarjetas-auditoria-20261019-2140',(SOURCE/"investigacion.html").read_text(encoding="utf-8"))
         self.assertIn('#research-chapter-heading.research-chapter-heading{background:#F3EBD9!important;', (SOURCE/"investigacion.html").read_text(encoding="utf-8"))
         self.assertNotIn('background:#F5EBD7!important',style)
         self.assertNotIn('nth-of-type(even){background:',style)
@@ -227,6 +227,19 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('html[data-research-vista="sabemos"] #contenido>section#preparacion',stylesheet)
         self.assertNotIn('html[data-research-vista="modelo"] #contenido>section#preparacion',stylesheet)
         self.assertIn('AUDITORÍA DEL CONJUNTO DE DATOS',research)
+        # Tarjetas expandibles accesibles, sin duplicar el contenido.
+        section=research.split('<div class="research-audit" id="auditoria"',1)[1].split(
+            '<section class="section" id="preparacion"',1)[0]
+        self.assertEqual(section.count('class="audit-kpis"'),1)
+        self.assertEqual(section.count('<details class="audit-card" open>'),6)
+        self.assertEqual(section.count('<details class="audit-card audit-pending" open>'),1)
+        self.assertEqual(section.count('class="audit-card-body"'),7)
+        self.assertEqual(section.count('class="audit-card-heading"'),7)
+        self.assertEqual(section.count('class="audit-toggle"'),7)
+        self.assertNotIn('<article class="audit-card',section)
+        self.assertIn('details.audit-card>summary',stylesheet)
+        self.assertIn('grid-template-columns:repeat(4,minmax(0,1fr))',stylesheet)
+        self.assertIn('grid-template-columns:repeat(2,minmax(0,1fr))',stylesheet)
         self.assertIn('medias calculadas únicamente con el entrenamiento',research)
         self.assertNotIn('sustituyen por medianas del',research)
         self.assertIn('reference26_selected_statistical_audit.json',research)
