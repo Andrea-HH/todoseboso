@@ -548,48 +548,6 @@ html.geo-controles-solo .geo-filters select{
   html.geo-controles-solo .geo-filters select{min-height:35px}
 }
 
-/* Video independiente: debajo de las fichas, fuera del cuadro de parcela seleccionada. */
-.geo-video-demo{display:none}
-html.geo-fichas-solo .geo-video-demo:not([hidden]){
-  display:block;
-  box-sizing:border-box;
-  width:calc(100% - 48px);
-  max-width:880px;
-  margin:24px auto 32px;
-  padding:clamp(18px,3vw,30px);
-  border:1px solid #dce5d9;
-  border-radius:16px;
-  background:#eff2e8;
-  box-shadow:0 7px 22px rgba(35,73,48,.08);
-}
-html.geo-fichas-solo .geo-video-demo h3{
-  font-family:'Fraunces',Georgia,serif;
-  font-weight:600;
-  color:#254b3b;
-  font-size:clamp(22px,2.4vw,30px);
-  line-height:1.2;
-  margin:9px 0 17px;
-}
-html.geo-fichas-solo .geo-video-demo video{
-  display:block;
-  width:100%;
-  aspect-ratio:16/9;
-  border-radius:10px;
-  background:#12352f;
-}
-html.geo-fichas-solo .geo-video-demo p{
-  font-size:.78rem;
-  line-height:1.5;
-  color:#647768;
-  margin:12px 0 0;
-}
-@media(max-width:480px){
-  html.geo-fichas-solo .geo-video-demo:not([hidden]){
-    width:calc(100% - 28px);
-    margin:16px auto 24px;
-    padding:14px;
-  }
-}
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
@@ -633,15 +591,6 @@ html.geo-fichas-solo .geo-video-demo p{
           </section>
           <div class="geo-legend"><span><i class="geo-legend-pip trained"></i> Entrenamiento</span><span><i class="geo-legend-pip predicted"></i> Predicción</span></div>
           </div>
-          <section class="geo-video-demo" id="geo-video-demo" aria-labelledby="geo-video-title" hidden>
-            <span class="geo-eyebrow">DEMOSTRACIÓN EN VIDEO</span>
-            <h3 id="geo-video-title">GeoCebada en acción</h3>
-            <video controls playsinline preload="none" aria-label="Video de demostración de GeoCebada, FIRA 2026">
-              <source src="../media/GeoCebada-FIRA-2026.mp4" type="video/mp4">
-              Tu navegador no admite la reproducción de este video.
-            </video>
-            <p>Recorrido por el proyecto · 3 min 57 s</p>
-          </section>
         </aside>
         <div class="geo-map-wrap">
           <div class="geo-map-toolbar"><span class="geo-map-label"><span class="geo-satellite-icon">◉</span> VISTA SATELITAL</span><span>HIDALGO · PUEBLA · TLAXCALA</span></div>
@@ -684,17 +633,6 @@ html.geo-fichas-solo .geo-video-demo p{
 })();
 </script>
 
-<script>
-(function () {
-  // El video se hace visible cuando el archivo público ya está cargado.
-  // Evita mostrar un reproductor sin contenido durante su subida a GitHub Pages.
-  if (!document.documentElement.classList.contains('geo-fichas-solo')) return;
-  const section = document.getElementById('geo-video-demo');
-  if (!section) return;
-  fetch('../media/GeoCebada-FIRA-2026.mp4', {method:'HEAD'})
-    .then(response => { if (response.ok) section.hidden = false; })
-    .catch(() => {});
-})();
-</script>
+
 </body>
 </html>
