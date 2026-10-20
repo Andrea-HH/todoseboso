@@ -157,13 +157,16 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn('section.geoc-andrea-map {\n      background: #F3EBD9 !important;',original)
         research_html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         self.assertIn('id="geo-header-color"',research_html)
+        embedded_css=research_html.split('<style id="geo-header-color">',1)[1].split('</style>',1)[0]
+        css_rules=re.findall(r'([^{}]+)\{([^{}]+)\}',embedded_css)
         for view,ids in order.items():
             for i,id_ in enumerate(ids):
                 fragment=f'html[data-research-vista="{view}"] #contenido > section#{id_}'
                 desired='#FBF8F1' if i%2==0 else '#F3EBD9'
-                color_rule=research_html.split(fragment)[1].split('}',1)[0]
-                # La regla final puede agrupar varios selectores.
-                self.assertIn(desired,color_rule)
+                # Varios selectores comparten la misma declaración CSS.
+                matching=[rule for selectors,rule in css_rules if fragment in selectors]
+                self.assertEqual(len(matching),1,fragment)
+                self.assertIn(desired,matching[0])
         self.assertIn("fuente-heri/investigacion.html?vista=sabemos",original)
         self.assertIn("fuente-heri/investigacion.html?vista=modelo",original)
         self.assertIn("¿Qué sabemos?",original)
