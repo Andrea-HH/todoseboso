@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "name": "Modelo de expertos agroespaciales con corrección por parcelas análogas",
+  "short_name": "Expertos agroespaciales + parcelas análogas",
+  "technical_recipe": "Reference26_mean + robust26 3-nearest real-y neighbor correction, lambda=0.25, supported gate",
+  "train_labels": 138,
+  "unknown_labels": 59,
+  "comparison_protocol": "138 authentic leave-one-parcel-out with 137 observed training yields per fold",
+  "historical_candidate_selection_posthoc": true,
+  "selection_4fold_counts": {
+    "robust26_3_neighbors_supported_0p25": 128,
+    "pca8_3_neighbors_supported_0p25": 5,
+    "no_correction": 5
+  },
+  "final_fit_selected": "robust26_3_neighbors_supported_0p25",
+  "final_fit_selection": "Four new inner folds using 138 original known yields; no target59 labels",
+  "correction": {
+    "geometry": "robust_mad_scaled_26_features",
+    "neighbors": 3,
+    "blend": 0.25,
+    "gate": "feature_distance_support_times_real_neighbor_agreement",
+    "cap_t_ha": 0.5,
+    "final_59_max_abs_delta_t_ha": 0.06252982328352452,
+    "final_59_mean_abs_delta_t_ha": 0.02068705818811109
+  },
+  "loocv": [
+    {
+      "id": "native",
+      "name": "Expertos agroespaciales · sin ajuste por análogos",
+      "rmse": 0.468138,
+      "mae": 0.333786,
+      "r2": 0.695292,
+      "bias": 0.001466,
+      "kind": "base"
+    },
+    {
+      "id": "robust3_025_support",
+      "name": "26 variables · 3 análogos · mezcla 25 % · filtro",
+      "rmse": 0.462418,
+      "mae": 0.332019,
+      "r2": 0.702693,
+      "bias": -0.004103,
+      "kind": "fixed_posthoc"
+    },
+    {
+      "id": "nested",
+      "name": "Selector anidado de correcciones",
+      "rmse": 0.462892,
+      "mae": 0.331956,
+      "r2": 0.702083,
+      "bias": -0.005062,
+      "kind": "conditional_nested"
+    },
+    {
+      "id": "pca3_025_support",
+      "name": "PCA8 · 3 análogos · mezcla 25 % · filtro",
+      "rmse": 0.464956,
+      "mae": 0.334091,
+      "r2": 0.699421,
+      "bias": -0.000414,
+      "kind": "fixed_posthoc"
+    },
+    {
+      "id": "pca8_025_support",
+      "name": "PCA8 · 8 análogos · mezcla 25 % · filtro",
+      "rmse": 0.465506,
+      "mae": 0.334439,
+      "r2": 0.698709,
+      "bias": -0.004101,
+      "kind": "fixed_posthoc"
+    },
+    {
+      "id": "robust3_01_support",
+      "name": "26 variables · 3 análogos · mezcla 10 % · filtro",
+      "rmse": 0.465538,
+      "mae": 0.332972,
+      "r2": 0.698668,
+      "bias": -0.000762,
+      "kind": "fixed_posthoc"
+    },
+    {
+      "id": "robust3_01_none",
+      "name": "26 variables · 3 análogos · mezcla 10 % · sin filtro",
+      "rmse": 0.466518,
+      "mae": 0.335959,
+      "r2": 0.697397,
+      "bias": -0.004757,
+      "kind": "fixed_posthoc"
+    }
+  ],
+  "prediction59_aggregate": {
+    "n": 59,
+    "baseline_mean": 3.9552383196097765,
+    "selected_mean": 3.9572238505778996,
+    "selected_median": 4.346753500078459,
+    "selected_min": 2.79144185171923,
+    "selected_max": 4.822936164973712
+  },
+  "sources": {
+    "submission": "https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/submission59_final.csv",
+    "methodology": "https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md",
+    "study": "https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_TOP5_NESTED_LOOCV.md",
+    "source_git_blob_sha": "bae97eb606bc703842a681fe7acc1489e4018d2c",
+    "source_ref": "heri-espino/GeoC@experiment/reference26-top5-final59/submission59_final.csv"
+  },
+  "caveat": "Los cinco candidatos fueron preseleccionados tras observar errores LOOCV en estas mismas 138 parcelas. El selector anidado evita usar la respuesta de su parcela externa dentro de la elección, pero no es una validación independiente de toda la búsqueda. Las 59 cosechas reales siguen desconocidas."
+}
