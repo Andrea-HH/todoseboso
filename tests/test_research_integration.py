@@ -341,7 +341,7 @@ class ResearchIntegrityTest(unittest.TestCase):
             self.assertEqual(faq.count(link),1,link)
         self.assertIn("media calculada sólo en el conjunto de entrenamiento",faq)
         self.assertIn("El Reference26 nativo usado",faq)
-        self.assertIn("La corrección final por tres parcelas análogas",faq)
+        self.assertIn("corrección final por tres parcelas análogas",faq)
         self.assertIn("0.462892 t/ha",faq)
         self.assertIn("0.331956 t/ha",faq)
         self.assertIn("0.702083",faq)
