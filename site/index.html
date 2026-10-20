@@ -12,7 +12,7 @@
   <link rel="icon" href="./assets/favicon-trigo.png" type="image/png" sizes="256x256">
   <link rel="apple-touch-icon" href="./assets/favicon-trigo.png">
   <script src="./view-router.js"></script>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=portada-mapa-20261019-2145">
   <link rel="stylesheet" href="./charts.css">
   <script src="./charts.js" defer></script>
   <script src="./app.js" defer></script>
@@ -64,7 +64,7 @@
         <div class="hero-content">
           <p class="eyebrow hero-eyebrow"><span class="eyebrow-line"></span> INVESTIGACIÓN APLICADA · CICLO 2025</p>
           <h1 id="hero-title">¿Cuánta cebada puede producir una parcela?</h1>
-          <p class="hero-description">Con los rendimientos de 138 parcelas y datos del clima, los satélites y el terreno, desarrollamos modelos para estimar la cosecha de otras 59 parcelas de Hidalgo, Puebla y Tlaxcala. Aquí explicamos cómo funcionan y qué tan bien resultaron en las pruebas.</p>
+          
           <div class="hero-model-summary" aria-label="Modelo final y desempeño predictivo anidado">
             <p>Estudiamos 197 parcelas agrícolas en Hidalgo, Puebla y Tlaxcala: 138 con rendimiento reportado y 59 por estimar. Integramos información climática, satelital, geográfica y geológica; después ajustamos las predicciones mediante tres parcelas análogas con rendimientos conocidos.</p>
             <p>El modelo final es un <strong>ensamble de expertos agroespaciales con corrección por parcelas análogas</strong>. Comparamos sus errores en 138 exclusiones LOOCV y presentamos las 59 predicciones finales, sin confundirlas con cosechas observadas.</p>
@@ -77,14 +77,15 @@
           </div>
           <div class="hero-actions"><a class="primary-cta" href="./fuente-heri/investigacion.html?vista=modelo#ensamble">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="./fuente-heri/investigacion.html?vista=resultados#resultados">Ver los resultados <span aria-hidden="true">→</span></a></div>
           <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
-          <!-- Controles originales del explorador junto a la pregunta, sin duplicarlos debajo. -->
-          <div class="hero-parcel-tools" aria-label="Filtros y selección de parcelas">
-            <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="lazy"></iframe>
-          </div>
+
         </div>
-        <!-- Vista del mapa en el lugar de la ilustración original; la ilustración queda oculta. -->
-        <div class="hero-map-preview" aria-label="Mapa interactivo de las parcelas">
-          <iframe id="geoc-andrea-hero-frame" src="./explorador/mapa.html?vista=mapa" title="Mapa satelital interactivo GeoCebada" loading="lazy"></iframe>
+        <div class="hero-map-column" aria-label="Explorar parcelas y consultar el mapa">
+          <div class="hero-parcel-tools" aria-label="Filtrar parcelas por conjunto, estado e identificador">
+            <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="eager"></iframe>
+          </div>
+          <div class="hero-map-preview" aria-label="Mapa interactivo de las parcelas">
+            <iframe id="geoc-andrea-hero-frame" src="./explorador/mapa.html?vista=mapa" title="Mapa satelital interactivo GeoCebada" loading="eager"></iframe>
+          </div>
         </div>
         <div class="hero-visual" role="img" aria-label="Ilustración conceptual de parcelas agrícolas, lluvia y vegetación. No representa datos ni ubicaciones reales.">
           <div class="visual-header"><span><span class="status-dot"></span> LLUVIA, CULTIVO Y UBICACIÓN</span><span>01 — 04</span></div>
