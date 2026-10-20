@@ -12,7 +12,7 @@
   <link rel="icon" href="./assets/favicon-trigo.png" type="image/png" sizes="256x256">
   <link rel="apple-touch-icon" href="./assets/favicon-trigo.png">
   <script src="./view-router.js"></script>
-  <link rel="stylesheet" href="./styles.css?v=portada-video-independiente-20261020">
+  <link rel="stylesheet" href="./styles.css?v=metricas-compactas-20261020">
   <link rel="stylesheet" href="./charts.css">
   <script src="./charts.js" defer></script>
   <script src="./app.js" defer></script>
@@ -70,15 +70,15 @@
             <p>El modelo final es un <strong>ensamble de expertos agroespaciales con corrección por parcelas análogas</strong>. Comparamos sus errores en 138 exclusiones LOOCV y presentamos las 59 predicciones finales, sin confundirlas con cosechas observadas.</p>
 
           </div>
-          <div class="hero-parcel-tools" aria-label="Filtrar parcelas por conjunto, estado e identificador">
-            <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles&v=portada-balanceada-20261020" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="eager"></iframe>
-          </div>
           <div class="hero-validation-metrics hero-validation-metrics--quiet" aria-label="Métricas del modelo fijo elegido para las 59 parcelas, 138 exclusiones LOOCV">
               <div class="hero-validation-metric"><strong>0.462418</strong><span>RMSE · regla final fija · t/ha</span></div>
               <div class="hero-validation-metric"><strong>0.332019</strong><span>MAE · regla final fija · t/ha</span></div>
               <div class="hero-validation-metric"><strong>0.702693</strong><span>R² predictivo · regla final fija</span></div>
               <div class="hero-validation-metric"><strong>138</strong><span>parcelas LOOCV</span></div>
             </div>
+          <div class="hero-parcel-tools" aria-label="Filtrar parcelas por conjunto, estado e identificador">
+            <iframe id="geoc-andrea-controls-frame" src="./explorador/mapa.html?vista=controles&v=portada-balanceada-20261020" title="Filtros de parcelas: todas, entrenamiento, predicción, estado e identificador" loading="eager"></iframe>
+          </div>
           <div class="hero-actions"><a class="primary-cta" href="./fuente-heri/investigacion.html?vista=modelo#ensamble">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="./fuente-heri/investigacion.html?vista=resultados#resultados">Ver los resultados <span aria-hidden="true">→</span></a></div>
           <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
 
