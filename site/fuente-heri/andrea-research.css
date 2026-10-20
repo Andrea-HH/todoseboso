@@ -284,7 +284,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
  max-width:800px;
 }
 #contenido #datos .research-audit .section-heading h2 em{
- font-family:var(--serif);font-size:1em;font-weight:400;
+ display:block;font-family:var(--serif);font-size:1em;font-weight:400;
  font-style:italic;color:var(--jade);
 }
 #contenido #datos .research-audit .section-heading>p{
