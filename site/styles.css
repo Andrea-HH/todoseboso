@@ -1134,14 +1134,23 @@ html[data-geo-vista="inicio"] .hero-model-summary p{
 }
 html[data-geo-vista="inicio"] .hero-validation-metrics{
   grid-template-columns:repeat(2,minmax(0,1fr));
-  margin-top:clamp(14px,1.7vw,23px);gap:10px;
+  gap:8px;
+  max-width:590px;
+  margin-top:12px;
 }
 html[data-geo-vista="inicio"] .hero-validation-metric{
-  padding:clamp(12px,1.4vw,19px);
-  border-radius:12px;
+  padding:10px 13px;
+  border-radius:10px;
+  min-height:0;
 }
 html[data-geo-vista="inicio"] .hero-validation-metric strong{
-  font-size:clamp(25px,2.4vw,34px);
+  font-size:clamp(19px,1.85vw,25px);
+  line-height:1.12;
+}
+html[data-geo-vista="inicio"] .hero-validation-metric span{
+  font-size:11px;
+  line-height:1.3;
+  margin-top:5px;
 }
 html[data-geo-vista="inicio"] .hero-map-column{
   width:100%;min-width:0;
@@ -1190,10 +1199,10 @@ html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{
 @media(max-width:480px){
   html[data-geo-vista="inicio"] .hero-map-column .hero-parcel-tools{height:270px}
   html[data-geo-vista="inicio"] .hero-map-column .hero-map-preview{height:330px}
-  html[data-geo-vista="inicio"] .hero-validation-metrics{gap:8px}
-  html[data-geo-vista="inicio"] .hero-validation-metric{padding:12px 10px}
+  html[data-geo-vista="inicio"] .hero-validation-metrics{gap:7px;margin-top:10px}
+  html[data-geo-vista="inicio"] .hero-validation-metric{padding:9px 10px}
   html[data-geo-vista="inicio"] .hero-validation-metric strong{
-    font-size:clamp(21px,6vw,27px)
+    font-size:clamp(18px,5.4vw,23px);
   }
-  html[data-geo-vista="inicio"] .hero-validation-metric span{font-size:11px}
+  html[data-geo-vista="inicio"] .hero-validation-metric span{font-size:10px;margin-top:4px}
 }
