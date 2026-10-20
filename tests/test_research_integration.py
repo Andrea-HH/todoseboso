@@ -88,7 +88,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         style=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
         for item in ("sabemos","modelo","resultados","confianza","preguntas"):
             self.assertIn('data-research-vista="'+item+'"',style)
-        for id_ in ("ensamble","datos","variables","datos-reales","preparacion",
+        for id_ in ("ensamble","datos","auditoria","variables","datos-reales","preparacion",
                     "arquitectura","geologia","faltantes","ajuste","resultados",
                     "pruebas","limites","preguntas","estadisticas-finales","predicciones-59"):
             self.assertIn("#"+id_,style)
@@ -110,8 +110,8 @@ class ResearchIntegrityTest(unittest.TestCase):
         light, dark = backgrounds.split('{background:var(--geo-alternate)!important}',1)
         dark = dark.split('{background:var(--geo-header)!important}',1)[0]
         order = {
-            "sabemos": ("datos","datos-reales"),
-            "modelo": ("ensamble","variables","preparacion","arquitectura","geologia","faltantes","ajuste"),
+            "sabemos": ("datos","preparacion","datos-reales"),
+            "modelo": ("ensamble","variables","arquitectura","geologia","faltantes","ajuste"),
             "resultados": ("predicciones-59","resultados","pruebas"),
             "confianza": ("limites","estadisticas-finales"),
             "preguntas": ("preguntas",)
@@ -169,6 +169,38 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn("¿Qué sabemos?",original)
         self.assertIn('<span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=sabemos">',original)
         self.assertIn("fuente-heri/investigacion.html?vista=resultados",original)
+
+    def test_public_dataset_audit_is_integrated_without_duplication(self):
+        research=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        stylesheet=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
+        router=(SOURCE/"research-page.js").read_text(encoding="utf-8")
+        document=Document()
+        document.feed(research)
+        for key in ("auditoria","preparacion","datos-reales","real-rainfall","real-ndvi"):
+            self.assertEqual(document.ids.count(key),1,key)
+        self.assertEqual(document.sections.count("preparacion"),1)
+        self.assertLess(research.index('id="datos"'),research.index('id="auditoria"'))
+        self.assertLess(research.index('id="auditoria"'),research.index('id="preparacion"'))
+        self.assertLess(research.index('id="preparacion"'),research.index('id="datos-reales"'))
+        self.assertIn('vista=sabemos#preparacion',research)
+        self.assertNotIn('vista=modelo#preparacion',research)
+        self.assertIn('preparacion:"sabemos"',router)
+        self.assertIn('auditoria:"sabemos"',router)
+        self.assertIn('html[data-research-vista="sabemos"] #contenido>section#preparacion',stylesheet)
+        self.assertNotIn('html[data-research-vista="modelo"] #contenido>section#preparacion',stylesheet)
+        self.assertIn('AUDITORÍA DEL CONJUNTO DE DATOS',research)
+        self.assertIn('medias calculadas únicamente con el entrenamiento',research)
+        self.assertNotIn('sustituyen por medianas del',research)
+        self.assertIn('reference26_selected_statistical_audit.json',research)
+        for file in ("real_charts.json","final_model.json","reference26_residuals.json","submission59_final.csv"):
+            self.assertTrue((SOURCE/"data"/file).is_file(),file)
+        chart=json.loads((SOURCE/"data/real_charts.json").read_text(encoding="utf-8"))
+        for kind in ("rainfall","ndvi"):
+            self.assertEqual([r["month"] for r in chart[kind]["months"]],list(range(4,11)))
+            self.assertEqual([r["n"] for r in chart[kind]["months"]],[197]*7)
+        residual=json.loads((SOURCE/"data/reference26_residuals.json").read_text(encoding="utf-8"))
+        self.assertAlmostEqual(residual["diagnostics"]["normality"]["shapiro_p"],1.401988e-7,places=12)
+        self.assertAlmostEqual(residual["diagnostics"]["variance"]["koenker_bp_p"],0.400797,places=6)
 
     def test_historical_59_is_preserved_and_final_59_is_verified(self):
         csv_content=(SITE/"explorador/data/predictions.csv").read_text(encoding="utf-8")
