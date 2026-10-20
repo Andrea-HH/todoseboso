@@ -129,7 +129,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <div class="final59-histogram"><h3>Distribución de las 59 estimaciones definitivas</h3><p>Frecuencias de las predicciones finales en intervalos de 0.25 t/ha. Es una distribución de predicciones, no una evaluación de errores.</p>
 <div id="final59-distribution" aria-label="Histograma de 59 predicciones en intervalos de 0.25 toneladas por hectárea"></div>
 <p class="small-note">Eje horizontal: límite inferior del intervalo (t/ha). Eje vertical: número de parcelas. No representa errores de las 59.</p></div>
-</div><p class="small-note">Fuente: <a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/submission59_final.csv" target="_blank" rel="noopener noreferrer">CSV final verificado de GeoC ↗</a>. Se comprueban 59 identificadores únicos y los agregados antes de mostrar cifras individuales.</p>
+</div><p class="small-note">Fuente: <a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/submission59_final.csv" target="_blank" rel="noopener noreferrer">CSV final verificado de GeoC ↗</a>. Se comprueban 59 identificadores únicos y los agregados antes de mostrar cifras individuales. El mapa de Inicio mantiene la versión archivada; para consultar el resultado definitivo debe usarse este apartado.</p>
 </div>
 </section>
 
@@ -286,7 +286,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <p>El selector utilizó tres vecinos robustos en 128 de los 138 folds; otros cinco eligieron PCA y cinco conservaron el ensamble sin ajuste.</p></article>
 </div>
 <p class="final-experiment-scope"><strong>138 LOOCV auténticas · 59 estimaciones finales · selección interna completada.</strong> Los RMSE 0.462418 (corrección fija) y 0.462892 (selección anidada) se evaluaron sobre las 138 cosechas conocidas; no son errores medidos en las 59 parcelas desconocidas. La selección inicial de cinco candidatos fue post-hoc. Las pruebas históricas de residuos corresponden al ensamble base, no automáticamente a la corrección final.</p>
-<p class="final-experiment-links"><a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md" target="_blank" rel="noopener noreferrer">Metodología y cierre reproducible ↗</a><a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones ↓</a><a href="../index.html">Consultar mapa de parcelas ↗</a></p>
+<p class="final-experiment-links"><a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md" target="_blank" rel="noopener noreferrer">Metodología y cierre reproducible ↗</a><a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones ↓</a></p>
 </div>
 <div class="previous-validation-heading"><h3>Validaciones anteriores (otra configuración, no el modelo final)</h3><p>Por trazabilidad conservamos el experimento anterior de 16 particiones, con 97 parcelas para entrenar y 41 para evaluar. Sus cifras, gráficas y comparaciones de componentes <strong>no reemplazan</strong> los 138 LOOCV definitivos mostrados arriba.</p></div>
 <div class="scoreline"><div><span>RMSE · 16 evaluaciones 97/41</span><strong>0.4625</strong><small>t/ha</small></div><div><span>Error absoluto medio, MAE</span><strong>0.3387</strong><small>t/ha</small></div><div><span>R² de esas evaluaciones</span><strong>0.6971</strong><small>no es un porcentaje de aciertos</small></div></div>
