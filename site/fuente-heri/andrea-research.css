@@ -291,3 +291,23 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
  .audit-kpis>div{padding:16px 13px}
  .audit-card{padding:18px}
 }
+
+/* Modelo · aclaración visual de las dos etapas sin duplicar el diagrama. */
+#contenido #arquitectura .math-proof.model-formula .model-final-equation{
+  border-top:1px solid var(--rule);
+  padding:14px 0 0;
+  margin:15px 0 0;
+  color:#526951;
+  font-size:13px;
+  line-height:1.78;
+}
+#contenido #arquitectura .math-proof.model-formula .model-final-equation strong{
+  color:#244936;
+}
+#contenido #faltantes .missing-item{
+  min-width:0;
+}
+#contenido #faltantes .missing-item p{
+  line-height:1.77;
+  overflow-wrap:break-word;
+}
