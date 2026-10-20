@@ -517,6 +517,36 @@ html.geo-panel-solo .geo-detail .geo-yield-pred>strong{color:#4E3B1D}
 html.geo-fichas-solo .geo-detail .geo-yield-pred>small,
 html.geo-panel-solo .geo-detail .geo-yield-pred>small{color:#66502C}
 
+
+/* Controles compactos exclusivamente en el iframe de la portada.
+   Conserva los estados de filtros y la interacción con el mapa. */
+html.geo-controles-solo .geo-panel-controls{gap:8px}
+html.geo-controles-solo .geo-quick-stats{gap:8px}
+html.geo-controles-solo .geo-counter{
+  min-height:70px;padding:8px 12px;gap:2px;border-radius:10px;
+}
+html.geo-controles-solo .geo-counter span{
+  font-size:11px;line-height:1.18;min-height:0;
+}
+html.geo-controles-solo .geo-counter strong{
+  font-size:clamp(23px,1.9vw,29px);line-height:1.09;
+}
+html.geo-controles-solo .geo-filters{
+  gap:4px 10px;
+}
+html.geo-controles-solo .geo-filters label{
+  font-size:11px;line-height:1.2;font-weight:720;
+}
+html.geo-controles-solo .geo-filters select{
+  min-height:37px;padding:6px 10px;
+  font-size:12px;border-radius:8px;
+}
+@media(max-width:420px){
+  html.geo-controles-solo .geo-counter{min-height:67px;padding:7px 6px}
+  html.geo-controles-solo .geo-counter strong{font-size:23px}
+  html.geo-controles-solo .geo-filters{gap:4px 6px}
+  html.geo-controles-solo .geo-filters select{min-height:35px}
+}
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
