@@ -12,7 +12,7 @@
   <link rel="icon" href="./assets/favicon-trigo.png" type="image/png" sizes="256x256">
   <link rel="apple-touch-icon" href="./assets/favicon-trigo.png">
   <script src="./view-router.js"></script>
-  <link rel="stylesheet" href="./styles.css?v=metricas-compactas-20261020">
+  <link rel="stylesheet" href="./styles.css?v=video-centrado-final-20261020">
   <link rel="stylesheet" href="./charts.css">
   <script src="./charts.js" defer></script>
   <script src="./app.js" defer></script>
@@ -88,15 +88,7 @@
           <div class="hero-map-preview" aria-label="Mapa interactivo de las parcelas">
             <iframe id="geoc-andrea-hero-frame" src="./explorador/mapa.html?vista=mapa" title="Mapa satelital interactivo GeoCebada" loading="eager"></iframe>
           </div>
-          <section class="hero-video-card" aria-labelledby="hero-video-title">
-            <span class="hero-video-kicker">DEMOSTRACIÓN EN VIDEO</span>
-            <h3 id="hero-video-title">GeoCebada en acción</h3>
-            <video controls playsinline preload="metadata" aria-label="Demostración de GeoCebada, FIRA 2026">
-              <source src="./media/GeoCebada-FIRA-2026.mp4" type="video/mp4">
-              Tu navegador no admite la reproducción de este video.
-            </video>
-            <p>Recorrido por el proyecto · 3 min 57 s</p>
-          </section>
+
         </div>
         <div class="hero-visual" role="img" aria-label="Ilustración conceptual de parcelas agrícolas, lluvia y vegetación. No representa datos ni ubicaciones reales.">
           <div class="visual-header"><span><span class="status-dot"></span> LLUVIA, CULTIVO Y UBICACIÓN</span><span>01 — 04</span></div>
@@ -178,6 +170,18 @@
     <nav class="geo-chapter-end" data-geo-page="inicio" aria-label="Continuar explorando GeoCebada">
       <div class="shell"><span>SIGUIENTE TEMA</span><a href="./fuente-heri/investigacion.html?vista=sabemos">¿Qué sabemos? <span aria-hidden="true">→</span></a></div>
     </nav>
+    <!-- Cierre de la portada: primero la ficha y el clima, después la demostración centrada. -->
+    <div class="geo-home-video-section" data-geo-page="inicio" aria-label="Demostración en video al final de la página principal">
+      <section class="hero-video-card" aria-labelledby="hero-video-title">
+          <span class="hero-video-kicker">DEMOSTRACIÓN EN VIDEO</span>
+          <h3 id="hero-video-title">GeoCebada en acción</h3>
+          <video controls playsinline preload="metadata" aria-label="Demostración de GeoCebada, FIRA 2026">
+            <source src="./media/GeoCebada-FIRA-2026.mp4" type="video/mp4">
+            Tu navegador no admite la reproducción de este video.
+          </video>
+          <p>Recorrido por el proyecto · 3 min 57 s</p>
+        </section>
+    </div>
     <nav class="geo-subnav" data-geo-page="modelo" aria-label="Índice de el modelo">
       <div class="shell geo-subnav-inner"><span class="geo-subnav-label">EN ESTA PÁGINA</span>
         <a href="#historia">De la lluvia al modelo</a>
