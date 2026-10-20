@@ -16,7 +16,7 @@
 <script src="./research-59-archive.js" defer></script>
 <link rel="stylesheet" href="./navigation.css"><link rel="stylesheet" href="./editorial.css"><link rel="stylesheet" href="./scroll_motion.css">
 <link rel="stylesheet" href="./geo-fuente-tema.css">
-<link rel="stylesheet" href="./andrea-research.css?v=alternancia-uniforme-20261019-1611">
+<link rel="stylesheet" href="./andrea-research.css?v=tarjetas-auditoria-20261019-2140">
 <style id="geo-header-color">
 /* Muestras exactas de las capturas. Alternan sólo los capítulos visibles. */
 #research-chapter-heading.research-chapter-heading{background:#F3EBD9!important;background-color:#F3EBD9!important}
@@ -157,31 +157,45 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 
 <div class="research-audit" id="auditoria" aria-labelledby="audit-title">
  <div class="section-heading"><div><p class="eyebrow">AUDITORÍA DEL CONJUNTO DE DATOS</p><h2 id="audit-title">¿Qué comprobamos <em>antes de confiar en las predicciones?</em></h2></div>
- <p>Distinguimos comprobaciones reproducibles a partir de archivos públicos de verificaciones pendientes que requieren registros privados. Ninguna prueba trata los 59 rendimientos ocultos como cosechas observadas.</p></div>
- <div class="audit-kpis" aria-label="Tamaño y evaluación del conjunto">
+ <p>Distinguimos comprobaciones reproducibles con archivos públicos de las verificaciones que aún requieren registros privados. Ninguna prueba trata los 59 rendimientos ocultos como cosechas observadas.</p></div>
+ <div class="audit-kpis" role="group" aria-label="Tamaño y evaluación del conjunto">
   <div><strong>197</strong><span>polígonos del conjunto</span></div>
   <div><strong>138</strong><span>rendimientos conocidos</span></div>
   <div><strong>59</strong><span>predicciones finales identificadas</span></div>
   <div><strong>138/138</strong><span>exclusiones LOOCV auténticas</span></div>
  </div>
- <div class="audit-grid">
-  <article class="audit-card"><span class="audit-number">01 · INTEGRIDAD</span><h3>Integridad de las 59 filas y procedencia</h3>
-   <p>El CSV final contiene 59 identificadores distintos y valores finitos. Sus agregados coinciden con el manifiesto final y la procedencia del archivo publicado por GeoC, que consigna un identificador hash. Es una comprobación de integridad de resultados <strong>estimados</strong>, no de su exactitud frente a cosechas reales.</p>
-   <a href="./data/submission59_final.csv" target="_blank" rel="noopener noreferrer">Consultar CSV final verificado ↗</a></article>
-  <article class="audit-card"><span class="audit-number">02 · SEPARACIÓN</span><h3>Separación de etiquetas y prevención de fuga de información</h3>
-   <p>Cada fold externo retiene la cosecha de una parcela y entrena con las otras 137. Las medias de imputación y la corrección basada en rendimientos se ajustan sólo con el entrenamiento permitido. Los cuatro folds internos impiden usar la etiqueta externa durante la selección, pero <strong>no eliminan</strong> la preselección histórica de las cinco recetas sobre estas mismas 138 etiquetas.</p></article>
-  <article class="audit-card"><span class="audit-number">03 · AUSENCIAS</span><h3>Datos faltantes e imputación por media</h3>
-   <p>El ensamble nativo seleccionado imputa características numéricas ausentes mediante la <strong>media del entrenamiento</strong>, no mediante mediana o interpolación espacial-temporal. La decisión procede de comparaciones exploratorias LOOCV, no de una superioridad universal de la media. No hay desglose público de faltantes por variable y municipio para certificar completitud.</p></article>
-  <article class="audit-card"><span class="audit-number">04 · TEMPORALIDAD</span><h3>Clima, vegetación y temporalidad</h3>
-   <p>Los agregados públicos documentan lluvia y NDVI de abril a octubre de 2025 para 197 parcelas: cada mes publicado registra 197 observaciones de cada serie. Esto permite revisar los <strong>agregados mensuales</strong>, pero no demostrar la completitud de las 26 variables ni descartar fallos de medición en las fuentes.</p>
-   <a href="./data/real_charts.json" target="_blank" rel="noopener noreferrer">Examinar los agregados originales ↗</a></article>
-  <article class="audit-card"><span class="audit-number">05 · SOPORTE ESPACIAL</span><h3>Consistencia de escala, geometrías y vecindarios</h3>
-   <p>El corrector final utiliza 26 indicadores robustamente escalados y tres parcelas análogas con rendimientos conocidos. El mapa y las distancias entre parcelas permiten estudiar el soporte espacial, pero <strong>no reemplazan</strong> una auditoría de coordenadas, solapamientos, geología y calidad del etiquetado.</p></article>
-  <article class="audit-card"><span class="audit-number">06 · DIAGNÓSTICOS</span><h3>Valores extremos, normalidad y dependencia espacial</h3>
-   <p>Los residuos del ensamble <strong>nativo</strong> rechazan normalidad según Shapiro–Wilk (<em>p</em> = 1.401988 × 10<sup>−7</sup>); Koenker–Breusch–Pagan no rechaza su nula en la especificación reportada (<em>p</em> = 0.400797). También se examinan influencia, Moran, Geary y semivariograma. <strong>Estos valores p no corresponden al corrector final</strong>, cuya auditoría debe interpretarse separadamente.</p>
-   <a href="./investigacion.html?vista=confianza#estadisticas-finales">Ver diagnósticos del ensamble nativo ↗</a></article>
-  <article class="audit-card audit-pending"><span class="audit-number">07 · LÍMITES DE EVIDENCIA</span><h3>Pruebas todavía no verificables públicamente</h3>
-   <p>No están disponibles por parcela las tasas de faltantes, los controles de rangos agronómicos, las comprobaciones de geometrías duplicadas, la calidad del etiquetado ni los errores reales de las 59 parcelas. Tampoco se publican límites numéricos verificados de intervalos bootstrap absolutos del RMSE del corrector final. Estas pruebas requieren archivos y ejecuciones adicionales: <strong>no presentamos cifras supuestas</strong>.</p></article>
+ <div class="audit-grid" aria-label="Siete comprobaciones del conjunto de datos">
+  <details class="audit-card" open>
+<summary><span class="audit-card-heading"><span class="audit-number">01 · INTEGRIDAD</span><strong class="audit-card-title">Integridad de las 59 filas y procedencia</strong></span><span class="audit-toggle" aria-hidden="true"></span></summary>
+<div class="audit-card-body"><p>El CSV final contiene 59 identificadores distintos y valores finitos. Sus agregados coinciden con el manifiesto final y la procedencia del archivo publicado por GeoC, que consigna un identificador hash. Es una comprobación de integridad de resultados <strong>estimados</strong>, no de su exactitud frente a cosechas reales.</p>
+   <a href="./data/submission59_final.csv" target="_blank" rel="noopener noreferrer">Consultar CSV final verificado ↗</a></div>
+</details>
+  <details class="audit-card" open>
+<summary><span class="audit-card-heading"><span class="audit-number">02 · SEPARACIÓN</span><strong class="audit-card-title">Separación de etiquetas y prevención de fuga de información</strong></span><span class="audit-toggle" aria-hidden="true"></span></summary>
+<div class="audit-card-body"><p>Cada fold externo retiene la cosecha de una parcela y entrena con las otras 137. Las medias de imputación y la corrección basada en rendimientos se ajustan sólo con el entrenamiento permitido. Los cuatro folds internos impiden usar la etiqueta externa durante la selección, pero <strong>no eliminan</strong> la preselección histórica de las cinco recetas sobre estas mismas 138 etiquetas.</p></div>
+</details>
+  <details class="audit-card" open>
+<summary><span class="audit-card-heading"><span class="audit-number">03 · AUSENCIAS</span><strong class="audit-card-title">Datos faltantes e imputación por media</strong></span><span class="audit-toggle" aria-hidden="true"></span></summary>
+<div class="audit-card-body"><p>El ensamble nativo seleccionado imputa características numéricas ausentes mediante la <strong>media del entrenamiento</strong>, no mediante mediana o interpolación espacial-temporal. La decisión procede de comparaciones exploratorias LOOCV, no de una superioridad universal de la media. No hay desglose público de faltantes por variable y municipio para certificar completitud.</p></div>
+</details>
+  <details class="audit-card" open>
+<summary><span class="audit-card-heading"><span class="audit-number">04 · TEMPORALIDAD</span><strong class="audit-card-title">Clima, vegetación y temporalidad</strong></span><span class="audit-toggle" aria-hidden="true"></span></summary>
+<div class="audit-card-body"><p>Los agregados públicos documentan lluvia y NDVI de abril a octubre de 2025 para 197 parcelas: cada mes publicado registra 197 observaciones de cada serie. Esto permite revisar los <strong>agregados mensuales</strong>, pero no demostrar la completitud de las 26 variables ni descartar fallos de medición en las fuentes.</p>
+   <a href="./data/real_charts.json" target="_blank" rel="noopener noreferrer">Examinar los agregados originales ↗</a></div>
+</details>
+  <details class="audit-card" open>
+<summary><span class="audit-card-heading"><span class="audit-number">05 · SOPORTE ESPACIAL</span><strong class="audit-card-title">Consistencia de escala, geometrías y vecindarios</strong></span><span class="audit-toggle" aria-hidden="true"></span></summary>
+<div class="audit-card-body"><p>El corrector final utiliza 26 indicadores robustamente escalados y tres parcelas análogas con rendimientos conocidos. El mapa y las distancias entre parcelas permiten estudiar el soporte espacial, pero <strong>no reemplazan</strong> una auditoría de coordenadas, solapamientos, geología y calidad del etiquetado.</p></div>
+</details>
+  <details class="audit-card" open>
+<summary><span class="audit-card-heading"><span class="audit-number">06 · DIAGNÓSTICOS</span><strong class="audit-card-title">Valores extremos, normalidad y dependencia espacial</strong></span><span class="audit-toggle" aria-hidden="true"></span></summary>
+<div class="audit-card-body"><p>Los residuos del ensamble <strong>nativo</strong> rechazan normalidad según Shapiro–Wilk (<em>p</em> = 1.401988 × 10<sup>−7</sup>); Koenker–Breusch–Pagan no rechaza su nula en la especificación reportada (<em>p</em> = 0.400797). También se examinan influencia, Moran, Geary y semivariograma. <strong>Estos valores p no corresponden al corrector final</strong>, cuya auditoría debe interpretarse separadamente.</p>
+   <a href="./investigacion.html?vista=confianza#estadisticas-finales">Ver diagnósticos del ensamble nativo ↗</a></div>
+</details>
+  <details class="audit-card audit-pending" open>
+<summary><span class="audit-card-heading"><span class="audit-number">07 · LÍMITES DE EVIDENCIA</span><strong class="audit-card-title">Pruebas todavía no verificables públicamente</strong></span><span class="audit-toggle" aria-hidden="true"></span></summary>
+<div class="audit-card-body"><p>No están disponibles por parcela las tasas de faltantes, los controles de rangos agronómicos, las comprobaciones de geometrías duplicadas, la calidad del etiquetado ni los errores reales de las 59 parcelas. Tampoco se publican límites numéricos verificados de intervalos bootstrap absolutos del RMSE del corrector final. Estas pruebas requieren archivos y ejecuciones adicionales: <strong>no presentamos cifras supuestas</strong>.</p></div>
+</details>
  </div>
  <p class="audit-sources">Fuentes: <a href="./data/final_model.json" target="_blank" rel="noopener noreferrer">manifiesto final ↗</a>, <a href="https://github.com/heri-espino/todoseboso/blob/main/site/data/reference26_selected_statistical_audit.json" target="_blank" rel="noopener noreferrer">auditoría del corrector ↗</a>, <a href="./data/reference26_residuals.json" target="_blank" rel="noopener noreferrer">diagnósticos del modelo nativo ↗</a> y <a href="./data/real_charts.json" target="_blank" rel="noopener noreferrer">agregados de 2025 ↗</a>. No se mezclan protocolos ni se usan las 59 cosechas ocultas como observadas.</p>
 </div>
