@@ -343,7 +343,7 @@ class ResearchIntegrityTest(unittest.TestCase):
             "¿Qué pasa si la lluvia es cero o si falta un mes?",
             "¿Se sustituyen los datos faltantes siempre por la media?",
             "¿Qué significa un peso geológico de 0.86?",
-            "¿Cuánto acierta el modelo?",
+            "¿Qué desempeño obtuvo el modelo final?",
             "¿Qué estimaciones puedo consultar?",
         )
         self.assertEqual(html.count('id="preguntas"'),1)
@@ -396,8 +396,10 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn("final-strategies",script)
         result_html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         self.assertIn("PREDICCIONES FINALES · 59 PARCELAS",result_html)
-        self.assertIn("MODELO ACTUAL · CORRECCIÓN LOCAL VALIDADA",result_html)
+        self.assertIn("MODELO FINAL ELEGIDO PARA LAS 59 PARCELAS",result_html)
         self.assertIn("0.462418",result_html)
+        self.assertIn("0.332019",result_html)
+        self.assertIn("0.702693",result_html)
         self.assertIn("0.462892",result_html)
         self.assertIn("0.331956",result_html)
         self.assertIn('id="final59-distribution"',result_html)
