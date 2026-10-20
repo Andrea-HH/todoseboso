@@ -9,8 +9,8 @@
   document.documentElement.lang="es";
   document.title=({sabemos:"¿Qué sabemos?",modelo:"¿Cómo funciona el modelo?",resultados:"Resultados",confianza:"¿Qué tanta confianza merece?",preguntas:"Preguntas frecuentes"})[view]+" · GeoCebada";
   const crossSection={
-    datos:"sabemos","datos-reales":"sabemos",variables:"modelo",
-    ensamble:"modelo",preparacion:"modelo",arquitectura:"modelo",geologia:"modelo",faltantes:"modelo",ajuste:"modelo",
+    datos:"sabemos","datos-reales":"sabemos",auditoria:"sabemos",preparacion:"sabemos",variables:"modelo",
+    ensamble:"modelo",arquitectura:"modelo",geologia:"modelo",faltantes:"modelo",ajuste:"modelo",
     "predicciones-59":"resultados",resultados:"resultados",pruebas:"resultados",
     "estadisticas-finales":"confianza",limites:"confianza",preguntas:"preguntas"
   };
