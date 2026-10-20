@@ -302,14 +302,44 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 </div></section>
 
 <section class="section section-soft" id="resultados"><div class="shell">
-<div class="section-heading"><div><p class="eyebrow">08 · LO QUE MOSTRARON LAS PRUEBAS</p><h2>¿Qué tan bien predice <em>el ensamble corregido?</em></h2></div><p>El rendimiento se mide en toneladas por hectárea. Primero mostramos la comparación final de 138 exclusiones y la selección interna de correcciones; después, por separado, las evaluaciones históricas de la arquitectura base.</p></div>
+<div class="section-heading"><div><p class="eyebrow">MODELO ACTUAL · CORRECCIÓN LOCAL VALIDADA</p><h2>Reference26 con <em>corrección adaptativa por parcelas análogas.</em></h2></div><p>Una predicción de Reference26 se afina con las cosechas reales de parcelas semejantes. La decisión de corregir, o de mantener la predicción base, se toma mediante validación interna; <strong>nunca con la cosecha que se está prediciendo</strong>. Las métricas de esta página corresponden a 138 cosechas conocidas, no a las 59 pendientes.</p></div>
 <div class="loocv-panel final-results-panel">
-<div class="loocv-head"><p class="eyebrow">RESULTADOS DEFINITIVOS DEL EXPERIMENTO · 138 LOOCV</p><h3>La mejora se evalúa fuera de cada entrenamiento.</h3>
-<p>La versión base del ensamble aprende con <strong>137 parcelas</strong> y estima la parcela excluida. Cinco correcciones por vecinos se comparan con el modelo original; la política anidada selecciona una variante mediante cuatro folds internos y después la aplica a la parcela externa. Los cinco candidatos se eligieron previamente sobre estos mismos datos: los resultados son exploratorios, no una evaluación independiente de toda la búsqueda.</p></div>
-<div class="final-loocv-metrics" aria-label="Indicadores del experimento final">
-<div><span>RMSE · corrección fija elegida</span><strong>0.462418</strong><small>t/ha · 138 exclusiones auténticas</small></div>
-<div><span>R² predictivo · corrección fija</span><strong>0.702693</strong><small>Coeficiente de determinación LOOCV</small></div>
-<div><span>RMSE · selector anidado</span><strong>0.462892</strong><small>t/ha · MAE 0.331956 · R² 0.702083</small></div>
+<div class="loocv-head"><p class="eyebrow">MÉTRICAS LOOCV · SELECTOR ANIDADO · 138 PARCELAS</p><h3>La mejora se evalúa fuera de cada entrenamiento.</h3>
+<p>El selector anidado aprende con <strong>137 rendimientos</strong> y estima la parcela externa excluida. Las cuatro métricas resumen esas mismas 138 exclusiones reales, no el error de las 59 cosechas desconocidas. Las cinco recetas candidatas se preseleccionaron tras analizar estos mismos datos: los resultados son <strong>exploratorios</strong>, no una validación independiente de toda la búsqueda.</p></div>
+<div class="final-loocv-metrics" aria-label="Cuatro indicadores principales del selector anidado">
+<div><span>RMSE · error cuadrático medio raíz</span><strong>0.462892</strong><small>t/ha · penaliza más los errores grandes</small></div>
+<div><span>MAE · error absoluto medio</span><strong>0.331956</strong><small>t/ha · magnitud media del error absoluto</small></div>
+<div><span>R² predictivo</span><strong>0.702083</strong><small>Sobre las 138 predicciones excluidas; sin unidades</small></div>
+<div><span>Sesgo firmado</span><strong>−0.005062</strong><small>t/ha · estimación menos cosecha real</small></div>
+</div>
+
+<div class="final-study-counts" aria-label="Tamaño de la evaluación y entrega">
+<div><strong>138</strong><span>parcelas evaluadas</span></div>
+<div><strong>137</strong><span>cosechas de entrenamiento por exclusión</span></div>
+<div><strong>4</strong><span>folds internos de selección</span></div>
+<div><strong>59</strong><span>parcelas de rendimiento aún desconocido</span></div>
+</div>
+<section class="final-method" aria-labelledby="final-method-heading">
+<h4 id="final-method-heading">Cómo se construye una predicción</h4>
+<p>No es un clasificador de parcelas ni un modelo entrenado con datos sintéticos. Mantiene Reference26 y añade una corrección acotada basada en cosechas reales, elegida mediante validación cruzada.</p>
+<div class="final-method-grid">
+<article><span>01 · PUNTO DE PARTIDA</span><h5>Predicción de Reference26</h5><p>Integra señales climáticas, satelitales, espaciales y geológicas. Los valores numéricos faltantes se imputan con <strong>medias calculadas sólo sobre entrenamiento</strong> para obtener la predicción inicial.</p></article>
+<article><span>02 · SIMILITUD</span><h5>Tres parcelas análogas</h5><p>La corrección más seleccionada localiza las <strong>3 parcelas más próximas</strong> en las 26 características escaladas robustamente y pondera sus cosechas por distancia. Ninguna cosecha reservada participa como vecina.</p></article>
+<article><span>03 · CONTROL</span><h5>Corrección controlada</h5><p>Una mezcla inicial de <strong>0.25</strong> se atenúa cuando los vecinos están lejos o no concuerdan. El desplazamiento se limita a <strong>±0.5 t/ha</strong>. La validación puede elegir otra variante o no modificar Reference26.</p></article>
+</div>
+<details class="final-method-formula"><summary>Expresión de la corrección más seleccionada</summary>
+<div class="math-scroll" aria-label="Predicción corregida igual a Reference26 más la corrección atenuada por soporte, acotada entre menos cero punto cinco y más cero punto cinco">
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow>
+<msub><mover><mi>y</mi><mo>^</mo></mover><mi>c</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo>
+<msub><mover><mi>y</mi><mo>^</mo></mover><mi>R</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>+</mo>
+<mi>clip</mi><mo>(</mo><mn>0.25</mn><mo>×</mo><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>×</mo>
+<mo>[</mo><msub><mover><mi>y</mi><mo>^</mo></mover><mtext>3NN</mtext></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>−</mo><msub><mover><mi>y</mi><mo>^</mo></mover><mi>R</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>]</mo><mo>,</mo><mo>−</mo><mn>0.5</mn><mo>,</mo><mn>0.5</mn><mo>)</mo>
+</mrow></math></div>
+<p>El factor <strong>g(x)</strong> vale entre 0 y 1 y reduce la magnitud del ajuste cuando los análogos están lejos o muestran rendimientos discordantes. Esta fórmula describe la <strong>variante dominante</strong>: la política anidada puede seleccionar otra de las cinco correcciones o dejar intacta la predicción.</p></details>
+</section>
+<div class="final-selection-explanation">
+<h4>La elección también se valida</h4><p>En cada una de las <strong>138 exclusiones externas</strong> se aparta una parcela. Con las otras 137 cosechas se realizan cuatro particiones internas para comparar cinco correcciones y la posibilidad de no corregir. El procedimiento añade <strong>552 ajustes internos de Reference26</strong> (4 × 138), compartidos entre los candidatos. Se elige la opción de menor MSE interno sólo si mejora el MSE de Reference26 en al menos <strong>1 %</strong>; de lo contrario, se conserva la predicción base.</p>
+<p>La receta elegida se aplica después a la parcela externa sin consultar su rendimiento. Las frecuencias de elección aparecen en la tarjeta de validación interna, no son probabilidades de acierto.</p>
 </div>
 <div class="final-experiment-grid">
 <article class="final-experiment-card"><h4>Comparar las siete estrategias</h4>
@@ -317,8 +347,8 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <div id="final-metric-buttons" class="final-metric-buttons" role="group" aria-label="Seleccionar métrica de comparación"></div>
 <div id="final-strategies" aria-live="polite">Verificando las siete estrategias publicadas…</div>
 <p id="final-metric-footnote" class="small-note"></p></article>
-<article class="final-experiment-card"><h4>¿Qué eligió la validación interna?</h4><p>Los cuatro folds internos de selección se repitieron para cada una de las 138 parcelas excluidas.</p><div id="final-selection-bars" aria-label="Frecuencia de selección interna por variante"></div>
-<p>El selector utilizó tres vecinos robustos en 128 de los 138 folds; otros cinco eligieron PCA y cinco conservaron el ensamble sin ajuste.</p></article>
+<article class="final-experiment-card"><h4>Qué decidió la selección interna · 138 folds</h4><p>Cuatro folds internos de selección para cada parcela excluida. Las barras muestran frecuencia de elección, no precisión predictiva ni las 59 cosechas pendientes.</p><div id="final-selection-bars" aria-label="Frecuencia de selección interna por variante"></div>
+<p>La variante dominante fue robusta en 26 variables, con tres análogos y mezcla 0.25. Las otras cinco exclusiones seleccionaron PCA8 y cinco dejaron intacta la predicción nativa.</p></article>
 </div>
 <p class="final-experiment-scope"><strong>138 LOOCV auténticas · 59 estimaciones finales · selección interna completada.</strong> Los RMSE 0.462418 (corrección fija) y 0.462892 (selección anidada) se evaluaron sobre las 138 cosechas conocidas; no son errores medidos en las 59 parcelas desconocidas. La selección inicial de cinco candidatos fue post-hoc. Las pruebas históricas de residuos corresponden al ensamble base, no automáticamente a la corrección final.</p>
 <p class="final-experiment-links"><a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md" target="_blank" rel="noopener noreferrer">Metodología y cierre reproducible ↗</a><a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones ↓</a></p>
