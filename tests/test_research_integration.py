@@ -316,6 +316,39 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn(".final-metric-tables",css)
         self.assertIn(".historical-loocv",css)
 
+    def test_faq_questions_are_unique_and_current(self):
+        html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        faq=html.split('<section class="section faq-section" id="preguntas">',1)[1].split(
+            '<section class="section reference26-residuals"',1)[0]
+        questions=(
+            "¿Es un K-means de 26 variables?",
+            "¿Por qué 24 vecinos y cuatro grupos geológicos?",
+            "¿Las 26 variables tienen valores p significativos?",
+            "¿Qué pasa si la lluvia es cero o si falta un mes?",
+            "¿Se sustituyen los datos faltantes siempre por la media?",
+            "¿Qué significa un peso geológico de 0.86?",
+            "¿Cuánto acierta el modelo?",
+            "¿Qué estimaciones puedo consultar?",
+        )
+        self.assertEqual(html.count('id="preguntas"'),1)
+        self.assertEqual(faq.count("<details><summary>"),8)
+        for q in questions:
+            self.assertEqual(faq.count(f"<summary>{q}</summary>"),1,q)
+        self.assertEqual(faq.count('class="source-index"'),1)
+        for link in ("documentation/models/Reference26/README.md",
+                     "results/reference26_component_evidence/v1/README.md",
+                     "results/four_final_checks/v1/README.md"):
+            self.assertEqual(faq.count(link),1,link)
+        self.assertIn("media calculada sólo en el conjunto de entrenamiento",faq)
+        self.assertIn("El Reference26 nativo usado",faq)
+        self.assertIn("La corrección final por tres parcelas análogas",faq)
+        self.assertIn("0.462892 t/ha",faq)
+        self.assertIn("0.331956 t/ha",faq)
+        self.assertIn("0.702083",faq)
+        self.assertIn('vista=resultados#predicciones-59',faq)
+        self.assertIn('vista=sabemos#preparacion',faq)
+        self.assertNotIn("no se han publicado",faq.lower())
+
     def test_historical_59_is_preserved_and_final_59_is_verified(self):
         csv_content=(SITE/"explorador/data/predictions.csv").read_text(encoding="utf-8")
         rows=list(csv.DictReader(io.StringIO(csv_content)))
@@ -347,7 +380,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertIn("final-strategies",script)
         result_html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         self.assertIn("PREDICCIONES FINALES · 59 PARCELAS",result_html)
-        self.assertIn("RESULTADOS DEFINITIVOS DEL EXPERIMENTO · 138 LOOCV",result_html)
+        self.assertIn("MODELO ACTUAL · CORRECCIÓN LOCAL VALIDADA",result_html)
         self.assertIn("0.462418",result_html)
         self.assertIn("0.462892",result_html)
         self.assertIn("0.331956",result_html)
