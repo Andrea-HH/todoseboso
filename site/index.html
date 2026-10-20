@@ -65,15 +65,16 @@
           <p class="eyebrow hero-eyebrow"><span class="eyebrow-line"></span> INVESTIGACIÓN APLICADA · CICLO 2025</p>
           <h1 id="hero-title">¿Cuánta cebada puede producir una parcela?</h1>
           
-          <div class="hero-model-summary" aria-label="Modelo final y desempeño predictivo anidado">
+          <div class="hero-model-summary" aria-label="Modelo final seleccionado y desempeño LOOCV de la corrección fija">
             <p>Estudiamos 197 parcelas agrícolas en Hidalgo, Puebla y Tlaxcala: 138 con rendimiento reportado y 59 por estimar. Integramos información climática, satelital, geográfica y geológica; después ajustamos las predicciones mediante tres parcelas análogas con rendimientos conocidos.</p>
             <p>El modelo final es un <strong>ensamble de expertos agroespaciales con corrección por parcelas análogas</strong>. Comparamos sus errores en 138 exclusiones LOOCV y presentamos las 59 predicciones finales, sin confundirlas con cosechas observadas.</p>
-            <div class="hero-validation-metrics" aria-label="Métricas de evaluación anidada sobre 138 exclusiones LOOCV">
-              <div class="hero-validation-metric"><strong>0.462892</strong><span>RMSE anidado · t/ha</span></div>
-              <div class="hero-validation-metric"><strong>0.331956</strong><span>MAE anidado · t/ha</span></div>
-              <div class="hero-validation-metric"><strong>0.702083</strong><span>R² predictivo anidado</span></div>
+            <div class="hero-validation-metrics" aria-label="Métricas del modelo fijo elegido para las 59 parcelas, 138 exclusiones LOOCV">
+              <div class="hero-validation-metric"><strong>0.462418</strong><span>RMSE · regla final fija · t/ha</span></div>
+              <div class="hero-validation-metric"><strong>0.332019</strong><span>MAE · regla final fija · t/ha</span></div>
+              <div class="hero-validation-metric"><strong>0.702693</strong><span>R² predictivo · regla final fija</span></div>
               <div class="hero-validation-metric"><strong>138</strong><span>parcelas LOOCV</span></div>
             </div>
+            <p><small><strong>Modelo entregado:</strong> Reference26 con imputación por media y corrección robusta de 3 parcelas análogas (mezcla 0.25). <strong>Selector anidado, evaluación diferente:</strong> RMSE 0.462892 t/ha, MAE 0.331956 t/ha y R² 0.702083. Ambas evaluaciones usan los 138 rendimientos conocidos; el error real de las 59 cosechas ocultas todavía se desconoce. <a href="./fuente-heri/investigacion.html?vista=resultados#resultados">Comparar ambos protocolos ↗</a></small></p>
           </div>
           <div class="hero-actions"><a class="primary-cta" href="./fuente-heri/investigacion.html?vista=modelo#ensamble">Cómo construimos los modelos <span aria-hidden="true">↘</span></a><a class="secondary-cta" href="./fuente-heri/investigacion.html?vista=resultados#resultados">Ver los resultados <span aria-hidden="true">→</span></a></div>
           <div class="hero-metadata"><span>HIDALGO</span><i></i><span>PUEBLA</span><i></i><span>TLAXCALA</span></div>
@@ -116,7 +117,7 @@
             <rect x="25" y="30" width="530" height="425" rx="13" stroke="#cfddc3" stroke-opacity=".2" fill="none"/>
           </svg>
           <div class="visual-foot"><span>SATÉLITE + CLIMA + RELIEVE</span><span>ESQUEMA, NO MAPA REAL</span></div>
-          <div class="hero-tag"><span>MODELO PRINCIPAL</span><strong>Clima y territorio</strong><small>Reference26 · 26 indicadores</small></div>
+          <div class="hero-tag"><span>MODELO FINAL</span><strong>Expertos agroespaciales</strong><small>Reference26 + 3 análogos</small></div>
         </div>
       </div>
     </section>
