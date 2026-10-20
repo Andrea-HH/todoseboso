@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "model": "NestedSelection (Reference26 mean plus fold-chosen analog correction)",
+  "source": {
+    "repository": "https://github.com/heri-espino/GeoC",
+    "branch": "analysis/reference26-nested-full-metrics-20261019",
+    "script": "tools/report_reference26_top5_all_metrics.py",
+    "report": "reports/reference26_top5_full_metrics/metrics_complete_7.csv",
+    "private_report_not_published": true,
+    "data_origin": "User-supplied --run --bootstrap 10000 and --summary stdout, 2026-10-19",
+    "all_values_rounded_as_in_console": true
+  },
+  "evaluation": {
+    "original_labeled_heldouts": 138,
+    "training_labels_per_outer_fold": 137,
+    "bootstrap_resamples": 10000,
+    "authentic_loocv": true,
+    "no_59_y_available": true,
+    "observations_from_hidden_59_used": false
+  },
+  "metrics": {
+    "rmse_t_ha": 0.462892,
+    "mae_t_ha": 0.331956,
+    "r2_cv": 0.702083,
+    "bias_t_ha": -0.005062,
+    "mse_t_ha2": 0.214269,
+    "l1_t_ha": 45.809975,
+    "l2_t_ha": 5.437752,
+    "linf_t_ha": 2.119565,
+    "p95_absolute_error_t_ha": 0.782014,
+    "p99_absolute_error_t_ha": 1.687373,
+    "wape_pct": 8.392565,
+    "huber_mean_delta_0p5": 0.082625
+  },
+  "limitations": {
+    "absolute_rmse_confidence_interval_available": false,
+    "absolute_rmse_confidence_interval_source": "bootstrap_95ci_7.csv was not shared; cannot report numerical absolute RMSE CI",
+    "independent_confirmation": false,
+    "why": "Five candidate corrections were chosen after examining these same 138 labels; bootstrap assumes iid parcels while residuals can be spatially correlated",
+    "adjusted_r2_not_applicable": true,
+    "no_errors_for_59_unknown": true
+  },
+  "confidence_intervals": {
+    "absolute_rmse_t_ha": null,
+    "available": false,
+    "status": "pending_aggregated_bootstrap_95ci_7_csv",
+    "note": "No numerical CI for absolute RMSE was provided; no intervals are invented."
+  }
+}
