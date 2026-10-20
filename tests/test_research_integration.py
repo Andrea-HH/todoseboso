@@ -240,6 +240,46 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertAlmostEqual(residual["diagnostics"]["normality"]["shapiro_p"],1.401988e-7,places=12)
         self.assertAlmostEqual(residual["diagnostics"]["variance"]["koenker_bp_p"],0.400797,places=6)
 
+    def test_limits_and_native_residuals_are_source_distinguished(self):
+        research=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
+        chart_js=(SOURCE/"charts.js").read_text(encoding="utf-8")
+        residual_js=(SOURCE/"reference26_residuals.js").read_text(encoding="utf-8")
+        style=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
+        distribution=json.loads((SOURCE/"data/distribution.json").read_text(encoding="utf-8"))
+        residual=json.loads((SOURCE/"data/reference26_residuals.json").read_text(encoding="utf-8"))
+        final=json.loads((SOURCE/"data/final_model.json").read_text(encoding="utf-8"))
+        archival=next(r for r in distribution["rows"] if r["region"]=="all" and r["cohort"]=="Predicted59")
+        known=next(r for r in distribution["rows"] if r["region"]=="all" and r["cohort"]=="Observed138")
+        self.assertAlmostEqual(archival["mean"],3.956432328667021,places=8)
+        self.assertAlmostEqual(known["mean"],3.9553623188405793,places=8)
+        self.assertAlmostEqual(final["prediction59_aggregate"]["selected_mean"],3.9572238505778996,places=8)
+        metrics=residual["metrics"]
+        for key,expected in (("rmse_t_ha",.468138),("mae_t_ha",.333786),
+                             ("r2_cv",.695292),("bias_t_ha",.001466),
+                             ("median_absolute_error_t_ha",.244645),
+                             ("p95_absolute_error_t_ha",.779618),
+                             ("max_absolute_error_t_ha",2.139958)):
+            self.assertAlmostEqual(metrics[key],expected,places=6)
+        self.assertEqual(residual["protocol"]["imputation"],"mean_training_only")
+        self.assertEqual(residual["protocol"]["training_labels_per_fold"],137)
+        self.assertIn("Distribución histórica de cosechas y estimaciones",research)
+        self.assertIn("3.9564 t/ha",research)
+        self.assertIn("3.9572 t/ha",research)
+        self.assertIn("3.9554 t/ha",research)
+        self.assertIn("ENSAMBLE AGROESPACIAL BASE · RESIDUOS ANTERIORES A LOS ANÁLOGOS",research)
+        for id_ in ("limites","estadisticas-finales","distribution-quantiles",
+                    "interval-results","r26-summary-cards","r26-error-scale",
+                    "r26-maximum-error"):
+            self.assertEqual(research.count('id="'+id_+'"'),1,id_)
+        self.assertIn("Pasa el cursor o utiliza Tab para consultar los valores exactos.",chart_js)
+        self.assertIn("Escala horizontal centrada en los percentiles 10–90 observados",chart_js)
+        self.assertIn("Eje horizontal ajustado automáticamente al nivel nominal",chart_js)
+        self.assertIn("data.metrics.median_absolute_error_t_ha",residual_js)
+        self.assertIn("data.metrics.p95_absolute_error_t_ha",residual_js)
+        self.assertIn('("r26-maximum-error")',residual_js)
+        self.assertIn('html[data-research-vista="confianza"] #contenido > section#limites',style)
+        self.assertIn('html[data-research-vista="confianza"] #contenido > section#estadisticas-finales',style)
+
     def test_results_nested_metrics_and_history_are_in_place_once(self):
         html=(SOURCE/"investigacion.html").read_text(encoding="utf-8")
         css=(SOURCE/"andrea-research.css").read_text(encoding="utf-8")
