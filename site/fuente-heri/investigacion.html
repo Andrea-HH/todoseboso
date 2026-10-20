@@ -84,9 +84,9 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
   </div>
   <div data-research-intro="resultados" class="research-intro">
    <h1>¿Qué resultados <em>obtuvo el modelo?</em></h1>
-   <p>Consulta las 59 estimaciones históricas y los resultados de las evaluaciones. Las cosechas reales de esas 59 parcelas siguen siendo desconocidas.</p>
+   <p>Compara las siete estrategias evaluadas en 138 exclusiones LOOCV y consulta las 59 estimaciones finales corregidas. Sus cosechas observadas siguen siendo desconocidas.</p>
    <nav class="research-topic-links" aria-label="Contenido de Resultados">
-    <a href="./investigacion.html?vista=resultados#predicciones-59">59 estimaciones</a><a href="./investigacion.html?vista=resultados#resultados">Métricas de evaluación</a>
+    <a href="./investigacion.html?vista=resultados#predicciones-59">59 estimaciones finales</a><a href="./investigacion.html?vista=resultados#resultados">138 LOOCV y siete estrategias</a>
     <a href="./investigacion.html?vista=resultados#pruebas">Pruebas estadísticas</a><a href="../index.html">Mapa de parcelas de Inicio</a>
    </nav>
   </div>
@@ -114,26 +114,22 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <div class="shell">
 <div class="section-heading"><div><p class="eyebrow">EL MODELO SELECCIONADO</p><h2>Reference26. <em>Una sola arquitectura predictiva.</em></h2></div>
 <p>El estudio final utiliza únicamente Reference26: un predictor que combina regresión climática, regresión Ridge de vecindarios, mezcla geológica y una corrección residual acotada. No se presentan mezclas externas con otros modelos.</p></div>
-<div class="note-inline"><strong>Dos versiones y dos usos:</strong> el nuevo análisis de residuos y validación LOOCV corresponde a <strong>Reference26 con imputación por media</strong> aprendida dentro de cada entrenamiento. Las 59 estimaciones históricas mostradas abajo proceden del <strong>Reference26 archivado con mediana</strong>; no se afirma que sean las 59 predicciones de la versión con media.</div>
+<div class="note-inline"><strong>Dos versiones y dos usos:</strong> el nuevo análisis de residuos y validación LOOCV corresponde a <strong>Reference26 con imputación por media</strong> aprendida dentro de cada entrenamiento. Las 59 estimaciones de la vista de Resultados son ahora las <strong>predicciones finales corregidas con tres parcelas análogas</strong>, distintas de los residuos del Reference26 base que se estudian en el capítulo de Confianza.</div>
 </div>
 </section>
 
-<section class="section section-soft geo-single-predictions" id="predicciones-59" aria-label="Las 59 estimaciones históricas de Reference26">
-<div id="reference26-view">
-<div class="ensemble-reference-section"><div class="shell">
-<div class="section-heading"><div><p class="eyebrow">REFERENCE26 · RESULTADOS INDIVIDUALES</p><h2>Reference26: <em>59 estimaciones históricas.</em></h2></div>
-<p>Estas son las estimaciones archivadas del ajuste Reference26 con imputación por mediana, entrenado con las 138 parcelas etiquetadas. La evaluación estadística de 2026 utiliza Reference26 con imputación por media, que es una versión distinta. Son resultados reales del modelo, <strong>no ejemplos inventados</strong>, pero el rendimiento de esas 59 parcelas todavía no se ha observado o confirmado.</p></div>
-<div class="pred59-status" id="pred59-status" role="status" aria-live="polite">Cargando las 59 estimaciones históricas desde los datos publicados…</div>
+<section class="section section-soft geo-single-predictions" id="predicciones-59" aria-label="59 predicciones finales corregidas">
+<div class="shell">
+<div class="section-heading"><div><p class="eyebrow">PREDICCIONES FINALES · 59 PARCELAS</p><h2>59 parcelas. <em>Estimaciones agroespaciales corregidas.</em></h2></div>
+<p>Resultados finales publicados después de entrenar el ensamble con los <strong>138 rendimientos reales</strong> y elegir la corrección con tres parcelas análogas mediante cuatro folds internos. Son <strong>59 predicciones del modelo final</strong>, no ejemplos ni las antiguas estimaciones con mediana. Las 59 cosechas observadas siguen siendo desconocidas.</p></div>
+<div class="pred59-status" id="pred59-status" role="status" aria-live="polite">Verificando las 59 predicciones finales contra el CSV publicado de GeoC…</div>
 <div class="pred59-data" id="pred59-data" hidden>
-<div class="pred59-summary" id="pred59-summary" aria-label="Resumen de las 59 estimaciones"></div>
-<div class="pred59-highlights"><div><h3>Tres parcelas como ejemplo</h3><p>Ejemplos del mínimo, valor central y máximo de las estimaciones históricas, sin representar cosechas observadas.</p></div><div id="pred59-examples" class="pred59-example-grid"></div></div>
-
-
-
-
-</div></div>
-
-</div>
+<div class="pred59-summary" id="pred59-summary" aria-label="Resumen de las 59 predicciones finales"></div>
+<div class="pred59-highlights"><div><h3>Tres parcelas como ejemplo</h3><p>Seleccionadas automáticamente por menor estimación, estimación mediana y mayor estimación. No son rendimientos observados.</p></div><div id="pred59-examples" class="pred59-example-grid"></div></div>
+<div class="final59-histogram"><h3>Distribución de las 59 estimaciones definitivas</h3><p>Frecuencias de las predicciones finales en intervalos de 0.25 t/ha. Es una distribución de predicciones, no una evaluación de errores.</p>
+<div id="final59-distribution" aria-label="Histograma de 59 predicciones en intervalos de 0.25 toneladas por hectárea"></div>
+<p class="small-note">Eje horizontal: límite inferior del intervalo (t/ha). Eje vertical: número de parcelas. No representa errores de las 59.</p></div>
+</div><p class="small-note">Fuente: <a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/submission59_final.csv" target="_blank" rel="noopener noreferrer">CSV final verificado de GeoC ↗</a>. Se comprueban 59 identificadores únicos y los agregados antes de mostrar cifras individuales.</p>
 </div>
 </section>
 
@@ -271,17 +267,30 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 </div></section>
 
 <section class="section section-soft" id="resultados"><div class="shell">
-<div class="section-heading"><div><p class="eyebrow">08 · LO QUE MOSTRARON LAS PRUEBAS</p><h2>¿Cuánto se equivoca <em>la regresión local con mezcla geológica?</em></h2></div><p>El rendimiento se mide en toneladas por hectárea. Se muestran tanto la validación LOOCV de 138 parcelas como las evaluaciones anteriores, indicando siempre cuántas parcelas se usaron para entrenar y para evaluar.</p></div>
-<div class="loocv-panel">
-<div class="loocv-head"><p class="eyebrow">VALIDACIÓN DEJANDO UNA PARCELA FUERA</p><h3>138 parcelas evaluadas, una a la vez</h3><p>En cada repetición se entrena el modelo con 137 cosechas conocidas y se predice la cosecha de la parcela restante. Así se obtienen 138 predicciones para medir el error conjunto. Este procedimiento se conoce como LOOCV.</p></div>
-<div class="loocv-metrics"><div><span>Parcelas evaluadas</span><strong>138</strong></div><div><span>RMSE</span><strong>0.468186</strong><small>toneladas por hectárea</small></div><div><span>R²</span><strong>≈ 0.6952</strong><small>ajuste estadístico, no porcentaje de aciertos</small></div></div>
-<div class="loocv-reading"><div><h4>¿Cuántos kilogramos representa el error?</h4><p>Un RMSE de 0.468186 toneladas por hectárea equivale a <strong>468.186 kilogramos por hectárea</strong>. Como el RMSE eleva los errores al cuadrado antes de promediarlos, penaliza especialmente las equivocaciones grandes. <strong>No significa que cada parcela tenga un error de 468 kilogramos.</strong></p></div><div><h4>¿Y cómo expresarlo como porcentaje?</h4><p>La media de las 138 cosechas conocidas fue aproximadamente <strong>3.9554 toneladas por hectárea</strong>. El RMSE equivale al <strong>11.84 % de esa media</strong>; sólo es una comparación de escalas. No es el porcentaje de error esperado de una parcela ni un MAPE. Para calcular un error porcentual medio real se necesitan los errores individuales y rendimientos observados correspondientes.</p></div><div><h4>¿Qué nos dice R²?</h4><p>Un R² cercano a 0.6952 indica que, en esta evaluación, el modelo redujo aproximadamente el <strong>69.52 % de la suma de errores cuadrados</strong> respecto a predecir siempre la media observada del conjunto evaluado. <strong>No significa acertar el 69.52 % de las parcelas.</strong></p></div></div>
-
-<p class="small-note">Procedencia histórica: Reference26 con mediana (138 parcelas; RMSE 0.468186; R² aproximado 0.6952). La sección de residuos documenta por separado Reference26 con media. Las predicciones individuales de los 138 turnos todavía no están archivadas en este repositorio público, por lo que no se ofrece aquí una nueva auditoría independiente del cálculo.</p>
+<div class="section-heading"><div><p class="eyebrow">08 · LO QUE MOSTRARON LAS PRUEBAS</p><h2>¿Qué tan bien predice <em>el ensamble corregido?</em></h2></div><p>El rendimiento se mide en toneladas por hectárea. Primero mostramos la comparación final de 138 exclusiones y la selección interna de correcciones; después, por separado, las evaluaciones históricas de la arquitectura base.</p></div>
+<div class="loocv-panel final-results-panel">
+<div class="loocv-head"><p class="eyebrow">RESULTADOS DEFINITIVOS DEL EXPERIMENTO · 138 LOOCV</p><h3>La mejora se evalúa fuera de cada entrenamiento.</h3>
+<p>La versión base del ensamble aprende con <strong>137 parcelas</strong> y estima la parcela excluida. Cinco correcciones por vecinos se comparan con el modelo original; la política anidada selecciona una variante mediante cuatro folds internos y después la aplica a la parcela externa. Los cinco candidatos se eligieron previamente sobre estos mismos datos: los resultados son exploratorios, no una evaluación independiente de toda la búsqueda.</p></div>
+<div class="final-loocv-metrics" aria-label="Indicadores del experimento final">
+<div><span>RMSE · corrección fija elegida</span><strong>0.462418</strong><small>t/ha · 138 exclusiones auténticas</small></div>
+<div><span>R² predictivo · corrección fija</span><strong>0.702693</strong><small>Coeficiente de determinación LOOCV</small></div>
+<div><span>RMSE · selector anidado</span><strong>0.462892</strong><small>t/ha · MAE 0.331956 · R² 0.702083</small></div>
 </div>
-<div class="previous-validation-heading"><h3>Otra evaluación utilizada durante el desarrollo</h3><p>Se conserva por separado el experimento de 16 particiones, con 97 parcelas para entrenar y 41 para evaluar. Sus métricas no deben confundirse con las del LOOCV.</p></div>
+<div class="final-experiment-grid">
+<article class="final-experiment-card"><h4>Comparar las siete estrategias</h4>
+<p>Selecciona una métrica. Los gráficos comparten las mismas 138 parcelas; MSE, L1 y L2 se derivan aproximadamente de los RMSE y MAE publicados.</p>
+<div id="final-metric-buttons" class="final-metric-buttons" role="group" aria-label="Seleccionar métrica de comparación"></div>
+<div id="final-strategies" aria-live="polite">Verificando las siete estrategias publicadas…</div>
+<p id="final-metric-footnote" class="small-note"></p></article>
+<article class="final-experiment-card"><h4>¿Qué eligió la validación interna?</h4><p>Los cuatro folds internos de selección se repitieron para cada una de las 138 parcelas excluidas.</p><div id="final-selection-bars" aria-label="Frecuencia de selección interna por variante"></div>
+<p>El selector utilizó tres vecinos robustos en 128 de los 138 folds; otros cinco eligieron PCA y cinco conservaron el ensamble sin ajuste.</p></article>
+</div>
+<p class="final-experiment-scope"><strong>138 LOOCV auténticas · 59 estimaciones finales · selección interna completada.</strong> Los RMSE 0.462418 (corrección fija) y 0.462892 (selección anidada) se evaluaron sobre las 138 cosechas conocidas; no son errores medidos en las 59 parcelas desconocidas. La selección inicial de cinco candidatos fue post-hoc. Las pruebas históricas de residuos corresponden al ensamble base, no automáticamente a la corrección final.</p>
+<p class="final-experiment-links"><a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md" target="_blank" rel="noopener noreferrer">Metodología y cierre reproducible ↗</a><a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones ↓</a><a href="../index.html">Consultar mapa de parcelas ↗</a></p>
+</div>
+<div class="previous-validation-heading"><h3>Validaciones anteriores (otra configuración, no el modelo final)</h3><p>Por trazabilidad conservamos el experimento anterior de 16 particiones, con 97 parcelas para entrenar y 41 para evaluar. Sus cifras, gráficas y comparaciones de componentes <strong>no reemplazan</strong> los 138 LOOCV definitivos mostrados arriba.</p></div>
 <div class="scoreline"><div><span>RMSE · 16 evaluaciones 97/41</span><strong>0.4625</strong><small>t/ha</small></div><div><span>Error absoluto medio, MAE</span><strong>0.3387</strong><small>t/ha</small></div><div><span>R² de esas evaluaciones</span><strong>0.6971</strong><small>no es un porcentaje de aciertos</small></div></div>
-<p class="chart-explain">En cada una de esas 16 evaluaciones se entrenó con 97 rendimientos y se midió el error en 41 parcelas reservadas. Se informa el promedio de las métricas de cada partición. También se evaluó el método dejando fuera perfiles climáticos, municipios y bloques geográficos completos.</p>
+<p class="chart-explain">En estas 16 evaluaciones históricas se entrenó con 97 rendimientos y se midió el error en 41 parcelas reservadas. Las métricas se promedian por partición. También se probó la configuración anterior dejando fuera perfiles climáticos, municipios y bloques geográficos completos.</p>
 <div id="performance-chart" aria-live="polite">Cargando los resultados originales…</div><div class="real-data-figure">
 <h3>Errores reales, parcela por parcela</h3>
 <p class="chart-explain">La tabla se activa únicamente cuando se reciben las 138 predicciones reservadas de una ejecución LOOCV auténtica. Sin esos datos no es correcto inferir MAE, sesgo o error máximo a partir del RMSE.</p>
@@ -309,7 +318,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <div class="section-heading"><div><p class="eyebrow">10 · ENTREGA Y LÍMITES</p><h2>Se pueden generar 59 estimaciones. <em>¿Qué no sabemos todavía?</em></h2></div><p>Que dos conjuntos de parcelas tengan el mismo promedio no significa que las predicciones individuales sean correctas. Además, las parcelas pueden quedar fuera de las condiciones mejor representadas en el entrenamiento.</p></div>
 <div class="scoreline"><div><span>Corrección R3 disponible</span><strong>51</strong><small>de 59 parcelas</small></div><div><span>Corrección R3 desactivada</span><strong>8</strong><small>de 59 parcelas</small></div><div><span>Con algún aviso de soporte</span><strong>11</strong><small>de 59 parcelas; avisos superpuestos</small></div></div>
 <div class="detail-pair evidence-chart-stack"><div><h3>Distribución de las cosechas y las estimaciones</h3><p>Medianas y percentiles por estado. Las 138 cosechas conocidas y las 59 estimaciones corresponden a parcelas distintas: la gráfica no mide el error de las 59.</p><div id="distribution-quantiles"></div></div><div><h3>¿Qué cobertura tuvieron los intervalos?</h3><p>Selecciona el nivel nominal. La línea corresponde a la cobertura solicitada y los puntos a la observada en validación aleatoria; no hay garantía de igual cobertura para las 59 parcelas.</p><div class="buttonset"><button data-level="0.8" type="button" aria-pressed="false">80 % nominal</button><button data-level="0.9" class="active" type="button" aria-pressed="true">90 % nominal</button></div><div id="interval-results"></div></div></div>
-<div class="note-inline">Las 59 cosechas reales todavía se desconocen. La media de esas estimaciones es <strong>3.9564 t/ha</strong>, frente a <strong>3.9554 t/ha</strong> entre las cosechas conocidas, pero no son las mismas parcelas y esa coincidencia no demuestra precisión. Las 59 estimaciones individuales, obtenidas por el modelo final, se presentan en la siguiente sección como resultados del estudio, no como cosechas observadas.</div>
+<div class="note-inline">Las 59 cosechas reales todavía se desconocen. La media de las <strong>59 predicciones finales corregidas</strong> es <strong>3.9572 t/ha</strong>, frente a <strong>3.9554 t/ha</strong> entre las cosechas conocidas, pero no son las mismas parcelas y esa coincidencia no demuestra precisión. Las 59 predicciones finales corregidas se presentan en la sección «59 parcelas», no como cosechas observadas; los diagnósticos de esta sección siguen correspondiendo a la configuración anterior.</div>
 <details class="source-details"><summary>Consultar las curvas acumuladas originales</summary><figure class="distribution-figure"><img src="./media/distribution_ECDF.png" alt="Distribución acumulada original de cosechas conocidas y estimaciones del modelo por región."><figcaption>Gráfico original conservado; las curvas exactas no se reconstruyen a partir de percentiles.</figcaption></figure></details>
 </div></section>
 
@@ -321,8 +330,8 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <details><summary>¿Qué pasa si la lluvia es cero o si falta un mes?</summary><p>Cuando todos los meses tienen cero precipitación observada, los resúmenes correspondientes toman cero. Si no se observó un mes, no se interpreta como cero: los faltantes derivados se tratan durante el ajuste con reglas aprendidas sólo en entrenamiento.</p></details>
 <details><summary>¿Se sustituyen los datos faltantes siempre por la media?</summary><p>Depende de la versión: en el LOOCV actual de Reference26 se usa media aprendida en cada entrenamiento; las 59 estimaciones archivadas usan mediana. Ambas versiones conservan el tratamiento de faltantes propio de sus respectivos ajustes.</p></details>
 <details><summary>¿Qué significa un peso geológico de 0.86?</summary><p>Que, en esa mezcla ajustada, la estimación local recibe un peso cercano a 86 % y la climática el resto. No significa que la geología explique 86 % del rendimiento o que lo cause.</p></details>
-<details><summary>¿Cuánto acierta el modelo?</summary><p>En LOOCV de Reference26 con media se evaluaron 138 parcelas (137 etiquetas para entrenar): RMSE 0.468138 t/ha y R² predictivo 0.695292. En la evaluación anterior con mediana el RMSE fue 0.468186 t/ha. Otra evaluación de 16 particiones obtuvo RMSE medio de 0.4625 t/ha. Ninguno representa un porcentaje de aciertos ni una garantía para cada parcela.</p></details>
-<details><summary>¿Qué estimaciones puedo consultar?</summary><p>Se publican las 59 predicciones de Reference26 correspondientes a parcelas del estudio cuya cosecha no se conoce. Cada estimación se contrasta con el resultado archivado de Python antes de mostrarse. No se ofrecen cálculos para parcelas nuevas ni resultados obtenidos con valores hipotéticos.</p></details>
+<details><summary>¿Cuánto acierta el modelo?</summary><p>La corrección fija seleccionada obtuvo RMSE 0.462418 t/ha y R² predictivo 0.702693 en 138 exclusiones; el selector anidado obtuvo RMSE 0.462892 t/ha, MAE 0.331956 t/ha y R² 0.702083. El ensamble base con media obtuvo RMSE 0.468138 t/ha, distinto de la evaluación histórica con mediana. Ninguna cifra representa un porcentaje de aciertos ni mide el error de las 59 cosechas aún desconocidas.</p></details>
+<details><summary>¿Qué estimaciones puedo consultar?</summary><p>Se publican las 59 estimaciones finales del ensamble agroespacial con corrección por tres parcelas análogas, verificadas frente al CSV de GeoC. No son las predicciones históricas con mediana ni rendimientos observados. No se ofrecen estimaciones nuevas mediante esta página.</p></details>
 </div>
 <div class="source-index"><strong>Documentación técnica original</strong><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/Reference26/README.md" target="_blank" rel="noopener noreferrer">Fórmula, 26 variables y ajuste final ↗</a><a href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_component_evidence/v1/README.md" target="_blank" rel="noopener noreferrer">Pruebas de cada componente ↗</a><a href="https://github.com/heri-espino/todoseboso/blob/main/results/four_final_checks/v1/README.md" target="_blank" rel="noopener noreferrer">Soporte, sensibilidad e intervalos ↗</a></div></div></section>
 <section class="section reference26-residuals" id="estadisticas-finales" aria-labelledby="r26-residual-title">
@@ -407,7 +416,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
     <p class="r26-eyebrow">07 · INTERPRETACIÓN Y REPRODUCIBILIDAD</p><h3>¿Qué conclusiones permiten estos diagnósticos?</h3>
     <p>La distribución marginal de residuos se aparta de la normal. Las pruebas de heterocedasticidad no detectaron evidencia con sus especificaciones, y las señales espaciales no sobreviven la corrección de Holm sobre la familia analizada. <strong>No rechazar no equivale a demostrar independencia espacial ni varianza constante.</strong> Los errores más grandes concentran una fracción apreciable de la pérdida cuadrática.</p>
     <p>Las pruebas p son exploratorias: los ajustes LOOCV comparten gran parte de sus datos y la arquitectura fue estudiada con las mismas parcelas. No se infieren efectos causales, capacidad de extrapolar municipios nuevos ni cobertura probabilística para las 59 parcelas sin rendimiento.</p>
-    <p>Este estudio utiliza <strong>Reference26 con imputación por media</strong> dentro de cada entrenamiento. Las 59 estimaciones históricas del sitio se generaron con <strong>imputación por mediana</strong>: son una versión diferente y aquí no se sustituyen.</p>
+    <p>Este estudio utiliza <strong>Reference26 con imputación por media</strong> dentro de cada entrenamiento. Las 59 estimaciones definitivas publicadas en la vista de Resultados proceden del <strong>ensamble corregido por tres parcelas análogas</strong>, y no del antiguo ajuste con mediana ni de los diagnósticos del ensamble base.</p>
     <p id="r26-unavailable" class="r26-note">No se publican histogramas o Q–Q individuales sin los respectivos agregados comprobables.</p>
     <p><a href="https://github.com/heri-espino/GeoC/blob/experiment/nuria-champions-loocv/results/peer_models/REFERENCE26_COMPACT14_STATISTICAL_INTERPRETATION_138_2026-10-19.md" target="_blank" rel="noopener noreferrer">Valores y pruebas originales (GeoC) ↗</a> · <a href="https://github.com/heri-espino/GeoC/blob/analysis/reference26-inferential-sensitivity-20261019/docs/REFERENCE26_INFERENTIAL_SENSITIVITY.md" target="_blank" rel="noopener noreferrer">Método del bootstrap e influencia ↗</a></p>
   </div>
