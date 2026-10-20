@@ -1038,3 +1038,68 @@ html[data-geo-vista] #contenido>.section.significance .sig-interpretation p,
 html[data-geo-vista] #contenido>.section.hhi-study .hhi-observation p{
   color:#40583F!important;
 }
+
+
+/* Indicadores anidados del ensamble agroespacial · portada.
+   El resumen se añade sin alterar los contadores ni los filtros del explorador. */
+.hero-model-summary{
+  max-width:900px;
+  margin-top:22px;
+}
+.hero-model-summary p{
+  margin:0 0 12px;
+  color:#50634f;
+  font-size:clamp(14px,1.22vw,17px);
+  line-height:1.68;
+}
+.hero-model-summary p strong{color:#244936;font-weight:750}
+.hero-validation-metrics{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:20px;
+}
+.hero-validation-metric{
+  min-width:0;
+  border:1px solid #d4d9bf;
+  border-radius:13px;
+  background:#e7ecd9;
+  padding:16px 17px 15px;
+  color:#294734;
+}
+.hero-validation-metric:nth-child(1){
+  background:#204d40;
+  border-color:#204d40;
+  color:#fffaf0;
+}
+.hero-validation-metric:nth-child(3){
+  background:#f8eacf;
+  border-color:#deb964;
+  color:#61491f;
+}
+.hero-validation-metric strong{
+  display:block;
+  color:inherit;
+  font-family:var(--serif);
+  font-size:clamp(22px,2.5vw,35px);
+  font-variant-numeric:tabular-nums;
+  font-weight:700;
+  letter-spacing:-.035em;
+  line-height:1.18;
+  overflow-wrap:anywhere;
+}
+.hero-validation-metric span{
+  display:block;
+  color:inherit;
+  font-size:clamp(11px,.98vw,13px);
+  font-weight:700;
+  line-height:1.4;
+  margin-top:7px;
+}
+@media(max-width:460px){
+  .hero-model-summary{margin-top:18px}
+  .hero-validation-metrics{gap:9px;margin-top:16px}
+  .hero-validation-metric{padding:13px 11px}
+  .hero-validation-metric strong{font-size:clamp(19px,5.1vw,27px)}
+  .hero-validation-metric span{font-size:11px}
+}
