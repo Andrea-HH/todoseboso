@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10372f">
-<meta name="description" content="Reference26: 26 variables, 138 validaciones LOOCV, residuos, Moran I, bootstrap espacial y análisis de observaciones influyentes.">
-<title>GeoCebada · Reference26 y análisis de residuos</title>
+<meta name="description" content="Modelo final GeoCebada: Reference26 con imputación por media y corrección robusta de tres parcelas análogas. Resultados LOOCV, 59 rendimientos estimados y análisis de incertidumbre.">
+<title>GeoCebada · Modelo final Reference26 y resultados</title>
 <link rel="icon" href="../assets/favicon-trigo.png" type="image/png" sizes="256x256">
 <link rel="apple-touch-icon" href="../assets/favicon-trigo.png">
 <link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./model.css"><link rel="stylesheet" href="./charts.css"><link rel="stylesheet" href="./predictor.css"><link rel="stylesheet" href="./predictions59.css"><link rel="stylesheet" href="./reference26_residuals.css">
@@ -86,9 +86,9 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
   </div>
   <div data-research-intro="resultados" class="research-intro">
    <h1>¿Qué resultados <em>obtuvo el modelo?</em></h1>
-   <p>Compara las siete estrategias evaluadas en 138 exclusiones LOOCV y consulta las 59 estimaciones finales corregidas. Sus cosechas observadas siguen siendo desconocidas.</p>
+   <p>El modelo final seleccionado es Reference26 con imputación por media y corrección robusta mediante tres parcelas análogas. Su RMSE LOOCV es 0.462418 t/ha. Compara las siete estrategias evaluadas, consulta las 59 estimaciones definitivas y distingue el selector anidado de la regla final fija; aún se desconocen las 59 cosechas reales.</p>
    <nav class="research-topic-links" aria-label="Contenido de Resultados">
-    <a href="./investigacion.html?vista=resultados#predicciones-59">59 estimaciones finales</a><a href="./investigacion.html?vista=resultados#resultados">138 LOOCV y siete estrategias</a>
+    <a href="./investigacion.html?vista=resultados#resultados">Precisión del modelo final</a><a href="./investigacion.html?vista=resultados#predicciones-59">59 estimaciones finales</a>
     <a href="./investigacion.html?vista=resultados#pruebas">Pruebas estadísticas</a><a href="../index.html">Mapa de parcelas de Inicio</a>
    </nav>
   </div>
@@ -316,16 +316,17 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 </div></section>
 
 <section class="section section-soft" id="resultados"><div class="shell">
-<div class="section-heading"><div><p class="eyebrow">MODELO ACTUAL · CORRECCIÓN LOCAL VALIDADA</p><h2>Reference26 con <em>corrección adaptativa por parcelas análogas.</em></h2></div><p>Una predicción de Reference26 se afina con las cosechas reales de parcelas semejantes. La decisión de corregir, o de mantener la predicción base, se toma mediante validación interna; <strong>nunca con la cosecha que se está prediciendo</strong>. Las métricas de esta página corresponden a 138 cosechas conocidas, no a las 59 pendientes.</p></div>
+<div class="section-heading"><div><p class="eyebrow">MODELO FINAL ELEGIDO PARA LAS 59 PARCELAS</p><h2>Reference26 con <em>tres parcelas análogas robustas.</em></h2></div><p>El predictor final combina Reference26 (imputación por media, Elastic Net climático, Ridge local de 24 vecinos, mezcla geológica K-means y corrector residual R3) con una segunda corrección basada en <strong>3 parcelas análogas</strong> de sus 26 atributos, mezcla <strong>0.25</strong> y filtro de soporte. Esta regla fija fue seleccionada con cuatro folds internos sobre los 138 rendimientos disponibles. Su evaluación LOOCV no utiliza las cosechas ocultas de las 59 parcelas, cuyo error real todavía desconocemos.</p></div>
 <div class="loocv-panel final-results-panel">
-<div class="loocv-head"><p class="eyebrow">MÉTRICAS LOOCV · SELECTOR ANIDADO · 138 PARCELAS</p><h3>La mejora se evalúa fuera de cada entrenamiento.</h3>
-<p>El selector anidado aprende con <strong>137 rendimientos</strong> y estima la parcela externa excluida. Las cuatro métricas resumen esas mismas 138 exclusiones reales, no el error de las 59 cosechas desconocidas. Las cinco recetas candidatas se preseleccionaron tras analizar estos mismos datos: los resultados son <strong>exploratorios</strong>, no una validación independiente de toda la búsqueda.</p></div>
-<div class="final-loocv-metrics" aria-label="Cuatro indicadores principales del selector anidado">
-<div><span>RMSE · error cuadrático medio raíz</span><strong>0.462892</strong><small>t/ha · penaliza más los errores grandes</small></div>
-<div><span>MAE · error absoluto medio</span><strong>0.331956</strong><small>t/ha · magnitud media del error absoluto</small></div>
-<div><span>R² predictivo</span><strong>0.702083</strong><small>Sobre las 138 predicciones excluidas; sin unidades</small></div>
-<div><span>Sesgo firmado</span><strong>−0.005062</strong><small>t/ha · estimación menos cosecha real</small></div>
+<div class="loocv-head"><p class="eyebrow">REGLA FINAL FIJA · 138 EXCLUSIONES LOOCV</p><h3>Desempeño de la configuración seleccionada.</h3>
+<p>Reference26 con corrección robusta de tres análogos obtuvo los siguientes resultados al predecir 138 parcelas una por una, entrenando cada vez con las otras <strong>137 cosechas conocidas</strong>. La diferencia frente a Reference26 sin corrección es pequeña y <strong>exploratoria</strong>: se estudiaron distintas recetas sobre las mismas 138 etiquetas antes de seleccionar esta configuración. No conocemos todavía el error real de las 59 parcelas objetivo.</p></div>
+<div class="final-loocv-metrics" aria-label="Indicadores LOOCV de la regla final fija seleccionada">
+<div><span>RMSE · regla final fija</span><strong>0.462418</strong><small>t/ha · error cuadrático medio raíz</small></div>
+<div><span>MAE · regla final fija</span><strong>0.332019</strong><small>t/ha · error absoluto medio</small></div>
+<div><span>R² predictivo · regla final fija</span><strong>0.702693</strong><small>Sobre 138 predicciones LOOCV; sin unidades</small></div>
+<div><span>Sesgo firmado · regla final fija</span><strong>−0.004103</strong><small>t/ha · estimación menos cosecha real</small></div>
 </div>
+<p class="note-inline"><strong>Evaluación complementaria — selector anidado:</strong> RMSE <strong>0.462892 t/ha</strong>, MAE <strong>0.331956 t/ha</strong>, R² <strong>0.702083</strong> y sesgo <strong>−0.005062 t/ha</strong>. Esta política eligió una receta diferente en cada exclusión mediante cuatro folds internos; <strong>no es la regla fija utilizada para producir las 59 predicciones finales</strong>. Las pruebas detalladas del selector y los resultados históricos se conservan debajo.</p>
 
 <div class="final-study-counts" aria-label="Tamaño de la evaluación y entrega">
 <div><strong>138</strong><span>parcelas evaluadas</span></div>
@@ -338,7 +339,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <p>No es un clasificador de parcelas ni un modelo entrenado con datos sintéticos. Mantiene Reference26 y añade una corrección acotada basada en cosechas reales, elegida mediante validación cruzada.</p>
 <div class="final-method-grid">
 <article><span>01 · PUNTO DE PARTIDA</span><h5>Predicción de Reference26</h5><p>Integra señales climáticas, satelitales, espaciales y geológicas. Los valores numéricos faltantes se imputan con <strong>medias calculadas sólo sobre entrenamiento</strong> para obtener la predicción inicial.</p></article>
-<article><span>02 · SIMILITUD</span><h5>Tres parcelas análogas</h5><p>La corrección más seleccionada localiza las <strong>3 parcelas más próximas</strong> en las 26 características escaladas robustamente y pondera sus cosechas por distancia. Ninguna cosecha reservada participa como vecina.</p></article>
+<article><span>02 · SIMILITUD</span><h5>Tres parcelas análogas</h5><p>La corrección finalmente seleccionada localiza las <strong>3 parcelas más próximas</strong> en las 26 características escaladas robustamente y pondera sus cosechas por distancia. Ninguna cosecha reservada participa como vecina.</p></article>
 <article><span>03 · CONTROL</span><h5>Corrección controlada</h5><p>Una mezcla inicial de <strong>0.25</strong> se atenúa cuando los vecinos están lejos o no concuerdan. El desplazamiento se limita a <strong>±0.5 t/ha</strong>. La validación puede elegir otra variante o no modificar Reference26.</p></article>
 </div>
 <details class="final-method-formula"><summary>Expresión de la corrección más seleccionada</summary>
@@ -349,7 +350,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <mi>clip</mi><mo>(</mo><mn>0.25</mn><mo>×</mo><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>×</mo>
 <mo>[</mo><msub><mover><mi>y</mi><mo>^</mo></mover><mtext>3NN</mtext></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>−</mo><msub><mover><mi>y</mi><mo>^</mo></mover><mi>R</mi></msub><mo>(</mo><mi>x</mi><mo>)</mo><mo>]</mo><mo>,</mo><mo>−</mo><mn>0.5</mn><mo>,</mo><mn>0.5</mn><mo>)</mo>
 </mrow></math></div>
-<p>El factor <strong>g(x)</strong> vale entre 0 y 1 y reduce la magnitud del ajuste cuando los análogos están lejos o muestran rendimientos discordantes. Esta fórmula describe la <strong>variante dominante</strong>: la política anidada puede seleccionar otra de las cinco correcciones o dejar intacta la predicción.</p></details>
+<p>El factor <strong>g(x)</strong> vale entre 0 y 1 y reduce la magnitud del ajuste cuando los análogos están lejos o muestran rendimientos discordantes. Esta fórmula describe la <strong>regla fija elegida para las 59 parcelas finales</strong>. En cambio, durante la evaluación del selector anidado cada exclusión podía escoger otra de las cinco correcciones o dejar intacta la predicción.</p></details>
 </section>
 <div class="final-selection-explanation">
 <h4>La elección también se valida</h4><p>En cada una de las <strong>138 exclusiones externas</strong> se aparta una parcela. Con las otras 137 cosechas se realizan cuatro particiones internas para comparar cinco correcciones y la posibilidad de no corregir. El procedimiento añade <strong>552 ajustes internos de Reference26</strong> (4 × 138), compartidos entre los candidatos. Se elige la opción de menor MSE interno sólo si mejora el MSE de Reference26 en al menos <strong>1 %</strong>; de lo contrario, se conserva la predicción base.</p>
@@ -362,11 +363,11 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <div id="final-strategies" aria-live="polite">Verificando las siete estrategias publicadas…</div>
 <p id="final-metric-footnote" class="small-note"></p></article>
 <article class="final-experiment-card"><h4>Qué decidió la selección interna · 138 folds</h4><p>Cuatro folds internos de selección para cada parcela excluida. Las barras muestran frecuencia de elección, no precisión predictiva ni las 59 cosechas pendientes.</p><div id="final-selection-bars" aria-label="Frecuencia de selección interna por variante"></div>
-<p>La variante dominante fue robusta en 26 variables, con tres análogos y mezcla 0.25. Las otras cinco exclusiones seleccionaron PCA8 y cinco dejaron intacta la predicción nativa.</p></article>
+<p>En <strong>128 de 138</strong> exclusiones se eligió la variante robusta de 26 atributos y tres análogos (mezcla 0.25); en <strong>5</strong> se eligió PCA8 y en otras <strong>5</strong> no se aplicó corrección. Son decisiones del selector dentro de LOOCV, no frecuencias de acierto ni predicciones para las 59 parcelas.</p></article>
 </div>
 
 <div class="final-extended-metrics">
-<div class="final-extended-heading"><p class="eyebrow">MÉTRICAS LOOCV · 138 PARCELAS</p><h4>Error, extremos e incertidumbre</h4><p>Resultados adicionales del selector anidado. Los errores se evaluaron sobre las mismas 138 cosechas conocidas excluidas una a una.</p></div>
+<div class="final-extended-heading"><p class="eyebrow">EVALUACIÓN COMPLEMENTARIA · SELECTOR ANIDADO · 138 PARCELAS</p><h4>Error, extremos e incertidumbre</h4><p>Resultados adicionales del selector anidado. Los errores se evaluaron sobre las mismas 138 cosechas conocidas excluidas una a una.</p></div>
 <details class="final-metrics-details" open><summary>Explorar las 12 métricas del selector anidado · magnitud, colas y sesgo</summary>
 <p>Todas corresponden a las mismas 138 cosechas reales excluidas mediante LOOCV. Los valores publicados se conservan con seis decimales; no se estiman errores para las 59 parcelas pendientes.</p>
 <div class="final-metric-tables">
@@ -405,7 +406,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 </details>
 <p class="final-study-source">Ejecución completa de 138 exclusiones LOOCV, 19 de octubre de 2026. <a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_TOP5_NESTED_LOOCV.md" target="_blank" rel="noopener noreferrer">Metodología del selector anidado ↗</a></p>
 </div>
-<p class="final-experiment-scope"><strong>Distinción técnica:</strong> la corrección fija seleccionada retrospectivamente obtuvo RMSE 0.462418 t/ha y R² 0.702693, mientras que la política anidada de cuatro folds obtuvo los indicadores principales mostrados arriba. Son evaluaciones distintas.</p>
+<p class="final-experiment-scope"><strong>Distinción técnica:</strong> la regla fija efectivamente seleccionada para las 59 parcelas obtuvo RMSE LOOCV <strong>0.462418 t/ha</strong>, MAE <strong>0.332019 t/ha</strong> y R² <strong>0.702693</strong>. El selector anidado obtuvo RMSE <strong>0.462892 t/ha</strong>, MAE <strong>0.331956 t/ha</strong> y R² <strong>0.702083</strong>. Ambos son resultados exploratorios sobre las 138 cosechas conocidas, no mediciones del error en las 59.</p>
 <p class="final-experiment-links"><a href="https://github.com/heri-espino/GeoC/blob/experiment/reference26-top5-final59/docs/REFERENCE26_FINAL59_SELECTED.md" target="_blank" rel="noopener noreferrer">Metodología y cierre reproducible ↗</a><a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones ↓</a></p>
 </div>
 <div class="previous-validation-heading"><p class="eyebrow">08 · PRUEBAS HISTÓRICAS DEL ENSAMBLE NATIVO</p><h3>¿Cuánto se equivoca <em>la regresión local con mezcla geológica?</em></h3>
@@ -463,7 +464,7 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <details><summary>¿Qué pasa si la lluvia es cero o si falta un mes?</summary><p>Cuando todos los meses tienen cero precipitación observada, los resúmenes correspondientes toman cero. Si no se observó un mes, no se interpreta como cero: los faltantes derivados se tratan durante el ajuste con reglas aprendidas sólo en entrenamiento.</p></details>
 <details><summary>¿Se sustituyen los datos faltantes siempre por la media?</summary><p><strong>No de forma indiscriminada.</strong> El Reference26 nativo usado para las <strong>59 predicciones definitivas</strong> imputa las características numéricas faltantes con la <strong>media calculada sólo en el conjunto de entrenamiento</strong>. La versión histórica de 59 estimaciones utilizaba mediana y se conserva únicamente como antecedente. Un cero observado no es un faltante, y el corrector residual interno R3 se desactiva cuando no están disponibles sus tres indicadores necesarios. <a href="./investigacion.html?vista=sabemos#preparacion">Consultar la preparación de datos ↗</a></p></details>
 <details><summary>¿Qué significa un peso geológico de 0.86?</summary><p>Que, en esa mezcla ajustada, la estimación local recibe un peso cercano a 86 % y la climática el resto. No significa que la geología explique 86 % del rendimiento o que lo cause.</p></details>
-<details><summary>¿Cuánto acierta el modelo?</summary><p>La evaluación por <strong>138 exclusiones LOOCV</strong> mide errores, no un porcentaje de parcelas acertadas. El <strong>selector anidado</strong> obtuvo RMSE <strong>0.462892 t/ha</strong>, MAE <strong>0.331956 t/ha</strong> y R² predictivo <strong>0.702083</strong>. La corrección fija elegida retrospectivamente obtuvo RMSE 0.462418 t/ha y R² 0.702693; el ensamble base con media alcanzó RMSE 0.468138 t/ha. La elección inicial de las cinco correcciones fue exploratoria. <strong>Ninguna métrica mide todavía el error real de las 59 parcelas sin cosecha conocida.</strong> <a href="./investigacion.html?vista=resultados#resultados">Ver las pruebas y su alcance ↗</a></p></details>
+<details><summary>¿Qué desempeño obtuvo el modelo final?</summary><p>La <strong>regla fija finalmente seleccionada</strong>, Reference26 con imputación por media y corrección de tres análogos robustos, registró RMSE <strong>0.462418 t/ha</strong>, MAE <strong>0.332019 t/ha</strong> y R² predictivo <strong>0.702693</strong> en 138 exclusiones LOOCV. El <strong>selector anidado</strong>, una evaluación distinta que decide entre correcciones por fold, obtuvo RMSE 0.462892, MAE 0.331956 y R² 0.702083. Reference26 sin la corrección final obtuvo RMSE 0.468138. Los candidatos fueron elegidos tras explorar las mismas 138 etiquetas y esto limita la independencia de la evaluación. <strong>No es un porcentaje de parcelas acertadas y ninguna métrica mide todavía el error real de las 59 cosechas desconocidas.</strong> <a href="./investigacion.html?vista=resultados#resultados">Ver las pruebas y su alcance ↗</a></p></details>
 <details><summary>¿Qué estimaciones puedo consultar?</summary><p>Puedes consultar las <strong>59 predicciones finales corregidas</strong>, su resumen, ejemplos y distribución, verificadas frente al CSV de GeoC. Se generaron con Reference26 y la corrección por <strong>tres parcelas análogas</strong>; no son las antiguas estimaciones con mediana ni cosechas observadas. <strong>Esta página no genera predicciones nuevas para otras parcelas.</strong> <a href="./investigacion.html?vista=resultados#predicciones-59">Explorar las 59 estimaciones definitivas ↗</a></p></details>
 </div>
 <div class="source-index"><strong>Documentación técnica original</strong><a href="https://github.com/heri-espino/todoseboso/blob/main/documentation/models/Reference26/README.md" target="_blank" rel="noopener noreferrer">Fórmula, 26 variables y ajuste final ↗</a><a href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_component_evidence/v1/README.md" target="_blank" rel="noopener noreferrer">Pruebas de cada componente ↗</a><a href="https://github.com/heri-espino/todoseboso/blob/main/results/four_final_checks/v1/README.md" target="_blank" rel="noopener noreferrer">Soporte, sensibilidad e intervalos ↗</a></div></div></section>
