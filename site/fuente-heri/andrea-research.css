@@ -199,3 +199,61 @@ html[data-research-vista="modelo"] #contenido > section#arquitectura,
 html[data-research-vista="modelo"] #contenido > section#faltantes,
 html[data-research-vista="resultados"] #contenido > section#resultados,
 html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{background:var(--geo-header)!important}
+
+/* GEOCEBADA FINAL59: reutiliza Resultados; no crea un capítulo duplicado. */
+#contenido #resultados .final-results-panel{border:1px solid #d7e0d1;border-radius:13px;background:#edf2e8;padding:clamp(22px,3vw,37px);margin-bottom:38px}
+#contenido #resultados .final-results-panel .loocv-head{padding:0 0 22px}
+#contenido #resultados .final-results-panel .loocv-head h3{font-size:clamp(25px,3vw,39px);letter-spacing:-.035em;line-height:1.2;margin:8px 0 14px}
+#contenido #resultados .final-results-panel .loocv-head p:not(.eyebrow){font-size:14px;line-height:1.8;max-width:1100px}
+#contenido #resultados .final-results-panel p strong{color:#2b4d3e}
+.final-loocv-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #cad7c8;border-bottom:1px solid #cad7c8;margin:9px 0 30px}
+.final-loocv-metrics>div{min-width:0;padding:20px 16px;border-right:1px solid #cad7c8}
+.final-loocv-metrics>div:last-child{border-right:0}
+.final-loocv-metrics span,.final-loocv-metrics small{display:block;color:#63736a;font-size:12px;line-height:1.5}
+#contenido #resultados .final-loocv-metrics strong{display:block;font-size:clamp(26px,3.4vw,43px);font-weight:800;letter-spacing:-.045em;line-height:1.3;color:#243f33;font-variant-numeric:tabular-nums}
+.final-experiment-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,1fr);gap:18px}
+.final-experiment-card{background:#fffefb;border:1px solid #d6dfd4;padding:clamp(16px,2.5vw,27px);min-width:0}
+#contenido #resultados .final-experiment-card h4{font-size:clamp(20px,2.3vw,26px);line-height:1.3;margin:0 0 10px;color:#243f33}
+#contenido #resultados .final-experiment-card p{color:#617066;font-size:13px;line-height:1.7}
+.final-metric-buttons{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 24px}
+#contenido #resultados .final-metric-buttons button{border:1px solid #becbbb;background:#fffefc;color:#264536;font-size:12px;font-weight:750;border-radius:3px;padding:9px 12px;cursor:pointer}
+#contenido #resultados .final-metric-buttons button[aria-pressed="true"]{background:#244438;color:#fffef8;border-color:#244438}
+.final-strategy-list,.final-selection-list{display:grid;gap:16px}
+.final-strategy-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:5px;font-size:12px;line-height:1.45;color:#263e32}
+#contenido #resultados .final-strategy-heading strong{color:#263e32;font-weight:750}
+.final-strategy-heading span{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:750}
+.final-strategy-track{display:block;height:11px;background:#e3e9df;position:relative;overflow:hidden}
+.final-strategy-fill{display:block;height:100%;background:#83a28a}
+.final-strategy-fill.fixed{background:#4f8871}
+.final-strategy-fill.nested{background:#c6a165}
+.final-strategy-fill.base{background:#aab8a6}
+.final-strategy-row small{display:block;margin-top:4px;font-size:10px;line-height:1.4;color:#69796d}
+#contenido #resultados .final-experiment-card #final-metric-footnote{margin-top:18px}
+.final-experiment-scope{padding:15px 17px;border-left:3px solid #a8ba9a;background:#f7faf3;margin:22px 0 14px!important;font-size:13px;line-height:1.75}
+.final-experiment-links{display:flex;flex-wrap:wrap;gap:10px 20px;margin:14px 0 0!important;font-size:13px}
+.final-experiment-links a{font-weight:750;text-decoration:underline;text-underline-offset:3px}
+#contenido #predicciones-59 .final59-histogram{margin-top:32px;padding:23px;background:#fffefb;border:1px solid #d9dfd3}
+#contenido #predicciones-59 .final59-histogram h3{font-size:clamp(21px,2.7vw,29px);margin:0 0 8px}
+#contenido #predicciones-59 .final59-histogram>p{font-size:13px;color:#60705f;line-height:1.7}
+.final59-bars{height:235px;display:flex;align-items:stretch;gap:clamp(5px,1vw,15px);padding:10px 4px 0;border-bottom:1px solid #b7c9b5;margin-top:18px}
+.final59-column{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px;text-align:center}
+.final59-column strong{font-variant-numeric:tabular-nums;font-size:12px;line-height:1.2;color:#244b3b}
+.final59-column-track{height:165px;width:100%;display:flex;align-items:end}
+.final59-column-fill{display:block;width:100%;background:#4f8871;min-height:0;border-radius:3px 3px 0 0}
+.final59-column small{font-size:clamp(8px,1vw,12px);white-space:nowrap;color:#627368}
+#contenido #predicciones-59 .final59-caption{font-size:12px;color:#536b5a;margin:12px 0 0}
+@media(max-width:850px){
+ .final-experiment-grid{grid-template-columns:1fr}
+ .final-loocv-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .final-loocv-metrics>div:nth-child(2){border-right:0}
+ .final-loocv-metrics>div:last-child{grid-column:1/-1;border-top:1px solid #cad7c8}
+}
+@media(max-width:550px){
+ .final-loocv-metrics{grid-template-columns:1fr}
+ .final-loocv-metrics>div{border-right:0;border-bottom:1px solid #cad7c8}
+ .final-loocv-metrics>div:last-child{grid-column:auto;border-top:0;border-bottom:0}
+ .final-strategy-heading{flex-wrap:wrap;gap:2px 8px}
+ .final59-bars{gap:4px;height:210px}
+ .final59-column-track{height:145px}
+ .final59-column small{writing-mode:vertical-rl;transform:rotate(180deg)}
+}
