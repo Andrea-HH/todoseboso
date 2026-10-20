@@ -48,10 +48,10 @@ html[data-research-vista="preguntas"] [data-research-intro="preguntas"]{display:
 html[data-research-vista] #contenido>section{display:none!important}
 html[data-research-vista] #contenido>.stat-band{display:none!important}
 html[data-research-vista="sabemos"] #contenido>section#datos,
+html[data-research-vista="sabemos"] #contenido>section#preparacion,
 html[data-research-vista="sabemos"] #contenido>section#datos-reales,
 html[data-research-vista="modelo"] #contenido>section#ensamble,
 html[data-research-vista="modelo"] #contenido>section#variables,
-html[data-research-vista="modelo"] #contenido>section#preparacion,
 html[data-research-vista="modelo"] #contenido>section#arquitectura,
 html[data-research-vista="modelo"] #contenido>section#geologia,
 html[data-research-vista="modelo"] #contenido>section#faltantes,
@@ -184,19 +184,19 @@ html[data-research-vista] #research-chapter-heading{background-color:var(--geo-h
 html[data-research-vista] #research-chapter-heading.research-chapter-heading{background:var(--geo-header)!important}
 /* Muestra 2: RGB(251,248,241), #FBF8F1 inmediatamente después del encabezado. */
 html[data-research-vista="sabemos"] #contenido > section#datos,
+html[data-research-vista="sabemos"] #contenido > section#datos-reales,
 html[data-research-vista="modelo"] #contenido > section#ensamble,
-html[data-research-vista="modelo"] #contenido > section#preparacion,
-html[data-research-vista="modelo"] #contenido > section#geologia,
-html[data-research-vista="modelo"] #contenido > section#ajuste,
+html[data-research-vista="modelo"] #contenido > section#arquitectura,
+html[data-research-vista="modelo"] #contenido > section#faltantes,
 html[data-research-vista="resultados"] #contenido > section#predicciones-59,
 html[data-research-vista="resultados"] #contenido > section#pruebas,
 html[data-research-vista="confianza"] #contenido > section#limites,
 html[data-research-vista="preguntas"] #contenido > section#preguntas{background:var(--geo-alternate)!important}
 /* A partir de ahí: muestra 1, muestra 2, muestra 1... */
-html[data-research-vista="sabemos"] #contenido > section#datos-reales,
+html[data-research-vista="sabemos"] #contenido > section#preparacion,
 html[data-research-vista="modelo"] #contenido > section#variables,
-html[data-research-vista="modelo"] #contenido > section#arquitectura,
-html[data-research-vista="modelo"] #contenido > section#faltantes,
+html[data-research-vista="modelo"] #contenido > section#geologia,
+html[data-research-vista="modelo"] #contenido > section#ajuste,
 html[data-research-vista="resultados"] #contenido > section#resultados,
 html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{background:var(--geo-header)!important}
 
@@ -256,4 +256,38 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
  .final59-bars{gap:4px;height:210px}
  .final59-column-track{height:145px}
  .final59-column small{writing-mode:vertical-rl;transform:rotate(180deg)}
+}
+
+
+/* ¿Qué sabemos? · auditoría pública integrada en el bloque de datos existente. */
+#contenido #datos .research-audit{margin-top:clamp(38px,5vw,68px);padding-top:clamp(25px,4vw,48px);border-top:1px solid #dfdbc9;scroll-margin-top:110px}
+#contenido #datos .research-audit>.section-heading{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(15px,3vw,36px);align-items:end}
+#contenido #datos .research-audit .section-heading h2{font-size:clamp(27px,3.4vw,44px);margin-bottom:0}
+#contenido #datos .research-audit .section-heading>p{font-size:14px;line-height:1.8;margin:0}
+.audit-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid #d8dfcb;border-radius:13px;overflow:hidden;margin:27px 0 28px;background:#edf1e6}
+.audit-kpis>div{padding:20px 16px;min-width:0;border-right:1px solid #d8dfcb}
+.audit-kpis>div:last-child{border-right:0}
+#contenido #datos .audit-kpis strong{display:block;font-size:clamp(26px,3vw,41px);font-variant-numeric:tabular-nums;color:#254535;line-height:1.18}
+#contenido #datos .audit-kpis span{display:block;color:#526b57;font-size:clamp(11px,1.1vw,13px);line-height:1.5;margin-top:7px;font-weight:650}
+.audit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.audit-card{min-width:0;background:#fffdf8;border:1px solid #e4dac9;padding:clamp(18px,2.5vw,26px);border-radius:9px}
+.audit-card .audit-number{display:block;font-size:10px;font-weight:800;letter-spacing:.15em;color:#72885b;margin-bottom:10px}
+#contenido #datos .audit-card h3{font-size:clamp(18px,2vw,23px);line-height:1.32;margin:0 0 12px;color:#294936}
+#contenido #datos .audit-card p{font-size:13px;line-height:1.75;color:#5d705f;margin:0}
+#contenido #datos .audit-card strong{color:#294936}
+#contenido #datos .audit-card a{display:inline-block;font-size:12px;font-weight:750;color:#325f46;text-decoration:underline;text-underline-offset:3px;margin-top:15px;overflow-wrap:anywhere}
+.audit-card.audit-pending{background:#f3eddf;border-color:#d8caa9}
+#contenido #datos .audit-sources{border-left:3px solid #b5bb9a;padding:13px 16px;margin:21px 0 0;color:#526953;font-size:12px;line-height:1.8;background:#f0f0e3;overflow-wrap:anywhere}
+#contenido #datos .audit-sources a{color:#2f5941;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:840px){
+ #contenido #datos .research-audit>.section-heading{display:block}
+ #contenido #datos .research-audit .section-heading>p{margin-top:12px}
+ .audit-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .audit-kpis>div:nth-child(2){border-right:0}
+ .audit-kpis>div:nth-child(-n+2){border-bottom:1px solid #d8dfcb}
+}
+@media(max-width:620px){
+ .audit-grid{grid-template-columns:1fr}
+ .audit-kpis>div{padding:16px 13px}
+ .audit-card{padding:18px}
 }
