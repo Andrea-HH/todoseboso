@@ -547,6 +547,42 @@ html.geo-controles-solo .geo-filters select{
   html.geo-controles-solo .geo-filters{gap:4px 6px}
   html.geo-controles-solo .geo-filters select{min-height:35px}
 }
+
+/* Video de demostración bajo la ficha seleccionada en la portada. */
+.geo-selected-column{display:contents}
+html.geo-panel-solo .geo-selected-column{display:block;grid-area:detail;min-width:0}
+html.geo-panel-solo .geo-video-demo{
+  margin:0 clamp(24px,3vw,42px) clamp(24px,3vw,42px);
+  padding:18px;
+  border:1px solid #dce5d9;
+  border-radius:15px;
+  background:#eff2e8;
+}
+html.geo-panel-solo .geo-video-demo[hidden]{display:none!important}
+html.geo-panel-solo .geo-video-demo h3{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:600;
+  color:#254b3b;
+  font-size:clamp(21px,2vw,27px);
+  line-height:1.2;
+  margin:9px 0 14px;
+}
+html.geo-panel-solo .geo-video-demo video{
+  display:block;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:10px;
+  background:#12352f;
+}
+html.geo-panel-solo .geo-video-demo p{
+  font-size:.76rem;
+  line-height:1.5;
+  color:#647768;
+  margin:11px 0 0;
+}
+@media(max-width:420px){
+  html.geo-panel-solo .geo-video-demo{margin:0 18px 20px;padding:12px}
+}
 </style>
 <script>
   const vista = new URLSearchParams(window.location.search).get('vista');
@@ -581,7 +617,18 @@ html.geo-controles-solo .geo-filters select{
           <div class="geo-filter-count" id="map-visible-count" aria-live="polite">Aún sin geometrías cargadas</div>
           </div>
           <div class="geo-panel-results">
+          <div class="geo-selected-column">
           <div class="geo-detail" id="map-selected-detail" aria-live="polite"><span>PARCELA SELECCIONADA</span><h3>Selecciona una parcela</h3><p>Al seleccionar una parcela verás su identificador, estado, municipio y rendimiento: observado en las 138 parcelas de entrenamiento o estimado por Reference26 en las 59 parcelas de predicción.</p></div>
+          <section class="geo-video-demo" id="geo-video-demo" aria-labelledby="geo-video-title" hidden>
+            <span class="geo-eyebrow">DEMOSTRACIÓN EN VIDEO</span>
+            <h3 id="geo-video-title">GeoCebada en acción</h3>
+            <video controls playsinline preload="none" aria-label="Video de demostración de GeoCebada, FIRA 2026">
+              <source src="../media/GeoCebada-FIRA-2026.mp4" type="video/mp4">
+              Tu navegador no admite la reproducción de este video.
+            </video>
+            <p>Recorrido por el proyecto · 3 min 57 s</p>
+          </section>
+          </div>
           <section class="geo-climate" id="map-climate" aria-label="Factores climáticos de la parcela seleccionada">
             <span class="geo-eyebrow">CONDICIONES AGROCLIMÁTICAS</span>
             <h3>Clima y territorio</h3>
@@ -629,6 +676,19 @@ html.geo-controles-solo .geo-filters select{
   window.addEventListener('resize',report);
   if ('ResizeObserver' in window) new ResizeObserver(report).observe(content);
   report();
+})();
+</script>
+
+<script>
+(function () {
+  // El video se hace visible cuando el archivo público ya está cargado.
+  // Evita mostrar un reproductor sin contenido durante su subida a GitHub Pages.
+  if (!document.documentElement.classList.contains('geo-fichas-solo')) return;
+  const section = document.getElementById('geo-video-demo');
+  if (!section) return;
+  fetch('../media/GeoCebada-FIRA-2026.mp4', {method:'HEAD'})
+    .then(response => { if (response.ok) section.hidden = false; })
+    .catch(() => {});
 })();
 </script>
 </body>
