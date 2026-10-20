@@ -338,6 +338,8 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 #contenido #resultados .final-method-formula p{margin:4px 0 16px;font-size:12px;line-height:1.8;color:#587062}
 .final-selection-explanation{margin:9px 0 30px;border-top:1px solid #d2ddce;padding-top:22px}
 .final-extended-metrics{margin:24px 0 28px}
+#contenido #resultados .final-extended-heading h4{font-size:clamp(22px,2.8vw,31px);line-height:1.25;color:#294638;margin:7px 0 9px}
+#contenido #resultados .final-extended-heading>p:last-child{font-size:13px;line-height:1.75;color:#5d7062;margin:0 0 15px}
 .final-metrics-details,.final-metric-definitions{border:1px solid #d1dacb;background:#fffefb;padding:0 clamp(14px,2.5vw,25px);margin-bottom:18px}
 .final-metrics-details>p{font-size:13px;color:#5d7062;line-height:1.75}
 .final-metric-tables{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:16px 0 19px}
