@@ -76,7 +76,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         self.assertNotIn("¿Cómo se distribuyen las estimaciones?",text)
         self.assertNotIn('id="pred59-search"',text)
         self.assertNotIn('id="pred59-state"',text)
-        self.assertNotIn("Consultar las 59 predicciones",text)
+        self.assertNotIn('id="pred59-search"',text)
         self.assertEqual(text.count('id="predicciones-59"'),1)
         for plot in ("parcel-coverage","real-rainfall","real-ndvi",
                      "performance-chart","association-chart","r3-comparison",
@@ -91,7 +91,7 @@ class ResearchIntegrityTest(unittest.TestCase):
         for id_ in ("ensamble","datos","auditoria","variables","datos-reales","preparacion",
                     "arquitectura","geologia","faltantes","ajuste","resultados",
                     "pruebas","limites","preguntas","estadisticas-finales","predicciones-59"):
-            self.assertIn("#"+id_,style)
+            self.assertIn("#"+id_ if id_!="auditoria" else ".research-audit",style)
         self.assertIn('html[data-research-vista="modelo"] #contenido>section#variables',style)
         self.assertNotIn('html[data-research-vista="sabemos"] #contenido>section#variables',style)
         # Colores muestreados directamente de las dos imágenes enviadas.
