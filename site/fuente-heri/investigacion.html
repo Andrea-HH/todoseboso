@@ -68,17 +68,19 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
   <p class="research-kicker">GEOCEBADA · INVESTIGACIÓN APLICADA · CICLO 2025</p>
   <div data-research-intro="sabemos" class="research-intro">
     <h1>¿Qué <em>sabemos?</em></h1>
-    <p>Qué información tenemos de las 197 parcelas, cuáles rendimientos se conocen y qué observamos en clima y vegetación. Las mediciones y gráficas originales están reunidas aquí.</p>
+    <p>Qué información tenemos de las 197 parcelas, qué comprobaciones son públicas, cómo preparamos las variables y qué observamos en las series originales de clima y vegetación.</p>
     <nav class="research-topic-links" aria-label="Contenido de Qué sabemos">
      <a href="./investigacion.html?vista=sabemos#datos">Parcelas y objetivo</a>
+     <a href="./investigacion.html?vista=sabemos#auditoria">Auditoría de datos</a>
+     <a href="./investigacion.html?vista=sabemos#preparacion">Preparación de datos</a>
      <a href="./investigacion.html?vista=sabemos#datos-reales">Lluvia y NDVI observados</a>
     </nav>
    </div>
    <div data-research-intro="modelo" class="research-intro">
    <h1>¿Cómo funciona <em>Reference26?</em></h1>
-   <p>Cómo se preparan las variables, se seleccionan los vecinos y se combinan las predicciones con geología y correcciones. Incluye la metodología y los ajustes originales.</p>
+   <p>Cómo funciona Reference26 después de preparar las variables: su arquitectura, la selección de vecinos, la geología, los datos faltantes y sus ajustes.</p>
    <nav class="research-topic-links" aria-label="Contenido de Modelo">
-    <a href="./investigacion.html?vista=modelo#ensamble">Modelo Reference26</a><a href="./investigacion.html?vista=modelo#variables">Las 26 variables</a><a href="./investigacion.html?vista=modelo#preparacion">Preparación</a>
+    <a href="./investigacion.html?vista=modelo#ensamble">Modelo Reference26</a><a href="./investigacion.html?vista=modelo#variables">Las 26 variables</a>
     <a href="./investigacion.html?vista=modelo#arquitectura">Arquitectura</a><a href="./investigacion.html?vista=modelo#geologia">Geología</a><a href="./investigacion.html?vista=modelo#ajuste">Entrenamiento</a>
    </nav>
   </div>
@@ -152,28 +154,47 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <div id="parcel-coverage" aria-live="polite">Cargando los recuentos reales por estado…</div>
 <p class="small-note">Fuente: <a href="https://github.com/heri-espino/todoseboso/blob/main/results/reference26_distribution/v1/descriptive_global_state.csv" target="_blank" rel="noopener noreferrer">descriptivos versionados por estado ↗</a>. Cada parcela cuenta una vez, sin ponderación por superficie.</p>
 </div>
+
+<div class="research-audit" id="auditoria" aria-labelledby="audit-title">
+ <div class="section-heading"><div><p class="eyebrow">AUDITORÍA DEL CONJUNTO DE DATOS</p><h2 id="audit-title">¿Qué comprobamos <em>antes de confiar en las predicciones?</em></h2></div>
+ <p>Distinguimos comprobaciones reproducibles a partir de archivos públicos de verificaciones pendientes que requieren registros privados. Ninguna prueba trata los 59 rendimientos ocultos como cosechas observadas.</p></div>
+ <div class="audit-kpis" aria-label="Tamaño y evaluación del conjunto">
+  <div><strong>197</strong><span>polígonos del conjunto</span></div>
+  <div><strong>138</strong><span>rendimientos conocidos</span></div>
+  <div><strong>59</strong><span>predicciones finales identificadas</span></div>
+  <div><strong>138/138</strong><span>exclusiones LOOCV auténticas</span></div>
+ </div>
+ <div class="audit-grid">
+  <article class="audit-card"><span class="audit-number">01 · INTEGRIDAD</span><h3>Integridad de las 59 filas y procedencia</h3>
+   <p>El CSV final contiene 59 identificadores distintos y valores finitos. Sus agregados coinciden con el manifiesto final y la procedencia del archivo publicado por GeoC, que consigna un identificador hash. Es una comprobación de integridad de resultados <strong>estimados</strong>, no de su exactitud frente a cosechas reales.</p>
+   <a href="./data/submission59_final.csv" target="_blank" rel="noopener noreferrer">Consultar CSV final verificado ↗</a></article>
+  <article class="audit-card"><span class="audit-number">02 · SEPARACIÓN</span><h3>Separación de etiquetas y prevención de fuga de información</h3>
+   <p>Cada fold externo retiene la cosecha de una parcela y entrena con las otras 137. Las medias de imputación y la corrección basada en rendimientos se ajustan sólo con el entrenamiento permitido. Los cuatro folds internos impiden usar la etiqueta externa durante la selección, pero <strong>no eliminan</strong> la preselección histórica de las cinco recetas sobre estas mismas 138 etiquetas.</p></article>
+  <article class="audit-card"><span class="audit-number">03 · AUSENCIAS</span><h3>Datos faltantes e imputación por media</h3>
+   <p>El ensamble nativo seleccionado imputa características numéricas ausentes mediante la <strong>media del entrenamiento</strong>, no mediante mediana o interpolación espacial-temporal. La decisión procede de comparaciones exploratorias LOOCV, no de una superioridad universal de la media. No hay desglose público de faltantes por variable y municipio para certificar completitud.</p></article>
+  <article class="audit-card"><span class="audit-number">04 · TEMPORALIDAD</span><h3>Clima, vegetación y temporalidad</h3>
+   <p>Los agregados públicos documentan lluvia y NDVI de abril a octubre de 2025 para 197 parcelas: cada mes publicado registra 197 observaciones de cada serie. Esto permite revisar los <strong>agregados mensuales</strong>, pero no demostrar la completitud de las 26 variables ni descartar fallos de medición en las fuentes.</p>
+   <a href="./data/real_charts.json" target="_blank" rel="noopener noreferrer">Examinar los agregados originales ↗</a></article>
+  <article class="audit-card"><span class="audit-number">05 · SOPORTE ESPACIAL</span><h3>Consistencia de escala, geometrías y vecindarios</h3>
+   <p>El corrector final utiliza 26 indicadores robustamente escalados y tres parcelas análogas con rendimientos conocidos. El mapa y las distancias entre parcelas permiten estudiar el soporte espacial, pero <strong>no reemplazan</strong> una auditoría de coordenadas, solapamientos, geología y calidad del etiquetado.</p></article>
+  <article class="audit-card"><span class="audit-number">06 · DIAGNÓSTICOS</span><h3>Valores extremos, normalidad y dependencia espacial</h3>
+   <p>Los residuos del ensamble <strong>nativo</strong> rechazan normalidad según Shapiro–Wilk (<em>p</em> = 1.401988 × 10<sup>−7</sup>); Koenker–Breusch–Pagan no rechaza su nula en la especificación reportada (<em>p</em> = 0.400797). También se examinan influencia, Moran, Geary y semivariograma. <strong>Estos valores p no corresponden al corrector final</strong>, cuya auditoría debe interpretarse separadamente.</p>
+   <a href="./investigacion.html?vista=confianza#estadisticas-finales">Ver diagnósticos del ensamble nativo ↗</a></article>
+  <article class="audit-card audit-pending"><span class="audit-number">07 · LÍMITES DE EVIDENCIA</span><h3>Pruebas todavía no verificables públicamente</h3>
+   <p>No están disponibles por parcela las tasas de faltantes, los controles de rangos agronómicos, las comprobaciones de geometrías duplicadas, la calidad del etiquetado ni los errores reales de las 59 parcelas. Tampoco se publican límites numéricos verificados de intervalos bootstrap absolutos del RMSE del corrector final. Estas pruebas requieren archivos y ejecuciones adicionales: <strong>no presentamos cifras supuestas</strong>.</p></article>
+ </div>
+ <p class="audit-sources">Fuentes: <a href="./data/final_model.json" target="_blank" rel="noopener noreferrer">manifiesto final ↗</a>, <a href="https://github.com/heri-espino/todoseboso/blob/main/site/data/reference26_selected_statistical_audit.json" target="_blank" rel="noopener noreferrer">auditoría del corrector ↗</a>, <a href="./data/reference26_residuals.json" target="_blank" rel="noopener noreferrer">diagnósticos del modelo nativo ↗</a> y <a href="./data/real_charts.json" target="_blank" rel="noopener noreferrer">agregados de 2025 ↗</a>. No se mezclan protocolos ni se usan las 59 cosechas ocultas como observadas.</p>
+</div>
 </div></section>
 
 
-
-<section class="section section-soft" id="datos-reales" aria-label="Lluvia y vegetación observadas en las 197 parcelas"><div class="shell"><div class="observed-data-panel">
-<div class="real-data-figure" >
-<h3>El clima y la vegetación observados en 2025</h3>
-<p class="chart-explain">Las gráficas utilizan las series originales de las 197 parcelas en 2025. La línea representa la mediana mensual de las observaciones disponibles; los segmentos muestran los percentiles 10 y 90, que describen la variación entre parcelas y no intervalos predictivos.</p>
-<p id="real-chart-status" role="status">Verificando si ya se han publicado los agregados observacionales…</p>
-<div class="detail-pair real-chart-pair">
-<div><h4>Precipitación mensual · 2025</h4><div id="real-rainfall"></div></div>
-<div><h4>NDVI satelital · 2025</h4><div id="real-ndvi"></div></div>
-</div>
-<p class="small-note">El número de observaciones válidas se informa por mes; los datos ausentes no se sustituyen con valores creados para la visualización. Fuente: series mensuales originales de 2025 publicadas como agregados verificables.</p>
-</div></div></div></section>
 
 <section class="section" id="preparacion"><div class="shell">
 <div class="section-heading"><div><p class="eyebrow">03 · DEL DATO A LA VARIABLE</p><h2>Antes de ajustar una regresión, <em>preparamos los datos.</em></h2></div><p>Las transformaciones dependen de la función de cada columna. No sustituimos todos los valores faltantes por cero ni normalizamos indiscriminadamente.</p></div>
 <div class="process-grid">
 <article><span>01</span><h3>Resumir la lluvia</h3><p>De siete meses obtenemos lluvia total, fracción de abril a junio y concentración HHI. Si falta un mes, la variable derivada queda sin información completa y se trata durante el ajuste.</p><p class="process-explain">La precipitación total se obtiene sumando los siete meses. La fracción temprana compara abril a junio con el total.</p></article>
 <article><span>02</span><h3>Resumir los satélites</h3><p>Calculamos medias, dispersiones temporales, cambios entre meses y cambios de dirección sobre observaciones válidas. No creamos imágenes faltantes ni hacemos una PCA de estas siete señales.</p><p class="process-explain">El cambio de vegetación se obtiene restando el NDVI de junio al de agosto.</p></article>
-<article><span>03</span><h3>Imputar sin mirar el resultado</h3><p>En las regresiones, los faltantes numéricos se sustituyen por medianas del <strong>entrenamiento</strong>; una columna completamente vacía recibe el tratamiento de respaldo definido en el código. Después se centra y escala con ese mismo entrenamiento.</p><p class="process-explain">Cada valor se centra y escala con estadísticas calculadas en las parcelas de entrenamiento.</p></article>
+<article><span>03</span><h3>Imputar sin mirar el resultado</h3><p>El ensamble nativo seleccionado sustituye los valores numéricos faltantes por <strong>medias calculadas únicamente con el entrenamiento</strong>, según la ejecución final de GeoC. El análisis histórico con mediana permanece documentado por separado. Después se centra y escala con estadísticas de entrenamiento.</p><p class="process-explain">Cada valor se centra y escala con estadísticas calculadas en las parcelas de entrenamiento.</p></article>
 <article><span>04</span><h3>Transformar la geología</h3><p>Las diez proporciones se expresan entre 0 y 1. La representación física toma su raíz cuadrada y las centra usando el entrenamiento. No divide por la rareza de una clase ni usa PCA en este modelo.</p><p class="process-explain">Las proporciones geológicas se transforman con raíz cuadrada y se centran sin ponderar las clases poco frecuentes.</p></article>
 <article><span>05</span><h3>Medir distancia real</h3><p>Latitud y longitud sirven para medir distancias geográficas entre centroides y elegir los 24 vecinos de entrenamiento. Se respeta la escala de distancia congelada del experimento original.</p><p class="process-explain">Las parcelas más próximas reciben más peso en el ajuste Ridge local.</p></article>
 <article><span>06</span><h3>Comprobar datos para corregir</h3><p>El corrector final necesita tres indicadores completos. Si falta alguno, <strong>no inventamos el indicador ausente para activar la corrección</strong>: esa etapa se omite para la parcela.</p><p class="process-explain">Si falta información requerida, la última corrección toma valor cero.</p></article>
@@ -187,6 +208,20 @@ html[data-research-vista="confianza"] #contenido > section#estadisticas-finales{
 <div class="math-item"><strong>Peso por distancia</strong><div class="math-scroll"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>∝</mo><mfrac><mn>1</mn><mrow><msub><mi>d</mi><mi>i</mi></msub><mo>+</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow></mfrac></mrow></math></div><p>En igualdad de lo demás, un vecino próximo tiene mayor peso.</p></div>
 </div></details>
 </div></section>
+
+<section class="section section-soft" id="datos-reales" aria-label="Lluvia y vegetación observadas en las 197 parcelas"><div class="shell"><div class="observed-data-panel">
+<div class="real-data-figure" >
+<h3>El clima y la vegetación observados en 2025</h3>
+<p class="chart-explain">Las gráficas usan los agregados originales de las 197 parcelas de abril a octubre de 2025. La línea representa la mediana mensual de las observaciones disponibles y los segmentos los percentiles 10 y 90: variación entre parcelas, <strong>no intervalos predictivos</strong>. Cada uno de los siete meses publicados registra 197 valores para lluvia y 197 para NDVI; esto no certifica completitud de las 26 variables.</p>
+<p id="real-chart-status" role="status">Verificando si ya se han publicado los agregados observacionales…</p>
+<div class="detail-pair real-chart-pair">
+<div><h4>Precipitación mensual · 2025</h4><div id="real-rainfall"></div></div>
+<div><h4>NDVI satelital · 2025</h4><div id="real-ndvi"></div></div>
+</div>
+<p class="small-note">El número de observaciones válidas se informa por mes; los datos ausentes no se sustituyen con valores creados para la visualización. Fuente: series mensuales originales de 2025 publicadas como agregados verificables.</p>
+</div></div></div></section>
+
+
 
 <section class="section section-dark" id="arquitectura"><div class="shell">
 <div class="section-heading"><div><p class="eyebrow">04 · EL ALGORITMO</p><h2>Una predicción pasa por <em>cuatro cálculos.</em></h2></div><p>Los rendimientos no salen directamente de K-means. El agrupamiento sólo determina qué mezcla de dos estimaciones se usa.</p></div>
